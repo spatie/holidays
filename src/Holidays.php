@@ -4,42 +4,49 @@ namespace Spatie\Holidays;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Actions\Belgium;
-use Spatie\Holidays\Data\Holiday;
 use Spatie\Holidays\Exceptions\HolidaysException;
 
 class Holidays
 {
-    /** @var array<Holiday> */
+    /** @return array<string, string> */
     protected array $holidays = [];
 
+    protected int $year;
+
     private function __construct(
-        protected ?int $year = null,
-        protected ?string $countryCode = null
+        ?int $year = null,
+        protected ?string $countryCode = 'BE' // @todo make this configurable ?
     ) {
         $this->year = $year ?? CarbonImmutable::now()->year;
     }
 
-    public static function forYear(int $year): self
+    public static function new(): static
     {
-        return new self(year: $year, countryCode: $this->countryCode);
+        return new static();
     }
 
-    public static function forCountry(string $countryCode): self
+    /** @return array{name: string, date: string} */
+    public static function all(): array
     {
-        return new self(year: $this->year, countryCode: $countryCode);
-    }
-
-    public static function get(): array
-    {
-        return (new self())
+        return (new static())
             ->calculate()
             ->get();
     }
 
-    /** @return array<Holiday> */
+    public function year(int $year): static
+    {
+        return new static(year: $year);
+    }
+
+    public function country(string $countryCode): static
+    {
+        return new static(countryCode: $countryCode);
+    }
+
+    /** @return array{name: string, date: string} */
     public function get(): array
     {
-        return $this->holidays;
+        return $this->format($this->holidays);
     }
 
     protected function calculate(): self
@@ -53,5 +60,23 @@ class Holidays
         $this->holidays = $action->execute($this->year);
 
         return $this;
+    }
+
+    /**
+     * @param array<string, string> $dates
+     * @return array<array{name: string, date: string}>
+     */
+    protected function format(array $dates): array
+    {
+        $response = [];
+
+        foreach ($dates as $name => $date) {
+            $response[] = [
+                'name' => $name,
+                'date' => $date,
+            ];
+        }
+
+        return $response;
     }
 }

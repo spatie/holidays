@@ -15,4 +15,14 @@ class HolidaysException extends RuntimeException
     {
         return new self("Please provide a country code.");
     }
+
+    public static function yearTooLow(int $year): self
+    {
+        return new self("Holidays can only be calculated for years after 1970.");
+    }
+
+    public static function yearTooHigh(int $year): self
+    {
+        return new self("Holidays can only be calculated for years before 2038.");
+    }
 }

@@ -2,10 +2,8 @@
 
 namespace Spatie\Holidays\Actions;
 
-use Spatie\Holidays\Data\Holiday;
-
 interface Executable
 {
-    /** @return array<Holiday> */
+    /** @return array<string, string> */
     public function execute(int $year): array;
 }

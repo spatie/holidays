@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Actions;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Data\Holiday;
+use Spatie\Holidays\Exceptions\HolidaysException;
 
 class Belgium implements Executable
 {
@@ -13,18 +14,31 @@ class Belgium implements Executable
     {
         $this->year = $year;
 
+        $this->ensureYearCanBeCalculated();
+
         $fixedHolidays = $this->fixedHolidays();
         $variableHolidays = $this->variableHolidays();
 
         return array_merge($fixedHolidays, $variableHolidays);
     }
 
-    /** @return array<Holiday> */
+    protected function ensureYearCanBeCalculated(): void
+    {
+        if ($this->year < 1970) {
+            throw HolidaysException::yearTooLow($this->year);
+        }
+
+        if ($this->year > 2037) {
+            throw HolidaysException::yearTooHigh($this->year);
+        }
+    }
+
+    /** @return array<string, string> */
     protected function fixedHolidays(): array
     {
         $dates = [
             'Nieuwjaar' => '01-01',
-            'Feest van de Arbeid' => '05-01',
+            'Dag van de Arbeid' => '05-01',
             'Nationale Feestdag' => '07-21',
             'OLV Hemelvaart' => '08-15',
             'Allerheiligen' => '11-01',
@@ -32,39 +46,22 @@ class Belgium implements Executable
             'Kerstmis' => '12-25',
         ];
 
-        return $this->format($dates);
+        foreach ($dates as $name => $date) {
+            $dates[$name] = "{$date}-{$this->year}";
+        }
+
+        return $dates;
     }
 
-    /** @return array<Holiday> */
+    /** @return array<string, string> */
     protected function variableHolidays(): array
     {
         $easter = CarbonImmutable::createFromTimestampUTC(easter_date($this->year));
 
-        $dates = [
+        return [
             'Paasmaandag' => $easter->addDay()->format('m-d-Y'),
-            'OLV Hemelvaart' => $easter->addDays(39)->format('m-d-Y'),
-            'Pinksteren' => $easter->addDays(49)->format('m-d-Y'),
+            'OH Hemelvaart' => $easter->addDays(39)->format('m-d-Y'),
             'Pinkstermaandag' => $easter->addDays(50)->format('m-d-Y'),
         ];
-
-        return $this->format($dates);
-    }
-
-    /**
-     * @param array<string, string> $dates
-     * @return array<Holiday>
-     */
-    protected function format(array $dates): array
-    {
-        $formatted = [];
-        foreach ($dates as $name => $date) {
-            $formatted[] = Holiday::new(
-                name: $name,
-                date: "{$date}-{$this->year}",
-            );
-            $dates[$name] = "{$date}-{$this->year}";
-        }
-
-        return $formatted;
     }
 }
