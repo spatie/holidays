@@ -3,9 +3,7 @@
 namespace Spatie\Holidays;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Actions\Belgium;
 use Spatie\Holidays\Enums\Country;
-use Spatie\Holidays\Exceptions\HolidaysException;
 
 class Holidays
 {

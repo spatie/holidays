@@ -4,7 +4,6 @@ namespace Spatie\Holidays\Enums;
 
 use Spatie\Holidays\Actions\Belgium;
 use Spatie\Holidays\Actions\Executable;
-use Spatie\Holidays\Exceptions\HolidaysException;
 
 enum Country: string
 {
@@ -14,7 +13,6 @@ enum Country: string
     {
         return match ($this) {
             self::Belgium => new Belgium(),
-            null => throw HolidaysException::noCountryCode(),
         };
     }
 }

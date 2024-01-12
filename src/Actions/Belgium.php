@@ -20,11 +20,11 @@ class Belgium implements Executable
     protected function ensureYearCanBeCalculated(int $year): void
     {
         if ($year < 1970) {
-            throw HolidaysException::yearTooLow($year);
+            throw HolidaysException::yearTooLow();
         }
 
         if ($year > 2037) {
-            throw HolidaysException::yearTooHigh($year);
+            throw HolidaysException::yearTooHigh();
         }
     }
 

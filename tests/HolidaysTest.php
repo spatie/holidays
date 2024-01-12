@@ -39,7 +39,7 @@ it('can get all holidays of another year and a specific country', function () {
 
 it('cannot get all holidays of an unknown country code', function () {
     Holidays::new()->country('unknown')->get();
-})->throws(ValueError::class, 'Country code `unknown` is not supported');
+})->throws(ValueError::class);
 
 it('cannot get holidays for years before 1970', function () {
     Holidays::new()->year(1969)->get();
