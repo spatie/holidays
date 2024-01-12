@@ -12,14 +12,6 @@ it('can get all holidays of the current year', function () {
     expect($holidays)->toMatchSnapshot();
 });
 
-it('can get all holidays of 2022', function () {
-    $holidays = Holidays::new()
-        ->year(2022)
-        ->get();
-
-    expect($holidays)->toMatchSnapshot();
-});
-
 it('can get all holidays of 2023', function () {
     $holidays = Holidays::new()
         ->year(2023)

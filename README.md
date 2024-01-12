@@ -4,7 +4,28 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/spatie/holidays/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/holidays/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/holidays.svg?style=flat-square)](https://packagist.org/packages/spatie/holidays)
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+**THIS PACKAGE IS IN DEVELOPMENT, DON'T USE IT IN PRODUCTION (YET)**
+
+This package helps to calculate public holidays for a given country.
+
+At the moment only Belgium public holidays are supported. You can always send PR with your country. Don't forget to include tests.
+
+```php
+use Spatie\Holidays\Holiday;
+
+$holidays = Holiday::all();
+```
+
+Or for a specific country and year.
+
+```php
+use Spatie\Holidays\Holiday;
+
+$holidays = Holiday::new()
+    ->forYear(2024)
+    ->forCountry('BE')
+    ->get();
+```
 
 ## Support us
 
@@ -20,13 +41,6 @@ You can install the package via composer:
 
 ```bash
 composer require spatie/holidays
-```
-
-## Usage
-
-```php
-$skeleton = new Spatie\Holidays();
-echo $skeleton->echoPhrase('Hello, Spatie!');
 ```
 
 ## Testing
