@@ -59,12 +59,9 @@ class Holidays
 
     protected function calculate(): self
     {
-        $action = match ($this->country) {
-            Country::Belgium => new Belgium(),
-            null => throw HolidaysException::noCountryCode(),
-        };
-
-        $this->holidays = $action->execute($this->year);
+        $this->holidays = $this->country
+            ->action()
+            ->execute($this->year);
 
         uasort($this->holidays, fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp);
 
