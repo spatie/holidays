@@ -43,7 +43,7 @@ class Holidays
         return new static(countryCode: $countryCode);
     }
 
-    /** @return array{name: string, date: string} */
+    /** @return array<array{name: string, date: string} */
     public function get(): array
     {
         return $this->format($this->holidays);
@@ -58,6 +58,8 @@ class Holidays
         };
 
         $this->holidays = $action->execute($this->year);
+
+        asort($this->holidays);
 
         return $this;
     }
