@@ -37,7 +37,7 @@ class Belgium implements Executable
     {
         $dates = [
             'Nieuwjaar' => '01-01',
-            'Dag van de Arbeid' => '01-01',
+            'Dag van de Arbeid' => '01-05',
             'Nationale Feestdag' => '21-07',
             'OLV Hemelvaart' => '15-08',
             'Allerheiligen' => '01-11',
