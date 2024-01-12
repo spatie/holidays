@@ -30,7 +30,7 @@ it('can get all holidays of 2023', function () {
 
 it('can get all holidays of 2025', function () {
     $holidays = Holidays::new()
-        ->year(2023)
+        ->year(2025)
         ->get();
 
     expect($holidays)->toMatchSnapshot();

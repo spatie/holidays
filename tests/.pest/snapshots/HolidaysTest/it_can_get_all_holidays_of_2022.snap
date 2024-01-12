@@ -4,39 +4,39 @@
         "date": "01-01-2022"
     },
     {
-        "name": "Paasmaandag",
-        "date": "04-17-2022"
-    },
-    {
         "name": "Dag van de Arbeid",
-        "date": "05-01-2022"
-    },
-    {
-        "name": "OH Hemelvaart",
-        "date": "05-25-2022"
-    },
-    {
-        "name": "Pinkstermaandag",
-        "date": "06-05-2022"
-    },
-    {
-        "name": "Nationale Feestdag",
-        "date": "07-21-2022"
-    },
-    {
-        "name": "OLV Hemelvaart",
-        "date": "08-15-2022"
+        "date": "01-01-2022"
     },
     {
         "name": "Allerheiligen",
-        "date": "11-01-2022"
+        "date": "01-11-2022"
+    },
+    {
+        "name": "Pinkstermaandag",
+        "date": "05-06-2022"
     },
     {
         "name": "Wapenstilstand",
         "date": "11-11-2022"
     },
     {
+        "name": "OLV Hemelvaart",
+        "date": "15-08-2022"
+    },
+    {
+        "name": "Paasmaandag",
+        "date": "17-04-2022"
+    },
+    {
+        "name": "Nationale Feestdag",
+        "date": "21-07-2022"
+    },
+    {
+        "name": "OH Hemelvaart",
+        "date": "25-05-2022"
+    },
+    {
         "name": "Kerstmis",
-        "date": "12-25-2022"
+        "date": "25-12-2022"
     }
 ]

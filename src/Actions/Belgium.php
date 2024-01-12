@@ -37,12 +37,12 @@ class Belgium implements Executable
     {
         $dates = [
             'Nieuwjaar' => '01-01',
-            'Dag van de Arbeid' => '05-01',
-            'Nationale Feestdag' => '07-21',
-            'OLV Hemelvaart' => '08-15',
-            'Allerheiligen' => '11-01',
+            'Dag van de Arbeid' => '01-01',
+            'Nationale Feestdag' => '21-07',
+            'OLV Hemelvaart' => '15-08',
+            'Allerheiligen' => '01-11',
             'Wapenstilstand' => '11-11',
-            'Kerstmis' => '12-25',
+            'Kerstmis' => '25-12',
         ];
 
         foreach ($dates as $name => $date) {
@@ -58,9 +58,9 @@ class Belgium implements Executable
         $easter = CarbonImmutable::createFromTimestampUTC(easter_date($this->year));
 
         return [
-            'Paasmaandag' => $easter->addDay()->format('m-d-Y'),
-            'OH Hemelvaart' => $easter->addDays(39)->format('m-d-Y'),
-            'Pinkstermaandag' => $easter->addDays(50)->format('m-d-Y'),
+            'Paasmaandag' => $easter->addDay()->format('d-m-Y'),
+            'OH Hemelvaart' => $easter->addDays(39)->format('d-m-Y'),
+            'Pinkstermaandag' => $easter->addDays(50)->format('d-m-Y'),
         ];
     }
 }
