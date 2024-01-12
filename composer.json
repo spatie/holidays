@@ -20,8 +20,9 @@
         "ext-calendar": "*"
     },
     "require-dev": {
-        "pestphp/pest": "^2.15",
         "friendsofphp/php-cs-fixer": "^3.21.1",
+        "pestphp/pest": "^2.15",
+        "phpstan/phpstan": "^1.10",
         "spatie/ray": "^1.28"
     },
     "autoload": {
@@ -35,6 +36,7 @@
         }
     },
     "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --allow-risky=yes"
