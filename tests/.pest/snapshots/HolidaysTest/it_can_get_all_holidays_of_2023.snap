@@ -4,39 +4,39 @@
         "date": "01-01-2023"
     },
     {
-        "name": "Dag van de Arbeid",
-        "date": "01-01-2023"
-    },
-    {
-        "name": "Allerheiligen",
-        "date": "01-11-2023"
-    },
-    {
         "name": "Paasmaandag",
-        "date": "09-04-2023"
+        "date": "10-04-2023"
     },
     {
-        "name": "Wapenstilstand",
-        "date": "11-11-2023"
-    },
-    {
-        "name": "OLV Hemelvaart",
-        "date": "15-08-2023"
+        "name": "Dag van de Arbeid",
+        "date": "01-05-2023"
     },
     {
         "name": "OH Hemelvaart",
-        "date": "17-05-2023"
+        "date": "18-05-2023"
+    },
+    {
+        "name": "Pinkstermaandag",
+        "date": "29-05-2023"
     },
     {
         "name": "Nationale Feestdag",
         "date": "21-07-2023"
     },
     {
-        "name": "Kerstmis",
-        "date": "25-12-2023"
+        "name": "OLV Hemelvaart",
+        "date": "15-08-2023"
     },
     {
-        "name": "Pinkstermaandag",
-        "date": "28-05-2023"
+        "name": "Allerheiligen",
+        "date": "01-11-2023"
+    },
+    {
+        "name": "Wapenstilstand",
+        "date": "11-11-2023"
+    },
+    {
+        "name": "Kerstmis",
+        "date": "25-12-2023"
     }
 ]

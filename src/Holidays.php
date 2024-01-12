@@ -8,7 +8,7 @@ use Spatie\Holidays\Exceptions\HolidaysException;
 
 class Holidays
 {
-    /** @return array<string, string> */
+    /** @return array<string, CarbonImmutable> */
     protected array $holidays = [];
 
     protected int $year;
@@ -63,13 +63,13 @@ class Holidays
 
         $this->holidays = $action->execute($this->year);
 
-        asort($this->holidays);
+        uasort($this->holidays, fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp);
 
         return $this;
     }
 
     /**
-     * @param array<string, string> $dates
+     * @param array<string, CarbonImmutable> $dates
      * @return array<array{name: string, date: string}>
      */
     protected function format(array $dates): array
@@ -79,7 +79,7 @@ class Holidays
         foreach ($dates as $name => $date) {
             $response[] = [
                 'name' => $name,
-                'date' => $date,
+                'date' => $date->format('d-m-Y'),
             ];
         }
 

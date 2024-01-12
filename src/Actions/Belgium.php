@@ -9,6 +9,7 @@ class Belgium implements Executable
 {
     protected int $year;
 
+    /** @return array<string, CarbonImmutable> */
     public function execute(int $year): array
     {
         $this->year = $year;
@@ -32,7 +33,7 @@ class Belgium implements Executable
         }
     }
 
-    /** @return array<string, string> */
+    /** @return array<string, CarbonImmutable> */
     protected function fixedHolidays(): array
     {
         $dates = [
@@ -46,21 +47,22 @@ class Belgium implements Executable
         ];
 
         foreach ($dates as $name => $date) {
-            $dates[$name] = "{$date}-{$this->year}";
+            $dates[$name] = CarbonImmutable::createFromFormat('d-m-Y', "{$date}-{$this->year}");
         }
 
         return $dates;
     }
 
-    /** @return array<string, string> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(): array
     {
-        $easter = CarbonImmutable::createFromTimestampUTC(easter_date($this->year));
+        $easter = CarbonImmutable::createFromTimestamp(easter_date($this->year))
+            ->setTimezone('Europe/Brussels');
 
         return [
-            'Paasmaandag' => $easter->addDay()->format('d-m-Y'),
-            'OH Hemelvaart' => $easter->addDays(39)->format('d-m-Y'),
-            'Pinkstermaandag' => $easter->addDays(50)->format('d-m-Y'),
+            'Paasmaandag' => $easter->addDay(),
+            'OH Hemelvaart' => $easter->addDays(39),
+            'Pinkstermaandag' => $easter->addDays(50),
         ];
     }
 }
