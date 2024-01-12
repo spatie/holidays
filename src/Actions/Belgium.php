@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Actions;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Data\Holiday;
 use Spatie\Holidays\Exceptions\HolidaysException;
 
 class Belgium implements Executable

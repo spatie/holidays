@@ -46,6 +46,10 @@ class Holidays
     /** @return array<array{name: string, date: string} */
     public function get(): array
     {
+        if ($this->holidays === []) {
+            $this->calculate();
+        }
+
         return $this->format($this->holidays);
     }
 
