@@ -37,12 +37,16 @@ class Holidays
 
     public function year(int $year): static
     {
-        return new static(year: $year);
+        $this->year = $year;
+
+        return $this;
     }
 
     public function country(string $countryCode): static
     {
-        return new static(country: Country::from($countryCode));
+        $this->country = Country::from($countryCode);
+
+        return $this;
     }
 
     /** @return array<array{name: string, date: string}> */
