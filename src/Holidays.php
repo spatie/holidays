@@ -61,7 +61,9 @@ class Holidays
             ->action()
             ->execute($this->year);
 
-        uasort($this->holidays, fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp);
+        uasort($this->holidays,
+            fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
+        );
 
         return $this;
     }
