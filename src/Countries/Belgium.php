@@ -53,5 +53,4 @@ class Belgium extends Country
             'Pinkstermaandag' => $easter->addDays(50),
         ];
     }
-
 }
