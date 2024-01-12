@@ -3,7 +3,7 @@
 namespace Spatie\Holidays;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Actions\CalculateBelgianHolidaysAction;
+use Spatie\Holidays\Actions\Belgium;
 use Spatie\Holidays\Data\Holiday;
 use Spatie\Holidays\Exceptions\HolidaysException;
 
@@ -45,7 +45,7 @@ class Holidays
     protected function calculate(): self
     {
         $action = match ($this->countryCode) {
-            'BE' => (new CalculateBelgianHolidaysAction()),
+            'BE' => new Belgium(),
             null => throw HolidaysException::noCountryCode(),
             default => throw HolidaysException::unknownCountryCode($this->countryCode),
         };

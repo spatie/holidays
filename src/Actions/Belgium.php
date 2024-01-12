@@ -5,11 +5,10 @@ namespace Spatie\Holidays\Actions;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Data\Holiday;
 
-class CalculateBelgianHolidaysAction
+class Belgium implements Executable
 {
     protected int $year;
 
-    /** @return array<Holiday> */
     public function execute(int $year): array
     {
         $this->year = $year;
