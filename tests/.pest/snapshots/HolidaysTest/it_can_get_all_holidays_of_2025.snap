@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Nieuwjaar",
+        "date": "01-01-2023"
+    },
+    {
+        "name": "Paasmaandag",
+        "date": "04-09-2023"
+    },
+    {
+        "name": "Dag van de Arbeid",
+        "date": "05-01-2023"
+    },
+    {
+        "name": "OH Hemelvaart",
+        "date": "05-17-2023"
+    },
+    {
+        "name": "Pinkstermaandag",
+        "date": "05-28-2023"
+    },
+    {
+        "name": "Nationale Feestdag",
+        "date": "07-21-2023"
+    },
+    {
+        "name": "OLV Hemelvaart",
+        "date": "08-15-2023"
+    },
+    {
+        "name": "Allerheiligen",
+        "date": "11-01-2023"
+    },
+    {
+        "name": "Wapenstilstand",
+        "date": "11-11-2023"
+    },
+    {
+        "name": "Kerstmis",
+        "date": "12-25-2023"
+    }
+]
