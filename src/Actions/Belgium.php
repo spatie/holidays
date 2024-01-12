@@ -9,7 +9,6 @@ class Belgium implements Executable
 {
     protected int $year;
 
-    /** @return array<string, CarbonImmutable> */
     public function execute(int $year): array
     {
         $this->year = $year;

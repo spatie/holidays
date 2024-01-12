@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Spatie\\\\Holidays\\\\Actions\\\\Belgium\\:\\:fixedHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|string\\|false\\>\\.$#"
+			count: 1
+			path: src/Actions/Belgium.php
+
+		-
+			message: "#^Call to an undefined method Pest\\\\PendingCalls\\\\TestCall\\:\\:expect\\(\\)\\.$#"
+			count: 1
+			path: tests/ArchTest.php

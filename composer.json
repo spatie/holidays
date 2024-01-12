@@ -37,6 +37,7 @@
     },
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse",
+        "baseline": "vendor/bin/phpstan analyse --generate-baseline",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --allow-risky=yes"

@@ -8,7 +8,7 @@ use Spatie\Holidays\Exceptions\HolidaysException;
 
 class Holidays
 {
-    /** @return array<string, CarbonImmutable> */
+    /** @var array<string, CarbonImmutable> */
     protected array $holidays = [];
 
     protected int $year;
@@ -25,7 +25,7 @@ class Holidays
         return new static();
     }
 
-    /** @return array{name: string, date: string} */
+    /** @return array<array{name: string, date: string}> */
     public static function all(): array
     {
         return (new static())
@@ -43,7 +43,7 @@ class Holidays
         return new static(countryCode: $countryCode);
     }
 
-    /** @return array<array{name: string, date: string} */
+    /** @return array<array{name: string, date: string}> */
     public function get(): array
     {
         if ($this->holidays === []) {
