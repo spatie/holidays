@@ -4,6 +4,7 @@ namespace Spatie\Holidays;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Actions\Belgium;
+use Spatie\Holidays\Enums\Country;
 use Spatie\Holidays\Exceptions\HolidaysException;
 
 class Holidays
@@ -13,11 +14,14 @@ class Holidays
 
     protected int $year;
 
+    protected Country $country;
+
     private function __construct(
         ?int $year = null,
-        protected ?string $countryCode = 'BE' // @todo make this configurable ?
+        ?Country $country = null,
     ) {
         $this->year = $year ?? CarbonImmutable::now()->year;
+        $this->country = $country ?? Country::Belgium; // @todo make configurable ?
     }
 
     public static function new(): static
@@ -40,7 +44,7 @@ class Holidays
 
     public function country(string $countryCode): static
     {
-        return new static(countryCode: $countryCode);
+        return new static(country: Country::from($countryCode));
     }
 
     /** @return array<array{name: string, date: string}> */
@@ -55,10 +59,9 @@ class Holidays
 
     protected function calculate(): self
     {
-        $action = match ($this->countryCode) {
-            'BE' => new Belgium(),
+        $action = match ($this->country) {
+            Country::Belgium => new Belgium(),
             null => throw HolidaysException::noCountryCode(),
-            default => throw HolidaysException::unknownCountryCode($this->countryCode),
         };
 
         $this->holidays = $action->execute($this->year);

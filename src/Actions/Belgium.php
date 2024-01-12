@@ -7,33 +7,29 @@ use Spatie\Holidays\Exceptions\HolidaysException;
 
 class Belgium implements Executable
 {
-    protected int $year;
-
     public function execute(int $year): array
     {
-        $this->year = $year;
+        $this->ensureYearCanBeCalculated($year);
 
-        $this->ensureYearCanBeCalculated();
-
-        $fixedHolidays = $this->fixedHolidays();
-        $variableHolidays = $this->variableHolidays();
+        $fixedHolidays = $this->fixedHolidays($year);
+        $variableHolidays = $this->variableHolidays($year);
 
         return array_merge($fixedHolidays, $variableHolidays);
     }
 
-    protected function ensureYearCanBeCalculated(): void
+    protected function ensureYearCanBeCalculated(int $year): void
     {
-        if ($this->year < 1970) {
-            throw HolidaysException::yearTooLow($this->year);
+        if ($year < 1970) {
+            throw HolidaysException::yearTooLow($year);
         }
 
-        if ($this->year > 2037) {
-            throw HolidaysException::yearTooHigh($this->year);
+        if ($year > 2037) {
+            throw HolidaysException::yearTooHigh($year);
         }
     }
 
     /** @return array<string, CarbonImmutable> */
-    protected function fixedHolidays(): array
+    protected function fixedHolidays(int $year): array
     {
         $dates = [
             'Nieuwjaar' => '01-01',
@@ -46,16 +42,16 @@ class Belgium implements Executable
         ];
 
         foreach ($dates as $name => $date) {
-            $dates[$name] = CarbonImmutable::createFromFormat('d-m-Y', "{$date}-{$this->year}");
+            $dates[$name] = CarbonImmutable::createFromFormat('d-m-Y', "{$date}-{$year}");
         }
 
         return $dates;
     }
 
     /** @return array<string, CarbonImmutable> */
-    protected function variableHolidays(): array
+    protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($this->year))
+        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('Europe/Brussels');
 
         return [
