@@ -1,7 +1,7 @@
 <?php
 
-use Spatie\Holidays\Holidays;
 use Spatie\Holidays\Exceptions\HolidaysException;
+use Spatie\Holidays\Holidays;
 
 it('can get all holidays of the current year', function () {
     $holidays = Holidays::all();
