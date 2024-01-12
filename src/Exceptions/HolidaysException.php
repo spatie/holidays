@@ -10,4 +10,9 @@ class HolidaysException extends RuntimeException
     {
         return new self("Country code `{$countryCode}` is not supported");
     }
+
+    public static function noCountryCode(): self
+    {
+        return new self("Please provide a country code.");
+    }
 }

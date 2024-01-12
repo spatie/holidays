@@ -19,6 +19,7 @@ class Holiday
         );
     }
 
+    /** @return array{name: string, date: string} */
     public function toArray(): array
     {
         return [

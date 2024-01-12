@@ -4,10 +4,12 @@ namespace Spatie\Holidays;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Actions\CalculateBelgianHolidaysAction;
+use Spatie\Holidays\Data\Holiday;
 use Spatie\Holidays\Exceptions\HolidaysException;
 
 class Holidays
 {
+    /** @var array<Holiday> */
     protected array $holidays = [];
 
     private function __construct(
@@ -34,6 +36,7 @@ class Holidays
             ->get();
     }
 
+    /** @return array<Holiday> */
     public function get(): array
     {
         return $this->holidays;
@@ -43,7 +46,8 @@ class Holidays
     {
         $action = match ($this->countryCode) {
             'BE' => (new CalculateBelgianHolidaysAction()),
-            default => HolidaysException::unknownCountryCode($this->countryCode)
+            null => throw HolidaysException::noCountryCode(),
+            default => throw HolidaysException::unknownCountryCode($this->countryCode),
         };
 
         $this->holidays = $action->execute($this->year);

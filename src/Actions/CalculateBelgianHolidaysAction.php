@@ -9,6 +9,7 @@ class CalculateBelgianHolidaysAction
 {
     protected int $year;
 
+    /** @return array<Holiday> */
     public function execute(int $year): array
     {
         $this->year = $year;
@@ -19,6 +20,7 @@ class CalculateBelgianHolidaysAction
         return array_merge($fixedHolidays, $variableHolidays);
     }
 
+    /** @return array<Holiday> */
     protected function fixedHolidays(): array
     {
         $dates = [
@@ -34,6 +36,7 @@ class CalculateBelgianHolidaysAction
         return $this->format($dates);
     }
 
+    /** @return array<Holiday> */
     protected function variableHolidays(): array
     {
         $easter = CarbonImmutable::createFromTimestampUTC(easter_date($this->year));
@@ -48,6 +51,10 @@ class CalculateBelgianHolidaysAction
         return $this->format($dates);
     }
 
+    /**
+     * @param array<string, string> $dates
+     * @return array<Holiday>
+     */
     protected function format(array $dates): array
     {
         $formatted = [];
