@@ -1,13 +1,17 @@
 <?php
 
-namespace Spatie\Holidays\Actions;
+namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Exceptions\HolidaysException;
 
-class Belgium implements Executable
+class Belgium extends Country
 {
-    public function execute(int $year): array
+    public function countryCode(): string
+    {
+        return 'be';
+    }
+
+    public function get(int $year): array
     {
         $this->ensureYearCanBeCalculated($year);
 
@@ -15,17 +19,6 @@ class Belgium implements Executable
         $variableHolidays = $this->variableHolidays($year);
 
         return array_merge($fixedHolidays, $variableHolidays);
-    }
-
-    protected function ensureYearCanBeCalculated(int $year): void
-    {
-        if ($year < 1970) {
-            throw HolidaysException::yearTooLow();
-        }
-
-        if ($year > 2037) {
-            throw HolidaysException::yearTooHigh();
-        }
     }
 
     /** @return array<string, CarbonImmutable> */
@@ -60,4 +53,5 @@ class Belgium implements Executable
             'Pinkstermaandag' => $easter->addDays(50),
         ];
     }
+
 }
