@@ -76,9 +76,23 @@ class Holidays
         return false;
     }
 
-    public function getName(CarbonImmutable $date, Country $country): ?string
+    public function getName(CarbonImmutable|string $date, string $countryCode): ?string
     {
-        return null; // @todo implement
+        if (! $date instanceof CarbonImmutable) {
+            $date = CarbonImmutable::parse($date);
+        }
+
+        $this
+            ->country($countryCode)
+            ->year($date->year);
+
+        $holidays = $this->get();
+
+        if (in_array($date->format('d-m-Y'), array_column($holidays, 'date'), true)) {
+            return $holidays[array_search($date->format('d-m-Y'), array_column($holidays, 'date'), true)]['name'];
+        }
+
+        return null;
     }
 
     protected function calculate(): self
