@@ -49,3 +49,19 @@ it('cannot get holidays for years before 1970', function () {
 it('cannot get holidays for years after 2037', function () {
     Holidays::new()->year(2038)->get();
 })->throws(InvalidYear::class, 'Holidays can only be calculated for years before 2038');
+
+it('can see if a date is a holiday', function () {
+    $result = Holidays::new()->isHoliday('2024-01-01', 'be');
+    expect($result)->toBeTrue();
+
+    $result = Holidays::new()->isHoliday('2024-01-02', 'be');
+    expect($result)->toBeFalse();
+});
+
+it('can see if a date is a holiday when passing Carbon', function () {
+    $result = Holidays::new()->isHoliday(CarbonImmutable::parse('2024-01-01'), 'be');
+    expect($result)->toBeTrue();
+
+    $result = Holidays::new()->isHoliday(CarbonImmutable::parse('2024-01-02'), 'be');
+    expect($result)->toBeFalse();
+});

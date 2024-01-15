@@ -10,5 +10,5 @@ it('can calculate belgian holidays', function () {
 
     $country = new Belgium();
 
-    expect($country->get(2023))->toMatchSnapshot();
+    expect($country->get(2024))->toMatchSnapshot();
 });
