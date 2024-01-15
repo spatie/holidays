@@ -67,7 +67,7 @@ it('can see if a date is a holiday when passing Carbon', function () {
 });
 
 it('can see if a name is a holiday', function () {
-    $result = Holidays::new()->getName('2024-01-01', 'be');
+    $result = Holidays::new()->isHoliday('2024-01-01', 'be');
     expect($result)->toBeTrue();
 
     $result = Holidays::new()->isHoliday('2024-01-02', 'be');
