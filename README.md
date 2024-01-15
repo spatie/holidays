@@ -13,7 +13,7 @@ At the moment only Belgium public holidays are supported. You can always send a 
 ```php
 use Spatie\Holidays\Holiday;
 
-$holidays = Holiday::all();
+$holidays = Holidays::get(); // returns an array of holidays for the current year
 ```
 
 Or for a specific country and year.
@@ -21,10 +21,23 @@ Or for a specific country and year.
 ```php
 use Spatie\Holidays\Holiday;
 
-$holidays = Holiday::new()
-    ->forYear(2024)
-    ->forCountry('BE')
-    ->get();
+$holidays = Holidays::get(country: 'be', year: 2024);
+```
+
+If you need to see if a date is a holiday, you can use the `isHoliday` method.
+
+```php
+use Spatie\Holidays\Holiday;
+
+Holidays::new()->isHoliday('2024-01-01'); // true
+```
+
+If you need the name of the holiday, you can use the `getHolidayName` method.
+
+```php
+use Spatie\Holidays\Holiday;
+
+Holidays::new()->getName('2024-01-01'); // Nieuwjaar
 ```
 
 ## Support us
