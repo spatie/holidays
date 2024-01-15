@@ -14,40 +14,33 @@ it('can get all holidays of the current year', function () {
 });
 
 it('can get all holidays of 2023', function () {
-    $holidays = Holidays::new()
-        ->year(2023)
-        ->get();
+    $holidays = Holidays::all(year: 2023);
 
     expect($holidays)->toMatchSnapshot();
 });
 
 it('can get all holidays of 2025', function () {
-    $holidays = Holidays::new()
-        ->year(2025)
-        ->get();
+    $holidays = Holidays::all(year: 2025);
 
     expect($holidays)->toMatchSnapshot();
 });
 
 it('can get all holidays of another year and a specific country', function () {
-    $holidays = Holidays::new()
-        ->year(2024)
-        ->country('BE')
-        ->get();
+    $holidays = Holidays::all(country: 'be', year: 2024);
 
     expect($holidays)->toMatchSnapshot();
 });
 
 it('cannot get all holidays of an unknown country code', function () {
-    Holidays::new()->country('unknown')->get();
+    Holidays::all(country: 'unknown');
 })->throws(UnsupportedCountry::class);
 
 it('cannot get holidays for years before 1970', function () {
-    Holidays::new()->year(1969)->get();
+    Holidays::all(year: 1969);
 })->throws(InvalidYear::class, 'Holidays can only be calculated for years after 1970.');
 
 it('cannot get holidays for years after 2037', function () {
-    Holidays::new()->year(2038)->get();
+    Holidays::all(year: 2038);
 })->throws(InvalidYear::class, 'Holidays can only be calculated for years before 2038');
 
 it('can see if a date is a holiday', function () {

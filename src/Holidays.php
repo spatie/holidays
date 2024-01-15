@@ -28,33 +28,13 @@ class Holidays
     }
 
     /** @return array<array{name: string, date: string}> */
-    public static function all(): array
+    public static function all(?string $country = null, ?int $year = null): array
     {
-        return (new static())
+        $country = is_string($country) ? Country::findOrFail($country) : null;
+
+        return (new static(year: $year, country: $country))
             ->calculate()
-            ->get();
-    }
-
-    public function year(int $year): static
-    {
-        return new static(year: $year, country: $this->country);
-    }
-
-    public function country(string $countryCode): static
-    {
-        $this->country = Country::findOrFail($countryCode);
-
-        return $this;
-    }
-
-    /** @return array<array{name: string, date: string}> */
-    public function get(): array
-    {
-        if ($this->holidays === []) {
-            $this->calculate();
-        }
-
-        return $this->format($this->holidays);
+            ->toArray();
     }
 
     public function isHoliday(CarbonImmutable|string $date, string $countryCode): bool
@@ -64,10 +44,12 @@ class Holidays
         }
 
         $this
-            ->country($countryCode)
-            ->year($date->year);
+            ->setCountry($countryCode)
+            ->setYear($date->year);
 
-        $holidays = $this->get();
+        $holidays = $this
+            ->calculate()
+            ->toArray();
 
         if (in_array($date->format('d-m-Y'), array_column($holidays, 'date'), true)) {
             return true;
@@ -83,10 +65,12 @@ class Holidays
         }
 
         $this
-            ->country($countryCode)
-            ->year($date->year);
+            ->setCountry($countryCode)
+            ->setYear($date->year);
 
-        $holidays = $this->get();
+        $holidays = $this
+            ->calculate()
+            ->toArray();
 
         if (in_array($date->format('d-m-Y'), array_column($holidays, 'date'), true)) {
             return $holidays[array_search($date->format('d-m-Y'), array_column($holidays, 'date'), true)]['name'];
@@ -106,15 +90,24 @@ class Holidays
         return $this;
     }
 
+    protected function setYear(int $year): static
+    {
+        return new static(year: $year, country: $this->country);
+    }
+
+    protected function setCountry(string $countryCode): static
+    {
+        return new static (year: $this->year, country: Country::findOrFail($countryCode));
+    }
+
     /**
-     * @param  array<string, CarbonImmutable>  $dates
      * @return array<array{name: string, date: string}>
      */
-    protected function format(array $dates): array
+    protected function toArray(): array
     {
         $response = [];
 
-        foreach ($dates as $name => $date) {
+        foreach ($this->holidays as $name => $date) {
             $response[] = [
                 'name' => $name,
                 'date' => $date->format('d-m-Y'),
