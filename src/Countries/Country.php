@@ -2,7 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
 abstract class Country
 {
@@ -18,7 +20,7 @@ abstract class Country
             // determine class name from file name
             $countryClass = '\\Spatie\\Holidays\\Countries\\'.basename($filename, '.php');
 
-            /** @var \Spatie\Holidays\Countries\Country $country */
+            /** @var Country $country */
             $country = new $countryClass;
 
             if (strtolower($country->countryCode()) === $countryCode) {
@@ -29,12 +31,25 @@ abstract class Country
         return null;
     }
 
+    public static function findOrFail(string $countryCode): Country
+    {
+        $country = self::find($countryCode);
+
+        if (! $country) {
+            throw UnsupportedCountry::make($countryCode);
+        }
+
+        return $country;
+    }
+
     abstract public function countryCode(): string;
 
+    /** @return array<string, CarbonImmutable> */
     abstract public function get(int $year): array;
 
-    protected static function ensureYearCanBeCalculated(int $year): void
+    protected function ensureYearCanBeCalculated(int $year): void
     {
+        // https://www.php.net/manual/en/function.easter-date.php
         if ($year < 1970) {
             throw InvalidYear::yearTooLow();
         }

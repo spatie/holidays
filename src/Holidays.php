@@ -20,7 +20,7 @@ class Holidays
         ?Country $country = null,
     ) {
         $this->year = $year ?? CarbonImmutable::now()->year;
-        $this->country = $country ?? Country::find('be');
+        $this->country = $country ?? Country::findOrFail('be');
     }
 
     public static function new(): static
@@ -41,15 +41,9 @@ class Holidays
         return new static(year: $year, country: $this->country);
     }
 
-    public function country(string $countryCode)
+    public function country(string $countryCode): static
     {
-        $country = Country::find($countryCode);
-
-        if (! $country) {
-            throw UnsupportedCountry::make($countryCode);
-        }
-
-        $this->country = Country::find($countryCode);
+        $this->country = Country::findOrFail($countryCode);
 
         return $this;
     }
@@ -62,6 +56,16 @@ class Holidays
         }
 
         return $this->format($this->holidays);
+    }
+
+    public function isHoliday(CarbonImmutable $date, Country $country): bool
+    {
+        return false; // @todo implement
+    }
+
+    public function getName(CarbonImmutable $date, Country $country): ?string
+    {
+        return null; // @todo implement
     }
 
     protected function calculate(): self

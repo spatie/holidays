@@ -1,9 +1,14 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Spatie\\\\Holidays\\\\Actions\\\\Belgium\\:\\:fixedHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|string\\|false\\>\\.$#"
+			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Belgium\\:\\:fixedHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|string\\|false\\>\\.$#"
 			count: 1
-			path: src/Actions/Belgium.php
+			path: src/Countries/Belgium.php
+
+		-
+			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Countries/Country.php
 
 		-
 			message: "#^Call to an undefined method Pest\\\\PendingCalls\\\\TestCall\\:\\:expect\\(\\)\\.$#"
