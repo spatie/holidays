@@ -4,7 +4,7 @@ namespace Spatie\Holidays\Exceptions;
 
 use RuntimeException;
 
-class HolidaysException extends RuntimeException
+class InvalidYear extends RuntimeException
 {
     public static function yearTooLow(): self
     {

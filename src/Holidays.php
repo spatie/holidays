@@ -3,7 +3,8 @@
 namespace Spatie\Holidays;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Enums\Country;
+use Spatie\Holidays\Countries\Country;
+use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
 class Holidays
 {
@@ -19,7 +20,7 @@ class Holidays
         ?Country $country = null,
     ) {
         $this->year = $year ?? CarbonImmutable::now()->year;
-        $this->country = $country ?? Country::Belgium; // @todo make configurable ?
+        $this->country = $country ?? Country::find('be');
     }
 
     public static function new(): static
@@ -37,12 +38,20 @@ class Holidays
 
     public function year(int $year): static
     {
-        return new static(year: $year);
+        return new static(year: $year, country: $this->country);
     }
 
-    public function country(string $countryCode): static
+    public function country(string $countryCode)
     {
-        return new static(country: Country::from($countryCode));
+        $country = Country::find($countryCode);
+
+        if (! $country) {
+            throw UnsupportedCountry::make($countryCode);
+        }
+
+        $this->country = Country::find($countryCode);
+
+        return $this;
     }
 
     /** @return array<array{name: string, date: string}> */
@@ -57,9 +66,7 @@ class Holidays
 
     protected function calculate(): self
     {
-        $this->holidays = $this->country
-            ->action()
-            ->execute($this->year);
+        $this->holidays = $this->country->get($this->year);
 
         uasort($this->holidays,
             fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
