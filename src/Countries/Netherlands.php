@@ -4,11 +4,11 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 
-class Belgium extends Country
+class Netherlands extends Country
 {
     public function countryCode(): string
     {
-        return 'be';
+        return 'nl';
     }
 
     public function get(int $year): array
@@ -26,12 +26,10 @@ class Belgium extends Country
     {
         $dates = [
             'Nieuwjaar' => '01-01',
-            'Dag van de Arbeid' => '01-05',
-            'Nationale Feestdag' => '21-07',
-            'OLV Hemelvaart' => '15-08',
-            'Allerheiligen' => '01-11',
-            'Wapenstilstand' => '11-11',
+            'Bevrijdingsdag' => '01-05',
             'Kerstmis' => '25-12',
+            '2de Kerstdag' => '26-12',
+            'Oudjaar' => '31-12',
         ];
 
         foreach ($dates as $name => $date) {
@@ -44,12 +42,21 @@ class Belgium extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
+        $koningsDag = CarbonImmutable::createFromFormat('d-m-Y', "27-04-{$year}");
+
+        if ($koningsDag->isSunday()) {
+            $koningsDag = $koningsDag->subDay();
+        }
+
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('Europe/Brussels');
 
         return [
+            'Koningsdag' => $koningsDag,
+            'Goede vrijdag' => $easter->subDays(2),
             'Paasmaandag' => $easter->addDay(),
             'OLH Hemelvaart' => $easter->addDays(39),
+            'Pinksteren' => $easter->addDays(49),
             'Pinkstermaandag' => $easter->addDays(50),
         ];
     }

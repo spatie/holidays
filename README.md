@@ -43,6 +43,7 @@ At the moment only these countries are supported.
 You can send a PR for yours!
 
 - [x] Belgium
+- [x] Netherlands
 
 ## Support us
 

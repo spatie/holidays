@@ -1,12 +1,42 @@
-{
-    "Nieuwjaar": "2024-01-01T00:00:00.000000Z",
-    "Dag van de Arbeid": "2024-05-01T00:00:00.000000Z",
-    "Nationale Feestdag": "2024-07-21T00:00:00.000000Z",
-    "OLV Hemelvaart": "2024-08-15T00:00:00.000000Z",
-    "Allerheiligen": "2024-11-01T00:00:00.000000Z",
-    "Wapenstilstand": "2024-11-11T00:00:00.000000Z",
-    "Kerstmis": "2024-12-25T00:00:00.000000Z",
-    "Paasmaandag": "2024-03-31T22:00:00.000000Z",
-    "OH Hemelvaart": "2024-05-08T22:00:00.000000Z",
-    "Pinkstermaandag": "2024-05-19T22:00:00.000000Z"
-}
+[
+    {
+        "name": "Nieuwjaar",
+        "date": "01-01-2024"
+    },
+    {
+        "name": "Paasmaandag",
+        "date": "01-04-2024"
+    },
+    {
+        "name": "Dag van de Arbeid",
+        "date": "01-05-2024"
+    },
+    {
+        "name": "OLH Hemelvaart",
+        "date": "09-05-2024"
+    },
+    {
+        "name": "Pinkstermaandag",
+        "date": "20-05-2024"
+    },
+    {
+        "name": "Nationale Feestdag",
+        "date": "21-07-2024"
+    },
+    {
+        "name": "OLV Hemelvaart",
+        "date": "15-08-2024"
+    },
+    {
+        "name": "Allerheiligen",
+        "date": "01-11-2024"
+    },
+    {
+        "name": "Wapenstilstand",
+        "date": "11-11-2024"
+    },
+    {
+        "name": "Kerstmis",
+        "date": "25-12-2024"
+    }
+]

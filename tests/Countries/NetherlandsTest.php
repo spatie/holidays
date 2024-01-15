@@ -3,13 +3,12 @@
 namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Countries\Belgium;
 use Spatie\Holidays\Holidays;
 
-it('can calculate belgian holidays', function () {
+it('can calculate dutch holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
-    $holidays = Holidays::get(country: 'be');
+    $holidays = Holidays::get(country: 'nl');
 
     expect($holidays)->toMatchSnapshot();
 });
