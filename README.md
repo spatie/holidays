@@ -8,8 +8,6 @@
 
 Calculate which days you don't have to work!
 
-At the moment only Belgium public holidays are supported. You can always send a PR with your country. Don't forget to include tests.
-
 ```php
 use Spatie\Holidays\Holiday;
 
@@ -39,6 +37,12 @@ use Spatie\Holidays\Holiday;
 
 Holidays::new()->getName('2024-01-01'); // Nieuwjaar
 ```
+
+## Supported countries
+At the moment only these countries are supported.
+You can send a PR for yours!
+
+- [x] Belgium
 
 ## Support us
 
