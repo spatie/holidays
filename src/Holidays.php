@@ -3,6 +3,7 @@
 namespace Spatie\Holidays;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 use Spatie\Holidays\Countries\Country;
 
 class Holidays
@@ -37,7 +38,7 @@ class Holidays
             ->toArray();
     }
 
-    public function isHoliday(CarbonImmutable|string $date, string $countryCode): bool
+    public function isHoliday(CarbonInterface|string $date, string $countryCode): bool
     {
         if (! $date instanceof CarbonImmutable) {
             $date = CarbonImmutable::parse($date);
@@ -58,7 +59,7 @@ class Holidays
         return false;
     }
 
-    public function getName(CarbonImmutable|string $date, string $countryCode): ?string
+    public function getName(CarbonInterface|string $date, string $countryCode): ?string
     {
         if (! $date instanceof CarbonImmutable) {
             $date = CarbonImmutable::parse($date);
