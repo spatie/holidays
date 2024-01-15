@@ -44,11 +44,9 @@ class Holidays
             $date = CarbonImmutable::parse($date);
         }
 
-        $this
-            ->setCountry($countryCode)
-            ->setYear($date->year);
-
         $holidays = $this
+            ->setCountry($countryCode)
+            ->setYear($date->year)
             ->calculate()
             ->toArray();
 
@@ -65,11 +63,9 @@ class Holidays
             $date = CarbonImmutable::parse($date);
         }
 
-        $this
-            ->setCountry($countryCode)
-            ->setYear($date->year);
-
         $holidays = $this
+            ->setCountry($countryCode)
+            ->setYear($date->year)
             ->calculate()
             ->toArray();
 
@@ -101,9 +97,7 @@ class Holidays
         return new static (year: $this->year, country: Country::findOrFail($countryCode));
     }
 
-    /**
-     * @return array<array{name: string, date: string}>
-     */
+    /** @return array<array{name: string, date: string}> */
     protected function toArray(): array
     {
         $response = [];

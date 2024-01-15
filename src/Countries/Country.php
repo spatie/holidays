@@ -8,6 +8,11 @@ use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
 abstract class Country
 {
+    abstract public function countryCode(): string;
+
+    /** @return array<string, CarbonImmutable> */
+    abstract public function get(int $year): array;
+
     public static function find(string $countryCode): ?Country
     {
         $countryCode = strtolower($countryCode);
@@ -41,11 +46,6 @@ abstract class Country
 
         return $country;
     }
-
-    abstract public function countryCode(): string;
-
-    /** @return array<string, CarbonImmutable> */
-    abstract public function get(int $year): array;
 
     protected function ensureYearCanBeCalculated(int $year): void
     {
