@@ -28,7 +28,7 @@ class Holidays
     }
 
     /** @return array<array{name: string, date: string}> */
-    public static function all(?string $country = null, ?int $year = null): array
+    public static function get(?string $country = null, ?int $year = null): array
     {
         $country = is_string($country) ? Country::findOrFail($country) : null;
 

@@ -8,39 +8,39 @@ use Spatie\Holidays\Holidays;
 it('can get all holidays of the current year', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    $holidays = Holidays::all();
+    $holidays = Holidays::get();
 
     expect($holidays)->toMatchSnapshot();
 });
 
 it('can get all holidays of 2023', function () {
-    $holidays = Holidays::all(year: 2023);
+    $holidays = Holidays::get(year: 2023);
 
     expect($holidays)->toMatchSnapshot();
 });
 
 it('can get all holidays of 2025', function () {
-    $holidays = Holidays::all(year: 2025);
+    $holidays = Holidays::get(year: 2025);
 
     expect($holidays)->toMatchSnapshot();
 });
 
 it('can get all holidays of another year and a specific country', function () {
-    $holidays = Holidays::all(country: 'be', year: 2024);
+    $holidays = Holidays::get(country: 'be', year: 2024);
 
     expect($holidays)->toMatchSnapshot();
 });
 
 it('cannot get all holidays of an unknown country code', function () {
-    Holidays::all(country: 'unknown');
+    Holidays::get(country: 'unknown');
 })->throws(UnsupportedCountry::class);
 
 it('cannot get holidays for years before 1970', function () {
-    Holidays::all(year: 1969);
+    Holidays::get(year: 1969);
 })->throws(InvalidYear::class, 'Holidays can only be calculated for years after 1970.');
 
 it('cannot get holidays for years after 2037', function () {
-    Holidays::all(year: 2038);
+    Holidays::get(year: 2038);
 })->throws(InvalidYear::class, 'Holidays can only be calculated for years before 2038');
 
 it('can see if a date is a holiday', function () {
