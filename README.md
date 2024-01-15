@@ -30,7 +30,7 @@ use Spatie\Holidays\Holiday;
 Holidays::new()->isHoliday('2024-01-01'); // true
 ```
 
-If you need the name of the holiday, you can use the `getHolidayName` method.
+If you need the name of the holiday, you can use the `getName` method.
 
 ```php
 use Spatie\Holidays\Holiday;
