@@ -26,7 +26,7 @@ class Netherlands extends Country
     {
         $dates = [
             'Nieuwjaar' => '01-01',
-            'Bevrijdingsdag' => '01-05',
+            'Bevrijdingsdag' => '05-05',
             'Kerstmis' => '25-12',
             '2de Kerstdag' => '26-12',
             'Oudjaar' => '31-12',

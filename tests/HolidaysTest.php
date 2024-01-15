@@ -74,3 +74,11 @@ it('can get the holiday name of a date', function () {
     $result = Holidays::new()->getName(CarbonImmutable::parse('2024-01-02'), 'be');
     expect($result)->toBeNull();
 });
+
+it('can nest calls to different countries and years', function () {
+    $belgium = Holidays::get(country: 'be', year: 2024);
+
+    $netherlands = Holidays::get(country: 'nl', year: 2023);
+
+    expect($netherlands)->toMatchSnapshot();
+});
