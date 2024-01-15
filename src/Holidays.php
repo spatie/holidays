@@ -4,7 +4,6 @@ namespace Spatie\Holidays;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Country;
-use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
 class Holidays
 {
