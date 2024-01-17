@@ -14,6 +14,6 @@ it('can calculate hungarian holidays', function () {
         ->toBeArray()
         ->not()->toBeEmpty();
 
-    expect($holidays)->toMatchSnapshot();
+    expect(formatDates($holidays))->toMatchSnapshot();
 
 });

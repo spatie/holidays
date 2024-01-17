@@ -1,46 +1,46 @@
 [
     {
         "name": "Nieuwjaar",
-        "date": "2024-01-01T00:00:00.000000Z"
+        "date": "2024-01-01"
     },
     {
         "name": "Goede vrijdag",
-        "date": "2024-03-28T23:00:00.000000Z"
+        "date": "2024-03-29"
     },
     {
         "name": "Paasmaandag",
-        "date": "2024-03-31T22:00:00.000000Z"
+        "date": "2024-04-01"
     },
     {
         "name": "Koningsdag",
-        "date": "2024-04-27T00:00:00.000000Z"
+        "date": "2024-04-27"
     },
     {
         "name": "Bevrijdingsdag",
-        "date": "2024-05-05T00:00:00.000000Z"
+        "date": "2024-05-05"
     },
     {
         "name": "OLH Hemelvaart",
-        "date": "2024-05-08T22:00:00.000000Z"
+        "date": "2024-05-09"
     },
     {
         "name": "Pinksteren",
-        "date": "2024-05-18T22:00:00.000000Z"
+        "date": "2024-05-19"
     },
     {
         "name": "Pinkstermaandag",
-        "date": "2024-05-19T22:00:00.000000Z"
+        "date": "2024-05-20"
     },
     {
         "name": "Kerstmis",
-        "date": "2024-12-25T00:00:00.000000Z"
+        "date": "2024-12-25"
     },
     {
         "name": "2de Kerstdag",
-        "date": "2024-12-26T00:00:00.000000Z"
+        "date": "2024-12-26"
     },
     {
         "name": "Oudjaar",
-        "date": "2024-12-31T00:00:00.000000Z"
+        "date": "2024-12-31"
     }
 ]
