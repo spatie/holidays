@@ -16,6 +16,24 @@ class Netherlands extends Country
     /** @return array<string, string|CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
+        return array_merge([
+            'Año nuevo' => '01-01',
+            'Día de la Candelaria' => '02-02',
+            'Día de la Bandera' => '02-24',
+            'Día del Niño' => '04-30',
+            'Día de la Madre' => '04-30',
+            'Día del Trabajo' => '05-01',
+            'Día de la Independencia' => '09-15',
+            'Día de la Raza' => '10-12',
+            'Día de Muertos' => '11-02',
+            'Virgen de Guadalupe' => '12-12',
+            'Navidad' => '12-25',
+        ], $this->variableHolidays($year));
+    }
+
+    /** @return array<string, CarbonImmutable> */
+    protected function variableHolidays(int $year): array
+    {
 
         $natalicioBenitoJuarez = new CarbonImmutable(sprintf("third monday of march %s", $year));
         $promulgacionConstitucion = new CarbonImmutable(sprintf("first monday of february %s", $year));
@@ -25,46 +43,28 @@ class Netherlands extends Country
             $revolucionMexicana = $revolucionMexicana->next('monday');
         }
 
-        $mandatory = [
-            'Año nuevo' => '01-01',
+        $fathersDay = new CarbonImmutable(sprintf("third sunday of june %s", $year));
+
+
+        $days = [
             'Aniversario de la promulgación de la Constitución de 1917' => $promulgacionConstitucion->format('m-d'),
             'Natalicio de Benito Juárez' => $natalicioBenitoJuarez->format('m-d'),
-            'Día del Trabajo' => '05-01',
-            'Día de la Independencia' => '09-15',
             'Revolución Mexicana' => $revolucionMexicana->format('m-d'),
-            'Navidad' => '12-25',
+            'Día del Padre' => $fathersDay->format('m-d'),
+
         ];
 
         if ($this->transmisionPoderEjecutivoFederal($year)) {
-            $mandatory[
+            $days[
                 "Transmisión del Poder Ejecutivo Federal"
             ] = $this->transmisionPoderEjecutivoFederal($year);
         }
 
-        return array_merge($mandatory, $this->variableHolidays($year));
-    }
-
-    /** @return array<string, CarbonImmutable> */
-    protected function variableHolidays(int $year): array
-    {
-
-        $fathersDay = new CarbonImmutable(sprintf("third sunday of june %s", $year));
-
-        return [
-
-            'Día de la Candelaria' => '02-02',
-            'Día de la Bandera' => '02-24',
-            'Día del Niño' => '04-30',
-            'Día de la Madre' => '04-30',
-            'Día del Padre' => $fathersDay,
-            'Día de la Raza' => '10-12',
-            'Día de Muertos' => '11-02',
-            'Virgen de Guadalupe' => '12-12',
-        ];
+        return $days;
     }
 
 
-    protected function transmisionPoderEjecutivoFederal($year)
+    protected function transmisionPoderEjecutivoFederal($year): bool|string
     {
         $period = new CarbonPeriod();
         $period->setDateClass(CarbonImmutable::class);
