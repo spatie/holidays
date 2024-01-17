@@ -11,32 +11,32 @@ class Uganda extends Country
         return 'ug';
     }
 
+    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's  Day" => '01-01',
+            'New Year\'s Day' => '01-01',
             'NRM Liberation Day' => '01-26',
-            'Archbishop Janani Luwum Day' => '02-16',
-            "International Women's Day" => '03-08',
-            'Labour Day' => '05-01',
-            "Martyrs' Day" => '06-03',
-            'National Hereos Day' => '06-09',
-            'Independence Day' => '10-09',
+            'Archbishop Janani Luwum Memorial Day' => '02-16',
+            'International Women\'s Day' => '03-08',
+            'Labor Day' => '05-01',
+            'Uganda Martyr\'s Day' => '06-03',
+            'National Heroes\' Day' => '06-09',
+            'Independence Day of Uganda' => '10-09',
             'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            'Boxing Day' => '12-26'
         ], $this->variableHolidays($year));
     }
 
-    /**
-     * @return array<string, CarbonImmutable>
-     */
-    private function variableHolidays(int $year): array
+    /** @return array<string, CarbonImmutable> */
+    protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))->setTimezone('Africa/Nairobi');
+        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
+            ->setTimezone('Africa/Kampala');
 
         return [
-            'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
+            'Good Friday' => $easter->addDays(-2),
         ];
     }
 }
