@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Countries\Austria;
 use Spatie\Holidays\Countries\Belgium;
 use Spatie\Holidays\Countries\Netherlands;
 use Spatie\Holidays\Exceptions\InvalidYear;
@@ -40,6 +41,15 @@ it('can get all holidays of another year and a specific country', function () {
     });
 });
 
+it('can get holidays for a country region', function () {
+    $holidays = Holidays::for(Austria::make('bg'), year: 2024)->get();
+
+    expect($holidays)->toContainElement(function (array $holidayProperties) {
+        return $holidayProperties['name'] === 'Martinitag'
+            && $holidayProperties['date']->format('Y-m-d') === '2024-11-11';
+    });
+});
+
 it('cannot get all holidays of an unknown country code', function () {
     Holidays::for(country: 'unknown');
 })->throws(UnsupportedCountry::class);
@@ -68,7 +78,7 @@ it('can see if a date is a holiday when passing Carbon', function () {
     expect($result)->toBeFalse();
 });
 
-it('can see if a name is a holiday', function () {
+it('can see if a string date is a holiday', function () {
     $result = Holidays::for('be')->isHoliday('2024-01-01');
     expect($result)->toBeTrue();
 

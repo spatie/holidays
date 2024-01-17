@@ -8,6 +8,10 @@ use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
 abstract class Country
 {
+    protected function __construct(protected ?string $region = null)
+    {
+    }
+
     abstract public function countryCode(): string;
 
     /** @return array<string, string|CarbonImmutable> */
@@ -35,9 +39,9 @@ abstract class Country
         return $allHolidays;
     }
 
-    public static function make(): static
+    public static function make(?string $region = null): static
     {
-        return new static();
+        return new static(region: $region ? strtolower($region) : null);
     }
 
     public static function find(string $countryCode): ?Country
