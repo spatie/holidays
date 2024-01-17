@@ -4,11 +4,11 @@
         "date": "2024-01-01"
     },
     {
-        "name": "Lundi de Pâques",
+        "name": "Lundi de P\u00e2ques",
         "date": "2024-04-01"
     },
     {
-        "name": "Fête du Travail",
+        "name": "F\u00eate du Travail",
         "date": "2024-05-01"
     },
     {
@@ -20,11 +20,11 @@
         "date": "2024-05-09"
     },
     {
-        "name": "Lundi de Pentecôte",
+        "name": "Lundi de Pentec\u00f4te",
         "date": "2024-05-20"
     },
     {
-        "name": "Fête Nationale",
+        "name": "F\u00eate Nationale",
         "date": "2024-07-14"
     },
     {
@@ -40,7 +40,7 @@
         "date": "2024-11-11"
     },
     {
-        "name": "Noël",
+        "name": "No\u00ebl",
         "date": "2024-12-25"
     }
 ]
