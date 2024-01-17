@@ -21,12 +21,12 @@
     ],
     "require": {
         "php": "^8.1",
-        "nesbot/carbon": "^2.72"
+        "nesbot/carbon": "^2.72.1"
     },
     "require-dev": {
-        "pestphp/pest": "^2.15",
-        "phpstan/phpstan": "^1.10",
-        "spatie/ray": "^1.28"
+        "pestphp/pest": "^2.31",
+        "phpstan/phpstan": "^1.10.56",
+        "spatie/ray": "^1.40.1"
     },
     "autoload": {
         "psr-4": {
