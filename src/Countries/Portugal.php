@@ -18,7 +18,7 @@ class Portugal extends Country
             'Dia de Ano Novo' => '01-01',
             'Dia da Liberdade' => '04-25',
             'Dia do Trabalhador' => '05-01',
-            'Dia do Portugal' => '06-10',
+            'Dia de Portugal' => '06-10',
             'Assunção da Nossa Senhora' => '08-15',
             'Implantação da República' => '10-05',
             'Dia de Todos os Santos' => '11-01',
