@@ -7,7 +7,7 @@
 This package can calculate public holidays for a country.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 
 // returns an array of Belgian holidays
 // for the current year
@@ -39,7 +39,7 @@ We support the countries listed in [this directory](https://github.com/spatie/ho
 You can get all holidays for a country by using the `get` method.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 
 // returns an array of Belgian holidays
 // for the current year
@@ -49,7 +49,7 @@ $holidays = Holidays::for('be')->get();
 Alternatively, you could also pass an instance of `Country` to the `for` method.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 use Spatie\Holidays\Countries\Belgium;
 
 // returns an array of Belgian holidays
@@ -62,7 +62,7 @@ $holidays = Holidays::for(Belgium::make())->get();
 You can also pass a specific year.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 
 $holidays = Holidays::for(country: 'be', year: 2024))->get();
 ```
@@ -72,7 +72,7 @@ $holidays = Holidays::for(country: 'be', year: 2024))->get();
 If you need to see if a date is a holiday, you can use the `isHoliday` method.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 
 Holidays::for('be')->isHoliday('2024-01-01'); // true
 ```
@@ -82,7 +82,7 @@ Holidays::for('be')->isHoliday('2024-01-01'); // true
 If you need the name of the holiday, you can use the `getName` method.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 
 Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
