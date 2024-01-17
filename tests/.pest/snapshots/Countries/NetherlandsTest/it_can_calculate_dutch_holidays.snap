@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Nieuwjaar",
+        "date": "2024-01-01T00:00:00.000000Z"
+    },
+    {
+        "name": "Goede vrijdag",
+        "date": "2024-03-28T23:00:00.000000Z"
+    },
+    {
+        "name": "Paasmaandag",
+        "date": "2024-03-31T22:00:00.000000Z"
+    },
+    {
+        "name": "Koningsdag",
+        "date": "2024-04-27T00:00:00.000000Z"
+    },
+    {
+        "name": "Bevrijdingsdag",
+        "date": "2024-05-05T00:00:00.000000Z"
+    },
+    {
+        "name": "OLH Hemelvaart",
+        "date": "2024-05-08T22:00:00.000000Z"
+    },
+    {
+        "name": "Pinksteren",
+        "date": "2024-05-18T22:00:00.000000Z"
+    },
+    {
+        "name": "Pinkstermaandag",
+        "date": "2024-05-19T22:00:00.000000Z"
+    },
+    {
+        "name": "Kerstmis",
+        "date": "2024-12-25T00:00:00.000000Z"
+    },
+    {
+        "name": "2de Kerstdag",
+        "date": "2024-12-26T00:00:00.000000Z"
+    },
+    {
+        "name": "Oudjaar",
+        "date": "2024-12-31T00:00:00.000000Z"
+    }
+]

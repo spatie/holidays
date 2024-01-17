@@ -14,6 +14,6 @@ it('can calculate hungarian holidays', function () {
         ->toBeArray()
         ->not()->toBeEmpty();
 
-    expect($holidays[0]['name'])->toBe('Újév');
-    expect($holidays[0]['date']->format('Y-m-d'))->toBe('2024-01-01');
+    expect($holidays)->toMatchSnapshot();
+
 });
