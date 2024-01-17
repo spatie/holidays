@@ -28,6 +28,7 @@ class Peru extends Country
             'Día de Todos los Santos' => '11-01',
             'Inmaculada Concepción' => '12-08',
             'Batalla de Ayacucho' => '12-09',
+            'Navidad' => '12-25',
         ], $this->variableHolidays($year));
     }
 
