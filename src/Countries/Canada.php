@@ -53,6 +53,7 @@ class Canada extends Country
         return [
             'Victoria Day' => $victoriaDay,
             'Good Friday' => $goodFriday,
+            'Easter Sunday' => $easterSunday,
             'Thanksgiving' => $thanksgiving,
         ];
     }
