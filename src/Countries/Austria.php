@@ -34,7 +34,7 @@ class Austria extends Country
             ->setTimezone('Europe/Vienna');
 
         return [
-            'Ostermontag' => $easter->addDay(1),
+            'Ostermontag' => $easter->addDay(),
             'Christi Himmelfahrt' => $easter->addDays(39),
             'Pfingstmontag' => $easter->addDays(50),
             'Fronleichnam' => $easter->addDays(60),
