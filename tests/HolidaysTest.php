@@ -2,7 +2,6 @@
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Belgium;
-use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Countries\Netherlands;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedCountry;
@@ -35,7 +34,7 @@ it('can get holidays of other years', function (string $year) {
 it('can get all holidays of another year and a specific country', function () {
     $holidays = Holidays::for(Netherlands::make(), year: 2020)->get();
 
-    expect($holidays)->toContainElement(function(array $holidayProperties) {
+    expect($holidays)->toContainElement(function (array $holidayProperties) {
         return $holidayProperties['name'] === 'Bevrijdingsdag'
             && $holidayProperties['date']->format('Y-m-d') === '2020-05-05';
     });
