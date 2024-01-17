@@ -21,13 +21,10 @@
     ],
     "require": {
         "php": "^8.1",
-        "nesbot/carbon": "^2.72",
-        "ext-calendar": "*"
+        "nesbot/carbon": "^2.72"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.21.1",
         "pestphp/pest": "^2.15",
-        "phpstan/phpstan": "^1.10",
         "spatie/ray": "^1.28"
     },
     "autoload": {
