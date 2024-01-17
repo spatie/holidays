@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedCountry;
+use Spatie\Holidays\States\State;
 
 abstract class Country
 {
@@ -14,30 +15,35 @@ abstract class Country
     abstract protected function allHolidays(int $year): array;
 
     /** @return array<string, CarbonImmutable> */
-    public function get(int $year): array
+    public function get(int $year, ?State $state = null): array
     {
         $this->ensureYearCanBeCalculated($year);
 
-        $allHolidays = $this->allHolidays($year);
+        $allHolidaysCountry = $this->formatHolidays(
+            holidays: $this->allHolidays($year),
+            year: $year,
+        );
 
-        $allHolidays = array_map(function ($date) use ($year) {
-            if (is_string($date)) {
-                $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
-            }
+        $allHolidaysState = $this->formatHolidays(
+            holidays: $state?->allHolidays($year) ?? [],
+            year: $year,
+        );
 
-            return $date;
-        }, $allHolidays);
+        $allHolidays = [
+            ...$allHolidaysCountry,
+            ...$allHolidaysState,
+        ];
 
         uasort($allHolidays,
-            fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
+            static fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
         );
 
         return $allHolidays;
     }
 
-    public static function make(): static
+    public static function make(?State $state = null): static
     {
-        return new static();
+        return new static($state);
     }
 
     public static function find(string $countryCode): ?Country
@@ -90,5 +96,20 @@ abstract class Country
         if ($year > 2037) {
             throw InvalidYear::yearTooHigh();
         }
+    }
+
+    /**
+     * @param array<string, string|CarbonImmutable> $holidays
+     * @return array<string, CarbonImmutable>
+     */
+    private function formatHolidays(array $holidays, int $year): array
+    {
+        return array_map(function ($date) use ($year) {
+            if (is_string($date)) {
+                $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+            }
+
+            return $date;
+        }, $holidays);
     }
 }
