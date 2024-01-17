@@ -30,6 +30,8 @@ class Denmark extends Country
 
         return [
             'Påskedag' => $easter->addDay(),
+            'Skærtorsdag' => $easter->subDays(3),
+            'Langfredag' => $easter->subDays(2),
             'Anden påskedag' => $easter->addDays(2),
             'Kristi Himmelfartsdag' => $easter->addDays(39),
             'Pinse' => $easter->addDays(49),
