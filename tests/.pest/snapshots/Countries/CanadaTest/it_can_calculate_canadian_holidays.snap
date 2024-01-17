@@ -16,12 +16,24 @@
         "date": "2024-07-01"
     },
     {
+        "name": "Civic Holiday",
+        "date": "2024-08-05"
+    },
+    {
         "name": "Labour Day",
         "date": "2024-09-02"
     },
     {
         "name": "Thanksgiving",
         "date": "2024-10-14"
+    },
+    {
+        "name": "National Day for Truth and Reconciliation",
+        "date": "2024-10-30"
+    },
+    {
+        "name": "Remembrance Day",
+        "date": "2024-11-11"
     },
     {
         "name": "Christmas Day",
