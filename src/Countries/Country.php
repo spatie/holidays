@@ -13,6 +13,11 @@ abstract class Country
     /** @return array<string, CarbonImmutable> */
     abstract public function get(int $year): array;
 
+    public static function make(): static
+    {
+        return new static();
+    }
+
     public static function find(string $countryCode): ?Country
     {
         $countryCode = strtolower($countryCode);

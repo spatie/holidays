@@ -4,44 +4,13 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/spatie/holidays/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/holidays/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/holidays.svg?style=flat-square)](https://packagist.org/packages/spatie/holidays)
 
-Calculate which days you don't have to work!
+This package can calculate public holidays for a country.
 
 ```php
 use Spatie\Holidays\Holiday;
 
-$holidays = Holidays::get(); // returns an array of holidays for the current year
+$holidays = Holidays::for('be')->get(); // returns an array of Belgian holidays for the current year
 ```
-
-Or for a specific country and year.
-
-```php
-use Spatie\Holidays\Holiday;
-
-$holidays = Holidays::get(country: 'be', year: 2024);
-```
-
-If you need to see if a date is a holiday, you can use the `isHoliday` method.
-
-```php
-use Spatie\Holidays\Holiday;
-
-Holidays::new()->isHoliday('2024-01-01'); // true
-```
-
-If you need the name of the holiday, you can use the `getName` method.
-
-```php
-use Spatie\Holidays\Holiday;
-
-Holidays::new()->getName('2024-01-01'); // Nieuwjaar
-```
-
-## Supported countries
-At the moment only these countries are supported.
-You can send a PR for yours!
-
-- [x] Belgium
-- [x] Netherlands
 
 ## Support us
 
@@ -57,6 +26,59 @@ You can install the package via composer:
 
 ```bash
 composer require spatie/holidays
+```
+
+## Supported countries
+
+We support the countries listed in [this directory](https://github.com/spatie/holidays/tree/main/src/Countries). If you want to add a country, please create a pull request.
+
+## Usage
+
+You can get all holidays for a country by using the `get` method.
+
+```php
+use Spatie\Holidays\Holiday;
+
+$holidays = Holidays::for('be')->get(); // returns an array of Belgian holidays for the current year
+```
+
+Alternatively, you could also pass an instance of `Country` to the `for` method.
+
+```php
+use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Countries\Belgium;
+
+$holidays = Holidays::for(Belgium::make())->get(); // returns an array of Belgian holidays for the current year
+```
+
+### Getting holidays for a specific year
+
+You can also pass a specific year.
+
+```php
+use Spatie\Holidays\Holiday;
+
+$holidays = Holidays::for(country: 'be', year: 2024))->get();
+```
+
+### Determining if a date is a holiday 
+
+If you need to see if a date is a holiday, you can use the `isHoliday` method.
+
+```php
+use Spatie\Holidays\Holiday;
+
+Holidays::for('be')->isHoliday('2024-01-01'); // true
+```
+
+### Getting the name of a holiday
+
+If you need the name of the holiday, you can use the `getName` method.
+
+```php
+use Spatie\Holidays\Holiday;
+
+Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
 
 ## Testing

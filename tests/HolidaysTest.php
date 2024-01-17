@@ -1,6 +1,9 @@
 <?php
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Countries\Belgium;
+use Spatie\Holidays\Countries\Country;
+use Spatie\Holidays\Countries\Netherlands;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedCountry;
 use Spatie\Holidays\Holidays;
@@ -8,77 +11,76 @@ use Spatie\Holidays\Holidays;
 it('can get all holidays of the current year', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    $holidays = Holidays::get();
+    $holidays = Holidays::for(Belgium::make())->get();
 
-    expect($holidays)->toMatchSnapshot();
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    expect($holidays[0]['name'])->toBe('Nieuwjaar');
+    expect($holidays[0]['date']->format('Y-m-d'))->toBe('2024-01-01');
 });
 
-it('can get all holidays of 2023', function () {
-    $holidays = Holidays::get(year: 2023);
+it('can get holidays of other years', function (string $year) {
+    $holidays = Holidays::for(Belgium::make(), year: $year)->get();
 
-    expect($holidays)->toMatchSnapshot();
-});
-
-it('can get all holidays of 2025', function () {
-    $holidays = Holidays::get(year: 2025);
-
-    expect($holidays)->toMatchSnapshot();
-});
+    expect($holidays[0]['name'])->toBe('Nieuwjaar');
+    expect($holidays[0]['date']->format('Y-m-d'))->toBe("{$year}-01-01");
+})->with(
+    ['2023'],
+    ['2024'],
+    ['2025'],
+);
 
 it('can get all holidays of another year and a specific country', function () {
-    $holidays = Holidays::get(country: 'be', year: 2024);
+    $holidays = Holidays::for(Netherlands::make(), year: 2020)->get();
 
-    expect($holidays)->toMatchSnapshot();
+    expect($holidays)->toContainElement(function(array $holidayProperties) {
+        return $holidayProperties['name'] === 'Bevrijdingsdag'
+            && $holidayProperties['date']->format('Y-m-d') === '2020-05-05';
+    });
 });
 
 it('cannot get all holidays of an unknown country code', function () {
-    Holidays::get(country: 'unknown');
+    Holidays::for(country: 'unknown');
 })->throws(UnsupportedCountry::class);
 
 it('cannot get holidays for years before 1970', function () {
-    Holidays::get(year: 1969);
+    Holidays::for(country: 'be', year: 1969)->get();
 })->throws(InvalidYear::class, 'Holidays can only be calculated for years after 1970.');
 
 it('cannot get holidays for years after 2037', function () {
-    Holidays::get(year: 2038);
+    Holidays::for(country: 'be', year: 2038)->get();
 })->throws(InvalidYear::class, 'Holidays can only be calculated for years before 2038');
 
 it('can see if a date is a holiday', function () {
-    $result = Holidays::new()->isHoliday('2024-01-01', 'be');
+    $result = Holidays::for(Belgium::make())->isHoliday('2024-01-01');
     expect($result)->toBeTrue();
 
-    $result = Holidays::new()->isHoliday('2024-01-02', 'be');
+    $result = Holidays::for(Belgium::make())->isHoliday('2024-01-02');
     expect($result)->toBeFalse();
 });
 
 it('can see if a date is a holiday when passing Carbon', function () {
-    $result = Holidays::new()->isHoliday(CarbonImmutable::parse('2024-01-01'), 'be');
+    $result = Holidays::for(Belgium::make())->isHoliday(CarbonImmutable::parse('2024-01-01'));
     expect($result)->toBeTrue();
 
-    $result = Holidays::new()->isHoliday(CarbonImmutable::parse('2024-01-02'), 'be');
+    $result = Holidays::for(Belgium::make())->isHoliday(CarbonImmutable::parse('2024-01-02'));
     expect($result)->toBeFalse();
 });
 
 it('can see if a name is a holiday', function () {
-    $result = Holidays::new()->isHoliday('2024-01-01', 'be');
+    $result = Holidays::for('be')->isHoliday('2024-01-01');
     expect($result)->toBeTrue();
 
-    $result = Holidays::new()->isHoliday('2024-01-02', 'be');
+    $result = Holidays::for('be')->isHoliday('2024-01-02');
     expect($result)->toBeFalse();
 });
 
 it('can get the holiday name of a date', function () {
-    $result = Holidays::new()->getName(CarbonImmutable::parse('2024-01-01'), 'be');
+    $result = Holidays::for('be')->getName(CarbonImmutable::parse('2024-01-01'));
     expect($result)->toBe('Nieuwjaar');
 
-    $result = Holidays::new()->getName(CarbonImmutable::parse('2024-01-02'), 'be');
+    $result = Holidays::for('be')->getName(CarbonImmutable::parse('2024-01-02'));
     expect($result)->toBeNull();
-});
-
-it('can nest calls to different countries and years', function () {
-    $belgium = Holidays::get(country: 'be', year: 2024);
-
-    $netherlands = Holidays::get(country: 'nl', year: 2023);
-
-    expect($netherlands)->toMatchSnapshot();
 });
