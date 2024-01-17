@@ -5,7 +5,6 @@ parameters:
 	level: max
 	paths:
 		- src
-		- tests
 
 	ignoreErrors:
 	    - '#Unsafe usage of new static#'
