@@ -43,6 +43,7 @@ class Canada extends Country
             ->setTimezone('America/Toronto');
 
         $goodFriday = $easterSunday->subDays(2);
+        $easterMonday = $easterSunday->addDays(1);
 
         $victoriaDay = new CarbonImmutable("last monday of May $year", 'America/Toronto');
         if ($victoriaDay->day < 25) {
@@ -53,7 +54,7 @@ class Canada extends Country
         return [
             'Victoria Day' => $victoriaDay,
             'Good Friday' => $goodFriday,
-            'Easter Sunday' => $easterSunday,
+            'Easter Monday' => $easterMonday,
             'Thanksgiving' => $thanksgiving,
         ];
     }
