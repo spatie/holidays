@@ -30,7 +30,7 @@ class France extends Country
     protected function variableHolidays(int $year): array
     {
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Brussels');
+            ->setTimezone('Europe/Paris');
 
         return [
             'Lundi de Pâques' => $easter->addDay(),
