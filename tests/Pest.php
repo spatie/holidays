@@ -11,3 +11,12 @@ expect()->extend('toContainElement', function (Closure $closure) {
 
     test()->fail('Failed asserting that the array contains the expected subarray.');
 });
+
+function formatDates(array $holidays): array
+{
+    foreach ($holidays as &$holiday) {
+        $holiday['date'] = $holiday['date']->format('Y-m-d');
+    }
+
+    return $holidays;
+}

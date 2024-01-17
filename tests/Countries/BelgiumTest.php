@@ -14,5 +14,5 @@ it('can calculate belgian holidays', function () {
         ->toBeArray()
         ->not()->toBeEmpty();
 
-    expect($holidays)->toMatchSnapshot();
+    expect(formatDates($holidays))->toMatchSnapshot();
 });
