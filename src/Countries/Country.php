@@ -49,7 +49,13 @@ abstract class Country
 
     protected function ensureYearCanBeCalculated(int $year): void
     {
-        // https://www.php.net/manual/en/function.easter-date.php
+        /**
+         * Most holidays have Easter as an anchor. Elsewhere in the
+         * code we use PHP's native easter-date function, which can only handle
+         * years between 1970 and 2037
+         *
+         * https://www.php.net/manual/en/function.easter-date.php
+         */
         if ($year < 1970) {
             throw InvalidYear::yearTooLow();
         }
