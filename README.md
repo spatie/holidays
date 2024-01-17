@@ -102,6 +102,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Niels Vanpachtenbeke](https://github.com/Nielsvanpach)
+- [Freek Van der Herten](https://github.com/freekmurze)
 - [All Contributors](../../contributors)
 
 ## License
