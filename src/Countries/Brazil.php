@@ -32,7 +32,6 @@ class Brazil extends Country
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))->setTimezone('America/Sao_Paulo');
 
         return [
-            'Páscoa' => $easter,
             'Carnaval' => $easter->subDays(47),
             'Sexta-feira Santa' => $easter->subDays(2),
             'Corpus Christi' => $easter->addDays(60),
