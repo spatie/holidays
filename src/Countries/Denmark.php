@@ -32,10 +32,10 @@ class Denmark extends Country
             'Påskedag' => $easter->addDay(),
             'Skærtorsdag' => $easter->subDays(3),
             'Langfredag' => $easter->subDays(2),
-            'Anden påskedag' => $easter->addDays(2),
+            'Anden Påskedag' => $easter->addDays(2),
             'Kristi Himmelfartsdag' => $easter->addDays(39),
             'Pinse' => $easter->addDays(49),
-            'Anden pisedag' => $easter->addDays(50),
+            'Anden Pinsedag' => $easter->addDays(50),
         ];
     }
 }
