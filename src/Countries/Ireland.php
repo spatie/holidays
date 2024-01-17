@@ -30,19 +30,24 @@ class Ireland extends Country
         $juneHoliday = new CarbonImmutable("first monday of June $year", 'Europe/Dublin');
         $augHoliday = new CarbonImmutable("first monday of August $year", 'Europe/Dublin');
         $octHoliday = new CarbonImmutable("last monday of October $year", 'Europe/Dublin');
-            
-        // In 2023, Ireland added a new public holiday for St Brigid's day. It is the First Monday in February, or 1 February if the date falls on a Friday
-        $stBrigidsDay = new CarbonImmutable("$year-02-01",'Europe/Dublin');
-        if (!$stBrigidsDay->isFriday())
-            $stBrigidsDay = new CarbonImmutable("first monday of February $year",'Europe/Dublin');
-
-        return [
+        
+        $variableHolidays = [
             'Easter Monday' => $easter->addDays(1),
             'May Public Holiday' => $mayHoliday,
             'June Public Holiday' => $juneHoliday,
             'August Public Holiday' => $augHoliday,
             'October Public Holiday' => $octHoliday,
-            'St Brigid\'s Day' => $stBrigidsDay
+            
         ];
+
+        // In 2023, Ireland added a new public holiday for St Brigid's day. It is the First Monday in February, or 1 February if the date falls on a Friday
+        if ($year >= 2023) {
+            $stBrigidsDay = new CarbonImmutable("$year-02-01",'Europe/Dublin');
+            if (!$stBrigidsDay->isFriday())
+                $stBrigidsDay = new CarbonImmutable("first monday of February $year",'Europe/Dublin');
+            $variableHolidays['St Brigid\'s Day'] = $stBrigidsDay;
+        }
+
+        return $variableHolidays;
     }
 }
