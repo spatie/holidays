@@ -14,9 +14,10 @@ class Holidays
     protected function __construct(
         protected Country $country,
         protected int $year,
-    ) {}
+    ) {
+    }
 
-    public static function for(Country|string $country, int $year = null): static
+    public static function for(Country|string $country, ?int $year = null): static
     {
         $year ??= CarbonImmutable::now()->year;
 
@@ -28,7 +29,7 @@ class Holidays
     }
 
     /** @return array<array{name: string, date: string}> */
-    public function get(Country|string $country = null, ?int $year = null): array
+    public function get(Country|string|null $country = null, ?int $year = null): array
     {
         $country ??= $this->country;
         $year ??= $this->year;
@@ -38,7 +39,7 @@ class Holidays
             ->toArray();
     }
 
-    public function isHoliday(CarbonInterface|string $date, Country|string $country = null): bool
+    public function isHoliday(CarbonInterface|string $date, Country|string|null $country = null): bool
     {
         if (! $date instanceof CarbonImmutable) {
             $date = CarbonImmutable::parse($date);
@@ -60,7 +61,7 @@ class Holidays
         return in_array($date->format('d-m-Y'), $formattedHolidays);
     }
 
-    public function getName(CarbonInterface|string $date, Country|string $country = null): ?string
+    public function getName(CarbonInterface|string $date, Country|string|null $country = null): ?string
     {
         if (! $date instanceof CarbonImmutable) {
             $date = CarbonImmutable::parse($date);
@@ -74,7 +75,7 @@ class Holidays
 
         $formattedDate = $date->format('d-m-Y');
 
-        foreach($holidays as $holiday) {
+        foreach ($holidays as $holiday) {
             if (CarbonImmutable::parse($holiday['date'])->format('d-m-Y') == $formattedDate) {
                 return $holiday['name'];
             }

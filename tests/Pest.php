@@ -1,8 +1,8 @@
 <?php
 
 expect()->extend('toContainElement', function (Closure $closure) {
-    foreach($this->value as $actualSubarray) {
-        if($closure($actualSubarray)) {
+    foreach ($this->value as $actualSubarray) {
+        if ($closure($actualSubarray)) {
             expect(true)->toBeTrue();
 
             return;
