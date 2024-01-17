@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Neujahr",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Heilige Drei K\u00f6nige",
+        "date": "2024-01-06"
+    },
+    {
+        "name": "Karfreitag",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Ostermontag",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Tag der Arbeit",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Himmelfahrt",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Pfingstmontag",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "Fronleichnam",
+        "date": "2024-05-30"
+    },
+    {
+        "name": "Tag der deutschen Einheit",
+        "date": "2024-10-03"
+    },
+    {
+        "name": "Allerheiligen",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "1. Weihnachtstag",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "2. Weihnachtstag",
+        "date": "2024-12-26"
+    }
+]
