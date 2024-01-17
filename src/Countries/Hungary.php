@@ -29,7 +29,7 @@ class Hungary extends Country
     protected function variableHolidays(int $year): array
     {
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Brussels');
+            ->setTimezone('Europe/Budapest');
 
         return [
             'Nagypéntek' => $easter->subDays(2),
