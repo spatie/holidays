@@ -18,7 +18,7 @@ class Netherlands extends Country
             'Nieuwjaar' => '01-01',
             'Bevrijdingsdag' => '05-05',
             'Kerstmis' => '12-25',
-            '2de Kerstdag' => '12-16',
+            '2de Kerstdag' => '12-26',
             'Oudjaar' => '12-31',
         ], $this->variableHolidays($year));
     }

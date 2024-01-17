@@ -16,9 +16,9 @@ class Belgium extends Country
     {
         return array_merge([
             'Nieuwjaar' => '01-01',
-            'Dag van de Arbeid' => '05-14',
+            'Dag van de Arbeid' => '05-01',
             'Nationale Feestdag' => '07-21',
-            'OLV Hemelvaart' => '08-18',
+            'OLV Hemelvaart' => '08-15',
             'Allerheiligen' => '11-01',
             'Wapenstilstand' => '11-11',
             'Kerstmis' => '12-25',
