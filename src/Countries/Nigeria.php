@@ -17,7 +17,6 @@ class Nigeria extends Country
         return array_merge([
             'New Year\'s Day' => "01-01",
             'Worker\'s Day' => "05-01",
-            'Children\'s Day' => "05-27",
             'Democracy Day' => "06-12", 
             'Independence Day' => "10-01",
             'Christmas Day' => "12-25",
