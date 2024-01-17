@@ -9,7 +9,9 @@ This package can calculate public holidays for a country.
 ```php
 use Spatie\Holidays\Holiday;
 
-$holidays = Holidays::for('be')->get(); // returns an array of Belgian holidays for the current year
+// returns an array of Belgian holidays
+// for the current year
+$holidays = Holidays::for('be')->get(); 
 ```
 
 ## Support us
@@ -39,7 +41,9 @@ You can get all holidays for a country by using the `get` method.
 ```php
 use Spatie\Holidays\Holiday;
 
-$holidays = Holidays::for('be')->get(); // returns an array of Belgian holidays for the current year
+// returns an array of Belgian holidays
+// for the current year
+$holidays = Holidays::for('be')->get(); 
 ```
 
 Alternatively, you could also pass an instance of `Country` to the `for` method.
@@ -48,7 +52,9 @@ Alternatively, you could also pass an instance of `Country` to the `for` method.
 use Spatie\Holidays\Holiday;
 use Spatie\Holidays\Countries\Belgium;
 
-$holidays = Holidays::for(Belgium::make())->get(); // returns an array of Belgian holidays for the current year
+// returns an array of Belgian holidays
+// for the current year
+$holidays = Holidays::for(Belgium::make())->get(); 
 ```
 
 ### Getting holidays for a specific year
