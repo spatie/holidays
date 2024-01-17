@@ -24,6 +24,7 @@ abstract class Country
             if (is_string($date)) {
                 $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
             }
+
             return $date;
         }, $allHolidays);
 

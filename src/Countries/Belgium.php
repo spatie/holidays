@@ -14,7 +14,7 @@ class Belgium extends Country
     /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
-        return  array_merge([
+        return array_merge([
             'Nieuwjaar' => '01-01',
             'Dag van de Arbeid' => '05-14',
             'Nationale Feestdag' => '07-21',
