@@ -12,7 +12,7 @@ class Netherlands extends Country
     }
 
     /** @return array<string, string|CarbonImmutable> */
-    protected function allHolidays(int $year): array
+    protected function allHolidays(int $year, ?string $region = null): array
     {
         return array_merge([
             'Nieuwjaar' => '01-01',

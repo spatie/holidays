@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\India;
+use Spatie\Holidays\Exceptions\UnsupportedRegion;
 use Spatie\Holidays\Holidays;
 
 it('can calculate Indian holidays', function () {
@@ -62,3 +63,18 @@ it('verify random dates given are not holiday in India', function () {
             ->toBeNull();
     }
 });
+
+it('verify Maharashtra region/state in India has holidays', function () {
+    expect(Holidays::for(India::make(), region: 'Maharashtra')->get())
+        ->toBeArray()
+        ->not()->toBeEmpty();
+});
+
+it('verify Maharashtra holiday is not found in other region', function () {
+    expect(Holidays::for(India::make(), region: 'Maharashtra')->getName(date: '2024-04-13'))->toBe('Gudi Padwa');
+    expect(Holidays::for(India::make(), region: 'Karnataka')->getName(date: '2024-04-13'))->not->toBe('Gudi Padwa');
+});
+
+it('verify wrong region throws exception in India', function () {
+    expect(Holidays::for(India::make(), region: 'XYZ')->get())->not->toBeArray();
+})->throws(UnsupportedRegion::class);
