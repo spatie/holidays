@@ -25,7 +25,7 @@ class Canada extends Country
                     "first monday of September " . $year, 'America/Toronto'
                 ),
                 'National Day for Truth and Reconciliation' => new CarbonImmutable(
-                    $year . "-10-30",
+                    $year . "-09-30",
                     'America/Toronto'
                 ),
                 'Remembrance Day' => new CarbonImmutable($year . "-11-11", 'America/Toronto'),
