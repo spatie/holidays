@@ -11,35 +11,19 @@ class Hungary extends Country
         return 'hu';
     }
 
-    public function get(int $year): array
-    {
-        $this->ensureYearCanBeCalculated($year);
-
-        $fixedHolidays = $this->fixedHolidays($year);
-        $variableHolidays = $this->variableHolidays($year);
-
-        return array_merge($fixedHolidays, $variableHolidays);
-    }
-
     /** @return array<string, CarbonImmutable> */
-    protected function fixedHolidays(int $year): array
+    protected function allHolidays(int $year): array
     {
-        $dates = [
+        return array_merge([
             'Újév' => '01-01',
-            '1848-as forradalom évfordulója' => '15-03',
-            'A munka ünnepe' => '01-05',
-            'Államalapítás ünnepe' => '20-08',
-            '1956-os forradalom évfordulója' => '23-10',
-            'Mindenszentek' => '01-11',
-            'Karácsony' => '25-12',
-            'Karácsony másnapja' => '26-12',
-        ];
-
-        foreach ($dates as $name => $date) {
-            $dates[$name] = CarbonImmutable::createFromFormat('d-m-Y', "{$date}-{$year}");
-        }
-
-        return $dates;
+            '1848-as forradalom évfordulója' => '03-15',
+            'A munka ünnepe' => '05-01',
+            'Államalapítás ünnepe' => '08-20',
+            '1956-os forradalom évfordulója' => '10-23',
+            'Mindenszentek' => '11-01',
+            'Karácsony' => '12-25',
+            'Karácsony másnapja' => '12-26',
+        ], $this->variableHolidays($year));
     }
 
     /** @return array<string, CarbonImmutable> */

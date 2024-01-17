@@ -11,34 +11,18 @@ class Belgium extends Country
         return 'be';
     }
 
-    public function get(int $year): array
-    {
-        $this->ensureYearCanBeCalculated($year);
-
-        $fixedHolidays = $this->fixedHolidays($year);
-        $variableHolidays = $this->variableHolidays($year);
-
-        return array_merge($fixedHolidays, $variableHolidays);
-    }
-
     /** @return array<string, CarbonImmutable> */
-    protected function fixedHolidays(int $year): array
+    protected function allHolidays(int $year): array
     {
-        $dates = [
+        return  array_merge([
             'Nieuwjaar' => '01-01',
-            'Dag van de Arbeid' => '01-05',
-            'Nationale Feestdag' => '21-07',
-            'OLV Hemelvaart' => '15-08',
-            'Allerheiligen' => '01-11',
+            'Dag van de Arbeid' => '05-14',
+            'Nationale Feestdag' => '07-21',
+            'OLV Hemelvaart' => '08-18',
+            'Allerheiligen' => '11-01',
             'Wapenstilstand' => '11-11',
-            'Kerstmis' => '25-12',
-        ];
-
-        foreach ($dates as $name => $date) {
-            $dates[$name] = CarbonImmutable::createFromFormat('d-m-Y', "{$date}-{$year}");
-        }
-
-        return $dates;
+            'Kerstmis' => '12-25',
+        ], $this->variableHolidays($year));
     }
 
     /** @return array<string, CarbonImmutable> */

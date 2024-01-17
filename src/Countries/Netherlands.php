@@ -11,38 +11,22 @@ class Netherlands extends Country
         return 'nl';
     }
 
-    public function get(int $year): array
+    /** @return array<string, string|CarbonImmutable> */
+    protected function allHolidays(int $year): array
     {
-        $this->ensureYearCanBeCalculated($year);
-
-        $fixedHolidays = $this->fixedHolidays($year);
-        $variableHolidays = $this->variableHolidays($year);
-
-        return array_merge($fixedHolidays, $variableHolidays);
-    }
-
-    /** @return array<string, CarbonImmutable> */
-    protected function fixedHolidays(int $year): array
-    {
-        $dates = [
+        return array_merge([
             'Nieuwjaar' => '01-01',
             'Bevrijdingsdag' => '05-05',
-            'Kerstmis' => '25-12',
-            '2de Kerstdag' => '26-12',
-            'Oudjaar' => '31-12',
-        ];
-
-        foreach ($dates as $name => $date) {
-            $dates[$name] = CarbonImmutable::createFromFormat('d-m-Y', "{$date}-{$year}");
-        }
-
-        return $dates;
+            'Kerstmis' => '12-25',
+            '2de Kerstdag' => '12-16',
+            'Oudjaar' => '12-31',
+        ], $this->variableHolidays($year));
     }
 
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $koningsDag = CarbonImmutable::createFromFormat('d-m-Y', "27-04-{$year}");
+        $koningsDag = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-04-27");
 
         if ($koningsDag->isSunday()) {
             $koningsDag = $koningsDag->subDay();

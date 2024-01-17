@@ -54,11 +54,11 @@ class Holidays
         $holidays = array_column($holidays, 'date');
 
         $formattedHolidays = array_map(
-            fn (string $holiday) => CarbonImmutable::parse($holiday)->format('d-m-Y'),
+            fn (string $holiday) => CarbonImmutable::parse($holiday)->format('Y-m-d'),
             $holidays
         );
 
-        return in_array($date->format('d-m-Y'), $formattedHolidays);
+        return in_array($date->format('Y-m-d'), $formattedHolidays);
     }
 
     public function getName(CarbonInterface|string $date, Country|string|null $country = null): ?string
@@ -73,10 +73,10 @@ class Holidays
             ->calculate()
             ->toArray();
 
-        $formattedDate = $date->format('d-m-Y');
+        $formattedDate = $date->format('Y-m-d');
 
         foreach ($holidays as $holiday) {
-            if (CarbonImmutable::parse($holiday['date'])->format('d-m-Y') == $formattedDate) {
+            if (CarbonImmutable::parse($holiday['date'])->format('Y-m-d') == $formattedDate) {
                 return $holiday['name'];
             }
         }
@@ -88,14 +88,10 @@ class Holidays
     {
         $this->holidays = $this->country->get($this->year);
 
-        uasort($this->holidays,
-            fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
-        );
-
         return $this;
     }
 
-    /** @return array<array{name: string, date: string}> */
+    /** @return array<array{name: string, date: CarbonImmutable}> */
     protected function toArray(): array
     {
         $response = [];

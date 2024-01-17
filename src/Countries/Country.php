@@ -10,8 +10,29 @@ abstract class Country
 {
     abstract public function countryCode(): string;
 
+    /** @return array<string, string|CarbonImmutable> */
+    abstract protected function allHolidays(int $year): array;
+
     /** @return array<string, CarbonImmutable> */
-    abstract public function get(int $year): array;
+    public function get(int $year): array
+    {
+        $this->ensureYearCanBeCalculated($year);
+
+        $allHolidays = $this->allHolidays($year);
+
+        $allHolidays = array_map(function ($date) use ($year) {
+            if (is_string($date)) {
+                $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+            }
+            return $date;
+        }, $allHolidays);
+
+        uasort($allHolidays,
+            fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
+        );
+
+        return $allHolidays;
+    }
 
     public static function make(): static
     {
