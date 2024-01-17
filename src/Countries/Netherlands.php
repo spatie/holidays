@@ -15,11 +15,11 @@ class Netherlands extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nieuwjaar' => '01-01',
+            'Nieuwjaarsdag' => '01-01',
             'Bevrijdingsdag' => '05-05',
-            'Kerstmis' => '12-25',
-            '2de Kerstdag' => '12-26',
-            'Oudjaar' => '12-31',
+            '1e Kerstdag' => '12-25',
+            '2e Kerstdag' => '12-26',
+            'Oudejaarsdag' => '12-31',
         ], $this->variableHolidays($year));
     }
 
@@ -37,11 +37,12 @@ class Netherlands extends Country
 
         return [
             'Koningsdag' => $koningsDag,
-            'Goede vrijdag' => $easter->subDays(2),
-            'Paasmaandag' => $easter->addDay(),
-            'OLH Hemelvaart' => $easter->addDays(39),
-            'Pinksteren' => $easter->addDays(49),
-            'Pinkstermaandag' => $easter->addDays(50),
+            'Goede Vrijdag' => $easter->subDays(2),
+            '1e Paasdag' => $easter,
+            '2e Paasdag' => $easter->addDay(),
+            'Hemelvaartsdag' => $easter->addDays(39),
+            '1e Pinksterdag' => $easter->addDays(49),
+            '2e Pinksterdag' => $easter->addDays(50),
         ];
     }
 }
