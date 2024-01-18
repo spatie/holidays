@@ -23,7 +23,7 @@ class Portugal extends Country
             'Dia de Todos os Santos' => '11-01',
             'Restauração da Independência' => '12-01',
             'Imaculada Conceição' => '12-08',
-            'Natal' => '12-25'       
+            'Natal' => '12-25',
         ], $this->variableHolidays($year));
     }
 
