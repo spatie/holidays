@@ -1,0 +1,50 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "D\u00eda de los M\u00e1rtires",
+        "date": "2024-01-09"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "S\u00e1bado de Gloria",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "D\u00eda del Trabajo",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Separación de Panamá de Colombia",
+        "date": "2024-11-03"
+    },
+    {
+        "name": "D\u00eda de Col\u00f3n",
+        "date": "2024-11-05"
+    },
+    {
+        "name": "Grito de independencia de La Villa de Los Santos",
+        "date": "2024-11-10"
+    },
+    {
+        "name": "Independencia de Panam\u00e1 de Espa\00f1a",
+        "date": "2024-11-28"
+    },
+    {
+        "name": "D\u00eda de la Madre",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "Duelo Nacional por la Invasi\u00f3n de Estados Unidos a Panam\u00e1",
+        "date": "2024-12-20"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]
