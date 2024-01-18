@@ -1,0 +1,38 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Mother's Day",
+        "date": "2024-03-21"
+    },
+    {
+        "name": "Western Easter",
+        "date": "2024-03-31"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-04-17"
+    },
+    {
+        "name": "Labor",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Eastern Easter",
+        "date": "2024-05-05"
+    },
+    {
+        "name": "Martyrs' Day",
+        "date": "2024-05-06"
+    },
+    {
+        "name": "Anniversary of the October War",
+        "date": "2024-10-06"
+    },
+    {
+        "name": "Christmas",
+        "date": "2024-12-25"
+    }
+]
