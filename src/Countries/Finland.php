@@ -20,12 +20,12 @@ class Finland extends Country
     protected function fixedHolidays(int $year): array
     {
         return [
-            'Uudenvuodenpäivä' => CarbonImmutable::create($year, 1, 1),
-            'Loppiainen' => CarbonImmutable::create($year, 1, 6),
-            'Vappu' => CarbonImmutable::create($year, 5, 1),
-            'Itsenäisyyspäivä' => CarbonImmutable::create($year, 12, 6),
-            'Joulupäivä' => CarbonImmutable::create($year, 12, 25),
-            'Tapaninpäivä' => CarbonImmutable::create($year, 12, 26),
+            'Uudenvuodenpäivä' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Loppiainen' => CarbonImmutable::createFromDate($year, 1, 6),
+            'Vappu' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Itsenäisyyspäivä' => CarbonImmutable::createFromDate($year, 12, 6),
+            'Joulupäivä' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Tapaninpäivä' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
     }
 
@@ -35,7 +35,8 @@ class Finland extends Country
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('Europe/Helsinki');
 
-        $midsummerDay = CarbonImmutable::create($year, 6, 20)->next(CarbonImmutable::SATURDAY);
+        $midsummerDay = CarbonImmutable::createFromDate($year, 6, 20)
+            ->next(CarbonImmutable::SATURDAY);
 
         return [
             'Pitkäperjantai' => $easter->subDays(2),
@@ -46,7 +47,7 @@ class Finland extends Country
             'Juhannuspäivä' => $midsummerDay->day > 26
                 ? $midsummerDay->subWeek()
                 : $midsummerDay,
-            'Pyhäinpäivä' => CarbonImmutable::create($year, 10, 31)
+            'Pyhäinpäivä' => CarbonImmutable::createFromDate($year, 10, 31)
                 ->next(CarbonImmutable::SATURDAY),
         ];
     }
