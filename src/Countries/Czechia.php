@@ -11,7 +11,6 @@ class Czechia extends Country
         return 'cz';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
