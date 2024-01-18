@@ -26,7 +26,7 @@ class Zambia extends Country
             'National Prayer Day' => '10-18',
             'Independence Day' => '10-24',
             'Christmas Day' => '12-25',
-           
+
         ], $this->variableHolidays($year));
     }
 
@@ -37,7 +37,7 @@ class Zambia extends Country
             ->setTimezone('Africa/Lusaka');
 
         return [
-            'Good Friday' => $easter->subDays(2),  
+            'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
         ];
     }
