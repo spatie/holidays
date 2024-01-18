@@ -48,7 +48,6 @@ $holidays = Holidays::for(Belgium::make())->get();
 ```
 
 Alternatively, you could also pass an ISO code to the `for` method.
-But region specific holidays will not be included.
 
 ```php
 use Spatie\Holidays\Holidays;
@@ -94,13 +93,17 @@ If you want to add a new country, you can create a pull request.
 
 1. Create a new class in the `Countries` directory. It should extend the `Country` class.
 2. Add a test for the new country in the `tests` directory.
+3. Run the tests so a snapshot gets created.
+4. Verify the result in the newly created snapshot is correct.
 
 In case your country has specific rules for calculating holidays,
 for example region specific holidays, you can pass this to the constructor of your country class.
 
 ```php
-$holidays = Holidays::for(Austria::make('de-bw'))->get();
+$holidays = Holidays::for(Austria::make(region: 'de-bw'))->get();
 ```
+
+The value, `de-bw`, will be passed the region parameter of the contructor of a country.
 
 ```php
 class Austria extends Country
@@ -117,8 +120,6 @@ class Austria extends Country
 ```
 
 Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for more details.
-
-
 
 ## Testing
 
