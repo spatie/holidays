@@ -15,7 +15,6 @@ it('can calculate irish holidays', function () {
         ->not()->toBeEmpty();
 
     expect(formatDates($holidays))->toMatchSnapshot();
-
 });
 
 it('can calculate St Bridid\'s day in Ireland', function () {
