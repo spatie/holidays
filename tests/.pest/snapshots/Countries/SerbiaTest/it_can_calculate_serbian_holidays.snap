@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Nova godina - prvi dan",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Nova godina - drugi dan",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Dan dr\u017eavnosti - prvi dan",
+        "date": "2024-02-15"
+    },
+    {
+        "name": "Dan dr\u017eavnosti - drugi dan",
+        "date": "2024-02-16"
+    },
+    {
+        "name": "Veliki petak",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Vaskr\u0161nji ponedeljak",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Praznik rada - prvi dan",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Praznik rada - drugi dan",
+        "date": "2024-05-02"
+    },
+    {
+        "name": "Dan primirja u Prvom svetskom ratu",
+        "date": "2024-11-11"
+    }
+]
