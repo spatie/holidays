@@ -14,7 +14,8 @@ class Slovenia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
-        return array_merge([
+
+		return array_merge([
             'Novo leto' => '01-01', // New Year's Day
             'Novo leto 2' => '01-02', // New Year's Day, yes it's a second day
             'Prešernov dan, slovenski kulturni praznik' => '08-02', // Prešeren Day, Slovenian Cultural Holiday
