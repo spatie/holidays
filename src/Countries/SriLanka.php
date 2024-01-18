@@ -43,7 +43,7 @@ class SriLanka extends Country
 
             $moonPhase = new MoonPhase($date);
 
-            $nextFullMoon = new DateTime('@' . $moonPhase->getPhaseNextFullMoon());
+            $nextFullMoon = new DateTime('@' . $moonPhase->getPhaseFullMoon());
 
             if(!in_array($nextFullMoon, $fullMoons)) {
                 $fullMoons[] = $nextFullMoon;
@@ -167,6 +167,8 @@ class SriLanka extends Country
             }
 
         }
+
+        dd($namedMoons);
 
         return $namedMoons;
     }
