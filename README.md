@@ -11,7 +11,7 @@ use Spatie\Holidays\Holidays;
 
 // returns an array of Belgian holidays
 // for the current year
-$holidays = Holidays::for('be')->get(); 
+$holidays = Holidays::for('be')->get();
 ```
 
 ## Support us
@@ -40,21 +40,21 @@ You can get all holidays for a country by using the `get` method.
 
 ```php
 use Spatie\Holidays\Holidays;
-
-// returns an array of Belgian holidays
-// for the current year
-$holidays = Holidays::for('be')->get(); 
-```
-
-Alternatively, you could also pass an instance of `Country` to the `for` method.
-
-```php
-use Spatie\Holidays\Holidays;
 use Spatie\Holidays\Countries\Belgium;
 
 // returns an array of Belgian holidays
 // for the current year
 $holidays = Holidays::for(Belgium::make())->get(); 
+```
+
+Alternatively, you could also pass an ISO code to the `for` method.
+
+```php
+use Spatie\Holidays\Holidays;
+
+// returns an array of Belgian holidays
+// for the current year
+$holidays = Holidays::for('be')->get();
 ```
 
 ### Getting holidays for a specific year
@@ -87,6 +87,40 @@ use Spatie\Holidays\Holidays;
 Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
 
+## Contributing a new country
+
+If you want to add a new country, you can create a pull request.
+
+1. Create a new class in the `Countries` directory. It should extend the `Country` class.
+2. Add a test for the new country in the `tests` directory.
+3. Run the tests so a snapshot gets created.
+4. Verify the result in the newly created snapshot is correct.
+
+In case your country has specific rules for calculating holidays,
+for example region specific holidays, you can pass this to the constructor of your country class.
+
+```php
+$holidays = Holidays::for(Austria::make(region: 'de-bw'))->get();
+```
+
+The value, `de-bw`, will be passed the region parameter of the contructor of a country.
+
+```php
+class Austria extends Country
+{
+    protected function __construct(
+        protected ?string $region = null,
+    ) {
+    }
+
+    protected function allHolidays(int $year): array
+    {
+        // Here you can use $this->region (or other variables) to calculate holidays
+    }
+```
+
+Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for more details.
+
 ## Testing
 
 ```bash
@@ -96,10 +130,6 @@ composer test
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
