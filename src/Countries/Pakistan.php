@@ -11,10 +11,6 @@ class Pakistan extends Country
         return 'pk';
     }
 
-    /**
-     * @return array<string, CarbonImmutable>
-     * @link https://en.wikipedia.org/wiki/Public_holidays_in_Pakistan
-     */
     protected function allHolidays(int $year): array
     {
         return array_merge([
