@@ -168,8 +168,6 @@ class SriLanka extends Country
 
         }
 
-        dd($namedMoons);
-
         return $namedMoons;
     }
 
