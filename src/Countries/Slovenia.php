@@ -16,7 +16,7 @@ class Slovenia extends Country
     {
         return array_merge([
             'Novo leto' => '01-01', // New Year's Day
-            'Novo leto 2' => '02-01', // New Year's Day, yes it's a second day
+            'Novo leto 2' => '01-02', // New Year's Day, yes it's a second day
             'Prešernov dan, slovenski kulturni praznik' => '08-02', // Prešeren Day, Slovenian Cultural Holiday
             'Dan upora proti okupatorju' => '04-27', // Day of Uprising Against Occupation
             'Praznik dela' => '05-01',  // Labour Day
