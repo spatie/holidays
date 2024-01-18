@@ -34,14 +34,6 @@ class SriLanka extends Country
 
     function variableHolidays(int $year): array
     {
-        $poyaHolidays = $this->getFullMoons($year);
-
-        dd($poyaHolidays);
-
-    }
-
-    function getFullMoons(int $year) : array
-    {
         $start = new DateTime($year . '-01-01');
         $end = new DateTime($year . '-12-31');
 
@@ -173,7 +165,6 @@ class SriLanka extends Country
                         $namedMoons['Adhi Unduvap Poya Day'] = $moon;
                     }
                     break;
-
             }
 
         }
