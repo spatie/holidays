@@ -3,8 +3,12 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use GeniusTS\HijriDate\Hijri;
+
 class Tunisia extends Country
 {
+    private int $adjustmentDays = 1;
+
     public function countryCode(): string
     {
         return 'tn';
@@ -33,12 +37,26 @@ class Tunisia extends Country
     protected function variableHolidays(int $year): array
     {
         return [
-            'Eid al-Fitr' => '04-10',
-            'Eid al-Fitr 2' => '04-11',
-            'Eid al-Adha' => '06-16',
-            'Eid al-Adha 2' => '06-17',
-            'Islamic New Year' => '07-07',
-            'Birthday of the Prophet Muhammad' => '09-16'
+            'Islamic new year' => $this->getHijriDateAsGregorian(1, 1, $year + 1),
+            'Birthday of the Prophet Muhammad' =>  $this->getHijriDateAsGregorian(12, 3, $year + 1),
+            'Eid al-Fitr' =>  $this->getHijriDateAsGregorian(1, 10, $year, $this->adjustmentDays),
+            'Eid al-Fitr - 2nd day' =>  $this->getHijriDateAsGregorian(2, 10, $year, $this->adjustmentDays),
+            'Eid al-Adha' =>  $this->getHijriDateAsGregorian(10, 12, $year, $this->adjustmentDays),
+            'Eid al-Adha - 2nd day' =>  $this->getHijriDateAsGregorian(11, 12, $year, $this->adjustmentDays),
         ];
     }
+
+    protected function getHijriDateAsGregorian(
+        int $hijriDay,
+        int $hijriMonth,
+        int $hijriYear,
+        int $adjustmentDays = 0
+    ): CarbonImmutable
+    {
+        $gregorianNewYear = CarbonImmutable::create($hijriYear, 1, 1);
+        $hijriNewYear = Hijri::convertToHijri($gregorianNewYear);
+        $gregorianDate = Hijri::convertToGregorian($hijriDay, $hijriMonth, $hijriNewYear->year);
+        return CarbonImmutable::instance($gregorianDate)->addDays($adjustmentDays);
+    }
+
 }
