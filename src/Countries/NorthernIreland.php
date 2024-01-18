@@ -8,7 +8,7 @@ class NorthernIreland extends Wales
 {
     public function countryCode(): string
     {
-        return 'gb-nir';
+        return 'uk-nir';
     }
 
     private function stPatricksDay(int $year): array

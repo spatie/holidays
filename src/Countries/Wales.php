@@ -8,7 +8,7 @@ class Wales extends Country
 {
     public function countryCode(): string
     {
-        return 'gb-cym';
+        return 'uk-cym';
     }
 
     protected function christmasDay(int $year): array

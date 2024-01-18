@@ -8,7 +8,7 @@ class Scotland extends Wales
 {
     public function countryCode(): string
     {
-        return 'gb-sct';
+        return 'uk-sct';
     }
 
     protected function secondOfJanuary(int $year): array
