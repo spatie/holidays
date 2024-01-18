@@ -35,7 +35,7 @@ class Chile extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))->setTimezone('America/Sao_Paulo');
+        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))->setTimezone('America/Santiago');
 
         return [
             'Viernes Santo' => $easter->subDays(2),
