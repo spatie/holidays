@@ -17,9 +17,8 @@ class Uganda extends Country
         return array_merge([
             'New Year\'s Day'            => '01-01',
             'Liberation Day'             => '01-26',
-            'Archbishop Janani Luwum Day'    => '02-16',
+            'Janani Luwum Day'           => '02-16',
             'International Women\'s Day' => '03-08',
-            'Good Friday'                => '03-29',
             'Eid al-Fitr'                => '04-10',
             'Labour Day'                 => '05-01',
             'Martyr\'s Day'              => '06-03',
@@ -38,8 +37,9 @@ class Uganda extends Country
             ->setTimezone('Africa/Nairobi');
 
         return [
+            'Good Friday'   => $easter->subDays(2),
             'Easter Sunday' => $easter,
-            'Easter Monday' => $easter->addDays(),
+            'Easter Monday' => $easter->addDay(),
         ];
     }
 }
