@@ -18,6 +18,7 @@ class Kenya extends Country
             "New Year's" => "01-01",
             "Labour" => "05-01",
             "Madaraka" => "06-01",
+            "Utamaduni" => "10-10",
             "Mashujaa" => "10-20",
             "Jamhuri" => "12-01",
             "Christmas" => "12-25",
@@ -31,6 +32,9 @@ class Kenya extends Country
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('Africa/Nairobi');
 
-        return [];
+        return [
+            "Good Friday" => $easter->subDays(2),
+            "Easter Monday" => $easter->addDay(),
+        ];
     }
 }
