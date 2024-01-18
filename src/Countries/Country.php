@@ -37,7 +37,7 @@ abstract class Country
 
     public static function make(): static
     {
-        return new static();
+        return new static(...func_get_args());
     }
 
     public static function find(string $countryCode): ?Country
