@@ -8,11 +8,11 @@
         "date": "2024-03-29"
     },
     {
-        "name": "1e Paasdag",
+        "name": "Eerste Paasdag",
         "date": "2024-03-31"
     },
     {
-        "name": "2e Paasdag",
+        "name": "Tweede Paasdag",
         "date": "2024-04-01"
     },
     {
@@ -28,23 +28,19 @@
         "date": "2024-05-09"
     },
     {
-        "name": "1e Pinksterdag",
+        "name": "Eerste Pinksterdag",
         "date": "2024-05-19"
     },
     {
-        "name": "2e Pinksterdag",
+        "name": "Tweede Pinksterdag",
         "date": "2024-05-20"
     },
     {
-        "name": "1e Kerstdag",
+        "name": "Eerste Kerstdag",
         "date": "2024-12-25"
     },
     {
-        "name": "2e Kerstdag",
+        "name": "Tweede Kerstdag",
         "date": "2024-12-26"
-    },
-    {
-        "name": "Oudejaarsdag",
-        "date": "2024-12-31"
     }
 ]
