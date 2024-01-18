@@ -1,6 +1,6 @@
 <?php
 
-namespace Spati\Holidays\Countries;
+namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holidays;
