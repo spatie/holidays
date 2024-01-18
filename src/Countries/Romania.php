@@ -63,7 +63,7 @@ class Romania extends Country
         $c = $year % 19;
         $d = (19 * $c + 15) % 30;
         $e = (2 * $a + 4 * $b - $d + 34) % 7;
-        $month = floor(($d + $e + 114) / 31);
+        $month = intval(floor(($d + $e + 114) / 31));
         $day = (($d + $e + 114) % 31) + 1;
 
         $gregorianEaster = CarbonImmutable::createFromDate($year, $month, $day);
