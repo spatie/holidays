@@ -2,14 +2,15 @@
 
 use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Holidays;
+
 use function Laravel\Prompts\select;
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
 $countries = [];
 
 foreach (glob(__DIR__.'/src/Countries/*.php') as $filename) { // @phpstan-ignore-line
-    $countryClass = '\\Spatie\\Holidays\\Countries\\' . basename($filename, '.php');
+    $countryClass = '\\Spatie\\Holidays\\Countries\\'.basename($filename, '.php');
 
     if (basename($filename) === 'Country.php') {
         continue;
