@@ -1,0 +1,34 @@
+[
+    {
+        "name": "New Year's Day (substitute day)",
+        "date": "2022-01-03"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2022-04-15"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2022-04-18"
+    },
+    {
+        "name": "Early May bank holiday",
+        "date": "2022-05-02"
+    },
+    {
+        "name": "Spring bank holiday",
+        "date": "2022-05-30"
+    },
+    {
+        "name": "Summer bank holiday",
+        "date": "2022-08-29"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2022-12-26"
+    },
+    {
+        "name": "Christmas Day (substitute day)",
+        "date": "2022-12-27"
+    }
+]
