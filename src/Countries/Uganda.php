@@ -20,8 +20,6 @@ class Uganda extends Country
             'Archbishop Janani Luwum'    => '02-16',
             'International Women\'s Day' => '03-08',
             'Good Friday'                => '03-29',
-            'Easter Sunday'              => '03-31',
-            'Easter Monday'              => '04-01',
             'Eid al-Fitr'                => '04-10',
             'Labour Day'                 => '05-01',
             'Martyr\'s Day'              => '06-03',
@@ -39,6 +37,9 @@ class Uganda extends Country
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('Africa/Nairobi');
 
-        return [];
+        return [
+            'Easter Sunday' => $easter,
+            'Easter Monday' => $easter->addDays(),
+        ];
     }
 }
