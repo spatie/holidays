@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Germany;
 use Spatie\Holidays\States\State;
 
-class SN extends State
+class NorthRhineWestphalia extends State
 {
     public static function country(): string
     {
@@ -15,14 +15,14 @@ class SN extends State
 
     public function stateCode(): string
     {
-        return 'sn';
+        return 'nw';
     }
 
     /** @return array<string, string|CarbonImmutable> */
     public function allHolidays(int $year): array
     {
         return [
-            'Reformationstag' => '10-31',
+            'Allerheiligen' => '11-01',
             ...$this->variableHolidays($year),
         ];
     }
@@ -30,12 +30,11 @@ class SN extends State
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $dayOfRepentanceAndPrayer = CarbonImmutable::parse($year.'-11-23')
+        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('Europe/Berlin');
-        $daysToSubtract = ($dayOfRepentanceAndPrayer->format('N') + 4) % 7;
 
         return [
-            'Buß- und Bettag' => $dayOfRepentanceAndPrayer->subDays($daysToSubtract),
+            'Fronleichnam' => $easter->addDays(60),
         ];
     }
 }

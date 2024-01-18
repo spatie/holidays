@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Germany;
 use Spatie\Holidays\States\State;
 
-class ST extends State
+class MecklenburgWestPomerania extends State
 {
     public static function country(): string
     {
@@ -15,14 +15,14 @@ class ST extends State
 
     public function stateCode(): string
     {
-        return 'st';
+        return 'mv';
     }
 
     /** @return array<string, string|CarbonImmutable> */
     public function allHolidays(int $year): array
     {
         return [
-            'Heilige Drei Könige' => '01-06',
+            'Internationaler Frauentag' => '03-08',
             'Reformationstag' => '10-31',
         ];
     }

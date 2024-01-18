@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Germany;
 use Spatie\Holidays\States\State;
 
-class SL extends State
+class Brandenburg extends State
 {
     public static function country(): string
     {
@@ -15,15 +15,14 @@ class SL extends State
 
     public function stateCode(): string
     {
-        return 'sl';
+        return 'bb';
     }
 
     /** @return array<string, string|CarbonImmutable> */
     public function allHolidays(int $year): array
     {
         return [
-            'Allerheiligen' => '11-01',
-            'Mariä Himmelfahrt' => '08-15',
+            'Reformationstag' => '10-31',
             ...$this->variableHolidays($year),
         ];
     }
@@ -35,7 +34,8 @@ class SL extends State
             ->setTimezone('Europe/Berlin');
 
         return [
-            'Fronleichnam' => $easter->addDays(60),
+            'Ostersonntag' => $easter,
+            'Pfingstsonntag' => $easter->addDays(49),
         ];
     }
 }

@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Germany;
 use Spatie\Holidays\States\State;
 
-class BW extends State
+class Bavaria extends State
 {
     public static function country(): string
     {
@@ -15,7 +15,7 @@ class BW extends State
 
     public function stateCode(): string
     {
-        return 'bw';
+        return 'by';
     }
 
     /** @return array<string, string|CarbonImmutable> */

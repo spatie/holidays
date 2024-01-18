@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Germany;
 use Spatie\Holidays\States\State;
 
-class MV extends State
+class Berlin extends State
 {
     public static function country(): string
     {
@@ -15,7 +15,7 @@ class MV extends State
 
     public function stateCode(): string
     {
-        return 'mv';
+        return 'be';
     }
 
     /** @return array<string, string|CarbonImmutable> */
@@ -23,7 +23,6 @@ class MV extends State
     {
         return [
             'Internationaler Frauentag' => '03-08',
-            'Reformationstag' => '10-31',
         ];
     }
 }
