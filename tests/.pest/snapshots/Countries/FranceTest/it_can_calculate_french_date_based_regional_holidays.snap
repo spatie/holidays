@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Jour de l'An",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Lundi de P\u00e2ques",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "F\u00eate du Travail",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Victoire 1945",
+        "date": "2024-05-08"
+    },
+    {
+        "name": "Ascension",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Lundi de Pentec\u00f4te",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "F\u00eate Nationale",
+        "date": "2024-07-14"
+    },
+    {
+        "name": "Assomption",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Abolition de l'esclavage",
+        "date": "2024-10-09"
+    },
+    {
+        "name": "Toussaint",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Armistice 1918",
+        "date": "2024-11-11"
+    },
+    {
+        "name": "No\u00ebl",
+        "date": "2024-12-25"
+    }
+]
