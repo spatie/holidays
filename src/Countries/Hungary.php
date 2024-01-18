@@ -11,7 +11,6 @@ class Hungary extends Country
         return 'hu';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
