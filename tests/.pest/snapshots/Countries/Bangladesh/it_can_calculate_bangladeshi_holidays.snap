@@ -18,5 +18,9 @@
     {
         "name": "Victory Day",
         "date": "2024-12-16"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
     }
 ]
