@@ -48,9 +48,9 @@ abstract class State
         return $allHolidays;
     }
 
-    public static function make(?State $state = null): static
+    public static function make(): static
     {
-        return new static($state);
+        return new static();
     }
 
     public static function find(Country $country, string $stateCode): ?State
