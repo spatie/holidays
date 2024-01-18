@@ -51,6 +51,7 @@ class France extends Country
         return $holidays;
     }
 
+    /** @return array<string, string> */
     protected function regionHolidays(): array
     {
         switch ($this->region) {
