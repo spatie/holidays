@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Nouvel An",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Lundi de P\u00e2ques",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Premier Mai",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Ascension",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Journ\u00e9e de l'Europe",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Lundi de Pentec\u00f4te",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "F\u00eate nationale",
+        "date": "2024-06-23"
+    },
+    {
+        "name": "Assomption",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Toussaint",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "No\u00ebl",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Saint \u00c9tienne",
+        "date": "2024-12-26"
+    }
+]
