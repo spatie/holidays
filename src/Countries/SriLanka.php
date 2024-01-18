@@ -59,10 +59,6 @@ class SriLanka extends Country
 
                 $fullMoons[] = $nextFullMoon;
 
-                if(count($fullMoons) == 12) {
-                    break;
-                }
-
                 $date->modify('+14 day');
             }
         }
