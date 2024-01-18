@@ -11,16 +11,6 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Country\\:\\:get\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\|string\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
-			count: 1
-			path: src/Countries/Country.php
-
-		-
-			message: "#^Parameter \\#2 \\$callback of function uasort expects callable\\(bool\\|Carbon\\\\CarbonImmutable, bool\\|Carbon\\\\CarbonImmutable\\)\\: int, Closure\\(Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\)\\: int\\<\\-1, 1\\> given\\.$#"
-			count: 1
-			path: src/Countries/Country.php
-
-		-
 			message: "#^Cannot call method isSunday\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
 			count: 1
 			path: src/Countries/Netherlands.php
@@ -37,10 +27,5 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(Carbon\\\\CarbonImmutable\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
-			count: 1
-			path: src/Holidays.php
-
-		-
-			message: "#^Property Spatie\\\\Holidays\\\\Holidays\\:\\:\\$holidays \\(array\\<string, Carbon\\\\CarbonImmutable\\>\\) does not accept array\\<string, Carbon\\\\CarbonImmutable\\|string\\>\\.$#"
 			count: 1
 			path: src/Holidays.php

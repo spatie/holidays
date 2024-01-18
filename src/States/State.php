@@ -4,6 +4,7 @@ namespace Spatie\Holidays\States;
 
 use Carbon\CarbonImmutable;
 use ReflectionClass;
+use RuntimeException;
 use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedState;
@@ -27,16 +28,21 @@ abstract class State
 
         $allHolidays = $this->allHolidays($year);
 
-        $allHolidays = array_map(function ($date) use ($year) {
+        $allHolidays = array_map(static function ($date) use ($year) {
             if (is_string($date)) {
                 $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+            }
+
+            if ($date === false) {
+                throw new RuntimeException("Could not parse date for holidays.");
             }
 
             return $date;
         }, $allHolidays);
 
-        uasort($allHolidays,
-            fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
+        uasort(
+            $allHolidays,
+            static fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
         );
 
         return $allHolidays;
@@ -53,7 +59,13 @@ abstract class State
 
         $countryName = (new ReflectionClass($country))->getShortName();
 
-        foreach (glob(__DIR__.'/../States/'.$countryName.'/*.php') as $filename) {
+        $stateFiles = glob(__DIR__.'/../States/'.$countryName.'/*.php');
+
+        if (!$stateFiles) {
+            throw UnsupportedState::make($stateCode, $country->countryCode());
+        }
+
+        foreach ($stateFiles as $filename) {
             if (basename($filename) === 'State.php') {
                 continue;
             }

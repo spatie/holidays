@@ -11,7 +11,7 @@ class Germany extends Country
         return 'de';
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, string|CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([

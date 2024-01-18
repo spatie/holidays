@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use RuntimeException;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedCountry;
 use Spatie\Holidays\States\State;
@@ -104,9 +105,13 @@ abstract class Country
      */
     private function formatHolidays(array $holidays, int $year): array
     {
-        return array_map(function ($date) use ($year) {
+        return array_map(static function ($date) use ($year) {
             if (is_string($date)) {
                 $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+            }
+
+            if ($date === false) {
+                throw new RuntimeException("Could not parse date for holidays.");
             }
 
             return $date;
