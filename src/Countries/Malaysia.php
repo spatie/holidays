@@ -94,6 +94,7 @@ class Malaysia extends Country
     protected function getYDPAgongBirthday($year)
     {
         return match (true) {
+            in_array($year, range(1958, 2016)) => new CarbonImmutable("first saturday of june {$year}", $this->timezone),
             in_array($year, range(2017, 2019)) => '09-09',
             in_array($year, range(2020, 2026)) => new CarbonImmutable("first monday of june {$year}", $this->timezone),
             default => null
