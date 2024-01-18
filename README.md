@@ -47,7 +47,7 @@ use Spatie\Holidays\Countries\Belgium;
 $holidays = Holidays::for(Belgium::make())->get(); 
 ```
 
-Alternatively, you could also pass an ISO code to the `for` method.
+Alternatively, you could also pass an [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) code to the `for` method.
 
 ```php
 use Spatie\Holidays\Holidays;
