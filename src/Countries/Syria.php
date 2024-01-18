@@ -11,7 +11,6 @@ class Syria extends Country
         return 'sy';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -26,7 +25,6 @@ class Syria extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
