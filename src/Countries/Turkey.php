@@ -11,7 +11,6 @@ class Turkey extends Country
         return 'tr';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
