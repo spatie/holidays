@@ -11,7 +11,6 @@ class Nigeria extends Country
         return 'ng';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -31,8 +30,8 @@ class Nigeria extends Country
             ->setTimezone('Africa/Lagos');
 
         return [
-            'Good Friday' => $easter->subDay(2),
-            'Easter Monday' => $easter->addDay(1),
+            'Good Friday' => $easter->subDays(2),
+            'Easter Monday' => $easter->addDay(),
         ];
     }
 }
