@@ -20,6 +20,7 @@ class Turkey extends Country
             'Atatürk\'ü Anma, Gençlik ve Spor Bayramı' => '05-19',
             'Demokrasi ve Millî Birlik Günü' => '07-15',
             'Zafer Bayramı' => '08-30',
+            'Cumhuriyet Bayramı Arifesi' => '10-28',
             'Cumhuriyet Bayramı' => '10-29',
         ], $this->variableHolidays($year));
     }
