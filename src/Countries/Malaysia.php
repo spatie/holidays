@@ -40,6 +40,7 @@ class Malaysia extends Country
             'Hari Raya Haji Hari Kedua' => $this->islamicCalendar('11/12', $year),
             'Maulidur Rasul' => $this->islamicCalendar('12/03', $year, true),
             'Awal Muharram' => $this->islamicCalendar('01/01', $year, true),
+            'Hari Keputeraan YDP Agong' => $this->getYDPAgongBirthday($year),
         ];
     }
 
@@ -88,5 +89,14 @@ class Malaysia extends Country
         $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/' . ($nextYear ? $year + 1 : $year));
 
         return (int) $formatter->format($dateTime);
+    }
+
+    protected function getYDPAgongBirthday($year)
+    {
+        return match (true) {
+            in_array($year, range(2017, 2019)) => '09-09',
+            in_array($year, range(2020, 2026)) => new CarbonImmutable("first monday of june {$year}", $this->timezone),
+            default => null
+        };
     }
 }
