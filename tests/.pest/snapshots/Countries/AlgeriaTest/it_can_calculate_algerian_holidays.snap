@@ -1,0 +1,54 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Amazigh New Year",
+        "date": "2024-01-12"
+    },
+    {
+        "name": "Eid al-Fitr",
+        "date": "2024-04-10"
+    },
+    {
+        "name": "Eid al-Fitr - 2nd day",
+        "date": "2024-04-11"
+    },
+    {
+        "name": "Labour day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Eid al-Adha",
+        "date": "2024-06-17"
+    },
+    {
+        "name": "Eid al-Adha - 2nd day",
+        "date": "2024-06-18"
+    },
+    {
+        "name": "Eid al-Adha - 3rd day",
+        "date": "2024-06-19"
+    },
+    {
+        "name": "Independence day",
+        "date": "2024-07-05"
+    },
+    {
+        "name": "Islamic new year",
+        "date": "2024-07-07"
+    },
+    {
+        "name": "Ashura",
+        "date": "2024-07-16"
+    },
+    {
+        "name": "Mawlid",
+        "date": "2024-09-15"
+    },
+    {
+        "name": "Revolution Day",
+        "date": "2024-11-01"
+    }
+]
