@@ -5,15 +5,15 @@
     },
     {
         "name": "Goede Vrijdag",
-        "date": "2024-03-29"
+        "date": "2024-03-28"
     },
     {
         "name": "1e Paasdag",
-        "date": "2024-03-31"
+        "date": "2024-03-30"
     },
     {
         "name": "2e Paasdag",
-        "date": "2024-04-01"
+        "date": "2024-03-31"
     },
     {
         "name": "Koningsdag",
@@ -25,15 +25,15 @@
     },
     {
         "name": "Hemelvaartsdag",
-        "date": "2024-05-09"
+        "date": "2024-05-08"
     },
     {
         "name": "1e Pinksterdag",
-        "date": "2024-05-19"
+        "date": "2024-05-18"
     },
     {
         "name": "2e Pinksterdag",
-        "date": "2024-05-20"
+        "date": "2024-05-19"
     },
     {
         "name": "1e Kerstdag",
@@ -42,9 +42,5 @@
     {
         "name": "2e Kerstdag",
         "date": "2024-12-26"
-    },
-    {
-        "name": "Oudejaarsdag",
-        "date": "2024-12-31"
     }
 ]
