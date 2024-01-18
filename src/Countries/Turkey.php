@@ -28,7 +28,8 @@ class Turkey extends Country
     protected function variableHolidays(int $year): array
     {
         return [
-            //It will be implemented after Islamic holidays
+            //It will be implemented after Islamic holidays. Because Islamic holidays are lunar based.
+            //https://github.com/spatie/holidays/discussions/79
         ];
     }
 }
