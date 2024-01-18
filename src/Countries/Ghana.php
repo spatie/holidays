@@ -31,12 +31,12 @@ class Ghana extends Country
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('Africa/Accra');
 
-        $farmersDay = (new CarbonImmutable('first friday of December ' . $year))->setTimezone('Africa/Accra');
+        $farmersDay = (new CarbonImmutable('first friday of December ' . $year, 'Africa/Accra'));
 
         return [
-            'Farmers Day' => $farmersDay->addDay(),
+            'Farmers Day' => $farmersDay,
 
-            'Good Friday' => $easter->subDay(2),
+            'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
 
             // NB: *** There are no fixed dates for the Eid-Ul-Fitr and Eid-Ul-Adha because they are movable feasts.
