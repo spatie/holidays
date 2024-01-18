@@ -46,6 +46,12 @@ class SriLanka extends Country
             $nextFullMoon = new DateTime('@' . $moonPhase->getPhaseFullMoon());
 
             if(!in_array($nextFullMoon, $fullMoons)) {
+
+                // relates to the moon cycle still in the previous year
+                if($nextFullMoon->format('Y') != $year) {
+                    continue;
+                }
+
                 $fullMoons[] = $nextFullMoon;
 
                 if(count($fullMoons) == 12) {
