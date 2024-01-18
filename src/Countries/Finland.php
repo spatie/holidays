@@ -11,7 +11,6 @@ class Finland extends Country
         return 'fi';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge($this->fixedHolidays($year), $this->variableHolidays($year));
