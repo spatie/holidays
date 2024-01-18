@@ -21,6 +21,8 @@ class Romania extends Country
         return array_merge([
             'Anul Nou' => '01-01',
             'A doua zi de Anul Nou' => '01-02',
+            'Bobotează' => '01-06',
+            'Sfântul Ion' => '01-07',
             'Ziua Unirii Principatelor Române' => '01-24',
             'Ziua Muncii' => '05-01',
             'Ziua Copilului' => '06-01',
