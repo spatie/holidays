@@ -17,7 +17,7 @@ class Uganda extends Country
         return array_merge([
             'New Year\'s Day'            => '01-01',
             'Liberation Day'             => '01-26',
-            'Archbishop Janani Luwum'    => '02-16',
+            'Archbishop Janani Luwum Day'    => '02-16',
             'International Women\'s Day' => '03-08',
             'Good Friday'                => '03-29',
             'Eid al-Fitr'                => '04-10',
