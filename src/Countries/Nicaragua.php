@@ -31,10 +31,9 @@ class Nicaragua extends Country
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('America/Managua');
 
-
         return [
-            'Jueves santo' => $easter->subDays(3)->format('m-d'),
-            'Viernes santo' => $easter->subDays(2)->format('m-d'),
+            'Jueves santo' => $easter->subDays(3),
+            'Viernes santo' => $easter->subDays(2),
         ];
     }
 }
