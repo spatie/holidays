@@ -21,6 +21,7 @@ class Bangladesh extends Country
             'May Day' => '01-05',
             'National Day of Mourning' => '15-08',
             'Victory Day' => '16-12',
+            'Christmas Day' => '25-12',
         ], $this->variableHolidays($year));
     }
 
