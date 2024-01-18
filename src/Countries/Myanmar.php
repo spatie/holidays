@@ -2,8 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-
 class Myanmar extends Country
 {
     public function countryCode(): string
@@ -11,7 +9,6 @@ class Myanmar extends Country
         return 'mm';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return [
