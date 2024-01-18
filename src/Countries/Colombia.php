@@ -11,7 +11,6 @@ class Colombia extends Country
         return 'co';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
