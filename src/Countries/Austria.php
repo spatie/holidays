@@ -6,12 +6,16 @@ use Carbon\CarbonImmutable;
 
 class Austria extends Country
 {
+    protected function __construct(
+        public ?string $region = null
+    ) {
+    }
+
     public function countryCode(): string
     {
         return 'at';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -34,7 +38,7 @@ class Austria extends Country
             ->setTimezone('Europe/Vienna');
 
         return [
-            'Ostermontag' => $easter->addDay(1),
+            'Ostermontag' => $easter->addDay(),
             'Christi Himmelfahrt' => $easter->addDays(39),
             'Pfingstmontag' => $easter->addDays(50),
             'Fronleichnam' => $easter->addDays(60),
