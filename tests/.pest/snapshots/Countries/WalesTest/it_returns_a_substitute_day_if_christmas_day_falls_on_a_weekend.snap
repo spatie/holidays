@@ -1,0 +1,34 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2027-01-01"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2027-03-26"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2027-03-29"
+    },
+    {
+        "name": "Early May bank holiday",
+        "date": "2027-05-03"
+    },
+    {
+        "name": "Spring bank holiday",
+        "date": "2027-05-31"
+    },
+    {
+        "name": "Summer bank holiday",
+        "date": "2027-08-30"
+    },
+    {
+        "name": "Christmas Day (substitute day)",
+        "date": "2027-12-27"
+    },
+    {
+        "name": "Boxing Day (substitute day)",
+        "date": "2027-12-28"
+    }
+]
