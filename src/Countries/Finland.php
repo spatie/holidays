@@ -34,7 +34,7 @@ class Finland extends Country
     protected function variableHolidays(int $year): array
     {
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Stockholm');
+            ->setTimezone('Europe/Helsinki');
 
         $midsummerDay = CarbonImmutable::create($year, 6, 20)->next(CarbonImmutable::SATURDAY);
 
