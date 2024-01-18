@@ -100,7 +100,9 @@ for example region specific holidays, you can pass this to the constructor of yo
 
 ```php
 $holidays = Holidays::for(Austria::make('de-bw'))->get();
+```
 
+```php
 class Austria extends Country
 {
     protected function __construct(
