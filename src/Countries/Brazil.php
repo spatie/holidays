@@ -22,6 +22,7 @@ class Brazil extends Country
             'Nossa Senhora Aparecida' => '10-12',
             'Finados' => '11-02',
             'Proclamação da República' => '11-15',
+            'Dia da Consciência Negra' => '11-20',
             'Natal' => '12-25',
         ], $this->variableHolidays($year));
     }
