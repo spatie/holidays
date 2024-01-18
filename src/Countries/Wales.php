@@ -16,9 +16,14 @@ class Wales extends Country
         $christmasDay = new CarbonImmutable($year . "-12-25", 'Europe/London');
         $key = 'Christmas Day';
 
-        if ($christmasDay->isSaturday() || $christmasDay->isSunday()) {
+        if ($christmasDay->isSaturday()) {
             $key .= ' (substitute day)';
             $christmasDay = $christmasDay->next('monday');
+        }
+
+        if ($christmasDay->isSunday()) {
+            $key .= ' (substitute day)';
+            $christmasDay = $christmasDay->next('tuesday');
         }
 
         return [$key => $christmasDay];
@@ -27,13 +32,16 @@ class Wales extends Country
 
     private function boxingDay(int $year): array
     {
+        $christmasDay = new CarbonImmutable($year . "-12-25", 'Europe/London');
         $boxingDay = new CarbonImmutable($year . "-12-26", 'Europe/London');
         $key = 'Boxing Day';
 
-        if ($boxingDay->isSaturday()) {
+        if ($christmasDay->isFriday()) {
             $key .= ' (substitute day)';
             $boxingDay = $boxingDay->next('monday');
-        } elseif ($boxingDay->isSunday()) {
+        }
+
+        if ($christmasDay->isSaturday()) {
             $key .= ' (substitute day)';
             $boxingDay = $boxingDay->next('tuesday');
         }
