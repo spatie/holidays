@@ -92,10 +92,10 @@ class SriLanka extends Country
                     break;
 
                 case 'Mar':
-                    if(!isset($namedMoons['Madin Poya Day']) ) {
-                        $namedMoons['Madin Poya Day'] = $moon;
+                    if(!isset($namedMoons['Medin Poya Day']) ) {
+                        $namedMoons['Medin Poya Day'] = $moon;
                     } else {
-                        $namedMoons['Adhi Madin Poya Day'] = $moon;
+                        $namedMoons['Adhi Medin Poya Day'] = $moon;
                     }
                     break;
 
@@ -173,6 +173,8 @@ class SriLanka extends Country
             }
 
         }
+
+        dd($namedMoons);
 
         return $namedMoons;
     }
