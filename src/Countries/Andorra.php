@@ -11,7 +11,6 @@ class Andorra extends Country
         return 'ad';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([

@@ -11,9 +11,10 @@ class Brazil extends Country
         return 'br';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
+        throw new \Exception('Not implemented yet.');
+
         return array_merge([
             'Dia de Ano Novo' => '01-01',
             'Dia de Tiradentes' => '04-21',
