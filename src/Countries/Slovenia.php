@@ -37,7 +37,7 @@ class Slovenia extends Country
             ->setTimezone('Europe/Ljubljana');
 
         return [
-            'Velikonočni ponedeljek' => $easter->addDay(1), // Easter Monday
+            'Velikonočni ponedeljek' => $easter->addDay(), // Easter Monday
         ];
     }
 }
