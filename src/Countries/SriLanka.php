@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Countries;
 
 use DateTime;
 use Solaris\MoonPhase;
+use Carbon\CarbonImmutable;
 
 class SriLanka extends Country
 {
@@ -33,21 +34,14 @@ class SriLanka extends Country
 
     function variableHolidays(int $year): array
     {
-        $this->getFullMoons($year);
+        $poyaHolidays = $this->getFullMoons($year);
 
+        dd($poyaHolidays);
 
     }
 
-
     function getFullMoons(int $year) : array
     {
-        // $moonPhase = (new MoonPhase());
-
-        // gets the UNIX timestamp of the full moons
-        //$moon = $moonPhase->getPhaseNextFullMoon();
-
-        // $date = new DateTime('@' . $moon);
-
         $start = new DateTime($year . '-01-01');
         $end = new DateTime($year . '-12-31');
 
@@ -61,10 +55,130 @@ class SriLanka extends Country
 
             if(!in_array($nextFullMoon, $fullMoons)) {
                 $fullMoons[] = $nextFullMoon;
+
+                if(count($fullMoons) == 12) {
+                    break;
+                }
+
+                $date->modify('+14 day');
             }
         }
 
-        dd($fullMoons);
+        array_map(function($fullMoon) {
+            return CarbonImmutable::instance($fullMoon)
+                ->setTimezone('Asia/Colombo');
+        }, $fullMoons);
+
+
+        $namedMoons = [];
+
+        foreach ($fullMoons as $moon){
+
+            switch($moon->format('M')) {
+
+                case 'Jan':
+
+                    if(!isset($namedMoons['Duruthu Poya Day']) ) {
+                        $namedMoons['Duruthu Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Duruthu Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Feb':
+
+                    if(!isset($namedMoons['Navam Poya Day']) ) {
+                        $namedMoons['Navam Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Navam Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Mar':
+                    if(!isset($namedMoons['Madin Poya Day']) ) {
+                        $namedMoons['Madin Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Madin Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Apr':
+                    if(!isset($namedMoons['Bak Poya Day']) ) {
+                        $namedMoons['Bak Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Bak Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'May':
+                    if(!isset($namedMoons['Vesak Poya Day']) ) {
+                        $namedMoons['Vesak Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Vesak Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Jun':
+                    if(!isset($namedMoons['Poson Poya Day']) ) {
+                        $namedMoons['Poson Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Poson Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Jul':
+                    if(!isset($namedMoons['Esala Poya Day']) ) {
+                        $namedMoons['Esala Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Esala Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Aug':
+                    if(!isset($namedMoons['Nikini Poya Day']) ) {
+                        $namedMoons['Nikini Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Nikini Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Sep':
+                    if(!isset($namedMoons['Binara Poya Day']) ) {
+                        $namedMoons['Binara Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Binara Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Oct':
+                    if(!isset($namedMoons['Vap Poya Day']) ) {
+                        $namedMoons['Vap Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Vap Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Nov':
+                    if(!isset($namedMoons['Il Poya Day']) ) {
+                        $namedMoons['Il Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Il Poya Day'] = $moon;
+                    }
+                    break;
+
+                case 'Dec':
+                    if(!isset($namedMoons['Unduvap Poya Day']) ) {
+                        $namedMoons['Unduvap Poya Day'] = $moon;
+                    } else {
+                        $namedMoons['Adhi Unduvap Poya Day'] = $moon;
+                    }
+                    break;
+
+            }
+
+        }
+
+        return $namedMoons;
     }
 
 }
