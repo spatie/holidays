@@ -36,7 +36,6 @@ class Portugal extends Country
 
         return [
             'Páscoa' => $easter,
-            'Carnaval' => $easter->subDays(47),
             'Sexta-feira Santa' => $easter->subDays(2),
             'Corpo de Deus' => $easter->addDays(60),
         ];
