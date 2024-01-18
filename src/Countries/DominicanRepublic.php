@@ -10,6 +10,8 @@ class DominicanRepublic extends Country
     {
         return 'do';
     }
+
+    /** @return array<string, CarbonImmutable | string> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -25,6 +27,8 @@ class DominicanRepublic extends Country
             'Navidad' => '12-25',
         ], $this->variableHolidays($year));
     }
+
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter =  CarbonImmutable::createFromTimestamp(easter_date($year))
