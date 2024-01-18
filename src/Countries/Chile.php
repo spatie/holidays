@@ -34,22 +34,19 @@ class Chile extends Country
         ];
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))->setTimezone('America/Santiago');
-
-        return [
+    
+        $holidays = [
             'Viernes Santo' => $easter->subDays(2),
             'Sábado Santo' => $easter->subDays(1),
-            'Día Nacional de los Pueblos Indígenas' => CarbonImmutable::create($year, 6, 20),
-            'San Pedro y San Pablo' => CarbonImmutable::create($year, 6, 29),
-            'Día de la Virgen del Carmen' => CarbonImmutable::create($year, 7, 16),
-            'Asunción de la Virgen' => CarbonImmutable::create($year, 8, 15),
-            'Feriado añadido de Fiestas Patrias' => CarbonImmutable::create($year, 9, 20),
-            'Encuentro de Dos Mundos' => CarbonImmutable::create($year, 10, 12),
-            'Día de las Iglesias Evangélicas' => CarbonImmutable::create($year, 10, 31),
-            'Día de Todos los Santos' => CarbonImmutable::create($year, 11, 1),
         ];
+    
+        $holidays = array_filter($holidays, function ($value) {
+            return $value instanceof CarbonImmutable;
+        });
+    
+        return $holidays;
     }
 }
