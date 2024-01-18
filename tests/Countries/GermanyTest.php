@@ -30,6 +30,19 @@ it('can calculate german state-specific holidays', function (string $state) {
 })->with([
     'bw',
     'by',
+    'be',
+    'bb',
+    'hb',
+    'hh',
+    'he',
+    'mv',
+    'ni',
     'nw',
+    'rp',
+    'sl',
+    'sn',
+    'st',
+    'sh',
+    'th',
 ]);
 
