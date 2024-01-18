@@ -18,7 +18,7 @@ class Denmark extends Country
             'Nytår' => '01-01',
             'Juleaften' => '12-24',
             'Juledag' => '12-25',
-            'Anden Juledag' => '12-26'
+            'Anden Juledag' => '12-26',
         ], $this->variableHolidays($year));
     }
 
