@@ -56,11 +56,10 @@ class SriLanka extends Country
             }
         }
 
-        array_map(function($fullMoon) {
+        $fullMoons = array_map(function($fullMoon) {
             return CarbonImmutable::instance($fullMoon)
                 ->setTimezone('Asia/Colombo');
         }, $fullMoons);
-
 
         $namedMoons = [];
 
