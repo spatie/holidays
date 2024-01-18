@@ -34,7 +34,7 @@ class Italy extends Country
             ->setTimezone('Europe/Rome');
 
         return [
-            'Lunedì di Pasqua' => $easter->addDay(1),
+            'Lunedì di Pasqua' => $easter->addDay(),
         ];
     }
 }
