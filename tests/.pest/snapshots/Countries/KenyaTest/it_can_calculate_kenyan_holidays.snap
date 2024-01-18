@@ -1,0 +1,30 @@
+[
+    {
+        "name": "New Year's",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Labour",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Madaraka",
+        "date": "2024-06-01"
+    },
+    {
+        "name": "Mashujaa",
+        "date": "2024-10-20"
+    },
+    {
+        "name": "Jamhuri",
+        "date": "2024-12-01"
+    },
+    {
+        "name": "Christmas",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing",
+        "date": "2024-12-26"
+    }
+]
