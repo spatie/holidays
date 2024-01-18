@@ -18,14 +18,24 @@ it('can calculate austrian holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-it('can calculate austrian holidays with region holidays', function () {
+it('can calculate austrian holidays with region holidays', function (string $state) {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
-    $holidays = Holidays::for(Austria::make('bg'))->get();
+    $holidays = Holidays::for(Austria::make(), state: $state)->get();
 
     expect($holidays)
         ->toBeArray()
         ->not()->toBeEmpty();
 
     expect(formatDates($holidays))->toMatchSnapshot();
-})->skip('Austria class has to be extended with regions first.');
+})->with([
+    'b',
+    'k',
+    'n',
+    'o',
+    's',
+    'st',
+    't',
+    'v',
+    'w',
+]);
