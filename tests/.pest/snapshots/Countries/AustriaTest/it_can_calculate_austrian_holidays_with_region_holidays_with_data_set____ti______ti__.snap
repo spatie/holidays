@@ -8,8 +8,16 @@
         "date": "2024-01-06"
     },
     {
+        "name": "Josef",
+        "date": "2024-03-19"
+    },
+    {
         "name": "Ostermontag",
         "date": "2024-04-01"
+    },
+    {
+        "name": "Tiroler Landesfeiertag",
+        "date": "2024-04-26"
     },
     {
         "name": "Staatsfeiertag",
@@ -38,10 +46,6 @@
     {
         "name": "Allerheiligen",
         "date": "2024-11-01"
-    },
-    {
-        "name": "Leopold",
-        "date": "2024-11-15"
     },
     {
         "name": "Mari\u00e4 Empf\u00e4ngnis",

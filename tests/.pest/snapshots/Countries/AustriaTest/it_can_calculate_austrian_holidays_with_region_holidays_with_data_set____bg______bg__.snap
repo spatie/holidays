@@ -8,10 +8,6 @@
         "date": "2024-01-06"
     },
     {
-        "name": "Josef",
-        "date": "2024-03-19"
-    },
-    {
         "name": "Ostermontag",
         "date": "2024-04-01"
     },
@@ -36,16 +32,16 @@
         "date": "2024-08-15"
     },
     {
-        "name": "Tag der Volksabstimmung",
-        "date": "2024-10-10"
-    },
-    {
         "name": "Nationalfeiertag",
         "date": "2024-10-26"
     },
     {
         "name": "Allerheiligen",
         "date": "2024-11-01"
+    },
+    {
+        "name": "Martinitag",
+        "date": "2024-11-11"
     },
     {
         "name": "Mari\u00e4 Empf\u00e4ngnis",

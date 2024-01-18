@@ -29,13 +29,13 @@ it('can calculate austrian holidays with region holidays', function (string $sta
 
     expect(formatDates($holidays))->toMatchSnapshot();
 })->with([
-    'b',
-    'k',
-    'n',
-    'o',
-    's',
+    'bg',
+    'ka',
+    'no',
+    'oo',
+    'sb',
     'st',
-    't',
-    'v',
-    'w',
+    'ti',
+    'vo',
+    'wi',
 ]);

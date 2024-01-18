@@ -17,7 +17,7 @@ Vienna extends State
 
     public function stateCode(): string
     {
-        return 'w';
+        return 'wi';
     }
 
     /** @return array<string, string|CarbonImmutable> */
@@ -25,6 +25,7 @@ Vienna extends State
     {
         return [
             'Leopold' => '11-15',
+            'Wiener Landtag' => '01-21',
         ];
     }
 }

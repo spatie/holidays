@@ -25,6 +25,7 @@ Styria extends State
     {
         return [
             'Josef' => '03-19',
+            'Tag der Steiermark' => '10-26',
         ];
     }
 }

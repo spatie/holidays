@@ -16,14 +16,14 @@ class Salzburg extends State
 
     public function stateCode(): string
     {
-        return 's';
+        return 'sb';
     }
 
     /** @return array<string, string|CarbonImmutable> */
     public function allHolidays(int $year): array
     {
         return [
-            'Rupert' => '09-24',
+            'Rupertitag' => '09-24',
         ];
     }
 }

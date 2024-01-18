@@ -16,7 +16,7 @@ class Tyrol extends State
 
     public function stateCode(): string
     {
-        return 't';
+        return 'ti';
     }
 
     /** @return array<string, string|CarbonImmutable> */
@@ -24,6 +24,7 @@ class Tyrol extends State
     {
         return [
             'Josef' => '03-19',
+            'Tiroler Landesfeiertag' => '04-26',
         ];
     }
 }

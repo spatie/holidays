@@ -16,7 +16,7 @@ class Vorarlberg extends State
 
     public function stateCode(): string
     {
-        return 'v';
+        return 'vo';
     }
 
     /** @return array<string, string|CarbonImmutable> */
@@ -24,6 +24,7 @@ class Vorarlberg extends State
     {
         return [
             'Josef' => '03-19',
+            'Vorarlberger Landtag' => '11-09',
         ];
     }
 }

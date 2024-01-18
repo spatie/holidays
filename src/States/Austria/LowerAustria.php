@@ -16,14 +16,14 @@ class LowerAustria extends State
 
     public function stateCode(): string
     {
-        return 'n';
+        return 'no';
     }
 
     /** @return array<string, string|CarbonImmutable> */
     public function allHolidays(int $year): array
     {
         return [
-            'Leopold' => '11-15',
+            'Niederösterreichischer Leopolditag' => '11-15',
         ];
     }
 }

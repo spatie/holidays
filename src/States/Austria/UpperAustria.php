@@ -16,7 +16,7 @@ class UpperAustria extends State
 
     public function stateCode(): string
     {
-        return 'o';
+        return 'oo';
     }
 
     /** @return array<string, string|CarbonImmutable> */
@@ -24,6 +24,7 @@ class UpperAustria extends State
     {
         return [
             'Florian' => '05-04',
+            'Oberösterreichischer Landesfeiertag' => '11-15',
         ];
     }
 }

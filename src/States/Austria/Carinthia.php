@@ -16,7 +16,7 @@ class Carinthia extends State
 
     public function stateCode(): string
     {
-        return 'k';
+        return 'ka';
     }
 
     /** @return array<string, string|CarbonImmutable> */
@@ -24,7 +24,7 @@ class Carinthia extends State
     {
         return [
             'Josef' => '03-19',
-            'Tag der Volksabstimmung' => '10-10',
+            'Kärntner Landtag' => '10-10',
         ];
     }
 }
