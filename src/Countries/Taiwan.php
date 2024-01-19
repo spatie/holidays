@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use DateTime;
 use DateTimeZone;
 use IntlDateFormatter;
 
@@ -27,16 +28,16 @@ class Taiwan extends Country
     /** @return array<string, string> */
     protected function variableHolidays(int $year): array
     {
-        return [
-            'First day of the Lunar New Year' => $this->lunarCalendar('01-01', $year),
-            'Second day of the Lunar New Year' => $this->lunarCalendar('01-02', $year),
-            'Third day of the Lunar New Year' => $this->lunarCalendar('01-03', $year),
-            'Dragon Boat Festival' => $this->lunarCalendar('05-05', $year),
-            'Moon Festival' => $this->lunarCalendar('08-15', $year),
-        ];
+        return array_filter([
+            'First day of the Lunar New Year' => '01-01',
+            'Second day of the Lunar New Year' => '01-02',
+            'Third day of the Lunar New Year' => '01-03',
+            'Dragon Boat Festival' => '05-05',
+            'Moon Festival' => '08-15',
+        ], fn ($date) => $this->lunarCalendar($date, $year) !== null);
     }
 
-    protected function lunarCalendar(string $input, int $year): string
+    protected function lunarCalendar(string $input, int $year): ?string
     {
         $formatter = new IntlDateFormatter(
             locale: 'zh-TW@calendar=chinese',
@@ -46,9 +47,17 @@ class Taiwan extends Country
             calendar: IntlDateFormatter::TRADITIONAL
         );
 
-        return date_create()
-            ->setTimeStamp($formatter->parse($year . '-' . $input))
-            ->setTimezone(new DateTimeZone($this->timezone))
-            ->format('m-d');
+        $lunarDateStr = $year . '-' . $input;
+        $parsedTimestamp = $formatter->parse($lunarDateStr);
+
+        if ($parsedTimestamp === false) {
+            return null;
+        }
+
+        $dateTime = new DateTime;
+        $dateTime->setTimestamp($parsedTimestamp);
+        $dateTime->setTimezone(new DateTimeZone($this->timezone));
+
+        return $dateTime->format('m-d');
     }
 }
