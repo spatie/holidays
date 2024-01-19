@@ -21,9 +21,9 @@ class Netherlands extends Country
             'Día de la Candelaria' => '02-02',
             'Día de la Bandera' => '02-24',
             'Día del Niño' => '04-30',
-            'Día de la Madre' => '04-30',
+            'Día de la Madre' => '05-10',
             'Día del Trabajo' => '05-01',
-            'Día de la Independencia' => '09-15',
+            'Día de la Independencia' => '09-16',
             'Día de la Raza' => '10-12',
             'Día de Muertos' => '11-02',
             'Virgen de Guadalupe' => '12-12',
@@ -37,11 +37,7 @@ class Netherlands extends Country
 
         $natalicioBenitoJuarez = new CarbonImmutable(sprintf("third monday of march %s", $year));
         $promulgacionConstitucion = new CarbonImmutable(sprintf("first monday of february %s", $year));
-        $revolucionMexicana = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-11-20")->setTimezone('America/Mexico_City');
-
-        if ($revolucionMexicana->isSunday()) {
-            $revolucionMexicana = $revolucionMexicana->next('monday');
-        }
+        $revolucionMexicana = new CarbonImmutable(sprintf("third monday of november %s", $year));
 
         $fathersDay = new CarbonImmutable(sprintf("third sunday of june %s", $year));
 
