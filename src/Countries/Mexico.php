@@ -25,43 +25,41 @@ class Mexico extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $constitutionDay = (new CarbonImmutable("first monday of february $year")) // 5 of february
+        $constitutionDay = (new CarbonImmutable("first monday of february $year"))
             ->setTimezone('America/Mexico_City');
 
-        $benitoJuarezBirth = (new CarbonImmutable("third monday of March $year")) // 21 of march
+        $benitoJuarezBirth = (new CarbonImmutable("third monday of March $year"))
             ->setTimezone('America/Mexico_City');
 
-        $revolutionDay = (new CarbonImmutable("third monday of november $year")) // 20 of november
+        $revolutionDay = (new CarbonImmutable("third monday of november $year"))
             ->setTimezone('America/Mexico_City');
 
-        /** @var CarbonImmutable|false $executiveChange */
-        $executiveChange = $this->governmentChangeDate();
-
-        $known_days = [
-            'Día de la Constitución' => $constitutionDay, // It's the first monday of february
+        $holidays = [
+            'Día de la Constitución' => $constitutionDay,
             'Natalicio de Benito Juárez' => $benitoJuarezBirth,
             'Día de la Revolución' => $revolutionDay,
         ];
 
-        return array_merge(
-            $known_days,
-            $executiveChange ? ['Cambio de Gobierno' => $executiveChange] : []
-        );
+        $executiveChange = $this->governmentChangeDate($year);
+
+        if ($executiveChange) {
+            $holidays = array_merge($holidays, ['Cambio de Gobierno' => $executiveChange]);
+        }
+
+        return $holidays;
     }
 
-    protected function governmentChangeDate(): CarbonImmutable|false
+    protected function governmentChangeDate(int $year): ?CarbonImmutable
     {
         $baseYear = 1946; // The first occurrence with president Miguel Aleman Valdes
-        $currentYear = CarbonImmutable::now()->year; // Get the current year
 
         // Check if the current year is a transmission year
-        if (($currentYear - $baseYear) % 6 == 0) {
-            /** @phpstan-ignore-next-line */
-            return CarbonImmutable::create($currentYear, 10, 1) // October 1st of the transmission year
+        if (($year - $baseYear) % 6 === 0) {
+            return CarbonImmutable::create($year, 10, 1) // October 1st of the transmission year
                 ->setTimezone('America/Mexico_City');
 
         }
 
-        return false;
+        return null;
     }
 }

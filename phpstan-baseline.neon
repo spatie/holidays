@@ -26,16 +26,6 @@ parameters:
 			path: src/Countries/Mexico.php
 
 		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Mexico\\:\\:transmisionPoderEjecutivoFederal\\(\\) has parameter \\$year with no type specified\\.$#"
-			count: 1
-			path: src/Countries/Mexico.php
-
-		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Mexico\\:\\:variableHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, string\\|true\\>\\.$#"
-			count: 1
-			path: src/Countries/Mexico.php
-
-		-
 			message: "#^Cannot call method isSunday\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
 			count: 1
 			path: src/Countries/Netherlands.php
