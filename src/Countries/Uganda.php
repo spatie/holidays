@@ -27,16 +27,16 @@ class Uganda extends Country
     * 'New Year' => '01-01', Format:: Month-Date
     */
         return array_merge([
-            'New Year' => '01-01',
-            'NRM Liberation Day' => '01-26',
-            'Archbishop Janani Luwum Day' => '02-16',
-            'International Womens Day' => '03-08',
-            'Labour Day' => '05-01',
-            'Martyrs Day' => '06-03',
-            'National Hereos Day' => '06-09',
-            'Independence Day' => '10-09',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's  Day" => "01-01",
+            "NRM Liberation Day" => "01-26",
+            "Archbishop Janani Luwum Day" => "02-16",
+            "International Women's Day" => "03-08",
+            "Labour Day" => "05-01",
+            "Martyrs' Day" => "06-03",
+            "National Hereos Day" => "06-09",
+            "Independence Day" => "10-09",
+            "Christmas Day" => "12-25",
+            "Boxing Day" => "12-26",
         ], $this->variableHolidays($year));
     }
 
