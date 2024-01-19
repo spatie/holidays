@@ -18,10 +18,10 @@ class Taiwan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => '01-01',
-            'Peace Memorial Day' => '02-28',
-            'Children\'s Day' => '04-04',
-            'National Day' => '10-10',
+            '元旦' => '01-01',
+            '228和平紀念日' => '02-28',
+            '兒童節' => '04-04',
+            '雙十國慶' => '10-10',
         ], $this->variableHolidays($year));
     }
 
@@ -29,11 +29,11 @@ class Taiwan extends Country
     protected function variableHolidays(int $year): array
     {
         return array_filter(array_map(fn ($date) => $this->lunarCalendar($date, $year), [
-            'First day of the Lunar New Year' => '01-01',
-            'Second day of the Lunar New Year' => '01-02',
-            'Third day of the Lunar New Year' => '01-03',
-            'Dragon Boat Festival' => '05-05',
-            'Moon Festival' => '08-15',
+            '農曆春節-正月初一' => '01-01',
+            '農曆春節-正月初二' => '01-02',
+            '農曆春節-正月初三' => '01-03',
+            '端午節' => '05-05',
+            '中秋節' => '08-15',
         ]));
     }
 
