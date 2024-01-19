@@ -42,7 +42,8 @@ abstract class Country
 
     protected function easter(string $year): CarbonImmutable
     {
-        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-03-21");
+        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-03-21")
+        ->startOfDay();
 
         return $easter->addDays(easter_days($year));
     }
