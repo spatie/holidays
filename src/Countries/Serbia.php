@@ -33,7 +33,7 @@ class Serbia extends Country
     protected function variableHolidays(int $year): array
     {
         $easter = CarbonImmutable::createFromTimestamp(
-            $this->orthodoxEastern($year)
+            $this->orthodoxEaster($year)
         )->setTimezone('Europe/Belgrade');
 
         return [
@@ -42,17 +42,11 @@ class Serbia extends Country
         ];
     }
 
-    protected function orthodoxEastern(int $year): int
+    protected function orthodoxEaster(int $year): bool|int
     {
-        $a = $year % 4;
-        $b = $year % 7;
-        $c = $year % 19;
-        $d = (19 * $c + 15) % 30;
-        $e = (2 * $a + 4 * $b - $d + 34) % 7;
-        $month = intval(floor(($d + $e + 114) / 31));
-        $day = (($d + $e + 114) % 31) + 1;
-        $calcDay = $day + ((int)($year / 100) - (int)($year / 400) - 2);
+        $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
+        $daysDifference = (int)($year / 100) - (int)($year / 400) - 2;
 
-        return intval(mktime(0, 0, 0, $month, $calcDay, $year));
+        return strtotime("+$daysDifference days", $timestamp);
     }
 }
