@@ -28,19 +28,13 @@ class Taiwan extends Country
     /** @return array<string, string> */
     protected function variableHolidays(int $year): array
     {
-        $holidays = [
+        return array_filter(array_map(fn ($date) => $this->lunarCalendar($date, $year), [
             'First day of the Lunar New Year' => '01-01',
             'Second day of the Lunar New Year' => '01-02',
             'Third day of the Lunar New Year' => '01-03',
             'Dragon Boat Festival' => '05-05',
             'Moon Festival' => '08-15',
-        ];
-
-        $convertedHolidays = array_map(function ($date) use ($year) {
-            return $this->lunarCalendar($date, $year);
-        }, $holidays);
-
-        return array_filter($convertedHolidays);
+        ]));
     }
 
     protected function lunarCalendar(string $input, int $year): ?string
