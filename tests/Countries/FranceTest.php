@@ -3,8 +3,8 @@
 namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Holidays;
 use Spatie\Holidays\Countries\France;
+use Spatie\Holidays\Holidays;
 
 it('can calculate french holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');

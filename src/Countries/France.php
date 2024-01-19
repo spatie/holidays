@@ -28,8 +28,8 @@ class France extends Country
             'Armistice 1918' => '11-11',
             'Noël' => '12-25',
         ],
-        $this->variableHolidays($year),
-        $this->regionHolidays());
+            $this->variableHolidays($year),
+            $this->regionHolidays());
     }
 
     /** @return array<string, CarbonImmutable> */
