@@ -13,7 +13,6 @@ class Mexico extends Country
         return 'mx';
     }
 
-    /** @return array<string, string|CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
