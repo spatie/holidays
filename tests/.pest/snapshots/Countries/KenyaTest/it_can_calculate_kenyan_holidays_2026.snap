@@ -1,0 +1,42 @@
+[
+    {
+        "name": "New Year",
+        "date": "2026-01-01"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2026-04-03"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2026-04-06"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2026-05-01"
+    },
+    {
+        "name": "Madaraka Day",
+        "date": "2026-06-01"
+    },
+    {
+        "name": "Huduma\/Utamaduni Day",
+        "date": "2026-10-10"
+    },
+    {
+        "name": "Mashujaa Day",
+        "date": "2026-10-20"
+    },
+    {
+        "name": "Jamhuri Day",
+        "date": "2026-12-12"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2026-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2026-12-26"
+    }
+]
