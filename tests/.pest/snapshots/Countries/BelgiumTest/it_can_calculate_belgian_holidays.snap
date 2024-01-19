@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Nieuwjaar",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Paasmaandag",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Dag van de Arbeid",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "OLH Hemelvaart",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Pinkstermaandag",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "Nationale Feestdag",
+        "date": "2024-07-21"
+    },
+    {
+        "name": "OLV Hemelvaart",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Allerheiligen",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Wapenstilstand",
+        "date": "2024-11-11"
+    },
+    {
+        "name": "Kerstmis",
+        "date": "2024-12-25"
+    }
+]
