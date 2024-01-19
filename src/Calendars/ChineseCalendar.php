@@ -2,19 +2,28 @@
 
 namespace Spatie\Holidays\Calendars;
 
+use Carbon\CarbonImmutable;
 use DateTimeZone;
 use IntlDateFormatter;
 
 trait ChineseCalendar
 {
-    protected $timezone = 'Asia/Shanghai';
+    protected string $timezone = 'Asia/Shanghai';
 
-    protected function chineseToGregorianDate(string $input, int $year): string
+    public function setTimezone($timezone): static
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    protected function chineseToGregorianDate(string $input, int $year): CarbonImmutable
     {
         $timeStamp = $this->getFormatter()->parse($year . '/' . $input);
-        $dateTime = date_create()->setTimeStamp($timeStamp)->setTimezone(new DateTimeZone($this->timezone));
-
-        return $dateTime->format('m-d');
+        
+        return (new CarbonImmutable())
+            ->setTimeStamp($timeStamp)
+            ->setTimezone(new DateTimeZone($this->timezone));
     }
 
     protected function getFormatter(): IntlDateFormatter

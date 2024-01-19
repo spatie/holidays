@@ -33,6 +33,8 @@ class Vietnam extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
+        $this->setTimezone('Asia/Ho_Chi_Minh');
+
         return [
             // Lunar New Year's Eve
             'Ngày Ba Mươi Tết' => $this->chineseToGregorianDate('12/30', $year - 1),
