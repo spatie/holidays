@@ -30,7 +30,7 @@ class Venezuela extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year));
+        $easter = $this->easter($year);
 
         return [
             'Lunes de Carnaval' => $easter->subDays(47),

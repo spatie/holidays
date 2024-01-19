@@ -29,7 +29,7 @@ class NorthMacedonia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp($this->ortodoxEaster($year))
+        $easter = CarbonImmutable::createFromTimestamp($this->orthodoxEaster($year))
             ->setTimezone('Europe/Skopje');
 
         return [
@@ -37,7 +37,7 @@ class NorthMacedonia extends Country
         ];
     }
 
-    protected function ortodoxEaster(int $year): bool|int
+    protected function orthodoxEaster(int $year): bool|int
     {
         $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
         $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
