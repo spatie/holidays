@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
 
-class Netherlands extends Country
+class Mexico extends Country
 {
     public function countryCode(): string
     {
