@@ -11,7 +11,6 @@ class Estonia extends Country
         return 'ee';
     }
 
-    /** @return array<string, string|CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -30,8 +29,7 @@ class Estonia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Tallinn');
+        $easter = $this->easter($year);
 
         return [
             'Suur reede' => $easter->subDays(2),
