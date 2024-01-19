@@ -60,8 +60,8 @@ class Greece extends Country
         ];
     }
 
-    /** @return string */
-    protected function calculateOrthodoxEaster(int $year)
+    /** @return integer */
+    protected function calculateOrthodoxEaster(int $year): int
     {
       $a = $year % 4;
       $b = $year % 7;
@@ -75,6 +75,7 @@ class Greece extends Country
 
       $easterDate = mktime(0, 0, 0, $month, $day + $jtg, $year);
 
-      return $easterDate;
+      return (int) $easterDate;
+
     }
 }

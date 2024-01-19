@@ -31,11 +31,6 @@ parameters:
 			path: src/Countries/Greece.php
 
 		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Greece\\:\\:calculateOrthodoxEaster\\(\\) should return string but returns int\\|false\\.$#"
-			count: 1
-			path: src/Countries/Greece.php
-
-		-
 			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Greece\\:\\:variableHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
 			count: 1
 			path: src/Countries/Greece.php
