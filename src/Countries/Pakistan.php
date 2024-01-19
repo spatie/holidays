@@ -21,7 +21,7 @@ class Pakistan extends Country
      *
      * @param integer $year
      * 
-     * @return array
+     * @return array<string, CarbonImmutable|string>
      */
     protected function allHolidays(int $year): array
     {
@@ -30,12 +30,16 @@ class Pakistan extends Country
             'Pakistan Resolution Day'   => '03-23',
             'Labour Day'                => '05-01',
             'Independence Day'          => '08-14',
+            'Defence Day'               => '06-06',
             'Iqbal Day'                 => '11-09',
             'Quaid-e-Azam Day'          => '12-25',
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /**
+     *  
+     * @return array<string, CarbonImmutable> 
+     * */
     protected function variableHolidays(int $year): array
     {
         // As Islamic holidays are lunar based.
