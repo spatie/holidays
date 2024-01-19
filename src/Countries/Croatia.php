@@ -11,7 +11,6 @@ class Croatia extends Country
         return 'hr';
     }
 
-    /** @return array<string, CarbonImmutable|string> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -32,8 +31,7 @@ class Croatia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Zagreb');
+        $easter = $this->easter($year);
 
         return [
             'Uskrsni ponedjeljak' => $easter->addDay(),
