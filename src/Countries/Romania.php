@@ -66,7 +66,7 @@ class Romania extends Country
         $gregorianEaster = CarbonImmutable::createFromDate($year, $month, $day);
 
         // Calculate the difference between Julian and Gregorian calendars
-        $daysToAdd = (int)($year / 100) - (int)($year / 400) - 2;
+        $daysToAdd = (int) ($year / 100) - (int) ($year / 400) - 2;
 
         // Orthodox Church uses Julian calendar to calculate Easter
         return $gregorianEaster->addDays($daysToAdd);
