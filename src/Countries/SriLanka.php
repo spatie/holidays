@@ -19,20 +19,30 @@ class SriLanka extends Country
         ([
             'Thai Pongal Day' => '01-15',
             'Independence Day' => '02-04',
-            'Mahasivarathri Day' => '03-04',
-            'Good Friday' => '04-10',
             'Day prior to Sinhala & Tamil New Year Day' => '04-13',
             'Sinhala & Tamil New Year Day' => '04-14',
-            'May Day' => '05-01',
-            'Id-Ul-Fitr' => '05-24',
-            'Id-Ul-Alha' => '07-31',
-            'Milad-Un-Nabi' => '10-30',
+            'Milad-Un-Nabi (Holy Prophet\'s Birthday)' => '10-30',
             'Deepavali Festival Day' => '11-14',
             'Christmas' => '12-25',
         ], $this->variableHolidays($year));
     }
 
     function variableHolidays(int $year): array
+    {
+        $poyaDays = $this->getPoyaDays($year);
+
+        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
+            ->setTimezone('Asia/Colombo');
+
+        return array_merge([
+            [
+                'Good Friday' => $easter->subDays(2),
+                'Easter Sunday' => $easter->addDay(),
+            ]
+        ], $poyaDays);
+    }
+
+    function getPoyaDays(int $year): array
     {
         $start = new DateTime($year . '-01-01');
         $end = new DateTime($year . '-12-31');
@@ -111,6 +121,7 @@ class SriLanka extends Country
                 case 'May':
                     if(!isset($namedMoons['Vesak Poya Day']) ) {
                         $namedMoons['Vesak Poya Day'] = $moon;
+                        $namedMoons['Day Following Vesak Poya Day'] = $moon->addDay();
                     } else {
                         $namedMoons['Adhi Vesak Poya Day'] = $moon;
                     }
@@ -176,6 +187,7 @@ class SriLanka extends Country
         }
 
         return $namedMoons;
+
     }
 
 }
