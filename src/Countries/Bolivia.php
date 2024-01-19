@@ -11,7 +11,6 @@ class Bolivia extends Country
         return 'bo';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
