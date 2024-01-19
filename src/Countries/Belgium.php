@@ -11,8 +11,7 @@ class Belgium extends Country
         return 'be';
     }
 
-    /** @return array<string, CarbonImmutable> */
-    protected function allHolidays(int $year, ?string $region = null): array
+    protected function allHolidays(int $year): array
     {
         return array_merge([
             'Nieuwjaar' => '01-01',
@@ -28,8 +27,7 @@ class Belgium extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Brussels');
+        $easter = $this->easter($year);
 
         return [
             'Paasmaandag' => $easter->addDay(),
