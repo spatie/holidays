@@ -21,6 +21,7 @@ class Serbia extends Country
         return array_merge([
             'Nova godina - prvi dan' => '01-01',
             'Nova godina - drugi dan' => '01-02',
+            'Božić' => '01-07',
             'Dan državnosti - prvi dan' => '02-15',
             'Dan državnosti - drugi dan' => '02-16',
             'Praznik rada - prvi dan' => '05-01',
@@ -37,16 +38,17 @@ class Serbia extends Country
         )->setTimezone('Europe/Belgrade');
 
         return [
-            'Vaskršnji ponedeljak' => $easter->addDay(),
             'Veliki petak' => $easter->subDays(2),
+            'Vaskrs' => $easter,
+            'Vaskršnji ponedeljak' => $easter->addDay(),
         ];
     }
 
-    protected function orthodoxEaster(int $year): bool|int
+    protected function orthodoxEaster(int $year): int
     {
         $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
         $daysDifference = (int)($year / 100) - (int)($year / 400) - 2;
 
-        return strtotime("+$daysDifference days", $timestamp);
+        return (int) strtotime("+$daysDifference days", $timestamp);
     }
 }
