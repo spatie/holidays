@@ -30,8 +30,7 @@ class Italy extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Rome');
+        $easter = $this->easter($year);
 
         return [
             'Lunedì di Pasqua' => $easter->addDay(),

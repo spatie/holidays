@@ -40,6 +40,13 @@ abstract class Country
         return new static(...func_get_args());
     }
 
+    protected function easter(string $year): CarbonImmutable
+    {
+        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-03-21");
+
+        return $easter->addDays(easter_days($year));
+    }
+
     public static function find(string $countryCode): ?Country
     {
         $countryCode = strtolower($countryCode);
