@@ -2,19 +2,17 @@
 
 namespace Spatie\Holidays\Countries;
 
-
 use Carbon\CarbonImmutable;
 
 class Romania extends Country
 {
-
     public function countryCode(): string
     {
         return 'ro';
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     protected function allHolidays(int $year): array
     {
@@ -35,7 +33,6 @@ class Romania extends Country
     }
 
     /**
-     * @param int $year
      * @return array<string, CarbonImmutable>
      */
     protected function variableHolidays(int $year): array
@@ -78,6 +75,7 @@ class Romania extends Country
     protected function orthodoxPentecost(int $year): CarbonImmutable
     {
         $easter = $this->orthodoxEaster($year);
+
         return $easter->addDays(49);
     }
 }
