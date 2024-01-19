@@ -11,14 +11,14 @@ abstract class Country
     abstract public function countryCode(): string;
 
     /** @return array<string, string|CarbonImmutable> */
-    abstract protected function allHolidays(int $year, ?string $region = null): array;
+    abstract protected function allHolidays(int $year): array;
 
     /** @return array<string, CarbonImmutable|string> */
     public function get(int $year): array
     {
         $this->ensureYearCanBeCalculated($year);
 
-        $allHolidays = $this->allHolidays($year, $region);
+        $allHolidays = $this->allHolidays($year);
 
         $allHolidays = array_map(function ($date) use ($year) {
             if (is_string($date)) {
