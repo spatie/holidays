@@ -23,7 +23,7 @@ class Poland extends Country
             'Wszystkich Świętych' => '11-01',
             'Święto Niepodległości' => '11-11',
             'Boże Narodzenie' => '12-25',
-            'Boże Narodzenie' => '12-26',
+            'Drugi Dzień Bożego Narodzenia' => '12-26',
         ], $this->variableHolidays($year));
     }
 
