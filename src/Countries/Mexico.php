@@ -48,15 +48,13 @@ class Mexico extends Country
         ];
 
         if ($this->transmisionPoderEjecutivoFederal($year)) {
-            $days[
-                'Transmisión del Poder Ejecutivo Federal'
-            ] = $this->transmisionPoderEjecutivoFederal($year);
+            $days['Transmisión del Poder Ejecutivo Federal'] = $this->transmisionPoderEjecutivoFederal($year);
         }
 
         return $days;
     }
 
-    protected function transmisionPoderEjecutivoFederal($year): bool|string
+    protected function transmisionPoderEjecutivoFederal(int $year): bool|string
     {
         $period = new CarbonPeriod();
         $period->setDateClass(CarbonImmutable::class);
