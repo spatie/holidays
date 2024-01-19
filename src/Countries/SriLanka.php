@@ -30,6 +30,8 @@ class SriLanka extends Country
     /**
      * todo: add more tamil/hindu holidays and muslim/islamic holidays
      * Excluded some of them since they are lunar / different calendar specifications
+     *
+     * @return array<string, CarbonImmutable>
      */
     function variableHolidays(int $year): array
     {
@@ -44,9 +46,11 @@ class SriLanka extends Country
         ] + $poyaDays;
     }
 
-    /*
+    /**
      * todo: some poya days have the tendency to be a day before or after the actual full moon day
      * Will have to find a way to get the exact date
+     *
+     * @return array<string, CarbonImmutable>
      */
     function getPoyaDays(int $year): array
     {
