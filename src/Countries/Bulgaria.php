@@ -11,6 +11,10 @@ class Bulgaria extends Country
         return 'bg';
     }
 
+    /**
+     * @param int $year
+     * @return array<string, string>
+     */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -28,10 +32,13 @@ class Bulgaria extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable>
+     */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp($this->orthodoxEaster($year))
+        $easter = CarbonImmutable::createFromTimestamp($this->calculateEasterDate($year))
             ->setTimezone('Europe/Sofia');
 
         return [
@@ -39,23 +46,27 @@ class Bulgaria extends Country
         ];
     }
   
-    // Function to calculate the date of Easter using the Computus algorithm
-    protected function calculateEasterDate($year) {
-      $a = $year % 19;
-      $b = floor($year / 100);
-      $c = $year % 100;
-      $d = floor($b / 4);
-      $e = $b % 4;
-      $f = floor(($b + 8) / 25);
-      $g = floor(($b - $f + 1) / 3);
-      $h = (19 * $a + $b - $d - $g + 15) % 30;
-      $i = floor($c / 4);
-      $k = $c % 4;
-      $l = (32 + 2 * $e + 2 * $i - $h - $k) % 7;
-      $m = floor(($a + 11 * $h + 22 * $l) / 451);
-      $month = floor(($h + $l - 7 * $m + 114) / 31);
-      $day = (($h + $l - 7 * $m + 114) % 31) + 1;
-  
-      return CarbonImmutable::create($year, $month, $day);
+    /**
+     * @param int $year
+     * @return CarbonImmutable
+     */
+    protected function calculateEasterDate($year)
+    {
+        $a = $year % 19;
+        $b = floor($year / 100);
+        $c = $year % 100;
+        $d = floor($b / 4);
+        $e = $b % 4;
+        $f = floor(($b + 8) / 25);
+        $g = floor(($b - $f + 1) / 3);
+        $h = (19 * $a + $b - $d - $g + 15) % 30;
+        $i = floor($c / 4);
+        $k = $c % 4;
+        $l = (32 + 2 * $e + 2 * $i - $h - $k) % 7;
+        $m = floor(($a + 11 * $h + 22 * $l) / 451);
+        $month = floor(($h + $l - 7 * $m + 114) / 31);
+        $day = (($h + $l - 7 * $m + 114) % 31) + 1;
+    
+        return CarbonImmutable::create($year, $month, $day);
     }
 }
