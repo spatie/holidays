@@ -16,16 +16,16 @@
         "date": "2024-02-24"
     },
     {
-        "name": "Mahasivarathri Day",
-        "date": "2024-03-04"
-    },
-    {
-        "name": "Madin Poya Day",
+        "name": "Medin Poya Day",
         "date": "2024-03-25"
     },
     {
         "name": "Good Friday",
-        "date": "2024-04-10"
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Sunday",
+        "date": "2024-04-01"
     },
     {
         "name": "Day prior to Sinhala & Tamil New Year Day",
@@ -40,15 +40,11 @@
         "date": "2024-04-24"
     },
     {
-        "name": "May Day",
-        "date": "2024-05-01"
-    },
-    {
         "name": "Vesak Poya Day",
         "date": "2024-05-23"
     },
     {
-        "name": "Id-Ul-Fitr",
+        "name": "Day Following Vesak Poya Day",
         "date": "2024-05-24"
     },
     {
@@ -58,10 +54,6 @@
     {
         "name": "Esala Poya Day",
         "date": "2024-07-21"
-    },
-    {
-        "name": "Id-Ul-Alha",
-        "date": "2024-07-31"
     },
     {
         "name": "Nikini Poya Day",
@@ -76,7 +68,7 @@
         "date": "2024-10-17"
     },
     {
-        "name": "Milad-Un-Nabi",
+        "name": "Milad-Un-Nabi (Holy Prophet's Birthday)",
         "date": "2024-10-30"
     },
     {

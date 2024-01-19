@@ -34,12 +34,10 @@ class SriLanka extends Country
         $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('Asia/Colombo');
 
-        return array_merge([
-            [
-                'Good Friday' => $easter->subDays(2),
-                'Easter Sunday' => $easter->addDay(),
-            ]
-        ], $poyaDays);
+        return[
+            'Good Friday' => $easter->subDays(2),
+            'Easter Sunday' => $easter->addDay(),
+        ] + $poyaDays;
     }
 
     function getPoyaDays(int $year): array
