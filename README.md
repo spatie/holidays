@@ -67,6 +67,16 @@ use Spatie\Holidays\Holidays;
 $holidays = Holidays::for(country: 'be', year: 2024))->get();
 ```
 
+### Getting holidays between two dates
+
+You can also get all holidays between two dates (inclusive).
+
+```php
+use Spatie\Holidays\Holidays;
+
+$holidays = Holidays::for('be')->getInRange('2023-06-01', '2024-05-31');
+```
+
 ### Determining if a date is a holiday 
 
 If you need to see if a date is a holiday, you can use the `isHoliday` method.
