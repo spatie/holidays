@@ -11,7 +11,6 @@ class Peru extends Country
         return 'pe';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -35,8 +34,7 @@ class Peru extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('America/Lima');
+        $easter = $this->easter($year);
 
         return [
             'Jueves Santo' => $easter->subDays(3),
