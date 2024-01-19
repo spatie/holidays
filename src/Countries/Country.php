@@ -11,14 +11,14 @@ abstract class Country
     abstract public function countryCode(): string;
 
     /** @return array<string, string|CarbonImmutable> */
-    abstract protected function allHolidays(int $year): array;
+    abstract protected function allHolidays(int $year, ?string $region = null): array;
 
     /** @return array<string, CarbonImmutable|string> */
     public function get(int $year): array
     {
         $this->ensureYearCanBeCalculated($year);
 
-        $allHolidays = $this->allHolidays($year);
+        $allHolidays = $this->allHolidays($year, $region);
 
         $allHolidays = array_map(function ($date) use ($year) {
             if (is_string($date)) {
@@ -29,7 +29,7 @@ abstract class Country
         }, $allHolidays);
 
         uasort($allHolidays,
-            fn(CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
+            fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
         );
 
         return $allHolidays;
@@ -52,13 +52,13 @@ abstract class Country
     {
         $countryCode = strtolower($countryCode);
 
-        foreach (glob(__DIR__ . '/../Countries/*.php') as $filename) {
+        foreach (glob(__DIR__.'/../Countries/*.php') as $filename) {
             if (basename($filename) === 'Country.php') {
                 continue;
             }
 
             // determine class name from file name
-            $countryClass = '\\Spatie\\Holidays\\Countries\\' . basename($filename, '.php');
+            $countryClass = '\\Spatie\\Holidays\\Countries\\'.basename($filename, '.php');
 
             /** @var Country $country */
             $country = new $countryClass;
@@ -75,7 +75,7 @@ abstract class Country
     {
         $country = self::find($countryCode);
 
-        if (!$country) {
+        if (! $country) {
             throw UnsupportedCountry::make($countryCode);
         }
 

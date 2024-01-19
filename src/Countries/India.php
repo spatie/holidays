@@ -6,6 +6,10 @@ use Spatie\Holidays\Exceptions\UnsupportedRegion;
 
 class India extends Country
 {
+    public function __construct(protected ?string $region = null)
+    {
+
+    }
 
     public function countryCode(): string
     {
@@ -16,20 +20,18 @@ class India extends Country
      * Reference
      * @link https://en.wikipedia.org/wiki/Public_holidays_in_India
      */
-    protected function allHolidays(int $year, ?string $region = null): array
+    protected function allHolidays(int $year): array
     {
         return array_merge(
             $this->fixedHolidays(),
-            $this->variableHolidays($year, $region)
+            $this->variableHolidays($year, $this->region)
         );
     }
 
     protected function fixedHolidays(): array
     {
-        # These are pretty well fixed holidays
         return [
             'Republic Day' => '01-26',
-            'Labour Day' => '05-01',
             'Independence Day' => '08-15',
             'Gandhi Jayanti' => '10-02',
             'Christmas' => '12-25',
@@ -46,7 +48,7 @@ class India extends Country
             return [];
         }
         return match ($region) {
-            'Andhra Pradesh' => [
+            'AD', 'Andhra Pradesh' => [
                 'Ugadi' => '04-13',
                 'Sri Rama Navami' => '04-21',
                 'Buddha Purnima' => '05-26',
@@ -60,7 +62,7 @@ class India extends Country
                 'Diwali' => '11-04',
                 'Kartika Purnima' => '11-19',
             ],
-            'Arunachal Pradesh' => [
+            'AR', 'Arunachal Pradesh' => [
                 'Losar' => '02-12',
                 'Nyokum Yullo' => '02-26',
                 'Mopin' => '04-05',
@@ -70,7 +72,7 @@ class India extends Country
                 'Karnataka Rajyotsava' => '11-01',
                 'Pangsau Pass Winter Festival' => '12-20',
             ],
-            'Assam' => [
+            'AS', 'Assam' => [
                 'Magh Bihu' => '01-15',
                 'Tusu Puja' => '01-15',
                 'Me-Dum-Me-Phi' => '01-31',
@@ -80,7 +82,7 @@ class India extends Country
                 'Bohag Bihu' => '04-14',
                 'Rongali Bihu' => '04-14',
             ],
-            'Bihar' => [
+            'BR', 'Bihar' => [
                 'Makar Sankranti' => '01-14',
                 'Vasant Panchami' => '02-16',
                 'Maha Shivaratri' => '03-11',
@@ -99,7 +101,7 @@ class India extends Country
                 'Diwali' => '11-04',
                 'Chhath Puja' => '11-10',
             ],
-            'Chhattisgarh' => [
+            'CG', 'Chhattisgarh' => [
                 'Makar Sankranti' => '01-14',
                 'Vasant Panchami' => '02-16',
                 'Maha Shivaratri' => '03-11',
@@ -119,7 +121,7 @@ class India extends Country
                 'Chhath Puja' => '11-10',
                 'Christmas' => '12-25',
             ],
-            'Goa' => [
+            'GA', 'Goa' => [
                 'Republic Day' => '01-26',
                 'Good Friday' => '04-02',
                 'Gudi Padwa' => '04-13',
@@ -135,7 +137,7 @@ class India extends Country
                 'Feast of St. Francis Xavier' => '12-03',
                 'Christmas' => '12-25',
             ],
-            'Gujarat' => [
+            'GJ', 'Gujarat' => [
                 'Makar Sankranti' => '01-14',
                 'Vasant Panchami' => '02-16',
                 'Maha Shivaratri' => '03-11',
@@ -155,7 +157,7 @@ class India extends Country
                 'Chhath Puja' => '11-10',
                 'Christmas' => '12-25',
             ],
-            'Haryana' => [
+            'HR', 'Haryana' => [
                 'Republic Day' => '01-26',
                 'Maha Shivaratri' => '03-11',
                 'Holi' => '03-29',
@@ -174,7 +176,7 @@ class India extends Country
                 'Chhath Puja' => '11-10',
                 'Christmas' => '12-25',
             ],
-            'Himachal Pradesh' => [
+            'HP', 'Himachal Pradesh' => [
                 'Republic Day' => '01-26',
                 'Maha Shivaratri' => '03-11',
                 'Holi' => '03-29',
@@ -193,7 +195,7 @@ class India extends Country
                 'Chhath Puja' => '11-10',
                 'Christmas' => '12-25',
             ],
-            'Jammu and Kashmir' => [
+            'JK', 'Jammu and Kashmir' => [
                 'Republic Day' => '01-26',
                 'Maha Shivaratri' => '03-11',
                 'Holi' => '03-29',
@@ -215,7 +217,7 @@ class India extends Country
                 'Muharram' => '08-19',
                 'Guru Nanak Gurpurab' => '11-19',
             ],
-            'Jharkhand' => [
+            'JH', 'Jharkhand' => [
                 'Makar Sankranti' => '01-14',
                 'Vasant Panchami' => '02-16',
                 'Maha Shivaratri' => '03-11',
@@ -255,7 +257,7 @@ class India extends Country
                 'Karam' => '08-09',
                 'Karma' => '08-09',
             ],
-            'Karnataka' => [
+            'KA', 'Karnataka' => [
                 'Republic Day' => '01-26',
                 'Makar Sankranti' => '01-14',
                 'Vasant Panchami' => '02-16',
@@ -283,7 +285,7 @@ class India extends Country
                 'Naraka Chaturdashi' => '11-01',
                 'Christmas' => '12-25',
             ],
-            'Kerala' => [
+            'KL', 'Kerala' => [
                 'Republic Day' => '01-26',
                 'Maha Shivaratri' => '03-11',
                 'Good Friday' => '04-02',
@@ -308,7 +310,7 @@ class India extends Country
                 'Kerala Piravi' => '11-01',
                 'Christmas' => '12-25',
             ],
-            'Madhya Pradesh' => [
+            'MP', 'Madhya Pradesh' => [
                 'Republic Day' => '01-26',
                 'Maha Shivaratri' => '03-11',
                 'Holi' => '03-29',
@@ -328,7 +330,7 @@ class India extends Country
                 'Diwali' => '11-04',
                 'Christmas' => '12-25',
             ],
-            'Maharashtra' => [
+            'MH', 'Maharashtra' => [
                 'Republic Day' => '01-26',
                 'Makar Sankranti' => '01-14',
                 'Vasant Panchami' => '02-16',
@@ -352,7 +354,14 @@ class India extends Country
                 'Guru Nanak Jayanti' => '11-19',
                 'Christmas' => '12-25',
             ],
-            'Manipur', 'West Bengal', 'Sikkim', 'Meghalaya', 'Mizoram', 'Nagaland', 'Punjab', 'Tripura' => [
+            'MN', 'Manipur',
+            'WB', 'West Bengal',
+            'SK', 'Sikkim',
+            'ML', 'Meghalaya',
+            'MZ', 'Mizoram',
+            'NL', 'Nagaland',
+            'PB', 'Punjab',
+            'TR', 'Tripura' => [
                 'Republic Day' => '01-26',
                 'Guru Gobind Singh Jayanti' => '01-20',
                 'Me-Dum-Me-Phi' => '01-31',
@@ -377,7 +386,7 @@ class India extends Country
                 'Kut' => '11-01',
                 'Christmas' => '12-25',
             ],
-            'Odisha' => [
+            'OD', 'Odisha' => [
                 'Republic Day' => '01-26',
                 'Maha Shivaratri' => '03-11',
                 'Holi' => '03-29',
@@ -398,7 +407,7 @@ class India extends Country
                 'Diwali' => '11-04',
                 'Christmas' => '12-25',
             ],
-            'Rajasthan', 'Uttar Pradesh', 'Uttarakhand' => [
+            'RJ', 'Rajasthan', 'UP', 'Uttar Pradesh', 'UK', 'Uttarakhand' => [
                 'Republic Day' => '01-26',
                 'Maha Shivaratri' => '03-11',
                 'Holi' => '03-29',
@@ -416,7 +425,7 @@ class India extends Country
                 'Diwali' => '11-04',
                 'Christmas' => '12-25',
             ],
-            'Tamil Nadu' => [
+            'TN', 'Tamil Nadu' => [
                 'Republic Day' => '01-26',
                 'Pongal' => '01-14',
                 'Thiruvalluvar Day' => '01-15',
@@ -441,7 +450,7 @@ class India extends Country
                 'Deepavali' => '11-04',
                 'Christmas' => '12-25',
             ],
-            'Telangana' => [
+            'TS', 'Telangana' => [
                 'Republic Day' => '01-26',
                 'Ugadi' => '04-13',
                 'Sri Rama Navami' => '04-21',
