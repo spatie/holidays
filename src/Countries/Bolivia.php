@@ -27,7 +27,7 @@ class Bolivia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = $this->easter((string) $year);
+        $easter = $this->easter($year);
 
         return [
             'Lunes de Carnaval' => $easter->subWeeks(6)->subDays(6),
