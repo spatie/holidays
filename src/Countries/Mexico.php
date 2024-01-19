@@ -26,13 +26,13 @@ class Mexico extends Country
     protected function variableHolidays(int $year): array
     {
         $constitutionDay = (new CarbonImmutable("first monday of february $year")) // 5 of february
-        ->setTimezone('America/Mexico_City');
+            ->setTimezone('America/Mexico_City');
 
         $benitoJuarezBirth = (new CarbonImmutable("third monday of March $year")) // 21 of march
-        ->setTimezone('America/Mexico_City');
+            ->setTimezone('America/Mexico_City');
 
         $revolutionDay = (new CarbonImmutable("third monday of november $year")) // 20 of november
-        ->setTimezone('America/Mexico_City');
+            ->setTimezone('America/Mexico_City');
 
         /** @var CarbonImmutable|false $executiveChange */
         $executiveChange = $this->governmentChangeDate();
@@ -58,10 +58,10 @@ class Mexico extends Country
         if (($currentYear - $baseYear) % 6 == 0) {
             /** @phpstan-ignore-next-line */
             return CarbonImmutable::create($currentYear, 10, 1) // October 1st of the transmission year
-            ->setTimezone('America/Mexico_City');
+                ->setTimezone('America/Mexico_City');
 
         }
+
         return false;
     }
-
 }
