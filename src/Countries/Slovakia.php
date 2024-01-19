@@ -22,7 +22,6 @@ class Slovakia extends Country
             'Výročie Slovenského národného povstania' => '08-29',
             'Deň Ústavy Slovenskej republiky' => '09-01',
             'Sedembolestná Panna Mária' => '09-15',
-            'Deň vzniku samostatného česko-slovenského štátu' => '10-28',
             'Sviatok všetkých svätých' => '11-01',
             'Deň boja za slobodu a demokraciu' => '11-17',
             'Štedrý deň' => '12-24',
