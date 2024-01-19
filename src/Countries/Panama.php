@@ -46,6 +46,7 @@ class Panama extends Country
             'Carnaval (Día 4)' => $easter->subDays(47),
             'Jueves Santo' => $easter->subDays(3),
             'Viernes Santo' => $easter->subDays(2),
+            'Sábado de Gloria' => $easter->subDays(1),
         ];
     }
 
