@@ -1,0 +1,58 @@
+[
+    {
+        "name": "New Year",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "International Womens Day",
+        "date": "2024-03-08"
+    },
+    {
+        "name": "Youth Day",
+        "date": "2024-03-12"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Birthday of Kenneth Kaunda",
+        "date": "2024-04-28"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Africa Day",
+        "date": "2024-05-25"
+    },
+    {
+        "name": "Heroes Day",
+        "date": "2024-07-01"
+    },
+    {
+        "name": "Unity Day",
+        "date": "2024-07-02"
+    },
+    {
+        "name": "Farmers Day",
+        "date": "2024-08-01"
+    },
+    {
+        "name": "National Prayer Day",
+        "date": "2024-10-18"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-10-24"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    }
+]

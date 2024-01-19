@@ -6,12 +6,16 @@ use Carbon\CarbonImmutable;
 
 class Austria extends Country
 {
+    protected function __construct(
+        public ?string $region = null
+    ) {
+    }
+
     public function countryCode(): string
     {
         return 'at';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
