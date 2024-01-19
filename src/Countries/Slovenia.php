@@ -11,7 +11,6 @@ class Slovenia extends Country
         return 'si';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
 
@@ -34,8 +33,7 @@ class Slovenia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Ljubljana');
+	    $easter = $this->easter($year);
 
         return [
             'Velikonočni ponedeljek' => $easter->addDay(), // Easter Monday
