@@ -11,7 +11,6 @@ class Bangladesh extends Country
         return 'bd';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
