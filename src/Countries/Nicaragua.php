@@ -28,8 +28,7 @@ class Nicaragua extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('America/Managua');
+        $easter = $this->easter($year);
 
         return [
             'Jueves santo' => $easter->subDays(3),

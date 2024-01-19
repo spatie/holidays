@@ -1,9 +1,4 @@
 <?php
-/**
- * Date 19-Jan-2024
- *
- * @author   Joel Crawford  Email: <joelcrawford30@gmail.com> Github: <https://github.com/Crawford30> LinkedIn: <https://www.linkedin.com/in/Crawford30>
- */
 
 namespace Spatie\Holidays\Countries;
 
@@ -16,15 +11,8 @@ class Uganda extends Country
         return 'ug';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function allHolidays(int $year): array
     {
-
-        /**
-         * 'New Year' => '01-01', Format:: Month-Date
-         */
         return array_merge([
             "New Year's  Day" => '01-01',
             'NRM Liberation Day' => '01-26',
