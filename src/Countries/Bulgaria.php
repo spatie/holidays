@@ -47,6 +47,7 @@ class Bulgaria extends Country
     }
   
     /**
+     * Calculate the date of Easter using the Computus algorithm
      * @param int $year
      * @return CarbonImmutable
      */
