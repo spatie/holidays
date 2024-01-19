@@ -37,11 +37,11 @@ class NorthMacedonia extends Country
         ];
     }
 
-    protected function orthodoxEaster(int $year): bool|int
+    protected function orthodoxEaster(int $year): int
     {
         $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
         $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
 
-        return strtotime("+$daysDifference days", $timestamp);
+        return (int) strtotime("+$daysDifference days", $timestamp);
     }
 }
