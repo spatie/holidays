@@ -29,8 +29,7 @@ class Philippines extends Country
     {
         $nationalHeroes = new CarbonImmutable("last monday of august {$year}");
 
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Asia/Manila');
+        $easter = $this->easter($year);
 
         return [
             'Maundy Thursday' => $easter->subDays(3),
