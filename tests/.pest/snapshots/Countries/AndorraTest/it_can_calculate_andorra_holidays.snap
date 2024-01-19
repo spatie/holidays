@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Any nou",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Reis",
+        "date": "2024-01-06"
+    },
+    {
+        "name": "Dia de la Constituci\u00f3",
+        "date": "2024-03-14"
+    },
+    {
+        "name": "Divendres Sant",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Dilluns de Pasqua",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Festa del Treball",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Dilluns de Pentecosta",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "Assumpci\u00f3",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Mare de D\u00e9u de Meritxell",
+        "date": "2024-09-08"
+    },
+    {
+        "name": "Tots Sants",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Immaculada Concepci\u00f3",
+        "date": "2024-11-08"
+    },
+    {
+        "name": "Nadal",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Sant Esteve",
+        "date": "2024-12-26"
+    }
+]

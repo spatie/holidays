@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
 
-class Netherlands extends Country
+class Mexico extends Country
 {
     public function countryCode(): string
     {
@@ -34,13 +34,10 @@ class Netherlands extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-
         $natalicioBenitoJuarez = new CarbonImmutable(sprintf("third monday of march %s", $year));
         $promulgacionConstitucion = new CarbonImmutable(sprintf("first monday of february %s", $year));
         $revolucionMexicana = new CarbonImmutable(sprintf("third monday of november %s", $year));
-
-        $fathersDay = new CarbonImmutable(sprintf("third sunday of june %s", $year));
-
+        $fathersDay = new CarbonImmutable(sprintf('third sunday of june %s', $year));
 
         $days = [
             'Aniversario de la promulgación de la Constitución de 1917' => $promulgacionConstitucion->format('m-d'),
@@ -52,22 +49,21 @@ class Netherlands extends Country
 
         if ($this->transmisionPoderEjecutivoFederal($year)) {
             $days[
-                "Transmisión del Poder Ejecutivo Federal"
+                'Transmisión del Poder Ejecutivo Federal'
             ] = $this->transmisionPoderEjecutivoFederal($year);
         }
 
         return $days;
     }
 
-
     protected function transmisionPoderEjecutivoFederal($year): bool|string
     {
         $period = new CarbonPeriod();
         $period->setDateClass(CarbonImmutable::class);
         $period
-            ->every("6 years")
-            ->since(sprintf("%s-10-01", 2024))
-            ->until(sprintf("%s-10-01 00:00:00", Carbon::now()->addYears(6)->year));
+            ->every('6 years')
+            ->since(sprintf('%s-10-01', 2024))
+            ->until(sprintf('%s-10-01 00:00:00', Carbon::now()->addYears(6)->year));
 
         $period->addFilter(function ($date) use ($year) {
             return $date->year === $year;
@@ -76,8 +72,9 @@ class Netherlands extends Country
         $availableDates = $period->toArray();
 
         if (count($availableDates)) {
-            return $availableDates[0]->format("m-d");
+            return $availableDates[0]->format('m-d');
         }
+
         return false;
     }
 }
