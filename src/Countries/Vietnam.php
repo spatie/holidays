@@ -30,7 +30,7 @@ class Vietnam extends Country
     protected function variableHolidays(int $year): array
     {
         return [
-            'Lunar New Year\'s Eve' => $this->chineseToGregorianDate('01/01', $year),
+            'Lunar New Year\'s Eve' => $this->chineseToGregorianDate('12/30', $year - 1),
             'Lunar New Year Day 1' => $this->chineseToGregorianDate('01/01', $year),
             'Lunar New Year Day 2' => $this->chineseToGregorianDate('01/02', $year),
             'Lunar New Year Day 3' => $this->chineseToGregorianDate('01/03', $year),
