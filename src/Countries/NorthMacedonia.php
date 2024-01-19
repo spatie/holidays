@@ -38,7 +38,7 @@ class NorthMacedonia extends Country
         ];
     }
 
-    protected function ortodoxEaster(int $year)
+    protected function ortodoxEaster(int $year): bool|int
     {
         $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
         $daysDifference = (int)($year / 100) - (int)($year / 400) - 2;
