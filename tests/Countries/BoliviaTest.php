@@ -12,7 +12,7 @@ it('can calculate bolivian holidays', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 
-    expect(formatDates($holidays))->toMatchSnapshot();
 });

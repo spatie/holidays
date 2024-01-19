@@ -27,8 +27,7 @@ class Bolivia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('America/La_Paz');
+        $easter = $this->easter((string)$year);
 
         return [
             'Lunes de Carnaval' => $easter->subWeeks(6)->subDays(6),
