@@ -8,6 +8,14 @@
         "date": "2024-01-06"
     },
     {
+        "name": "Wielkanoc",
+        "date": "2024-03-31"
+    },
+    {
+        "name": "Poniedziałek Wielkanocny",
+        "date": "2024-04-01"
+    },
+    {
         "name": "Święto Pracy",
         "date": "2024-05-01"
     },
@@ -15,6 +23,14 @@
         "name": "Święto Konstytucji 3 Maja",
         "date": "2024-05-03"
     },
+    {
+        "name": "Zielone Świątki",
+        "date": "2024-05-19"
+    },
+    {
+        "name": "Boże Ciało",
+        "date": "2024-05-30"
+    }
     {
         "name": "Święto Wojska Polskiego, Wniebowzięcie Najświętszej Maryi Panny",
         "date": "2024-08-15"
@@ -35,20 +51,4 @@
         "name": "Boże Narodzenie",
         "date": "2024-12-26"
     },
-    {
-        "name": "Wielkanoc",
-        "date": "2024-03-31"
-    },
-    {
-        "name": "Poniedziałek Wielkanocny",
-        "date": "2024-04-01"
-    },
-    {
-        "name": "Zielone Świątki",
-        "date": "2024-05-19"
-    },
-    {
-        "name": "Boże Ciało",
-        "date": "2024-05-30"
-    }
 ]
