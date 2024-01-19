@@ -13,7 +13,7 @@ class Ukraine extends Country
 
     public function countryCode(): string
     {
-        return 'uk';
+        return 'ua';
     }
 
     protected function allHolidays(int $year): array
