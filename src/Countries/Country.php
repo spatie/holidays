@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use GeniusTS\HijriDate\Date;
+use GeniusTS\HijriDate\Hijri;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
@@ -103,7 +104,7 @@ abstract class Country
 
     public static function eidAlFitr(int $year): CarbonImmutable {
         // get the Hirji date for the first day of the Gregorian year
-        $hirji_date = \GeniusTS\HijriDate\Hijri::convertToHijri(CarbonImmutable::create($year));
+        $hirji_date = Hijri::convertToHijri(CarbonImmutable::create($year));
         // Eid al-Fitr is on the first day of the 10th month in the calendar
         if ($hirji_date->month > 10) {
             // the date has passed to move to the next year
@@ -111,13 +112,13 @@ abstract class Country
         }
         $eid_al_fitr = new Date(1, 10, $hirji_date->year);
 
-        return CarbonImmutable::createFromDate( \GeniusTS\HijriDate\Hijri::convertToGregorian($eid_al_fitr->day, $eid_al_fitr->month,
-            $eid_al_fitr->year));
+        return CarbonImmutable::createFromTimestamp( Hijri::convertToGregorian($eid_al_fitr->day, $eid_al_fitr->month,
+            $eid_al_fitr->year)->getTimestamp());
     }
 
     public static function eidAlAdha(int $year): CarbonImmutable {
         // get the Hirji date for the first day of the Gregorian year
-        $hirji_date = \GeniusTS\HijriDate\Hijri::convertToHijri(CarbonImmutable::create($year));
+        $hirji_date = Hijri::convertToHijri(CarbonImmutable::create($year));
         // Eid al-Fitr is on the first day of the 10th month in the calendar
         if ($hirji_date->month > 10) {
             // the date has passed to move to the next year
@@ -125,7 +126,7 @@ abstract class Country
         }
         $eid_al_adha = new Date(10, 12, $hirji_date->year);
 
-        return CarbonImmutable::createFromDate( \GeniusTS\HijriDate\Hijri::convertToGregorian($eid_al_adha->day, $eid_al_adha->month,
-            $eid_al_adha->year));
+        return CarbonImmutable::createFromTimestamp( Hijri::convertToGregorian($eid_al_adha->day, $eid_al_adha->month,
+            $eid_al_adha->year)->getTimestamp());
     }
 }
