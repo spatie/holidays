@@ -2,7 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 
 class Venezuela extends Country
