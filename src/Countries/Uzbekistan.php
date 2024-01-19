@@ -11,7 +11,6 @@ class Uzbekistan extends Country
         return 'uz';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
