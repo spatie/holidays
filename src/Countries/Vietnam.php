@@ -5,10 +5,11 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use DateTimeZone;
 use IntlDateFormatter;
+use Spatie\Holidays\Calendars\ChineseCalendar;
 
 class Vietnam extends Country
 {
-    protected $timezone = 'Asia/Ho_Chi_Minh';
+    use ChineseCalendar;
 
     public function countryCode(): string
     {
@@ -29,28 +30,12 @@ class Vietnam extends Country
     protected function variableHolidays(int $year): array
     {
         return [
-            'Lunar New Year\'s Eve' => $this->chineseCalendar('01/01', $year),
-            'Lunar New Year Day 1' => $this->chineseCalendar('01/01', $year),
-            'Lunar New Year Day 2' => $this->chineseCalendar('01/02', $year),
-            'Lunar New Year Day 3' => $this->chineseCalendar('01/03', $year),
-            'Lunar New Year Day 4' => $this->chineseCalendar('01/04', $year),
-            'Hung Kings\' Festival' => $this->chineseCalendar('03/10', $year),
+            'Lunar New Year\'s Eve' => $this->chineseToGregorianDate('01/01', $year),
+            'Lunar New Year Day 1' => $this->chineseToGregorianDate('01/01', $year),
+            'Lunar New Year Day 2' => $this->chineseToGregorianDate('01/02', $year),
+            'Lunar New Year Day 3' => $this->chineseToGregorianDate('01/03', $year),
+            'Lunar New Year Day 4' => $this->chineseToGregorianDate('01/04', $year),
+            'Hung Kings\' Festival' => $this->chineseToGregorianDate('03/10', $year),
         ];
-    }
-
-    protected function chineseCalendar(string $input, int $year): string
-    {
-        $formatter = new IntlDateFormatter(
-            locale: 'zh-CN@calendar=chinese',
-            dateType: IntlDateFormatter::SHORT,
-            timeType: IntlDateFormatter::NONE,
-            timezone: $this->timezone,
-            calendar: IntlDateFormatter::TRADITIONAL
-        );
-
-        $timeStamp = $formatter->parse($year . '/' . $input);
-        $dateTime = date_create()->setTimeStamp($timeStamp)->setTimezone(new DateTimeZone($this->timezone));
-
-        return $dateTime->format('m-d');
     }
 }
