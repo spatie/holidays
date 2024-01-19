@@ -27,6 +27,10 @@ class SriLanka extends Country
         ], $this->variableHolidays($year));
     }
 
+    /**
+     * todo: add more tamil/hindu holidays and muslim/islamic holidays
+     * Excluded some of them since they are lunar / different calendar specifications
+     */
     function variableHolidays(int $year): array
     {
         $poyaDays = $this->getPoyaDays($year);
@@ -40,6 +44,10 @@ class SriLanka extends Country
         ] + $poyaDays;
     }
 
+    /*
+     * todo: some poya days have the tendency to be a day before or after the actual full moon day
+     * Will have to find a way to get the exact date
+     */
     function getPoyaDays(int $year): array
     {
         $start = new DateTime($year . '-01-01');
@@ -181,11 +189,9 @@ class SriLanka extends Country
                     }
                     break;
             }
-
         }
 
         return $namedMoons;
-
     }
 
 }
