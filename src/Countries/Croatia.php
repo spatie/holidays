@@ -11,7 +11,7 @@ class Croatia extends Country
         return 'hr';
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonImmutable|string> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
