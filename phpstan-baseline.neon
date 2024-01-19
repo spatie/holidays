@@ -1,17 +1,17 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Belgium\\:\\:allHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|string\\>\\.$#"
-			count: 1
-			path: src/Countries/Belgium.php
-
-		-
 			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Country\\:\\:get\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
+			message: "#^Cannot call method startOfDay\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
+			count: 1
+			path: src/Countries/Country.php
+
+		-
+			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Country\\:\\:get\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\|string\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
 			count: 1
 			path: src/Countries/Country.php
 
@@ -21,9 +21,19 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Hungary\\:\\:allHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|string\\>\\.$#"
+			message: "#^Cannot call method setTimezone\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
 			count: 1
-			path: src/Countries/Hungary.php
+			path: src/Countries/Mexico.php
+
+		-
+			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Mexico\\:\\:transmisionPoderEjecutivoFederal\\(\\) has parameter \\$year with no type specified\\.$#"
+			count: 1
+			path: src/Countries/Mexico.php
+
+		-
+			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Mexico\\:\\:variableHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, string\\|true\\>\\.$#"
+			count: 1
+			path: src/Countries/Mexico.php
 
 		-
 			message: "#^Cannot call method isSunday\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
@@ -42,5 +52,10 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(Carbon\\\\CarbonImmutable\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
+			count: 1
+			path: src/Holidays.php
+
+		-
+			message: "#^Property Spatie\\\\Holidays\\\\Holidays\\:\\:\\$holidays \\(array\\<string, Carbon\\\\CarbonImmutable\\>\\) does not accept array\\<string, Carbon\\\\CarbonImmutable\\|string\\>\\.$#"
 			count: 1
 			path: src/Holidays.php
