@@ -47,14 +47,14 @@ class SriLanka extends Country
 
             if(!in_array($nextFullMoon, $fullMoons)) {
 
-                // relates to the moon cycle still in the previous year
-                if($nextFullMoon->format('Y') != $year) {
-                    continue;
-                }
-
                 // if the next full moon is in the next year, stops the loop
                 if($nextFullMoon->format('Y') == $year + 1) {
                     break;
+                }
+
+                // relates to the moon cycle still in the previous year
+                if($nextFullMoon->format('Y') != $year) {
+                    continue;
                 }
 
                 $fullMoons[] = $nextFullMoon;
