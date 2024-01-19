@@ -18,7 +18,7 @@ class Ireland extends Country
             'New Year\'s Day' => '01-01',
             'Saint Patrick\'s Day' => '03-17',
             'Christmas Day' => '12-25',
-            'Saint Stephen\'s Day' => '12-26'
+            'Saint Stephen\'s Day' => '12-26',
         ], $this->variableHolidays($year));
     }
 
@@ -36,14 +36,14 @@ class Ireland extends Country
             'May Public Holiday' => $mayHoliday,
             'June Public Holiday' => $juneHoliday,
             'August Public Holiday' => $augHoliday,
-            'October Public Holiday' => $octHoliday
+            'October Public Holiday' => $octHoliday,
         ];
 
         // In 2023, Ireland added a new public holiday for St Brigid's day.
         // It is the First Monday in February, or 1 February if the date falls on a Friday
         if ($year >= 2023) {
             $stBrigidsDay = new CarbonImmutable("$year-02-01", 'Europe/Dublin');
-            if (!$stBrigidsDay->isFriday()) {
+            if (! $stBrigidsDay->isFriday()) {
                 $stBrigidsDay = new CarbonImmutable("first monday of February $year", 'Europe/Dublin');
             }
             $variableHolidays['St Brigid\'s Day'] = $stBrigidsDay;
