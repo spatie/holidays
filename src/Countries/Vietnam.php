@@ -13,7 +13,7 @@ class Vietnam extends Country
 
     public function countryCode(): string
     {
-        return 'vi';
+        return 'vn';
     }
 
     protected function allHolidays(int $year): array
