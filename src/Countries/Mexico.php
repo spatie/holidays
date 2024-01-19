@@ -2,7 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 
 class Mexico extends Country
@@ -16,12 +15,9 @@ class Mexico extends Country
     {
         return array_merge([
             'Año Nuevo' => '01-01',
-            'Natalicio de Benito Juárez' => '04-18',
             'Día Internacional de los Trabajadores' => '05-01',
-            'Jornada Electoral General' => '06-02',
             'Día de Independencia' => '09-16',
             'Cambio de Gobierno' => '10-01',
-            'Día de la Revolución' => '11-18',
             'Navidad' => '12-25',
         ], $this->variableHolidays($year));
     }
@@ -29,13 +25,43 @@ class Mexico extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        /** @phpstan-ignore-next-line */
-        $constitutionDay = Carbon::createFromFormat("d/m/Y", "01/02/" . $year)
-            ->firstOfMonth(1)
+        $constitutionDay = (new CarbonImmutable("first monday of february $year")) // 5 of february
+        ->setTimezone('America/Mexico_City');
+
+        $benitoJuarezBirth = (new CarbonImmutable("third monday of March $year")) // 21 of march
+        ->setTimezone('America/Mexico_City');
+
+        $revolutionDay = (new CarbonImmutable("third monday of november $year")) // 20 of november
+        ->setTimezone('America/Mexico_City');
+
+        /** @var CarbonImmutable|false $executiveChange */
+        $executiveChange = $this->governmentChangeDate();
+
+        $known_days = [
+            'Día de la Constitución' => $constitutionDay, // It's the first monday of february
+            'Natalicio de Benito Juárez' => $benitoJuarezBirth,
+            'Día de la Revolución' => $revolutionDay,
+        ];
+
+        return array_merge(
+            $known_days,
+            $executiveChange ? ['Cambio de Gobierno' => $executiveChange] : []
+        );
+    }
+
+    protected function governmentChangeDate(): CarbonImmutable|false
+    {
+        $baseYear = 1946; // The first occurrence with president Miguel Aleman Valdes
+        $currentYear = CarbonImmutable::now()->year; // Get the current year
+
+        // Check if the current year is a transmission year
+        if (($currentYear - $baseYear) % 6 == 0) {
+            /** @phpstan-ignore-next-line */
+            return CarbonImmutable::create($currentYear, 10, 1) // October 1st of the transmission year
             ->setTimezone('America/Mexico_City');
 
-        return [
-            'Día de la Constitución' => CarbonImmutable::createFromMutable($constitutionDay) // It's the first monday of february
-        ];
+        }
+        return false;
     }
+
 }
