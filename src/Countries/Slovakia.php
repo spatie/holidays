@@ -19,7 +19,7 @@ class Slovakia extends Country
             'Sviatok práce' => '05-01',
             'Deň víťazstva nad fašizmom' => '05-08',
             'Sviatok svätého Cyrila a Metoda' => '07-05',
-            'Výročie Výročie Slovenského národného povstania' => '08-29',
+            'Výročie Slovenského národného povstania' => '08-29',
             'Deň Ústavy Slovenskej republiky' => '09-01',
             'Sedembolestná Panna Mária' => '09-15',
             'Deň vzniku samostatného česko-slovenského štátu' => '10-28',
