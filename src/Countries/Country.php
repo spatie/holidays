@@ -35,6 +35,42 @@ abstract class Country
         return $allHolidays;
     }
 
+    /** @return array<string, string>  date => name */
+    public function getInRange(CarbonImmutable $from, CarbonImmutable $to): array
+    {
+        $this->ensureYearCanBeCalculated($from->year);
+        $this->ensureYearCanBeCalculated($to->year);
+
+        $allHolidays = [];
+
+        for ($year = $from->year; $year <= $to->year; $year++) {
+            $yearHolidays = $this->get($year);
+
+            uasort($yearHolidays,
+                static fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
+            );
+
+            $flippedArray = array_column(
+                                array_map(static function (CarbonImmutable $date, string $name) {
+                                    return [$date->format('Y-m-d'), $name];
+                                },
+                                array_values($yearHolidays),
+                                array_keys($yearHolidays))
+                            , 1 ,0);
+
+            if ($year === $from->year || $year === $to->year) {
+            $flippedArray = array_filter($flippedArray, static function (string $date) use ($from, $to) {
+                $date = CarbonImmutable::parse($date);
+
+                return $date->between($from, $to);
+            }, ARRAY_FILTER_USE_KEY);
+            }
+
+            $allHolidays = array_merge($allHolidays, $flippedArray);
+        }
+        return $allHolidays;
+    }
+
     public static function make(): static
     {
         return new static(...func_get_args());

@@ -8,12 +8,14 @@ use Spatie\Holidays\Countries\Country;
 
 class Holidays
 {
-    /** @var array<string, CarbonImmutable> */
+    /** @var array<string, CarbonImmutable|string> */
     protected array $holidays = [];
 
     protected function __construct(
         protected Country $country,
-        protected int $year,
+        protected ?int $year,
+        protected ?CarbonImmutable $from = null,
+        protected ?CarbonImmutable $to = null
     ) {
     }
 
@@ -25,7 +27,16 @@ class Holidays
             $country = Country::findOrFail($country);
         }
 
-        return new static($country, $year);
+        return new static($country, $year, null, null);
+    }
+
+    public static function forRange(Country|string $country, CarbonImmutable $from, CarbonImmutable $to): static
+    {
+        if (is_string($country)) {
+            $country = Country::findOrFail($country);
+        }
+
+        return new static($country, null, $from, $to);
     }
 
     /** @return array<array{name: string, date: string}> */
@@ -37,6 +48,46 @@ class Holidays
         return static::for($country, $year)
             ->calculate()
             ->toArray();
+    }
+
+    /**
+     * getInRange method allows you to pick holidays in a range of dates,
+     *   - dates are inclusive.
+     *   - dates are swappable, lower date could be passed as second argument.
+     *   - dates could be a CarbonInterface or a string.
+     *   - acceptable strings formats are 'Y-m-d' or 'Y-m' or 'Y'
+     *   - if passed string is 'Y-m' or 'Y' it will be converted to first(from) / last{to} day of the month(from) / year(to)
+     * E.g. to retrieve all holidays in between
+     *    - 2020-01-01 and 2024-12-31, you could use: getInRange('2020-01-01', '2024-12-31'), getInRange('2020-01', '2024-12') or getInRange('2020', '2024')
+     *    - 2024-06-01 and 2025-05-30, you could use: getInRange('2024-06-01', '2025-05-30'), getInRange('2024-06', '2025-05')
+     * @return array<string, string> date => name
+     */
+    public function getInRange(CarbonInterface|string $from, CarbonInterface|string $to, Country|string|null $country = null)
+    {
+        $country ??= $this->country;
+
+        if (! $from instanceof CarbonImmutable) {
+            $from = match (strlen($from)) {
+                4 => CarbonImmutable::parse($from . '-01-01'),
+                7 => CarbonImmutable::parse($from . '-01'),
+                default => CarbonImmutable::parse($from),
+            };
+        }
+
+        if (! $to instanceof CarbonImmutable) {
+            $to = match (strlen($to)) {
+                4 => CarbonImmutable::parse($to . '-12-31'),
+                7 => CarbonImmutable::parse($to)->endOfMonth(),
+                default => CarbonImmutable::parse($to),
+            };
+        }
+
+        if ($from->gt($to)) {
+            [$from, $to] = [$to, $from];
+        }
+
+        return static::forRange($country, $from, $to)
+            ->calculateInRange()->holidays;
     }
 
     public function isHoliday(CarbonInterface|string $date, Country|string|null $country = null): bool
@@ -87,6 +138,13 @@ class Holidays
     protected function calculate(): self
     {
         $this->holidays = $this->country->get($this->year);
+
+        return $this;
+    }
+
+    protected function calculateInRange(): self
+    {
+        $this->holidays = $this->country->getInRange($this->from, $this->to);
 
         return $this;
     }
