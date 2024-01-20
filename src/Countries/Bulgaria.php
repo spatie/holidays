@@ -19,7 +19,7 @@ class Bulgaria extends Country
     {
         return array_merge([
             'Нова година' => '01-01',
-            'Ден на Освобождението на България от османско робство' => '03-01',
+            'Ден на Освобождението на България от османско робство' => '03-03',
             'Ден на труда и на международната работническа солидарност' => '05-01',
             'Великден – християнската религия отбелязва Възкресение Христово' => '05-05',
             'Гергьовден, Ден на храбростта и Българската армия' => '05-06',
@@ -34,7 +34,7 @@ class Bulgaria extends Country
 
     /**
      * @param int $year
-     * @return array<string, CarbonImmutable>
+     * @return array<string, string>
      */
     protected function variableHolidays(int $year): array
     {
@@ -45,13 +45,14 @@ class Bulgaria extends Country
             'Великден – християнската религия отбелязва Възкресение Христово' => $easter->format('m-d'),
         ];
     }
-  
+
     /**
-     * Calculate the date of Easter using the Computus algorithm
+     * Calculate the date of Easter using the Computus algorithm with Carbon
      * @param int $year
      * @return CarbonImmutable
+     * @throws \RuntimeException if the calculated date is invalid
      */
-    protected function calculateEasterDate($year)
+    protected function calculateEasterDate($year): CarbonImmutable
     {
         $a = $year % 19;
         $b = floor($year / 100);
@@ -65,9 +66,17 @@ class Bulgaria extends Country
         $k = $c % 4;
         $l = (32 + 2 * $e + 2 * $i - $h - $k) % 7;
         $m = floor(($a + 11 * $h + 22 * $l) / 451);
-        $month = floor(($h + $l - 7 * $m + 114) / 31);
-        $day = (($h + $l - 7 * $m + 114) % 31) + 1;
-    
-        return CarbonImmutable::create($year, $month, $day);
+        $month = (int) floor(($h + $l - 7 * $m + 114) / 31);
+        $day = (int) (($h + $l - 7 * $m + 114) % 31) + 1;
+
+        // Ensure the calculated date is valid
+        $date = CarbonImmutable::createSafe($year, $month, $day);
+
+        if (!$date) {
+            throw new \RuntimeException("Invalid Easter date for year $year.");
+        }
+
+        return $date;
     }
+
 }
