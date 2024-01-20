@@ -11,6 +11,9 @@ class Panama extends Country
         return 'pa';
     }
 
+    /*
+     * Source: https://www.telemetro.com/nacionales/calendario-feriados-panama-2024-todos-los-dias-no-laborables-y-festivos-n5953115
+     */
     protected function allHolidays(int $year): array
     {
         $fixedHolidays = [
@@ -29,8 +32,8 @@ class Panama extends Country
 
         return array_merge(
             $fixedHolidays,
-            $this->puentes($fixedHolidays, $year),
-            $this->variableHolidays($year)
+            $this->variableHolidays($year),
+            $this->calculateBridgeDays($fixedHolidays, $year),
         );
     }
 
@@ -51,11 +54,26 @@ class Panama extends Country
     }
 
     /**
+     * Calculate bridge days for holidays that fall on a Sunday.
+     * In Panama, these are called "puentes"
+     *
+     * Source: https://www.telemetro.com/nacionales/calendario-dias-libres-panama-este-2023-n5825178
+     *
+     * Spanish:
+     * "Según el artículo 47 del código de trabajo un día es considerado puente cuando la fecha
+     * establecida para una celebración nacional coincida con un día domingo, el lunes siguiente
+     * se habilitará como día de descanso semanal obligatorio"
+     *
+     * English Translation:
+     * "According to article 47 of the labor code, a day is considered a bridge when the date
+     *  established for a national celebration to coincide with a Sunday, the following Monday
+     *  will be enabled as a mandatory weekly rest day"
+     *
      * @param array<string, string> $fixedHolidays Array of holidays in the format ['holiday name' => 'mm-dd']
      * @param int $year The year for which to calculate the holidays
      * @return array<string, CarbonImmutable>
      */
-    protected function puentes(array $fixedHolidays, int $year): array
+    protected function calculateBridgeDays(array $fixedHolidays, int $year): array
     {
         $holidays = [];
 
@@ -72,5 +90,4 @@ class Panama extends Country
 
         return $holidays;
     }
-
 }
