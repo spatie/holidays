@@ -33,8 +33,7 @@ class Zambia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Africa/Lusaka');
+        $easter = $this->easter($year);
 
         return [
             'Good Friday' => $easter->subDays(2),

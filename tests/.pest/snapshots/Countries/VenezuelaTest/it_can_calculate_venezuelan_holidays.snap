@@ -1,0 +1,58 @@
+[
+    {
+        "name": "A\u00f1o nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Lunes de Carnaval",
+        "date": "2024-02-12"
+    },
+    {
+        "name": "Martes de Carnaval",
+        "date": "2024-02-18"
+    },
+    {
+        "name": "Jueves Santo",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Declaraci\u00f3n de la Independencia",
+        "date": "2024-04-19"
+    },
+    {
+        "name": "D\u00eda del Trabajador",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Aniversario de la Batalla de Carabobo",
+        "date": "2024-06-24"
+    },
+    {
+        "name": "D\u00eda de la Independencia",
+        "date": "2024-07-05"
+    },
+    {
+        "name": "Natalicio de Sim\u00f3n Bol\u00edvar",
+        "date": "2024-07-24"
+    },
+    {
+        "name": "D\u00eda de la Resistencia Ind\u00edgena",
+        "date": "2024-10-12"
+    },
+    {
+        "name": "V\u00edspera de Navidad",
+        "date": "2024-12-24"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "D\u00eda de Fin de A\u00f1o",
+        "date": "2024-12-31"
+    }
+]
