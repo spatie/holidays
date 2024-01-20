@@ -4,67 +4,47 @@
         "date": "2024-01-01"
     },
     {
-        "name": "Labor Day / May Day",
-        "date": "2024-05-01"
-    },
-    {
-        "name": "Independence Day",
-        "date": "2024-07-26"
-    },
-    {
-        "name": "Independence Day Holiday",
-        "date": "2024-07-27"
-    },
-    {
-        "name": "Victory Day",
-        "date": "2024-11-03"
-    },
-    {
-        "name": "Republic Day",
-        "date": "2024-11-11"
-    },
-    {
-        "name": "Ramadan Start",
+        "name": "First day of Ramadan",
         "date": "2024-03-11"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 1",
         "date": "2024-03-31"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 2",
         "date": "2024-04-01"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 3",
         "date": "2024-04-02"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 4",
         "date": "2024-04-03"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 5",
         "date": "2024-04-04"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 6",
         "date": "2024-04-05"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 7",
         "date": "2024-04-06"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 8",
         "date": "2024-04-07"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 9",
         "date": "2024-04-08"
     },
     {
-        "name": "Ramadan Holiday",
+        "name": "Last 10 Days of Ramadan - Day 10",
         "date": "2024-04-09"
     },
     {
@@ -72,12 +52,16 @@
         "date": "2024-04-10"
     },
     {
-        "name": "Eid al-Fitr 2",
+        "name": "On the occasion of Eid al-Fitr - 2nd day",
         "date": "2024-04-11"
     },
     {
-        "name": "Eid al-Fitr 3",
+        "name": "On the occasion of Eid al-Fitr - 3rd day",
         "date": "2024-04-12"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-05-01"
     },
     {
         "name": "Hajj Day",
@@ -88,31 +72,43 @@
         "date": "2024-06-17"
     },
     {
-        "name": "Eid al-Adha 2",
+        "name": "On the occasion of Eid al-Adha - 2nd day",
         "date": "2024-06-18"
     },
     {
-        "name": "Eid al-Adha 3",
+        "name": "On the occasion of Eid al-Adha - 3rd day",
         "date": "2024-06-19"
     },
     {
-        "name": "Eid al-Adha 4",
-        "date": "2024-06-20"
+        "name": "Islamic New Year",
+        "date": "2024-07-07"
     },
     {
-        "name": "Islamic New Year",
-        "date": "2024-07-08"
+        "name": "Independence Day",
+        "date": "2024-07-26"
+    },
+    {
+        "name": "On the occasion of the Independence Day",
+        "date": "2024-07-27"
     },
     {
         "name": "National Day",
-        "date": "2024-09-05"
+        "date": "2024-09-04"
     },
     {
-        "name": "Birthday of the Prophet Muhammad",
-        "date": "2024-09-16"
+        "name": "Prophet Muhammad (SAW)'s Birthday",
+        "date": "2024-09-15"
     },
     {
         "name": "The Day Maldives Embraced Islam",
         "date": "2024-10-05"
     },
+    {
+        "name": "Victory Day",
+        "date": "2024-11-03"
+    },
+    {
+        "name": "Republic Day",
+        "date": "2024-11-11"
+    }
 ]

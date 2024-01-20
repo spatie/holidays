@@ -15,5 +15,4 @@ it('can calculate maldivian holidays', function () {
         ->not()->toBeEmpty();
 
     expect(formatDates($holidays))->toMatchSnapshot();
-
 });
