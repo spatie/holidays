@@ -16,6 +16,11 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
+			message: "#^Parameter \\#1 \\$timestamp of static method Carbon\\\\CarbonImmutable\\:\\:createFromTimestamp\\(\\) expects float\\|int\\|string, int\\|false given\\.$#"
+			count: 1
+			path: src/Countries/Country.php
+
+		-
 			message: "#^Parameter \\#2 \\$callback of function uasort expects callable\\(bool\\|Carbon\\\\CarbonImmutable, bool\\|Carbon\\\\CarbonImmutable\\)\\: int, Closure\\(Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\)\\: int\\<\\-1, 1\\> given\\.$#"
 			count: 1
 			path: src/Countries/Country.php
