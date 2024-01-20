@@ -11,7 +11,6 @@ class Brazil extends Country
         return 'br';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -22,6 +21,7 @@ class Brazil extends Country
             'Nossa Senhora Aparecida' => '10-12',
             'Finados' => '11-02',
             'Proclamação da República' => '11-15',
+            'Dia Nacional de Zumbi e da Consciência Negra' => '11-20',
             'Natal' => '12-25',
         ], $this->variableHolidays($year));
     }
@@ -29,7 +29,7 @@ class Brazil extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))->setTimezone('America/Sao_Paulo');
+        $easter = $this->easter($year);
 
         return [
             'Carnaval' => $easter->subDays(47),

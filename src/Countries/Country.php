@@ -13,7 +13,7 @@ abstract class Country
     /** @return array<string, string|CarbonImmutable> */
     abstract protected function allHolidays(int $year): array;
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonImmutable|string> */
     public function get(int $year): array
     {
         $this->ensureYearCanBeCalculated($year);
@@ -37,7 +37,23 @@ abstract class Country
 
     public static function make(): static
     {
-        return new static();
+        return new static(...func_get_args());
+    }
+
+    protected function easter(int $year): CarbonImmutable
+    {
+        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-03-21")
+            ->startOfDay();
+
+        return $easter->addDays(easter_days($year));
+    }
+
+    protected function orthodoxEaster(int $year): CarbonImmutable
+    {
+        $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
+        $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
+
+        return CarbonImmutable::createFromTimestamp(strtotime("+$daysDifference days", $timestamp));
     }
 
     public static function find(string $countryCode): ?Country
