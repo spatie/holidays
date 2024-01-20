@@ -4,20 +4,8 @@
         "date": "2024-01-15"
     },
     {
-        "name": "Duruthu Poya Day",
-        "date": "2024-01-25"
-    },
-    {
         "name": "Independence Day",
         "date": "2024-02-04"
-    },
-    {
-        "name": "Navam Poya Day",
-        "date": "2024-02-24"
-    },
-    {
-        "name": "Medin Poya Day",
-        "date": "2024-03-25"
     },
     {
         "name": "Good Friday",
@@ -28,60 +16,8 @@
         "date": "2024-04-01"
     },
     {
-        "name": "Day prior to Sinhala & Tamil New Year Day",
-        "date": "2024-04-13"
-    },
-    {
-        "name": "Sinhala & Tamil New Year Day",
-        "date": "2024-04-14"
-    },
-    {
-        "name": "Bak Poya Day",
-        "date": "2024-04-24"
-    },
-    {
-        "name": "Vesak Poya Day",
-        "date": "2024-05-23"
-    },
-    {
-        "name": "Day Following Vesak Poya Day",
-        "date": "2024-05-24"
-    },
-    {
-        "name": "Poson Poya Day",
-        "date": "2024-06-22"
-    },
-    {
-        "name": "Esala Poya Day",
-        "date": "2024-07-21"
-    },
-    {
-        "name": "Nikini Poya Day",
-        "date": "2024-08-19"
-    },
-    {
-        "name": "Binara Poya Day",
-        "date": "2024-09-18"
-    },
-    {
-        "name": "Vap Poya Day",
-        "date": "2024-10-17"
-    },
-    {
-        "name": "Milad-Un-Nabi (Holy Prophet's Birthday)",
-        "date": "2024-10-30"
-    },
-    {
         "name": "Deepavali Festival Day",
         "date": "2024-11-14"
-    },
-    {
-        "name": "Il Poya Day",
-        "date": "2024-11-16"
-    },
-    {
-        "name": "Unduvap Poya Day",
-        "date": "2024-12-15"
     },
     {
         "name": "Christmas",
