@@ -1,0 +1,42 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Maundy Thursday",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Araw ng Kagitingan",
+        "date": "2024-04-09"
+    },
+    {
+        "name": "Labor Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-06-12"
+    },
+    {
+        "name": "National Heroes Day",
+        "date": "2024-08-26"
+    },
+    {
+        "name": "Bonifacio Day",
+        "date": "2024-11-27"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Rizal Day",
+        "date": "2024-12-30"
+    }
+]
