@@ -16,4 +16,3 @@ it('can calculate dominican republic holidays', function () {
 
     expect(formatDates($holidays))->toMatchSnapshot();
 });
-
