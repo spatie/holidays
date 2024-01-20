@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use GeniusTS\HijriDate\Hijri;
 
 class Morocco extends Country
 {
@@ -36,14 +37,43 @@ class Morocco extends Country
          * occur based on the lunar calendar sequence. The order listed reflects the chronological occurrence
          * of these holidays throughout the year.
          */
-        return [
-            'Eid al-Fitr' => '04-10',
-            'Eid al-Fitr 2' => '04-11',
-            'Eid al-Adha' => '06-17',
-            'Eid al-Adha 2' => '06-18',
-            'Islamic New Year' => '07-08',
-            'Birthday of the Prophet Muhammad' => '09-16',
-            'Birthday of the Prophet Muhammad 2' => '09-17'
+
+        // Set default adjustment for Hijri conversion
+        Hijri::setDefaultAdjustment(-1);
+
+        // Get the current Hijri year
+        $currentHijriYear = (int) Hijri::convertToHijri($year . "-01-01")->format('Y');
+
+        // Define Islamic holidays on the Hijri calendar
+        $islamicHolidaysOnHijri = [
+            'Islamic New Year' => '01-01',
+            'Birthday of the Prophet Muhammad' => '03-12',
+            'Birthday of the Prophet Muhammad 2' => '03-13',
+            'Eid al-Fitr' => '10-01',
+            'Eid al-Fitr 2' => '10-02',
+            'Eid al-Adha' => '12-10',
+            'Eid al-Adha 2' => '12-11',
         ];
+
+        $islamicHolidaysOnGregorian = [];
+
+        // Convert Hijri dates to Gregorian and filter based on the input year
+        foreach ($islamicHolidaysOnHijri as $holidayTitle => $hijriHolidayDate) {
+            list($hijriHolidayMonth, $hijriHolidayDay) = explode('-', $hijriHolidayDate);
+
+            // Convert to Gregorian for the current and next Hijri year
+            $currentGregorianDate = Hijri::convertToGregorian($hijriHolidayDay, $hijriHolidayMonth, $currentHijriYear);
+            $nextHijriYear = $currentHijriYear + 1;
+            $nextGregorianDate = Hijri::convertToGregorian($hijriHolidayDay, $hijriHolidayMonth, $nextHijriYear);
+
+            // Check if the holiday falls in the input year
+            if ($currentGregorianDate->format('Y') == $year) {
+                $islamicHolidaysOnGregorian[$holidayTitle] = $currentGregorianDate->format('m-d');
+            } elseif ($nextGregorianDate->format('Y') == $year) {
+                $islamicHolidaysOnGregorian[$holidayTitle] = $nextGregorianDate->format('m-d');
+            }
+        }
+
+        return $islamicHolidaysOnGregorian;
     }
 }
