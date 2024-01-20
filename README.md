@@ -91,9 +91,11 @@ Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ### Package limitations
 1. Islamic holidays are not supported (yet)
 
-## Contributing a new country
+## Contributing
 
-If you want to add a new country, you can create a pull request.
+This is a community driven package. If you find any errors, please create an issue or a pull request.
+
+## Adding a new country
 
 1. Create a new class in the `Countries` directory. It should extend the `Country` class.
 2. Add a test for the new country in the `tests` directory.
