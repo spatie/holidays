@@ -22,7 +22,7 @@ class Kosovo extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonImmutable|string> */
     protected function variableHolidays(int $year): array
     {
         $holidays = [];
