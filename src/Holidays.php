@@ -8,15 +8,12 @@ use Spatie\Holidays\Countries\Country;
 
 class Holidays
 {
-    /** @var array<string, CarbonImmutable> */
     protected array $holidays = [];
-
     protected function __construct(
         protected Country $country,
         protected int $year,
     ) {
     }
-
     public static function for(Country|string $country, ?int $year = null): static
     {
         $year ??= CarbonImmutable::now()->year;
@@ -27,8 +24,6 @@ class Holidays
 
         return new static($country, $year);
     }
-
-    /** @return array<array{name: string, date: string}> */
     public function get(Country|string|null $country = null, ?int $year = null): array
     {
         $country ??= $this->country;
@@ -84,14 +79,19 @@ class Holidays
         return null;
     }
 
+    public function addCustomHoliday(string $name, string $date): self
+    {
+        $this->holidays[$name] = CarbonImmutable::parse($date);
+
+        return $this;
+    }
+
     protected function calculate(): self
     {
         $this->holidays = $this->country->get($this->year);
 
         return $this;
     }
-
-    /** @return array<array{name: string, date: CarbonImmutable}> */
     protected function toArray(): array
     {
         $response = [];
@@ -106,3 +106,4 @@ class Holidays
         return $response;
     }
 }
+$holidays = Holidays::for('US')->addCustomHoliday('Custom Holiday', '2024-12-25')->get();
