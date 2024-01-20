@@ -38,45 +38,12 @@ class Bulgaria extends Country
      */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp($this->calculateEasterDate($year))
+        $easter = CarbonImmutable::createFromTimestamp($this->easter($year))
             ->setTimezone('Europe/Sofia');
 
         return [
             'Великден – християнската религия отбелязва Възкресение Христово' => $easter->format('m-d'),
         ];
-    }
-
-    /**
-     * Calculate the date of Easter using the Computus algorithm with Carbon
-     * @param int $year
-     * @return CarbonImmutable
-     * @throws \RuntimeException if the calculated date is invalid
-     */
-    protected function calculateEasterDate($year): CarbonImmutable
-    {
-        $a = $year % 19;
-        $b = floor($year / 100);
-        $c = $year % 100;
-        $d = floor($b / 4);
-        $e = $b % 4;
-        $f = floor(($b + 8) / 25);
-        $g = floor(($b - $f + 1) / 3);
-        $h = (19 * $a + $b - $d - $g + 15) % 30;
-        $i = floor($c / 4);
-        $k = $c % 4;
-        $l = (32 + 2 * $e + 2 * $i - $h - $k) % 7;
-        $m = floor(($a + 11 * $h + 22 * $l) / 451);
-        $month = (int) floor(($h + $l - 7 * $m + 114) / 31);
-        $day = (int) (($h + $l - 7 * $m + 114) % 31) + 1;
-
-        // Ensure the calculated date is valid
-        $date = CarbonImmutable::createSafe($year, $month, $day);
-
-        if (!$date) {
-            throw new \RuntimeException("Invalid Easter date for year $year.");
-        }
-
-        return $date;
     }
 
 }
