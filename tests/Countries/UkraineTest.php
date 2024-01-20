@@ -9,7 +9,7 @@ use Spatie\Holidays\Holidays;
 it('can calculate ukrainian holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
-    $holidays = Holidays::for(country: 'uk')->get();
+    $holidays = Holidays::for(country: 'ua')->get();
 
     expect($holidays)
         ->toBeArray()
