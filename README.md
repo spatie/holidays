@@ -48,6 +48,7 @@ $holidays = Holidays::for(Belgium::make())->get();
 ```
 
 Alternatively, you could also pass an [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) code to the `for` method.
+In case of region based holidays, these will not be included. Use a country class instead.
 
 ```php
 use Spatie\Holidays\Holidays;
@@ -86,6 +87,9 @@ use Spatie\Holidays\Holidays;
 
 Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
+
+### Package limitations
+1. Islamic holidays are not supported (yet)
 
 ## Contributing a new country
 
