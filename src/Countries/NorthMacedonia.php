@@ -29,19 +29,10 @@ class NorthMacedonia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp($this->orthodoxEaster($year))
-            ->setTimezone('Europe/Skopje');
+        $easter = $this->orthodoxEaster($year);
 
         return [
             'Велигден, вториот ден на Велигден според православниот календар' => $easter->addDay(),
         ];
-    }
-
-    protected function orthodoxEaster(int $year): int
-    {
-        $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
-        $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
-
-        return (int) strtotime("+$daysDifference days", $timestamp);
     }
 }
