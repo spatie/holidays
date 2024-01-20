@@ -1,70 +1,62 @@
 [
     {
         "name": "Y\u0131lba\u015f\u0131",
-        "date": "2024-01-01"
+        "date": "1999-01-01"
     },
     {
         "name": "Ramazan Bayram\u0131 Arifesi",
-        "date": "2024-04-09"
+        "date": "1999-01-18"
     },
     {
         "name": "Ramazan Bayram\u0131 1. G\u00fcn",
-        "date": "2024-04-10"
+        "date": "1999-01-19"
     },
     {
         "name": "Ramazan Bayram\u0131 2. G\u00fcn",
-        "date": "2024-04-11"
+        "date": "1999-01-20"
     },
     {
         "name": "Ramazan Bayram\u0131 3. G\u00fcn",
-        "date": "2024-04-12"
-    },
-    {
-        "name": "Ulusal Egemenlik ve \u00c7ocuk Bayram\u0131",
-        "date": "2024-04-23"
-    },
-    {
-        "name": "Emek ve Dayan\u0131\u015fma G\u00fcn\u00fc",
-        "date": "2024-05-01"
-    },
-    {
-        "name": "Atat\u00fcrk'\u00fc Anma, Gen\u00e7lik ve Spor Bayram\u0131",
-        "date": "2024-05-19"
+        "date": "1999-01-21"
     },
     {
         "name": "Kurban Bayram\u0131 Arifesi",
-        "date": "2024-06-15"
+        "date": "1999-03-27"
     },
     {
         "name": "Kurban Bayram\u0131 1. G\u00fcn",
-        "date": "2024-06-16"
+        "date": "1999-03-28"
     },
     {
         "name": "Kurban Bayram\u0131 2. G\u00fcn",
-        "date": "2024-06-17"
+        "date": "1999-03-29"
     },
     {
         "name": "Kurban Bayram\u0131 3. G\u00fcn",
-        "date": "2024-06-18"
+        "date": "1999-03-30"
     },
     {
         "name": "Kurban Bayram\u0131 4. G\u00fcn",
-        "date": "2024-06-19"
+        "date": "1999-03-31"
     },
     {
-        "name": "Demokrasi ve Mill\u00ee Birlik G\u00fcn\u00fc",
-        "date": "2024-07-15"
+        "name": "Ulusal Egemenlik ve \u00c7ocuk Bayram\u0131",
+        "date": "1999-04-23"
+    },
+    {
+        "name": "Atat\u00fcrk'\u00fc Anma, Gen\u00e7lik ve Spor Bayram\u0131",
+        "date": "1999-05-19"
     },
     {
         "name": "Zafer Bayram\u0131",
-        "date": "2024-08-30"
+        "date": "1999-08-30"
     },
     {
         "name": "Cumhuriyet Bayram\u0131 Arifesi",
-        "date": "2024-10-28"
+        "date": "1999-10-28"
     },
     {
         "name": "Cumhuriyet Bayram\u0131",
-        "date": "2024-10-29"
+        "date": "1999-10-29"
     }
 ]

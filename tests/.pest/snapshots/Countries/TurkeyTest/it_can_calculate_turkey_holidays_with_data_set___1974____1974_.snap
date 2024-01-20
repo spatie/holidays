@@ -1,70 +1,82 @@
 [
     {
         "name": "Y\u0131lba\u015f\u0131",
-        "date": "2024-01-01"
-    },
-    {
-        "name": "Ramazan Bayram\u0131 Arifesi",
-        "date": "2024-04-09"
-    },
-    {
-        "name": "Ramazan Bayram\u0131 1. G\u00fcn",
-        "date": "2024-04-10"
-    },
-    {
-        "name": "Ramazan Bayram\u0131 2. G\u00fcn",
-        "date": "2024-04-11"
-    },
-    {
-        "name": "Ramazan Bayram\u0131 3. G\u00fcn",
-        "date": "2024-04-12"
-    },
-    {
-        "name": "Ulusal Egemenlik ve \u00c7ocuk Bayram\u0131",
-        "date": "2024-04-23"
-    },
-    {
-        "name": "Emek ve Dayan\u0131\u015fma G\u00fcn\u00fc",
-        "date": "2024-05-01"
-    },
-    {
-        "name": "Atat\u00fcrk'\u00fc Anma, Gen\u00e7lik ve Spor Bayram\u0131",
-        "date": "2024-05-19"
+        "date": "1974-01-01"
     },
     {
         "name": "Kurban Bayram\u0131 Arifesi",
-        "date": "2024-06-15"
+        "date": "1974-01-03"
     },
     {
         "name": "Kurban Bayram\u0131 1. G\u00fcn",
-        "date": "2024-06-16"
+        "date": "1974-01-04"
     },
     {
         "name": "Kurban Bayram\u0131 2. G\u00fcn",
-        "date": "2024-06-17"
+        "date": "1974-01-05"
     },
     {
         "name": "Kurban Bayram\u0131 3. G\u00fcn",
-        "date": "2024-06-18"
+        "date": "1974-01-06"
     },
     {
         "name": "Kurban Bayram\u0131 4. G\u00fcn",
-        "date": "2024-06-19"
+        "date": "1974-01-07"
     },
     {
-        "name": "Demokrasi ve Mill\u00ee Birlik G\u00fcn\u00fc",
-        "date": "2024-07-15"
+        "name": "Ulusal Egemenlik ve \u00c7ocuk Bayram\u0131",
+        "date": "1974-04-23"
+    },
+    {
+        "name": "Atat\u00fcrk'\u00fc Anma, Gen\u00e7lik ve Spor Bayram\u0131",
+        "date": "1974-05-19"
     },
     {
         "name": "Zafer Bayram\u0131",
-        "date": "2024-08-30"
+        "date": "1974-08-30"
+    },
+    {
+        "name": "Ramazan Bayram\u0131 Arifesi",
+        "date": "1974-10-16"
+    },
+    {
+        "name": "Ramazan Bayram\u0131 1. G\u00fcn",
+        "date": "1974-10-17"
+    },
+    {
+        "name": "Ramazan Bayram\u0131 2. G\u00fcn",
+        "date": "1974-10-18"
+    },
+    {
+        "name": "Ramazan Bayram\u0131 3. G\u00fcn",
+        "date": "1974-10-19"
     },
     {
         "name": "Cumhuriyet Bayram\u0131 Arifesi",
-        "date": "2024-10-28"
+        "date": "1974-10-28"
     },
     {
         "name": "Cumhuriyet Bayram\u0131",
-        "date": "2024-10-29"
+        "date": "1974-10-29"
+    },
+    {
+        "name": "2. Kurban Bayram\u0131 Arifesi",
+        "date": "1974-12-23"
+    },
+    {
+        "name": "2. Kurban Bayram\u0131 1. G\u00fcn",
+        "date": "1974-12-24"
+    },
+    {
+        "name": "2. Kurban Bayram\u0131 2. G\u00fcn",
+        "date": "1974-12-25"
+    },
+    {
+        "name": "2. Kurban Bayram\u0131 3. G\u00fcn",
+        "date": "1974-12-26"
+    },
+    {
+        "name": "2. Kurban Bayram\u0131 4. G\u00fcn",
+        "date": "1974-12-27"
     }
 ]
