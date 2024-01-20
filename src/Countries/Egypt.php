@@ -42,9 +42,6 @@ class Egypt extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Africa/Cairo');
-
         return [
             // TODO: Add more holidays
         ];
