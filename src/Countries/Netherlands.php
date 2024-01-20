@@ -30,8 +30,7 @@ class Netherlands extends Country
             $koningsDag = $koningsDag->subDay();
         }
 
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Amsterdam');
+        $easter = $this->easter($year);
 
         return [
             'Koningsdag' => $koningsDag,

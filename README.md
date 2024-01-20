@@ -103,7 +103,7 @@ for example region specific holidays, you can pass this to the constructor of yo
 $holidays = Holidays::for(Austria::make(region: 'de-bw'))->get();
 ```
 
-The value, `de-bw`, will be passed to the region parameter of the contructor of a country.
+The value, `de-bw`, will be passed to the region parameter of the constructor of a country.
 
 ```php
 class Austria extends Country

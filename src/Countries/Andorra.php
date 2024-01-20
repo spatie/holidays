@@ -30,8 +30,7 @@ class Andorra extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Brussels');
+        $easter = $this->easter($year);
 
         return [
             'Divendres Sant' => $easter->subDays(2),
