@@ -9,7 +9,7 @@ class Maldives extends Country
 {
     use HijriCalendar;
 
-    protected $adjustmentDays = 1; // Adjustments based on moon sighting
+    protected int $adjustmentDays = 1; // Adjustments based on moon sighting
 
     public function countryCode(): string
     {
@@ -116,7 +116,7 @@ class Maldives extends Country
      * Get the two days following an Eid day.
      *
      * @param CarbonImmutable $eidDay
-     * @return array
+     * @return CarbonImmutable[] Array of CarbonImmutable objects.
      */
     protected function getDaysFollowingEid(CarbonImmutable $eidDay): array
     {
