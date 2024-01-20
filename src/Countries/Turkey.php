@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Exception;
 
 class Turkey extends Country
 {
@@ -230,7 +231,8 @@ class Turkey extends Country
         if ($year != 1970) {
             $previousHoliday = is_array($holidays[$year - 1]) ? $holidays[$year - 1][1] : $holidays[$year - 1];
 
-            $previousHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year - 1).'-'.$previousHoliday);
+            $previousHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year - 1).'-'.$previousHoliday)
+                ?: throw new Exception('Date could not be created.');
 
             if ($previousHoliday->addDays($day - 1)->year == $year) {
                 $islamicHolidays = $this->prepareHolidays(
@@ -246,7 +248,8 @@ class Turkey extends Country
         $currentYearHolidays = is_array($holidays[$year]) ? $holidays[$year] : [$holidays[$year]];
 
         foreach ($currentYearHolidays as $currentYearHoliday) {
-            $currentYearHoliday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$currentYearHoliday}");
+            $currentYearHoliday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$currentYearHoliday}")
+                ?: throw new Exception('Date could not be created.');
 
             $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
                 holiday: $currentYearHoliday,
@@ -261,7 +264,8 @@ class Turkey extends Country
         if ($year != 2037) {
             $nextHoliday = is_array($holidays[$year + 1]) ? $holidays[$year + 1][1] : $holidays[$year + 1];
 
-            $nextHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year + 1).'-'.$nextHoliday);
+            $nextHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year + 1).'-'.$nextHoliday)
+                ?: throw new Exception('Date could not be created.');
 
             if ($nextHoliday->addDays(-1)->year == $year) {
                 $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
