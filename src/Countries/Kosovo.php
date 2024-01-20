@@ -15,7 +15,7 @@ class Kosovo extends Country
     {
         return array_merge([
             'Viti i Ri' => '01-01',
-            'Krishtlindjet ortodokse' => '01-06',
+            'Krishtlindjet ortodokse' => '01-07',
             'Dita Ndërkombëtare e Punës' => '05-01',
             'Dita e Evropës' => '05-09',
             'Krishtlindjet Katolike' => '12-25',
