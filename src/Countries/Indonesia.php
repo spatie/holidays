@@ -28,9 +28,9 @@ class Indonesia extends Country
             ->setTimezone('Asia/Jakarta');
 
         return [
-            'Jumat Agung' => $easter->subDays(2),
-            'Hari Paskah' => $easter,
-            'Kenaikan Yesus Kristus' => $easter->addDays(39),
+            'Jumat Agung' => $easter->subDays(1),
+            'Hari Paskah' => $easter->addDays(1),
+            'Kenaikan Yesus Kristus' => $easter->addDays(40),
         ];
     }
 }
