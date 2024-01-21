@@ -12,7 +12,6 @@ class Morocco extends Country
         return 'ma';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -62,15 +61,15 @@ class Morocco extends Country
             list($hijriHolidayMonth, $hijriHolidayDay) = explode('-', $hijriHolidayDate);
 
             // Convert to Gregorian for the current and next Hijri year
-            $currentGregorianDate = Hijri::convertToGregorian($hijriHolidayDay, $hijriHolidayMonth, $currentHijriYear);
+            $currentGregorianDate = Hijri::convertToGregorian((int)$hijriHolidayDay, (int)$hijriHolidayMonth, (int)$currentHijriYear);
             $nextHijriYear = $currentHijriYear + 1;
-            $nextGregorianDate = Hijri::convertToGregorian($hijriHolidayDay, $hijriHolidayMonth, $nextHijriYear);
+            $nextGregorianDate = Hijri::convertToGregorian((int)$hijriHolidayDay, (int)$hijriHolidayMonth, (int)$nextHijriYear);
 
             // Check if the holiday falls in the input year
             if ($currentGregorianDate->format('Y') == $year) {
-                $islamicHolidaysOnGregorian[$holidayTitle] = $currentGregorianDate->format('m-d');
+                $islamicHolidaysOnGregorian[$holidayTitle] = $currentGregorianDate->toImmutable();
             } elseif ($nextGregorianDate->format('Y') == $year) {
-                $islamicHolidaysOnGregorian[$holidayTitle] = $nextGregorianDate->format('m-d');
+                $islamicHolidaysOnGregorian[$holidayTitle] = $nextGregorianDate->toImmutable();
             }
         }
 
