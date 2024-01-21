@@ -8,9 +8,10 @@ class Scotland extends Wales
 {
     public function countryCode(): string
     {
-        return 'uk-sct';
+        return 'gb-sct';
     }
 
+    /** @return array<string, CarbonImmutable> */
     protected function secondOfJanuary(int $year): array
     {
         $newYearsDay = new CarbonImmutable($year . "-01-01", 'Europe/London');
@@ -30,6 +31,7 @@ class Scotland extends Wales
         return [$key => $secondOfJanuary];
     }
 
+    /** @return array<string, CarbonImmutable> */
     private function stAndrewsDay(int $year): array
     {
         $stAndrewsDay = new CarbonImmutable($year . "-11-30", 'Europe/London');
@@ -43,6 +45,7 @@ class Scotland extends Wales
         return [$key => $stAndrewsDay];
     }
 
+    /** @return array<string, CarbonImmutable> */
     protected function oneOffHolidays(int $year): array
     {
         return match ($year) {
@@ -80,7 +83,7 @@ class Scotland extends Wales
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easterSunday = CarbonImmutable::createFromTimestamp(easter_date($year))
+        $easterSunday = CarbonImmutable::createFromTimestamp($this->easter($year))
             ->setTimezone('Europe/London');
 
         $goodFriday = $easterSunday->subDays(2);

@@ -6,6 +6,6 @@ class England extends Wales
 {
     public function countryCode(): string
     {
-        return 'uk-eng';
+        return 'gb-eng';
     }
 }

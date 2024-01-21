@@ -8,9 +8,10 @@ class NorthernIreland extends Wales
 {
     public function countryCode(): string
     {
-        return 'uk-nir';
+        return 'gb-nir';
     }
 
+    /** @return array<string, CarbonImmutable> */
     private function stPatricksDay(int $year): array
     {
         $stPatricksDay = new CarbonImmutable($year . "-03-17", 'Europe/London');
@@ -24,6 +25,7 @@ class NorthernIreland extends Wales
         return [$key => $stPatricksDay];
     }
 
+    /** @return array<string, CarbonImmutable> */
     private function battleOfTheBoyne(int $year): array
     {
         $battleOfTheBoyne = new CarbonImmutable($year . "-07-12", 'Europe/London');
@@ -37,6 +39,7 @@ class NorthernIreland extends Wales
         return [$key => $battleOfTheBoyne];
     }
 
+    /** @return array<string, CarbonImmutable> */
     protected function oneOffHolidays(int $year): array
     {
         return match ($year) {
@@ -74,7 +77,7 @@ class NorthernIreland extends Wales
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easterSunday = CarbonImmutable::createFromTimestamp(easter_date($year))
+        $easterSunday = CarbonImmutable::createFromTimestamp($this->easter($year))
             ->setTimezone('Europe/London');
 
         $goodFriday = $easterSunday->subDays(2);

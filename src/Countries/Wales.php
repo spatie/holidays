@@ -8,9 +8,10 @@ class Wales extends Country
 {
     public function countryCode(): string
     {
-        return 'uk-cym';
+        return 'gb-cym';
     }
 
+    /** @return array<string, CarbonImmutable> */
     protected function christmasDay(int $year): array
     {
         $christmasDay = new CarbonImmutable($year . "-12-25", 'Europe/London');
@@ -29,7 +30,7 @@ class Wales extends Country
         return [$key => $christmasDay];
     }
 
-
+    /** @return array<string, CarbonImmutable> */
     protected function boxingDay(int $year): array
     {
         $christmasDay = new CarbonImmutable($year . "-12-25", 'Europe/London');
@@ -49,7 +50,7 @@ class Wales extends Country
         return [$key => $boxingDay];
     }
 
-
+    /** @return array<string, CarbonImmutable> */
     protected function newYearsDay(int $year): array
     {
         $newYearsDay = new CarbonImmutable($year . "-01-01", 'Europe/London');
@@ -63,6 +64,7 @@ class Wales extends Country
         return [$key => $newYearsDay];
     }
 
+    /** @return array<string, CarbonImmutable> */
     protected function earlyMayBankHoliday(int $year): array
     {
         if ($year === 2020) {
@@ -80,6 +82,10 @@ class Wales extends Country
         return ['Early May bank holiday' => new CarbonImmutable("first monday of may {$year}", 'Europe/London')];
     }
 
+    /**
+     * @param  int  $year
+     * @return array|CarbonImmutable[]
+     */
     protected function oneOffHolidays(int $year): array
     {
         return match ($year) {
