@@ -14,7 +14,6 @@ class Egypt extends Country
     }
 
     /**
-     * @param int $year
      * @return array<string, bool|CarbonImmutable>
      */
     protected function allHolidays(int $year): array
@@ -26,7 +25,6 @@ class Egypt extends Country
     }
 
     /**
-     * @param int $year
      * @return array<string, bool|CarbonImmutable>
      */
     protected function variableHolidays(int $year): array
@@ -61,7 +59,6 @@ class Egypt extends Country
     }
 
     /**
-     * @param int $year
      * @return array<string, bool|CarbonImmutable>
      */
     private function getFixedHolidays(int $year): array
@@ -74,7 +71,7 @@ class Egypt extends Country
             'June 30 Revolution Day' => CarbonImmutable::create($year, 6, 30),
             'Revolution Day' => CarbonImmutable::create($year, 7, 23),
             'Armed Forces Day' => CarbonImmutable::create($year, 10, 6),
-            'Spring Festival' => $this->orthodoxEaster($year)->addDay()->toImmutable()
+            'Spring Festival' => $this->orthodoxEaster($year)->addDay()->toImmutable(),
         ];
 
         foreach ($holidays as $name => $date) {
@@ -85,8 +82,7 @@ class Egypt extends Country
     }
 
     /**
-     * @param array<string, string> $hijriHolidays
-     * @param int $year
+     * @param  array<string, string>  $hijriHolidays
      * @return array<string, CarbonImmutable>
      */
     private function convertHijriToGregorianHolidays(array $hijriHolidays, int $year): array
@@ -100,15 +96,14 @@ class Egypt extends Country
          * See: https://github.com/spatie/holidays/pull/56/
          * ---------------------------------------------------------------
          */
-
         Hijri::setDefaultAdjustment(-1);
 
-        $currentHijriYear = (int)Hijri::convertToHijri($year . "-01-01")->format('Y');
+        $currentHijriYear = (int) Hijri::convertToHijri($year.'-01-01')->format('Y');
         $gregorianHolidays = [];
 
         foreach ($hijriHolidays as $holidayName => $hijriDate) {
             $gregorianDate = $this->getGregorianDateForHijriHoliday($hijriDate, $currentHijriYear, $year);
-            if (!is_null($gregorianDate)) {
+            if (! is_null($gregorianDate)) {
                 $gregorianHolidays[$holidayName] = $gregorianDate;
             }
         }
@@ -116,22 +111,16 @@ class Egypt extends Country
         return $gregorianHolidays;
     }
 
-    /**
-     * @param string $hijriDate
-     * @param int $hijriYear
-     * @param int $gregorianYear
-     * @return CarbonImmutable|null
-     */
     private function getGregorianDateForHijriHoliday(string $hijriDate, int $hijriYear, int $gregorianYear): ?CarbonImmutable
     {
-        list($month, $day) = explode('-', $hijriDate);
-        $currentYearDate = Hijri::convertToGregorian((int)$day, (int)$month, $hijriYear);
+        [$month, $day] = explode('-', $hijriDate);
+        $currentYearDate = Hijri::convertToGregorian((int) $day, (int) $month, $hijriYear);
 
         if ($currentYearDate->format('Y') == $gregorianYear) {
             return $currentYearDate->toImmutable();
         }
 
-        $nextYearDate = Hijri::convertToGregorian((int)$day, (int)$month, $hijriYear + 1);
+        $nextYearDate = Hijri::convertToGregorian((int) $day, (int) $month, $hijriYear + 1);
         if ($nextYearDate->format('Y') == $gregorianYear) {
             return $nextYearDate->toImmutable();
         }
@@ -140,8 +129,6 @@ class Egypt extends Country
     }
 
     /**
-     * @param string $name
-     * @param CarbonImmutable|false $date
      * @return array<string, CarbonImmutable>
      */
     private function adjustForWeekend(string $name, CarbonImmutable|false $date): array
@@ -152,13 +139,13 @@ class Egypt extends Country
         if ($date) {
             if ($date->isFriday() || $date->isSaturday()) {
                 // If the holiday falls on a weekend (Friday or Saturday), it is observed on the following Sunday
-                $adjustedHolidays['Day off for ' . $name] = $date->next(CarbonInterface::SUNDAY);
+                $adjustedHolidays['Day off for '.$name] = $date->next(CarbonInterface::SUNDAY);
             } elseif ($date->isSunday() || $date->isThursday()) {
                 // If the holiday falls on a Sunday or Thursday, it is observed on the same day
                 $adjustedHolidays[$name] = $date;
             } else {
                 // If the holiday falls on a weekday (Monday, Tuesday, Wednesday), it is observed on the following Thursday
-                $adjustedHolidays['Day off for ' . $name] = $date->next(CarbonInterface::THURSDAY);
+                $adjustedHolidays['Day off for '.$name] = $date->next(CarbonInterface::THURSDAY);
             }
         }
 
