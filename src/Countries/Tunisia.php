@@ -7,8 +7,6 @@ use GeniusTS\HijriDate\Hijri;
 
 class Tunisia extends Country
 {
-    private int $adjustmentDays = 1;
-
     public function countryCode(): string
     {
         return 'tn';
@@ -33,19 +31,29 @@ class Tunisia extends Country
      * as they are based on the Islamic Hijri (lunar) calendar. These holidays do not have a fixed date and
      * occur based on the lunar calendar sequence. The order listed reflects the chronological occurrence
      * of these holidays throughout the year.
+     * @param int $year
+     * @return array<string, CarbonImmutable>
      */
     protected function variableHolidays(int $year): array
     {
         return [
             'Islamic new year' => $this->getHijriDateAsGregorian(1, 1, $year + 1),
             'Birthday of the Prophet Muhammad' =>  $this->getHijriDateAsGregorian(12, 3, $year + 1),
-            'Eid al-Fitr' =>  $this->getHijriDateAsGregorian(1, 10, $year, $this->adjustmentDays),
-            'Eid al-Fitr - 2nd day' =>  $this->getHijriDateAsGregorian(2, 10, $year, $this->adjustmentDays),
-            'Eid al-Adha' =>  $this->getHijriDateAsGregorian(10, 12, $year, $this->adjustmentDays),
-            'Eid al-Adha - 2nd day' =>  $this->getHijriDateAsGregorian(11, 12, $year, $this->adjustmentDays),
+            'Eid al-Fitr' =>  $this->getHijriDateAsGregorian(1, 10, $year, 1),
+            'Eid al-Fitr - 2nd day' =>  $this->getHijriDateAsGregorian(2, 10, $year, 1),
+            'Eid al-Adha' =>  $this->getHijriDateAsGregorian(10, 12, $year, 1),
+            'Eid al-Adha - 2nd day' =>  $this->getHijriDateAsGregorian(11, 12, $year, 1),
         ];
     }
 
+    /**
+     * Convert Hijri dates to Gregorian
+     * @param int $hijriDay
+     * @param int $hijriMonth
+     * @param int $hijriYear
+     * @param int $adjustmentDays
+     * @return CarbonImmutable
+     */
     protected function getHijriDateAsGregorian(
         int $hijriDay,
         int $hijriMonth,
