@@ -112,7 +112,7 @@ class Algeria extends Country
      * Get the two days following an Eid day.
      *
      * @param CarbonImmutable $eidDay
-     * @return array
+     * @return array<int, CarbonImmutable>
      */
     protected function getDaysFollowingEid(CarbonImmutable $eidDay): array
     {
