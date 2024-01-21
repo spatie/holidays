@@ -1,15 +1,15 @@
 [
     {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
         "name": "Good Friday",
-        "date": "1969-12-30"
+        "date": "2024-03-29"
     },
     {
         "name": "Easter Monday",
-        "date": "1970-01-02"
-    },
-    {
-        "name": "New Year's Day",
-        "date": "2024-01-01"
+        "date": "2024-04-01"
     },
     {
         "name": "Early May bank holiday",
