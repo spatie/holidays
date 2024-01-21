@@ -11,7 +11,7 @@ class Poland extends Country
         return 'pl';
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonImmutable|string> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -23,7 +23,7 @@ class Poland extends Country
             'Wszystkich Świętych' => '11-01',
             'Święto Niepodległości' => '11-11',
             'Boże Narodzenie' => '12-25',
-            'Boże Narodzenie' => '12-26',
+            'Drugi Dzień Bożego Narodzenia' => '12-26',
         ], $this->variableHolidays($year));
     }
 
@@ -37,7 +37,6 @@ class Poland extends Country
             'Poniedziałek Wielkanocny' => $easter->addDay(),
             'Zielone Świątki' => $easter->addWeeks(7),
             'Boże Ciało' => $easter->addDays(60),
-
         ];
     }
 }
