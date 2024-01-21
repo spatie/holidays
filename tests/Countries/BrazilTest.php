@@ -15,4 +15,4 @@ it('can calculate brazil holidays', function () {
         ->not()->toBeEmpty();
 
     expect(formatDates($holidays))->toMatchSnapshot();
-})->skip('Still an issue');
+});
