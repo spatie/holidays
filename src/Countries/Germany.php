@@ -27,8 +27,7 @@ class Germany extends Country
     protected function variableHolidays(int $year): array
     {
 
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Berlin');
+        $easter = $this->easter($year);
 
         return [
             'Karfreitag' => $easter->subDays(2),
