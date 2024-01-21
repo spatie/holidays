@@ -11,7 +11,7 @@ class Egypt extends Country
         return 'eg';
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, string|CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -39,7 +39,7 @@ class Egypt extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, string|CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         return [
