@@ -154,7 +154,7 @@ class Egypt extends Country
                 // If the holiday falls on a weekend (Friday or Saturday), it is observed on the following Sunday
                 $adjustedHolidays['Day off for ' . $name] = $date->next(CarbonInterface::SUNDAY);
             } elseif ($date->isSunday() || $date->isThursday()) {
-                // If the holiday falls on a Sunday, it is observed on the same day
+                // If the holiday falls on a Sunday or Thursday, it is observed on the same day
                 $adjustedHolidays[$name] = $date;
             } else {
                 // If the holiday falls on a weekday (Monday, Tuesday, Wednesday), it is observed on the following Thursday
