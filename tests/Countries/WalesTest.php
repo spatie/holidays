@@ -41,6 +41,24 @@ it('calculates welsh holidays by date', function (string $name, string $date) {
     ['Boxing Day (substitute day)', '2026-12-28'],
 ]);
 
+it('calculates welsh easter holidays by date', function (string $name, string $date) {
+
+    $testDate = CarbonImmutable::parse($date);
+
+    $holidayName = Holidays::for('gb-cym')->getName($testDate);
+    $isHoliday = Holidays::for('gb-cym')->isHoliday($testDate);
+
+    expect($holidayName)->toBe($name)->and($isHoliday)->toBeTrue();
+
+})->with([
+    ['Good Friday', '2024-03-29'],
+    ['Easter Monday', '2024-04-01'],
+    ['Good Friday', '2025-04-18'],
+    ['Easter Monday', '2025-04-21'],
+    ['Good Friday', '2026-04-03'],
+    ['Easter Monday', '2026-04-06'],
+]);
+
 it( 'can calculate welsh holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 

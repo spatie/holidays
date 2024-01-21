@@ -77,7 +77,7 @@ class NorthernIreland extends Wales
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easterSunday = CarbonImmutable::createFromTimestamp($this->easter($year))
+        $easterSunday = CarbonImmutable::createFromTimestamp(easter_date($year))
             ->setTimezone('Europe/London');
 
         $goodFriday = $easterSunday->subDays(2);
