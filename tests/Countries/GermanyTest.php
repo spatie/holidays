@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Countries\Germany;
 use Spatie\Holidays\Holidays;
 
 it('can calculate german holidays', function () {
@@ -44,4 +45,31 @@ it('can calculate german buß- und bettag in year 1990', function () {
     expect($holiday)->toBeTrue();
 
 });
+it('can get german holidays for other regions', function (string $region) {
+    $holidays = Holidays::for(Germany::make('DE-'.$region))->get();
+
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    expect(formatDates($holidays))->toMatchSnapshot();
+})->with(
+    [
+        'BW',
+        'BY',
+        'BE',
+        'BB',
+        'HB',
+        'HH',
+        'HE',
+        'MV',
+        'NI',
+        'NW',
+        'RP',
+        'SL',
+        'SN',
+        'ST',
+        'SH',
+        'TH',]
+);
 

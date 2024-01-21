@@ -61,6 +61,7 @@ class Germany extends Country
     protected function regionHolidays(int $year): array
     {
         $easter = $this->easter($year);
+       
         switch ($this->region) {
             case 'DE-BW':
                 return [
@@ -129,17 +130,11 @@ class Germany extends Country
                 $mvHolidays = [];
                 if($year >=1990)
                 {
-                    array_push($mvHolidays, [
-                        'Reformationstag' => '10-31',
-                    ]);
-                
+                    $mvHolidays['Reformationstag'] = '10-31';
                 }
                 if($year >=2023)
                 {
-                    array_push($mvHolidays, [
-                        'Internationaler Frauentag'=> '03-08',
-                    ]);
-                
+                    $mvHolidays['Internationaler Frauentag'] = '03-08';
                 }
                 return $mvHolidays;
             case 'DE-NW':
@@ -159,16 +154,12 @@ class Germany extends Country
                 $snHolidays = [];
                 if($year >=1990)
                 {
-                    array_push($snHolidays, [
-                        'Reformationstag' => '10-31',
-                    ]);
+                    $snHolidays['Reformationstag'] = '10-31';
                 
                 }
                 if($year >1994)
                 {
-                    array_push($snHolidays, [
-                        'Buß- und Bettag' => $this->getRepentanceAndPrayerDay($year)
-                    ]);
+                    $snHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
                 
                 }
                 return $snHolidays;
@@ -176,29 +167,20 @@ class Germany extends Country
                 $stHolidays = [];
                 if($year >=1990)
                 {
-                    array_push($stHolidays, [
-                        'Reformationstag' => '10-31',
-                    ]);
+                    $stHolidays['Reformationstag'] = '10-31';
                 
                 }
                 if($year >=1991){
-                    array_push($stHolidays, [
-                        'Heilige Drei Könige' => '01-06',
-                    ]);
+                    $stHolidays['Weltkindertag'] = '09-20';
                 }
             case 'DE-TH':
                 $thHolidays = [];
                 if($year >=1990)
                 {
-                    array_push($thHolidays, [
-                        'Reformationstag' => '10-31',
-                    ]);
-                
+                    $thHolidays['Reformationstag'] = '10-31';
                 }
                 if($year >=2019){
-                    array_push($thHolidays, [
-                        'Weltkindertag' => '09-20',
-                    ]);
+                    $thHolidays['Weltkindertag'] = '09-20';
                 }
                 return $thHolidays;
                 
