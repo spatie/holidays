@@ -7,11 +7,11 @@
 This package can calculate public holidays for a country.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 
 // returns an array of Belgian holidays
 // for the current year
-$holidays = Holidays::for('be')->get(); 
+$holidays = Holidays::for('be')->get();
 ```
 
 ## Support us
@@ -39,17 +39,7 @@ We support the countries listed in [this directory](https://github.com/spatie/ho
 You can get all holidays for a country by using the `get` method.
 
 ```php
-use Spatie\Holidays\Holiday;
-
-// returns an array of Belgian holidays
-// for the current year
-$holidays = Holidays::for('be')->get(); 
-```
-
-Alternatively, you could also pass an instance of `Country` to the `for` method.
-
-```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 use Spatie\Holidays\Countries\Belgium;
 
 // returns an array of Belgian holidays
@@ -57,12 +47,23 @@ use Spatie\Holidays\Countries\Belgium;
 $holidays = Holidays::for(Belgium::make())->get(); 
 ```
 
+Alternatively, you could also pass an [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) code to the `for` method.
+In case of region based holidays, these will not be included. Use a country class instead.
+
+```php
+use Spatie\Holidays\Holidays;
+
+// returns an array of Belgian holidays
+// for the current year
+$holidays = Holidays::for('be')->get();
+```
+
 ### Getting holidays for a specific year
 
 You can also pass a specific year.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 
 $holidays = Holidays::for(country: 'be', year: 2024))->get();
 ```
@@ -72,7 +73,7 @@ $holidays = Holidays::for(country: 'be', year: 2024))->get();
 If you need to see if a date is a holiday, you can use the `isHoliday` method.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 
 Holidays::for('be')->isHoliday('2024-01-01'); // true
 ```
@@ -82,10 +83,49 @@ Holidays::for('be')->isHoliday('2024-01-01'); // true
 If you need the name of the holiday, you can use the `getName` method.
 
 ```php
-use Spatie\Holidays\Holiday;
+use Spatie\Holidays\Holidays;
 
 Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
+
+### Package limitations
+1. Islamic holidays are not supported (yet)
+
+## Contributing
+
+This is a community driven package. If you find any errors, please create an issue or a pull request.
+
+## Adding a new country
+
+1. Create a new class in the `Countries` directory. It should extend the `Country` class.
+2. Add a test for the new country in the `tests` directory.
+3. Run the tests so a snapshot gets created.
+4. Verify the result in the newly created snapshot is correct.
+
+In case your country has specific rules for calculating holidays,
+for example region specific holidays, you can pass this to the constructor of your country class.
+
+```php
+$holidays = Holidays::for(Austria::make(region: 'de-bw'))->get();
+```
+
+The value, `de-bw`, will be passed to the region parameter of the constructor of a country.
+
+```php
+class Austria extends Country
+{
+    protected function __construct(
+        protected ?string $region = null,
+    ) {
+    }
+
+    protected function allHolidays(int $year): array
+    {
+        // Here you can use $this->region (or other variables) to calculate holidays
+    }
+```
+
+Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for more details.
 
 ## Testing
 
@@ -96,10 +136,6 @@ composer test
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
