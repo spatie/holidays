@@ -25,8 +25,12 @@ class Vietnam extends Country
             'Ngày Giải Phóng Miền Nam, Thống Nhất Đất Nước' => '04-30',
             // Labour Day
             'Ngày Quốc Tế Lao Động' => '05-01',
+            //A day before the Independence Day
+            'Ngày Trước Quốc Khánh' => '09-01',
             // Independence Day
             'Ngày Quốc Khánh' => '09-02',
+            //A day after the Independence Day
+            'Ngày Sau Quốc Khánh' => '09-03',
         ], $this->variableHolidays($year));
     }
 
