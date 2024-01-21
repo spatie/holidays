@@ -10,7 +10,7 @@ trait ChineseCalendar
 {
     protected string $timezone = 'Asia/Shanghai';
 
-    public function setTimezone(string $timezone): static
+    public function setTimezoneForChineseCalendar(string $timezone): static
     {
         $this->timezone = $timezone;
 
