@@ -25,8 +25,7 @@ class Indonesia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Asia/Jakarta');
+        $easter = $this->easter($year);
 
         return [
             'Jumat Agung' => $easter->subDays(1),
