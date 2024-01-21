@@ -73,7 +73,7 @@ class Egypt extends Country
             'Revolution Day 2011' => CarbonImmutable::create($year, 1, 25),
             'Sinai Liberation Day' => CarbonImmutable::create($year, 4, 25),
             'Labour Day' => CarbonImmutable::create($year, 5, 1),
-            'June 30 Revolution' => CarbonImmutable::create($year, 6, 30),
+            'June 30 Revolution Day' => CarbonImmutable::create($year, 6, 30),
             'Revolution Day' => CarbonImmutable::create($year, 7, 23),
             'Armed Forces Day' => CarbonImmutable::create($year, 10, 6),
             'Spring Festival' => $this->orthodoxEaster($year)->addDay()->toImmutable()
