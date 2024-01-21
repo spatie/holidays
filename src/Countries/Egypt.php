@@ -33,18 +33,6 @@ class Egypt extends Country
     {
         $orthodoxEaster = $this->orthodoxEaster($year);
 
-        $otherHolidays = [
-            'Coptic Good Friday' => $orthodoxEaster->subDays(2)->toImmutable(),
-            'Coptic Holy Saturday' => $orthodoxEaster->subDays()->toImmutable(),
-            'Coptic Easter Sunday' => $orthodoxEaster->toImmutable(),
-            'Flooding of the Nile' => CarbonImmutable::create($year, 8, 15),
-            'March Equinox' => CarbonImmutable::create($year, 3, 20),
-            'June Solstice' => CarbonImmutable::create($year, 6, 21),
-            'September Equinox' => CarbonImmutable::create($year, 9, 22),
-            'Nayrouz' => CarbonImmutable::create($year, 9, 11),
-            'December Solstice' => CarbonImmutable::create($year, 12, 21),
-        ];
-
         $hijriHolidays = [
             'Islamic New Year' => '01-01',
             'Ashura' => '01-10',
@@ -59,7 +47,17 @@ class Egypt extends Country
             'Eid al-Adha Day 4' => '12-13',
         ];
 
-        return array_merge($otherHolidays, $this->convertHijriToGregorianHolidays($hijriHolidays, $year));
+        return array_merge([
+            'Coptic Good Friday' => $orthodoxEaster->subDays(2)->toImmutable(),
+            'Coptic Holy Saturday' => $orthodoxEaster->subDays()->toImmutable(),
+            'Coptic Easter Sunday' => $orthodoxEaster->toImmutable(),
+            'Flooding of the Nile' => CarbonImmutable::create($year, 8, 15),
+            'March Equinox' => CarbonImmutable::create($year, 3, 20),
+            'June Solstice' => CarbonImmutable::create($year, 6, 21),
+            'September Equinox' => CarbonImmutable::create($year, 9, 22),
+            'Nayrouz' => CarbonImmutable::create($year, 9, 11),
+            'December Solstice' => CarbonImmutable::create($year, 12, 21),
+        ], $this->convertHijriToGregorianHolidays($hijriHolidays, $year));
     }
 
     /**
