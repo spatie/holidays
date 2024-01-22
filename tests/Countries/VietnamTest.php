@@ -35,3 +35,21 @@ it('can calculate the Lunar New Year holiday', function ($year, $expectedHoliday
     ['year' => 2021, 'expected_holiday' => ['2021-02-11', '2021-02-12', '2021-02-13', '2021-02-14', '2021-02-15']],
     ['year' => 2019, 'expected_holiday' => ['2019-02-04', '2019-02-05', '2019-02-06', '2019-02-07', '2019-02-08']],
 ]);
+
+it('can calculate the holiday of independence', function ($year, $expectedHoliday) {
+    CarbonImmutable::setTestNowAndTimezone("{$year}-01-01", 'Asia/Ho_Chi_Minh');
+
+    $holidays = Holidays::for(country: 'vn')->get();
+
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    $independenceHoliday = array_map(fn ($date) => $date['date'], formatDates($holidays));
+
+    expect($independenceHoliday)->toContain(...$expectedHoliday);
+})->with([
+    ['year' => 2023, 'expected_holiday' => ['2023-09-01', '2023-09-02']],
+    ['year' => 2022, 'expected_holiday' => ['2022-09-01', '2022-09-02']],
+    ['year' => 2021, 'expected_holiday' => ['2021-09-02', '2021-09-03']],
+]);
