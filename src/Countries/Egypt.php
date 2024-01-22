@@ -125,6 +125,11 @@ class Egypt extends Country
             return $currentYearDate->toImmutable();
         }
 
+        /**
+         * If it does not fall within the specified Gregorian year, we're checking if the converted date
+         * falls within the next Gregorian year. This is to account for the fact that the Hijri year
+         * may start in the previous (that is to say, currently specified) Gregorian year.
+         */
         $nextYearDate = Hijri::convertToGregorian((int) $day, (int) $month, $hijriYear + 1);
         if ($nextYearDate->format('Y') == $gregorianYear) {
             return $nextYearDate->toImmutable();
