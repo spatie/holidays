@@ -116,6 +116,11 @@ class Egypt extends Country
         [$month, $day] = explode('-', $hijriDate);
         $currentYearDate = Hijri::convertToGregorian((int) $day, (int) $month, $hijriYear);
 
+        /**
+         * Converts a Hijri date to a Gregorian date and checks its alignment with the Gregorian year.
+         * Since a Hijri year is about 11 days shorter than a Gregorian year, we're checking
+         * if the converted date falls within the specified Gregorian year.
+         */
         if ($currentYearDate->format('Y') == $gregorianYear) {
             return $currentYearDate->toImmutable();
         }
