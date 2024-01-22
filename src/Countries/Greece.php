@@ -30,11 +30,7 @@ class Greece extends Country
     protected function variableHolidays(int $year): array
     {
 
-        $orthodox_easter = CarbonImmutable::createFromTimestamp(
-           $this->calculateOrthodoxEaster($year)
-        )->setTimezone("Europe/Athens");
-        //$orthodox_easter = $this->orthodoxEaster($year);
-
+        $orthodox_easter = $this->orthodoxEaster($year);
         $protomagia = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-05-01");
 
         if (
@@ -57,24 +53,5 @@ class Greece extends Country
             'Δευτέρα του Πάσχα' => $orthodox_easter->addDay(),
             'Αγίου Πνεύματος'   => $orthodox_easter->addDays(50), //always Monday
         ];
-    }
-
-    /** @return integer */
-    protected function calculateOrthodoxEaster(int $year): int
-    {
-      $a = $year % 4;
-      $b = $year % 7;
-      $c = $year % 19;
-      $d = (19 * $c + 15) % 30;
-      $e = (2 * $a + 4 * $b - $d + 34) % 7;
-      $month = (int) (($d + $e + 114) / 31);
-      $day = (($d + $e + 114) % 31) + 1;
-      // julian to gregorian
-      $jtg = (int) ($year / 100) - (int) ($year / 400) - 2;
-
-      $easterDate = mktime(0, 0, 0, $month, $day + $jtg, $year);
-
-      return (int) $easterDate;
-
     }
 }
