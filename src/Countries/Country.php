@@ -51,21 +51,16 @@ abstract class Country
     protected function orthodoxEaster(int $year): CarbonImmutable
     {
         $a = $year % 4;
-      $b = $year % 7;
-      $c = $year % 19;
-      $d = (19 * $c + 15) % 30;
-      $e = (2 * $a + 4 * $b - $d + 34) % 7;
-      $month = (int) (($d + $e + 114) / 31);
-      $day = (($d + $e + 114) % 31) + 1;
-      // julian to gregorian
-      $jtg = (int) ($year / 100) - (int) ($year / 400) - 2;
+        $b = $year % 7;
+        $c = $year % 19;
+        $d = (19 * $c + 15) % 30;
+        $e = (2 * $a + 4 * $b - $d + 34) % 7;
+        $month = (int) (($d + $e + 114) / 31);
+        $day = (($d + $e + 114) % 31) + 1;
+        // julian to gregorian
+        $jtg = (int) ($year / 100) - (int) ($year / 400) - 2;
+        $easterDate = mktime(0, 0, 0, $month, $day + $jtg, $year);
 
-      $easterDate = mktime(0, 0, 0, $month, $day + $jtg, $year);
-
-        /*$timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
-        $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
-
-        return CarbonImmutable::createFromTimestamp(strtotime("+$daysDifference days", $timestamp));*/
         return CarbonImmutable::createFromTimestamp($easterDate);
     }
 
