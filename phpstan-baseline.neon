@@ -21,21 +21,6 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Cannot call method addDay\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
-			count: 1
-			path: src/Countries/Greece.php
-
-		-
-			message: "#^Cannot call method isSunday\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
-			count: 1
-			path: src/Countries/Greece.php
-
-		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Greece\\:\\:variableHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
-			count: 1
-			path: src/Countries/Greece.php
-
-		-
 			message: "#^Cannot call method isSunday\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
 			count: 1
 			path: src/Countries/Netherlands.php
