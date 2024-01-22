@@ -31,6 +31,7 @@ class Greece extends Country
     {
 
         $orthodox_easter = $this->orthodoxEaster($year);
+        /** @var CarbonImmutable $protomagia */
         $protomagia = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-05-01");
 
         if (
