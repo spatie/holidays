@@ -30,29 +30,29 @@ class Greece extends Country
     protected function variableHolidays(int $year): array
     {
 
-        $orthodox_easter = $this->orthodoxEaster($year);
+        $orthodoxEaster = $this->orthodoxEaster($year);
         /** @var CarbonImmutable $protomagia */
         $protomagia = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-05-01");
 
         if (
-            $protomagia == $orthodox_easter->subDays(2) ||
-            $protomagia == $orthodox_easter->subDays(1) ||
-            $protomagia == $orthodox_easter ||
-            $protomagia == $orthodox_easter->addDay()
+            $protomagia == $orthodoxEaster->subDays(2) ||
+            $protomagia == $orthodoxEaster->subDays(1) ||
+            $protomagia == $orthodoxEaster ||
+            $protomagia == $orthodoxEaster->addDay()
         ) {
-            $protomagia = $orthodox_easter->addDays(2);
+            $protomagia = $orthodoxEaster->addDays(2);
         }
         if ($protomagia->isSunday()) {
             $protomagia = $protomagia->addDay();
         }
 
         return [
-            'Καθαρά Δευτέρα'    => $orthodox_easter->subDays(48), //always Monday
+            'Καθαρά Δευτέρα'    => $orthodoxEaster->subDays(48), //always Monday
             'Πρωτομαγιά'        => $protomagia,
-            'Μεγάλη Παρασκευή'  => $orthodox_easter->subDays(2),
-            'Κυριακή του Πάσχα' => $orthodox_easter,
-            'Δευτέρα του Πάσχα' => $orthodox_easter->addDay(),
-            'Αγίου Πνεύματος'   => $orthodox_easter->addDays(50), //always Monday
+            'Μεγάλη Παρασκευή'  => $orthodoxEaster->subDays(2),
+            'Κυριακή του Πάσχα' => $orthodoxEaster,
+            'Δευτέρα του Πάσχα' => $orthodoxEaster->addDay(),
+            'Αγίου Πνεύματος'   => $orthodoxEaster->addDays(50), //always Monday
         ];
     }
 }
