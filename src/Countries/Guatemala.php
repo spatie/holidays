@@ -27,8 +27,7 @@ class Guatemala extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('America/Guatemala');
+        $easter = $this->easter($year);
 
         return [
             'Jueves Santo' => $easter->subDays(3),
