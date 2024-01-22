@@ -8,11 +8,11 @@ use IntlDateFormatter;
 
 trait ChineseCalendar
 {
-    protected string $timezone = 'Asia/Shanghai';
+    protected string $asianTimezone = 'Asia/Shanghai';
 
-    public function setTimezoneForChineseCalendar(string $timezone): static
+    public function setTimezoneForChineseCalendar(string $asianTimezone): static
     {
-        $this->timezone = $timezone;
+        $this->asianTimezone = $asianTimezone;
 
         return $this;
     }
@@ -23,7 +23,7 @@ trait ChineseCalendar
         
         return (new CarbonImmutable())
             ->setTimeStamp($timestamp)
-            ->setTimezone(new DateTimeZone($this->timezone));
+            ->setTimezone(new DateTimeZone($this->asianTimezone));
     }
 
     protected function getFormatter(): IntlDateFormatter
@@ -32,7 +32,7 @@ trait ChineseCalendar
             locale: 'zh-CN@calendar=chinese',
             dateType: IntlDateFormatter::SHORT,
             timeType: IntlDateFormatter::NONE,
-            timezone: $this->timezone,
+            timezone: $this->asianTimezone,
             calendar: IntlDateFormatter::TRADITIONAL
         );
     }
