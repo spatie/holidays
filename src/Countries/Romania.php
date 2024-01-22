@@ -55,9 +55,6 @@ class Romania extends Country
      * Calculate the date of Orthodox Easter.
      * Source: https://www.php.net/manual/en/function.easter-date.php#83794
      * Theory: https://www.algorithm-archive.org/contents/computus/computus.html
-     *
-     * @param int $year
-     * @return CarbonImmutable
      */
     protected function orthodoxEaster(int $year): CarbonImmutable
     {
