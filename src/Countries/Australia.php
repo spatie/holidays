@@ -25,7 +25,7 @@ class Australia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))->setTimezone('Australia/Sydney');
+        $easter = $this->easter($year)->setTimezone('Australia/Sydney');
 
         return [
             'Good Friday' => $easter->subDays(2),
