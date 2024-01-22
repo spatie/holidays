@@ -18,7 +18,7 @@ class Egypt extends Country
      */
     protected function allHolidays(int $year): array
     {
-        $fixedHolidays = $this->getFixedHolidays($year);
+        $fixedHolidays = $this->fixedHolidays($year);
         $variableHolidays = $this->variableHolidays($year);
 
         return array_merge($fixedHolidays, $variableHolidays);
@@ -61,7 +61,7 @@ class Egypt extends Country
     /**
      * @return array<string, bool|CarbonImmutable>
      */
-    private function getFixedHolidays(int $year): array
+    private function fixedHolidays(int $year): array
     {
         $holidays = [
             'Coptic Christmas Day' => CarbonImmutable::create($year, 1, 7),
