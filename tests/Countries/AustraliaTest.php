@@ -69,27 +69,27 @@ it('does not return the day before afl grand final before 2015', function () {
         ->toBeNull();
 });
 
-it('returns queen\'s birthday before her death', function () {
+it("returns queen's birthday before her death", function () {
     CarbonImmutable::setTestNowAndTimezone('2021-01-22', 'Australia/Perth');
 
     $holidays = Holidays::for(Australia::make('wa'))->get();
 
-    expect(findDate($holidays, 'Queen\'s Birthday'))
+    expect(findDate($holidays, "Queen's Birthday"))
         ->toEqual(CarbonImmutable::create(2021, 9, 27));
 
-    expect(findDate($holidays, 'King\'s Birthday'))
+    expect(findDate($holidays, "King's Birthday"))
         ->toBeNull();
 });
 
-it('returns king\'s birthday after her death', function () {
+it("returns king's birthday after her death", function () {
     CarbonImmutable::setTestNowAndTimezone('2022-01-22', 'Australia/Perth');
 
     $holidays = Holidays::for(Australia::make('wa'))->get();
 
-    expect(findDate($holidays, 'Queen\'s Birthday'))
+    expect(findDate($holidays, "Queen's Birthday"))
         ->toBeNull();
 
-    expect(findDate($holidays, 'King\'s Birthday'))
+    expect(findDate($holidays, "King's Birthday"))
         ->toEqual(CarbonImmutable::create(2022, 9, 26));
 });
 
