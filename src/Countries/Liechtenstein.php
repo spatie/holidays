@@ -11,7 +11,6 @@ class Liechtenstein extends Country
         return 'li';
     }
 
-    /** @return array<string, string|CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -30,8 +29,7 @@ class Liechtenstein extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp($this->easter($year))
-            ->setTimezone('Europe/Vaduz');
+        $easter = $this->easter($year);
 
         return [
             'Ostermontag' => $easter->addDay(),
