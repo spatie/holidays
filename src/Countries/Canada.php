@@ -18,7 +18,7 @@ class Canada extends Country
     {
         return array_merge([
             'New Year\'s Day' => '01-01',
-            'Canada Day' => '07-05',
+            'Canada Day' => '07-01',
             'Christmas Day' => '12-25',
         ], $this->variableHolidays($year));
     }
