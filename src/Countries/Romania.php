@@ -51,30 +51,6 @@ class Romania extends Country
         ];
     }
 
-    /**
-     * Calculate the date of Orthodox Easter.
-     * Source: https://www.php.net/manual/en/function.easter-date.php#83794
-     * Theory: https://www.algorithm-archive.org/contents/computus/computus.html
-     */
-    protected function orthodoxEaster(int $year): CarbonImmutable
-    {
-        $a = $year % 4;
-        $b = $year % 7;
-        $c = $year % 19;
-        $d = (19 * $c + 15) % 30;
-        $e = (2 * $a + 4 * $b - $d + 34) % 7;
-        $month = intval(floor(($d + $e + 114) / 31));
-        $day = (($d + $e + 114) % 31) + 1;
-
-        $easterDate = CarbonImmutable::createFromDate($year, $month, $day);
-
-        // Calculate the difference between Julian and Gregorian calendars
-        $daysToAdd = (int) ($year / 100) - (int) ($year / 400) - 2;
-
-        // Orthodox Church uses Julian calendar to calculate Easter
-        return $easterDate->addDays($daysToAdd);
-    }
-
     protected function orthodoxPentecost(int $year): CarbonImmutable
     {
         $easter = $this->orthodoxEaster($year);
