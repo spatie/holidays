@@ -21,7 +21,16 @@ class Egypt extends Country
         $fixedHolidays = $this->fixedHolidays($year);
         $variableHolidays = $this->variableHolidays($year);
 
-        return array_merge($fixedHolidays, $variableHolidays);
+        return array_merge([
+            // These are fixed, but seasonal holidays that aren't observed in Egypt
+            'New Year\'s Day' => CarbonImmutable::create($year, 1, 1),
+            'Flooding of the Nile' => CarbonImmutable::create($year, 8, 15),
+            'March Equinox' => CarbonImmutable::create($year, 3, 20),
+            'June Solstice' => CarbonImmutable::create($year, 6, 21),
+            'September Equinox' => CarbonImmutable::create($year, 9, 22),
+            'Nayrouz' => CarbonImmutable::create($year, 9, 11),
+            'December Solstice' => CarbonImmutable::create($year, 12, 21),
+        ], $fixedHolidays, $variableHolidays);
     }
 
     /**
@@ -49,12 +58,6 @@ class Egypt extends Country
             'Coptic Good Friday' => $orthodoxEaster->subDays(2)->toImmutable(),
             'Coptic Holy Saturday' => $orthodoxEaster->subDays()->toImmutable(),
             'Coptic Easter Sunday' => $orthodoxEaster->toImmutable(),
-            'Flooding of the Nile' => CarbonImmutable::create($year, 8, 15),
-            'March Equinox' => CarbonImmutable::create($year, 3, 20),
-            'June Solstice' => CarbonImmutable::create($year, 6, 21),
-            'September Equinox' => CarbonImmutable::create($year, 9, 22),
-            'Nayrouz' => CarbonImmutable::create($year, 9, 11),
-            'December Solstice' => CarbonImmutable::create($year, 12, 21),
         ], $this->convertHijriToGregorianHolidays($hijriHolidays, $year));
     }
 
@@ -160,7 +163,6 @@ class Egypt extends Country
             // If the holiday falls on a weekday (Monday, Tuesday, Wednesday), it is observed on the following Thursday
             $adjustedHolidays['Day off for '.$name] = $date->next(CarbonInterface::THURSDAY);
         }
-
 
         return $adjustedHolidays;
     }
