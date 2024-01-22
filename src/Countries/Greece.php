@@ -29,8 +29,8 @@ class Greece extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-
-        $orthodoxEaster = $this->orthodoxEaster($year);
+        // OrthodoxEaster needs to setTimezone
+        $orthodoxEaster = $this->orthodoxEaster($year)->setTimezone("Europe/Athens");
         /** @var CarbonImmutable $protomagia */
         $protomagia = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-05-01");
 
