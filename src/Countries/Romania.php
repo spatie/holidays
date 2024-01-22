@@ -12,7 +12,7 @@ class Romania extends Country
     }
 
     /**
-     * {@inheritDoc}
+     * @return array<string, CarbonImmutable>
      */
     protected function allHolidays(int $year): array
     {
@@ -53,6 +53,14 @@ class Romania extends Country
         ];
     }
 
+    /**
+     * Calculate the date of Orthodox Easter.
+     * Source: https://www.php.net/manual/en/function.easter-date.php#83794
+     * Theory: https://www.algorithm-archive.org/contents/computus/computus.html
+     *
+     * @param int $year
+     * @return CarbonImmutable
+     */
     protected function orthodoxEaster(int $year): CarbonImmutable
     {
         $a = $year % 4;
@@ -63,13 +71,13 @@ class Romania extends Country
         $month = intval(floor(($d + $e + 114) / 31));
         $day = (($d + $e + 114) % 31) + 1;
 
-        $gregorianEaster = CarbonImmutable::createFromDate($year, $month, $day);
+        $easterDate = CarbonImmutable::createFromDate($year, $month, $day);
 
         // Calculate the difference between Julian and Gregorian calendars
         $daysToAdd = (int)($year / 100) - (int)($year / 400) - 2;
 
         // Orthodox Church uses Julian calendar to calculate Easter
-        return $gregorianEaster->addDays($daysToAdd);
+        return $easterDate->addDays($daysToAdd);
     }
 
     protected function orthodoxPentecost(int $year): CarbonImmutable
