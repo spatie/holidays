@@ -1,17 +1,22 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: src/Countries/Brazil.php
-
-		-
 			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Countries/Country.php
 
 		-
+			message: "#^Cannot call method startOfDay\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
+			count: 1
+			path: src/Countries/Country.php
+
+		-
 			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Country\\:\\:get\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\|string\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
+			count: 1
+			path: src/Countries/Country.php
+
+		-
+			message: "#^Parameter \\#1 \\$timestamp of static method Carbon\\\\CarbonImmutable\\:\\:createFromTimestamp\\(\\) expects float\\|int\\|string, int\\|false given\\.$#"
 			count: 1
 			path: src/Countries/Country.php
 
@@ -34,6 +39,11 @@ parameters:
 			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Greece\\:\\:variableHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
 			count: 1
 			path: src/Countries/Greece.php
+
+		-
+			message: "#^Cannot call method setTimezone\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
+			count: 1
+			path: src/Countries/Mexico.php
 
 		-
 			message: "#^Cannot call method isSunday\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"

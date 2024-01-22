@@ -11,7 +11,6 @@ class Greece extends Country
         return 'el';
     }
 
-    /** @return array<string, string|CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -32,9 +31,9 @@ class Greece extends Country
     {
 
         $orthodox_easter = CarbonImmutable::createFromTimestamp(
-            $this->calculateOrthodoxEaster($year)
+           $this->calculateOrthodoxEaster($year)
         )->setTimezone("Europe/Athens");
-
+        //$orthodox_easter = $this->orthodoxEaster($year);
 
         $protomagia = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-05-01");
 

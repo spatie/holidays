@@ -25,6 +25,7 @@
         "ext-calendar": "*"
     },
     "require-dev": {
+        "laravel/pint": "^1.0",
         "laravel/prompts": "^0.1.15",
         "pestphp/pest": "^2.31",
         "phpstan/phpstan": "^1.10.56",
@@ -46,7 +47,7 @@
         "baseline": "vendor/bin/phpstan analyse --generate-baseline",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --allow-risky=yes"
+        "format": "vendor/bin/pint"
     },
     "config": {
         "sort-packages": true,
