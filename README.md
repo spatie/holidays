@@ -48,6 +48,7 @@ $holidays = Holidays::for(Belgium::make())->get();
 ```
 
 Alternatively, you could also pass an [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) code to the `for` method.
+In case of region based holidays, these will not be included. Use a country class instead.
 
 ```php
 use Spatie\Holidays\Holidays;
@@ -87,9 +88,14 @@ use Spatie\Holidays\Holidays;
 Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
 
-## Contributing a new country
+### Package limitations
+1. Islamic holidays are not supported (yet)
 
-If you want to add a new country, you can create a pull request.
+## Contributing
+
+This is a community driven package. If you find any errors, please create an issue or a pull request.
+
+## Adding a new country
 
 1. Create a new class in the `Countries` directory. It should extend the `Country` class.
 2. Add a test for the new country in the `tests` directory.
@@ -103,7 +109,7 @@ for example region specific holidays, you can pass this to the constructor of yo
 $holidays = Holidays::for(Austria::make(region: 'de-bw'))->get();
 ```
 
-The value, `de-bw`, will be passed to the region parameter of the contructor of a country.
+The value, `de-bw`, will be passed to the region parameter of the constructor of a country.
 
 ```php
 class Austria extends Country

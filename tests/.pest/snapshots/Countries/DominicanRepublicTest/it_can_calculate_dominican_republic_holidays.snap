@@ -1,0 +1,38 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "D\u00eda de la Altagracia",
+        "date": "2024-01-21"
+    },
+    {
+        "name": "D\u00eda de Duarte",
+        "date": "2024-01-26"
+    },
+    {
+        "name": "D\u00eda de la Independencia",
+        "date": "2024-02-27"
+    },
+    {
+        "name": "D\u00eda del Trabajo",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "D\u00eda de la Restauraci\u00f3n",
+        "date": "2024-08-16"
+    },
+    {
+        "name": "D\u00eda de las Mercedes",
+        "date": "2024-09-24"
+    },
+    {
+        "name": "D\u00eda de la Constituci\u00f3n",
+        "date": "2024-11-06"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]
