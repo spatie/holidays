@@ -42,6 +42,7 @@ class Vietnam extends Country
         );
     }
 
+    /** @return array<string, CarbonImmutable> */
     protected function getHungKingsFestival(int $year): array
     {
         return [
@@ -50,6 +51,7 @@ class Vietnam extends Country
         ];
     }
 
+    /** @return array<string, CarbonImmutable> */
     protected function getLunarNewYearHoliday(int $year): array
     {
         return [
@@ -66,6 +68,7 @@ class Vietnam extends Country
         ];
     }
 
+    /** @return array<string, CarbonImmutable> */
     protected function getTheExtraDayForIndependenceDay(int $year): array
     {
         if ($year < 2021) {
