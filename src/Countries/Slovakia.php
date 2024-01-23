@@ -33,8 +33,7 @@ class Slovakia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Bratislava');
+        $easter = $this->easter($year);
 
         return [
             'Veľkonočný pondelok' => $easter->addDay(),
