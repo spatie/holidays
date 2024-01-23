@@ -28,6 +28,11 @@ class Holidays
         return new static($country, $year);
     }
 
+    public static function has(string $country): bool
+    {
+        return Country::find($country) instanceof Country;
+    }
+
     /** @return array<array{name: string, date: string}> */
     public function get(Country|string|null $country = null, ?int $year = null): array
     {
