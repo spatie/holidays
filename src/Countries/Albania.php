@@ -26,7 +26,7 @@ class Albania extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonImmutable|string> */
     protected function variableHolidays(int $year): array
     {
         return [
@@ -40,13 +40,13 @@ class Albania extends Country
     /**
      * 
      */
-    private function getEidAlFitrHoliday(int $year): CarbonImmutable
+    private function getEidAlFitrHoliday(int $year): string
     {
         /**
          * Provided until 2034 by qppstudio.net.
          * https://www.qppstudio.net/global-holidays-observances/eid-al-fitr-end-of-ramadan.htm
          */
-        $date = match ($year) {
+        return match ($year) {
             2024 => '04-10',
             2025 => '03-30',
             2026 => '03-20',
@@ -60,19 +60,16 @@ class Albania extends Country
             2034 => '12-12',
             default => '01-01' // Temporary placeholder; requires ongoing maintenance.
         };
-
-        return CarbonImmutable::createFromFormat('Y-m-d', "$year-$date")
-            ->startOfDay();
     }
 
-    private function getEidAlAdhaHoliday(int $year): CarbonImmutable
+    private function getEidAlAdhaHoliday(int $year): string
     {
         /**
          * Tentative dates.
          * Provided until 2034 by timeanddate.com.
          * https://www.timeanddate.com/holidays/us/eid-al-adha
          */
-        $date = match ($year) {
+        return match ($year) {
             2024 => '06-17',
             2025 => '06-07',
             2026 => '05-27',
@@ -86,9 +83,6 @@ class Albania extends Country
             2034 => '03-01',
             default => '01-01' // Temporary placeholder; requires ongoing maintenance.
         };
-
-        return CarbonImmutable::createFromFormat('Y-m-d', "$year-$date")
-            ->startOfDay();
     }
 
 }
