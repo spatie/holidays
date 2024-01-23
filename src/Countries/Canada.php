@@ -11,7 +11,6 @@ class Canada extends Country
         return 'ca';
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge(
@@ -39,11 +38,10 @@ class Canada extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easterSunday = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('America/Toronto');
+        $easter = $this->easter($year);
 
-        $goodFriday = $easterSunday->subDays(2);
-        $easterMonday = $easterSunday->addDays(1);
+        $goodFriday = $easter->subDays(2);
+        $easterMonday = $easter->addDay();
 
         $victoriaDay = new CarbonImmutable("last monday of May $year", 'America/Toronto');
         if ($victoriaDay->day < 25) {
