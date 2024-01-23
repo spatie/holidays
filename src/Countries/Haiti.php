@@ -11,7 +11,6 @@ class Haiti extends Country
         return 'ht';
     }
 
-    /** @return array<string, CarbonImmutable | string> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
