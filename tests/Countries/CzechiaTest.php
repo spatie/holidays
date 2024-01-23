@@ -17,7 +17,7 @@ it('can calculate czech holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-it ('gives right holidays for specific years', function (int $year, array $containsHolidays) {
+it('gives right holidays for specific years', function (int $year, array $containsHolidays) {
     $holidays = Holidays::for('cz', $year)->get();
 
     $allHolidaysSince1970 = [

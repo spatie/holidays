@@ -21,7 +21,7 @@ class Czechia extends Country
             'Svátek práce' => ['05-01', true],
 
             'Výročí osvobození Československa Sovětskou armádou' => ['05-09', $year <= 1990],
-            'Den osvobození od fašismu' => [$year === 1991 ? '05-09' : '05-08' , $year >= 1991 && $year <= 2000],
+            'Den osvobození od fašismu' => [$year === 1991 ? '05-09' : '05-08', $year >= 1991 && $year <= 2000],
             'Den osvobození' => ['05-08', $year >= 2001 && $year <= 2003],
             'Den vítězství' => ['05-08', $year >= 2004],
 
