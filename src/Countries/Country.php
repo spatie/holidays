@@ -53,7 +53,11 @@ abstract class Country
         $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
         $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
 
-        return CarbonImmutable::createFromTimestamp(strtotime("+$daysDifference days", $timestamp));
+        // Common orthodox easter date on all timezones
+        return CarbonImmutable::createFromTimestamp($timestamp)
+          ->setTime(0, 0, 0)
+          ->addDays($daysDifference + 1);
+        //return CarbonImmutable::createFromTimestamp(strtotime("+$daysDifference days", $timestamp));
     }
 
     public static function find(string $countryCode): ?Country
