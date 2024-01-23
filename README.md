@@ -106,22 +106,30 @@ In case your country has specific rules for calculating holidays,
 for example region specific holidays, you can pass this to the constructor of your country class.
 
 ```php
-$holidays = Holidays::for(Austria::make(region: 'de-bw'))->get();
+$holidays = Holidays::for(France::make(['region' => 'FR-57'])->get();
+// or
+$holidays = Holidays::for(country: 'fr?region=FR-57,other_params_if_required')->get();
 ```
 
-The value, `de-bw`, will be passed to the region parameter of the constructor of a country.
+or ethnical specific holidays
+
+```php
+$holidays = Holidays::for(NorthMacedonia::make(['type' => 'orthodox'])->get();
+// or
+$holidays = Holidays::for(country: 'mk?type=orhodox,other_params_if_required')->get();
+```
+
+The parameters entered are then provided in the Country class as params.
 
 ```php
 class Austria extends Country
 {
-    protected function __construct(
-        protected ?string $region = null,
-    ) {
-    }
-
     protected function allHolidays(int $year): array
     {
-        // Here you can use $this->region (or other variables) to calculate holidays
+      $params = $this->params ?? [];
+      $ethnicType = $params['type'] ?? 'standard';
+      $region = $params['region'] ?? 'standard';
+      // You can use any param you want
     }
 ```
 
