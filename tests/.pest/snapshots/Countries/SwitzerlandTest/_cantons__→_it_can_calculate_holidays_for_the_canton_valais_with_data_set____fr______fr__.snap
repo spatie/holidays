@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Nouvel an",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "2 janvier",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Saint-Joseph",
+        "date": "2024-03-19"
+    },
+    {
+        "name": "Lundi de P\u00e2ques",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Ascension",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Lundi de Pentec\u00f4te",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "F\u00eate-Dieu",
+        "date": "2024-05-30"
+    },
+    {
+        "name": "F\u00eate nationale",
+        "date": "2024-08-01"
+    },
+    {
+        "name": "Assomption",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Toussaint",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Immacul\u00e9e Conception",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "No\u00ebl",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Saint-\u00c9tienne",
+        "date": "2024-12-26"
+    }
+]
