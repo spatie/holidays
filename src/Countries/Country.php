@@ -54,9 +54,7 @@ abstract class Country
         $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
 
         // Common orthodox easter date on all timezones
-        return CarbonImmutable::createFromTimestamp($timestamp)
-          ->setTime(0, 0, 0)
-          ->addDays($daysDifference + 1);
+        return CarbonImmutable::createFromTimestamp(strtotime("+$daysDifference days", $timestamp))->startOfDay()->addDay();
         //return CarbonImmutable::createFromTimestamp(strtotime("+$daysDifference days", $timestamp));
     }
 
