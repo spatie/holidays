@@ -69,8 +69,8 @@ class Panama extends Country
      *  established for a national celebration to coincide with a Sunday, the following Monday
      *  will be enabled as a mandatory weekly rest day"
      *
-     * @param array<string, string> $fixedHolidays Array of holidays in the format ['holiday name' => 'mm-dd']
-     * @param int $year The year for which to calculate the holidays
+     * @param  array<string, string>  $fixedHolidays  Array of holidays in the format ['holiday name' => 'mm-dd']
+     * @param  int  $year  The year for which to calculate the holidays
      * @return array<string, CarbonImmutable>
      */
     protected function calculateBridgeDays(array $fixedHolidays, int $year): array
@@ -83,7 +83,7 @@ class Panama extends Country
             if ($holiday !== false) {
                 $holidays[$name] = $holiday;
                 if ($holiday->isSunday()) {
-                    $holidays[$name . ' (Puente)'] = $holiday->addDay();
+                    $holidays[$name.' (Puente)'] = $holiday->addDay();
                 }
             }
         }
