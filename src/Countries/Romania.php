@@ -11,7 +11,6 @@ class Romania extends Country
         return 'ro';
     }
 
-    /** @return array<string, string|CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -30,31 +29,17 @@ class Romania extends Country
         ], $this->variableHolidays($year));
     }
 
-    /**
-     * @return array<string, CarbonImmutable>
-     */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->orthodoxEaster($year);
-        $easterMonday = $easter->addDay();
-        $goodFriday = $easter->subDays(2);
-
-        $pentecost = $this->orthodoxPentecost($year);
-        $pentecostMonday = $pentecost->addDay();
 
         return [
-            'Vinerea Mare' => $goodFriday,
+            'Vinerea Mare' => $easter->subDays(2),
             'Paștele' => $easter,
-            'A doua zi de Paște' => $easterMonday,
-            'Rusaliile' => $pentecost,
-            'A doua zi de Rusalii' => $pentecostMonday,
+            'A doua zi de Paște' => $easter->addDay(),
+            'Rusaliile' => $easter->addDays(49),
+            'A doua zi de Rusalii' => $easter->addDays(50),
         ];
-    }
-
-    protected function orthodoxPentecost(int $year): CarbonImmutable
-    {
-        $easter = $this->orthodoxEaster($year);
-
-        return $easter->addDays(49);
     }
 }
