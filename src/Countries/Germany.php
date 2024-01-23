@@ -64,7 +64,7 @@ class Germany extends Country
         ];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonImmutable|string> */
     protected function regionHolidays(int $year): array
     {
         $easter = $this->easter($year);
