@@ -83,3 +83,11 @@ it('can get the holiday name of a date', function () {
     $result = Holidays::for('be')->getName(CarbonImmutable::parse('2024-01-02'));
     expect($result)->toBeNull();
 });
+
+it('can get the country is supported', function () {
+    $result = Holidays::has(country: 'be');
+    expect($result)->toBeTrue();
+
+    $result = Holidays::has(country: 'unknown');
+    expect($result)->toBeFalse();
+});
