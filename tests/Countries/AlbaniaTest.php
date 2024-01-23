@@ -111,13 +111,13 @@ describe('national holidays with standard dates', function() {
         expect($holidayName)->toBe('Dita Kombëtare e Rinisë');
     });
     
-    it('can calculate the `Krishtlindjet` holiday as expected', function() use ($holiday) {
+    it('can calculate the `Krishtlindja` holiday as expected', function() use ($holiday) {
         $dateInstance = CarbonImmutable::createFromDate('2024-12-25');
         
         $isHoliday = $holiday->isHoliday($dateInstance);
         expect($isHoliday)->toBeTrue();
         
         $holidayName = $holiday->getName($dateInstance);
-        expect($holidayName)->toBe('Krishtlindjet');
+        expect($holidayName)->toBe('Krishtlindja');
     });
  });

@@ -22,7 +22,7 @@ class Albania extends Country
             'Dita e Pavarësisë' => '11-28',
             'Dita e Çlirimit' => '11-29',
             'Dita Kombëtare e Rinisë' => '12-08',
-            'Krishtlindjet' => '12-25',
+            'Krishtlindja' => '12-25',
         ], $this->variableHolidays($year));
     }
 
