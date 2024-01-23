@@ -1,10 +1,4 @@
 <?php
-/**
- * @author Rufusy Idachi <idachirufus@gmail.com>
- * @date: 1/23/2024
- * @time: 9:08 PM
- */
-
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
