@@ -21,7 +21,6 @@ class Nigeria extends Country
         return array_merge([
             'New Year' => '01-01',
             'Workers Day' => '05-01',
-            'Democracy Day' => '06-12',
             'Independence Day' => '10-01',
             'Christmas Day' => '12-25',
             'Boxing Day' => '12-26',
@@ -33,11 +32,16 @@ class Nigeria extends Country
     {
         $easter = $this->easter($year);
 
+        $democracyDay = $year > 2018
+            ? new CarbonImmutable("$year-06-12", 'Africa/Lagos')
+            : new CarbonImmutable("$year-05-29", 'Africa/Lagos');
+
         // Holidays like Eid al-Fitr and Eid al-Adha are based on the Islamic calendar
         // which is determined by the sighting of the moon. This makes it impossible
         // to calculate these holidays in advance.
 
         return [
+            'Democracy Day' => $democracyDay,
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
         ];
