@@ -5,7 +5,7 @@ namespace Spatie\Holidays\Tests\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holidays;
 
-it('can calculate colombia holidays', function () {
+it('can calculate colombian holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
     $holidays = Holidays::for(country: 'co')->get();
