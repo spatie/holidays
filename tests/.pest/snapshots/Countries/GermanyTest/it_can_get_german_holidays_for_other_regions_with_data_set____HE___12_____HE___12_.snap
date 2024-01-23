@@ -8,6 +8,10 @@
         "date": "2024-03-29"
     },
     {
+        "name": "Ostersonntag",
+        "date": "2024-03-31"
+    },
+    {
         "name": "Ostermontag",
         "date": "2024-04-01"
     },
@@ -28,12 +32,12 @@
         "date": "2024-05-20"
     },
     {
-        "name": "Tag der deutschen Einheit",
-        "date": "2024-10-03"
+        "name": "Fronleichnam",
+        "date": "2024-05-30"
     },
     {
-        "name": "Reformationstag",
-        "date": "2024-10-31"
+        "name": "Tag der deutschen Einheit",
+        "date": "2024-10-03"
     },
     {
         "name": "1. Weihnachtstag",

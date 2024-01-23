@@ -97,11 +97,13 @@ class Germany extends Country
             case 'DE-BB':
                 if ($year >= 1991) {
                     return [
+                        'Ostersonntag' => $easter,
                         'Reformationstag' => '10-31',
                         'Pfingstsonntag' => $easter->addDays(49),
                     ];
                 } else {
                     return [
+                        'Ostersonntag' => $easter,
                         'Pfingstsonntag' => $easter->addDays(49),
                     ];
                 }
@@ -122,6 +124,7 @@ class Germany extends Country
             case 'DE-HE':
                 return [
                     'Ostersonntag' => $easter,
+                    'Pfingstsonntag' => $easter->addDays(49),
                     'Fronleichnam' => $easter->addDays(60),
                 ];
             case 'DE-MV':
@@ -166,7 +169,7 @@ class Germany extends Country
 
                 }
                 if ($year >= 1991) {
-                    $stHolidays['Weltkindertag'] = '09-20';
+                    $stHolidays['Heilige Drei Könige'] = '01-06';
                 }
             case 'DE-TH':
                 $thHolidays = [];

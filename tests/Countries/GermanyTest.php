@@ -44,7 +44,11 @@ it('can calculate german buß- und bettag in year 1990', function () {
     expect($holiday)->toBeTrue();
 
 });
-it('can get german holidays for other regions', function (string $region) {
+/*
+ This test will check for all regional holidays in Germany. Source: https://en.wikipedia.org/wiki/Public_holidays_in_Germany
+    The total numbers are referenced in the wikipedia article.
+*/
+it('can get german holidays for other regions', function (string $region, int $totalHolidays) {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
     $holidays = Holidays::for(Germany::make('DE-'.$region))->get();
 
@@ -52,23 +56,25 @@ it('can get german holidays for other regions', function (string $region) {
         ->toBeArray()
         ->not()->toBeEmpty();
 
+    expect(count($holidays))->toBe($totalHolidays);
+
     expect(formatDates($holidays))->toMatchSnapshot();
 })->with(
     [
-        'BW',
-        'BY',
-        'BE',
-        'BB',
-        'HB',
-        'HH',
-        'HE',
-        'MV',
-        'NI',
-        'NW',
-        'RP',
-        'SL',
-        'SN',
-        'ST',
-        'SH',
-        'TH' ]
+        ['BW',12],
+        ['BY',13],
+        ['BE',10],
+        ['BB',12],
+        ['HB',10],
+        ['HH',10],
+        ['HE',12],
+        ['MV',11],
+        ['NI',10],
+        ['NW',11],
+        ['RP',11],
+        ['SL',12],
+        ['SN',11],
+        ['ST',11],
+        ['SH',10],
+        ['TH',11] ]
 );

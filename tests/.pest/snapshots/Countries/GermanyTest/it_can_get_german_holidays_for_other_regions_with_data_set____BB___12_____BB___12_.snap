@@ -24,16 +24,20 @@
         "date": "2024-05-09"
     },
     {
+        "name": "Pfingstsonntag",
+        "date": "2024-05-19"
+    },
+    {
         "name": "Pfingstmontag",
         "date": "2024-05-20"
     },
     {
-        "name": "Fronleichnam",
-        "date": "2024-05-30"
-    },
-    {
         "name": "Tag der deutschen Einheit",
         "date": "2024-10-03"
+    },
+    {
+        "name": "Reformationstag",
+        "date": "2024-10-31"
     },
     {
         "name": "1. Weihnachtstag",
