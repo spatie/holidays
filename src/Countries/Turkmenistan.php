@@ -30,7 +30,7 @@ class Turkmenistan extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, string> */
     protected function variableHolidays(int $year): array
     {
         return [
@@ -41,7 +41,7 @@ class Turkmenistan extends Country
         ];
     }
 
-    protected function islamicCalendar(string $input, int $year, $nextYear = false): string
+    protected function islamicCalendar(string $input, int $year, bool $nextYear = false): string
     {
         $hijriYear = $this->getHijriYear(year: $year, nextYear: $nextYear);
         $formatter = $this->getIslamicFormatter();
@@ -63,7 +63,7 @@ class Turkmenistan extends Country
         );
     }
 
-    protected function getHijriYear(int $year, $nextYear = false): int
+    protected function getHijriYear(int $year, bool $nextYear = false): int
     {
         $formatter = $this->getIslamicFormatter();
         $formatter->setPattern('yyyy');
