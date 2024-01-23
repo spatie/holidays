@@ -5,12 +5,11 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use DateTime;
 use DateTimeZone;
-use DateInterval;
 use IntlDateFormatter;
 
 class Turkmenistan extends Country
 {
-    protected string $timezone = "Asia/Ashgabat";
+    protected string $timezone = 'Asia/Ashgabat';
 
     public function countryCode(): string
     {
@@ -47,7 +46,7 @@ class Turkmenistan extends Country
         $hijriYear = $this->getHijriYear(year: $year, nextYear: $nextYear);
         $formatter = $this->getIslamicFormatter();
 
-        $timeStamp = $formatter->parse($input . '/' . $hijriYear . ' AH');
+        $timeStamp = $formatter->parse($input.'/'.$hijriYear.' AH');
         $dateTime = date_create()->setTimeStamp($timeStamp)->setTimezone(new DateTimeZone($this->timezone));
 
         return $dateTime->format('m-d');
@@ -68,7 +67,7 @@ class Turkmenistan extends Country
     {
         $formatter = $this->getIslamicFormatter();
         $formatter->setPattern('yyyy');
-        $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/' . ($nextYear ? $year + 1 : $year));
+        $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/'.($nextYear ? $year + 1 : $year));
 
         return (int) $formatter->format($dateTime);
     }
