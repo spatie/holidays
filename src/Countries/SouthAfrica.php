@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+
 use function in_array;
 
 class SouthAfrica extends Country
@@ -37,9 +38,9 @@ class SouthAfrica extends Country
             // https://www.gov.za/documents/public-holidays-act
             if (
                 $holidayDate->isSunday() &&
-                !in_array($holidayDate->addDay()->format('m-d'), $holidays, true) // Check that the Monday is not already a holiday
+                ! in_array($holidayDate->addDay()->format('m-d'), $holidays, true) // Check that the Monday is not already a holiday
             ) {
-                $holidays[$name . ' Observed'] = $holidayDate->addDay();
+                $holidays[$name.' Observed'] = $holidayDate->addDay();
             }
         }
 
