@@ -13,21 +13,28 @@ class NorthMacedonia extends Country
 
     protected function allHolidays(int $year): array
     {
-        return array_merge([
-            'Нова година' => '01-01',
-            'Божик, првиот ден на Божик според православниот календар' => '01-07',
-            'Ден на трудот' => '05-01',
-            'Св. Кирил и Методиј - Ден на сесловенските просветители' => '05-24',
-            'Ден на Републиката' => '08-02',
-            'Ден на независноста' => '09-08',
-            'Ден на народното востание' => '10-11',
-            'Ден на македонската револуционерна борба' => '10-23',
-            'Св. Климент Охридски' => '12-08',
-        ], $this->variableHolidays($year));
+        $params = $this->params ?? [];
+        $ethnicType = $params['type'] ?? 'standard';
+
+        if ($ethnicType === 'standard') {
+            return array_merge([
+                'Нова година' => '01-01',
+                'Божик, првиот ден на Божик според православниот календар' => '01-07',
+                'Ден на трудот' => '05-01',
+                'Св. Кирил и Методиј - Ден на сесловенските просветители' => '05-24',
+                'Ден на Републиката' => '08-02',
+                'Ден на независноста' => '09-08',
+                'Ден на народното востание' => '10-11',
+                'Ден на македонската револуционерна борба' => '10-23',
+                'Св. Климент Охридски' => '12-08',
+            ], $this->variableHolidays($year, $ethnicType));
+        } else {
+            return [];
+        }
     }
 
     /** @return array<string, CarbonImmutable> */
-    protected function variableHolidays(int $year): array
+    protected function variableHolidays(int $year, string $ethnicType = null): array
     {
         $easter = $this->orthodoxEaster($year);
 

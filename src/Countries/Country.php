@@ -8,6 +8,9 @@ use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
 abstract class Country
 {
+    /** @param array<string, mixed> $params */
+    public function __construct(protected ?array $params = null) {}
+
     abstract public function countryCode(): string;
 
     /** @return array<string, string|CarbonImmutable> */
@@ -58,7 +61,22 @@ abstract class Country
 
     public static function find(string $countryCode): ?Country
     {
-        $countryCode = strtolower($countryCode);
+        // country codes can contain optional parameters like 'mk?type=orthodox'
+        $parts = explode('?', $countryCode);
+        $countryCode = $parts[0];
+
+        $params = null;
+        if (count($parts) > 1) {
+            $paramsPairs = explode(',', $parts[1]);
+            foreach ($paramsPairs as $pair) {
+                $paramParts = explode('=', $pair);
+                if (count($paramParts) === 1) {
+                    $params[$paramParts[0]] = true;
+                } else {
+                    $params[$paramParts[0]] = $paramParts[1];
+                }
+            }
+        }
 
         foreach (glob(__DIR__.'/../Countries/*.php') as $filename) {
             if (basename($filename) === 'Country.php') {
@@ -69,7 +87,7 @@ abstract class Country
             $countryClass = '\\Spatie\\Holidays\\Countries\\'.basename($filename, '.php');
 
             /** @var Country $country */
-            $country = new $countryClass;
+            $country = new $countryClass($params);
 
             if (strtolower($country->countryCode()) === $countryCode) {
                 return $country;

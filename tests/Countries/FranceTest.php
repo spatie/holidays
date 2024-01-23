@@ -21,7 +21,7 @@ it('can calculate french holidays', function () {
 it('can calculate french easter based region holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
-    $holidays = Holidays::for(France::make('FR-57'))->get();
+    $holidays = Holidays::for(France::make(['region' => 'FR-57']))->get();
 
     expect($holidays)
         ->toBeArray()
@@ -33,7 +33,7 @@ it('can calculate french easter based region holidays', function () {
 it('can calculate french date based regional holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
-    $holidays = Holidays::for(France::make('FR-BL'))->get();
+    $holidays = Holidays::for(France::make(['region' => 'FR-BL']))->get();
 
     expect($holidays)
         ->toBeArray()

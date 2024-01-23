@@ -6,11 +6,6 @@ use Carbon\CarbonImmutable;
 
 class France extends Country
 {
-    protected function __construct(
-        protected ?string $region = null,
-    ) {
-    }
-
     public function countryCode(): string
     {
         return 'fr';
@@ -43,7 +38,7 @@ class France extends Country
             'Lundi de Pentecôte' => $easter->addDays(50),
         ];
 
-        if (in_array($this->region, ['FR-57', 'FR-67', 'FR-68'])) {
+        if (in_array($this->params['region'] ?? '', ['FR-57', 'FR-67', 'FR-68'])) {
             $holidays['Vendredi Saint'] = $easter->subDays(2);
         }
 
@@ -53,7 +48,7 @@ class France extends Country
     /** @return array<string, string> */
     protected function regionHolidays(): array
     {
-        switch ($this->region) {
+        switch ($this->params['region'] ?? '') {
             case 'FR-57':
             case 'FR-67':
             case 'FR-68':
