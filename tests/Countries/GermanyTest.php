@@ -45,6 +45,7 @@ it('can calculate german buß- und bettag in year 1990', function () {
 
 });
 it('can get german holidays for other regions', function (string $region) {
+    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
     $holidays = Holidays::for(Germany::make('DE-'.$region))->get();
 
     expect($holidays)
