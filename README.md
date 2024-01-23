@@ -90,7 +90,7 @@ Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 
 ### Determining whether a country is supported
 
-If you need to check a country supported, you can use the `has` method.
+To verify whether a country is supported, you can use the `has` method.
 
 ```php
 use Spatie\Holidays\Holidays;
