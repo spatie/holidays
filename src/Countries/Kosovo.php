@@ -30,7 +30,7 @@ class Kosovo extends Country
         $holidays['Pashkët Katolike'] = $this->easter($year);
         $holidays['Pashkët Ortodokse'] = $this->orthodoxEaster($year);
 
-        if($year >= 2008) {
+        if ($year >= 2008) {
             $holidays['Dita e Pavarësisë së Republikës së Kosovës'] = '02-17';
             $holidays['Dita e Kushtetutës së Republikës së Kosovës'] = '04-09';
         }
