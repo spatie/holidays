@@ -10,24 +10,30 @@ class Germany extends Country
         protected ?string $region = null,
     ) {
     }
+
     public function countryCode(): string
     {
         return 'de';
     }
-    private function getRepentanceAndPrayerDay(int $year):string{
-        $repentanceAndPrayerDay= new CarbonImmutable('next wednesday '.$year.'-11-15', 'Europe/Berlin');
-       return $repentanceAndPrayerDay->format('m-d');
+
+    private function getRepentanceAndPrayerDay(int $year): string
+    {
+        $repentanceAndPrayerDay = new CarbonImmutable('next wednesday '.$year.'-11-15', 'Europe/Berlin');
+
+        return $repentanceAndPrayerDay->format('m-d');
     }
+
     /** @return array<string, string> */
     protected function historicalHolidays(int $year): array
     {
-        $historicalHolidays= [];
-        if($year >=1990 && $year <=1994) {
+        $historicalHolidays = [];
+        if ($year >= 1990 && $year <= 1994) {
             $historicalHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
         }
-        if($year === 2017) {
+        if ($year === 2017) {
             $historicalHolidays['Reformationstag'] = '10-31';
         }
+
         return $historicalHolidays;
     }
 
@@ -38,9 +44,9 @@ class Germany extends Country
         return array_merge([
             'Neujahr' => '01-01',
             'Tag der deutschen Einheit' => '10-03',
-            'Tag der Arbeit'=> '05-01',
+            'Tag der Arbeit' => '05-01',
             '1. Weihnachtstag' => '12-25',
-            '2. Weihnachtstag' => '12-26'
+            '2. Weihnachtstag' => '12-26',
         ], $this->variableHolidays($year), $this->historicalHolidays($year), $this->regionHolidays($year));
     }
 
@@ -57,11 +63,12 @@ class Germany extends Country
             'Pfingstmontag' => $easter->addDays(50),
         ];
     }
+
     /** @return array<string, CarbonImmutable> */
     protected function regionHolidays(int $year): array
     {
         $easter = $this->easter($year);
-       
+
         switch ($this->region) {
             case 'DE-BW':
                 return [
@@ -76,30 +83,24 @@ class Germany extends Country
                     'Allerheiligen' => '11-01',
                     'Mariä Himmelfahrt' => '08-15',
                 ];
-                
+
             case 'DE-BE':
-                if($year >=2019)
-                {
+                if ($year >= 2019) {
                     return [
                         'Internationaler Frauentag' => '03-08',
                     ];
-                }
-                else
-                {
+                } else {
                     return [
-                        
+
                     ];
                 }
             case 'DE-BB':
-                if($year >=1991)
-                {
+                if ($year >= 1991) {
                     return [
                         'Reformationstag' => '10-31',
                         'Pfingstsonntag' => $easter->addDays(49),
                     ];
-                }
-                else
-                {
+                } else {
                     return [
                         'Pfingstsonntag' => $easter->addDays(49),
                     ];
@@ -108,38 +109,34 @@ class Germany extends Country
             case 'DE-HH':
             case 'DE-NI':
             case 'DE-SH':
-                if($year >=2017)
-                {
+                if ($year >= 2017) {
                     return [
                         'Reformationstag' => '10-31',
                     ];
-                }
-                else
-                {
+                } else {
                     return [
-                        
+
                     ];
                 }
-        
+
             case 'DE-HE':
-                    return [
-                        'Ostersonntag' => $easter,
-                        'Fronleichnam' => $easter->addDays(60),
-                    ]; 
+                return [
+                    'Ostersonntag' => $easter,
+                    'Fronleichnam' => $easter->addDays(60),
+                ];
             case 'DE-MV':
                 $mvHolidays = [];
-                if($year >=1990)
-                {
+                if ($year >= 1990) {
                     $mvHolidays['Reformationstag'] = '10-31';
                 }
-                if($year >=2023)
-                {
+                if ($year >= 2023) {
                     $mvHolidays['Internationaler Frauentag'] = '03-08';
                 }
+
                 return $mvHolidays;
             case 'DE-NW':
             case 'DE-RP':
-            
+
                 return [
                     'Fronleichnam' => $easter->addDays(60),
                     'Allerheiligen' => '11-01',
@@ -152,40 +149,37 @@ class Germany extends Country
                 ];
             case 'DE-SN':
                 $snHolidays = [];
-                if($year >=1990)
-                {
+                if ($year >= 1990) {
                     $snHolidays['Reformationstag'] = '10-31';
-                
+
                 }
-                if($year >1994)
-                {
+                if ($year > 1994) {
                     $snHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
-                
+
                 }
+
                 return $snHolidays;
             case 'DE-ST':
                 $stHolidays = [];
-                if($year >=1990)
-                {
+                if ($year >= 1990) {
                     $stHolidays['Reformationstag'] = '10-31';
-                
+
                 }
-                if($year >=1991){
+                if ($year >= 1991) {
                     $stHolidays['Weltkindertag'] = '09-20';
                 }
             case 'DE-TH':
                 $thHolidays = [];
-                if($year >=1990)
-                {
+                if ($year >= 1990) {
                     $thHolidays['Reformationstag'] = '10-31';
                 }
-                if($year >=2019){
+                if ($year >= 2019) {
                     $thHolidays['Weltkindertag'] = '09-20';
                 }
-                return $thHolidays;
-                
-        }
 
+                return $thHolidays;
+
+        }
 
         return [];
     }
