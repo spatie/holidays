@@ -54,7 +54,7 @@ class Brazil extends Country
             case 'BR-SP-3550308':
                 return [
                     'Aniversário da cidade de São Paulo' => '01-25',
-                    'Corpus Christi' => '30-4',
+                    'Corpus Christi' => '04-30',
                 ];
             case 'BR-RJ':
                 return [
