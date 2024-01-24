@@ -54,21 +54,23 @@ class Vietnam extends Country
     /** @return array<string, CarbonImmutable> */
     protected function getLunarNewYearHoliday(int $year): array
     {
+        $firstOfJanInChineseCalendar = $this->chineseToGregorianDate('01-01', $year); 
+
         return [
             // 12-29 the previous year
-            'Ngày Hai Mươi Chín Tết' => $this->chineseToGregorianDate('12-29', $year - 1),
+            'Ngày Hai Mươi Chín Tết' => $firstOfJanInChineseCalendar->subDays(2),
             // Lunar New Year's Eve
-            'Ngày Ba Mươi Tết' => $this->chineseToGregorianDate('12-30', $year - 1),
+            'Ngày Ba Mươi Tết' => $firstOfJanInChineseCalendar->subDay(),
             // Lunar New Year Day 1
-            'Mùng Một Tết Âm Lịch' => $this->chineseToGregorianDate('01-01', $year),
+            'Mùng Một Tết Âm Lịch' => $firstOfJanInChineseCalendar,
             // Lunar New Year Day 2
-            'Mùng Hai Tết Âm Lịch' => $this->chineseToGregorianDate('01-02', $year),
+            'Mùng Hai Tết Âm Lịch' => $firstOfJanInChineseCalendar->addDay(),
             // Lunar New Year Day 3
-            'Mùng Ba Tết Âm Lịch' => $this->chineseToGregorianDate('01-03', $year),
+            'Mùng Ba Tết Âm Lịch' => $firstOfJanInChineseCalendar->addDays(2),
             // Lunar New Year Day 4
-            'Mùng Bốn Tết Âm Lịch' => $this->chineseToGregorianDate('01-04', $year),
+            'Mùng Bốn Tết Âm Lịch' => $firstOfJanInChineseCalendar->addDays(3),
             // Lunar New Year Day 5
-            'Mùng Năm Tết Âm Lịch' => $this->chineseToGregorianDate('01-05', $year),
+            'Mùng Năm Tết Âm Lịch' => $firstOfJanInChineseCalendar->addDays(4),
         ];
     }
 
