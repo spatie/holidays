@@ -2,7 +2,6 @@
 
 namespace Spatie\Holidays\Concerns;
 
-/** @ */
 trait Translatable
 {
     protected function translate(string $country, string $name, ?string $locale = null): string
