@@ -47,7 +47,7 @@ class Serbia extends Country
     protected function orthodoxEaster(int $year): int
     {
         $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
-        $daysDifference = (int)($year / 100) - (int)($year / 400) - 2;
+        $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
 
         return (int) strtotime("+$daysDifference days", $timestamp);
     }
