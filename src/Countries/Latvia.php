@@ -49,12 +49,12 @@ class Latvia extends Country
         $date = new CarbonImmutable();
 
         $date = $date->setDate($year, 5, 4);
-        if($date->isWeekend()) {
+        if ($date->isWeekend()) {
             $holidays['Pārceltā 4. maija brīvdiena'] = $date->nextWeekday()->format('m-d');
         }
 
         $date = $date->setDate($year, 11, 18);
-        if($date->isWeekend()) {
+        if ($date->isWeekend()) {
             $holidays['Pārceltā 18. novembra brīvdiena'] = $date->nextWeekday()->format('m-d');
         }
 
