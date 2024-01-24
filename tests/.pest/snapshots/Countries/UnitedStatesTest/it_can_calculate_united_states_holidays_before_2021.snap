@@ -1,0 +1,42 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2020-01-01"
+    },
+    {
+        "name": "Martin Luther King Day",
+        "date": "2020-01-20"
+    },
+    {
+        "name": "Presidents' Day",
+        "date": "2020-02-17"
+    },
+    {
+        "name": "Memorial Day",
+        "date": "2020-05-25"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2020-07-04"
+    },
+    {
+        "name": "Labor Day",
+        "date": "2020-09-07"
+    },
+    {
+        "name": "Columbus Day",
+        "date": "2020-10-12"
+    },
+    {
+        "name": "Veterans Day",
+        "date": "2020-11-11"
+    },
+    {
+        "name": "Thanksgiving",
+        "date": "2020-11-26"
+    },
+    {
+        "name": "Christmas",
+        "date": "2020-12-25"
+    }
+]
