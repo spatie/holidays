@@ -68,6 +68,16 @@ use Spatie\Holidays\Holidays;
 $holidays = Holidays::for(country: 'be', year: 2024))->get();
 ```
 
+### Getting holidays in a specific language
+
+```php
+use Spatie\Holidays\Holidays;
+
+$holidays = Holidays::for(country: 'be', locale: 'fr'))->get();
+```
+
+If the locale is not supported for a country, an exception will be thrown.
+
 ### Determining if a date is a holiday 
 
 If you need to see if a date is a holiday, you can use the `isHoliday` method.
@@ -88,6 +98,17 @@ use Spatie\Holidays\Holidays;
 Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
 
+### Determining whether a country is supported
+
+To verify whether a country is supported, you can use the `has` method.
+
+```php
+use Spatie\Holidays\Holidays;
+
+Holidays::has('be'); // true
+Holidays::has('unknown'); // false
+```
+
 ### Package limitations
 1. Islamic holidays are not supported (yet)
 
@@ -101,6 +122,7 @@ This is a community driven package. If you find any errors, please create an iss
 2. Add a test for the new country in the `tests` directory.
 3. Run the tests so a snapshot gets created.
 4. Verify the result in the newly created snapshot is correct.
+5. If the country has multiple languages, add a file in the `lang/` directory.
 
 In case your country has specific rules for calculating holidays,
 for example region specific holidays, you can pass this to the constructor of your country class.
