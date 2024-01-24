@@ -107,19 +107,3 @@ it('can get translated holiday names', function  () {
         ->toContain('jour de l\'An')
         ->not()->toContain('Nieuwjaar');
 });
-
-it('can get translated holiday names by calling the locale method', function () {
-    $result = Holidays::for('be')->locale('nl')->get();
-
-    expect($result)
-        ->toBeArray()
-        ->toContain('Nieuwjaar')
-        ->not()->toContain('jour de l\'An');
-
-    $result = Holidays::for('be')->locale('fr')->get();
-
-    expect($result)
-        ->toBeArray()
-        ->toContain('jour de l\'An')
-        ->not()->toContain('Nieuwjaar');
-});

@@ -34,13 +34,6 @@ class Holidays
         return Country::find($country) !== null;
     }
 
-    public function locale(string $locale): static
-    {
-        $this->locale = $locale;
-
-        return $this;
-    }
-
     /** @return array<array{name: string, date: string}> */
     public function get(Country|string|null $country = null, ?int $year = null): array
     {
