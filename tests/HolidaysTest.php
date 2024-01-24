@@ -92,7 +92,7 @@ it('can get the country is supported', function () {
     expect($result)->toBeFalse();
 });
 
-it('can get translated holiday names', function  () {
+it('can get translated holiday names', function () {
     $result = Holidays::for(country: 'be', year: 2020, locale: 'fr')->get();
 
     expect(formatDates($result))->toMatchSnapshot();

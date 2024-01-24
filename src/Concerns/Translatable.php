@@ -13,7 +13,7 @@ trait Translatable
 
         $countryName = strtolower($country);
 
-        $content = file_get_contents(__DIR__ . "/../../lang/{$countryName}/{$locale}/holidays.json");
+        $content = file_get_contents(__DIR__."/../../lang/{$countryName}/{$locale}/holidays.json");
 
         if ($content === false) {
             return $name;
