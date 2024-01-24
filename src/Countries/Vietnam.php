@@ -55,6 +55,8 @@ class Vietnam extends Country
     protected function getLunarNewYearHoliday(int $year): array
     {
         return [
+            // 12-29 the previous year
+            'Ngày Hai Mươi Chín Tết' => $this->chineseToGregorianDate('12/29', $year - 1),
             // Lunar New Year's Eve
             'Ngày Ba Mươi Tết' => $this->chineseToGregorianDate('12/30', $year - 1),
             // Lunar New Year Day 1
@@ -65,6 +67,8 @@ class Vietnam extends Country
             'Mùng Ba Tết Âm Lịch' => $this->chineseToGregorianDate('01/03', $year),
             // Lunar New Year Day 4
             'Mùng Bốn Tết Âm Lịch' => $this->chineseToGregorianDate('01/04', $year),
+            // Lunar New Year Day 5
+            'Mùng Năm Tết Âm Lịch' => $this->chineseToGregorianDate('01/05', $year),
         ];
     }
 
