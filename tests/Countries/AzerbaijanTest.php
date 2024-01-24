@@ -16,3 +16,15 @@ it('can calculate azerbaijani holidays', function () {
 
     expect(formatDates($holidays))->toMatchSnapshot();
 });
+
+it('can calculate azerbaijani holidays in english', function () {
+    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+
+    $holidays = Holidays::for(country: 'az',locale: 'en')->get();
+
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    expect(formatDates($holidays))->toMatchSnapshot();
+});
