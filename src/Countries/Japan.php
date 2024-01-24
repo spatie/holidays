@@ -26,7 +26,7 @@ class Japan extends Country
             '秋分の日' => '09-23', // Autumnal Equinox Day  *Decided each year; rarely on 09-22
             '文化の日' => '11-03', // Culture Day
             '勤労感謝の日' => '11-23', // Labor Thanksgiving Day
-            
+
         ], $this->variableHolidays($year));
     }
 
@@ -41,9 +41,9 @@ class Japan extends Country
 
         $respectForTheAgedDay = (new CarbonImmutable("third monday of september $year")) // Respect for the Aged Day
             ->setTimezone('Asia/Tokyo');
-        
+
         $sportsDay = (new CarbonImmutable("second monday of october $year")) // Sports Day
-            ->setTimezone('Asia/Tokyo'); 
+            ->setTimezone('Asia/Tokyo');
 
         $holidays = [
             '成人の日' => $comingOfAgeDay,
@@ -55,5 +55,4 @@ class Japan extends Country
         return $holidays;
 
     }
-
 }
