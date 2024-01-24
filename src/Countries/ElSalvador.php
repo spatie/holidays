@@ -6,7 +6,6 @@ use Carbon\CarbonImmutable;
 
 class ElSalvador extends Country
 {
-
     public function countryCode(): string
     {
         return 'sv';
