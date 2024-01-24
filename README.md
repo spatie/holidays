@@ -88,6 +88,17 @@ use Spatie\Holidays\Holidays;
 Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
 
+### Determining whether a country is supported
+
+To verify whether a country is supported, you can use the `has` method.
+
+```php
+use Spatie\Holidays\Holidays;
+
+Holidays::has('be'); // true
+Holidays::has('unknown'); // false
+```
+
 ### Package limitations
 1. Islamic holidays are not supported (yet)
 
