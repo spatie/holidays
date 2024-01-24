@@ -2,6 +2,8 @@
 
 namespace Spatie\Holidays\Concerns;
 
+use Spatie\Holidays\Exceptions\InvalidLocale;
+
 trait Translatable
 {
     protected function translate(string $country, string $name, ?string $locale = null): string
@@ -15,7 +17,7 @@ trait Translatable
         $content = file_get_contents(__DIR__."/../../lang/{$countryName}/{$locale}/holidays.json");
 
         if ($content === false) {
-            return $name;
+            throw InvalidLocale::notFound($country, $locale);
         }
 
         /** @var array<string, string> $data */

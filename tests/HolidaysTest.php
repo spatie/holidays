@@ -3,6 +3,7 @@
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Belgium;
 use Spatie\Holidays\Countries\Netherlands;
+use Spatie\Holidays\Exceptions\InvalidLocale;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedCountry;
 use Spatie\Holidays\Holidays;
@@ -97,3 +98,7 @@ it('can get translated holiday names', function () {
 
     expect(formatDates($result))->toMatchSnapshot();
 });
+
+it('cannot get translated holiday names for unsupported locales', function  () {
+    Holidays::for(country: 'be', year: 2020, locale: 'en')->get();
+})->throws(InvalidLocale::class, 'Locale `en` is not supported for country `Belgium`.');
