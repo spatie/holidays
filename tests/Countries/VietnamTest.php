@@ -31,9 +31,9 @@ it('can calculate the Lunar New Year holiday', function ($year, $expectedHoliday
 
     expect($lunarNewYearHoliday)->toContain(...$expectedHoliday);
 })->with([
-    ['year' => 2023, 'expected_holiday' => ['2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25']],
-    ['year' => 2021, 'expected_holiday' => ['2021-02-11', '2021-02-12', '2021-02-13', '2021-02-14', '2021-02-15']],
-    ['year' => 2019, 'expected_holiday' => ['2019-02-04', '2019-02-05', '2019-02-06', '2019-02-07', '2019-02-08']],
+    ['year' => 2023, 'expected_holiday' => ['2023-01-20', '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25', '2023-01-26']],
+    ['year' => 2021, 'expected_holiday' => ['2021-02-10', '2021-02-11', '2021-02-12', '2021-02-13', '2021-02-14', '2021-02-15', '2021-02-16']],
+    ['year' => 2019, 'expected_holiday' => ['2019-02-03', '2019-02-04', '2019-02-05', '2019-02-06', '2019-02-07', '2019-02-08', '2019-02-08']],
 ]);
 
 it('can calculate the holiday of independence', function ($year, $expectedHoliday) {
