@@ -47,7 +47,7 @@ class Vietnam extends Country
     {
         return [
             // Hung Kings' Festival
-            'Ngày Giỗ Tổ Hùng Vương' => $this->chineseToGregorianDate('03/10', $year),
+            'Ngày Giỗ Tổ Hùng Vương' => $this->chineseToGregorianDate('03-10', $year),
         ];
     }
 
@@ -56,19 +56,19 @@ class Vietnam extends Country
     {
         return [
             // 12-29 the previous year
-            'Ngày Hai Mươi Chín Tết' => $this->chineseToGregorianDate('12/29', $year - 1),
+            'Ngày Hai Mươi Chín Tết' => $this->chineseToGregorianDate('12-29', $year - 1),
             // Lunar New Year's Eve
-            'Ngày Ba Mươi Tết' => $this->chineseToGregorianDate('12/30', $year - 1),
+            'Ngày Ba Mươi Tết' => $this->chineseToGregorianDate('12-30', $year - 1),
             // Lunar New Year Day 1
-            'Mùng Một Tết Âm Lịch' => $this->chineseToGregorianDate('01/01', $year),
+            'Mùng Một Tết Âm Lịch' => $this->chineseToGregorianDate('01-01', $year),
             // Lunar New Year Day 2
-            'Mùng Hai Tết Âm Lịch' => $this->chineseToGregorianDate('01/02', $year),
+            'Mùng Hai Tết Âm Lịch' => $this->chineseToGregorianDate('01-02', $year),
             // Lunar New Year Day 3
-            'Mùng Ba Tết Âm Lịch' => $this->chineseToGregorianDate('01/03', $year),
+            'Mùng Ba Tết Âm Lịch' => $this->chineseToGregorianDate('01-03', $year),
             // Lunar New Year Day 4
-            'Mùng Bốn Tết Âm Lịch' => $this->chineseToGregorianDate('01/04', $year),
+            'Mùng Bốn Tết Âm Lịch' => $this->chineseToGregorianDate('01-04', $year),
             // Lunar New Year Day 5
-            'Mùng Năm Tết Âm Lịch' => $this->chineseToGregorianDate('01/05', $year),
+            'Mùng Năm Tết Âm Lịch' => $this->chineseToGregorianDate('01-05', $year),
         ];
     }
 
