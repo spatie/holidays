@@ -23,7 +23,9 @@ describe('cantons', function () {
 
         CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
-        $holidays = Holidays::for(Switzerland::make('ch-vs', $language))->get();
+        $country = Switzerland::make('ch-vs');
+
+        $holidays = Holidays::for($country, locale: $language)->get();
 
         expect($holidays)
             ->toBeArray()
