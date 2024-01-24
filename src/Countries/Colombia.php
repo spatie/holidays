@@ -45,7 +45,6 @@ class Colombia extends Country
         ];
     }
 
-    /** @return CarbonImmutable */
     private function emilianiHoliday(int $year, int $month, int $day): CarbonImmutable
     {
         $dateObj = CarbonImmutable::createFromDate($year, $month, $day, 'America/Bogota')->startOfDay();
