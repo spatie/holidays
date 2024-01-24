@@ -57,9 +57,9 @@ class Vietnam extends Country
         $firstOfJanInChineseCalendar = $this->chineseToGregorianDate('01-01', $year); 
 
         return [
-            // 12-29 the previous year
+            // 12-29 the previous year (in Chinese Calendar)
             'Ngày Hai Mươi Chín Tết' => $firstOfJanInChineseCalendar->subDays(2),
-            // Lunar New Year's Eve
+            // Lunar New Year's Eve (12-30 in Chinese Calendar)
             'Ngày Ba Mươi Tết' => $firstOfJanInChineseCalendar->subDay(),
             // Lunar New Year Day 1
             'Mùng Một Tết Âm Lịch' => $firstOfJanInChineseCalendar,
