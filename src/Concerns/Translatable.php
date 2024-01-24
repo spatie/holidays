@@ -19,6 +19,7 @@ trait Translatable
             return $name;
         }
 
+        /** @var array<string, string> $data */
         $data = json_decode($content, true);
 
         if (! isset($data[$name])) {

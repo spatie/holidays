@@ -39,9 +39,8 @@ class Holidays
     {
         $country ??= $this->country;
         $year ??= $this->year;
-        $locale ??= $this->locale;
 
-        return static::for($country, $year, $locale)
+        return static::for($country, $year, $this->locale)
             ->calculate()
             ->toArray();
     }
