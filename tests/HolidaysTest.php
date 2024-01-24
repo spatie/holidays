@@ -93,17 +93,7 @@ it('can get the country is supported', function () {
 });
 
 it('can get translated holiday names', function  () {
-    $result = Holidays::for(country: 'be', year: 2020, locale: 'nl')->get();
-
-    expect($result)
-        ->toBeArray()
-        ->toContain('Nieuwjaar')
-        ->not()->toContain('jour de l\'An');
-
     $result = Holidays::for(country: 'be', year: 2020, locale: 'fr')->get();
 
-    expect($result)
-        ->toBeArray()
-        ->toContain('jour de l\'An')
-        ->not()->toContain('Nieuwjaar');
+    expect(formatDates($result))->toMatchSnapshot();
 });

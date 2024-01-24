@@ -3,11 +3,14 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
 abstract class Country
 {
+    use Translatable;
+
     abstract public function countryCode(): string;
 
     /** @return array<string, string|CarbonImmutable> */
@@ -20,19 +23,22 @@ abstract class Country
 
         $allHolidays = $this->allHolidays($year);
 
-        $allHolidays = array_map(function ($date) use ($year) {
+        $translatedHolidays = [];
+        foreach ($allHolidays as $name => $date) {
             if (is_string($date)) {
                 $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
             }
 
-            return $date;
-        }, $allHolidays);
+            $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);
 
-        uasort($allHolidays,
+            $translatedHolidays[$name] = $date;
+        }
+
+        uasort($translatedHolidays,
             fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
         );
 
-        return $allHolidays;
+        return $translatedHolidays;
     }
 
     public static function make(): static
@@ -88,11 +94,6 @@ abstract class Country
         }
 
         return $country;
-    }
-
-    protected function translate(string $name): string
-    {
-        return $name;
     }
 
     protected function ensureYearCanBeCalculated(int $year): void

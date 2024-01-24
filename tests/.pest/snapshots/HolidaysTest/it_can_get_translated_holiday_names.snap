@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Jour de l'An",
+        "date": "2020-01-01"
+    },
+    {
+        "name": "Lundi de P\u00e2ques",
+        "date": "2020-04-13"
+    },
+    {
+        "name": "F\u00eate du Travail",
+        "date": "2020-05-01"
+    },
+    {
+        "name": "Ascension",
+        "date": "2020-05-21"
+    },
+    {
+        "name": "Lundi de Pentec\u00f4te",
+        "date": "2020-06-01"
+    },
+    {
+        "name": "F\u00eate nationale",
+        "date": "2020-07-21"
+    },
+    {
+        "name": "Assomption",
+        "date": "2020-08-15"
+    },
+    {
+        "name": "Toussaint",
+        "date": "2020-11-01"
+    },
+    {
+        "name": "Armistice",
+        "date": "2020-11-11"
+    },
+    {
+        "name": "No\u00ebl",
+        "date": "2020-12-25"
+    }
+]
