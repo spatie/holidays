@@ -34,7 +34,7 @@ class Syria extends Country
         // TODO: Implement islamic holidays
 
         return [
-            'Western Easter' => $easter->addDay(),
+            'Western Easter' => $easter,
             'Eastern Easter' => $easter->addDays(35),
         ];
     }
