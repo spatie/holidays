@@ -6,11 +6,6 @@ use Carbon\CarbonImmutable;
 
 class Serbia extends Country
 {
-    protected function __construct(
-        public ?string $region = null
-    ) {
-    }
-
     public function countryCode(): string
     {
         return 'sr';
@@ -33,22 +28,12 @@ class Serbia extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(
-            $this->orthodoxEaster($year)
-        )->setTimezone('Europe/Belgrade');
+        $easter = $this->orthodoxEaster($year);
 
         return [
             'Veliki petak' => $easter->subDays(2),
             'Vaskrs' => $easter,
             'Vaskršnji ponedeljak' => $easter->addDay(),
         ];
-    }
-
-    protected function orthodoxEaster(int $year): int
-    {
-        $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
-        $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
-
-        return (int) strtotime("+$daysDifference days", $timestamp);
     }
 }
