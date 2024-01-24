@@ -5,11 +5,13 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use DateTime;
 use DateTimeZone;
+use Exception;
 use IntlDateFormatter;
+use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Malaysia extends Country
 {
-    protected $timezone = 'Asia/Kuala_Lumpur';
+    protected string $timezone = 'Asia/Kuala_Lumpur';
 
     protected function __construct(
         protected ?string $region = null,
@@ -29,6 +31,10 @@ class Malaysia extends Country
         );
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable>
+     */
     protected function fixHolidays(int $year): array
     {
         return [
@@ -39,6 +45,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function variableHolidays(int $year): array
     {
         $variableHolidays = [
@@ -61,7 +71,12 @@ class Malaysia extends Country
         return array_merge($variableHolidays, $regionHolidays);
     }
 
-    // return holiday by region, if not set return all
+    /**
+     * return holiday by region, if not set return all
+     * 
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function holidaysByRegion(int $year): array
     {
         return match ($this->region) {
@@ -102,6 +117,10 @@ class Malaysia extends Country
         };
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionJohor(int $year): array
     {
         $johorHolidays = [
@@ -129,6 +148,10 @@ class Malaysia extends Country
         return $johorHolidays;
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionKedah(int $year): array
     {
         return [
@@ -141,6 +164,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionKelantan(int $year): array
     {
         $kelantanHolidays = [
@@ -174,6 +201,10 @@ class Malaysia extends Country
         return $kelantanHolidays;
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionKualaLumpur(int $year): array
     {
         return [
@@ -185,6 +216,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionLabuan(int $year): array
     {
         return [
@@ -197,6 +232,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionMelaka(int $year): array
     {
         return [
@@ -208,6 +247,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionNegeri9(int $year): array
     {
         return [
@@ -219,6 +262,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionPahang(int $year): array
     {
         return [
@@ -230,6 +277,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionPenang(int $year): array
     {
         return [
@@ -242,6 +293,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionPerak(int $year): array
     {
         return [
@@ -253,6 +308,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionPerlis(int $year): array
     {
         return [
@@ -264,6 +323,10 @@ class Malaysia extends Country
         ];
     }
     
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionPutrajaya(int $year): array
     {
         return [
@@ -275,6 +338,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionSabah(int $year): array
     {
         return [
@@ -288,6 +355,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable>
+     */
     protected function regionSarawak(int $year): array
     {
         return [
@@ -300,6 +371,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionSelangor(int $year): array
     {
         return [
@@ -311,6 +386,10 @@ class Malaysia extends Country
         ];
     }
 
+    /**
+     * @param int $year
+     * @return array<string, CarbonImmutable|string>
+     */
     protected function regionTerengganu(int $year): array
     {
         return [
@@ -337,7 +416,7 @@ class Malaysia extends Country
             calendar: IntlDateFormatter::TRADITIONAL
         );
 
-        $timestamp = $formatter->parse(sprintf('%s-%s', $year, $input));
+        $timestamp = (int) $formatter->parse(sprintf('%s-%s', $year, $input));
 
         return CarbonImmutable::createFromTimestamp($timestamp, $this->timezone);
     }
@@ -353,26 +432,28 @@ class Malaysia extends Country
         );
     }
 
-    protected function getHijriYear(int $year, $nextYear = false): int
+    protected function getHijriYear(int $year, bool $nextYear = false): int
     {
         $formatter = $this->getIslamicFormatter();
         $formatter->setPattern('yyyy');
         $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/' . ($nextYear ? $year + 1 : $year));
 
-        return (int) $formatter->format($dateTime);
+        if (!$dateTime) {
+            throw InvalidYear::invalidHijriYear();
+        }
+
+        return (int) $formatter->format($dateTime->getTimestamp());
     }
 
     /**
      * $input as in 'day-month'; 01-10 for syawal
      */
-    protected function islamicCalendar(string $input, int $year, $nextYear = false): CarbonImmutable
+    protected function islamicCalendar(string $input, int $year, bool $nextYear = false): CarbonImmutable
     {
         $hijrYear = $this->getHijriYear(year: $year, nextYear: $nextYear);
         $formatter = $this->getIslamicFormatter();
-
-        $timeStamp = $formatter->parse($input . '/' . $hijrYear . ' AH');
-        $dateTime = date_create()->setTimeStamp($timeStamp)->setTimezone(new DateTimeZone($this->timezone));
-
+        $timeStamp = (int) $formatter->parse($input . '/' . $hijrYear . ' AH');
+        
         return CarbonImmutable::createFromTimestamp($timeStamp, $this->timezone);
     }
 
@@ -437,17 +518,17 @@ class Malaysia extends Country
         return $this->islamicCalendar('12/3', $year, true);
     }
 
-    protected function hariWesak(int $year)
+    protected function hariWesak(int $year): string
     {
         return '01-01';
     }
 
-    protected function hariThaipusam(int $year)
+    protected function hariThaipusam(int $year): string
     {
         return '01-01';
     }
 
-    protected function hariDeepavali(int $year)
+    protected function hariDeepavali(int $year): string
     {
         return '01-01';
     }
