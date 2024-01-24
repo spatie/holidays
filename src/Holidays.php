@@ -14,10 +14,11 @@ class Holidays
     protected function __construct(
         protected Country $country,
         protected int $year,
+        protected ?string $locale = null,
     ) {
     }
 
-    public static function for(Country|string $country, ?int $year = null): static
+    public static function for(Country|string $country, ?int $year = null, ?string $locale = null): static
     {
         $year ??= CarbonImmutable::now()->year;
 
@@ -25,12 +26,19 @@ class Holidays
             $country = Country::findOrFail($country);
         }
 
-        return new static($country, $year);
+        return new static($country, $year, $locale);
     }
 
     public static function has(string $country): bool
     {
         return Country::find($country) !== null;
+    }
+
+    public function locale(string $locale): static
+    {
+        $this->locale = $locale;
+
+        return $this;
     }
 
     /** @return array<array{name: string, date: string}> */
@@ -91,7 +99,7 @@ class Holidays
 
     protected function calculate(): self
     {
-        $this->holidays = $this->country->get($this->year);
+        $this->holidays = $this->country->get($this->year, $this->locale);
 
         return $this;
     }
