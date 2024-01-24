@@ -7,13 +7,16 @@ use Carbon\CarbonImmutable;
 class Ghana extends Country
 {
 
-    protected $timezone = 'Africa/Accra';
+    protected string $timezone = 'Africa/Accra';
 
     public function countryCode(): string
     {
         return 'gh';
     }
 
+    /**
+     * @return array<string, CarbonImmutable>
+     */
     protected function christmasDay(int $year): array
     {
         $christmasDay = new CarbonImmutable($year . "-12-25", $this->timezone);
@@ -32,7 +35,9 @@ class Ghana extends Country
         return [$key => $christmasDay];
     }
 
-
+    /**
+     * @return array<string, CarbonImmutable>
+     */
     protected function boxingDay(int $year): array
     {
         $christmasDay = new CarbonImmutable($year . "-12-25", $this->timezone);
@@ -56,6 +61,8 @@ class Ghana extends Country
      * Get holiday
      * 
      * If it falls on a weekend, the new day to be observed is the next monday
+     * 
+     * @return array<string, CarbonImmutable>
      *
      */
     protected function getHoliday(string $nameOfHoliday, int $year, string $monthAndDay): array
