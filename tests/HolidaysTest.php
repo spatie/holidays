@@ -99,6 +99,6 @@ it('can get translated holiday names', function () {
     expect(formatDates($result))->toMatchSnapshot();
 });
 
-it('cannot get translated holiday names for unsupported locales', function  () {
+it('cannot get translated holiday names for unsupported locales', function () {
     Holidays::for(country: 'be', year: 2020, locale: 'en')->get();
 })->throws(InvalidLocale::class, 'Locale `en` is not supported for country `Belgium`.');
