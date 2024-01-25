@@ -28,13 +28,12 @@ class ElSalvador extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('America/El_Salvador');
+        $easter = $this->easter($year);
 
         return [
             'Jueves Santo' => $easter->subDays(3),
             'Viernes Santo' => $easter->subDays(2),
-            'Sábado de Gloria' => $easter->subDays(1),
+            'Sábado de Gloria' => $easter->subDay(),
         ];
     }
 }

@@ -30,8 +30,7 @@ class Angola extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Africa/Luanda');
+        $easter = $this->easter($year);
 
         return [
             'Carnaval' => $easter->subDays(47),
