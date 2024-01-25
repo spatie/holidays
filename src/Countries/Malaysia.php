@@ -52,15 +52,15 @@ class Malaysia extends Country
 
     /**
      * @param int $year
-     * @return array<string, CarbonImmutable>
+     * @return array<string, string>
      */
     protected function fixHolidays(int $year): array
     {
         return [
-            'Hari Pekerja' => CarbonImmutable::createFromDate($year, 5, 1, $this->timezone),
-            'Hari Kebangsaan' => CarbonImmutable::createFromDate($year, 8, 31, $this->timezone),
-            'Hari Malaysia' => CarbonImmutable::createFromDate($year, 9, 16, $this->timezone),
-            'Hari Krismas' => CarbonImmutable::createFromDate($year, 12, 25, $this->timezone),
+            'Hari Pekerja' => '05-01',
+            'Hari Kebangsaan' => '08-31',
+            'Hari Malaysia' => '09-16',
+            'Hari Krismas' => '12-25',
         ];
     }
 
@@ -507,8 +507,7 @@ class Malaysia extends Country
 
     protected function goodFriday(int $year): CarbonImmutable
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone($this->timezone);
+        $easter = $this->easter($year);
         
         return $easter->subDays(2);
     }
