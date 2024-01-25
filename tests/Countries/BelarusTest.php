@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holidays;
 
 it('can calculate belarus holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'by')->get();
 
@@ -18,7 +18,7 @@ it('can calculate belarus holidays', function () {
 });
 
 it('can calculate belarus holidays in English', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'by', locale: 'en')->get();
 
@@ -30,7 +30,7 @@ it('can calculate belarus holidays in English', function () {
 });
 
 it('can calculate belarus holidays in Belarus Lacinka', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'by', locale: 'be-latn')->get();
 
@@ -42,7 +42,7 @@ it('can calculate belarus holidays in Belarus Lacinka', function () {
 });
 
 it('can calculate belarus holidays in Russian', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'by', locale: 'ru')->get();
 
