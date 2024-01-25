@@ -92,6 +92,7 @@ class Australia extends Country
             }),
         ];
     }
+
     // https://business.vic.gov.au/business-information/public-holidays/victorian-public-holidays-2025
     // https://en.wikipedia.org/wiki/List_of_VFL/AFL_premiers#VFL/AFL_premierships
     protected function fridayBeforeAflGrandFinal(int $year): ?CarbonImmutable
@@ -107,6 +108,7 @@ class Australia extends Country
             default => CarbonImmutable::parse("last friday of september {$year}"),
         };
     }
+
     protected function sovereignBirthdayKey(int $year): string
     {
         // https://www.abc.net.au/news/2022-09-22/queens-birthday-public-holiday-becomes-kings-birthday/101453408
