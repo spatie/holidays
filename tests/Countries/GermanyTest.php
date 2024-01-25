@@ -61,20 +61,20 @@ it('can get german holidays for other regions', function (string $region, int $t
     expect(formatDates($holidays))->toMatchSnapshot();
 })->with(
     [
-        ['BW',12],
-        ['BY',13],
-        ['BE',10],
-        ['BB',12],
-        ['HB',10],
-        ['HH',10],
-        ['HE',12],
-        ['MV',11],
-        ['NI',10],
-        ['NW',11],
-        ['RP',11],
-        ['SL',12],
-        ['SN',11],
-        ['ST',11],
-        ['SH',10],
-        ['TH',11] ]
+        ['BW', 12],
+        ['BY', 13],
+        ['BE', 10],
+        ['BB', 12],
+        ['HB', 10],
+        ['HH', 10],
+        ['HE', 12],
+        ['MV', 11],
+        ['NI', 10],
+        ['NW', 11],
+        ['RP', 11],
+        ['SL', 12],
+        ['SN', 11],
+        ['ST', 11],
+        ['SH', 10],
+        ['TH', 11]]
 );
