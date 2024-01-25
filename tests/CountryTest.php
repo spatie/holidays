@@ -2,16 +2,12 @@
 
 namespace Spatie\Holidays\Tests;
 
-use ReflectionMethod;
 use Spatie\Holidays\Countries\Belgium;
 
 it('can calculate orthodox easter', function (int $year, string $date) {
     $country = Belgium::make();
 
-    $reflectionMethod = new ReflectionMethod('Spatie\Holidays\Countries\Belgium', 'orthodoxEaster');
-    $reflectionMethod->setAccessible(true);
-
-    $easter = $reflectionMethod->invoke($country, $year);
+    $easter = invade($country)->orthodoxEaster($year);
 
     expect($easter->format('Y-m-d'))->toBe($date);
 })->with([
