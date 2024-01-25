@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Nouvel an \/ Jour de l'Ind\u00e9pendance",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Jour des Aieux",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Carnaval\/Mardi Gras",
+        "date": "2024-02-13"
+    },
+    {
+        "name": "Vendredi saint",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "F\u00eate du Travail \/ F\u00eate des Travailleurs",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Jour du Drapeau et de l'Universit\u00e9",
+        "date": "2024-05-18"
+    },
+    {
+        "name": "L'Assomption de Marie",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Anniversaire de la mort de Dessalines",
+        "date": "2024-10-17"
+    },
+    {
+        "name": "Toussaint",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Jour des Morts",
+        "date": "2024-11-02"
+    },
+    {
+        "name": "Verti\u00e8res",
+        "date": "2024-11-18"
+    },
+    {
+        "name": "No\u00ebl",
+        "date": "2024-12-25"
+    }
+]
