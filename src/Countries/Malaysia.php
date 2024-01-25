@@ -4,14 +4,33 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use DateTime;
-use DateTimeZone;
-use Exception;
 use IntlDateFormatter;
+use Spatie\Holidays\Exceptions\InvalidRegion;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Malaysia extends Country
 {
     protected string $timezone = 'Asia/Kuala_Lumpur';
+
+    /** @var array<int, string> $regions */
+    protected array $regions = [
+        'jhr',
+        'kdh',
+        'ktn',
+        'kul',
+        'lbn',
+        'mlk',
+        'nsn',
+        'phg',
+        'png',
+        'prk',
+        'pls',
+        'pjy',
+        'sbh',
+        'swk',
+        'sgr',
+        'trg',
+    ];
 
     protected function __construct(
         protected ?string $region = null,
@@ -62,6 +81,10 @@ class Malaysia extends Country
             'Maulidur Rasul' => $this->maulidurRasul($year),
         ];
 
+        if ($this->region && !$this->validRegion($this->region)) {
+            throw InvalidRegion::regionNotFound();
+        }
+
         $regionHolidays = $this->holidaysByRegion($year);
 
         if ($this->hariKeputeraanYDP($year)) {
@@ -69,6 +92,11 @@ class Malaysia extends Country
         }
 
         return array_merge($variableHolidays, $regionHolidays);
+    }
+
+    protected function validRegion(string $region): bool
+    {
+        return in_array($region, $this->regions);
     }
 
     /**
