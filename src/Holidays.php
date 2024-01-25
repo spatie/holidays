@@ -14,9 +14,9 @@ class Holidays
     protected function __construct(
         protected Country $country,
         protected int $year,
+        protected ?string $locale = null,
         protected ?CarbonImmutable $from = null,
         protected ?CarbonImmutable $to = null,
-        protected ?string $locale = null
     ) {
     }
 
