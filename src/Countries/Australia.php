@@ -36,7 +36,7 @@ class Australia extends Country
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
             // https://en.wikipedia.org/wiki/Public_holidays_in_Australia
-            ...array_filter(match($this->region) {
+            ...array_filter(match ($this->region) {
                 'act' => [
                     'Canberra Day' => CarbonImmutable::parse("second monday of march {$year}"),
                     'Easter Saturday' => $easter->subDay(),
