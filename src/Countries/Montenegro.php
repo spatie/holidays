@@ -11,7 +11,7 @@ class Montenegro extends Country
         return 'me';
     }
 
-    public function allHolidays(int $year) : array
+    public function allHolidays(int $year): array
     {
         // Montenegro has two days off for most holidays
         return array_merge([
@@ -33,7 +33,7 @@ class Montenegro extends Country
     }
 
     /** @return array<string, CarbonImmutable> */
-    public function variableHolidays(int $year) : array
+    public function variableHolidays(int $year): array
     {
         // Orthodox Easter calculation needs to be in the same timezone as the country
         $orthodoxEaster = $this->orthodoxEaster($year)->setTimezone('Europe/Podgorica');
