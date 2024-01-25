@@ -14,7 +14,7 @@ class NorthernIreland extends Wales
     /** @return array<string, CarbonImmutable> */
     private function stPatricksDay(int $year): array
     {
-        $stPatricksDay = new CarbonImmutable($year . "-03-17", 'Europe/London');
+        $stPatricksDay = new CarbonImmutable($year.'-03-17', 'Europe/London');
         $key = 'St Patrick\'s Day';
 
         if ($stPatricksDay->isWeekend()) {
@@ -28,7 +28,7 @@ class NorthernIreland extends Wales
     /** @return array<string, CarbonImmutable> */
     private function battleOfTheBoyne(int $year): array
     {
-        $battleOfTheBoyne = new CarbonImmutable($year . "-07-12", 'Europe/London');
+        $battleOfTheBoyne = new CarbonImmutable($year.'-07-12', 'Europe/London');
         $key = 'Battle of the Boyne (Orangemen\'s Day)';
 
         if ($battleOfTheBoyne->isWeekend()) {
@@ -44,8 +44,8 @@ class NorthernIreland extends Wales
     {
         return match ($year) {
             2022 => [
-                'Platinum Jubilee bank holiday' => new CarbonImmutable("2022-06-03", 'Europe/London'),
-                'Bank Holiday for the State Funeral of Queen Elizabeth II' => new CarbonImmutable("2022-09-19", 'Europe/London'),
+                'Platinum Jubilee bank holiday' => new CarbonImmutable('2022-06-03', 'Europe/London'),
+                'Bank Holiday for the State Funeral of Queen Elizabeth II' => new CarbonImmutable('2022-09-19', 'Europe/London'),
             ],
             default => [],
         };

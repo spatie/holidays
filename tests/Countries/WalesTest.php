@@ -1,8 +1,6 @@
 <?php
 
 use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
-use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Holidays;
 
 it('calculates welsh holidays by date', function (string $name, string $date) {
@@ -59,7 +57,7 @@ it('calculates welsh easter holidays by date', function (string $name, string $d
     ['Easter Monday', '2026-04-06'],
 ]);
 
-it( 'can calculate welsh holidays', function () {
+it('can calculate welsh holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
     $holidays = Holidays::for(country: 'gb-cym')->get();
@@ -77,7 +75,6 @@ it('returns a substitute day if new years day falls on a weekend', function () {
     expect($holidays)->toBeArray()->not()->toBeEmpty();
     expect(formatDates($holidays))->toMatchSnapshot();
 });
-
 
 it('can calculate welsh holidays if christmas is on a friday', function () {
     CarbonImmutable::setTestNowAndTimezone('2020-01-01');
@@ -114,4 +111,3 @@ it('can calculate holidays for 2020', function () {
     expect($holidays)->toBeArray()->not()->toBeEmpty();
     expect(formatDates($holidays))->toMatchSnapshot();
 });
-

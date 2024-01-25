@@ -42,8 +42,7 @@ it('calculates scottish holidays by date', function (string $name, string $date)
     ['Boxing Day (substitute day)', '2026-12-28'],
 ]);
 
-
-it( 'can calculate scottish holidays', function () {
+it('can calculate scottish holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2025-01-01');
 
     $holidays = Holidays::for(country: 'gb-sct')->get();

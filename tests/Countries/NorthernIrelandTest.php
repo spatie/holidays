@@ -46,7 +46,7 @@ it('calculates northern irish holidays by date', function (string $name, string 
 
 ]);
 
-it( 'can calculate northern irish holidays', function () {
+it('can calculate northern irish holidays', function () {
     CarbonImmutable::setTestNowAndTimezone('2025-01-01');
 
     $holidays = Holidays::for(country: 'gb-nir')->get();

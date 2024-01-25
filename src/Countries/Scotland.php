@@ -14,8 +14,8 @@ class Scotland extends Wales
     /** @return array<string, CarbonImmutable> */
     protected function secondOfJanuary(int $year): array
     {
-        $newYearsDay = new CarbonImmutable($year . "-01-01", 'Europe/London');
-        $secondOfJanuary = new CarbonImmutable($year . "-01-02", 'Europe/London');
+        $newYearsDay = new CarbonImmutable($year.'-01-01', 'Europe/London');
+        $secondOfJanuary = new CarbonImmutable($year.'-01-02', 'Europe/London');
         $key = '2nd January';
 
         if ($newYearsDay->isFriday()) {
@@ -34,7 +34,7 @@ class Scotland extends Wales
     /** @return array<string, CarbonImmutable> */
     private function stAndrewsDay(int $year): array
     {
-        $stAndrewsDay = new CarbonImmutable($year . "-11-30", 'Europe/London');
+        $stAndrewsDay = new CarbonImmutable($year.'-11-30', 'Europe/London');
         $key = 'St Andrew\'s Day';
 
         if ($stAndrewsDay->isWeekend()) {
@@ -50,8 +50,8 @@ class Scotland extends Wales
     {
         return match ($year) {
             2022 => [
-                'Platinum Jubilee bank holiday' => new CarbonImmutable("2022-06-03", 'Europe/London'),
-                'Bank Holiday for the State Funeral of Queen Elizabeth II' => new CarbonImmutable("2022-09-19", 'Europe/London'),
+                'Platinum Jubilee bank holiday' => new CarbonImmutable('2022-06-03', 'Europe/London'),
+                'Bank Holiday for the State Funeral of Queen Elizabeth II' => new CarbonImmutable('2022-09-19', 'Europe/London'),
             ],
             default => [],
         };
