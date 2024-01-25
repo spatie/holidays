@@ -7,7 +7,7 @@ use Spatie\Holidays\Countries\Australia;
 use Spatie\Holidays\Holidays;
 
 it('can calculate australian holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-22', 'Australia/Melbourne');
+    CarbonImmutable::setTestNow('2024-01-22');
 
     $holidays = Holidays::for(country: 'au')->get();
 
@@ -19,7 +19,7 @@ it('can calculate australian holidays', function () {
 });
 
 it('can calculate australian holidays for a specific year', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-22', 'Australia/Melbourne');
+    CarbonImmutable::setTestNow('2024-01-22');
 
     $holidays = Holidays::for(country: 'au', year: 2025)->get();
 
@@ -31,7 +31,7 @@ it('can calculate australian holidays for a specific year', function () {
 });
 
 it('can calculate regional australian holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-22', 'Australia/Melbourne');
+    CarbonImmutable::setTestNow('2024-01-22');
 
     $holidays = Holidays::for(Australia::make('vic'))->get();
 
@@ -43,7 +43,7 @@ it('can calculate regional australian holidays', function () {
 });
 
 it('can calculate the day before afl grand final', function () {
-    CarbonImmutable::setTestNowAndTimezone('2021-01-22', 'Australia/Melbourne');
+    CarbonImmutable::setTestNow('2021-01-22');
 
     $holidays = Holidays::for(Australia::make('vic'))->get();
 
@@ -52,7 +52,7 @@ it('can calculate the day before afl grand final', function () {
 });
 
 it('can calculate the day before afl grand final during lockdown', function () {
-    CarbonImmutable::setTestNowAndTimezone('2020-01-22', 'Australia/Melbourne');
+    CarbonImmutable::setTestNow('2020-01-22');
 
     $holidays = Holidays::for(Australia::make('vic'))->get();
 
@@ -61,7 +61,7 @@ it('can calculate the day before afl grand final during lockdown', function () {
 });
 
 it('does not return the day before afl grand final before 2015', function () {
-    CarbonImmutable::setTestNowAndTimezone('2014-01-22', 'Australia/Melbourne');
+    CarbonImmutable::setTestNow('2014-01-22');
 
     $holidays = Holidays::for(Australia::make('vic'))->get();
 
@@ -70,7 +70,7 @@ it('does not return the day before afl grand final before 2015', function () {
 });
 
 it("returns queen's birthday before her death", function () {
-    CarbonImmutable::setTestNowAndTimezone('2021-01-22', 'Australia/Perth');
+    CarbonImmutable::setTestNow('2021-01-22', 'Australia/Perth');
 
     $holidays = Holidays::for(Australia::make('wa'))->get();
 
@@ -82,7 +82,7 @@ it("returns queen's birthday before her death", function () {
 });
 
 it("returns king's birthday after her death", function () {
-    CarbonImmutable::setTestNowAndTimezone('2022-01-22', 'Australia/Perth');
+    CarbonImmutable::setTestNow('2022-01-22', 'Australia/Perth');
 
     $holidays = Holidays::for(Australia::make('wa'))->get();
 
@@ -94,7 +94,7 @@ it("returns king's birthday after her death", function () {
 });
 
 it('can calculate Adelaide Cup Day before 2006', function () {
-    CarbonImmutable::setTestNowAndTimezone('2005-01-22', 'Australia/Adelaide');
+    CarbonImmutable::setTestNow('2005-01-22', 'Australia/Adelaide');
 
     $holidays = Holidays::for(Australia::make('sa'))->get();
 
@@ -103,7 +103,7 @@ it('can calculate Adelaide Cup Day before 2006', function () {
 });
 
 it('can calculate Adelaide Cup Day after 2006', function () {
-    CarbonImmutable::setTestNowAndTimezone('2007-01-22', 'Australia/Adelaide');
+    CarbonImmutable::setTestNow('2007-01-22', 'Australia/Adelaide');
 
     $holidays = Holidays::for(Australia::make('sa'))->get();
 
@@ -112,7 +112,7 @@ it('can calculate Adelaide Cup Day after 2006', function () {
 });
 
 it('can calculate Reconciliation Day on 27 May', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-22', 'Australia/Canberra');
+    CarbonImmutable::setTestNow('2024-01-22', 'Australia/Canberra');
 
     $holidays = Holidays::for(Australia::make('act'))->get();
 
@@ -121,7 +121,7 @@ it('can calculate Reconciliation Day on 27 May', function () {
 });
 
 it('can calculate Reconciliation Day after 27 May', function () {
-    CarbonImmutable::setTestNowAndTimezone('2025-01-22', 'Australia/Canberra');
+    CarbonImmutable::setTestNow('2025-01-22', 'Australia/Canberra');
 
     $holidays = Holidays::for(Australia::make('act'))->get();
 
