@@ -36,12 +36,6 @@ class Switzerland extends Country
         'ch-zh',
     ];
 
-    private const LOCALES = [
-        'de',
-        'fr',
-        'it',
-    ];
-
     private const NEW_YEAR = 'Neujahr';
 
     private const SECOND_JANUARY = 'Berchtoldstag';
@@ -74,14 +68,10 @@ class Switzerland extends Country
 
     private const ST_STEPHENS_DAY = 'Stephanstag';
 
-    public function __construct(protected ?string $region = null, protected ?string $locale = null)
+    public function __construct(protected ?string $region = null)
     {
         if ($region !== null && !in_array($region, self::REGIONS)) {
             throw InvalidRegion::unsupportedRegion($region);
-        }
-
-        if($locale !== null && !in_array($locale, self::LOCALES)) {
-            throw InvalidRegion::unsupportedLocale($locale);
         }
     }
 
@@ -123,7 +113,7 @@ class Switzerland extends Country
             self::ST_STEPHENS_DAY => '12-26',
         ];
 
-        $regions = [
+        $currentRegion = match($this->region) {
             'ch-ag' => [
                 self::GOOD_FRIDAY,
             ],
@@ -284,9 +274,8 @@ class Switzerland extends Country
                 self::WHIT_MONDAY,
                 self::ST_STEPHENS_DAY,
             ],
-        ];
-
-        $currentRegion = $regions[$this->region];
+            default => [],
+        };
 
         $regionalHolidays = array_filter(
             $regionallyDifferentHolidays,
@@ -297,101 +286,7 @@ class Switzerland extends Country
         return array_merge($regionalHolidays, $sharedHolidays);
     }
 
-    /**
-     * @param array<string, CarbonImmutable|string> $holidays
-     * @return array<string, CarbonImmutable|string>
-     */
-    protected function translateHolidays(array $holidays): array
-    {
-        if ($this->locale === null) {
-            return $holidays;
-        }
-
-        $translatedHolidays = [];
-
-        foreach ($holidays as $name => $date) {
-            /** @var string $translatedName */
-            $translatedName = $this->translate($name);
-            $translatedHolidays[$translatedName] = $date;
-        }
-
-        return $translatedHolidays;
-    }
-
-    protected function translate(string $name): string
-    {
-        $translations = [
-            'de' => [
-                self::NEW_YEAR => 'Neujahr',
-                self::SECOND_JANUARY => 'Berchtoldstag',
-                self::THREE_KINGS => 'Heilige Drei Könige',
-                self::DAY_OF_JOSEPH => 'Josefstag',
-                self::GOOD_FRIDAY => 'Karfreitag',
-                self::EASTER_MONDAY => 'Ostermontag',
-                self::LABOR_DAY => 'Tag der Arbeit',
-                self::ASCENSION_DAY => 'Auffahrt',
-                self::WHIT_MONDAY => 'Pfingstmontag',
-                self::CORPUS_CHRISTI => 'Fronleichnam',
-                self::FEDERAL_CELEBRATION => 'Bundesfeier',
-                self::ASSUMPTION_DAY => 'Maria Himmelfahrt',
-                self::ALL_SAINTS_DAY => 'Allerheiligen',
-                self::IMMACULATE_CONCEPTION => 'Maria Empfängnis',
-                self::CHRISTMAS_DAY => 'Weihnachtstag',
-                self::ST_STEPHENS_DAY => 'Stephanstag',
-            ],
-            'fr' => [
-                self::NEW_YEAR => 'Nouvel An',
-                self::SECOND_JANUARY => 'Saint-Berthold',
-                self::THREE_KINGS => 'Épiphanie',
-                self::DAY_OF_JOSEPH => 'Saint-Joseph',
-                self::GOOD_FRIDAY => 'Vendredi saint',
-                self::EASTER_MONDAY => 'Lundi de Pâques',
-                self::LABOR_DAY => 'Fête du travail',
-                self::ASCENSION_DAY => 'Ascension',
-                self::WHIT_MONDAY => 'Lundi de Pentecôte',
-                self::CORPUS_CHRISTI => 'Fête-Dieu',
-                self::FEDERAL_CELEBRATION => 'Fête nationale',
-                self::ASSUMPTION_DAY => 'Assomption',
-                self::ALL_SAINTS_DAY => 'Toussaint',
-                self::IMMACULATE_CONCEPTION => 'Immaculée Conception',
-                self::CHRISTMAS_DAY => 'Noël',
-                self::ST_STEPHENS_DAY => 'Saint-Étienne',
-            ],
-            'it' => [
-                self::NEW_YEAR => 'Capodanno',
-                self::SECOND_JANUARY => 'San Silvestro',
-                self::THREE_KINGS => 'Epifania',
-                self::DAY_OF_JOSEPH => 'San Giuseppe',
-                self::GOOD_FRIDAY => 'Venerdì Santo',
-                self::EASTER_MONDAY => 'Lunedì di Pasqua',
-                self::LABOR_DAY => 'Festa del lavoro',
-                self::ASCENSION_DAY => 'Ascensione',
-                self::WHIT_MONDAY => 'Lunedì di Pentecoste',
-                self::CORPUS_CHRISTI => 'Corpus Domini',
-                self::FEDERAL_CELEBRATION => 'Festa nazionale',
-                self::ASSUMPTION_DAY => 'Assunzione',
-                self::ALL_SAINTS_DAY => 'Ognissanti',
-                self::IMMACULATE_CONCEPTION => 'Immacolata Concezione',
-                self::CHRISTMAS_DAY => 'Natale',
-                self::ST_STEPHENS_DAY => 'Santo Stefano',
-            ],
-        ];
-
-        return $translations[$this->locale][$name];
-    }
-
-    /**
-     * @return array<string, CarbonImmutable|string>
-     */
-    protected function translatedHolidays(int $year): array
-    {
-        return $this->translateHolidays($this->untranslatedHolidays($year));
-    }
-
-    /**
-     * @return array<string, CarbonImmutable|string>
-     */
-    protected function untranslatedHolidays(int $year): array
+    protected function allHolidays(int $year): array
     {
         if($this->region !== null) {
             return $this->regionalHolidays($year);
@@ -404,13 +299,6 @@ class Switzerland extends Country
             self::CHRISTMAS_DAY => '12-25',
             self::ST_STEPHENS_DAY => '12-26',
         ], $this->variableHolidays($year));
-    }
-
-    protected function allHolidays(int $year): array
-    {
-        return $this->locale !== null
-            ? $this->translatedHolidays($year)
-            : $this->untranslatedHolidays($year);
     }
 
     /** @return array<string, CarbonImmutable> */
