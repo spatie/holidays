@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 use Spatie\Holidays\Calendars\ChineseCalendar;
 
 class Vietnam extends Country
@@ -31,7 +32,7 @@ class Vietnam extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $this->setTimezoneForChineseCalendar('Asia/Ho_Chi_Minh');
+        $this->setChineseCalendarTimezone('Asia/Ho_Chi_Minh');
 
         return array_merge(
             $this->getHungKingsFestival($year),
@@ -82,31 +83,31 @@ class Vietnam extends Country
         $independenceDay = CarbonImmutable::parse("$year-09-02")
             ->setTimeZone('Asia/Ho_Chi_Minh');
 
-        if ($independenceDay->dayOfWeek == CarbonImmutable::MONDAY) {
+        if ($independenceDay->dayOfWeek === CarbonInterface::MONDAY) {
             return ['Ngày Sau Quốc Khánh' => $independenceDay->addDay()];
         }
 
-        if ($independenceDay->dayOfWeek == CarbonImmutable::TUESDAY) {
+        if ($independenceDay->dayOfWeek === CarbonInterface::TUESDAY) {
             return ['Ngày Trước Quốc Khánh' => $independenceDay->subDay()];
         }
 
-        if ($independenceDay->dayOfWeek == CarbonImmutable::WEDNESDAY) {
+        if ($independenceDay->dayOfWeek === CarbonInterface::WEDNESDAY) {
             return ['Ngày Trước Quốc Khánh' => $independenceDay->subDay()];
         }
 
-        if ($independenceDay->dayOfWeek == CarbonImmutable::THURSDAY) {
+        if ($independenceDay->dayOfWeek === CarbonInterface::THURSDAY) {
             return ['Ngày Sau Quốc Khánh' => $independenceDay->addDay()];
         }
 
-        if ($independenceDay->dayOfWeek == CarbonImmutable::FRIDAY) {
+        if ($independenceDay->dayOfWeek === CarbonInterface::FRIDAY) {
             return ['Ngày Trước Quốc Khánh' => $independenceDay->subDay()];
         }
 
-        if ($independenceDay->dayOfWeek == CarbonImmutable::SATURDAY) {
+        if ($independenceDay->dayOfWeek === CarbonInterface::SATURDAY) {
             return ['Ngày Trước Quốc Khánh' => $independenceDay->subDay()];
         }
 
-        if ($independenceDay->dayOfWeek == CarbonImmutable::SUNDAY) {
+        if ($independenceDay->dayOfWeek === CarbonInterface::SUNDAY) {
             return ['Ngày Sau Quốc Khánh' => $independenceDay->addDays(2)];
         }
 
