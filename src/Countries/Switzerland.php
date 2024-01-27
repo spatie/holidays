@@ -70,7 +70,7 @@ class Switzerland extends Country
 
     public function __construct(protected ?string $region = null)
     {
-        if ($region !== null && !in_array($region, self::REGIONS)) {
+        if ($region !== null && ! in_array($region, self::REGIONS)) {
             throw InvalidRegion::unsupportedRegion($region);
         }
     }
@@ -113,7 +113,7 @@ class Switzerland extends Country
             self::ST_STEPHENS_DAY => '12-26',
         ];
 
-        $currentRegion = match($this->region) {
+        $currentRegion = match ($this->region) {
             'ch-ag' => [
                 self::GOOD_FRIDAY,
             ],
@@ -288,7 +288,7 @@ class Switzerland extends Country
 
     protected function allHolidays(int $year): array
     {
-        if($this->region !== null) {
+        if ($this->region !== null) {
             return $this->regionalHolidays($year);
         }
 

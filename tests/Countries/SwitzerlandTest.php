@@ -19,7 +19,7 @@ it('can calculate swiss holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-it('can get swiss holidays for a specified region (zh)', function() {
+it('can get swiss holidays for a specified region (zh)', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
     $switzerland = new Switzerland(region: 'ch-zh');
@@ -37,7 +37,7 @@ it('throws an error when an invalid region is given', function () {
     new Switzerland('ch-xx');
 })->throws(InvalidRegion::class);
 
-it('can translate swiss holidays into french', function() {
+it('can translate swiss holidays into french', function () {
     $holidays = Holidays::for(country: 'ch', locale: 'fr', year: 2024)->get();
 
     expect($holidays)
@@ -47,7 +47,7 @@ it('can translate swiss holidays into french', function() {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-it('can translate swiss holidays into italian', function() {
+it('can translate swiss holidays into italian', function () {
     $holidays = Holidays::for(country: 'ch', locale: 'it', year: 2024)->get();
 
     expect($holidays)
