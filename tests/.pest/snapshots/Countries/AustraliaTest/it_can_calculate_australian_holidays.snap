@@ -1,0 +1,30 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Australia Day",
+        "date": "2024-01-26"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Anzac Day",
+        "date": "2024-04-25"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2024-12-26"
+    }
+]

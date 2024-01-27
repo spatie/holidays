@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holidays;
 
 it('can calculate united states holidays after 2021', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'us')->get();
 
@@ -19,7 +19,7 @@ it('can calculate united states holidays after 2021', function () {
 });
 
 it('can calculate united states holidays before 2021', function () {
-    CarbonImmutable::setTestNowAndTimezone('2020-01-01');
+    CarbonImmutable::setTestNow('2020-01-01');
 
     $holidays = Holidays::for(country: 'us')->get();
 
