@@ -21,7 +21,7 @@ class Vietnam extends Country
         return array_merge([
             // New Year's Day
             'Tết Dương Lịch' => '01-01',
-            // Reunification Day
+            // Day of Southern Liberation and National Reunification
             'Ngày Giải Phóng Miền Nam, Thống Nhất Đất Nước' => '04-30',
             // Labour Day
             'Ngày Quốc Tế Lao Động' => '05-01',
