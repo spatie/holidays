@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Germany;
+use Spatie\Holidays\Exceptions\InvalidLocale;
 use Spatie\Holidays\Holidays;
 
 it('can calculate german holidays', function () {
@@ -78,3 +79,20 @@ it('can get german holidays for other regions', function (string $region, int $t
         ['SH', 10],
         ['TH', 11]]
 );
+
+it('can calculate german holidays in local', function (string $locale, string $newYearsDayName) {
+    CarbonImmutable::setTestNow('2024-01-01');
+    $result = Holidays::for(country: 'de', year: 2024, locale: $locale)->get();
+
+    expect($result)->toBeArray();
+    expect($result[0]['name'])->toBe($newYearsDayName);
+})->with(
+    [
+        ['en','New Year'],
+        ['nl','Nieuwjaar'],
+        ['fr','Jour de l\'An']
+    ]
+);
+it('cannot get translated holiday names for unsupported locales', function () {
+    Holidays::for(country: 'de', year: 2024, locale: 'xx')->get();
+})->throws(InvalidLocale::class, 'Locale `xx` is not supported for country `Germany`.');
