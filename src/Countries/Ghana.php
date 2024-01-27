@@ -29,8 +29,7 @@ class Ghana extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Africa/Accra');
+        $easter = $this-easter($year);
 
         return [
             'Good Friday' => $easter->subDays(2),
