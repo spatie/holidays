@@ -30,8 +30,6 @@ class Iran extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Asia/Tehran');
 
         return [
             //add more holidays
