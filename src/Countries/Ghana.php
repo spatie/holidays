@@ -29,7 +29,7 @@ class Ghana extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = $this-easter($year);
+        $easter = $this->easter($year);
 
         return [
             'Good Friday' => $easter->subDays(2),
