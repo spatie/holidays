@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use IntlCalendar;
 
 class Tanzania extends Country
 {
@@ -20,7 +19,7 @@ class Tanzania extends Country
             'Saba Saba Day' => '07-07',
             'Farmers Day (Nane Nane Day)' => '08-08',
             'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26'
+            'Boxing Day' => '12-26',
         ], $this->variableHolidays($year));
     }
 
