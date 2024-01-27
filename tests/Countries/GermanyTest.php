@@ -4,7 +4,6 @@ namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Germany;
-use Spatie\Holidays\Exceptions\InvalidLocale;
 use Spatie\Holidays\Holidays;
 
 it('can calculate german holidays', function () {
@@ -88,8 +87,8 @@ it('can calculate german holidays in local', function (string $locale, string $n
     expect($result[0]['name'])->toBe($newYearsDayName);
 })->with(
     [
-        ['en','New Year'],
-        ['nl','Nieuwjaar'],
-        ['fr','Jour de l\'An']
+        ['en', 'New Year'],
+        ['nl', 'Nieuwjaar'],
+        ['fr', 'Jour de l\'An'],
     ]
 );
