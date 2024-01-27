@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Nouvel An",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Saint-Berthold",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Vendredi saint",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Lundi de P\u00e2ques",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Ascension",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Lundi de Pentec\u00f4te",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "F\u00eate nationale",
+        "date": "2024-08-01"
+    },
+    {
+        "name": "No\u00ebl",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Saint-\u00c9tienne",
+        "date": "2024-12-26"
+    }
+]
