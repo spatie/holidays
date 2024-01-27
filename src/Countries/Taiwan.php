@@ -47,7 +47,7 @@ class Taiwan extends Country
             calendar: IntlDateFormatter::TRADITIONAL
         );
 
-        $lunarDateStr = $year . '-' . $input;
+        $lunarDateStr = $year.'-'.$input;
         $parsedTimestamp = $formatter->parse($lunarDateStr);
 
         if ($parsedTimestamp === false) {
