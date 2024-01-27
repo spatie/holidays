@@ -14,14 +14,14 @@ class Kenya extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's" => "01-01",
-            "Labour" => "05-01",
-            "Madaraka" => "06-01",
-            "Utamaduni" => "10-10",
-            "Mashujaa" => "10-20",
-            "Jamhuri" => "12-01",
-            "Christmas" => "12-25",
-            "Boxing" => "12-26",
+            "New Year's" => '01-01',
+            'Labour' => '05-01',
+            'Madaraka' => '06-01',
+            'Utamaduni' => '10-10',
+            'Mashujaa' => '10-20',
+            'Jamhuri' => '12-01',
+            'Christmas' => '12-25',
+            'Boxing' => '12-26',
         ], $this->variableHolidays($year));
     }
 
@@ -32,8 +32,8 @@ class Kenya extends Country
             ->setTimezone('Africa/Nairobi');
 
         return [
-            "Good Friday" => $easter->subDays(2),
-            "Easter Monday" => $easter->addDay(),
+            'Good Friday' => $easter->subDays(2),
+            'Easter Monday' => $easter->addDay(),
         ];
     }
 }
