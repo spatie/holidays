@@ -3,6 +3,8 @@
 namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Countries\Switzerland;
+use Spatie\Holidays\Exceptions\InvalidRegion;
 use Spatie\Holidays\Holidays;
 
 it('can calculate swiss holidays', function () {
@@ -16,3 +18,39 @@ it('can calculate swiss holidays', function () {
 
     expect(formatDates($holidays))->toMatchSnapshot();
 });
+
+it('can get swiss holidays for a specified region (zh)', function() {
+    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+
+    $switzerland = new Switzerland(region: 'ch-zh');
+
+    $holidays = Holidays::for($switzerland)->get();
+
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    expect(formatDates($holidays))->toMatchSnapshot();
+});
+
+it('throws an error when an invalid region is given', function () {
+    new Switzerland('ch-xx');
+})->throws(InvalidRegion::class);
+
+it('can translate swiss holidays', function() {
+    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+
+    $switzerland = new Switzerland(locale: 'fr');
+
+    $holidays = Holidays::for($switzerland)->get();
+
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    expect(formatDates($holidays))->toMatchSnapshot();
+});
+
+it('throws an error when an invalid locale is given', function () {
+    new Switzerland(locale: 'xx');
+})->throws(InvalidRegion::class);
