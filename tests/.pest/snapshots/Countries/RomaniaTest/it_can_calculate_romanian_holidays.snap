@@ -1,0 +1,70 @@
+[
+    {
+        "name": "Anul Nou",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "A doua zi de Anul Nou",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Boboteaz\u0103",
+        "date": "2024-01-06"
+    },
+    {
+        "name": "Sf\u00e2ntul Ion",
+        "date": "2024-01-07"
+    },
+    {
+        "name": "Ziua Unirii Principatelor Rom\u00e2ne",
+        "date": "2024-01-24"
+    },
+    {
+        "name": "Ziua Muncii",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Vinerea Mare",
+        "date": "2024-05-03"
+    },
+    {
+        "name": "Pa\u0219tele",
+        "date": "2024-05-05"
+    },
+    {
+        "name": "A doua zi de Pa\u0219te",
+        "date": "2024-05-06"
+    },
+    {
+        "name": "Ziua Copilului",
+        "date": "2024-06-01"
+    },
+    {
+        "name": "Rusaliile",
+        "date": "2024-06-23"
+    },
+    {
+        "name": "A doua zi de Rusalii",
+        "date": "2024-06-24"
+    },
+    {
+        "name": "Adormirea Maicii Domnului",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Sf\u00e2ntul Andrei",
+        "date": "2024-11-30"
+    },
+    {
+        "name": "Ziua Na\u021bional\u0103",
+        "date": "2024-12-01"
+    },
+    {
+        "name": "Cr\u0103ciunul",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "A doua zi de Cr\u0103ciun",
+        "date": "2024-12-26"
+    }
+]

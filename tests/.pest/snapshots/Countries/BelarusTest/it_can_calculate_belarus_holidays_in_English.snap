@@ -1,0 +1,42 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "New Year's Day (second day)",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Orthodox Christmas",
+        "date": "2024-01-07"
+    },
+    {
+        "name": "Women's Day",
+        "date": "2024-03-08"
+    },
+    {
+        "name": "Labor Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Victory Day",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Radaunitsa",
+        "date": "2024-05-14"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-07-03"
+    },
+    {
+        "name": "October Revolution Day",
+        "date": "2024-11-07"
+    },
+    {
+        "name": "Catholic Christmas",
+        "date": "2024-12-25"
+    }
+]
