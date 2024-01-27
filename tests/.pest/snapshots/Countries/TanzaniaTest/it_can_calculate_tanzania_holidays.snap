@@ -1,9 +1,5 @@
 [
     {
-        "name": "Maulid Day",
-        "date": "2023-09-27"
-    },
-    {
         "name": "New Year's Day",
         "date": "2024-01-01"
     },
@@ -24,20 +20,12 @@
         "date": "2024-04-07"
     },
     {
-        "name": "Eid al-Fitr",
-        "date": "2024-04-09"
-    },
-    {
         "name": "Union Day",
         "date": "2024-04-26"
     },
     {
         "name": "Labor Day",
         "date": "2024-05-01"
-    },
-    {
-        "name": "Eid al-Hajj",
-        "date": "2024-06-17"
     },
     {
         "name": "Saba Saba Day",
