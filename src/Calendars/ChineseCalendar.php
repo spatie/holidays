@@ -19,8 +19,8 @@ trait ChineseCalendar
 
     protected function chineseToGregorianDate(string $input, int $year): CarbonImmutable
     {
-        $timestamp = (int) $this->getFormatter()->parse($year . '-' . $input);
-        
+        $timestamp = (int) $this->getFormatter()->parse($year.'-'.$input);
+
         return (new CarbonImmutable())
             ->setTimeStamp($timestamp)
             ->setTimezone(new DateTimeZone($this->asianTimezone));

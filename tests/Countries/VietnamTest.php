@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Countries\Vietnam;
 use Spatie\Holidays\Holidays;
 
 it('can calculate vietnamese holidays', function () {

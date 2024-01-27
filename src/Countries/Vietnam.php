@@ -3,8 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use DateTimeZone;
-use IntlDateFormatter;
 use Spatie\Holidays\Calendars\ChineseCalendar;
 
 class Vietnam extends Country
@@ -54,7 +52,7 @@ class Vietnam extends Country
     /** @return array<string, CarbonImmutable> */
     protected function getLunarNewYearHoliday(int $year): array
     {
-        $firstOfJanInChineseCalendar = $this->chineseToGregorianDate('01-01', $year); 
+        $firstOfJanInChineseCalendar = $this->chineseToGregorianDate('01-01', $year);
 
         return [
             // 12-29 the previous year (in Chinese Calendar)
@@ -82,7 +80,7 @@ class Vietnam extends Country
         }
 
         $independenceDay = CarbonImmutable::parse("$year-09-02")
-            ->setTimeZone("Asia/Ho_Chi_Minh");
+            ->setTimeZone('Asia/Ho_Chi_Minh');
 
         if ($independenceDay->dayOfWeek == CarbonImmutable::MONDAY) {
             return ['Ngày Sau Quốc Khánh' => $independenceDay->addDay()];
