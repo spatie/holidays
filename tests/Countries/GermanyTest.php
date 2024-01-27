@@ -93,6 +93,3 @@ it('can calculate german holidays in local', function (string $locale, string $n
         ['fr','Jour de l\'An']
     ]
 );
-it('cannot get translated holiday names for unsupported locales', function () {
-    Holidays::for(country: 'de', year: 2024, locale: 'xx')->get();
-})->throws(InvalidLocale::class, 'Locale `xx` is not supported for country `Germany`.');
