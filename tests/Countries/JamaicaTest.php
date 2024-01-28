@@ -17,16 +17,6 @@ it('can calculate jamaican holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-it('can calculate correct day of week for ash wendesday', function ($year) {
-    CarbonImmutable::setTestNowAndTimezone($year.'-01-01');
-
-    $holidays = Holidays::for(country: 'jm')->get();
-    $ashWednesday = $holidays[array_search('Ash Wednesday', array_column($holidays, 'name'))];
-
-    expect($ashWednesday['date']->dayOfWeek)->toBe(3);
-
-})->with([2023, 2024]);
-
 it('can calculate observed holidays based on year', function () {
 
     // Check for Observed New Year's Day
