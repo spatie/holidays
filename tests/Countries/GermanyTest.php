@@ -39,7 +39,7 @@ it('can calculate german historical reformationstag in year 2018 is not a holida
 it('can calculate german buß- und bettag in year 1990', function () {
     CarbonImmutable::setTestNow('1990-01-01');
 
-    $holiday = Holidays::for('de')->isHoliday('1990-10-03');
+    $holiday = Holidays::for('de')->isHoliday('1990-11-21');
 
     expect($holiday)->toBeTrue();
 
