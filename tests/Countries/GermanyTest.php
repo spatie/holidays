@@ -59,6 +59,14 @@ it('can calculate german buß- und bettag in year 1990', function () {
     expect($holiday)->toBeTrue();
 
 });
+it('can calculate german berlin holiday Victory in Europe Day in year 2020', function () {
+    CarbonImmutable::setTestNow('2020-01-01');
+
+    $holiday = Holidays::for(Germany::make('DE-BE'))->isHoliday('2020-05-08');
+
+    expect($holiday)->toBeTrue();
+
+});
 /*
  This test will check for all regional holidays in Germany. Source: https://en.wikipedia.org/wiki/Public_holidays_in_Germany
     The total numbers are referenced in the wikipedia article.

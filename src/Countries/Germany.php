@@ -81,23 +81,29 @@ class Germany extends Country
                     'Allerheiligen' => '11-01',
                 ];
             case 'DE-BY':
-                return [
+                $byHolidays = [
                     'Heilige Drei Könige' => '01-06',
                     'Fronleichnam' => $easter->addDays(60),
                     'Allerheiligen' => '11-01',
                     'Mariä Himmelfahrt' => '08-15',
                 ];
+                if ($year >= 1948 && $year <= 1969) {
+                    $byHolidays['Josefstag'] = '03-19';
+                }
+
+                return $byHolidays;
 
             case 'DE-BE':
+                $beHolidays = [
+                ];
                 if ($year >= 2019) {
-                    return [
-                        'Internationaler Frauentag' => '03-08',
-                    ];
-                } else {
-                    return [
-
-                    ];
+                    $beHolidays['Internationaler Frauentag'] = '03-08';
                 }
+                if ($year === 2020) {
+                    $beHolidays['Tag der Befreiung'] = '05-08';
+                }
+
+                return $beHolidays;
             case 'DE-BB':
                 if ($year >= 1991) {
                     return [
