@@ -1,6 +1,6 @@
 name: Fix PHP code style issues
 
-on: [push, pull_request]
+on: [push]
 
 permissions:
   contents: write
