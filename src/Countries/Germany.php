@@ -29,7 +29,7 @@ class Germany extends Country
         $historicalHolidays = [];
         if ($year >= 1954 && $year <= 1990) {
             $historicalHolidays['Tag der deutschen Einheit'] = '06-17';
-        }else{
+        } else {
             $historicalHolidays['Tag der deutschen Einheit'] = '10-03';
         }
         if ($year >= 1990 && $year <= 1994) {
