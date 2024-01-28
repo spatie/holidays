@@ -27,6 +27,11 @@ class Germany extends Country
     protected function historicalHolidays(int $year): array
     {
         $historicalHolidays = [];
+        if ($year >= 1954 && $year <= 1990) {
+            $historicalHolidays['Tag der deutschen Einheit'] = '06-17';
+        }else{
+            $historicalHolidays['Tag der deutschen Einheit'] = '10-03';
+        }
         if ($year >= 1990 && $year <= 1994) {
             $historicalHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
         }
@@ -43,7 +48,6 @@ class Germany extends Country
 
         return array_merge([
             'Neujahr' => '01-01',
-            'Tag der deutschen Einheit' => '10-03',
             'Tag der Arbeit' => '05-01',
             '1. Weihnachtstag' => '12-25',
             '2. Weihnachtstag' => '12-26',

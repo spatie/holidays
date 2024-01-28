@@ -18,7 +18,22 @@ it('can calculate german holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 
 });
+it('can calculate german historical unity day in year 1990', function () {
+    CarbonImmutable::setTestNow('1990-01-01');
 
+    $holiday = Holidays::for('de')->isHoliday('1990-06-17');
+
+    expect($holiday)->toBeTrue();
+
+});
+it('can calculate german unity day in year 1990', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
+    $holiday = Holidays::for('de')->isHoliday('2024-10-03');
+
+    expect($holiday)->toBeTrue();
+
+});
 it('can calculate german historical reformationstag in year 2017', function () {
     CarbonImmutable::setTestNow('2017-01-01');
 
