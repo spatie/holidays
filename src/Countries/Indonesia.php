@@ -3,9 +3,12 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Calendars\ChineseCalendar;
 
 class Indonesia extends Country
 {
+    use ChineseCalendar;
+
     public function countryCode(): string
     {
         return 'id';
@@ -28,6 +31,7 @@ class Indonesia extends Country
         $easter = $this->easter($year);
 
         return [
+            'Tahun Baru Imlek' => $this->chineseToGregorianDate('01-01', $year),
             'Jumat Agung' => $easter->subDays(2),
             'Hari Paskah' => $easter,
             'Kenaikan Yesus Kristus' => $easter->addDays(39),
