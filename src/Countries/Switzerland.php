@@ -60,6 +60,8 @@ class Switzerland extends Country
 
     private const ASSUMPTION_DAY = 'Maria Himmelfahrt';
 
+    private const FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER = "Buss- und Bettag";
+
     private const ALL_SAINTS_DAY = 'Allerheiligen';
 
     private const IMMACULATE_CONCEPTION = 'Maria Empfängnis';
@@ -108,6 +110,7 @@ class Switzerland extends Country
             self::WHIT_MONDAY => $easter->addDays(50),
             self::CORPUS_CHRISTI => $easter->addDays(60),
             self::ASSUMPTION_DAY => '08-15',
+            self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER => new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich'),
             self::ALL_SAINTS_DAY => '11-01',
             self::IMMACULATE_CONCEPTION => '12-08',
             self::SAINT_STEPHENS_DAY => '12-26',
@@ -272,6 +275,7 @@ class Switzerland extends Country
                 self::EASTER_MONDAY,
                 self::LABOUR_DAY,
                 self::WHIT_MONDAY,
+                self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER,
                 self::SAINT_STEPHENS_DAY,
             ],
             default => [],
