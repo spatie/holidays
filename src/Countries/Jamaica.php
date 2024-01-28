@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 
 class Jamaica extends Country
 {
@@ -59,7 +60,8 @@ class Jamaica extends Country
         $observedHolidays = [];
 
         foreach ($this->fixedHolidays() as $name => $date) {
-            $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+            $date = CarbonImmutable::parse("$year-$date")
+                ->setTimeZone('America/Jamaica');
 
             // If any holiday falls on a Sunday, then it is observed on Monday
             if($date->dayOfWeek === 0) {
