@@ -43,7 +43,7 @@ class Jamaica extends Country
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
-        $heroesDay = new CarbonImmutable("third monday of October $year", 'America/Jamaica');
+        $heroesDay = new CarbonImmutable("third monday of October $year");
 
         return [
             'Ash Wednesday' => $easter->subDays(46),
@@ -60,8 +60,7 @@ class Jamaica extends Country
         $observedHolidays = [];
 
         foreach ($this->fixedHolidays() as $name => $date) {
-            $date = CarbonImmutable::parse("$year-$date")
-                ->setTimeZone('America/Jamaica');
+            $date = CarbonImmutable::parse("$year-$date");
 
             // If any holiday falls on a Sunday, then it is observed on Monday
             if($date->dayOfWeek === 0) {
