@@ -16,7 +16,7 @@ class Bahrain extends Country
     {
         return array_merge([
             'New Year Day' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Labour Day' => '05-01',
+            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
             'Ashura Holiday 1' => CarbonImmutable::createFromDate($year, 7, 16),
             'Ashura Holiday 2' => CarbonImmutable::createFromDate($year, 7, 17),
             'National Day' => CarbonImmutable::createFromDate($year, 12, 16),
