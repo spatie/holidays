@@ -244,11 +244,16 @@ class Switzerland extends Country
                 self::SAINT_STEPHENS_DAY,
             ],
             'ch-ur' => [
+                self::THREE_KINGS_DAY,
+                self::SAINT_JOSEPHS_DAY,
                 self::GOOD_FRIDAY,
+                self::EASTER_MONDAY,
+                self::WHIT_MONDAY,
                 self::CORPUS_CHRISTI,
                 self::ASSUMPTION_DAY,
                 self::ALL_SAINTS_DAY,
                 self::IMMACULATE_CONCEPTION,
+                self::SAINT_STEPHENS_DAY
             ],
             'ch-vd' => [
                 self::BERCHTOLDS_DAY,
