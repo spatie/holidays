@@ -4,17 +4,13 @@ namespace Spatie\Holidays\Countries;
 
 use _PHPStan_3d4486d07\Nette\Neon\Exception;
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 
 class Switzerland extends Country
 {
-
-
     public function __construct(
         protected ?string $region = null
-    )
-    {
+    ) {
     }
 
     public function countryCode(): string
@@ -25,7 +21,7 @@ class Switzerland extends Country
     protected function allHolidays(int $year): array
     {
 
-        $holidays =  array_merge([
+        $holidays = array_merge([
             'Swiss National Day' => '08-01',
         ],
             $this->getCatonalHolidays($year),
@@ -37,6 +33,7 @@ class Switzerland extends Country
     /**
      * This defaults to SBB/CFF/FFS holidays or postal holidays
      * https://github.com/spatie/holidays/pull/49/files#r1462344840
+     *
      * @return non-empty-array<int|string, array<string, string>|string>
      */
     private function getDefaultSwissHolidays(int $year): array
@@ -54,12 +51,12 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<string, string> */
-    private function getVariableHoliday(int $year, string $holiday) : array
+    private function getVariableHoliday(int $year, string $holiday): array
     {
         $easter = $this->easter($year);
 
         $value = match ($holiday) {
-            'Good Friday'  => $easter->subDays(2),
+            'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
             'Ascension Day' => $easter->addDays(39),
             'Whit Monday' => $easter->addDays(50),
@@ -72,25 +69,26 @@ class Switzerland extends Country
     }
 
     /**
-     * @param non-empty-array<int|string, array<string, string>|string> $holidays
+     * @param  non-empty-array<int|string, array<string, string>|string>  $holidays
      * @return array<string, string>
      */
-    private function normalizeHolidayArray(array $holidays) : array
+    private function normalizeHolidayArray(array $holidays): array
     {
 
         $normalized_holidays = [];
 
         foreach ($holidays as $key => $value) {
-            if(is_array($value)) {
+            if (is_array($value)) {
 
                 foreach ($value as $sub_key => $sub_value) {
                     $normalized_holidays[$sub_key] = $sub_value;
 
                 }
+
                 continue;
             }
 
-            if(is_string($key)) {
+            if (is_string($key)) {
                 $normalized_holidays[$key] = $value;
             }
         }
@@ -104,8 +102,9 @@ class Switzerland extends Country
     private function getCatonalHolidays(int $year): array
     {
 
-        if($this->region === null) {
+        if ($this->region === null) {
             $default_holidays = $this->getDefaultSwissHolidays($year);
+
             return $this->normalizeHolidayArray($default_holidays);
         }
 
@@ -152,7 +151,7 @@ class Switzerland extends Country
         $carbon_immutable = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$month}-{$day}");
 
         // check if the date is valid
-        if(!$carbon_immutable) {
+        if (! $carbon_immutable) {
             throw new Exception('Invalid date');
         }
 
@@ -271,6 +270,7 @@ class Switzerland extends Country
     /**
      * except some municipalities in the "Bezirk See / district du Lac" do not share these holidays.
      * These holidays are only valid for the canton however, not for these municipalities.
+     *
      * @return non-empty-array<int|string, array<string, string>|string>
      */
     private function getFRHolidays(int $year): array
@@ -436,7 +436,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getOWHolidays(int $year) : array
+    private function getOWHolidays(int $year): array
     {
         return array_merge([
             'New Year\'s Day' => '01-01',
@@ -457,7 +457,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getSHHolidays(int $year) : array
+    private function getSHHolidays(int $year): array
     {
         return array_merge([
             'New Year\'s Day' => '01-01',
@@ -474,7 +474,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getSZHolidays(int $year) : array
+    private function getSZHolidays(int $year): array
     {
         return [
             'New Year\'s Day' => '01-01',
@@ -494,7 +494,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getSOHolidays(int $year) : array
+    private function getSOHolidays(int $year): array
     {
         return array_merge([
             'New Year\'s Day' => '01-01',
@@ -513,7 +513,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getSGHolidays(int $year) : array
+    private function getSGHolidays(int $year): array
     {
         return array_merge([
             'New Year\'s Day' => '01-01',
@@ -530,7 +530,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getTIHolidays(int $year) : array
+    private function getTIHolidays(int $year): array
     {
         return [
             'New Year\'s Day' => '01-01',
@@ -551,7 +551,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getTGHolidays(int $year) : array
+    private function getTGHolidays(int $year): array
     {
         return [
             'New Year\'s Day' => '01-01',
@@ -567,7 +567,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getURHolidays(int $year) : array
+    private function getURHolidays(int $year): array
     {
         return [
             'New Year\'s Day' => '01-01',
@@ -587,7 +587,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getVDHolidays(int $year) : array
+    private function getVDHolidays(int $year): array
     {
         return [
             'New Year\'s Day' => '01-01',
@@ -641,7 +641,7 @@ class Switzerland extends Country
     }
 
     /** @return non-empty-array<int|string, array<string, string>|string > */
-    private function getZHHolidays(int $year) : array
+    private function getZHHolidays(int $year): array
     {
         return [
             'New Year\'s Day' => '01-01',

@@ -69,7 +69,6 @@ it('can calculate holidays for a specified canton', function ($canton) {
     expect(formatDates($holidays))->toMatchSnapshot();
 })->with('cantons');
 
-
 it('throws an error when an invalid region is given', function () {
     $switzerland = new Switzerland('ch-xx');
     $holidays = Holidays::for($switzerland)->get();
@@ -79,7 +78,7 @@ it('throws an error when an invalid region is given', function () {
 describe('supported languages', function () {
     it('shares same translations keys in every language', function () {
 
-        $filePaths = __DIR__."/../../lang/switzerland/**/holidays.json";
+        $filePaths = __DIR__.'/../../lang/switzerland/**/holidays.json';
         $filePaths = glob($filePaths);
 
         $keysArray = [];
@@ -93,7 +92,7 @@ describe('supported languages', function () {
         // Compare keys of the first JSON file with the others
         for ($i = 1; $i < count($keysArray); $i++) {
             $diff = array_diff($keysArray[0], $keysArray[$i]);
-            if (!empty($diff)) {
+            if (! empty($diff)) {
 
                 dump($filePaths[$i], $diff);
             }
@@ -158,7 +157,7 @@ describe('special holidays with conditions', function () {
     it('has sets jeune genevois to thursday following the first sunday in september', function (int $year, string $date) {
         CarbonImmutable::setTestNowAndTimezone("$year-01-01");
 
-        $switzerland = new Switzerland("ch-ge");
+        $switzerland = new Switzerland('ch-ge');
         $holidays = Holidays::for($switzerland);
 
         expect($holidays->isHoliday($date))->toBeTrue();
@@ -190,6 +189,5 @@ it('celebrates labour day on 1st of may', function (string $canton) {
         'tg',
         'ne',
         'ju',
-        'ti'
+        'ti',
     ]);
-
