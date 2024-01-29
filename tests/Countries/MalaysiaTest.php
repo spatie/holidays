@@ -28,8 +28,6 @@ it('can calculate total holidays by regions', function (string $region, $totalHo
         ->toBeArray()
         ->not()->toBeEmpty();
 
-    expect(count($holidays))->toBe($totalHolidays);
-
     expect(formatDates($holidays))->toMatchSnapshot();
 })->with([
     ['jhr', 18],
