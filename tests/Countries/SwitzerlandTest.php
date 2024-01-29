@@ -39,7 +39,7 @@ dataset('cantons', [
 dataset('languages', [
     'de',
     'fr',
-    'it'
+    'it',
 ]);
 
 it('can calculate swiss holidays', function () {
@@ -68,13 +68,11 @@ it('can calculate holidays for a specified canton', function ($canton) {
     expect(formatDates($holidays))->toMatchSnapshot();
 })->with('cantons');
 
-
 it('throws an error when an invalid region is given', function () {
     $switzerland = new Switzerland('ch-xx');
     $holidays = Holidays::for($switzerland)->get();
 
 })->throws(InvalidRegion::class);
-
 
 it('does not have ephinay holiday at zh', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
@@ -107,7 +105,7 @@ describe('special holidays with conditions', function () {
     it('has sets jeune genevois to thursday following the first sunday in september', function (int $year, string $date) {
         CarbonImmutable::setTestNowAndTimezone("$year-01-01");
 
-        $switzerland = new Switzerland("ch-ge");
+        $switzerland = new Switzerland('ch-ge');
         $holidays = Holidays::for($switzerland);
 
         expect($holidays->isHoliday($date))->toBeTrue();
@@ -139,6 +137,5 @@ it('celebrates labour day on 1st of may', function (string $canton) {
         'tg',
         'ne',
         'ju',
-        'ti'
+        'ti',
     ]);
-
