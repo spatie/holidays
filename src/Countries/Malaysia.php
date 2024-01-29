@@ -5,11 +5,14 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use DateTime;
 use IntlDateFormatter;
+use Spatie\Holidays\Calendars\ChineseCalendar;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Malaysia extends Country
 {
+    use ChineseCalendar;
+
     protected string $timezone = 'Asia/Kuala_Lumpur';
 
     /** @var array<int, string> $regions */
@@ -57,9 +60,11 @@ class Malaysia extends Country
      */
     protected function variableHolidays(int $year): array
     {
+        $this->setChineseCalendarTimezone($this->timezone);
+
         $variableHolidays = [
-            'Tahun Baru Cina' => $this->chineseCalendar('01-01', $year),
-            'Tahun Baru Cina Hari Kedua' => $this->chineseCalendar('01-02', $year),
+            'Tahun Baru Cina' => $this->chineseToGregorianDate('01-01', $year),
+            'Tahun Baru Cina Hari Kedua' => $this->chineseToGregorianDate('01-02', $year),
             'Hari Raya Aidilfitri' => $this->islamicCalendar('01/10', $year),
             'Hari Raya Aidilfitri Hari Kedua' => $this->islamicCalendar('02/10', $year),
             'Hari Wesak' => $this->hariWesak($year),
@@ -410,24 +415,6 @@ class Malaysia extends Country
     private function newYear(): string
     {
         return '01-01';
-    }
-
-    /**
-     * $input as in 'month-day' string; '12-31'
-     */
-    protected function chineseCalendar(string $input, int $year): CarbonImmutable
-    {
-        $formatter = new IntlDateFormatter(
-            locale: 'zh-CN@calendar=chinese',
-            dateType: IntlDateFormatter::SHORT,
-            timeType: IntlDateFormatter::NONE,
-            timezone: $this->timezone,
-            calendar: IntlDateFormatter::TRADITIONAL
-        );
-
-        $timestamp = (int) $formatter->parse(sprintf('%s-%s', $year, $input));
-
-        return CarbonImmutable::createFromTimestamp($timestamp, $this->timezone);
     }
 
     protected function getIslamicFormatter(): IntlDateFormatter
