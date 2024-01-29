@@ -27,6 +27,11 @@ class Germany extends Country
     protected function historicalHolidays(int $year): array
     {
         $historicalHolidays = [];
+        if ($year >= 1954 && $year <= 1990) {
+            $historicalHolidays['Tag der deutschen Einheit'] = '06-17';
+        } else {
+            $historicalHolidays['Tag der deutschen Einheit'] = '10-03';
+        }
         if ($year >= 1990 && $year <= 1994) {
             $historicalHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
         }
@@ -43,7 +48,6 @@ class Germany extends Country
 
         return array_merge([
             'Neujahr' => '01-01',
-            'Tag der deutschen Einheit' => '10-03',
             'Tag der Arbeit' => '05-01',
             '1. Weihnachtstag' => '12-25',
             '2. Weihnachtstag' => '12-26',
@@ -77,23 +81,29 @@ class Germany extends Country
                     'Allerheiligen' => '11-01',
                 ];
             case 'DE-BY':
-                return [
+                $byHolidays = [
                     'Heilige Drei Könige' => '01-06',
                     'Fronleichnam' => $easter->addDays(60),
                     'Allerheiligen' => '11-01',
                     'Mariä Himmelfahrt' => '08-15',
                 ];
+                if ($year >= 1948 && $year <= 1969) {
+                    $byHolidays['Josefstag'] = '03-19';
+                }
+
+                return $byHolidays;
 
             case 'DE-BE':
+                $beHolidays = [
+                ];
                 if ($year >= 2019) {
-                    return [
-                        'Internationaler Frauentag' => '03-08',
-                    ];
-                } else {
-                    return [
-
-                    ];
+                    $beHolidays['Internationaler Frauentag'] = '03-08';
                 }
+                if ($year === 2020) {
+                    $beHolidays['Tag der Befreiung'] = '05-08';
+                }
+
+                return $beHolidays;
             case 'DE-BB':
                 if ($year >= 1991) {
                     return [
