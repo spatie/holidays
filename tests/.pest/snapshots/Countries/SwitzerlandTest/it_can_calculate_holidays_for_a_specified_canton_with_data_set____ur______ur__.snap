@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Neujahr",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Heilige Drei K\u00f6nige",
+        "date": "2024-01-06"
+    },
+    {
+        "name": "Josefstag",
+        "date": "2024-03-19"
+    },
+    {
+        "name": "Karfreitag",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Ostermontag",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Auffahrt",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Pfingstmontag",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "Fronleichnam",
+        "date": "2024-05-30"
+    },
+    {
+        "name": "Bundesfeier",
+        "date": "2024-08-01"
+    },
+    {
+        "name": "Maria Himmelfahrt",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Allerheiligen",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Maria Empf\u00e4ngnis",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "Weihnachtstag",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Stephanstag",
+        "date": "2024-12-26"
+    }
+]

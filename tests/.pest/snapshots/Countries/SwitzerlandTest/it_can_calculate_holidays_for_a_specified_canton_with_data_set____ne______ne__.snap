@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Neujahr",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Karfreitag",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Tag der Arbeit",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Auffahrt",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Bundesfeier",
+        "date": "2024-08-01"
+    },
+    {
+        "name": "Weihnachtstag",
+        "date": "2024-12-25"
+    }
+]
