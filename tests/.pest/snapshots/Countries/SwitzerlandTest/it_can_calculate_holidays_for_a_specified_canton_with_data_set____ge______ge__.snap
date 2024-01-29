@@ -4,10 +4,6 @@
         "date": "2024-01-01"
     },
     {
-        "name": "Berchtold's Day",
-        "date": "2024-01-02"
-    },
-    {
         "name": "Good Friday",
         "date": "2024-03-29"
     },
@@ -28,11 +24,15 @@
         "date": "2024-08-01"
     },
     {
+        "name": "Je\u00fbne genevois",
+        "date": "2024-09-05"
+    },
+    {
         "name": "Christmas Day",
         "date": "2024-12-25"
     },
     {
-        "name": "St. Stephen's Day",
-        "date": "2024-12-26"
+        "name": "Restauration de la R\u00e9publique",
+        "date": "2024-12-31"
     }
 ]

@@ -4,10 +4,6 @@
         "date": "2024-01-01"
     },
     {
-        "name": "Berchtold's Day",
-        "date": "2024-01-02"
-    },
-    {
         "name": "Good Friday",
         "date": "2024-03-29"
     },
@@ -24,8 +20,28 @@
         "date": "2024-05-20"
     },
     {
+        "name": "Corpus Christi",
+        "date": "2024-05-30"
+    },
+    {
         "name": "Swiss National Day",
         "date": "2024-08-01"
+    },
+    {
+        "name": "Assumption Day",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Mauritiustag",
+        "date": "2024-09-22"
+    },
+    {
+        "name": "All Saints' Day",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Immaculate Conception",
+        "date": "2024-12-08"
     },
     {
         "name": "Christmas Day",

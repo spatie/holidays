@@ -1,38 +1,42 @@
 [
     {
-        "name": "Capodanno",
+        "name": "New Year's Day",
         "date": "2024-01-01"
     },
     {
-        "name": "San Silvestro",
+        "name": "Berchtold's Day",
         "date": "2024-01-02"
     },
     {
-        "name": "Venerd\u00ec Santo",
+        "name": "Good Friday",
         "date": "2024-03-29"
     },
     {
-        "name": "Luned\u00ec di Pasqua",
+        "name": "Easter Monday",
         "date": "2024-04-01"
     },
     {
-        "name": "Ascensione",
+        "name": "Labour Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Ascension Day",
         "date": "2024-05-09"
     },
     {
-        "name": "Luned\u00ec di Pentecoste",
+        "name": "Whit Monday",
         "date": "2024-05-20"
     },
     {
-        "name": "Festa nazionale",
+        "name": "Swiss National Day",
         "date": "2024-08-01"
     },
     {
-        "name": "Natale",
+        "name": "Christmas Day",
         "date": "2024-12-25"
     },
     {
-        "name": "Santo Stefano",
+        "name": "St. Stephen's Day",
         "date": "2024-12-26"
     }
 ]

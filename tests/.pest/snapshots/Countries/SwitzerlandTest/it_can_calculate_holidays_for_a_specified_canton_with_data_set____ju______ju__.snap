@@ -16,6 +16,10 @@
         "date": "2024-04-01"
     },
     {
+        "name": "Labour Day",
+        "date": "2024-05-01"
+    },
+    {
         "name": "Ascension Day",
         "date": "2024-05-09"
     },
@@ -24,15 +28,27 @@
         "date": "2024-05-20"
     },
     {
+        "name": "Corpus Christi",
+        "date": "2024-05-30"
+    },
+    {
+        "name": "Comm\u00e9moration du pl\u00e9biscite jurassien",
+        "date": "2024-06-23"
+    },
+    {
         "name": "Swiss National Day",
         "date": "2024-08-01"
     },
     {
-        "name": "Christmas Day",
-        "date": "2024-12-25"
+        "name": "Assumption Day",
+        "date": "2024-08-15"
     },
     {
-        "name": "St. Stephen's Day",
-        "date": "2024-12-26"
+        "name": "All Saints' Day",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
     }
 ]

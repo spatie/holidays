@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Capodanno",
+        "date": "2023-01-01"
+    },
+    {
+        "name": "Giorno di Berchtold",
+        "date": "2023-01-02"
+    },
+    {
+        "name": "Venerd\u00ec santo",
+        "date": "2023-04-07"
+    },
+    {
+        "name": "Luned\u00ec di Pasqua",
+        "date": "2023-04-10"
+    },
+    {
+        "name": "Ascensione",
+        "date": "2023-05-18"
+    },
+    {
+        "name": "Glindesdi da Pentecosta",
+        "date": "2023-05-29"
+    },
+    {
+        "name": "Festa nazionale",
+        "date": "2023-08-01"
+    },
+    {
+        "name": "Natale",
+        "date": "2023-12-25"
+    },
+    {
+        "name": "San Steffan",
+        "date": "2023-12-26"
+    }
+]

@@ -16,16 +16,28 @@
         "date": "2024-04-01"
     },
     {
-        "name": "Ascension Day",
-        "date": "2024-05-09"
+        "name": "Labour Day",
+        "date": "2024-05-01"
     },
     {
         "name": "Whit Monday",
         "date": "2024-05-20"
     },
     {
+        "name": "Corpus Christi",
+        "date": "2024-05-30"
+    },
+    {
         "name": "Swiss National Day",
         "date": "2024-08-01"
+    },
+    {
+        "name": "Assumption Day",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "All Saints' Day",
+        "date": "2024-11-01"
     },
     {
         "name": "Christmas Day",

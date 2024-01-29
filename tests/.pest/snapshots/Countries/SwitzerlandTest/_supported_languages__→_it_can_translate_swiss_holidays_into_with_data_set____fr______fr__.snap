@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Nouvel an",
+        "date": "2023-01-01"
+    },
+    {
+        "name": "2 janvier",
+        "date": "2023-01-02"
+    },
+    {
+        "name": "Vendredi saint",
+        "date": "2023-04-07"
+    },
+    {
+        "name": "Lundi de P\u00e2ques",
+        "date": "2023-04-10"
+    },
+    {
+        "name": "Ascension",
+        "date": "2023-05-18"
+    },
+    {
+        "name": "Lundi de Pentec\u00f4te",
+        "date": "2023-05-29"
+    },
+    {
+        "name": "F\u00eate nationale",
+        "date": "2023-08-01"
+    },
+    {
+        "name": "No\u00ebl",
+        "date": "2023-12-25"
+    },
+    {
+        "name": "Saint-\u00c9tienne",
+        "date": "2023-12-26"
+    }
+]

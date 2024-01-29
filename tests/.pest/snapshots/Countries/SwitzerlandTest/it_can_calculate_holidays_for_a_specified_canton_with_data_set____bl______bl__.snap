@@ -1,42 +1,38 @@
 [
     {
-        "name": "Neujahr",
+        "name": "New Year's Day",
         "date": "2024-01-01"
     },
     {
-        "name": "Karfreitag",
+        "name": "Good Friday",
         "date": "2024-03-29"
     },
     {
-        "name": "Ostermontag",
+        "name": "Easter Monday",
         "date": "2024-04-01"
     },
     {
-        "name": "Tag der Arbeit",
+        "name": "Labour Day",
         "date": "2024-05-01"
     },
     {
-        "name": "Auffahrt",
+        "name": "Ascension Day",
         "date": "2024-05-09"
     },
     {
-        "name": "Pfingstmontag",
+        "name": "Whit Monday",
         "date": "2024-05-20"
     },
     {
-        "name": "Bundesfeier",
+        "name": "Swiss National Day",
         "date": "2024-08-01"
     },
     {
-        "name": "Buss- und Bettag",
-        "date": "2024-09-15"
-    },
-    {
-        "name": "Weihnachtstag",
+        "name": "Christmas Day",
         "date": "2024-12-25"
     },
     {
-        "name": "Stephanstag",
+        "name": "St. Stephen's Day",
         "date": "2024-12-26"
     }
 ]

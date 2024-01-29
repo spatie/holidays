@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Neujahrstag",
+        "date": "2023-01-01"
+    },
+    {
+        "name": "Berchtoldstag",
+        "date": "2023-01-02"
+    },
+    {
+        "name": "Karfreitag",
+        "date": "2023-04-07"
+    },
+    {
+        "name": "Ostermontag",
+        "date": "2023-04-10"
+    },
+    {
+        "name": "Auffahrt",
+        "date": "2023-05-18"
+    },
+    {
+        "name": "Pfingstmontag",
+        "date": "2023-05-29"
+    },
+    {
+        "name": "Bundesfeier",
+        "date": "2023-08-01"
+    },
+    {
+        "name": "Weihnachtstag",
+        "date": "2023-12-25"
+    },
+    {
+        "name": "Stephanstag",
+        "date": "2023-12-26"
+    }
+]

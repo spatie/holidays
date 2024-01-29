@@ -8,8 +8,8 @@
         "date": "2024-01-02"
     },
     {
-        "name": "Good Friday",
-        "date": "2024-03-29"
+        "name": "St. Joseph's Day",
+        "date": "2024-03-19"
     },
     {
         "name": "Easter Monday",
@@ -24,8 +24,24 @@
         "date": "2024-05-20"
     },
     {
+        "name": "Corpus Christi",
+        "date": "2024-05-30"
+    },
+    {
         "name": "Swiss National Day",
         "date": "2024-08-01"
+    },
+    {
+        "name": "Assumption Day",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "All Saints' Day",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Immaculate Conception",
+        "date": "2024-12-08"
     },
     {
         "name": "Christmas Day",
