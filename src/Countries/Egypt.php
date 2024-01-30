@@ -41,8 +41,7 @@ class Egypt extends Country
     /** @return array<string, string|CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        return [
-            // TODO: Add more holidays
-        ];
+        // The variable holidays all follow the lunar calendar, so their dates are not confirmed.
+        return [];
     }
 }
