@@ -1,22 +1,22 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Cannot call method modify\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
+			count: 1
+			path: src/Countries/Australia.php
+
+		-
 			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Countries/Country.php
 
 		-
 			message: "#^Cannot call method startOfDay\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
-			count: 1
+			count: 2
 			path: src/Countries/Country.php
 
 		-
 			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Country\\:\\:get\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\|string\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
-			count: 1
-			path: src/Countries/Country.php
-
-		-
-			message: "#^Parameter \\#1 \\$timestamp of static method Carbon\\\\CarbonImmutable\\:\\:createFromTimestamp\\(\\) expects float\\|int\\|string, int\\|false given\\.$#"
 			count: 1
 			path: src/Countries/Country.php
 
@@ -26,24 +26,14 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Cannot call method setTimezone\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
+			message: "#^Cannot call method setTimeStamp\\(\\) on DateTime\\|false\\.$#"
 			count: 1
-			path: src/Countries/Mexico.php
+			path: src/Countries/Turkmenistan.php
 
 		-
-			message: "#^Cannot call method isSunday\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
+			message: "#^Parameter \\#1 \\$datetime of method IntlDateFormatter\\:\\:format\\(\\) expects array\\|DateTimeInterface\\|float\\|int\\|IntlCalendar\\|string, DateTime\\|false given\\.$#"
 			count: 1
-			path: src/Countries/Netherlands.php
-
-		-
-			message: "#^Cannot call method subDay\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
-			count: 1
-			path: src/Countries/Netherlands.php
-
-		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Netherlands\\:\\:variableHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
-			count: 1
-			path: src/Countries/Netherlands.php
+			path: src/Countries/Turkmenistan.php
 
 		-
 			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(Carbon\\\\CarbonImmutable\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"

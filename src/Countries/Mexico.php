@@ -55,7 +55,7 @@ class Mexico extends Country
 
         // Check if the current year is a transmission year
         if (($year - $baseYear) % 6 === 0) {
-            return CarbonImmutable::create($year, 10, 1) // October 1st of the transmission year
+            return CarbonImmutable::createFromDate($year, 10, 1) // October 1st of the transmission year
                 ->setTimezone('America/Mexico_City');
 
         }

@@ -3,36 +3,42 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
 abstract class Country
 {
+    use Translatable;
+
     abstract public function countryCode(): string;
 
     /** @return array<string, string|CarbonImmutable> */
     abstract protected function allHolidays(int $year): array;
 
     /** @return array<string, CarbonImmutable|string> */
-    public function get(int $year): array
+    public function get(int $year, ?string $locale = null): array
     {
         $this->ensureYearCanBeCalculated($year);
 
         $allHolidays = $this->allHolidays($year);
 
-        $allHolidays = array_map(function ($date) use ($year) {
+        $translatedHolidays = [];
+        foreach ($allHolidays as $name => $date) {
             if (is_string($date)) {
                 $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
             }
 
-            return $date;
-        }, $allHolidays);
+            $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);
 
-        uasort($allHolidays,
+            $translatedHolidays[$name] = $date;
+        }
+
+        uasort($translatedHolidays,
             fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
         );
 
-        return $allHolidays;
+        return $translatedHolidays;
     }
 
     public static function make(): static
@@ -50,10 +56,13 @@ abstract class Country
 
     protected function orthodoxEaster(int $year): CarbonImmutable
     {
-        $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
-        $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
+        // Paschal full moon date
+        // Not covered edge case:
+        // when the full moon is on a 3 April, Easter is the next Sunday
+        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-04-03")
+            ->startOfDay();
 
-        return CarbonImmutable::createFromTimestamp(strtotime("+$daysDifference days", $timestamp));
+        return $easter->addDays(easter_days($year, CAL_EASTER_ALWAYS_JULIAN));
     }
 
     public static function find(string $countryCode): ?Country
