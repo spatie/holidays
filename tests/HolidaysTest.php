@@ -3,6 +3,7 @@
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Belgium;
 use Spatie\Holidays\Countries\Netherlands;
+use Spatie\Holidays\Exceptions\InvalidLocale;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\UnsupportedCountry;
 use Spatie\Holidays\Holidays;
@@ -83,3 +84,22 @@ it('can get the holiday name of a date', function () {
     $result = Holidays::for('be')->getName(CarbonImmutable::parse('2024-01-02'));
     expect($result)->toBeNull();
 });
+
+it('can get the country is supported', function () {
+    $result = Holidays::has(country: 'be');
+    expect($result)->toBeTrue();
+
+    $result = Holidays::has(country: 'unknown');
+    expect($result)->toBeFalse();
+});
+
+it('can get translated holiday names', function () {
+    $result = Holidays::for(country: 'be', year: 2020, locale: 'fr')->get();
+
+    expect($result)->toBeArray();
+    expect($result[0]['name'])->toBe('Jour de l\'An');
+});
+
+it('cannot get translated holiday names for unsupported locales', function () {
+    Holidays::for(country: 'be', year: 2020, locale: 'en')->get();
+})->throws(InvalidLocale::class, 'Locale `en` is not supported for country `Belgium`.');

@@ -1,0 +1,38 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2021-01-01"
+    },
+    {
+        "name": "2nd January (substitute day)",
+        "date": "2021-01-04"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2021-04-02"
+    },
+    {
+        "name": "Early May bank holiday",
+        "date": "2021-05-03"
+    },
+    {
+        "name": "Spring bank holiday",
+        "date": "2021-05-31"
+    },
+    {
+        "name": "Summer bank holiday",
+        "date": "2021-08-02"
+    },
+    {
+        "name": "St Andrew's Day",
+        "date": "2021-11-30"
+    },
+    {
+        "name": "Christmas Day (substitute day)",
+        "date": "2021-12-27"
+    },
+    {
+        "name": "Boxing Day (substitute day)",
+        "date": "2021-12-28"
+    }
+]

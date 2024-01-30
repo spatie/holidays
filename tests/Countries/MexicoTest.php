@@ -5,8 +5,8 @@ namespace Spatie\Holidays\Tests\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holidays;
 
-it('can calculate mexico holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+it('can calculate mexican holidays', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'mx')->get();
 
@@ -15,5 +15,4 @@ it('can calculate mexico holidays', function () {
         ->not()->toBeEmpty();
 
     expect(formatDates($holidays))->toMatchSnapshot();
-
 });

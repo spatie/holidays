@@ -1,0 +1,42 @@
+[
+    {
+        "name": "New Year's",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Labour",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Madaraka",
+        "date": "2024-06-01"
+    },
+    {
+        "name": "Utamaduni",
+        "date": "2024-10-10"
+    },
+    {
+        "name": "Mashujaa",
+        "date": "2024-10-20"
+    },
+    {
+        "name": "Jamhuri",
+        "date": "2024-12-01"
+    },
+    {
+        "name": "Christmas",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing",
+        "date": "2024-12-26"
+    }
+]
