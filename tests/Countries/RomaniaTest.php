@@ -12,8 +12,6 @@ it('can calculate romanian holidays', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
-
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });

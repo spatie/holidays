@@ -12,9 +12,8 @@ it('can calculate belarus holidays', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate belarus holidays in English', function () {
@@ -24,9 +23,8 @@ it('can calculate belarus holidays in English', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate belarus holidays in Belarus Lacinka', function () {
@@ -36,9 +34,8 @@ it('can calculate belarus holidays in Belarus Lacinka', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate belarus holidays in Russian', function () {
@@ -48,7 +45,6 @@ it('can calculate belarus holidays in Russian', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });

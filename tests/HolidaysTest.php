@@ -15,7 +15,8 @@ it('can get all holidays of the current year', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 
     expect($holidays[0]['name'])->toBe('Nieuwjaar');
     expect($holidays[0]['date']->format('Y-m-d'))->toBe('2024-01-01');

@@ -14,9 +14,8 @@ it('can calculate swiss holidays', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can get swiss holidays for a specified region (zh)', function () {
@@ -28,9 +27,8 @@ it('can get swiss holidays for a specified region (zh)', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('throws an error when an invalid region is given', function () {
@@ -42,9 +40,8 @@ it('can translate swiss holidays into french', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can translate swiss holidays into italian', function () {
@@ -52,7 +49,6 @@ it('can translate swiss holidays into italian', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });

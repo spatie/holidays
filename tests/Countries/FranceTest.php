@@ -13,9 +13,8 @@ it('can calculate french holidays', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate french easter based region holidays', function () {
@@ -25,9 +24,8 @@ it('can calculate french easter based region holidays', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate french date based regional holidays', function () {
@@ -37,7 +35,6 @@ it('can calculate french date based regional holidays', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });

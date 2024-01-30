@@ -12,9 +12,8 @@ it('can calculate vietnamese holidays', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate the Lunar New Year holiday', function ($year, $expectedHoliday) {
@@ -24,7 +23,8 @@ it('can calculate the Lunar New Year holiday', function ($year, $expectedHoliday
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 
     $lunarNewYearHoliday = array_map(fn ($date) => $date['date'], formatDates($holidays));
 
@@ -44,7 +44,8 @@ it('can calculate the holiday of independence', function ($year, $expectedHolida
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 
     $dates = array_map(fn ($date) => $date['date'], formatDates($holidays));
 

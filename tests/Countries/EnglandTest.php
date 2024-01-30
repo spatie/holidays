@@ -11,7 +11,6 @@ it('calculates english holidays by date', function (string $name, string $date) 
     $isHoliday = Holidays::for('gb-eng')->isHoliday($testDate);
 
     expect($holidayName)->toBe($name)->and($isHoliday)->toBeTrue();
-
 })->with([
     ['New Year\'s Day', '2024-01-01'],
     ['Good Friday', '2024-03-29'],
@@ -44,9 +43,10 @@ it('can calculate welsh holidays', function () {
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty();
-    expect(formatDates($holidays))->toMatchSnapshot();
-
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('returns a substitute day if new years day falls on a weekend', function () {
@@ -54,8 +54,10 @@ it('returns a substitute day if new years day falls on a weekend', function () {
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty();
-    expect(formatDates($holidays))->toMatchSnapshot();
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate welsh holidays if christmas is on a friday', function () {
@@ -63,8 +65,10 @@ it('can calculate welsh holidays if christmas is on a friday', function () {
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty();
-    expect(formatDates($holidays))->toMatchSnapshot();
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate welsh holidays if christmas is on a saturday', function () {
@@ -72,8 +76,10 @@ it('can calculate welsh holidays if christmas is on a saturday', function () {
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty();
-    expect(formatDates($holidays))->toMatchSnapshot();
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate welsh holidays if christmas is on a sunday', function () {
@@ -81,8 +87,10 @@ it('can calculate welsh holidays if christmas is on a sunday', function () {
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty();
-    expect(formatDates($holidays))->toMatchSnapshot();
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
 it('can calculate holidays for 2020', function () {
@@ -90,6 +98,8 @@ it('can calculate holidays for 2020', function () {
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty();
-    expect(formatDates($holidays))->toMatchSnapshot();
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });

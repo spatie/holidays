@@ -11,7 +11,6 @@ it('calculates northern irish holidays by date', function (string $name, string 
     $isHoliday = Holidays::for('gb-nir')->isHoliday($testDate);
 
     expect($holidayName)->toBe($name)->and($isHoliday)->toBeTrue();
-
 })->with([
     ['New Year\'s Day', '2024-01-01'],
     ['St Patrick\'s Day (substitute day)', '2024-03-18'],
@@ -51,9 +50,10 @@ it('can calculate northern irish holidays', function () {
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty()
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
         ->and(formatDates($holidays))->toMatchSnapshot();
-
 });
 
 it('returns a substitute day if new years day falls on a weekend', function () {
@@ -61,7 +61,9 @@ it('returns a substitute day if new years day falls on a weekend', function () {
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty()
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
         ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
@@ -70,7 +72,9 @@ it('returns a substitute day for second of january if new years day falls on a f
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty()
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
         ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
@@ -79,7 +83,9 @@ it('can calculate northern irish holidays if christmas is on a friday', function
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty()
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
         ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
@@ -88,7 +94,9 @@ it('can calculate northern irish holidays if christmas is on a saturday', functi
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty()
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
         ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
@@ -97,7 +105,9 @@ it('can calculate northern irish holidays if christmas is on a sunday', function
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty()
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
         ->and(formatDates($holidays))->toMatchSnapshot();
 });
 
@@ -106,6 +116,8 @@ it('can calculate northern irish for 2020', function () {
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
-    expect($holidays)->toBeArray()->not()->toBeEmpty()
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty()
         ->and(formatDates($holidays))->toMatchSnapshot();
 });

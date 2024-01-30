@@ -13,10 +13,8 @@ it('can calculate german holidays', function () {
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
-
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 });
 it('can calculate german historical unity day in year 1990', function () {
     CarbonImmutable::setTestNow('1990-01-01');
@@ -24,7 +22,6 @@ it('can calculate german historical unity day in year 1990', function () {
     $holiday = Holidays::for('de')->isHoliday('1990-06-17');
 
     expect($holiday)->toBeTrue();
-
 });
 it('can calculate german unity day in year 1990', function () {
     CarbonImmutable::setTestNow('2024-01-01');
@@ -32,7 +29,6 @@ it('can calculate german unity day in year 1990', function () {
     $holiday = Holidays::for('de')->isHoliday('2024-10-03');
 
     expect($holiday)->toBeTrue();
-
 });
 it('can calculate german historical reformationstag in year 2017', function () {
     CarbonImmutable::setTestNow('2017-01-01');
@@ -40,7 +36,6 @@ it('can calculate german historical reformationstag in year 2017', function () {
     $holiday = Holidays::for('de')->isHoliday('2017-10-31');
 
     expect($holiday)->toBeTrue();
-
 });
 it('can calculate german historical reformationstag in year 2018 is not a holiday', function () {
     CarbonImmutable::setTestNow('2018-01-01');
@@ -48,7 +43,6 @@ it('can calculate german historical reformationstag in year 2018 is not a holida
     $holiday = Holidays::for('de')->isHoliday('2018-10-31');
 
     expect($holiday)->toBeFalse();
-
 });
 
 it('can calculate german buß- und bettag in year 1990', function () {
@@ -57,7 +51,6 @@ it('can calculate german buß- und bettag in year 1990', function () {
     $holiday = Holidays::for('de')->isHoliday('1990-11-21');
 
     expect($holiday)->toBeTrue();
-
 });
 it('can calculate german berlin holiday Victory in Europe Day in year 2020', function () {
     CarbonImmutable::setTestNow('2020-01-01');
@@ -65,7 +58,6 @@ it('can calculate german berlin holiday Victory in Europe Day in year 2020', fun
     $holiday = Holidays::for(Germany::make('DE-BE'))->isHoliday('2020-05-08');
 
     expect($holiday)->toBeTrue();
-
 });
 /*
  This test will check for all regional holidays in Germany. Source: https://en.wikipedia.org/wiki/Public_holidays_in_Germany
@@ -73,15 +65,14 @@ it('can calculate german berlin holiday Victory in Europe Day in year 2020', fun
 */
 it('can get german holidays for other regions', function (string $region, int $totalHolidays) {
     CarbonImmutable::setTestNow('2024-01-01');
-    $holidays = Holidays::for(Germany::make('DE-'.$region))->get();
+    $holidays = Holidays::for(Germany::make('DE-' . $region))->get();
 
     expect($holidays)
         ->toBeArray()
-        ->not()->toBeEmpty();
+        ->not()->toBeEmpty()
+        ->and(formatDates($holidays))->toMatchSnapshot();
 
     expect(count($holidays))->toBe($totalHolidays);
-
-    expect(formatDates($holidays))->toMatchSnapshot();
 })->with(
     [
         ['BW', 12],
@@ -99,7 +90,8 @@ it('can get german holidays for other regions', function (string $region, int $t
         ['SN', 11],
         ['ST', 11],
         ['SH', 10],
-        ['TH', 11]]
+        ['TH', 11]
+    ]
 );
 
 it('can calculate german holidays in local', function (string $locale, string $newYearsDayName) {
