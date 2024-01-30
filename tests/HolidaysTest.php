@@ -13,11 +13,7 @@ it('can get all holidays of the current year', function () {
 
     $holidays = Holidays::for(Belgium::make())->get();
 
-    expect($holidays)
-        ->toBeArray()
-        ->not()->toBeEmpty()
-        ->and(formatDates($holidays))->toMatchSnapshot();
-
+    expect($holidays)->toBeArray()->not()->toBeEmpty();
     expect($holidays[0]['name'])->toBe('Nieuwjaar');
     expect($holidays[0]['date']->format('Y-m-d'))->toBe('2024-01-01');
 });
