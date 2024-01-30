@@ -11,7 +11,6 @@ class Egypt extends Country
         return 'eg';
     }
 
-    /** @return array<string, string|CarbonImmutable> */
     protected function allHolidays(int $year): array
     {
         return array_merge([
