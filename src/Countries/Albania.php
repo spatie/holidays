@@ -29,18 +29,18 @@ class Albania extends Country
     /** @return array<string, CarbonImmutable|string> */
     protected function variableHolidays(int $year): array
     {
-        return [
+        return array_filter([
             'E diela e Pashkëve Katolike' => $this->easter($year),
             'E diela e Pashkëve Ortodokse' => $this->orthodoxEaster($year),
             'Dita e Bajramit të Madh' => $this->getEidAlFitrHoliday($year),
             'Dita e Kurban Bajramit' => $this->getEidAlAdhaHoliday($year),
-        ];
+        ]);
     }
 
     /**
      * 
      */
-    private function getEidAlFitrHoliday(int $year): string
+    private function getEidAlFitrHoliday(int $year): ?string
     {
         /**
          * Provided until 2034 by qppstudio.net.
@@ -58,11 +58,11 @@ class Albania extends Country
             2032 => '01-14',
             2033 => '01-02',
             2034 => '12-12',
-            default => '01-01' // Temporary placeholder; requires ongoing maintenance.
+            default => null // Holiday is variable; requires ongoing maintenance.
         };
     }
 
-    private function getEidAlAdhaHoliday(int $year): string
+    private function getEidAlAdhaHoliday(int $year): ?string
     {
         /**
          * Tentative dates.
@@ -81,7 +81,7 @@ class Albania extends Country
             2032 => '03-22',
             2033 => '03-12',
             2034 => '03-01',
-            default => '01-01' // Temporary placeholder; requires ongoing maintenance.
+            default => null // Holiday is variable; requires ongoing maintenance.
         };
     }
 
