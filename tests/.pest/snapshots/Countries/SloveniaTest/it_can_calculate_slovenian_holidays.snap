@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Novo leto",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Novo leto 2",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Velikono\u010dni ponedeljek",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Dan upora proti okupatorju",
+        "date": "2024-04-27"
+    },
+    {
+        "name": "Praznik dela",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Praznik dela 2",
+        "date": "2024-05-02"
+    },
+    {
+        "name": "Dan dr\u017eavnosti",
+        "date": "2024-06-25"
+    },
+    {
+        "name": "Pre\u0161ernov dan, slovenski kulturni praznik",
+        "date": "2024-08-02"
+    },
+    {
+        "name": "Marijino vnebovzetje",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Dan reformacije",
+        "date": "2024-10-31"
+    },
+    {
+        "name": "Dan spomina na mrtve",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Bo\u017ei\u010d",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Dan samostojnosti in enotnosti",
+        "date": "2024-12-26"
+    }
+]
