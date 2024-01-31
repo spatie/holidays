@@ -50,7 +50,7 @@ class Ghana extends Country
     protected function boxingDay(int $year): array
     {
         $christmasDay = $this->getChristmasDay($year);
-        $boxingDay = new CarbonImmutable($year . "-12-26", $this->timezone);
+        $boxingDay = new CarbonImmutable($year . "-12-26");
         $key = 'Boxing Day';
 
         if ($christmasDay->isFriday()) {
