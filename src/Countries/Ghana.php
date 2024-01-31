@@ -6,7 +6,6 @@ use Carbon\CarbonImmutable;
 
 class Ghana extends Country
 {
-
     public function countryCode(): string
     {
         return 'gh';

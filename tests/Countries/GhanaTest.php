@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Countries\France;
 use Spatie\Holidays\Holidays;
 
 it('can calculate Ghana holidays', function () {
