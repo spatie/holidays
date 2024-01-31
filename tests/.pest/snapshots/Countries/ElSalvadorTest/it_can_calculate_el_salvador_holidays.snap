@@ -5,15 +5,15 @@
     },
     {
         "name": "Jueves Santo",
-        "date": "2024-03-27"
-    },
-    {
-        "name": "Viernes Santo",
         "date": "2024-03-28"
     },
     {
-        "name": "S\u00e1bado de Gloria",
+        "name": "Viernes Santo",
         "date": "2024-03-29"
+    },
+    {
+        "name": "S\u00e1bado de Gloria",
+        "date": "2024-03-30"
     },
     {
         "name": "D\u00eda del Trabajo",

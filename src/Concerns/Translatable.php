@@ -13,8 +13,13 @@ trait Translatable
         }
 
         $countryName = strtolower($country);
+        $filePath = __DIR__."/../../lang/{$countryName}/{$locale}/holidays.json";
 
-        $content = file_get_contents(__DIR__."/../../lang/{$countryName}/{$locale}/holidays.json");
+        if (file_exists($filePath)) {
+            $content = file_get_contents($filePath);
+        } else {
+            throw InvalidLocale::notFound($country, $locale);
+        }
 
         if ($content === false) {
             throw InvalidLocale::notFound($country, $locale);

@@ -56,10 +56,13 @@ abstract class Country
 
     protected function orthodoxEaster(int $year): CarbonImmutable
     {
-        $timestamp = easter_date($year, CAL_EASTER_ALWAYS_JULIAN);
-        $daysDifference = (int) ($year / 100) - (int) ($year / 400) - 2;
+        // Paschal full moon date
+        // Not covered edge case:
+        // when the full moon is on a 3 April, Easter is the next Sunday
+        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-04-03")
+            ->startOfDay();
 
-        return CarbonImmutable::createFromTimestamp(strtotime("+$daysDifference days", $timestamp));
+        return $easter->addDays(easter_days($year, CAL_EASTER_ALWAYS_JULIAN));
     }
 
     public static function find(string $countryCode): ?Country
