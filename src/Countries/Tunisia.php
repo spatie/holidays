@@ -2238,29 +2238,29 @@ class Tunisia extends Country
     /**
      * @param int $year
      * @param string $slug
-     * @return bool|CarbonImmutable
+     * @return CarbonImmutable
      */
-    protected function getIslamicHoliday(int $year, string $slug): bool|CarbonImmutable
+    protected function getIslamicHoliday(int $year, string $slug): CarbonImmutable
     {
         $found = self::searchSubArray($this->hijriHolidays[$year], $slug);
-        if (count($found)) {
-            return CarbonImmutable::createFromFormat('Y-m-d', $found['date']);
+        if ($found['slug'] == 'error-not-found') {
+            throw new RuntimeException('Date not found.');
         }
-        throw new RuntimeException('Date not found.');
+        return CarbonImmutable::createFromFormat('Y-m-d', $found['date']) ?: throw new RuntimeException('Date could not be created.');
     }
 
     /**
-     * @param array $array
-     * @param $value
-     * @return array
+     * @param array<int, array{name: string,date: string,slug: string}> $array
+     * @param string $value
+     * @return array{name: string,date: string,slug: string}
      */
-    private static function searchSubArray(array $array, $value): array
+    private static function searchSubArray(array $array, string $value): array
     {
         foreach ($array as $subarray) {
-            if (isset($subarray['slug']) && $subarray['slug'] == $value)
+            if ($subarray['slug'] == $value)
                 return (array)$subarray;
         }
-        return [];
+        return ['name' => 'Error', 'date' => date('Y-m-d'), 'slug' => 'error-not-found'];
     }
 
 }
