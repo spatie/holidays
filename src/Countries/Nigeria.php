@@ -14,12 +14,12 @@ class Nigeria extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => "01-01",
-            'Worker\'s Day' => "05-01",
-            'Democracy Day' => "06-12", 
-            'Independence Day' => "10-01",
-            'Christmas Day' => "12-25",
-            'Boxing Day' => "12-26",
+            'New Year\'s Day' => '01-01',
+            'Worker\'s Day' => '05-01',
+            'Democracy Day' => '06-12',
+            'Independence Day' => '10-01',
+            'Christmas Day' => '12-25',
+            'Boxing Day' => '12-26',
         ], $this->variableHolidays($year));
     }
 
