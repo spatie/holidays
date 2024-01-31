@@ -30,7 +30,8 @@ class Moldova extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter =  $this->orthodoxEaster($year);
+        $easter = $this->orthodoxEaster($year);
+
         return [
             'Prima zi de Paște' => $easter,
             'A doua zi de Paște' => $easter->addDay(),
