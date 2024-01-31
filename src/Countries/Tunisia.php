@@ -7,9 +7,6 @@ use RuntimeException;
 
 class Tunisia extends Country
 {
-    /**
-     * @var array|array[]
-     */
     private array $hijriHolidays = [
         "1970" => [
             [
