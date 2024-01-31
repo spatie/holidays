@@ -37,9 +37,6 @@ class Albania extends Country
         ]);
     }
 
-    /**
-     * 
-     */
     private function getEidAlFitrHoliday(int $year): ?string
     {
         /**
@@ -84,5 +81,4 @@ class Albania extends Country
             default => null // Holiday is variable; requires ongoing maintenance.
         };
     }
-
 }
