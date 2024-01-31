@@ -24,14 +24,13 @@ class Denmark extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Copenhagen');
+        $easter = $this->easter($year);
 
         $holidays = [
-            'Påskedag' => $easter->addDay(),
             'Skærtorsdag' => $easter->subDays(3),
             'Langfredag' => $easter->subDays(2),
-            'Anden Påskedag' => $easter->addDays(2),
+            'Påskedag' => $easter,
+            'Anden Påskedag' => $easter->addDay(),
             'Kristi Himmelfartsdag' => $easter->addDays(39),
             'Pinse' => $easter->addDays(49),
             'Anden Pinsedag' => $easter->addDays(50),

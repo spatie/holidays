@@ -1,0 +1,46 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Jueves Santo",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "S\u00e1bado de Gloria",
+        "date": "2024-03-30"
+    },
+    {
+        "name": "D\u00eda del Trabajo",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "D\u00eda de la Madre",
+        "date": "2024-05-10"
+    },
+    {
+        "name": "D\u00eda del Padre",
+        "date": "2024-06-17"
+    },
+    {
+        "name": "Fiesta Divino Salvador del Mundo",
+        "date": "2024-08-06"
+    },
+    {
+        "name": "D\u00eda de la Independencia",
+        "date": "2024-09-15"
+    },
+    {
+        "name": "D\u00eda de Los Difuntos",
+        "date": "2024-11-02"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]
