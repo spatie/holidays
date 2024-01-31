@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use RuntimeException;
 
 class Spain extends Country
 {
@@ -48,11 +49,15 @@ class Spain extends Country
     /** @return array<string, string> */
     protected function regionHolidays(int $year): array
     {
+        if ($this->region === null) {
+            return [];
+        }
+
         $method = "regionHolidays{$year}";
         if (method_exists($this, $method)) {
             return $this->$method();
         } else {
-            return [];
+            throw new RuntimeException("No data for region '{$this->region}' on year {$year}.");
         }
     }
 
@@ -167,7 +172,7 @@ class Spain extends Country
                 'San José' => '03-19',
             ] + $juevesSanto + $lunesPascua + $sanJuan,
 
-            default => [],
+            default => throw new RuntimeException("Region '{$this->region}' is not valid."),
         };
     }
 
@@ -278,7 +283,7 @@ class Spain extends Country
                 'Día de la Comunidad Valenciana' => '10-09',
             ] + $lunesPascua + $sanJuan,
 
-            default => [],
+            default => throw new RuntimeException("Region '{$this->region}' is not valid."),
         };
     }
 
@@ -382,7 +387,7 @@ class Spain extends Country
                 'Día de la Comunidad Valenciana' => '10-09',
             ] + $sanJose + $lunesPascua + $sanJuan,
 
-            default => [],
+            default => throw new RuntimeException("Region '{$this->region}' is not valid."),
         };
     }
 }
