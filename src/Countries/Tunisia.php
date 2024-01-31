@@ -7,7 +7,10 @@ use RuntimeException;
 
 class Tunisia extends Country
 {
-    private array $hijriHolidays = [
+    /**
+     * @var array<int, array<int, array{name: string,date: string,slug: string}>> $hijriHolidays
+     */
+    protected array $hijriHolidays = [
         "1970" => [
             [
                 "name" => "Eid al-Fitr",
