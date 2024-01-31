@@ -6,9 +6,6 @@ use Carbon\CarbonImmutable;
 
 class Ghana extends Country
 {
-
-    protected string $timezone = 'Africa/Accra';
-
     public function countryCode(): string
     {
         return 'gh';
@@ -16,88 +13,74 @@ class Ghana extends Country
 
     /**
      * Return carbon date for christmas
+     *
      * @return CarbonImmutable
      */
     protected function getChristmasDay(int $year)
     {
-        return  new CarbonImmutable($year . "-12-25");
+        return new CarbonImmutable($year . '-12-25');
     }
 
-    /**
-     * @return array<string, CarbonImmutable>
-     */
-    protected function christmasDay(int $year): array
+    protected function christmasDay(int $year): CarbonImmutable
     {
         $christmasDay = $this->getChristmasDay($year);
-        $key = 'Christmas Day';
 
         if ($christmasDay->isSaturday()) {
-            $key .= ' (substitute day)';
+
             $christmasDay = $christmasDay->next('monday');
         }
 
         if ($christmasDay->isSunday()) {
-            $key .= ' (substitute day)';
             $christmasDay = $christmasDay->next('tuesday');
         }
 
-        return [$key => $christmasDay];
+        return $christmasDay;
     }
 
-    /**
-     * @return array<string, CarbonImmutable>
-     */
-    protected function boxingDay(int $year): array
+    protected function boxingDay(int $year): CarbonImmutable
     {
         $christmasDay = $this->getChristmasDay($year);
-        $boxingDay = new CarbonImmutable($year . "-12-26");
-        $key = 'Boxing Day';
+        $boxingDay = new CarbonImmutable($year . '-12-26');
 
         if ($christmasDay->isFriday()) {
-            $key .= ' (substitute day)';
             $boxingDay = $boxingDay->next('monday');
         }
-
         if ($christmasDay->isSaturday()) {
-            $key .= ' (substitute day)';
             $boxingDay = $boxingDay->next('tuesday');
         }
 
-        return [$key => $boxingDay];
+        return $boxingDay;
     }
 
     /**
      * Get holiday
-     * 
-     * If it falls on a weekend, the new day to be observed is the next monday
-     * 
-     * @return array<string, CarbonImmutable>
      *
+     * For example: If a holiday falls on a weekend, the new day to be observed is the next monday
      */
-    protected function getHoliday(string $nameOfHoliday, int $year, string $monthAndDay): array
+    protected function getHoliday(int $year, string $monthAndDay): CarbonImmutable
     {
-        $newYearsDay = new CarbonImmutable($year . "-" . $monthAndDay, $this->timezone);
-        $key = $nameOfHoliday;
+        $newYearsDay = new CarbonImmutable($year . '-' . $monthAndDay);
 
         if ($newYearsDay->isWeekend()) {
-            $key .= ' (substitute day)';
             $newYearsDay = $newYearsDay->next('monday');
         }
 
-        return [$key => $newYearsDay];
+        return $newYearsDay;
     }
 
     protected function allHolidays(int $year): array
     {
         return array_merge(
-            $this->getHoliday('New Year Day', $year, "01-01"),
-            $this->getHoliday('Constitution Day', $year, "01-07"),
-            $this->getHoliday('Independence Day', $year, "03-06"),
-            $this->getHoliday('May Day', $year, "05-01"),
-            $this->getHoliday('Founders Day', $year, "08-04"),
-            $this->getHoliday('Kwame Nkrumah Memorial Day', $year, "09-21"),
-            $this->christmasDay($year),
-            $this->boxingDay($year),
+            [
+                'New Year Day' => $this->getHoliday($year, '01-01'),
+                'Constitution Day' => $this->getHoliday($year, '01-07'),
+                'Independence Day' => $this->getHoliday($year, '03-06'),
+                'May Day' => $this->getHoliday($year, '05-01'),
+                'Founders Day' => $this->getHoliday($year, '08-04'),
+                'Kwame Nkrumah Memorial Day' => $this->getHoliday($year, '09-21'),
+                'Christmas Day' => $this->christmasDay($year),
+                'Boxing Day' => $this->boxingDay($year),
+            ],
             $this->variableHolidays($year)
         );
     }
@@ -107,7 +90,7 @@ class Ghana extends Country
     {
         $easter = $this->easter($year);
 
-        $farmersDay = (new CarbonImmutable('first friday of December ' . $year, $this->timezone));
+        $farmersDay = new CarbonImmutable('first friday of December ' . $year);
 
         return [
             'Farmers Day' => $farmersDay,
