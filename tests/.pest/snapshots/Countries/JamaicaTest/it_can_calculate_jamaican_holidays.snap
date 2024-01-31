@@ -1,0 +1,42 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Ash Wednesday",
+        "date": "2024-02-14"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-05-23"
+    },
+    {
+        "name": "Emancipation Day",
+        "date": "2024-08-01"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-08-06"
+    },
+    {
+        "name": "National Heroes Day",
+        "date": "2024-10-21"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2024-12-26"
+    }
+]
