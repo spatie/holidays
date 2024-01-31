@@ -2,6 +2,42 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.4.0 - 2024-01-30
+
+### What's Changed
+
+* Add Montenegro holidays by @Rkishahaha in https://github.com/spatie/holidays/pull/171
+* Add Angola Holidays  by @monteirofutila in https://github.com/spatie/holidays/pull/89
+* add wales, england, scotland and northern ireland by @SimonBarrettACT in https://github.com/spatie/holidays/pull/162
+* Add Chile Holidays by @AndresReyesDev in https://github.com/spatie/holidays/pull/88
+* Added Kenyan holidays by @PhilN8 in https://github.com/spatie/holidays/pull/69
+* Add vietnamese holidays by @kevinb1989 in https://github.com/spatie/holidays/pull/115
+* Germany: Adding local for EN, FR, NL by @arnebr in https://github.com/spatie/holidays/pull/183
+* Support for Taiwan holidays by @takeshiyu in https://github.com/spatie/holidays/pull/124
+* Fixing README.md to update region parameter in country constructor to a working example by @arnebr in https://github.com/spatie/holidays/pull/184
+* Draft: Add Support for Switzerland by @Martin-Welte in https://github.com/spatie/holidays/pull/49
+* Add Tanzania national holiday by @alphaolomi in https://github.com/spatie/holidays/pull/98
+* Switzerland: add missing holidays to "ch-ur" region by @Kenny1291 in https://github.com/spatie/holidays/pull/191
+* Germany: Setting some historical holidays by @arnebr in https://github.com/spatie/holidays/pull/188
+* feat: Add Bangla language support for Bangladeshi holidays by @jfBiswajit in https://github.com/spatie/holidays/pull/182
+* add indonesia holiday by @ddouble-d in https://github.com/spatie/holidays/pull/66
+
+### New Contributors
+
+* @Rkishahaha made their first contribution in https://github.com/spatie/holidays/pull/171
+* @monteirofutila made their first contribution in https://github.com/spatie/holidays/pull/89
+* @SimonBarrettACT made their first contribution in https://github.com/spatie/holidays/pull/162
+* @AndresReyesDev made their first contribution in https://github.com/spatie/holidays/pull/88
+* @PhilN8 made their first contribution in https://github.com/spatie/holidays/pull/69
+* @kevinb1989 made their first contribution in https://github.com/spatie/holidays/pull/115
+* @takeshiyu made their first contribution in https://github.com/spatie/holidays/pull/124
+* @alphaolomi made their first contribution in https://github.com/spatie/holidays/pull/98
+* @Kenny1291 made their first contribution in https://github.com/spatie/holidays/pull/191
+* @jfBiswajit made their first contribution in https://github.com/spatie/holidays/pull/182
+* @ddouble-d made their first contribution in https://github.com/spatie/holidays/pull/66
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.3.0...1.4.0
+
 ## 1.3.0 - 2024-01-25
 
 ### What's Changed
