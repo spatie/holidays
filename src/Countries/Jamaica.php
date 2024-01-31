@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
 
 class Jamaica extends Country
 {
@@ -63,12 +62,12 @@ class Jamaica extends Country
             $date = CarbonImmutable::parse("$year-$date");
 
             // If any holiday falls on a Sunday, then it is observed on Monday
-            if($date->dayOfWeek === 0) {
+            if ($date->dayOfWeek === 0) {
                 $observedHolidays["{$name} Observed"] = $date->next(CarbonImmutable::MONDAY);
             }
 
             // If Labour Day falls on a Saturday, then it is observed on Monday
-            if($name == 'Labour Day' && $date->dayOfWeek === 6) {
+            if ($name == 'Labour Day' && $date->dayOfWeek === 6) {
                 $observedHolidays["{$name} Observed"] = $date->next(CarbonImmutable::MONDAY);
             }
 
