@@ -5,7 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Exceptions\InvalidYear;
-use Spatie\Holidays\Exceptions\UnsupportedCountry;
+use Spatie\Holidays\Exceptions\InvalidCountry;
 
 abstract class Country
 {
@@ -93,7 +93,7 @@ abstract class Country
         $country = self::find($countryCode);
 
         if (! $country) {
-            throw UnsupportedCountry::make($countryCode);
+            throw InvalidCountry::notFound($countryCode);
         }
 
         return $country;

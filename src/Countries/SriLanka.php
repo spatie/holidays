@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Spatie\Holidays\Exceptions\UnsupportedCountry;
+use Spatie\Holidays\Exceptions\InvalidCountry;
 
 class SriLanka extends Country
 {
@@ -16,6 +16,6 @@ class SriLanka extends Country
         // Sri lanka has a committee that decides the holidays for the year
         // instead of following a full moon calendar.
 
-        throw UnsupportedCountry::make($this->countryCode());
+        throw InvalidCountry::notFound($this->countryCode());
     }
 }
