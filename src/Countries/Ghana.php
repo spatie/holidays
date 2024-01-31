@@ -15,11 +15,20 @@ class Ghana extends Country
     }
 
     /**
+     * Return carbon date for christmas
+     * @return CarbonImmutable
+     */
+    protected function getChristmasDay(int $year)
+    {
+        return  new CarbonImmutable($year . "-12-25");
+    }
+
+    /**
      * @return array<string, CarbonImmutable>
      */
     protected function christmasDay(int $year): array
     {
-        $christmasDay = new CarbonImmutable($year . "-12-25", $this->timezone);
+        $christmasDay = $this->getChristmasDay($year);
         $key = 'Christmas Day';
 
         if ($christmasDay->isSaturday()) {
@@ -40,7 +49,7 @@ class Ghana extends Country
      */
     protected function boxingDay(int $year): array
     {
-        $christmasDay = new CarbonImmutable($year . "-12-25", $this->timezone);
+        $christmasDay = $this->getChristmasDay($year);
         $boxingDay = new CarbonImmutable($year . "-12-26", $this->timezone);
         $key = 'Boxing Day';
 
@@ -96,8 +105,7 @@ class Ghana extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone($this->timezone);
+        $easter = $this->easter($year);
 
         $farmersDay = (new CarbonImmutable('first friday of December ' . $year, $this->timezone));
 
