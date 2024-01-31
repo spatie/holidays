@@ -16,7 +16,7 @@ it('can calculate albanian holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-it('does not return a holiday falsely', function () use ($holiday) {
+it('does not return a holiday falsely', function () {
     $dateInstance = CarbonImmutable::createFromDate('2024-01-03');
     $holiday = Holidays::for(country: 'al');
 

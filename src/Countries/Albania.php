@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Albania extends Country
 {
@@ -37,7 +38,7 @@ class Albania extends Country
         ]);
     }
 
-    private function getEidAlFitrHoliday(int $year): ?string
+    private function getEidAlFitrHoliday(int $year): string
     {
         /**
          * Provided until 2034 by qppstudio.net.
@@ -55,11 +56,11 @@ class Albania extends Country
             2032 => '01-14',
             2033 => '01-02',
             2034 => '12-12',
-            default => null // Holiday is variable; requires ongoing maintenance.
+            default => throw InvalidYear::range('Albania', 2024, 2034),
         };
     }
 
-    private function getEidAlAdhaHoliday(int $year): ?string
+    private function getEidAlAdhaHoliday(int $year): string
     {
         /**
          * Tentative dates.
@@ -78,7 +79,7 @@ class Albania extends Country
             2032 => '03-22',
             2033 => '03-12',
             2034 => '03-01',
-            default => null // Holiday is variable; requires ongoing maintenance.
+            default => throw InvalidYear::range('Albania', 2024, 2034),
         };
     }
 }
