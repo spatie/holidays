@@ -4,8 +4,8 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Exceptions\InvalidCountry;
+use Spatie\Holidays\Exceptions\InvalidYear;
 
 abstract class Country
 {

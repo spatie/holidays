@@ -3,9 +3,9 @@
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Belgium;
 use Spatie\Holidays\Countries\Netherlands;
+use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidLocale;
 use Spatie\Holidays\Exceptions\InvalidYear;
-use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Holidays;
 
 it('can get all holidays of the current year', function () {
