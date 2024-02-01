@@ -36,7 +36,7 @@ class Montenegro extends Country
     public function variableHolidays(int $year): array
     {
         // Orthodox Easter calculation needs to be in the same timezone as the country
-        $orthodoxEaster = $this->orthodoxEaster($year)->setTimezone('Europe/Podgorica');
+        $orthodoxEaster = $this->orthodoxEaster($year);
         $goodFriday = $orthodoxEaster->copy()->subDays(2);
         $orthodoxEasterMonday = $orthodoxEaster->copy()->addDay();
 

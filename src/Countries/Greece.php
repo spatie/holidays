@@ -30,7 +30,7 @@ class Greece extends Country
     protected function variableHolidays(int $year): array
     {
         // OrthodoxEaster needs to setTimezone
-        $orthodoxEaster = $this->orthodoxEaster($year)->setTimezone('Europe/Athens');
+        $orthodoxEaster = $this->orthodoxEaster($year);
         $cleanMonday = $orthodoxEaster->copy()->subDays(48);
         $megaliParaskevi = $orthodoxEaster->copy()->subDays(2);
         $megaloSavvato = $orthodoxEaster->copy()->subDays(1);

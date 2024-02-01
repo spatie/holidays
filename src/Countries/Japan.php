@@ -33,17 +33,13 @@ class Japan extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $comingOfAgeDay = (new CarbonImmutable("second monday of january $year")) // Coming of Age Day
-            ->setTimezone('Asia/Tokyo');
+        $comingOfAgeDay = (new CarbonImmutable("second monday of january $year"))->startOfDay();
 
-        $oceansDay = (new CarbonImmutable("third monday of july $year")) // Ocean's Day
-            ->setTimezone('Asia/Tokyo');
+        $oceansDay = (new CarbonImmutable("third monday of july $year"))->startOfDay();
 
-        $respectForTheAgedDay = (new CarbonImmutable("third monday of september $year")) // Respect for the Aged Day
-            ->setTimezone('Asia/Tokyo');
+        $respectForTheAgedDay = (new CarbonImmutable("third monday of september $year"))->startOfDay();
 
-        $sportsDay = (new CarbonImmutable("second monday of october $year")) // Sports Day
-            ->setTimezone('Asia/Tokyo');
+        $sportsDay = (new CarbonImmutable("second monday of october $year"))->startOfDay();
 
         $holidays = [
             '成人の日' => $comingOfAgeDay,
