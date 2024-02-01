@@ -26,17 +26,17 @@ class Sweden extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = $this->easter($year)->setTimezone('Europe/Stockholm');
+        $easter = $this->easter($year);
 
         /** @var CarbonImmutable $midsummerDay */
-        $midsummerDay = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-06-20", 'Europe/Stockholm');
+        $midsummerDay = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-06-20");
 
         if (! $midsummerDay->isSaturday()) {
             $midsummerDay = $midsummerDay->next(CarbonImmutable::SATURDAY);
         }
 
         /** @var CarbonImmutable $halloween */
-        $halloween = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-10-31", 'Europe/Stockholm');
+        $halloween = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-10-31");
 
         if (! $halloween->isSaturday()) {
             $halloween = $halloween->next(CarbonImmutable::SATURDAY);
