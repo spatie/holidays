@@ -3,9 +3,9 @@
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Belgium;
 use Spatie\Holidays\Countries\Netherlands;
+use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidLocale;
 use Spatie\Holidays\Exceptions\InvalidYear;
-use Spatie\Holidays\Exceptions\UnsupportedCountry;
 use Spatie\Holidays\Holidays;
 
 it('can get all holidays of the current year', function () {
@@ -43,7 +43,7 @@ it('can get all holidays of another year and a specific country', function () {
 
 it('cannot get all holidays of an unknown country code', function () {
     Holidays::for(country: 'unknown');
-})->throws(UnsupportedCountry::class);
+})->throws(InvalidCountry::class);
 
 it('cannot get holidays for years before 1970', function () {
     Holidays::for(country: 'be', year: 1969)->get();
