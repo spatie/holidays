@@ -15,4 +15,9 @@ class InvalidYear extends RuntimeException
     {
         return new self('Holidays can only be calculated for years before 2038.');
     }
+
+    public static function range(string $country, int $start, int $end): self
+    {
+        return new self("Only years between {$start} and {$end} are supported for {$country}.");
+    }
 }
