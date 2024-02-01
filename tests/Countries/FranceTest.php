@@ -7,7 +7,7 @@ use Spatie\Holidays\Countries\France;
 use Spatie\Holidays\Holidays;
 
 it('can calculate french holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'fr')->get();
 
@@ -19,7 +19,7 @@ it('can calculate french holidays', function () {
 });
 
 it('can calculate french easter based region holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(France::make('FR-57'))->get();
 
@@ -31,7 +31,7 @@ it('can calculate french easter based region holidays', function () {
 });
 
 it('can calculate french date based regional holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(France::make('FR-BL'))->get();
 

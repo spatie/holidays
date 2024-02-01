@@ -1,0 +1,42 @@
+[
+    {
+        "name": "New Year's Day (substitute day)",
+        "date": "2033-01-03"
+    },
+    {
+        "name": "St Patrick's Day",
+        "date": "2033-03-17"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2033-04-15"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2033-04-18"
+    },
+    {
+        "name": "Early May bank holiday",
+        "date": "2033-05-02"
+    },
+    {
+        "name": "Spring bank holiday",
+        "date": "2033-05-30"
+    },
+    {
+        "name": "Battle of the Boyne (Orangemen's Day)",
+        "date": "2033-07-12"
+    },
+    {
+        "name": "Summer bank holiday",
+        "date": "2033-08-29"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2033-12-26"
+    },
+    {
+        "name": "Christmas Day (substitute day)",
+        "date": "2033-12-27"
+    }
+]
