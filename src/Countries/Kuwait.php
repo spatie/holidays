@@ -23,9 +23,6 @@ class Kuwait extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Asia/Kuwait');
-
         // If there are any specific variable holidays for Kuwait, you can add them here.
         return [];
     }
