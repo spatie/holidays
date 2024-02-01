@@ -80,8 +80,7 @@ class Vietnam extends Country
             return [];
         }
 
-        $independenceDay = CarbonImmutable::parse("$year-09-02")
-            ->setTimeZone('Asia/Ho_Chi_Minh');
+        $independenceDay = CarbonImmutable::parse("$year-09-02")->startOfDay();
 
         if ($independenceDay->dayOfWeek === CarbonInterface::MONDAY) {
             return ['Ngày Sau Quốc Khánh' => $independenceDay->addDay()];
