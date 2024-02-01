@@ -72,11 +72,11 @@ class Ghana extends Country
     {
         return array_merge(
             [
-                'New Year Day' => $this->getHoliday($year, '01-01'),
+                'New Year\'s Day' => $this->getHoliday($year, '01-01'),
                 'Constitution Day' => $this->getHoliday($year, '01-07'),
                 'Independence Day' => $this->getHoliday($year, '03-06'),
                 'May Day' => $this->getHoliday($year, '05-01'),
-                'Founders Day' => $this->getHoliday($year, '08-04'),
+                'Founder\'s Day' => $this->getHoliday($year, '08-04'),
                 'Kwame Nkrumah Memorial Day' => $this->getHoliday($year, '09-21'),
                 'Christmas Day' => $this->christmasDay($year),
                 'Boxing Day' => $this->boxingDay($year),

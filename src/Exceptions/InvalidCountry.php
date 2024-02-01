@@ -4,9 +4,9 @@ namespace Spatie\Holidays\Exceptions;
 
 use RuntimeException;
 
-class UnsupportedCountry extends RuntimeException
+class InvalidCountry extends RuntimeException
 {
-    public static function make(string $countryCode): self
+    public static function notFound(string $countryCode): self
     {
         return new self("Country code `{$countryCode}` is not supported.");
     }
