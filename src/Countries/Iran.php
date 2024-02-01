@@ -2,15 +2,13 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-
 class Iran extends Country
 {
     public function countryCode(): string
     {
         return 'ir';
     }
-    
+
     protected function allHolidays(int $year): array
     {
         return [
