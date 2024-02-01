@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holidays;
 
 it('can calculate azerbaijani holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'az')->get();
 
@@ -18,7 +18,7 @@ it('can calculate azerbaijani holidays', function () {
 });
 
 it('can calculate azerbaijani holidays in english', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'az',locale: 'en')->get();
 
