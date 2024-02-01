@@ -16,6 +16,15 @@ it('can calculate albanian holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
+it('can get holidays in another locale', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
+    $holidays = Holidays::for(country: 'al', locale: 'en')->get();
+
+    expect($holidays[0]['name'])
+        ->toBe("New Year's Day");
+});
+
 it('does not return a holiday falsely', function () {
     $dateInstance = CarbonImmutable::createFromDate('2024-01-03');
     $holiday = Holidays::for(country: 'al');

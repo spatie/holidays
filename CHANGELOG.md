@@ -2,6 +2,12 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.5.1 - 2024-02-01
+
+Fix translations for Albania & Iran
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.5.0...1.5.1
+
 ## 1.5.0 - 2024-02-01
 
 ### What's Changed
