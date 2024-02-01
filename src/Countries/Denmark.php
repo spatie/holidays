@@ -27,10 +27,10 @@ class Denmark extends Country
         $easter = $this->easter($year);
 
         $holidays = [
-            'Påskedag' => $easter->addDay(),
             'Skærtorsdag' => $easter->subDays(3),
             'Langfredag' => $easter->subDays(2),
-            'Anden Påskedag' => $easter->addDays(2),
+            'Påskedag' => $easter,
+            'Anden Påskedag' => $easter->addDay(),
             'Kristi Himmelfartsdag' => $easter->addDays(39),
             'Pinse' => $easter->addDays(49),
             'Anden Pinsedag' => $easter->addDays(50),

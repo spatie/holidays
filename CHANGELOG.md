@@ -2,6 +2,82 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.4.0 - 2024-01-30
+
+### What's Changed
+
+* Add Montenegro holidays by @Rkishahaha in https://github.com/spatie/holidays/pull/171
+* Add Angola Holidays  by @monteirofutila in https://github.com/spatie/holidays/pull/89
+* add wales, england, scotland and northern ireland by @SimonBarrettACT in https://github.com/spatie/holidays/pull/162
+* Add Chile Holidays by @AndresReyesDev in https://github.com/spatie/holidays/pull/88
+* Added Kenyan holidays by @PhilN8 in https://github.com/spatie/holidays/pull/69
+* Add vietnamese holidays by @kevinb1989 in https://github.com/spatie/holidays/pull/115
+* Germany: Adding local for EN, FR, NL by @arnebr in https://github.com/spatie/holidays/pull/183
+* Support for Taiwan holidays by @takeshiyu in https://github.com/spatie/holidays/pull/124
+* Fixing README.md to update region parameter in country constructor to a working example by @arnebr in https://github.com/spatie/holidays/pull/184
+* Draft: Add Support for Switzerland by @Martin-Welte in https://github.com/spatie/holidays/pull/49
+* Add Tanzania national holiday by @alphaolomi in https://github.com/spatie/holidays/pull/98
+* Switzerland: add missing holidays to "ch-ur" region by @Kenny1291 in https://github.com/spatie/holidays/pull/191
+* Germany: Setting some historical holidays by @arnebr in https://github.com/spatie/holidays/pull/188
+* feat: Add Bangla language support for Bangladeshi holidays by @jfBiswajit in https://github.com/spatie/holidays/pull/182
+* add indonesia holiday by @ddouble-d in https://github.com/spatie/holidays/pull/66
+
+### New Contributors
+
+* @Rkishahaha made their first contribution in https://github.com/spatie/holidays/pull/171
+* @monteirofutila made their first contribution in https://github.com/spatie/holidays/pull/89
+* @SimonBarrettACT made their first contribution in https://github.com/spatie/holidays/pull/162
+* @AndresReyesDev made their first contribution in https://github.com/spatie/holidays/pull/88
+* @PhilN8 made their first contribution in https://github.com/spatie/holidays/pull/69
+* @kevinb1989 made their first contribution in https://github.com/spatie/holidays/pull/115
+* @takeshiyu made their first contribution in https://github.com/spatie/holidays/pull/124
+* @alphaolomi made their first contribution in https://github.com/spatie/holidays/pull/98
+* @Kenny1291 made their first contribution in https://github.com/spatie/holidays/pull/191
+* @jfBiswajit made their first contribution in https://github.com/spatie/holidays/pull/182
+* @ddouble-d made their first contribution in https://github.com/spatie/holidays/pull/66
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.3.0...1.4.0
+
+## 1.3.0 - 2024-01-25
+
+### What's Changed
+
+* Add Ukrainian holidays by @kapi14 in https://github.com/spatie/holidays/pull/112
+* Added Turkey holidays by @thecaliskan in https://github.com/spatie/holidays/pull/70
+* Added has helper by @thecaliskan in https://github.com/spatie/holidays/pull/170
+* Add Slovakia holidays by @patressz in https://github.com/spatie/holidays/pull/102
+* Add support for multi languages  by @Nielsvanpach in https://github.com/spatie/holidays/pull/177
+* Add latvian holidays by @IvarsSaudinis in https://github.com/spatie/holidays/pull/169
+* Added Colombia Holidays by @alvleont in https://github.com/spatie/holidays/pull/55
+* Add Finnish Holidays by @ConnySjoblom in https://github.com/spatie/holidays/pull/85
+* Add Japan support by @mkokio in https://github.com/spatie/holidays/pull/160
+* Add United States Holidays by @arcdigital in https://github.com/spatie/holidays/pull/26
+* Add Serbian holidays by @knubbe82 in https://github.com/spatie/holidays/pull/107
+* Add El Salvador Holidays by @vlltr in https://github.com/spatie/holidays/pull/93
+* Belarus Holidays by @Jampire in https://github.com/spatie/holidays/pull/156
+* Adding German holidays by @arnebr in https://github.com/spatie/holidays/pull/8
+* Add Australian Holidays by @patrickomeara in https://github.com/spatie/holidays/pull/43
+* Update Australia.php by @OnyileFelix1 in https://github.com/spatie/holidays/pull/178
+* Bug fix: calculating orthodox easter by @Nielsvanpach in https://github.com/spatie/holidays/pull/180
+
+### New Contributors
+
+* @kapi14 made their first contribution in https://github.com/spatie/holidays/pull/112
+* @patressz made their first contribution in https://github.com/spatie/holidays/pull/102
+* @IvarsSaudinis made their first contribution in https://github.com/spatie/holidays/pull/169
+* @alvleont made their first contribution in https://github.com/spatie/holidays/pull/55
+* @ConnySjoblom made their first contribution in https://github.com/spatie/holidays/pull/85
+* @mkokio made their first contribution in https://github.com/spatie/holidays/pull/160
+* @arcdigital made their first contribution in https://github.com/spatie/holidays/pull/26
+* @knubbe82 made their first contribution in https://github.com/spatie/holidays/pull/107
+* @vlltr made their first contribution in https://github.com/spatie/holidays/pull/93
+* @Jampire made their first contribution in https://github.com/spatie/holidays/pull/156
+* @arnebr made their first contribution in https://github.com/spatie/holidays/pull/8
+* @patrickomeara made their first contribution in https://github.com/spatie/holidays/pull/43
+* @OnyileFelix1 made their first contribution in https://github.com/spatie/holidays/pull/178
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.2.0...1.3.0
+
 ## 1.2.0 - 2024-01-23
 
 ### What's Changed
