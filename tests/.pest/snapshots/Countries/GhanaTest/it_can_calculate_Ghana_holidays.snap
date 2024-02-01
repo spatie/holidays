@@ -1,0 +1,46 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Constitution Day",
+        "date": "2024-01-08"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-03-06"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "May Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Founder's Day",
+        "date": "2024-08-05"
+    },
+    {
+        "name": "Kwame Nkrumah Memorial Day",
+        "date": "2024-09-23"
+    },
+    {
+        "name": "Farmers Day",
+        "date": "2024-12-06"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2024-12-26"
+    }
+]
