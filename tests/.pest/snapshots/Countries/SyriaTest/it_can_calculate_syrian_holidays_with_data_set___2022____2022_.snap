@@ -1,0 +1,74 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2022-01-01"
+    },
+    {
+        "name": "Mother's Day",
+        "date": "2022-03-21"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2022-04-17"
+    },
+    {
+        "name": "Western Easter",
+        "date": "2022-04-17"
+    },
+    {
+        "name": "Labor",
+        "date": "2022-05-01"
+    },
+    {
+        "name": "Eid al-Fitr Eve",
+        "date": "2022-05-01"
+    },
+    {
+        "name": "Eid al-Fitr 1. Day",
+        "date": "2022-05-02"
+    },
+    {
+        "name": "Eid al-Fitr 2. Day",
+        "date": "2022-05-03"
+    },
+    {
+        "name": "Eid al-Fitr 3. Day",
+        "date": "2022-05-04"
+    },
+    {
+        "name": "Martyrs' Day",
+        "date": "2022-05-06"
+    },
+    {
+        "name": "Eastern Easter",
+        "date": "2022-05-22"
+    },
+    {
+        "name": "Eid al-Adha Eve",
+        "date": "2022-07-08"
+    },
+    {
+        "name": "Eid al-Adha 1. Day",
+        "date": "2022-07-09"
+    },
+    {
+        "name": "Eid al-Adha 2. Day",
+        "date": "2022-07-10"
+    },
+    {
+        "name": "Eid al-Adha 3. Day",
+        "date": "2022-07-11"
+    },
+    {
+        "name": "Eid al-Adha 4. Day",
+        "date": "2022-07-12"
+    },
+    {
+        "name": "Anniversary of the October War",
+        "date": "2022-10-06"
+    },
+    {
+        "name": "Christmas",
+        "date": "2022-12-25"
+    }
+]

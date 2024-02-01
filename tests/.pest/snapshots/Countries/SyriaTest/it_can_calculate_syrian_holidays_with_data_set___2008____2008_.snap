@@ -1,0 +1,74 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2008-01-01"
+    },
+    {
+        "name": "Mother's Day",
+        "date": "2008-03-21"
+    },
+    {
+        "name": "Western Easter",
+        "date": "2008-03-23"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2008-04-17"
+    },
+    {
+        "name": "Eastern Easter",
+        "date": "2008-04-27"
+    },
+    {
+        "name": "Labor",
+        "date": "2008-05-01"
+    },
+    {
+        "name": "Martyrs' Day",
+        "date": "2008-05-06"
+    },
+    {
+        "name": "Eid al-Fitr Eve",
+        "date": "2008-09-29"
+    },
+    {
+        "name": "Eid al-Fitr 1. Day",
+        "date": "2008-09-30"
+    },
+    {
+        "name": "Eid al-Fitr 2. Day",
+        "date": "2008-10-01"
+    },
+    {
+        "name": "Eid al-Fitr 3. Day",
+        "date": "2008-10-02"
+    },
+    {
+        "name": "Anniversary of the October War",
+        "date": "2008-10-06"
+    },
+    {
+        "name": "Eid al-Adha Eve",
+        "date": "2008-12-07"
+    },
+    {
+        "name": "Eid al-Adha 1. Day",
+        "date": "2008-12-08"
+    },
+    {
+        "name": "Eid al-Adha 2. Day",
+        "date": "2008-12-09"
+    },
+    {
+        "name": "Eid al-Adha 3. Day",
+        "date": "2008-12-10"
+    },
+    {
+        "name": "Eid al-Adha 4. Day",
+        "date": "2008-12-11"
+    },
+    {
+        "name": "Christmas",
+        "date": "2008-12-25"
+    }
+]
