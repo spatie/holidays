@@ -23,7 +23,7 @@ class Kuwait extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        // If there are any specific variable holidays for Kuwait, you can add them here.
+        // The variable holidays all follow the lunar calendar, so their dates are not confirmed.
         return [];
     }
 }
