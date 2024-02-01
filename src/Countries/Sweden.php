@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 
 class Sweden extends Country
 {
@@ -28,18 +29,16 @@ class Sweden extends Country
     {
         $easter = $this->easter($year);
 
-        /** @var CarbonImmutable $midsummerDay */
-        $midsummerDay = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-06-20");
+        $midsummerDay = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-06-20")->startOfDay();
 
         if (! $midsummerDay->isSaturday()) {
-            $midsummerDay = $midsummerDay->next(CarbonImmutable::SATURDAY);
+            $midsummerDay = $midsummerDay->next(CarbonInterface::SATURDAY);
         }
 
-        /** @var CarbonImmutable $halloween */
-        $halloween = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-10-31");
+        $halloween = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-10-31")->startOfDay();
 
         if (! $halloween->isSaturday()) {
-            $halloween = $halloween->next(CarbonImmutable::SATURDAY);
+            $halloween = $halloween->next(CarbonInterface::SATURDAY);
         }
 
         return [

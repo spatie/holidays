@@ -26,6 +26,11 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
+			message: "#^Cannot call method startOfDay\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
+			count: 2
+			path: src/Countries/Sweden.php
+
+		-
 			message: "#^Cannot call method setTimeStamp\\(\\) on DateTime\\|false\\.$#"
 			count: 1
 			path: src/Countries/Turkmenistan.php
