@@ -28,8 +28,7 @@ class Syria extends Country
     /** @return array<string, CarbonImmutable|string> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Asia/Damascus');
+        $easter = $this->easter($year);
 
         // TODO: Implement islamic holidays
 
