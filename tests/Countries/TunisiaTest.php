@@ -30,12 +30,16 @@ it('can calculate tunisian holidays 2025', function () {
 });
 
 //it('can calculate tunisian holidays list', function () {
+//
 //    $result = [];
 //    for ($i = 1970; $i <= 2037; $i++) {
 //        CarbonImmutable::setTestNowAndTimezone("$i-01-01");
 //        $holidays = Holidays::for(country: 'tn')->get();
-//        $result[$i] = formatDates($holidays);
+//        //dd($holidays);
+//        $result[$i] = formatDates($holidays)[0]['date'];
 //    }
-//    file_put_contents('hijri.json', json_encode($result));
+//    //dd($result);
+//    file_put_contents('fitr.json', json_encode($result));
 //    //file_put_contents('hijri.bin', serialize($result));
 //});
+
