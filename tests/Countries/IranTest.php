@@ -19,7 +19,7 @@ it('can calculate iran holidays', function () {
 
 it('can calculate iran holidays in local', function (string $locale, string $newYearsDayName) {
     CarbonImmutable::setTestNow('2024-01-01');
-    $result = Holidays::for(country: 'ir', year: null, locale: $locale)->get();
+    $result = Holidays::for(country: 'ir', locale: $locale)->get();
 
     expect($result)->toBeArray();
     expect($result[7]['name'])->toBe($newYearsDayName);
