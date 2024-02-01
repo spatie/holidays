@@ -1,16 +1,4 @@
 <?php
-/*
- * *************************************************************************
- *  * Copyright (C) $user$, Inc - All Rights Reserved
- *  *
- *  * <omitted copyright blah>
- *  *
- *  * @file        com.maddyhome.idea.copyright.pattern.FileInfo@38827442$
- *  * @author      $user$
- *  * @site        <my website>
- *  * @date        $date$
- *
- */
 
 namespace Spatie\Holidays\Calendars;
 
