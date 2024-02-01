@@ -123,6 +123,7 @@ class Uzbekistan extends Country
         return 'uz';
     }
 
+    /** @return array<string, CarbonImmutable|string> */
     protected function allHolidays(int $year): array
     {
         //After gaining independence on September 1, 1991, Uzbekistan introduced a new set of public holidays.
@@ -141,7 +142,7 @@ class Uzbekistan extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonImmutable|string> */
     protected function variableHolidays(int $year): array
     {
         $holidays = [];
