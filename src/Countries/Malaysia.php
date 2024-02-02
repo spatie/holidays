@@ -86,7 +86,7 @@ class Malaysia extends Country
     protected function regionHolidays(int $year): array
     {
         if ($this->region && !$this->validRegion($this->region)) {
-            throw InvalidRegion::unsupportedRegion($this->region);
+            throw InvalidRegion::notFound($this->region);
         }
 
         return $this->holidaysByRegion($year);
