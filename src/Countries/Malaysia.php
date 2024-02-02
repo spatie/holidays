@@ -63,10 +63,10 @@ class Malaysia extends Country
         $this->setChineseCalendarTimezone($this->timezone);
 
         $variableHolidays = [
-            'Tahun Baru Cina' => $this->chineseToGregorianDate('01-01', $year),
-            'Tahun Baru Cina Hari Kedua' => $this->chineseToGregorianDate('01-02', $year),
-            'Hari Raya Aidilfitri' => $this->islamicCalendar('01/10', $year),
-            'Hari Raya Aidilfitri Hari Kedua' => $this->islamicCalendar('02/10', $year),
+            'Tahun Baru Cina' => $this->lunarNewYear($year),
+            'Tahun Baru Cina Hari Kedua' => $this->lunarNewYear($year)->addDays(1),
+            'Hari Raya Aidilfitri' => $this->hariAidilfitri($year),
+            'Hari Raya Aidilfitri Hari Kedua' => $this->hariAidilfitri($year)->addDays(1),
             'Hari Wesak' => $this->hariWesak($year),
             'Hari Raya Aidiladha' => $this->hariAidiladha($year),
             'Awal Muharram' => $this->awalMuharram($year),
@@ -417,6 +417,11 @@ class Malaysia extends Country
         return '01-01';
     }
 
+    private function lunarNewYear(int $year): CarbonImmutable
+    {
+        return $this->chineseToGregorianDate('01-01', $year);
+    }
+
     protected function getIslamicFormatter(): IntlDateFormatter
     {
         return new IntlDateFormatter(
@@ -451,6 +456,11 @@ class Malaysia extends Country
         $timeStamp = (int) $formatter->parse($input . '/' . $hijrYear . ' AH');
         
         return CarbonImmutable::createFromTimestamp($timeStamp, $this->timezone);
+    }
+
+    protected function hariAidilfitri(int $year): CarbonImmutable
+    {
+        return $this->islamicCalendar('01/10', $year);
     }
 
     protected function hariWilayah(int $year): CarbonImmutable
