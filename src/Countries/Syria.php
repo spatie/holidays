@@ -216,6 +216,10 @@ class Syria extends Country
         ));
     }
 
+    /**
+     * @param  array<int, string|array<string>>  $holidays
+     * @return array<string, CarbonImmutable>
+     */
     protected function getIslamicHolidays(
         int $year,
         array $holidays,
