@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Ny\u00e5rsdagen",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Trettondedag jul",
+        "date": "2024-01-06"
+    },
+    {
+        "name": "L\u00e5ngfredagen",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "P\u00e5skdagen",
+        "date": "2024-03-31"
+    },
+    {
+        "name": "Annandag p\u00e5sk",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "F\u00f6rsta maj",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Kristi himmelsf\u00e4rdsdag",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Pingstdagen",
+        "date": "2024-05-19"
+    },
+    {
+        "name": "Nationaldagen",
+        "date": "2024-06-06"
+    },
+    {
+        "name": "Midsommardagen",
+        "date": "2024-06-22"
+    },
+    {
+        "name": "Alla helgons dag",
+        "date": "2024-11-02"
+    },
+    {
+        "name": "Juldagen",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Annandag jul",
+        "date": "2024-12-26"
+    }
+]
