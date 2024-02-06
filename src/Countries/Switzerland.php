@@ -73,7 +73,7 @@ class Switzerland extends Country
     public function __construct(protected ?string $region = null)
     {
         if ($region !== null && ! in_array($region, self::REGIONS)) {
-            throw InvalidRegion::unsupportedRegion($region);
+            throw InvalidRegion::notFound($region);
         }
     }
 
