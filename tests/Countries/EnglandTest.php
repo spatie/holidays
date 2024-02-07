@@ -40,7 +40,7 @@ it('calculates english holidays by date', function (string $name, string $date) 
 ]);
 
 it('can calculate welsh holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
@@ -50,7 +50,7 @@ it('can calculate welsh holidays', function () {
 });
 
 it('returns a substitute day if new years day falls on a weekend', function () {
-    CarbonImmutable::setTestNowAndTimezone('2033-01-01');
+    CarbonImmutable::setTestNow('2033-01-01');
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
@@ -59,7 +59,7 @@ it('returns a substitute day if new years day falls on a weekend', function () {
 });
 
 it('can calculate welsh holidays if christmas is on a friday', function () {
-    CarbonImmutable::setTestNowAndTimezone('2020-01-01');
+    CarbonImmutable::setTestNow('2020-01-01');
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
@@ -68,7 +68,7 @@ it('can calculate welsh holidays if christmas is on a friday', function () {
 });
 
 it('can calculate welsh holidays if christmas is on a saturday', function () {
-    CarbonImmutable::setTestNowAndTimezone('2021-01-01');
+    CarbonImmutable::setTestNow('2021-01-01');
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
@@ -77,7 +77,7 @@ it('can calculate welsh holidays if christmas is on a saturday', function () {
 });
 
 it('can calculate welsh holidays if christmas is on a sunday', function () {
-    CarbonImmutable::setTestNowAndTimezone('2022-01-01');
+    CarbonImmutable::setTestNow('2022-01-01');
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 
@@ -86,7 +86,7 @@ it('can calculate welsh holidays if christmas is on a sunday', function () {
 });
 
 it('can calculate holidays for 2020', function () {
-    CarbonImmutable::setTestNowAndTimezone('2020-01-01');
+    CarbonImmutable::setTestNow('2020-01-01');
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 

@@ -109,11 +109,11 @@ abstract class Country
          * https://www.php.net/manual/en/function.easter-date.php
          */
         if ($year < 1970) {
-            throw InvalidYear::yearTooLow();
+            throw InvalidYear::yearTooLow(1970);
         }
 
         if ($year > 2037) {
-            throw InvalidYear::yearTooHigh();
+            throw InvalidYear::yearTooHigh(2038);
         }
     }
 }

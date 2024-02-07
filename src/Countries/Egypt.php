@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use RuntimeException;
+use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Egypt extends Country
 {
@@ -229,28 +230,24 @@ class Egypt extends Country
         return 'eg';
     }
 
-    /**
-     * @return array<string, bool|CarbonImmutable>
-     */
     protected function allHolidays(int $year): array
     {
         $fixedHolidays = $this->fixedHolidays($year);
         $variableHolidays = $this->variableHolidays($year);
 
         return array_merge([
-            // These are fixed, but seasonal holidays that aren't observed in Egypt
-            'New Year\'s Day' => CarbonImmutable::create($year, 1, 1),
-            'Flooding of the Nile' => CarbonImmutable::create($year, 8, 15),
-            'March Equinox' => CarbonImmutable::create($year, 3, 20),
-            'June Solstice' => CarbonImmutable::create($year, 6, 21),
-            'September Equinox' => CarbonImmutable::create($year, 9, 22),
-            'Nayrouz' => CarbonImmutable::create($year, 9, 11),
-            'December Solstice' => CarbonImmutable::create($year, 12, 21),
+            'New Year\'s Day' => '1-1',
+            'Flooding of the Nile' => '8-15',
+            'March Equinox' => '3-20',
+            'June Solstice' => '6-21',
+            'Nayrouz' => '9-11',
+            'September Equinox' => '9-22',
+            'December Solstice' => '12-21',
         ], $fixedHolidays, $variableHolidays);
     }
 
     /**
-     * @return array<string, bool|CarbonImmutable>
+     * @return array<string, CarbonInterface>
      */
     protected function variableHolidays(int $year): array
     {
@@ -277,7 +274,7 @@ class Egypt extends Country
      * @param  int  $year  The year for which to prepare holiday dates.
      * @param  string  $holidayName  The name of the holiday.
      * @param  int  $duration  The duration of the holiday in days.
-     * @return array<string, CarbonImmutable|false> An array of holiday dates.
+     * @return array<string, CarbonImmutable> An array of holiday dates.
      */
     private function getIslamicHolidayDatesForYear(array $holidayDates, int $year, string $holidayName, int $duration = 1): array
     {
@@ -289,22 +286,25 @@ class Egypt extends Country
          *
          * @see https://www.timeanddate.com/holidays/egypt
          */
-        if (isset($holidayDates[$year])) {
-            $startDay = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s', $year, $holidayDates[$year]));
 
-            if (! $startDay instanceof CarbonImmutable) {
-                throw new RuntimeException('Date could not be created.');
-            }
+        if ($year < 2005) {
+            throw InvalidYear::yearTooLow(2005);
+        }
 
-            if ($duration === 1) {
-                // For single-day holidays, use the holiday name without "Day"
-                $dates[$holidayName] = $startDay;
-            } else {
-                // For multi-day holidays, append "Day N" for the second day onwards
-                for ($i = 0; $i < $duration; $i++) {
-                    $dayLabel = $i === 0 ? $holidayName : sprintf('%s Day %d', $holidayName, $i + 1);
-                    $dates[$dayLabel] = $startDay->addDays($i);
-                }
+        if (! isset($holidayDates[$year])) {
+            return $dates;
+        }
+
+        $startDay = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s', $year, $holidayDates[$year]));
+
+        if ($duration === 1) {
+            // For single-day holidays, use the holiday name without "Day"
+            $dates[$holidayName] = $startDay;
+        } else {
+            // For multi-day holidays, append "Day N" for the second day onwards
+            for ($i = 0; $i < $duration; $i++) {
+                $dayLabel = $i === 0 ? $holidayName : sprintf('%s Day %d', $holidayName, $i + 1);
+                $dates[$dayLabel] = $startDay->addDays($i);
             }
         }
 
@@ -312,18 +312,18 @@ class Egypt extends Country
     }
 
     /**
-     * @return array<string, bool|CarbonImmutable>
+     * @return array<string, CarbonInterface>
      */
     private function fixedHolidays(int $year): array
     {
         $holidays = [
-            'Coptic Christmas Day' => CarbonImmutable::create($year, 1, 7),
-            'Revolution Day 2011' => CarbonImmutable::create($year, 1, 25),
-            'Sinai Liberation Day' => CarbonImmutable::create($year, 4, 25),
-            'Labour Day' => CarbonImmutable::create($year, 5, 1),
-            'June 30 Revolution Day' => CarbonImmutable::create($year, 6, 30),
-            'Revolution Day' => CarbonImmutable::create($year, 7, 23),
-            'Armed Forces Day' => CarbonImmutable::create($year, 10, 6),
+            'Coptic Christmas Day' => CarbonImmutable::createFromDate($year, 1, 7),
+            'Revolution Day 2011' => CarbonImmutable::createFromDate($year, 1, 25),
+            'Sinai Liberation Day' => CarbonImmutable::createFromDate($year, 4, 25),
+            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'June 30 Revolution Day' => CarbonImmutable::createFromDate($year, 6, 30),
+            'Revolution Day' => CarbonImmutable::createFromDate($year, 7, 23),
+            'Armed Forces Day' => CarbonImmutable::createFromDate($year, 10, 6),
             'Spring Festival' => $this->orthodoxEaster($year)->addDay()->toImmutable(),
         ];
 
@@ -335,15 +335,11 @@ class Egypt extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable>
+     * @return array<string, CarbonInterface>
      */
-    private function adjustForWeekend(string $name, CarbonImmutable|false $date): array
+    private function adjustForWeekend(string $name, CarbonImmutable $date): array
     {
         $adjustedHolidays = [];
-
-        if (! $date instanceof CarbonImmutable) {
-            return [];
-        }
 
         // Explicitly define this logic to avoid timezone confusion on the CarbonInterface::next() method
         if ($date->isFriday() || $date->isSaturday()) {
