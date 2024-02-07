@@ -2,6 +2,18 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.6.1 - 2024-02-07
+
+### What's Changed
+
+* Fixes for Egyptian holidays by @wessama in https://github.com/spatie/holidays/pull/155
+
+### New Contributors
+
+* @wessama made their first contribution in https://github.com/spatie/holidays/pull/155
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.6.0...1.6.1
+
 ## 1.6.0 - 2024-02-07
 
 ### What's Changed
