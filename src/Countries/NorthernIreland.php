@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 
 class NorthernIreland extends Wales
 {
@@ -11,7 +12,7 @@ class NorthernIreland extends Wales
         return 'gb-nir';
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     private function stPatricksDay(int $year): array
     {
         $stPatricksDay = new CarbonImmutable($year.'-03-17', 'Europe/London');
@@ -25,7 +26,7 @@ class NorthernIreland extends Wales
         return [$key => $stPatricksDay];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     private function battleOfTheBoyne(int $year): array
     {
         $battleOfTheBoyne = new CarbonImmutable($year.'-07-12', 'Europe/London');
@@ -51,7 +52,7 @@ class NorthernIreland extends Wales
         };
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function allHolidays(int $year): array
     {
         $regularHolidays = array_merge(

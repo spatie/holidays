@@ -16,7 +16,7 @@ class Argentine extends Country
         return array_merge([
             'Día de Año Nuevo' => '01-01',
             'Carnaval' => '12-02',
-            'Carnaval' => '13-02',
+            'Carnaval Día 2' => '13-02',
             'Día Nacional de la Memoria por la Verdad y la Justicia' => '24-04',
             'Día del Veterano y de los Caídos en la Guerra de Malvinas' => '02-04',
             'Día del Trabajador' => '05-01',

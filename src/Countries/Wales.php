@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 
 class Wales extends Country
 {
@@ -11,7 +12,7 @@ class Wales extends Country
         return 'gb-cym';
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function christmasDay(int $year): array
     {
         $christmasDay = new CarbonImmutable($year.'-12-25', 'Europe/London');
@@ -30,7 +31,7 @@ class Wales extends Country
         return [$key => $christmasDay];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function boxingDay(int $year): array
     {
         $christmasDay = new CarbonImmutable($year.'-12-25', 'Europe/London');
@@ -50,7 +51,7 @@ class Wales extends Country
         return [$key => $boxingDay];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function newYearsDay(int $year): array
     {
         $newYearsDay = new CarbonImmutable($year.'-01-01', 'Europe/London');
@@ -64,7 +65,7 @@ class Wales extends Country
         return [$key => $newYearsDay];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function earlyMayBankHoliday(int $year): array
     {
         if ($year === 2020) {
@@ -96,7 +97,7 @@ class Wales extends Country
         };
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function allHolidays(int $year): array
     {
         $regularHolidays = array_merge(
