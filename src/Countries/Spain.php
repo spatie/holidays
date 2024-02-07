@@ -30,7 +30,7 @@ class Spain extends Country
                 'Todos los Santos' => '11-01',
                 'Día de la Constitución Española' => '12-06',
                 'Inmaculada Concepción' => '12-08', // 2024?
-                'Navidad' => '12-25'
+                'Navidad' => '12-25',
             ],
             $this->variableHolidays($year),
             $this->regionHolidays($year),
@@ -58,7 +58,7 @@ class Spain extends Country
         if (method_exists($this, $method)) {
             return $this->$method();
         } else {
-            throw InvalidYear::range($this->countryCode() . " ({$this->region})", 2022, 2024);
+            throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2024);
         }
     }
 
@@ -151,7 +151,7 @@ class Spain extends Country
             // Ciudad Autónoma de Melilla
             'es-ml' => [
                 'Fiesta del Eid al-Fitr' => '05-03',
-                'Fiesta del Sacrificio Eid al-Adha' => '07-11'
+                'Fiesta del Sacrificio Eid al-Adha' => '07-11',
             ] + $juevesSanto + $navidad,
 
             // Comunidad Foral de Navarra / Nafarroako Foru Komunitatea
