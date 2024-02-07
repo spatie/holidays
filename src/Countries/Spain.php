@@ -173,6 +173,7 @@ class Spain extends Country
                 'San José' => '03-19',
             ] + $juevesSanto + $lunesPascua + $sanJuan,
 
+            null => [],
             default => throw InvalidRegion::notFound($this->region),
         };
     }
@@ -284,6 +285,7 @@ class Spain extends Country
                 'Día de la Comunidad Valenciana' => '10-09',
             ] + $lunesPascua + $sanJuan,
 
+            null => [],
             default => throw InvalidRegion::notFound($this->region),
         };
     }
@@ -388,6 +390,7 @@ class Spain extends Country
                 'Día de la Comunidad Valenciana' => '10-09',
             ] + $sanJose + $lunesPascua + $sanJuan,
 
+            null => [],
             default => throw InvalidRegion::notFound($this->region),
         };
     }
