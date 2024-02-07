@@ -4,7 +4,6 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use RuntimeException;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Egypt extends Country
@@ -286,7 +285,6 @@ class Egypt extends Country
          *
          * @see https://www.timeanddate.com/holidays/egypt
          */
-
         if ($year < 2005) {
             throw InvalidYear::yearTooLow(2005);
         }
