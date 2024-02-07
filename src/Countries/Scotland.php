@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 
 class Scotland extends Wales
 {
@@ -11,7 +12,7 @@ class Scotland extends Wales
         return 'gb-sct';
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function secondOfJanuary(int $year): array
     {
         $newYearsDay = new CarbonImmutable($year.'-01-01', 'Europe/London');
@@ -31,7 +32,7 @@ class Scotland extends Wales
         return [$key => $secondOfJanuary];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     private function stAndrewsDay(int $year): array
     {
         $stAndrewsDay = new CarbonImmutable($year.'-11-30', 'Europe/London');
@@ -45,7 +46,7 @@ class Scotland extends Wales
         return [$key => $stAndrewsDay];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function oneOffHolidays(int $year): array
     {
         return match ($year) {
@@ -57,7 +58,7 @@ class Scotland extends Wales
         };
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function allHolidays(int $year): array
     {
         $regularHolidays = array_merge(

@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 
 class Jamaica extends Country
 {
@@ -52,7 +53,7 @@ class Jamaica extends Country
         ];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function observedHolidays(int $year): array
     {
 
