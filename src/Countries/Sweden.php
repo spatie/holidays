@@ -24,7 +24,7 @@ class Sweden extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
