@@ -2,6 +2,70 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.6.1 - 2024-02-07
+
+### What's Changed
+
+* Fixes for Egyptian holidays by @wessama in https://github.com/spatie/holidays/pull/155
+
+### New Contributors
+
+* @wessama made their first contribution in https://github.com/spatie/holidays/pull/155
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.6.0...1.6.1
+
+## 1.6.0 - 2024-02-07
+
+### What's Changed
+
+* Add holidays for Argentine by @damian-developer in https://github.com/spatie/holidays/pull/200
+* Add Spanish Holidays by @jaltez in https://github.com/spatie/holidays/pull/34
+* Add support for Carbon v3 by @Nielsvanpach in https://github.com/spatie/holidays/pull/204
+
+### New Contributors
+
+* @damian-developer made their first contribution in https://github.com/spatie/holidays/pull/200
+* @jaltez made their first contribution in https://github.com/spatie/holidays/pull/34
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.5.1...1.6.0
+
+## 1.5.1 - 2024-02-01
+
+Fix translations for Albania & Iran
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.5.0...1.5.1
+
+## 1.5.0 - 2024-02-01
+
+### What's Changed
+
+* Fix Danish Easter dates offset by @danielboendergaard in https://github.com/spatie/holidays/pull/197
+* Albanian National Holidays by @MirilTerolli in https://github.com/spatie/holidays/pull/157
+* Add holidays for Jamaica by @oraneedwards in https://github.com/spatie/holidays/pull/185
+* Add public holidays for Ghana by @petersowah in https://github.com/spatie/holidays/pull/175
+* Support for Slovenian language second PR after rebase problem by @juref in https://github.com/spatie/holidays/pull/139
+* Add Moldavian Holidays by @vkosachev in https://github.com/spatie/holidays/pull/95
+* Add `Egypt` Holidays by @michaelnabil230 in https://github.com/spatie/holidays/pull/35
+* add myanmar holidays by @yethusoe91 in https://github.com/spatie/holidays/pull/29
+* Added support for holidays in Nigeria by @cybernerdie in https://github.com/spatie/holidays/pull/10
+* Add support for Swedish holidays by @adevade in https://github.com/spatie/holidays/pull/199
+* Add National and Revolutionary Iran Holidays by @alisalehi1380 in https://github.com/spatie/holidays/pull/146
+
+### New Contributors
+
+* @danielboendergaard made their first contribution in https://github.com/spatie/holidays/pull/197
+* @MirilTerolli made their first contribution in https://github.com/spatie/holidays/pull/157
+* @oraneedwards made their first contribution in https://github.com/spatie/holidays/pull/185
+* @petersowah made their first contribution in https://github.com/spatie/holidays/pull/175
+* @juref made their first contribution in https://github.com/spatie/holidays/pull/139
+* @vkosachev made their first contribution in https://github.com/spatie/holidays/pull/95
+* @michaelnabil230 made their first contribution in https://github.com/spatie/holidays/pull/35
+* @yethusoe91 made their first contribution in https://github.com/spatie/holidays/pull/29
+* @adevade made their first contribution in https://github.com/spatie/holidays/pull/199
+* @alisalehi1380 made their first contribution in https://github.com/spatie/holidays/pull/146
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.4.0...1.5.0
+
 ## 1.4.0 - 2024-01-30
 
 ### What's Changed

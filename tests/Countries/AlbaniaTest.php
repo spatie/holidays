@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holidays;
 
 it('can calculate albanian holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'al')->get();
     expect($holidays)
@@ -14,6 +14,15 @@ it('can calculate albanian holidays', function () {
         ->not()->toBeEmpty();
 
     expect(formatDates($holidays))->toMatchSnapshot();
+});
+
+it('can get holidays in another locale', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
+    $holidays = Holidays::for(country: 'al', locale: 'en')->get();
+
+    expect($holidays[0]['name'])
+        ->toBe("New Year's Day");
 });
 
 it('does not return a holiday falsely', function () {

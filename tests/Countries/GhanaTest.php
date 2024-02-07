@@ -6,7 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holidays;
 
 it('can calculate Ghana holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'gh')->get();
 
@@ -18,7 +18,7 @@ it('can calculate Ghana holidays', function () {
 });
 
 it('can calculate Ghana easter based region holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'gh')->get();
 
@@ -30,7 +30,7 @@ it('can calculate Ghana easter based region holidays', function () {
 });
 
 it('can calculate Ghana date based regional holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'gh')->get();
 

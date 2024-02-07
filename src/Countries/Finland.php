@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 
 class Finland extends Country
 {
@@ -29,7 +30,7 @@ class Finland extends Country
         ];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);

@@ -5,10 +5,10 @@ namespace Spatie\Holidays\Tests\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holidays;
 
-it('can calculate tanzania holidays', function () {
+it('can calculate swedish holidays', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    $holidays = Holidays::for(country: 'tz')->get();
+    $holidays = Holidays::for(country: 'se')->get();
 
     expect($holidays)
         ->toBeArray()

@@ -8,7 +8,7 @@ use Spatie\Holidays\Exceptions\InvalidRegion;
 use Spatie\Holidays\Holidays;
 
 it('can calculate swiss holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $holidays = Holidays::for(country: 'ch')->get();
 
@@ -20,7 +20,7 @@ it('can calculate swiss holidays', function () {
 });
 
 it('can get swiss holidays for a specified region (zh)', function () {
-    CarbonImmutable::setTestNowAndTimezone('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01');
 
     $switzerland = new Switzerland(region: 'ch-zh');
 
