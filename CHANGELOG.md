@@ -2,6 +2,21 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.6.0 - 2024-02-07
+
+### What's Changed
+
+* Add holidays for Argentine by @damian-developer in https://github.com/spatie/holidays/pull/200
+* Add Spanish Holidays by @jaltez in https://github.com/spatie/holidays/pull/34
+* Add support for Carbon v3 by @Nielsvanpach in https://github.com/spatie/holidays/pull/204
+
+### New Contributors
+
+* @damian-developer made their first contribution in https://github.com/spatie/holidays/pull/200
+* @jaltez made their first contribution in https://github.com/spatie/holidays/pull/34
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.5.1...1.6.0
+
 ## 1.5.1 - 2024-02-01
 
 Fix translations for Albania & Iran
