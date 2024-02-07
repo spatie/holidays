@@ -53,8 +53,7 @@ class Uganda extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Africa/Kampala');
+        $easter = $this->easter($year);
 
         return array(
             'Easter Monday' => $easter->addDay(),
