@@ -35,7 +35,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
-          composer require nesbot/carbon:^${{ matrix.carbon }} --${{ matrix.stability }} --prefer-dist --no-interaction
+          composer require nesbot/carbon:^${{ matrix.carbon }} --${{ matrix.stability }} -W --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
         run: composer show -D
