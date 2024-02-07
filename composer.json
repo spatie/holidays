@@ -22,14 +22,16 @@
     "require": {
         "php": "^8.1",
         "ext-calendar": "*",
-        "geniusts/hijri-dates": "^1.1",
-        "nesbot/carbon": "^2.72.1"
+        "ext-intl": "*",
+        "nesbot/carbon": "^2.72.1|^3.0",
+        "geniusts/hijri-dates": "^1.1"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
         "laravel/prompts": "^0.1.15",
         "pestphp/pest": "^2.31",
         "phpstan/phpstan": "^1.10.56",
+        "spatie/invade": "^2.0",
         "spatie/ray": "^1.40.1",
         "symfony/var-dumper": "^6.4"
     },

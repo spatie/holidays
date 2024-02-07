@@ -20,3 +20,14 @@ function formatDates(array $holidays): array
 
     return $holidays;
 }
+
+function findDate(array $holidays, string $name): ?Carbon\CarbonImmutable
+{
+    foreach ($holidays as $holiday) {
+        if ($holiday['name'] === $name) {
+            return $holiday['date'];
+        }
+    }
+
+    return null;
+}

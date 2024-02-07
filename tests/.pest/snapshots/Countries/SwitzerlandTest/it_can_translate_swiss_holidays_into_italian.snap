@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Capodanno",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "San Silvestro",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Venerd\u00ec Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Luned\u00ec di Pasqua",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Ascensione",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Luned\u00ec di Pentecoste",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "Festa nazionale",
+        "date": "2024-08-01"
+    },
+    {
+        "name": "Natale",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Santo Stefano",
+        "date": "2024-12-26"
+    }
+]

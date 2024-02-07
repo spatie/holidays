@@ -16,14 +16,15 @@ class Netherlands extends Country
         return array_merge([
             'Nieuwjaarsdag' => '01-01',
             'Bevrijdingsdag' => '05-05',
-            '1e Kerstdag' => '12-25',
-            '2e Kerstdag' => '12-26',
+            'Eerste kerstdag' => '12-25',
+            'Tweede kerstdag' => '12-26',
         ], $this->variableHolidays($year));
     }
 
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
+        /** @var CarbonImmutable $koningsDag */
         $koningsDag = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-04-27");
 
         if ($koningsDag->isSunday()) {
@@ -35,11 +36,11 @@ class Netherlands extends Country
         return [
             'Koningsdag' => $koningsDag,
             'Goede Vrijdag' => $easter->subDays(2),
-            '1e Paasdag' => $easter,
-            '2e Paasdag' => $easter->addDay(),
+            'Eerste paasdag' => $easter,
+            'Tweede paasdag' => $easter->addDay(),
             'Hemelvaartsdag' => $easter->addDays(39),
-            '1e Pinksterdag' => $easter->addDays(49),
-            '2e Pinksterdag' => $easter->addDays(50),
+            'Eerste pinksterdag' => $easter->addDays(49),
+            'Tweede pinksterdag' => $easter->addDays(50),
         ];
     }
 }
