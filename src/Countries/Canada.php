@@ -41,7 +41,7 @@ class Canada extends Country
             'Victoria Day' => $victoriaDay,
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
-            'Thanksgiving' => "second monday of October",
+            'Thanksgiving' => 'second monday of October',
         ];
     }
 }

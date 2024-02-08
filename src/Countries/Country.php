@@ -27,7 +27,7 @@ abstract class Country
         foreach ($allHolidays as $name => $date) {
             if (is_string($date)) {
                 if (strlen($date) > 5) {
-                    $date = (new CarbonImmutable($date . ' ' . $year))->startOfDay();
+                    $date = (new CarbonImmutable($date.' '.$year))->startOfDay();
                 } else {
                     $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
                 }
