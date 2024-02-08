@@ -29,7 +29,7 @@ class Finland extends Country
             'Vappu' => '05-01',
             'Itsenäisyyspäivä' => '12-06',
             'Joulupäivä' => '12-25',
-            'Tapaninpäivä' => '12-26'
+            'Tapaninpäivä' => '12-26',
         ];
     }
 
