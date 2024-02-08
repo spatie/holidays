@@ -81,7 +81,7 @@ class Ghana extends Country
         };
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, string|CarbonInterface> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
