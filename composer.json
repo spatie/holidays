@@ -46,7 +46,7 @@
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse",
         "baseline": "vendor/bin/phpstan analyse --generate-baseline",
-        "test": "vendor/bin/pest",
+        "test": "vendor/bin/pest --compact",
         "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/pint"
     },
