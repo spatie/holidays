@@ -3,9 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-
 use Carbon\CarbonInterface;
-use function in_array;
 
 class SouthAfrica extends Country
 {
@@ -35,7 +33,7 @@ class SouthAfrica extends Country
             $observedDay = $this->observed($date, $year);
 
             if ($observedDay) {
-                $holidays[$name . ' Observed'] = $observedDay;
+                $holidays[$name.' Observed'] = $observedDay;
             }
         }
 

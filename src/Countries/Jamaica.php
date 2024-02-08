@@ -36,7 +36,7 @@ class Jamaica extends Country
             $observedDay = $this->observed($name, $date, $year);
 
             if ($observedDay) {
-                $holidays[$name . ' Observed'] = $observedDay;
+                $holidays[$name.' Observed'] = $observedDay;
             }
         }
 
