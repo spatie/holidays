@@ -20,7 +20,7 @@ it('can calculate azerbaijani holidays', function () {
 it('can calculate azerbaijani holidays in english', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    $holidays = Holidays::for(country: 'az',locale: 'en')->get();
+    $holidays = Holidays::for(country: 'az', locale: 'en')->get();
 
     expect($holidays)
         ->toBeArray()
