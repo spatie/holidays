@@ -16,48 +16,23 @@ class Germany extends Country
         return 'de';
     }
 
-    private function getRepentanceAndPrayerDay(int $year): string
-    {
-        $repentanceAndPrayerDay = new CarbonImmutable('next wednesday '.$year.'-11-15', 'Europe/Berlin');
-
-        return $repentanceAndPrayerDay->format('m-d');
-    }
-
-    /** @return array<string, string> */
-    protected function historicalHolidays(int $year): array
-    {
-        $historicalHolidays = [];
-        if ($year >= 1954 && $year <= 1990) {
-            $historicalHolidays['Tag der deutschen Einheit'] = '06-17';
-        } else {
-            $historicalHolidays['Tag der deutschen Einheit'] = '10-03';
-        }
-        if ($year >= 1990 && $year <= 1994) {
-            $historicalHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
-        }
-        if ($year === 2017) {
-            $historicalHolidays['Reformationstag'] = '10-31';
-        }
-
-        return $historicalHolidays;
-    }
-
-    /** @return array<string, CarbonImmutable|string> */
     protected function allHolidays(int $year): array
     {
-
         return array_merge([
             'Neujahr' => '01-01',
             'Tag der Arbeit' => '05-01',
             '1. Weihnachtstag' => '12-25',
             '2. Weihnachtstag' => '12-26',
-        ], $this->variableHolidays($year), $this->historicalHolidays($year), $this->regionHolidays($year));
+        ],
+            $this->variableHolidays($year),
+            $this->historicalHolidays($year),
+            $this->regionHolidays($year)
+        );
     }
 
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-
         $easter = $this->easter($year);
 
         return [
@@ -66,6 +41,28 @@ class Germany extends Country
             'Himmelfahrt' => $easter->addDays(39),
             'Pfingstmontag' => $easter->addDays(50),
         ];
+    }
+
+    /** @return array<string, string> */
+    protected function historicalHolidays(int $year): array
+    {
+        $historicalHolidays = [];
+
+        if ($year >= 1954 && $year <= 1990) {
+            $historicalHolidays['Tag der deutschen Einheit'] = '06-17';
+        } else {
+            $historicalHolidays['Tag der deutschen Einheit'] = '10-03';
+        }
+
+        if ($year >= 1990 && $year <= 1994) {
+            $historicalHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
+        }
+
+        if ($year === 2017) {
+            $historicalHolidays['Reformationstag'] = '10-31';
+        }
+
+        return $historicalHolidays;
     }
 
     /** @return array<string, CarbonImmutable|string> */
@@ -111,12 +108,12 @@ class Germany extends Country
                         'Reformationstag' => '10-31',
                         'Pfingstsonntag' => $easter->addDays(49),
                     ];
-                } else {
-                    return [
-                        'Ostersonntag' => $easter,
-                        'Pfingstsonntag' => $easter->addDays(49),
-                    ];
                 }
+
+                return [
+                    'Ostersonntag' => $easter,
+                    'Pfingstsonntag' => $easter->addDays(49),
+                ];
             case 'DE-HB':
             case 'DE-HH':
             case 'DE-NI':
@@ -125,11 +122,9 @@ class Germany extends Country
                     return [
                         'Reformationstag' => '10-31',
                     ];
-                } else {
-                    return [
-
-                    ];
                 }
+
+                return [];
 
             case 'DE-HE':
                 return [
@@ -142,6 +137,7 @@ class Germany extends Country
                 if ($year >= 1990) {
                     $mvHolidays['Reformationstag'] = '10-31';
                 }
+
                 if ($year >= 2023) {
                     $mvHolidays['Internationaler Frauentag'] = '03-08';
                 }
@@ -191,9 +187,13 @@ class Germany extends Country
                 }
 
                 return $thHolidays;
-
         }
 
         return [];
+    }
+
+    protected function getRepentanceAndPrayerDay(int $year): CarbonImmutable
+    {
+        return (new CarbonImmutable('next wednesday '.$year.'-11-15'))->startOfDay();
     }
 }
