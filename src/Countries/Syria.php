@@ -27,7 +27,7 @@ class Syria extends Country
             "Islamic New Year" => '07-07',
             "The commemoration of the birth of the Prophet Muhammad" => '09-15',
             "The October Liberation War" => '10-06',
-            "Merry Christmas" => '12-25',
+            "Christmas" => '12-25',
         ], $this->variableHolidays($year));
     }
 
