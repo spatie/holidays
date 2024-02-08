@@ -111,7 +111,7 @@ Holidays::has('unknown'); // false
 
 ## Contributing
 
-This is a community driven package. If you find any errors, please create a pull request with the fix, or at least an issue.
+This is a community driven package. If you find any errors, please create a pull request with the fix, or at least open an issue.
 
 ## Adding a new country
 
