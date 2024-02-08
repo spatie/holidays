@@ -86,10 +86,8 @@ class Ghana extends Country
     {
         $easter = $this->easter($year);
 
-        $farmersDay = (new CarbonImmutable('first friday of December '.$year))->startOfDay();
-
         return [
-            'Farmers Day' => $farmersDay,
+            'Farmers Day' => 'first friday of December',
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
 
