@@ -21,6 +21,7 @@ class Ghana extends Country
         return new CarbonImmutable($year . '-12-25');
     }
 
+    /**  @return  CarbonImmutable */
     protected function christmasDay(int $year): CarbonImmutable
     {
         $christmasDay = $this->getChristmasDay($year);
@@ -37,6 +38,7 @@ class Ghana extends Country
         return $christmasDay;
     }
 
+    /**  @return  CarbonImmutable */
     protected function boxingDay(int $year): CarbonImmutable
     {
         $christmasDay = $this->getChristmasDay($year);
@@ -56,6 +58,7 @@ class Ghana extends Country
      * Get holiday
      *
      * For example: If a holiday falls on a weekend, the new day to be observed is the next monday
+     * @return  CarbonImmutable
      */
     protected function getHoliday(int $year, string $monthAndDay): CarbonImmutable
     {
