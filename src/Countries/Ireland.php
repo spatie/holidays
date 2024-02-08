@@ -25,7 +25,7 @@ class Ireland extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, string|CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);

@@ -30,5 +30,4 @@ it('can calculate observed holidays based on year', function () {
     // Check that there is no Observerd New Year's Day
     $holidays = Holidays::for(country: 'jm', year: 2024)->get();
     expect(array_search('Labour Day Observed', array_column($holidays, 'name')))->toBeFalse();
-
 });
