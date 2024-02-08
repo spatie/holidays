@@ -26,7 +26,11 @@ abstract class Country
         $translatedHolidays = [];
         foreach ($allHolidays as $name => $date) {
             if (is_string($date)) {
-                $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+                if (strlen($date) > 5) {
+                    $date = (new CarbonImmutable($date . ' ' . $year))->startOfDay();
+                } else {
+                    $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+                }
             }
 
             $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);

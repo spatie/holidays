@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 
 class Canada extends Country
 {
@@ -13,48 +14,34 @@ class Canada extends Country
 
     protected function allHolidays(int $year): array
     {
-        return array_merge(
-            [
-                'New Year\'s Day' => new CarbonImmutable($year.'-01-01', 'America/Toronto'),
-                'Canada Day' => new CarbonImmutable($year.'-07-01', 'America/Toronto'),
-                'Civic Holiday' => new CarbonImmutable(
-                    'first monday of August '.$year, 'America/Toronto'
-                ),
-                'Labour Day' => new CarbonImmutable(
-                    'first monday of September '.$year, 'America/Toronto'
-                ),
-                'National Day for Truth and Reconciliation' => new CarbonImmutable(
-                    $year.'-09-30',
-                    'America/Toronto'
-                ),
-                'Remembrance Day' => new CarbonImmutable($year.'-11-11', 'America/Toronto'),
-                'Christmas Day' => new CarbonImmutable($year.'-12-25', 'America/Toronto'),
-                'Boxing Day' => new CarbonImmutable($year.'-12-26', 'America/Toronto'),
-            ],
-            $this->variableHolidays($year)
-        );
+        return array_merge([
+            'New Year\'s Day' => '01-01',
+            'Canada Day' => '07-01',
+            'Civic Holiday' => 'first monday of August',
+            'Labour Day' => 'first monday of September',
+            'National Day for Truth and Reconciliation' => '09-30',
+            'Remembrance Day' => '11-11',
+            'Christmas Day' => '12-25',
+            'Boxing Day' => '12-26',
+        ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, string|CarbonInterface> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
-        $goodFriday = $easter->subDays(2);
-        $easterMonday = $easter->addDay();
+        $victoriaDay = (new CarbonImmutable("last monday of May $year"))->startOfDay();
 
-        $victoriaDay = new CarbonImmutable("last monday of May $year", 'America/Toronto');
         if ($victoriaDay->day < 25) {
             $victoriaDay = $victoriaDay->addWeek();
         }
 
-        $thanksgiving = new CarbonImmutable("second monday of October $year", 'America/Toronto');
-
         return [
             'Victoria Day' => $victoriaDay,
-            'Good Friday' => $goodFriday,
-            'Easter Monday' => $easterMonday,
-            'Thanksgiving' => $thanksgiving,
+            'Good Friday' => $easter->subDays(2),
+            'Easter Monday' => $easter->addDay(),
+            'Thanksgiving' => "second monday of October",
         ];
     }
 }
