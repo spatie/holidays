@@ -2,6 +2,24 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.7.0 - 2024-02-08
+
+### What's Changed
+
+* Add Uzbekistan Holidays by @shoxrux1996 in https://github.com/spatie/holidays/pull/81
+* Add Azerbaijan holidays by @kenanaga in https://github.com/spatie/holidays/pull/166
+* Enhanced holiday dates in Ghana by @Ikpeba4ll in https://github.com/spatie/holidays/pull/80
+* Adding holidays for syria by @abdulrhmanak213 in https://github.com/spatie/holidays/pull/201
+
+### New Contributors
+
+* @shoxrux1996 made their first contribution in https://github.com/spatie/holidays/pull/81
+* @kenanaga made their first contribution in https://github.com/spatie/holidays/pull/166
+* @Ikpeba4ll made their first contribution in https://github.com/spatie/holidays/pull/80
+* @abdulrhmanak213 made their first contribution in https://github.com/spatie/holidays/pull/201
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.6.1...1.7.0
+
 ## 1.6.1 - 2024-02-07
 
 ### What's Changed
