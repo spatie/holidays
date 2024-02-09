@@ -3,12 +3,9 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use DateTime;
-use IntlDateFormatter;
 use Spatie\Holidays\Calendars\ChineseCalendar;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Exceptions\InvalidRegion;
-use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Malaysia extends Country
 {
@@ -66,8 +63,8 @@ class Malaysia extends Country
         $this->setChineseCalendarTimezone($this->timezone);
 
         $variableHolidays = [
-            'Tahun Baru Cina' => $this->lunarNewYear($year),
-            'Tahun Baru Cina Hari Kedua' => $this->lunarNewYear($year)->addDays(1),
+            'Tahun Baru Cina' => $this->chineseToGregorianDate('01-01', $year),
+            'Tahun Baru Cina Hari Kedua' => $this->chineseToGregorianDate('01-02', $year),
             'Hari Raya Aidilfitri' => $this->islamicToGregorianDate('10-01', $year),
             'Hari Raya Aidilfitri Hari Kedua' => $this->islamicToGregorianDate('10-02', $year),
             'Hari Wesak' => $this->hariWesak($year),
@@ -413,11 +410,6 @@ class Malaysia extends Country
             'Hari Raya Aidiladha Hari Kedua' => $this->islamicToGregorianDate('12-11', $year),
             'Hari Deepavali' => $this->hariDeepavali($year),
         ];
-    }
-
-    private function lunarNewYear(int $year): CarbonImmutable
-    {
-        return $this->chineseToGregorianDate('01-01', $year);
     }
 
     protected function hariWilayah(int $year): CarbonImmutable
