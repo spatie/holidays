@@ -67,7 +67,7 @@ class Malaysia extends Country
             'Tahun Baru Cina Hari Kedua' => $this->chineseToGregorianDate('01-02', $year),
             'Hari Raya Aidilfitri' => $this->islamicToGregorianDate('10-01', $year),
             'Hari Raya Aidilfitri Hari Kedua' => $this->islamicToGregorianDate('10-02', $year),
-            'Hari Wesak' => $this->hariWesak($year),
+            'Hari Wesak' => '01-01',
             'Hari Raya Aidiladha' => $this->islamicToGregorianDate('12-10', $year),
             'Awal Muharram' => $this->islamicToGregorianDate('01-01', $year, true),
             'Maulidur Rasul' => $this->islamicToGregorianDate('03-12', $year, true),
@@ -149,9 +149,9 @@ class Malaysia extends Country
     {
         $johorHolidays = [
             'Hari Keputeraan Sultan Johor' => '03-23',
-            'Hari Thaipusam' => $this->hariThaipusam($year),
+            'Hari Thaipusam' => '01-01',
             'Awal Ramadan' => $this->islamicToGregorianDate('09-01', $year),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
 
         $hariHolJohor = match ($year) {
@@ -178,12 +178,12 @@ class Malaysia extends Country
     protected function regionKedah(int $year): array
     {
         return [
-            'Hari Thaipusam' => $this->hariThaipusam($year),
+            'Hari Thaipusam' => '01-01',
             'Israk dan Mikraj' => $this->islamicToGregorianDate('07-27', $year),
             'Awal Ramadan' => $this->islamicToGregorianDate('09-01', $year),
             'Hari Keputeraan Sultan Kedah' => CarbonImmutable::parse("third sunday of june {$year}"),
             'Hari Raya Aidiladha Hari Kedua' => $this->islamicToGregorianDate('12-11', $year),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -196,7 +196,7 @@ class Malaysia extends Country
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
             'Hari Arafah' => $this->islamicToGregorianDate('12-09', $year),
             'Hari Raya Aidiladha Hari Kedua' => $this->islamicToGregorianDate('12-11', $year),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
 
         $kingBirthday = match (true) {
@@ -230,10 +230,10 @@ class Malaysia extends Country
     {
         return [
             'Tahun Baru' => '01-01',
-            'Hari Thaipusam' => $this->hariThaipusam($year),
+            'Hari Thaipusam' => '01-01',
             'Hari Wilayah Persekutuan' => $this->hariWilayah($year),
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -248,7 +248,7 @@ class Malaysia extends Country
             'Pesta Kaamatan' => $this->pestaKaamatan($year),
             'Pesta Kaamatan Hari Kedua' => $this->pestaKaamatan($year)->addDay(),
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -262,7 +262,7 @@ class Malaysia extends Country
             'Awal Ramadan' => $this->islamicToGregorianDate('09-01', $year),
             'Hari Perisytiharan Melaka Sebagai Bandaraya Bersejarah' => CarbonImmutable::createFromDate($year, 4, 15),
             'Harijadi Yang di-Pertua Negeri Melaka' => CarbonImmutable::createFromDate($year, 8, 24),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -273,10 +273,10 @@ class Malaysia extends Country
     {
         return [
             'Tahun Baru' => '01-01',
-            'Hari Thaipusam' => $this->hariThaipusam($year),
+            'Hari Thaipusam' => '01-01',
             'Israk dan Mikraj' => $this->islamicToGregorianDate('07-27', $year),
             'Hari Keputeraan Yang Di-Pertuan Besar Negeri Sembilan' => CarbonImmutable::createFromDate($year, 1, 14),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -290,7 +290,7 @@ class Malaysia extends Country
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
             'Hari Hol Pahang' => CarbonImmutable::createFromDate($year, 5, 22),
             'Hari Keputeraan Sultan Pahang' => CarbonImmutable::createFromDate($year, 7, 30),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -301,11 +301,11 @@ class Malaysia extends Country
     {
         return [
             'Tahun Baru' => '01-01',
-            'Hari Thaipusam' => $this->hariThaipusam($year),
+            'Hari Thaipusam' => '01-01',
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
             'Hari Bandar Warisan Dunia Georgetown' => CarbonImmutable::createFromDate($year, 7, 7),
             'Harijadi Yang di-Pertua Negeri Pulau Pinang' => CarbonImmutable::parse("second saturday of july {$year}"),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -316,10 +316,10 @@ class Malaysia extends Country
     {
         return [
             'Tahun Baru' => '01-01',
-            'Hari Thaipusam' => $this->hariThaipusam($year),
+            'Hari Thaipusam' => '01-01',
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
             'Hari Keputeraan Sultan Perak' => CarbonImmutable::parse("first friday of november {$year}"),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -333,7 +333,7 @@ class Malaysia extends Country
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
             'Hari Keputeraan Raja Perlis' => CarbonImmutable::createFromDate($year, 5, 17),
             'Hari Raya Aidiladha Hari Kedua' => $this->islamicToGregorianDate('12-11', $year),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
     
@@ -344,10 +344,10 @@ class Malaysia extends Country
     {
         return [
             'Tahun Baru' => '01-01',
-            'Hari Thaipusam' => $this->hariThaipusam($year),
+            'Hari Thaipusam' => '01-01',
             'Hari Wilayah Persekutuan' => $this->hariWilayah($year),
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -362,7 +362,7 @@ class Malaysia extends Country
             'Pesta Kaamatan Hari Kedua' => $this->pestaKaamatan($year)->addDays(1),
             'Good Friday' => $this->goodFriday($year),
             'Harijadi Yang di-Pertua Negeri Sabah' => CarbonImmutable::parse("first saturday of october {$year}"),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
             'Hari Natal' => CarbonImmutable::createFromDate($year, 12, 24),
         ];
     }
@@ -389,9 +389,9 @@ class Malaysia extends Country
     {
         return [
             'Tahun Baru' => '01-01',
-            'Hari Thaipusam' => $this->hariThaipusam($year),
+            'Hari Thaipusam' => '01-01',
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
             'Hari Keputeraan Sultan Selangor' => CarbonImmutable::createFromDate($year, 12, 11),
         ];
     }
@@ -408,7 +408,7 @@ class Malaysia extends Country
             'Hari Keputeraan Sultan Terengganu' => CarbonImmutable::createFromDate($year, 4, 26),
             'Hari Arafah' => $this->islamicToGregorianDate('12-09', $year),
             'Hari Raya Aidiladha Hari Kedua' => $this->islamicToGregorianDate('12-11', $year),
-            'Hari Deepavali' => $this->hariDeepavali($year),
+            'Hari Deepavali' => '01-01',
         ];
     }
 
@@ -435,20 +435,5 @@ class Malaysia extends Country
             in_array($year, range(2001, 2026)) => CarbonImmutable::parse("first saturday of october {$year}"),
             default => null,
         };
-    }
-
-    protected function hariWesak(int $year): string
-    {
-        return '01-01';
-    }
-
-    protected function hariThaipusam(int $year): string
-    {
-        return '01-01';
-    }
-
-    protected function hariDeepavali(int $year): string
-    {
-        return '01-01';
     }
 }
