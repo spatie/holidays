@@ -16,10 +16,6 @@ class Ireland extends Country
         return array_merge([
             'New Year\'s Day' => '01-01',
             'Saint Patrick\'s Day' => '03-17',
-            'May Public Holiday' => 'first monday of May',
-            'June Public Holiday' => 'first monday of June',
-            'August Public Holiday' => 'first monday of August',
-            'October Public Holiday' => 'last monday of October',
             'Christmas Day' => '12-25',
             'Saint Stephen\'s Day' => '12-26',
         ], $this->variableHolidays($year));
@@ -28,10 +24,12 @@ class Ireland extends Country
     /** @return array<string, string|CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = $this->easter($year);
-
         $variableHolidays = [
             'Easter Monday' => $this->easter($year)->addDay(),
+            'May Public Holiday' => 'first monday of May',
+            'June Public Holiday' => 'first monday of June',
+            'August Public Holiday' => 'first monday of August',
+            'October Public Holiday' => 'last monday of October',
         ];
 
         if ($year >= 2023) {

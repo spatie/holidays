@@ -4,9 +4,12 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Concerns\Observable;
 
 class Ghana extends Country
 {
+    use Observable;
+
     public function countryCode(): string
     {
         return 'gh';
@@ -20,7 +23,7 @@ class Ghana extends Country
         );
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, string|CarbonInterface> */
     protected function observedHolidays(int $year): array
     {
         $holidays = [
@@ -30,16 +33,23 @@ class Ghana extends Country
             'May Day' => '05-01',
             'Founder\'s Day' => '08-04',
             'Kwame Nkrumah Memorial Day' => '09-21',
+            'Christmas Day' => '12-25',
+            'Boxing Day' => '12-26',
         ];
 
-        $holidays = array_map(function ($holiday) use ($year) {
-            return $this->observed($holiday, $year);
-        }, $holidays);
+        foreach ($holidays as $name => $date) {
+            $observedDay = match ($name) {
+                'Christmas Day' => $this->observedChristmasDay($year),
+                'Boxing Day' => $this->observedBoxingDay($year),
+                default => $this->weekendToNextMonday($date, $year),
+            };
 
-        return array_merge($holidays, [
-            'Christmas Day' => $this->observedChristmasDay($year),
-            'Boxing Day' => $this->observedBoxingDay($year),
-        ]);
+            if ($observedDay) {
+                $holidays[$name] = $observedDay;
+            }
+        }
+
+        return $holidays;
     }
 
     protected function observed(string $date, int $year): CarbonInterface
@@ -51,34 +61,6 @@ class Ghana extends Country
         }
 
         return $holiday;
-    }
-
-    protected function christmas(int $year): CarbonInterface
-    {
-        return (new CarbonImmutable($year.'-12-25'))->startOfDay();
-    }
-
-    protected function observedChristmasDay(int $year): CarbonInterface
-    {
-        $christmasDay = $this->christmas($year);
-
-        return match ($christmasDay->dayName) {
-            'Saturday' => $christmasDay->next('monday'),
-            'Sunday' => $christmasDay->next('tuesday'),
-            default => $christmasDay,
-        };
-    }
-
-    protected function observedBoxingDay(int $year): CarbonInterface
-    {
-        $christmasDay = $this->christmas($year);
-        $boxingDay = new CarbonImmutable($year.'-12-26');
-
-        return match ($christmasDay->dayName) {
-            'Friday' => $boxingDay->next('monday'),
-            'Saturday' => $boxingDay->next('tuesday'),
-            default => $boxingDay,
-        };
     }
 
     /** @return array<string, string|CarbonInterface> */

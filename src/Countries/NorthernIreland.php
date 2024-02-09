@@ -20,8 +20,8 @@ class NorthernIreland extends Wales
             $this->earlyMayBankHoliday($year),
             $this->battleOfTheBoyne($year),
             [
-                'Spring bank holiday' => new CarbonImmutable("last monday of may {$year}", 'Europe/London'),
-                'Summer bank holiday' => new CarbonImmutable("last monday of august {$year}", 'Europe/London'),
+                'Spring bank holiday' => 'last monday of may',
+                'Summer bank holiday' => 'last monday of august',
             ],
             $this->christmasDay($year),
             $this->boxingDay($year),
