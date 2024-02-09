@@ -109,6 +109,22 @@ Holidays::has('be'); // true
 Holidays::has('unknown'); // false
 ```
 
+### Getting the observed holidays
+
+Some countries observe holidays on different dates. 
+For example, if a holiday falls on a Sunday, it might be observed on the following Monday. 
+By default, we return the observed dates.
+
+You can change this setting by passing `false` as argument.
+
+```php
+use Spatie\Holidays\Holidays;
+
+$holidays = Holidays::for(country: 'be', observed: false))->get();
+```
+
+**Be aware** not all countries support this feature. Feel free to open a pull request if you want to add this feature to a country.
+
 ## Contributing
 
 This is a community driven package. If you find any errors, please create a pull request with the fix, or at least open an issue.
