@@ -1,0 +1,58 @@
+[
+    {
+        "name": "New Year\n's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Mother\n's Day",
+        "date": "2024-03-21"
+    },
+    {
+        "name": "Teacher\n's Day",
+        "date": "2024-03-21"
+    },
+    {
+        "name": "Western Easter",
+        "date": "2024-03-31"
+    },
+    {
+        "name": "Eid al-Fitr",
+        "date": "2024-04-10"
+    },
+    {
+        "name": "Syrian Independence Day",
+        "date": "2024-04-17"
+    },
+    {
+        "name": "Labor Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Eastern Easter",
+        "date": "2024-05-05"
+    },
+    {
+        "name": "Martyr\n's Day",
+        "date": "2024-05-06"
+    },
+    {
+        "name": "Eid al-Adha",
+        "date": "2024-06-16"
+    },
+    {
+        "name": "Islamic New Year",
+        "date": "2024-07-07"
+    },
+    {
+        "name": "The commemoration of the birth of the Prophet Muhammad",
+        "date": "2024-09-15"
+    },
+    {
+        "name": "The October Liberation War",
+        "date": "2024-10-06"
+    },
+    {
+        "name": "Christmas",
+        "date": "2024-12-25"
+    }
+]

@@ -57,9 +57,9 @@ class Spain extends Country
         $method = "regionHolidays{$year}";
         if (method_exists($this, $method)) {
             return $this->$method();
-        } else {
-            throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2024);
         }
+
+        throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2024);
     }
 
     /** @return array<string, string> */

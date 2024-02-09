@@ -13,7 +13,6 @@ class Angola extends Country
 
     protected function allHolidays(int $year): array
     {
-
         return array_merge([
             'Dia de Ano Novo' => '01-01',
             'Dia do Inicio da Luta Armada de Libertação Nacional' => '02-04',

@@ -24,7 +24,10 @@ class Latvia extends Country
             'Pirmie Ziemassvētki' => '12-25',
             'Otrie Ziemassvētki' => '12-26',
             'Vecgada vakars' => '12-31',
-        ], $this->variableHolidays($year), $this->postponedHolidays($year));
+        ],
+            $this->variableHolidays($year),
+            $this->observedHolidays($year)
+        );
     }
 
     /** @return array<string, CarbonImmutable> */
@@ -40,7 +43,7 @@ class Latvia extends Country
     }
 
     /** @return array<string, string> */
-    protected function postponedHolidays(int $year): array
+    protected function observedHolidays(int $year): array
     {
         // If the holidays - May 4 and November 18 - fall on a Saturday or Sunday,
         // the next working day is designated as a holiday.

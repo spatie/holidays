@@ -12,6 +12,27 @@ class NorthernIreland extends Wales
         return 'gb-nir';
     }
 
+    protected function allHolidays(int $year): array
+    {
+        $regularHolidays = array_merge(
+            $this->newYearsDay($year),
+            $this->stPatricksDay($year),
+            $this->earlyMayBankHoliday($year),
+            $this->battleOfTheBoyne($year),
+            [
+                'Spring bank holiday' => new CarbonImmutable("last monday of may {$year}", 'Europe/London'),
+                'Summer bank holiday' => new CarbonImmutable("last monday of august {$year}", 'Europe/London'),
+            ],
+            $this->christmasDay($year),
+            $this->boxingDay($year),
+            $this->variableHolidays($year)
+        );
+
+        $oneOffHolidays = $this->oneOffHolidays($year);
+
+        return array_merge($regularHolidays, $oneOffHolidays);
+    }
+
     /** @return array<string, CarbonInterface> */
     private function stPatricksDay(int $year): array
     {
@@ -50,42 +71,5 @@ class NorthernIreland extends Wales
             ],
             default => [],
         };
-    }
-
-    /** @return array<string, CarbonInterface> */
-    protected function allHolidays(int $year): array
-    {
-        $regularHolidays = array_merge(
-            $this->newYearsDay($year),
-            $this->stPatricksDay($year),
-            $this->earlyMayBankHoliday($year),
-            $this->battleOfTheBoyne($year),
-            [
-                'Spring bank holiday' => new CarbonImmutable("last monday of may {$year}", 'Europe/London'),
-                'Summer bank holiday' => new CarbonImmutable("last monday of august {$year}", 'Europe/London'),
-            ],
-            $this->christmasDay($year),
-            $this->boxingDay($year),
-            $this->variableHolidays($year)
-        );
-
-        $oneOffHolidays = $this->oneOffHolidays($year);
-
-        return array_merge($regularHolidays, $oneOffHolidays);
-
-    }
-
-    /** @return array<string, CarbonImmutable> */
-    protected function variableHolidays(int $year): array
-    {
-        $easterSunday = $this->easter($year);
-
-        $goodFriday = $easterSunday->subDays(2);
-        $easterMonday = $easterSunday->addDay();
-
-        return [
-            'Good Friday' => $goodFriday,
-            'Easter Monday' => $easterMonday,
-        ];
     }
 }

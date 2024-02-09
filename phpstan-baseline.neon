@@ -25,7 +25,3 @@ parameters:
 			count: 1
 			path: src/Holidays.php
 
-		-
-			message: "#^Property Spatie\\\\Holidays\\\\Holidays\\:\\:\\$holidays \\(array\\<string, Carbon\\\\CarbonImmutable\\>\\) does not accept array\\<string, Carbon\\\\CarbonImmutable\\|string\\>\\.$#"
-			count: 1
-			path: src/Holidays.php

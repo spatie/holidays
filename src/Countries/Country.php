@@ -16,7 +16,7 @@ abstract class Country
     /** @return array<string, string|CarbonImmutable> */
     abstract protected function allHolidays(int $year): array;
 
-    /** @return array<string, CarbonImmutable|string> */
+    /** @return array<string, CarbonImmutable> */
     public function get(int $year, ?string $locale = null): array
     {
         $this->ensureYearCanBeCalculated($year);
@@ -26,7 +26,11 @@ abstract class Country
         $translatedHolidays = [];
         foreach ($allHolidays as $name => $date) {
             if (is_string($date)) {
-                $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+                if (strlen($date) > 5) {
+                    $date = (new CarbonImmutable($date.' '.$year))->startOfDay();
+                } else {
+                    $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+                }
             }
 
             $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);

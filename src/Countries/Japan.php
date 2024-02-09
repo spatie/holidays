@@ -2,8 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-
 class Japan extends Country
 {
     public function countryCode(): string
@@ -13,8 +11,9 @@ class Japan extends Country
 
     protected function allHolidays(int $year): array
     {
-        return array_merge([
+        return [
             '元日' => '01-01', // New Year's Day
+            '成人の日' => 'second monday of january',
             '建国記念の日' => '02-11', // Foundation Day
             '天皇誕生日' => '02-23', // Emperor's Birthday
             '春分の日' => '03-20', // Vernal Equinox Day *Decided each year; rarely on 03-21
@@ -22,33 +21,14 @@ class Japan extends Country
             '憲法記念日' => '05-03', // Constitution Day
             'みどりの日' => '05-04', // Greenery Day
             'こどもの日' => '05-05', // Children's Day
+            '海の日' => 'third monday of july',
             '山の日' => '08-11', // Mountain Day
+            '敬老の日' => 'third monday of september',
             '秋分の日' => '09-23', // Autumnal Equinox Day  *Decided each year; rarely on 09-22
+            'スポーツの日' => 'second monday of october',
             '文化の日' => '11-03', // Culture Day
             '勤労感謝の日' => '11-23', // Labor Thanksgiving Day
 
-        ], $this->variableHolidays($year));
-    }
-
-    /** @return array<string, CarbonImmutable> */
-    protected function variableHolidays(int $year): array
-    {
-        $comingOfAgeDay = (new CarbonImmutable("second monday of january $year"))->startOfDay();
-
-        $oceansDay = (new CarbonImmutable("third monday of july $year"))->startOfDay();
-
-        $respectForTheAgedDay = (new CarbonImmutable("third monday of september $year"))->startOfDay();
-
-        $sportsDay = (new CarbonImmutable("second monday of october $year"))->startOfDay();
-
-        $holidays = [
-            '成人の日' => $comingOfAgeDay,
-            '海の日' => $oceansDay,
-            '敬老の日' => $respectForTheAgedDay,
-            'スポーツの日' => $sportsDay,
         ];
-
-        return $holidays;
-
     }
 }

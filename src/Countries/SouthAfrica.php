@@ -3,8 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-
-use function in_array;
+use Carbon\CarbonInterface;
 
 class SouthAfrica extends Country
 {
@@ -31,16 +30,10 @@ class SouthAfrica extends Country
         ];
 
         foreach ($holidays as $name => $date) {
-            $holidayDate = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
-            assert($holidayDate instanceof CarbonImmutable);
+            $observedDay = $this->observed($date, $year);
 
-            // The Public Holidays Act (Act No 36 of 1994) states that whenever a public holiday falls on a Sunday, the Monday following it will be a public holiday.
-            // https://www.gov.za/documents/public-holidays-act
-            if (
-                $holidayDate->isSunday() &&
-                ! in_array($holidayDate->addDay()->format('m-d'), $holidays, true) // Check that the Monday is not already a holiday
-            ) {
-                $holidays[$name.' Observed'] = $holidayDate->addDay();
+            if ($observedDay) {
+                $holidays[$name.' Observed'] = $observedDay;
             }
         }
 
@@ -56,5 +49,17 @@ class SouthAfrica extends Country
             'Good Friday' => $easter->subDays(2),
             'Family Day' => $easter->addDay(),
         ];
+    }
+
+    protected function observed(string $date, int $year): ?CarbonInterface
+    {
+        $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+
+        // https://www.gov.za/documents/public-holidays-act
+        if ($holiday->isSunday()) {
+            return $holiday->next('monday');
+        }
+
+        return null;
     }
 }
