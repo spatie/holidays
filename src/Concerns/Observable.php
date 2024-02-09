@@ -7,29 +7,6 @@ use Carbon\CarbonInterface;
 
 trait Observable
 {
-    protected function observedChristmasDay(int $year): ?CarbonInterface
-    {
-        $christmasDay = (new CarbonImmutable($year.'-12-25'))->startOfDay();
-
-        return match ($christmasDay->dayName) {
-            'Saturday' => $christmasDay->next('monday'),
-            'Sunday' => $christmasDay->next('tuesday'),
-            default => null,
-        };
-    }
-
-    protected function observedBoxingDay(int $year): ?CarbonInterface
-    {
-        $christmasDay = (new CarbonImmutable($year.'-12-25'))->startOfDay();
-        $boxingDay = $christmasDay->addDay();
-
-        return match ($christmasDay->dayName) {
-            'Friday' => $boxingDay->next('monday'),
-            'Saturday' => $boxingDay->next('tuesday'),
-            default => null,
-        };
-    }
-
     protected function weekendToNextMonday(string|CarbonInterface $date, int $year): ?CarbonInterface
     {
         if (is_string($date)) {
@@ -54,5 +31,28 @@ trait Observable
         }
 
         return null;
+    }
+
+    protected function observedChristmasDay(int $year): ?CarbonInterface
+    {
+        $christmasDay = (new CarbonImmutable($year.'-12-25'))->startOfDay();
+
+        return match ($christmasDay->dayName) {
+            'Saturday' => $christmasDay->next('monday'),
+            'Sunday' => $christmasDay->next('tuesday'),
+            default => null,
+        };
+    }
+
+    protected function observedBoxingDay(int $year): ?CarbonInterface
+    {
+        $christmasDay = (new CarbonImmutable($year.'-12-25'))->startOfDay();
+        $boxingDay = $christmasDay->addDay();
+
+        return match ($christmasDay->dayName) {
+            'Friday' => $boxingDay->next('monday'),
+            'Saturday' => $boxingDay->next('tuesday'),
+            default => null,
+        };
     }
 }
