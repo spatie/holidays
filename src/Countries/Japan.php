@@ -2,8 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-
 class Japan extends Country
 {
     public function countryCode(): string

@@ -2,7 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 
 class NorthernIreland extends Wales
