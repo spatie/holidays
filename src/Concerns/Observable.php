@@ -43,8 +43,12 @@ trait Observable
         return null;
     }
 
-    protected function sundayToNextMonday(CarbonInterface $date): ?CarbonInterface
+    protected function sundayToNextMonday(string|CarbonInterface $date, int $year): ?CarbonInterface
     {
+        if (is_string($date)) {
+            $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        }
+
         if ($date->isSunday()) {
             return $date->next('monday');
         }

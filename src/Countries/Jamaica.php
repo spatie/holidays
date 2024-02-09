@@ -4,9 +4,12 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Concerns\Observable;
 
 class Jamaica extends Country
 {
+    use Observable;
+
     public function countryCode(): string
     {
         return 'jm';
@@ -33,7 +36,10 @@ class Jamaica extends Country
         ];
 
         foreach ($holidays as $name => $date) {
-            $observedDay = $this->observed($name, $date, $year);
+            $observedDay = match ($name) {
+                'Labour Day', 'Boxing Day' => $this->observed($name, $date, $year),
+                default => $this->sundayToNextMonday($date, $year),
+            };
 
             if ($observedDay) {
                 $holidays[$name.' Observed'] = $observedDay;
@@ -59,10 +65,6 @@ class Jamaica extends Country
     protected function observed(string $name, string $date, int $year): ?CarbonInterface
     {
         $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
-
-        if ($holiday->isSunday()) {
-            return $holiday->next('monday');
-        }
 
         if ($name === 'Labour Day' && $holiday->isSaturday()) {
             return $holiday->next('monday');

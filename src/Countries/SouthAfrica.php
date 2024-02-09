@@ -4,9 +4,12 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Concerns\Observable;
 
 class SouthAfrica extends Country
 {
+    use Observable;
+
     public function countryCode(): string
     {
         return 'za';
@@ -30,7 +33,7 @@ class SouthAfrica extends Country
         ];
 
         foreach ($holidays as $name => $date) {
-            $observedDay = $this->observed($date, $year);
+            $observedDay = $this->sundayToNextMonday($date, $year);
 
             if ($observedDay) {
                 $holidays[$name.' Observed'] = $observedDay;
@@ -49,17 +52,5 @@ class SouthAfrica extends Country
             'Good Friday' => $easter->subDays(2),
             'Family Day' => $easter->addDay(),
         ];
-    }
-
-    protected function observed(string $date, int $year): ?CarbonInterface
-    {
-        $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
-
-        // https://www.gov.za/documents/public-holidays-act
-        if ($holiday->isSunday()) {
-            return $holiday->next('monday');
-        }
-
-        return null;
     }
 }
