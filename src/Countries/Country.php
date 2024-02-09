@@ -17,7 +17,7 @@ abstract class Country
     abstract protected function allHolidays(int $year): array;
 
     /** @return array<string, CarbonImmutable> */
-    public function get(int $year, ?string $locale = null): array
+    public function get(int $year, bool $observed, ?string $locale = null): array
     {
         $this->ensureYearCanBeCalculated($year);
 
