@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
 use Spatie\Holidays\Concerns\Observable;
 
 class SouthAfrica extends Country
