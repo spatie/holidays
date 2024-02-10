@@ -196,7 +196,7 @@ class Syria extends Country
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
-        $GregorianCalendarHolidays = [];
+        $gregorianCalendarHolidays = [];
 
         $GregorianCalendarHolidays['Western Easter'] = $easter;
         $GregorianCalendarHolidays['Eastern Easter'] = $easter->addDays(35);
