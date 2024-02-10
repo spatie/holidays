@@ -3,9 +3,13 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
+use Spatie\Holidays\Concerns\Observable;
 
 class Jamaica extends Country
 {
+    use Observable;
+
     public function countryCode(): string
     {
         return 'jm';
@@ -13,18 +17,14 @@ class Jamaica extends Country
 
     protected function allHolidays(int $year): array
     {
-
-        $holidays = array_merge(
-            $this->fixedHolidays(),
+        return array_merge(
+            $this->fixedHolidays($year),
             $this->variableHolidays($year),
-            $this->observedHolidays($year)
         );
-
-        return $holidays;
     }
 
-    /** @return array<string, string> */
-    protected function fixedHolidays(): array
+    /** @return array<string, string|CarbonImmutable> */
+    protected function fixedHolidays(int $year): array
     {
         $holidays = [
             'New Year\'s Day' => '01-01',
@@ -35,49 +35,45 @@ class Jamaica extends Country
             'Boxing Day' => '12-26',
         ];
 
+        foreach ($holidays as $name => $date) {
+            $observedDay = match ($name) {
+                'Labour Day', 'Boxing Day' => $this->observed($name, $date, $year),
+                default => $this->sundayToNextMonday($date, $year),
+            };
+
+            if ($observedDay) {
+                $holidays[$name.' Observed'] = $observedDay;
+            }
+        }
+
         return $holidays;
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, string|CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
-        $heroesDay = new CarbonImmutable("third monday of October $year");
 
         return [
             'Ash Wednesday' => $easter->subDays(46),
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
-            'National Heroes Day' => $heroesDay,
+            'National Heroes Day' => 'third monday of October',
         ];
     }
 
-    /** @return array<string, CarbonImmutable> */
-    protected function observedHolidays(int $year): array
+    protected function observed(string $name, string $date, int $year): ?CarbonInterface
     {
+        $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
 
-        $observedHolidays = [];
-
-        foreach ($this->fixedHolidays() as $name => $date) {
-            $date = CarbonImmutable::parse("$year-$date");
-
-            // If any holiday falls on a Sunday, then it is observed on Monday
-            if ($date->dayOfWeek === 0) {
-                $observedHolidays["{$name} Observed"] = $date->next(CarbonImmutable::MONDAY);
-            }
-
-            // If Labour Day falls on a Saturday, then it is observed on Monday
-            if ($name == 'Labour Day' && $date->dayOfWeek === 6) {
-                $observedHolidays["{$name} Observed"] = $date->next(CarbonImmutable::MONDAY);
-            }
-
-            // If Boxing Day falls on a Monday, then it is observed on Tuesday (Christmas Day is observed on Monday)
-            // https://jis.gov.jm/observance-public-holidays-christmas-day-monday-december-26th-boxing-day-tuesday-december-27th/
-            if ($name == 'Boxing Day' && $date->dayOfWeek === 1) {
-                $observedHolidays["{$name} Observed"] = $date->next(CarbonImmutable::TUESDAY);
-            }
+        if ($name === 'Labour Day' && $holiday->isSaturday()) {
+            return $holiday->next('monday');
         }
 
-        return $observedHolidays;
+        if ($name === 'Boxing Day' && $holiday->isMonday()) {
+            return $holiday->next('tuesday');
+        }
+
+        return null;
     }
 }

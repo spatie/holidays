@@ -2,8 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-
 class Japan extends Country
 {
     public function countryCode(): string
@@ -27,28 +25,17 @@ class Japan extends Country
             '文化の日' => '11-03', // Culture Day
             '勤労感謝の日' => '11-23', // Labor Thanksgiving Day
 
-        ], $this->variableHolidays($year));
+        ], $this->variableHolidays());
     }
 
-    /** @return array<string, CarbonImmutable> */
-    protected function variableHolidays(int $year): array
+    /** @return array<string, string> */
+    protected function variableHolidays(): array
     {
-        $comingOfAgeDay = (new CarbonImmutable("second monday of january $year"))->startOfDay();
-
-        $oceansDay = (new CarbonImmutable("third monday of july $year"))->startOfDay();
-
-        $respectForTheAgedDay = (new CarbonImmutable("third monday of september $year"))->startOfDay();
-
-        $sportsDay = (new CarbonImmutable("second monday of october $year"))->startOfDay();
-
-        $holidays = [
-            '成人の日' => $comingOfAgeDay,
-            '海の日' => $oceansDay,
-            '敬老の日' => $respectForTheAgedDay,
-            'スポーツの日' => $sportsDay,
+        return [
+            '成人の日' => 'second monday of january',
+            '海の日' => 'third monday of july',
+            '敬老の日' => 'third monday of september',
+            'スポーツの日' => 'second monday of october',
         ];
-
-        return $holidays;
-
     }
 }

@@ -29,32 +29,30 @@ class Greece extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        // OrthodoxEaster needs to setTimezone
         $orthodoxEaster = $this->orthodoxEaster($year);
-        $cleanMonday = $orthodoxEaster->copy()->subDays(48);
-        $megaliParaskevi = $orthodoxEaster->copy()->subDays(2);
-        $megaloSavvato = $orthodoxEaster->copy()->subDays(1);
-        $deuteraPasha = $orthodoxEaster->copy()->addDay();
-        $agiouPneumatos = $orthodoxEaster->copy()->addDays(50);
 
-        /** @var CarbonImmutable $protomagia */
+        $megaliParaskevi = $orthodoxEaster->copy()->subDays(2);
+        $megaloSavvato = $orthodoxEaster->copy()->subDay();
+        $deuteraPasha = $orthodoxEaster->copy()->addDay();
+
         $protomagia = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-05-01");
         $moveProtomagia = [$megaliParaskevi, $megaloSavvato, $orthodoxEaster, $deuteraPasha];
 
-        if (in_array($protomagia, $moveProtomagia)) {
+        if (in_array($protomagia, $moveProtomagia, true)) {
             $protomagia = $orthodoxEaster->copy()->addDays(2);
         }
+
         if ($protomagia->isSunday()) {
             $protomagia = $protomagia->copy()->addDay();
         }
 
         return [
-            'Καθαρά Δευτέρα' => $cleanMonday, //always Monday
+            'Καθαρά Δευτέρα' => $orthodoxEaster->copy()->subDays(48), //always Monday
             'Πρωτομαγιά' => $protomagia,
             'Μεγάλη Παρασκευή' => $megaliParaskevi,
             'Κυριακή του Πάσχα' => $orthodoxEaster,
             'Δευτέρα του Πάσχα' => $deuteraPasha,
-            'Αγίου Πνεύματος' => $agiouPneumatos, //always Monday
+            'Αγίου Πνεύματος' => $orthodoxEaster->copy()->addDays(50), //always Monday
         ];
     }
 }
