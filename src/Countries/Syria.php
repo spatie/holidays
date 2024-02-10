@@ -198,11 +198,11 @@ class Syria extends Country
         $easter = $this->easter($year);
         $gregorianCalendarHolidays = [];
 
-        $GregorianCalendarHolidays['Western Easter'] = $easter;
-        $GregorianCalendarHolidays['Eastern Easter'] = $easter->addDays(35);
+        $gregorianCalendarHolidays['Western Easter'] = $easter;
+        $gregorianCalendarHolidays['Eastern Easter'] = $easter->addDays(35);
 
         return array_merge(
-            $GregorianCalendarHolidays
+            $gregorianCalendarHolidays
         , $this->getIslamicHolidays(
             year: $year,
             holidays: self::alFitrHolidays,
