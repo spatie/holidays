@@ -47,7 +47,7 @@ it('calculates northern irish holidays by date', function (string $name, string 
 ]);
 
 it('can calculate northern irish holidays', function () {
-    CarbonImmutable::setTestNowAndTimezone('2025-01-01');
+    CarbonImmutable::setTestNow('2025-01-01');
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
@@ -57,7 +57,7 @@ it('can calculate northern irish holidays', function () {
 });
 
 it('returns a substitute day if new years day falls on a weekend', function () {
-    CarbonImmutable::setTestNowAndTimezone('2033-01-01');
+    CarbonImmutable::setTestNow('2033-01-01');
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
@@ -66,7 +66,7 @@ it('returns a substitute day if new years day falls on a weekend', function () {
 });
 
 it('returns a substitute day for second of january if new years day falls on a friday', function () {
-    CarbonImmutable::setTestNowAndTimezone('2021-01-01');
+    CarbonImmutable::setTestNow('2021-01-01');
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
@@ -75,7 +75,7 @@ it('returns a substitute day for second of january if new years day falls on a f
 });
 
 it('can calculate northern irish holidays if christmas is on a friday', function () {
-    CarbonImmutable::setTestNowAndTimezone('2020-01-01');
+    CarbonImmutable::setTestNow('2020-01-01');
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
@@ -84,7 +84,7 @@ it('can calculate northern irish holidays if christmas is on a friday', function
 });
 
 it('can calculate northern irish holidays if christmas is on a saturday', function () {
-    CarbonImmutable::setTestNowAndTimezone('2021-01-01');
+    CarbonImmutable::setTestNow('2021-01-01');
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
@@ -93,7 +93,7 @@ it('can calculate northern irish holidays if christmas is on a saturday', functi
 });
 
 it('can calculate northern irish holidays if christmas is on a sunday', function () {
-    CarbonImmutable::setTestNowAndTimezone('2022-01-01');
+    CarbonImmutable::setTestNow('2022-01-01');
 
     $holidays = Holidays::for(country: 'gb-nir')->get();
 
@@ -102,7 +102,7 @@ it('can calculate northern irish holidays if christmas is on a sunday', function
 });
 
 it('can calculate northern irish for 2020', function () {
-    CarbonImmutable::setTestNowAndTimezone('2020-01-01');
+    CarbonImmutable::setTestNow('2020-01-01');
 
     $holidays = Holidays::for(country: 'gb-eng')->get();
 

@@ -109,12 +109,9 @@ Holidays::has('be'); // true
 Holidays::has('unknown'); // false
 ```
 
-### Package limitations
-1. Islamic holidays are not supported (yet)
-
 ## Contributing
 
-This is a community driven package. If you find any errors, please create an issue or a pull request.
+This is a community driven package. If you find any errors, please create a pull request with the fix, or at least open an issue.
 
 ## Adding a new country
 

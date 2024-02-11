@@ -41,7 +41,7 @@ class Australia extends Country
                     'Canberra Day' => CarbonImmutable::parse("second monday of march {$year}"),
                     'Easter Saturday' => $easter->subDay(),
                     'Easter Sunday' => $easter,
-                    'Reconciliation Day' => CarbonImmutable::create($year, 5, 27)->modify('monday'),
+                    'Reconciliation Day' => CarbonImmutable::create($year, 5, 27)?->modify('monday'),
                     $this->sovereignBirthdayKey($year) => CarbonImmutable::parse("second monday of june {$year}"),
                     'Labour Day' => CarbonImmutable::parse("first monday of october {$year}"),
                 ],
