@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use RuntimeException;
 
 class Tunisia extends Country
 {
@@ -388,7 +389,7 @@ class Tunisia extends Country
         $currentYearHolidays = is_array($holidays[$year]) ? $holidays[$year] : [$holidays[$year]];
 
         foreach ($currentYearHolidays as $currentYearHoliday) {
-            $currentYearHoliday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$currentYearHoliday}")
+            $currentYearHoliday = CarbonImmutable::createFromFormat('Y-m-d', "$year-$currentYearHoliday")
                 ?: throw new RuntimeException('Date could not be created.');
 
             $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
