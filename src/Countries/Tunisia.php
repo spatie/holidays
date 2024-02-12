@@ -25,7 +25,7 @@ class Tunisia extends Country
     {
         $revolutionHoliday = [];
 
-        if (2022 > $year and $year >= 2011) {
+        if (2022 > $year && $year >= 2011) {
             $revolutionHoliday['Revolution and Youth Day'] = '01-14';
         }
 
