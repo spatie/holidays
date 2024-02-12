@@ -17,10 +17,6 @@ class Tunisia extends Country
         return 'tn';
     }
 
-    /**
-     * @param int $year
-     * @return array|CarbonImmutable[]|string[]
-     */
     protected function allHolidays(int $year): array
     {
         $revolutionHoliday = [];
