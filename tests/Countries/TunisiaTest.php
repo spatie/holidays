@@ -18,7 +18,7 @@ it('can calculate tunisian holidays 2024', function () {
 });
 
 it('can calculate tunisian holidays 2025', function () {
-    CarbonImmutable::setTestNowAndTimezone('2025-01-01');
+    CarbonImmutable::setTestNow('2025-01-01');
 
     $holidays = Holidays::for(country: 'tn')->get();
 
