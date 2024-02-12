@@ -209,28 +209,4 @@ protected function variableHolidays(int $year): array
 
         return $dates;
     }
-
-
-
-    /**
-     * @return array<string, CarbonInterface>
-     */
-    private function adjustForWeekend(string $name, CarbonImmutable $date): array
-    {
-        $adjustedHolidays = [];
-
-        // Explicitly define this logic to avoid timezone confusion on the CarbonInterface::next() method
-        if ($date->isFriday() || $date->isSaturday()) {
-            // If the holiday falls on a weekend (Friday or Saturday), it is observed on the following Sunday
-            $adjustedHolidays['Day off for '.$name] = $date->next(CarbonInterface::SUNDAY);
-        } elseif ($date->isSunday() || $date->isThursday()) {
-            // If the holiday falls on a Sunday or Thursday, it is observed on the same day
-            $adjustedHolidays[$name] = $date;
-        } else {
-            // If the holiday falls on a weekday (Monday, Tuesday, Wednesday), it is observed on the following Thursday
-            $adjustedHolidays['Day off for '.$name] = $date->next(CarbonInterface::THURSDAY);
-        }
-
-        return $adjustedHolidays;
-    }
 }
