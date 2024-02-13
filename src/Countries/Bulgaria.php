@@ -11,10 +11,6 @@ class Bulgaria extends Country
         return 'bg';
     }
 
-    /**
-     * @param int $year
-     * @return array<string, string>
-     */
     protected function allHolidays(int $year): array
     {
         return array_merge([
