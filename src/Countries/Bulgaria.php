@@ -34,8 +34,7 @@ class Bulgaria extends Country
      */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))
-            ->setTimezone('Europe/Sofia');
+        $easter = $this->orthodoxEaster($year);
 
         return [
             'Великден – християнската религия отбелязва Възкресение Христово' => $easter->format('m-d'),
