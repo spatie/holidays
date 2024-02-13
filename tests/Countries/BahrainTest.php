@@ -8,7 +8,7 @@ use Spatie\Holidays\Holidays;
 it('can calculate bahrain holidays', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    $holidays = Holidays::for(country: 'bh',)->get();
+    $holidays = Holidays::for(country: 'bh')->get();
 
     expect($holidays)
         ->toBeArray()
