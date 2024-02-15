@@ -14,12 +14,12 @@ it('can calculate syrian holidays', function ($year) {
         ->toBeArray()
         ->not()->toBeEmpty()
         ->and(formatDates($holidays))->toMatchSnapshot();
-})->with([2022, 2023, 2024]);
+})->with([1970, 2022, 2023, 2024, 2037]);
 
 it('can translate syrian holidays into arabic', function () {
-    
+
     $holidays = Holidays::for(country: 'sy', year: 2024, locale: 'ar')->get();
-    
+
     expect($holidays)
         ->toBeArray()
         ->not()->toBeEmpty();
