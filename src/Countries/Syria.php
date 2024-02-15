@@ -184,7 +184,7 @@ class Syria extends Country
             'New Year\'s Day' => '01-01',
             'Mother\'s Day' => '03-21',
             'Independence Day' => '04-17',
-            'Labor' => '05-01',
+            'Labor Day' => '05-01',
             'Martyrs\' Day' => '05-06',
             'Anniversary of the October War' => '10-06',
             'Christmas' => '12-25',
@@ -202,18 +202,17 @@ class Syria extends Country
         $gregorianCalendarHolidays['Eastern Easter'] = $easter->addDays(35);
 
         return array_merge(
-            $gregorianCalendarHolidays
-        , $this->getIslamicHolidays(
-            year: $year,
-            holidays: self::alFitrHolidays,
-            label: 'Eid al-Fitr',
-            day: 3
-        ), $this->getIslamicHolidays(
-            year: $year,
-            holidays: self::alAdhaHolidays,
-            label: 'Eid al-Adha',
-            day: 4
-        ));
+            $gregorianCalendarHolidays, $this->getIslamicHolidays(
+                year: $year,
+                holidays: self::alFitrHolidays,
+                label: 'Eid al-Fitr',
+                day: 3
+            ), $this->getIslamicHolidays(
+                year: $year,
+                holidays: self::alAdhaHolidays,
+                label: 'Eid al-Adha',
+                day: 4
+            ));
     }
 
     /**
