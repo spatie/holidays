@@ -25,6 +25,7 @@ class NewZealand extends Country
 
     protected function observedHolidays(int $year): array
     {
+        //https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
         $holidays = [
             'New Year\'s Day' => '01-01',
             'Day after New Year\'s Day' => '01-02',
@@ -33,7 +34,7 @@ class NewZealand extends Country
             'Christmas Day' => '12-25',
             'Boxing Day' => '12-26',
         ];
-        
+
         //https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-falling-on-a-weekend/
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
@@ -64,7 +65,7 @@ class NewZealand extends Country
         $sovereignMonday = CarbonImmutable::parse("first monday of june {$year}");
 
         //Labour Day
-        $labourMonday = CarbonImmutable::parse("fourth monday of october {$year}");    
+        $labourMonday = CarbonImmutable::parse("fourth monday of october {$year}");
 
         return [
             'Good Friday' => $goodFriday,
@@ -96,8 +97,8 @@ class NewZealand extends Country
     {
         //https://www.tepapa.govt.nz/discover-collections/read-watch-play/matariki-maori-new-year/dates-for-matariki-public-holiday
         $matarikiDates = [
-            2022 => '2022-07-14',
-            2023 => '2023-06-24',
+            2022 => '2022-06-24',
+            2023 => '2023-07-14',
             2024 => '2024-06-28',
             2025 => '2025-06-20',
             2026 => '2026-07-10',
@@ -129,8 +130,8 @@ class NewZealand extends Country
             2052 => '2052-06-21',
         ];
 
-        return isset($matarikiDates[$year]) 
-        ? CarbonImmutable::createFromFormat('Y-m-d', $matarikiDates[$year])->setTimezone('Pacific/Auckland') 
+        return isset($matarikiDates[$year])
+        ? CarbonImmutable::createFromFormat('Y-m-d', $matarikiDates[$year])->setTimezone('Pacific/Auckland')
         : null; // Return null if year not defined
     }
 }
