@@ -154,24 +154,24 @@ class Bahrain extends Country
     /**
      * @return array<string, CarbonInterface>
      */
-protected function variableHolidays(int $year): array
-{
-    $holidays = [
-        ['EID_AL_FITR_HOLIDAYS', 'Eid al-Fitr', 3],
-        ['EID_AL_ADHA_HOLIDAYS', 'Eid al-Adha', 3],
-        ['ARAFAT_DAY_HOLIDAYS', 'Arafat Day'],
-        ['ISLAMIC_NEW_YEAR_HOLIDAYS', 'Islamic New Year'],
-        ['ASHURA_HOLIDAYS', 'Ashura', 2],
-        ['PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS', 'Birthday of the Prophet Muhammad']
-    ];
+    protected function variableHolidays(int $year): array
+    {
+        $holidays = [
+            ['EID_AL_FITR_HOLIDAYS', 'Eid al-Fitr', 3],
+            ['EID_AL_ADHA_HOLIDAYS', 'Eid al-Adha', 3],
+            ['ARAFAT_DAY_HOLIDAYS', 'Arafat Day'],
+            ['ISLAMIC_NEW_YEAR_HOLIDAYS', 'Islamic New Year'],
+            ['ASHURA_HOLIDAYS', 'Ashura', 2],
+            ['PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS', 'Birthday of the Prophet Muhammad'],
+        ];
 
-    $dates = [];
-    foreach ($holidays as $holiday) {
-        $dates = array_merge($dates, $this->getIslamicHolidayDatesForYear(constant('self::' . $holiday[0]), $year, $holiday[1], $holiday[2] ?? 1));
+        $dates = [];
+        foreach ($holidays as $holiday) {
+            $dates = array_merge($dates, $this->getIslamicHolidayDatesForYear(constant('self::'.$holiday[0]), $year, $holiday[1], $holiday[2] ?? 1));
+        }
+
+        return $dates;
     }
-
-    return $dates;
-}
 
     /**
      * Prepare holiday dates for the given year.
