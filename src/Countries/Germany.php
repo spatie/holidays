@@ -3,15 +3,24 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 
-class Germany extends Country
+class Germany extends Country implements HasTranslations
 {
+    use Translatable;
+
     protected function __construct(
         protected ?string $region = null,
     ) {
     }
 
     public function countryCode(): string
+    {
+        return 'de';
+    }
+
+    public function defaultLocale(): string
     {
         return 'de';
     }

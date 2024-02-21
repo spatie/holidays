@@ -6,9 +6,14 @@ use Spatie\Holidays\Exceptions\InvalidLocale;
 
 trait Translatable
 {
-    protected function translate(string $country, string $name, ?string $locale = null): string
+    public function translate(string $country, string $name, ?string $locale = null): string
     {
         if ($locale === null) {
+            return $name;
+
+        }
+
+        if ($locale === $this->defaultLocale()) {
             return $name;
         }
 

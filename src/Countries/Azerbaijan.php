@@ -3,10 +3,19 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 
-class Azerbaijan extends Country
+class Azerbaijan extends Country implements HasTranslations
 {
+    use Translatable;
+
     public function countryCode(): string
+    {
+        return 'az';
+    }
+
+    public function defaultLocale(): string
     {
         return 'az';
     }
@@ -31,7 +40,6 @@ class Azerbaijan extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        // does not change according to the standard
         return [];
     }
 }

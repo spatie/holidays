@@ -4,10 +4,14 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Bahrain extends Country
+class Bahrain extends Country implements HasTranslations
 {
+    use Translatable;
+
     protected const EID_AL_FITR_HOLIDAYS = [
         2020 => '05-24',
         2021 => '05-13',
@@ -137,6 +141,11 @@ class Bahrain extends Country
     public function countryCode(): string
     {
         return 'bh';
+    }
+
+    public function defaultLocale(): string
+    {
+        return 'en';
     }
 
     protected function allHolidays(int $year): array

@@ -4,10 +4,19 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 
-class Finland extends Country
+class Finland extends Country implements HasTranslations
 {
+    use Translatable;
+
     public function countryCode(): string
+    {
+        return 'fi';
+    }
+
+    public function defaultLocale(): string
     {
         return 'fi';
     }
