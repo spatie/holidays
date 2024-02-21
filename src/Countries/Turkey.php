@@ -3,10 +3,17 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
+use Carbon\CarbonInterval;
+use Carbon\CarbonPeriod;
 use RuntimeException;
+use Spatie\Holidays\Calendars\IslamicCalendar;
+use Spatie\Holidays\Contracts\Islamic;
+use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Turkey extends Country
+class Turkey extends Country implements Islamic
 {
+    use IslamicCalendar;
     /**
      * No library or built-in php intl functions convert dates properly for all years or all country including
      * “geniusts/hijri-dates”. It is most logical to prepare the dates between 1970 and 2037 as a constant property
@@ -16,7 +23,7 @@ class Turkey extends Country
      * Ramadan and Sacrifice holidays vary for Turkey and other countries.
      * A converter algorithm that will cover all years does not seem possible.
      */
-    public const ramadanHolidays = [
+    public const eidAlFitr = [
         1970 => '12-01',
         1971 => '11-20',
         1972 => '11-08',
@@ -201,10 +208,9 @@ class Turkey extends Country
     protected function variableHolidays(int $year): array
     {
         return array_merge([
-
         ], $this->getIslamicHolidays(
             year: $year,
-            holidays: self::ramadanHolidays,
+            holidays: self::eidAlFitr,
             label: 'Ramazan Bayramı',
             day: 3
         ), $this->getIslamicHolidays(
@@ -213,6 +219,27 @@ class Turkey extends Country
             label: 'Kurban Bayramı',
             day: 4
         ));
+    }
+
+    public function islamicHolidays(int $year): array
+    {
+        $holidays = [
+            'Eid al-Fitr' => $this->eidAlFitr($year),
+        ];
+
+        $result = [];
+
+        foreach ($holidays as $name => $holiday) {
+            if ($holiday instanceof CarbonPeriod) {
+                foreach ($holiday as $index => $day) {
+                    $holidayName = "{$name} Day " . $index+1;
+
+                    $result[$holidayName] = $day->toImmutable();
+                }
+            }
+        }
+
+        return $result;
     }
 
     /**
