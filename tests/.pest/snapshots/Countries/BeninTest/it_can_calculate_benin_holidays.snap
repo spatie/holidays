@@ -1,18 +1,14 @@
 [
     {
-        "name": "Fete du Ramadan",
-        "date": "2023-07-27"
-    },
-    {
-        "name": "Jour du Maouloud",
-        "date": "2023-09-26"
-    },
-    {
-        "name": "Fete du Nouvel An",
+        "name": "F\u00eate du Nouvel An",
         "date": "2024-01-01"
     },
     {
-        "name": "Fete annuelle des religions traditionnelles",
+        "name": "F\u00eate annuelle des r\u00e9ligions traditionnelles",
+        "date": "2024-01-10"
+    },
+    {
+        "name": "Fete annuelle des r\u00e9ligions traditionnelles",
         "date": "2024-01-10"
     },
     {
@@ -20,8 +16,12 @@
         "date": "2024-04-01"
     },
     {
-        "name": "Fete de la Tabaski",
-        "date": "2024-04-20"
+        "name": "F\u00eate de Ramadan - Jour 1",
+        "date": "2024-04-10"
+    },
+    {
+        "name": "F\u00eate de Ramadan - Jour 2",
+        "date": "2024-04-11"
     },
     {
         "name": "Fete du travail",
@@ -36,7 +36,19 @@
         "date": "2024-05-20"
     },
     {
-        "name": "Fete de l'independance",
+        "name": "F\u00eate de la Tabaski - Jour 1",
+        "date": "2024-06-17"
+    },
+    {
+        "name": "F\u00eate de la Tabaski - Jour 2",
+        "date": "2024-06-18"
+    },
+    {
+        "name": "F\u00eate de la Tabaski - Jour 3",
+        "date": "2024-06-19"
+    },
+    {
+        "name": "F\u00eate de l'ind\u00e9pendance",
         "date": "2024-08-01"
     },
     {
@@ -44,11 +56,15 @@
         "date": "2024-08-15"
     },
     {
+        "name": "Jour du Maouloud - Jour 1",
+        "date": "2024-09-15"
+    },
+    {
         "name": "Jour de la Toussaint",
         "date": "2024-11-01"
     },
     {
-        "name": "Jour de No\u00ebl",
+        "name": "Jour de Noel",
         "date": "2024-12-25"
     }
 ]

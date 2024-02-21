@@ -22,8 +22,7 @@
     "require": {
         "php": "^8.1",
         "nesbot/carbon": "^2.72.1",
-        "ext-calendar": "*",
-        "geniusts/hijri-dates": "^1.1"
+        "ext-calendar": "*"
     },
     "require-dev": {
         "laravel/prompts": "^0.1.15",
