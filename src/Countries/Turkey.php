@@ -201,7 +201,7 @@ class Turkey extends Country implements Islamic
             'Zafer Bayramı' => '08-30',
             'Cumhuriyet Bayramı Arifesi' => '10-28',
             'Cumhuriyet Bayramı' => '10-29',
-        ], $newHolidays, $this->variableHolidays($year));
+        ], $newHolidays, $this->islamicHolidays($year));
     }
 
     /** @return array<string, CarbonImmutable> */
@@ -224,10 +224,25 @@ class Turkey extends Country implements Islamic
     public function islamicHolidays(int $year): array
     {
         $holidays = [
-            'Eid al-Fitr' => $this->eidAlFitr($year),
+            'Ramazan Bayramı' => $this->eidAlFitr($year),
+            'Kurban Bayramı' => $this->sacrifice($year),
         ];
 
-        return $this->convertPeriods($holidays);
+        return $this->convertPeriods($holidays, 'Gün');
+    }
+
+    public function sacrifice(int $year): CarbonPeriod
+    {
+        try {
+            $date = self::sacrificeHolidays[$year];
+        } catch (RuntimeException) {
+            throw InvalidYear::range($this->countryCode(), 1970, 2037);
+        }
+
+        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        $end = $start->addDays(3)->startOfDay();
+
+        return CarbonPeriod::create($start, '1 day', $end);
     }
 
     /**

@@ -25,14 +25,17 @@ trait IslamicCalendar
         return CarbonPeriod::create($start, '1 day', $end);
     }
 
-    protected function convertPeriods(array $holidays, string $suffix = 'Day'): array
-    {
+    protected function convertPeriods(
+        array $holidays,
+        string $suffix = 'Day',
+        string $prefix = ''
+    ): array {
         $result = [];
 
         foreach ($holidays as $name => $holiday) {
             if ($holiday instanceof CarbonPeriod) {
                 foreach ($holiday as $index => $day) {
-                    $holidayName = "{$name} {$suffix} " . $index+1;
+                    $holidayName = "{$prefix}{$name} {$suffix} " . $index+1;
 
                     $result[$holidayName] = $day->toImmutable();
                 }

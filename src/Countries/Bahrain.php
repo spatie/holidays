@@ -37,7 +37,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '11-09',
     ];
 
-    protected const ARAFAT_DAY_HOLIDAYS = [
+    protected const arafatDay = [
         2020 => '07-30',
         2021 => '07-19',
         2022 => '07-09',
@@ -58,7 +58,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '01-26',
     ];
 
-    protected const EID_AL_ADHA_HOLIDAYS = [
+    protected const eidAlAdha = [
         2020 => '07-31',
         2021 => '07-20',
         2022 => '07-09',
@@ -79,7 +79,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '01-27',
     ];
 
-    protected const ISLAMIC_NEW_YEAR_HOLIDAYS = [
+    protected const islamicNewYear = [
         2020 => '08-20',
         2021 => '08-09',
         2022 => '07-30',
@@ -100,7 +100,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '02-17',
     ];
 
-    protected const ASHURA_HOLIDAYS = [
+    protected const ashura = [
         2020 => '08-30',
         2021 => '08-19',
         2022 => '08-08',
@@ -121,7 +121,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '02-25',
     ];
 
-    protected const PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS = [
+    protected const prophetMuhammadBirthday = [
         2020 => '10-29',
         2021 => '10-21',
         2022 => '10-08',
@@ -172,10 +172,10 @@ class Bahrain extends Country implements HasTranslations
         $holidays = [
             'Eid al-Fitr' => $this->eidAlFitr($year),
             'Eid al-Adha' => $this->eidAlAdha($year),
-            'Arafat Day' => self::ARAFAT_DAY_HOLIDAYS[$year],
-            'Islamic New Year' => self::ISLAMIC_NEW_YEAR_HOLIDAYS[$year],
+            'Arafat Day' => self::arafatDay[$year],
+            'Islamic New Year' => self::islamicNewYear[$year],
             'Ashura' => $this->ashura($year),
-            'Birthday of the Prophet Muhammad' => self::PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS[$year],
+            'Birthday of the Prophet Muhammad' => self::prophetMuhammadBirthday[$year],
         ];
 
         return $this->convertPeriods($holidays);
@@ -184,7 +184,7 @@ class Bahrain extends Country implements HasTranslations
     protected function eidAlAdha(int $year): CarbonPeriod
     {
         try {
-            $date = self::EID_AL_ADHA_HOLIDAYS[$year];
+            $date = self::eidAlAdha[$year];
         } catch (RuntimeException) {
             throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
@@ -198,7 +198,7 @@ class Bahrain extends Country implements HasTranslations
     protected function ashura(int $year): CarbonPeriod
     {
         try {
-            $date = self::ASHURA_HOLIDAYS[$year];
+            $date = self::ashura[$year];
         } catch (RuntimeException) {
             throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
