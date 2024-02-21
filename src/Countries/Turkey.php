@@ -227,19 +227,7 @@ class Turkey extends Country implements Islamic
             'Eid al-Fitr' => $this->eidAlFitr($year),
         ];
 
-        $result = [];
-
-        foreach ($holidays as $name => $holiday) {
-            if ($holiday instanceof CarbonPeriod) {
-                foreach ($holiday as $index => $day) {
-                    $holidayName = "{$name} Day " . $index+1;
-
-                    $result[$holidayName] = $day->toImmutable();
-                }
-            }
-        }
-
-        return $result;
+        return $this->convertPeriods($holidays);
     }
 
     /**

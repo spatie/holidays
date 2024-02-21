@@ -11,7 +11,7 @@ use Spatie\Holidays\Exceptions\InvalidYear;
 /** @mixin Country */
 trait IslamicCalendar
 {
-    public function eidAlFitr(int $year): CarbonPeriod
+    public function eidAlFitr(int $year, int $totalDays = 3): CarbonPeriod
     {
         try {
             $date = self::eidAlFitr[$year];
@@ -19,9 +19,28 @@ trait IslamicCalendar
             throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
 
-        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
-        $end = $start->addDays(3);
+        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        $end = $start->addDays($totalDays-1)->startOfDay();
 
         return CarbonPeriod::create($start, '1 day', $end);
+    }
+
+    protected function convertPeriods(array $holidays, string $suffix = 'Day'): array
+    {
+        $result = [];
+
+        foreach ($holidays as $name => $holiday) {
+            if ($holiday instanceof CarbonPeriod) {
+                foreach ($holiday as $index => $day) {
+                    $holidayName = "{$name} {$suffix} " . $index+1;
+
+                    $result[$holidayName] = $day->toImmutable();
+                }
+            } else {
+                $result[$name] = $holiday;
+            }
+        }
+
+        return $result;
     }
 }

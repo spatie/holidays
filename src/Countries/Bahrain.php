@@ -6,13 +6,17 @@ use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
+use Carbon\CarbonPeriod;
+use RuntimeException;
+use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Bahrain extends Country implements HasTranslations
 {
     use Translatable;
+    use IslamicCalendar;
 
-    protected const EID_AL_FITR_HOLIDAYS = [
+    protected const eidAlFitr = [
         2020 => '05-24',
         2021 => '05-13',
         2022 => '05-02',
@@ -166,56 +170,42 @@ class Bahrain extends Country implements HasTranslations
     protected function variableHolidays(int $year): array
     {
         $holidays = [
-            ['EID_AL_FITR_HOLIDAYS', 'Eid al-Fitr', 3],
-            ['EID_AL_ADHA_HOLIDAYS', 'Eid al-Adha', 3],
-            ['ARAFAT_DAY_HOLIDAYS', 'Arafat Day'],
-            ['ISLAMIC_NEW_YEAR_HOLIDAYS', 'Islamic New Year'],
-            ['ASHURA_HOLIDAYS', 'Ashura', 2],
-            ['PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS', 'Birthday of the Prophet Muhammad'],
+            'Eid al-Fitr' => $this->eidAlFitr($year),
+            'Eid al-Adha' => $this->eidAlAdha($year),
+            'Arafat Day' => self::ARAFAT_DAY_HOLIDAYS[$year],
+            'Islamic New Year' => self::ISLAMIC_NEW_YEAR_HOLIDAYS[$year],
+            'Ashura' => $this->ashura($year),
+            'Birthday of the Prophet Muhammad' => self::PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS[$year],
         ];
 
-        $dates = [];
-        foreach ($holidays as $holiday) {
-            $dates = array_merge($dates, $this->getIslamicHolidayDatesForYear(constant('self::'.$holiday[0]), $year, $holiday[1], $holiday[2] ?? 1));
-        }
-
-        return $dates;
+        return $this->convertPeriods($holidays);
     }
 
-    /**
-     * Prepare holiday dates for the given year.
-     *
-     * @param  array<int, string>  $holidayDates  Array mapping years to dates.
-     * @param  int  $year  The year for which to prepare holiday dates.
-     * @param  string  $holidayName  The name of the holiday.
-     * @param  int  $duration  The duration of the holiday in days.
-     * @return array<string, CarbonImmutable> An array of holiday dates.
-     */
-    private function getIslamicHolidayDatesForYear(array $holidayDates, int $year, string $holidayName, int $duration = 1): array
+    protected function eidAlAdha(int $year): CarbonPeriod
     {
-        $dates = [];
-
-        if ($year < 2020) {
-            throw InvalidYear::yearTooLow(2020);
+        try {
+            $date = self::EID_AL_ADHA_HOLIDAYS[$year];
+        } catch (RuntimeException) {
+            throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
 
-        if (! isset($holidayDates[$year])) {
-            return $dates;
+        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+        $end = $start->addDays(2);
+
+        return CarbonPeriod::create($start, '1 day', $end);
+    }
+
+    protected function ashura(int $year): CarbonPeriod
+    {
+        try {
+            $date = self::ASHURA_HOLIDAYS[$year];
+        } catch (RuntimeException) {
+            throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
 
-        $startDay = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s', $year, $holidayDates[$year]));
+        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+        $end = $start->addDay();
 
-        if ($duration === 1) {
-            // For single-day holidays, use the holiday name without "Day"
-            $dates[$holidayName] = $startDay;
-        } else {
-            // For multi-day holidays, append "Day N" for the second day onwards
-            for ($i = 0; $i < $duration; $i++) {
-                $dayLabel = $i === 0 ? $holidayName : sprintf('%s Day %d', $holidayName, $i + 1);
-                $dates[$dayLabel] = $startDay->addDays($i);
-            }
-        }
-
-        return $dates;
+        return CarbonPeriod::create($start, '1 day', $end);
     }
 }
