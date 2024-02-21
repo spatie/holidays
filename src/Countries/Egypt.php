@@ -4,10 +4,14 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Egypt extends Country
+class Egypt extends Country implements HasTranslations
 {
+    use Translatable;
+
     protected const EID_AL_FITR_HOLIDAYS = [
         2005 => '11-04',
         2006 => '10-24',
@@ -227,6 +231,11 @@ class Egypt extends Country
     public function countryCode(): string
     {
         return 'eg';
+    }
+
+    public function defaultLocale(): string
+    {
+        return 'en';
     }
 
     protected function allHolidays(int $year): array

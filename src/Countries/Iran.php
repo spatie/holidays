@@ -2,11 +2,21 @@
 
 namespace Spatie\Holidays\Countries;
 
-class Iran extends Country
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
+
+class Iran extends Country implements HasTranslations
 {
+    use Translatable;
+
     public function countryCode(): string
     {
         return 'ir';
+    }
+
+    public function defaultLocale(): string
+    {
+        return 'fa';
     }
 
     protected function allHolidays(int $year): array

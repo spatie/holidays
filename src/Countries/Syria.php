@@ -3,12 +3,21 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 
-class Syria extends Country
+class Syria extends Country implements HasTranslations
 {
+    use Translatable;
+
     public function countryCode(): string
     {
         return 'sy';
+    }
+
+    public function defaultLocale(): string
+    {
+        return 'en';
     }
 
     protected function allHolidays(int $year): array
