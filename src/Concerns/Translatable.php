@@ -8,14 +8,11 @@ trait Translatable
 {
     public function translate(string $country, string $name, ?string $locale = null): string
     {
-        if ($locale === null) {
-            return $name;
-
-        }
-
         if ($locale === $this->defaultLocale()) {
             return $name;
         }
+
+        $locale = $locale ?? $this->defaultLocale();
 
         $countryName = strtolower($country);
         $filePath = __DIR__."/../../lang/{$countryName}/{$locale}/holidays.json";
@@ -23,7 +20,7 @@ trait Translatable
         if (file_exists($filePath)) {
             $content = file_get_contents($filePath);
         } else {
-            throw InvalidLocale::notFound($country, $locale);
+            return $name;
         }
 
         if ($content === false) {
@@ -33,10 +30,6 @@ trait Translatable
         /** @var array<string, string> $data */
         $data = json_decode($content, true);
 
-        if (! isset($data[$name])) {
-            return $name;
-        }
-
-        return $data[$name];
+        return $data[$name] ?? $name;
     }
 }

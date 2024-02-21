@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonPeriod;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
@@ -119,5 +120,33 @@ abstract class Country
         if ($year > 2037) {
             throw InvalidYear::yearTooHigh(2038);
         }
+    }
+
+    protected function convertPeriods(
+        array $holidays,
+        string $suffix = 'Day',
+        string $prefix = ''
+    ): array {
+        $result = [];
+
+        foreach ($holidays as $name => $holiday) {
+            if ($holiday instanceof CarbonPeriod) {
+                foreach ($holiday as $index => $day) {
+                    if ($index === 0) {
+                        $formattedSuffix = '';
+                    } else {
+                        $formattedSuffix = " {$suffix} " . $index+1;
+                    }
+
+                    $holidayName = "{$prefix}{$name}{$formattedSuffix}";
+
+                    $result[$holidayName] = $day->toImmutable();
+                }
+            } else {
+                $result[$name] = $holiday;
+            }
+        }
+
+        return $result;
     }
 }

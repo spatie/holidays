@@ -25,25 +25,17 @@ trait IslamicCalendar
         return CarbonPeriod::create($start, '1 day', $end);
     }
 
-    protected function convertPeriods(
-        array $holidays,
-        string $suffix = 'Day',
-        string $prefix = ''
-    ): array {
-        $result = [];
-
-        foreach ($holidays as $name => $holiday) {
-            if ($holiday instanceof CarbonPeriod) {
-                foreach ($holiday as $index => $day) {
-                    $holidayName = "{$prefix}{$name} {$suffix} " . $index+1;
-
-                    $result[$holidayName] = $day->toImmutable();
-                }
-            } else {
-                $result[$name] = $holiday;
-            }
+    public function eidAlAdha(int $year, int $totalDays = 4): CarbonPeriod
+    {
+        try {
+            $date = self::eidAlAdha[$year];
+        } catch (RuntimeException) {
+            throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
 
-        return $result;
+        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        $end = $start->addDays($totalDays-1)->startOfDay();
+
+        return CarbonPeriod::create($start, '1 day', $end);
     }
 }
