@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;

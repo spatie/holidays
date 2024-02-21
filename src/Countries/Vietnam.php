@@ -10,8 +10,8 @@ use Spatie\Holidays\Contracts\HasTranslations;
 
 class Vietnam extends Country implements HasTranslations
 {
-    use Translatable;
     use ChineseCalendar;
+    use Translatable;
 
     public function countryCode(): string
     {
