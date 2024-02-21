@@ -9,11 +9,8 @@ trait Translatable
     public function translate(string $country, string $name, ?string $locale = null): string
     {
         if ($locale === null) {
-            if ($this->defaultLocale()) {
-                $locale = $this->defaultLocale();
-            } else {
-                return $name;
-            }
+            return $name;
+
         }
 
         if ($locale === $this->defaultLocale()) {
