@@ -4,17 +4,17 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Carbon\CarbonPeriod;
 use RuntimeException;
 use Spatie\Holidays\Calendars\IslamicCalendar;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Bahrain extends Country implements HasTranslations
 {
-    use Translatable;
     use IslamicCalendar;
+    use Translatable;
 
     protected const eidAlFitr = [
         2020 => '05-24',

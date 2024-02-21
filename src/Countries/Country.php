@@ -135,7 +135,7 @@ abstract class Country
                     if ($index === 0) {
                         $formattedSuffix = '';
                     } else {
-                        $formattedSuffix = " {$suffix} " . $index+1;
+                        $formattedSuffix = " {$suffix} ".$index + 1;
                     }
 
                     $holidayName = "{$prefix}{$name}{$formattedSuffix}";

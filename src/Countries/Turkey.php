@@ -2,18 +2,12 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
-use Carbon\CarbonInterval;
-use Carbon\CarbonPeriod;
-use RuntimeException;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Contracts\Islamic;
-use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Turkey extends Country implements Islamic, HasTranslations
+class Turkey extends Country implements HasTranslations, Islamic
 {
     use IslamicCalendar;
     use Translatable;
@@ -204,12 +198,12 @@ class Turkey extends Country implements Islamic, HasTranslations
         }
 
         return array_merge([
-            "New Year's Day" => "01-01",
-            "National Sovereignty and Children's Day" => "04-23",
-            "Commemoration of Atatürk, Youth and Sports Day" => "05-19",
-            "Victory Day" => "08-30",
-            "Republic Day Eve" => "10-28",
-            "Republic Day" => "10-29",
+            "New Year's Day" => '01-01',
+            "National Sovereignty and Children's Day" => '04-23',
+            'Commemoration of Atatürk, Youth and Sports Day' => '05-19',
+            'Victory Day' => '08-30',
+            'Republic Day Eve' => '10-28',
+            'Republic Day' => '10-29',
         ], $newHolidays, $this->islamicHolidays($year));
     }
 
