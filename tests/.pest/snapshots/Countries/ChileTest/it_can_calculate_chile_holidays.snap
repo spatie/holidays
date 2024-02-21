@@ -1,0 +1,70 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "S\u00e1bado Santo",
+        "date": "2024-03-30"
+    },
+    {
+        "name": "D\u00eda del Trabajador",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "D\u00eda de las Glorias Navales",
+        "date": "2024-05-21"
+    },
+    {
+        "name": "D\u00eda Nacional de los Pueblos Ind\u00edgenas",
+        "date": "2024-06-20"
+    },
+    {
+        "name": "San Pedro y San Pablo",
+        "date": "2024-06-29"
+    },
+    {
+        "name": "D\u00eda de la Virgen del Carmen",
+        "date": "2024-07-16"
+    },
+    {
+        "name": "Asunci\u00f3n de la Virgen",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Independencia Nacional",
+        "date": "2024-09-18"
+    },
+    {
+        "name": "D\u00eda de las Glorias del Ej\u00e9rcito",
+        "date": "2024-09-19"
+    },
+    {
+        "name": "Feriado a\u00f1adido de Fiestas Patrias",
+        "date": "2024-09-20"
+    },
+    {
+        "name": "Encuentro de Dos Mundos",
+        "date": "2024-10-12"
+    },
+    {
+        "name": "D\u00eda de las Iglesias Evang\u00e9licas",
+        "date": "2024-10-31"
+    },
+    {
+        "name": "D\u00eda de Todos los Santos",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Inmaculada Concepci\u00f3n",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]

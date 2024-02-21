@@ -1,13 +1,6 @@
 name: Tests
 
-on:
-  push:
-    paths:
-      - '**.php'
-      - '.github/workflows/run-tests-pest.yml'
-      - 'phpunit.xml.dist'
-      - 'composer.json'
-      - 'composer.lock'
+on: [push, pull_request]
 
 jobs:
   test:
@@ -16,11 +9,12 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
         php: [8.3, 8.2, 8.1]
         stability: [prefer-lowest, prefer-stable]
+        carbon: [2.72, 3.0]
 
-    name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }} - Carbon ${{ matrix.carbon }}
 
     steps:
       - name: Checkout code
@@ -39,7 +33,9 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Install dependencies
-        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+        run: |
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+          composer require nesbot/carbon:^${{ matrix.carbon }} --${{ matrix.stability }} -W --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
         run: composer show -D

@@ -11,7 +11,7 @@ use Spatie\Holidays\Holidays;
 
 // returns an array of Belgian holidays
 // for the current year
-$holidays = Holidays::for('be')->get(); 
+$holidays = Holidays::for('be')->get();
 ```
 
 ## Support us
@@ -40,21 +40,22 @@ You can get all holidays for a country by using the `get` method.
 
 ```php
 use Spatie\Holidays\Holidays;
-
-// returns an array of Belgian holidays
-// for the current year
-$holidays = Holidays::for('be')->get(); 
-```
-
-Alternatively, you could also pass an instance of `Country` to the `for` method.
-
-```php
-use Spatie\Holidays\Holidays;
 use Spatie\Holidays\Countries\Belgium;
 
 // returns an array of Belgian holidays
 // for the current year
 $holidays = Holidays::for(Belgium::make())->get(); 
+```
+
+Alternatively, you could also pass an [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) code to the `for` method.
+In case of region based holidays, these will not be included. Use a country class instead.
+
+```php
+use Spatie\Holidays\Holidays;
+
+// returns an array of Belgian holidays
+// for the current year
+$holidays = Holidays::for('be')->get();
 ```
 
 ### Getting holidays for a specific year
@@ -66,6 +67,16 @@ use Spatie\Holidays\Holidays;
 
 $holidays = Holidays::for(country: 'be', year: 2024))->get();
 ```
+
+### Getting holidays in a specific language
+
+```php
+use Spatie\Holidays\Holidays;
+
+$holidays = Holidays::for(country: 'be', locale: 'fr'))->get();
+```
+
+If the locale is not supported for a country, an exception will be thrown.
 
 ### Determining if a date is a holiday 
 
@@ -87,6 +98,54 @@ use Spatie\Holidays\Holidays;
 Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
 
+### Determining whether a country is supported
+
+To verify whether a country is supported, you can use the `has` method.
+
+```php
+use Spatie\Holidays\Holidays;
+
+Holidays::has('be'); // true
+Holidays::has('unknown'); // false
+```
+
+## Contributing
+
+This is a community driven package. If you find any errors, please create a pull request with the fix, or at least open an issue.
+
+## Adding a new country
+
+1. Create a new class in the `Countries` directory. It should extend the `Country` class.
+2. Add a test for the new country in the `tests` directory.
+3. Run the tests so a snapshot gets created.
+4. Verify the result in the newly created snapshot is correct.
+5. If the country has multiple languages, add a file in the `lang/` directory.
+
+In case your country has specific rules for calculating holidays,
+for example region specific holidays, you can pass this to the constructor of your country class.
+
+```php
+$holidays = Holidays::for(Germany::make(region: 'DE-BW'))->get();
+```
+
+The value, `DE-BW`, will be passed to the region parameter of the constructor of a country.
+
+```php
+class Germany extends Country
+{
+    protected function __construct(
+        protected ?string $region = null,
+    ) {
+    }
+
+    protected function allHolidays(int $year): array
+    {
+        // Here you can use $this->region (or other variables) to calculate holidays
+    }
+```
+
+Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for more details.
+
 ## Testing
 
 ```bash
@@ -96,10 +155,6 @@ composer test
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
