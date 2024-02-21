@@ -1,0 +1,74 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "1970-01-01"
+    },
+    {
+        "name": "Eid al-Adha Eve",
+        "date": "1970-02-16"
+    },
+    {
+        "name": "Eid al-Adha 1. Day",
+        "date": "1970-02-17"
+    },
+    {
+        "name": "Eid al-Adha 2. Day",
+        "date": "1970-02-18"
+    },
+    {
+        "name": "Eid al-Adha 3. Day",
+        "date": "1970-02-19"
+    },
+    {
+        "name": "Eid al-Adha 4. Day",
+        "date": "1970-02-20"
+    },
+    {
+        "name": "Mother's Day",
+        "date": "1970-03-21"
+    },
+    {
+        "name": "Western Easter",
+        "date": "1970-03-29"
+    },
+    {
+        "name": "Independence Day",
+        "date": "1970-04-17"
+    },
+    {
+        "name": "Labor Day",
+        "date": "1970-05-01"
+    },
+    {
+        "name": "Eastern Easter",
+        "date": "1970-05-03"
+    },
+    {
+        "name": "Martyrs' Day",
+        "date": "1970-05-06"
+    },
+    {
+        "name": "Anniversary of the October War",
+        "date": "1970-10-06"
+    },
+    {
+        "name": "Eid al-Fitr Eve",
+        "date": "1970-11-30"
+    },
+    {
+        "name": "Eid al-Fitr 1. Day",
+        "date": "1970-12-01"
+    },
+    {
+        "name": "Eid al-Fitr 2. Day",
+        "date": "1970-12-02"
+    },
+    {
+        "name": "Eid al-Fitr 3. Day",
+        "date": "1970-12-03"
+    },
+    {
+        "name": "Christmas",
+        "date": "1970-12-25"
+    }
+]
