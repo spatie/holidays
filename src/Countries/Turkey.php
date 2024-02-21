@@ -215,8 +215,13 @@ class Turkey extends Country implements Islamic, HasTranslations
 
     public function islamicHolidays(int $year): array
     {
+        $eidAlFitr = $this->eidAlFitr($year);
+        $eidAlAdha = $this->eidAlAdha($year);
+
         $holidays = [
+            'Eid al-Fitr Eve' => $eidAlFitr->first()?->subDay()->toImmutable(),
             'Eid al-Fitr' => $this->eidAlFitr($year),
+            'Eid al-Adha Eve' => $eidAlAdha->first()?->subDay()->toImmutable(),
             'Eid al-Adha' => $this->eidAlAdha($year),
         ];
 
