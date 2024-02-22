@@ -3,12 +3,21 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 
-class Montenegro extends Country
+class Montenegro extends Country implements HasTranslations
 {
+    use Translatable;
+
     public function countryCode(): string
     {
         return 'me';
+    }
+
+    public function defaultLocale(): string
+    {
+        return 'sr';
     }
 
     public function allHolidays(int $year): array

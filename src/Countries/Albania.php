@@ -3,11 +3,20 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Albania extends Country
+class Albania extends Country implements HasTranslations
 {
+    use Translatable;
+
     public function countryCode(): string
+    {
+        return 'al';
+    }
+
+    public function defaultLocale(): string
     {
         return 'al';
     }
