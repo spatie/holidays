@@ -2,16 +2,25 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Concerns\IslamicHolidays;
+use Spatie\Holidays\Concerns\WeekendHolidays;
+use Spatie\Holidays\Contracts\HasTranslations;
 
-class Jordan extends Country
+class Jordan extends Country implements HasTranslations
 {
+    use IslamicHolidays, WeekendHolidays, Translatable;
     public function countryCode(): string
     {
         return 'jo';
     }
 
-    /** @return array<string, CarbonImmutable> */
+    public function defaultLocale(): string
+    {
+        return 'en';
+    }
+
     protected function allHolidays(int $year): array
     {
         return array_merge([
@@ -22,11 +31,13 @@ class Jordan extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $easter = CarbonImmutable::createFromTimestamp(easter_date($year))->setTimezone('Asia/Amman');
+        $this->setTheWeekendDays([CarbonInterface::FRIDAY, CarbonInterface::SATURDAY]);
+        $weekendHolidays = $this->getWeekendHolidays($year);
 
-        return [];
+        $islamicHolidays = $this->getIslamicHolidays($year);
+
+        return [...$islamicHolidays, ...$weekendHolidays];
     }
 }

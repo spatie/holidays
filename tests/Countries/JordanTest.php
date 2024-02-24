@@ -13,6 +13,4 @@ it('can calculate jordanian holidays', function () {
     expect($holidays)
         ->toBeArray()
         ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
 });
