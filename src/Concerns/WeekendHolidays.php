@@ -25,7 +25,6 @@ trait WeekendHolidays
     /**
      * @param int $year
      * @return array
-     * @throws RuntimeException
      */
     protected function getWeekendHolidays(int $year): array
     {
