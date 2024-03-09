@@ -1,0 +1,62 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2022-01-01"
+    },
+    {
+        "name": "Chinese New Year Day 1",
+        "date": "2022-02-01"
+    },
+    {
+        "name": "Chinese New Year Day 2",
+        "date": "2022-02-02"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2022-04-15"
+    },
+    {
+        "name": "Labor Day",
+        "date": "2022-05-01"
+    },
+    {
+        "name": "Labor Day (Replacement)",
+        "date": "2022-05-02"
+    },
+    {
+        "name": "Hari Raya Pausa",
+        "date": "2022-05-03"
+    },
+    {
+        "name": "Vesak Day",
+        "date": "2022-05-15"
+    },
+    {
+        "name": "Vesak Day (Replacement)",
+        "date": "2022-05-16"
+    },
+    {
+        "name": "Hari Raya Haji",
+        "date": "2022-07-10"
+    },
+    {
+        "name": "Hari Raya Haji (Replacement)",
+        "date": "2022-07-11"
+    },
+    {
+        "name": "National Day",
+        "date": "2022-08-09"
+    },
+    {
+        "name": "Deepavali",
+        "date": "2022-10-24"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2022-12-25"
+    },
+    {
+        "name": "Christmas Day (Replacement)",
+        "date": "2022-12-26"
+    }
+]

@@ -1,0 +1,58 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2023-01-01"
+    },
+    {
+        "name": "New Year's Day (Replacement)",
+        "date": "2023-01-02"
+    },
+    {
+        "name": "Chinese New Year Day 1",
+        "date": "2023-01-22"
+    },
+    {
+        "name": "Chinese New Year Day 2",
+        "date": "2023-01-23"
+    },
+    {
+        "name": "Chinese New Year Day 1 (Replacement)",
+        "date": "2023-01-24"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2023-04-07"
+    },
+    {
+        "name": "Hari Raya Pausa",
+        "date": "2023-04-22"
+    },
+    {
+        "name": "Labor Day",
+        "date": "2023-05-01"
+    },
+    {
+        "name": "Vesak Day",
+        "date": "2023-06-02"
+    },
+    {
+        "name": "Hari Raya Haji",
+        "date": "2023-06-29"
+    },
+    {
+        "name": "National Day",
+        "date": "2023-08-09"
+    },
+    {
+        "name": "Deepavali",
+        "date": "2023-11-12"
+    },
+    {
+        "name": "Deepavali (Replacement)",
+        "date": "2023-11-13"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2023-12-25"
+    }
+]

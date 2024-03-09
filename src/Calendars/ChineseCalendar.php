@@ -9,6 +9,7 @@ use IntlDateFormatter;
 trait ChineseCalendar
 {
     protected string $chineseCalendarTimezone = 'Asia/Shanghai';
+    protected string $chineseLocale = 'zh-SG';
 
     public function setChineseCalendarTimezone(string $chineseCalendarTimezone): static
     {
@@ -17,19 +18,26 @@ trait ChineseCalendar
         return $this;
     }
 
+    public function setChineseLocale(string $chineseLocale): static
+    {
+        $this->chineseLocale = $chineseLocale;
+
+        return $this;
+    }
+
     protected function chineseToGregorianDate(string $input, int $year): CarbonImmutable
     {
-        $timestamp = (int) $this->getFormatter()->parse($year.'-'.$input);
+        $timestamp = (int) $this->getChineseFormatter()->parse($year.'-'.$input);
 
         return (new CarbonImmutable())
             ->setTimeStamp($timestamp)
             ->setTimezone(new DateTimeZone($this->chineseCalendarTimezone));
     }
 
-    protected function getFormatter(): IntlDateFormatter
+    protected function getChineseFormatter(): IntlDateFormatter
     {
         return new IntlDateFormatter(
-            locale: 'zh-CN@calendar=chinese',
+            locale: $this->chineseLocale . '@calendar=chinese',
             dateType: IntlDateFormatter::SHORT,
             timeType: IntlDateFormatter::NONE,
             timezone: $this->chineseCalendarTimezone,
