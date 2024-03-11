@@ -3,8 +3,8 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
 class Morocco extends Country implements HasTranslations
@@ -50,7 +50,6 @@ class Morocco extends Country implements HasTranslations
          * of these holidays throughout the year.
          */
 
-
         // Define Islamic holidays on the Hijri calendar
         $islamicHolidaysOnHijri = [
             'Islamic New Year' => '01-01',
@@ -65,19 +64,22 @@ class Morocco extends Country implements HasTranslations
         $islamicHolidaysOnGregorian = [];
         // Convert Hijri dates to Gregorian and filter based on the input year
         foreach ($islamicHolidaysOnHijri as $holidayTitle => $hijriHolidayDate) {
-            list($hijriHolidayMonth, $hijriHolidayDay) = explode('-', $hijriHolidayDate);
+            [$hijriHolidayMonth, $hijriHolidayDay] = explode('-', $hijriHolidayDate);
             $vlideYear = null;
+
+            $GregorianDate = $this->islamicToGregorian($currentHijriYear, (int) $hijriHolidayMonth, (int) $hijriHolidayDay);
+            $vlideYear = $GregorianDate['year'];
             $tempCurrentHijriYear = $currentHijriYear;
             while ($vlideYear != $year) {
                 // Convert the current Hijri holiday to Gregorian
-                $GregorianDate = $this->islamicToGregorian($tempCurrentHijriYear--, $hijriHolidayMonth, $hijriHolidayDay);
+                $GregorianDate = $this->islamicToGregorian($tempCurrentHijriYear--, (int) $hijriHolidayMonth, (int) $hijriHolidayDay);
                 $vlideYear = $GregorianDate['year'];
                 if ($vlideYear < 1976) {
                     throw InvalidYear::yearTooLow(1976);
                 }
             }
             // Store the Gregorian date of the Islamic holiday
-            $islamicHolidaysOnGregorian[$holidayTitle]  = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day']));
+            $islamicHolidaysOnGregorian[$holidayTitle] = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day']));
         }
 
         return $islamicHolidaysOnGregorian;
@@ -88,13 +90,13 @@ class Morocco extends Country implements HasTranslations
      * This function is adapted from the conversion tool used on the Moroccan
      * Minister of Endowments and Islamic Affairs official website.
      * https://www.habous.gov.ma/محول-التاريخ
-     * 
-     * @param int $y The Hijri year.
-     * @param int $m The Hijri month.
-     * @param int $d The Hijri day.
-     * @return array An array containing the corresponding Gregorian date in the format ['year' => YYYY, 'month' => MM, 'day' => DD].
+     *
+     * @param  int  $y  The Hijri year.
+     * @param  int  $m  The Hijri month.
+     * @param  int  $d  The Hijri day.
+     * @return array{year: int, month: int, day: int} An array containing the corresponding Gregorian date in the format ['year' => YYYY, 'month' => MM, 'day' => DD].
      */
-    private function islamicToGregorian($y, $m, $d)
+    private function islamicToGregorian(int $y, int $m, int $d): array
     {
         $delta = 0;
         $jd = $this->intPart((11 * $y + 3) / 30) + 354 * $y + 30 * $m - $this->intPart(($m - 1) / 2) + $d + 1948440 - 385 + $delta;
@@ -123,9 +125,9 @@ class Morocco extends Country implements HasTranslations
         }
 
         return [
-            "year" => $y,
-            "month" => $m,
-            "day" => $d
+            'year' => (int) $y,
+            'month' => (int) $m,
+            'day' => (int) $d,
         ];
     }
 
@@ -133,9 +135,9 @@ class Morocco extends Country implements HasTranslations
      * Rounds a floating-point number to the nearest integer.
      * If the floating-point number is negative, it uses ceil function.
      * If the floating-point number is positive, it uses floor function.
-     * 
-     * @param float $floatNum The floating-point number to be rounded.
-     * @return int The rounded integer value.
+     *
+     * @param  float  $floatNum  The floating-point number to be rounded.
+     * @return float The rounded integer value.
      */
     private function intPart($floatNum)
     {
@@ -144,6 +146,7 @@ class Morocco extends Country implements HasTranslations
             // If negative, round up using ceil
             return ceil($floatNum - 0.0000001);
         }
+
         // If positive or zero, round down using floor
         return floor($floatNum + 0.0000001);
     }

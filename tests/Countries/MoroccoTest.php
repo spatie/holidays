@@ -9,7 +9,7 @@ it('can calculate morocco holidays 2024', function () {
     CarbonImmutable::setTestNowAndTimezone('2024-01-01');
 
     $holidays = Holidays::for(country: 'ma')->get();
-    
+
     expect($holidays)
         ->toBeArray()
         ->not()->toBeEmpty();
