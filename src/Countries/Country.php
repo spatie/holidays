@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 use Carbon\CarbonPeriod;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidCountry;
@@ -124,6 +125,7 @@ abstract class Country
 
     protected function convertPeriods(
         array $holidays,
+        int $year,
         string $suffix = 'Day',
         string $prefix = ''
     ): array {
@@ -131,7 +133,12 @@ abstract class Country
 
         foreach ($holidays as $name => $holiday) {
             if ($holiday instanceof CarbonPeriod) {
+                /** @var CarbonInterface $day */
                 foreach ($holiday as $index => $day) {
+                    if ($day->year !== $year) {
+                        continue;
+                    }
+
                     if ($index === 0) {
                         $formattedSuffix = '';
                     } else {

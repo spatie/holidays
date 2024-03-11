@@ -178,7 +178,7 @@ class Bahrain extends Country implements HasTranslations
             'Birthday of the Prophet Muhammad' => self::prophetMuhammadBirthday[$year],
         ];
 
-        return $this->convertPeriods($holidays);
+        return $this->convertPeriods($holidays, $year);
     }
 
     protected function eidAlAdha(int $year): CarbonPeriod

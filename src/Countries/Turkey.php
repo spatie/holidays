@@ -236,8 +236,8 @@ class Turkey extends Country implements HasTranslations, Islamic
             ]);
 
             $holidays = array_merge($holidays, [
-                'Eid al-Fitr Eve' => $eidAlFitr[1]->first()?->subDay()->toImmutable(),
-                'Eid al-Fitr' => $eidAlFitr[1],
+                '2. Eid al-Fitr Eve' => $eidAlFitr[1]->first()?->subDay()->toImmutable(),
+                '2. Eid al-Fitr' => $eidAlFitr[1],
             ]);
         } else {
             $holidays = array_merge($holidays, [
@@ -246,6 +246,6 @@ class Turkey extends Country implements HasTranslations, Islamic
             ]);
         }
 
-        return $this->convertPeriods($holidays);
+        return $this->convertPeriods($holidays, $year);
     }
 }
