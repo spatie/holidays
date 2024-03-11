@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use GeniusTS\HijriDate\Hijri;
 
 class Morocco extends Country
 {
@@ -30,6 +29,9 @@ class Morocco extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
+        // Calculate the current Hijri year based on the Gregorian year
+        $currentHijriYear = 1444 + ($year - 2022);
+
         /**
          * The following holidays are considered public holidays in Morocco. However, their dates vary each year,
          * as they are based on the Islamic Hijri (lunar) calendar. These holidays do not have a fixed date and
@@ -37,11 +39,6 @@ class Morocco extends Country
          * of these holidays throughout the year.
          */
 
-        // Set default adjustment for Hijri conversion
-        Hijri::setDefaultAdjustment(-1);
-
-        // Get the current Hijri year
-        $currentHijriYear = (int) Hijri::convertToHijri($year . "-01-01")->format('Y');
 
         // Define Islamic holidays on the Hijri calendar
         $islamicHolidaysOnHijri = [
@@ -55,24 +52,85 @@ class Morocco extends Country
         ];
 
         $islamicHolidaysOnGregorian = [];
-
         // Convert Hijri dates to Gregorian and filter based on the input year
         foreach ($islamicHolidaysOnHijri as $holidayTitle => $hijriHolidayDate) {
             list($hijriHolidayMonth, $hijriHolidayDay) = explode('-', $hijriHolidayDate);
-
-            // Convert to Gregorian for the current and next Hijri year
-            $currentGregorianDate = Hijri::convertToGregorian((int)$hijriHolidayDay, (int)$hijriHolidayMonth, (int)$currentHijriYear);
-            $nextHijriYear = $currentHijriYear + 1;
-            $nextGregorianDate = Hijri::convertToGregorian((int)$hijriHolidayDay, (int)$hijriHolidayMonth, (int)$nextHijriYear);
-
-            // Check if the holiday falls in the input year
-            if ($currentGregorianDate->format('Y') == $year) {
-                $islamicHolidaysOnGregorian[$holidayTitle] = $currentGregorianDate->toImmutable();
-            } elseif ($nextGregorianDate->format('Y') == $year) {
-                $islamicHolidaysOnGregorian[$holidayTitle] = $nextGregorianDate->toImmutable();
+            $vlideYear = null;
+            $tempCurrentHijriYear = $currentHijriYear;
+            while ($vlideYear != $year) {
+                // Convert the current Hijri holiday to Gregorian
+                $GregorianDate = $this->islamicToGregorian($tempCurrentHijriYear--, $hijriHolidayMonth, $hijriHolidayDay);
+                $vlideYear = $GregorianDate['year'];
             }
+            // Store the Gregorian date of the Islamic holiday
+            $islamicHolidaysOnGregorian[$holidayTitle]  = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day']));
         }
 
         return $islamicHolidaysOnGregorian;
+    }
+
+    /**
+     * Converts a Hijri date to the corresponding Gregorian date.
+     * This function is adapted from the conversion tool used on the Moroccan
+     * Minister of Endowments and Islamic Affairs official website.
+     * https://www.habous.gov.ma/محول-التاريخ
+     * 
+     * @param int $y The Hijri year.
+     * @param int $m The Hijri month.
+     * @param int $d The Hijri day.
+     * @return array An array containing the corresponding Gregorian date in the format ['year' => YYYY, 'month' => MM, 'day' => DD].
+     */
+    private function islamicToGregorian($y, $m, $d)
+    {
+        $delta = 0;
+        $jd = $this->intPart((11 * $y + 3) / 30) + 354 * $y + 30 * $m - $this->intPart(($m - 1) / 2) + $d + 1948440 - 385 + $delta;
+        if ($jd > 2299160) {
+            $l = $jd + 68569;
+            $n = $this->intPart((4 * $l) / 146097);
+            $l = $l - $this->intPart((146097 * $n + 3) / 4);
+            $i = $this->intPart((4000 * ($l + 1)) / 1461001);
+            $l = $l - $this->intPart((1461 * $i) / 4) + 31;
+            $j = $this->intPart((80 * $l) / 2447);
+            $d = $l - $this->intPart((2447 * $j) / 80);
+            $l = $this->intPart($j / 11);
+            $m = $j + 2 - 12 * $l;
+            $y = 100 * ($n - 49) + $i + $l;
+        } else {
+            $j = $jd + 1402;
+            $k = $this->intPart(($j - 1) / 1461);
+            $l = $j - 1461 * $k;
+            $n = $this->intPart(($l - 1) / 365) - $this->intPart($l / 1461);
+            $i = $l - 365 * $n + 30;
+            $j = $this->intPart((80 * $i) / 2447);
+            $d = $i - $this->intPart((2447 * $j) / 80);
+            $i = $this->intPart($j / 11);
+            $m = $j + 2 - 12 * $i;
+            $y = 4 * $k + $n + $i - 4716;
+        }
+
+        return [
+            "year" => $y,
+            "month" => $m,
+            "day" => $d
+        ];
+    }
+
+    /**
+     * Rounds a floating-point number to the nearest integer.
+     * If the floating-point number is negative, it uses ceil function.
+     * If the floating-point number is positive, it uses floor function.
+     * 
+     * @param float $floatNum The floating-point number to be rounded.
+     * @return int The rounded integer value.
+     */
+    private function intPart($floatNum)
+    {
+        // Check if the floating-point number is negative
+        if ($floatNum < -0.0000001) {
+            // If negative, round up using ceil
+            return ceil($floatNum - 0.0000001);
+        }
+        // If positive or zero, round down using floor
+        return floor($floatNum + 0.0000001);
     }
 }
