@@ -100,6 +100,8 @@ it('can get translated holiday names', function () {
 });
 
 it('default when the locale file is missing', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
     // so we don't need to have a translation file for the language in the Country class
     $holidays = Holidays::for(country: 'be', locale: 'en')->get();
 

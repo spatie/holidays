@@ -212,12 +212,39 @@ class Turkey extends Country implements HasTranslations, Islamic
         $eidAlFitr = $this->eidAlFitr($year);
         $eidAlAdha = $this->eidAlAdha($year);
 
-        $holidays = [
-            'Eid al-Fitr Eve' => $eidAlFitr->first()?->subDay()->toImmutable(),
-            'Eid al-Fitr' => $this->eidAlFitr($year),
-            'Eid al-Adha Eve' => $eidAlAdha->first()?->subDay()->toImmutable(),
-            'Eid al-Adha' => $this->eidAlAdha($year),
-        ];
+        if (is_array($eidAlAdha)) {
+            $holidays = [
+                'Eid al-Adha Eve' => $eidAlAdha[0]->first()?->subDay()->toImmutable(),
+                'Eid al-Adha' => $eidAlAdha[0],
+            ];
+
+            $holidays = array_merge($holidays, [
+                '2. Eid al-Adha Eve' => $eidAlAdha[1]->first()?->subDay()->toImmutable(),
+                '2. Eid al-Adha' => $eidAlAdha[1],
+            ]);
+        } else {
+            $holidays = [
+                'Eid al-Adha Eve' => $eidAlAdha->first()?->subDay()->toImmutable(),
+                'Eid al-Adha' => $eidAlAdha,
+            ];
+        }
+
+        if (is_array($eidAlFitr)) {
+            $holidays = array_merge($holidays, [
+                'Eid al-Fitr Eve' => $eidAlFitr[0]->first()?->subDay()->toImmutable(),
+                'Eid al-Fitr' => $eidAlFitr[0],
+            ]);
+
+            $holidays = array_merge($holidays, [
+                'Eid al-Fitr Eve' => $eidAlFitr[1]->first()?->subDay()->toImmutable(),
+                'Eid al-Fitr' => $eidAlFitr[1],
+            ]);
+        } else {
+            $holidays = array_merge($holidays, [
+                'Eid al-Fitr Eve' => $eidAlFitr->first()?->subDay()->toImmutable(),
+                'Eid al-Fitr' => $eidAlFitr,
+            ]);
+        }
 
         return $this->convertPeriods($holidays);
     }

@@ -8,5 +8,5 @@ interface Islamic
 {
     public function islamicHolidays(int $year): array;
 
-    public function eidAlFitr(int $year): CarbonPeriod;
+    public function eidAlFitr(int $year): CarbonPeriod|array;
 }
