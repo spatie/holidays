@@ -3,12 +3,22 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Morocco extends Country
+class Morocco extends Country implements HasTranslations
 {
+    use Translatable;
+
     public function countryCode(): string
     {
         return 'ma';
+    }
+
+    public function defaultLocale(): string
+    {
+        return 'en';
     }
 
     protected function allHolidays(int $year): array
@@ -22,6 +32,7 @@ class Morocco extends Country
             'Oued Ed-Dahab Day' => '08-14',
             'Revolution Day' => '08-20',
             'Youth Day' => '08-21',
+            'Green March' => '11-06',
             'Independence Day' => '11-18',
         ], $this->variableHolidays($year));
     }
@@ -61,6 +72,9 @@ class Morocco extends Country
                 // Convert the current Hijri holiday to Gregorian
                 $GregorianDate = $this->islamicToGregorian($tempCurrentHijriYear--, $hijriHolidayMonth, $hijriHolidayDay);
                 $vlideYear = $GregorianDate['year'];
+                if ($vlideYear < 1976) {
+                    throw InvalidYear::yearTooLow(1976);
+                }
             }
             // Store the Gregorian date of the Islamic holiday
             $islamicHolidaysOnGregorian[$holidayTitle]  = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day']));
