@@ -4,7 +4,6 @@ namespace Spatie\Holidays\Calendars;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
-use RuntimeException;
 use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
@@ -50,7 +49,7 @@ trait IslamicCalendar
 
         foreach ($dates as $date) {
             $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
-            $end = $start->addDays($totalDays-1)->startOfDay();
+            $end = $start->addDays($totalDays - 1)->startOfDay();
             $periods[] = CarbonPeriod::create($start, '1 day', $end);
         }
 
@@ -60,7 +59,7 @@ trait IslamicCalendar
     protected function getOverlapping(array $collection, int $year, $totalDays): ?string
     {
         try {
-            $date = $collection[$year-1];
+            $date = $collection[$year - 1];
         } catch (\Exception) {
             throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
@@ -70,7 +69,7 @@ trait IslamicCalendar
         }
 
         $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
-        $end = $start->addDays($totalDays-1)->startOfDay();
+        $end = $start->addDays($totalDays - 1)->startOfDay();
 
         if ($end->year !== $year) {
             return $date;
