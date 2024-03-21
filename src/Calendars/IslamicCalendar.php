@@ -33,7 +33,7 @@ trait IslamicCalendar
         $overlap = $this->getOverlapping($collection, $year, $totalDays);
 
         if ($overlap) {
-            $period = $this->createPeriod($overlap, $year -1, $totalDays);
+            $period = $this->createPeriod($overlap, $year - 1, $totalDays);
 
             $date = [$period, $date];
         }
@@ -49,6 +49,7 @@ trait IslamicCalendar
         foreach ($dates as $date) {
             if ($date instanceof CarbonPeriod) {
                 $periods[] = $date;
+
                 continue;
             }
 
@@ -61,7 +62,7 @@ trait IslamicCalendar
     protected function createPeriod(string $date, int $year, int $totalDays): CarbonPeriod
     {
         $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
-        $end = $start->addDays($totalDays -1)->startOfDay();
+        $end = $start->addDays($totalDays - 1)->startOfDay();
 
         return CarbonPeriod::create($start, '1 day', $end);
     }
