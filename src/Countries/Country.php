@@ -3,14 +3,12 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
 abstract class Country
 {
-    use Translatable;
-
     abstract public function countryCode(): string;
 
     /** @return array<string, string|CarbonImmutable> */
@@ -33,7 +31,9 @@ abstract class Country
                 }
             }
 
-            $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);
+            if ($this instanceof HasTranslations) {
+                $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);
+            }
 
             $translatedHolidays[$name] = $date;
         }

@@ -46,12 +46,11 @@ trait Observable
 
     protected function observedBoxingDay(int $year): ?CarbonInterface
     {
-        $christmasDay = (new CarbonImmutable($year.'-12-25'))->startOfDay();
-        $boxingDay = $christmasDay->addDay();
+        $boxingDay = (new CarbonImmutable($year.'-12-26'))->startOfDay();
 
-        return match ($christmasDay->dayName) {
-            'Friday' => $boxingDay->next('monday'),
-            'Saturday' => $boxingDay->next('tuesday'),
+        return match ($boxingDay->dayName) {
+            'Saturday' => $boxingDay->next('monday'),
+            'Sunday' => $boxingDay->next('tuesday'),
             default => null,
         };
     }
