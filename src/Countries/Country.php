@@ -150,6 +150,12 @@ abstract class Country
                     $result[$holidayName] = $day->toImmutable();
                 }
             } else {
+                if ($holiday instanceof CarbonInterface) {
+                    if ($holiday->year !== $year) {
+                        continue;
+                    }
+                }
+
                 $result[$name] = $holiday;
             }
         }

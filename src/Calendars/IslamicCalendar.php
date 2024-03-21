@@ -30,17 +30,16 @@ trait IslamicCalendar
             throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
 
-        $overlap = $this->getOverlapping(self::eidAlFitr, $year, $totalDays);
+        $overlap = $this->getOverlapping($collection, $year, $totalDays);
 
         if ($overlap) {
-            $date = [$date, $overlap];
+            $period = $this->createPeriod($overlap, $year -1, $totalDays);
+
+            $date = [$period, $date];
         }
 
         if (! is_array($date)) {
-            $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
-            $end = $start->addDays($totalDays - 1)->startOfDay();
-
-            return CarbonPeriod::create($start, '1 day', $end);
+            return $this->createPeriod($date, $year, $totalDays);
         }
 
         // Twice a year
@@ -48,16 +47,31 @@ trait IslamicCalendar
         $dates = $date;
 
         foreach ($dates as $date) {
-            $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
-            $end = $start->addDays($totalDays - 1)->startOfDay();
-            $periods[] = CarbonPeriod::create($start, '1 day', $end);
+            if ($date instanceof CarbonPeriod) {
+                $periods[] = $date;
+                continue;
+            }
+
+            $periods[] = $this->createPeriod($date, $year, $totalDays);
         }
 
         return $periods;
     }
 
+    protected function createPeriod(string $date, int $year, int $totalDays): CarbonPeriod
+    {
+        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        $end = $start->addDays($totalDays -1)->startOfDay();
+
+        return CarbonPeriod::create($start, '1 day', $end);
+    }
+
     protected function getOverlapping(array $collection, int $year, $totalDays): ?string
     {
+        if ($year === 1970) {
+            return null;
+        }
+
         try {
             $date = $collection[$year - 1];
         } catch (\Exception) {
