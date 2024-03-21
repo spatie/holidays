@@ -124,7 +124,7 @@ abstract class Country
     }
 
     /**
-     * @param array<string, array<CarbonImmutable|CarbonPeriod|string>> $holidays
+     * @param  array<string, array<CarbonImmutable|CarbonPeriod|string>>  $holidays
      * @return array<string, CarbonImmutable>
      */
     protected function convertPeriods(

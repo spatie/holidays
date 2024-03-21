@@ -29,7 +29,7 @@ trait IslamicCalendar
     }
 
     /**
-     * @param array<int, string|array<string>> $collection
+     * @param  array<int, string|array<string>>  $collection
      * @return CarbonPeriod|array<CarbonPeriod>
      */
     protected function getHoliday(array $collection, int $year, int $totalDays): CarbonPeriod|array
