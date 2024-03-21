@@ -22,11 +22,21 @@ trait IslamicCalendar
         return $this->getHoliday(self::eidAlAdha, $year, $totalDays);
     }
 
+    /** @return CarbonPeriod|array<CarbonPeriod> */
+    protected function ashura(int $year, int $totalDays = 2): CarbonPeriod|array
+    {
+        return $this->getHoliday(self::ashura, $year, $totalDays);
+    }
+
+    /**
+     * @param array<int, string|array<string>> $collection
+     * @return CarbonPeriod|array<CarbonPeriod>
+     */
     protected function getHoliday(array $collection, int $year, int $totalDays): CarbonPeriod|array
     {
-        try {
-            $date = $collection[$year];
-        } catch (\Exception) {
+        $date = $collection[$year] ?? null;
+
+        if ($date === null) {
             throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
 
@@ -46,6 +56,7 @@ trait IslamicCalendar
         $periods = [];
         $dates = $date;
 
+        /** @var CarbonPeriod|string $date */
         foreach ($dates as $date) {
             if ($date instanceof CarbonPeriod) {
                 $periods[] = $date;
@@ -67,15 +78,16 @@ trait IslamicCalendar
         return CarbonPeriod::create($start, '1 day', $end);
     }
 
-    protected function getOverlapping(array $collection, int $year, $totalDays): ?string
+    /** @param array<int, string|array<string>> $collection */
+    protected function getOverlapping(array $collection, int $year, int $totalDays): ?string
     {
         if ($year === 1970) {
             return null;
         }
 
-        try {
-            $date = $collection[$year - 1];
-        } catch (\Exception) {
+        $date = $collection[$year - 1] ?? null;
+
+        if ($date === null) {
             throw InvalidYear::range($this->countryCode(), 1970, 2037);
         }
 
@@ -87,7 +99,7 @@ trait IslamicCalendar
         $end = $start->addDays($totalDays - 1)->startOfDay();
 
         if ($end->year !== $year) {
-            return $date;
+            return (string) $date;
         }
 
         return null;

@@ -207,6 +207,7 @@ class Turkey extends Country implements HasTranslations, Islamic
         ], $newHolidays, $this->islamicHolidays($year));
     }
 
+    /** @return array<string, CarbonImmutable> */
     public function islamicHolidays(int $year): array
     {
         $eidAlFitr = $this->eidAlFitr($year);

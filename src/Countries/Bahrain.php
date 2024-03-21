@@ -171,7 +171,7 @@ class Bahrain extends Country implements HasTranslations
     {
         $holidays = [
             'Eid al-Fitr' => $this->eidAlFitr($year),
-            'Eid al-Adha' => $this->eidAlAdha($year),
+            'Eid al-Adha' => $this->eidAlAdha($year, 3),
             'Arafat Day' => self::arafatDay[$year],
             'Islamic New Year' => self::islamicNewYear[$year],
             'Ashura' => $this->ashura($year),
@@ -179,33 +179,5 @@ class Bahrain extends Country implements HasTranslations
         ];
 
         return $this->convertPeriods($holidays, $year);
-    }
-
-    protected function eidAlAdha(int $year): CarbonPeriod
-    {
-        try {
-            $date = self::eidAlAdha[$year];
-        } catch (RuntimeException) {
-            throw InvalidYear::range($this->countryCode(), 1970, 2037);
-        }
-
-        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
-        $end = $start->addDays(2);
-
-        return CarbonPeriod::create($start, '1 day', $end);
-    }
-
-    protected function ashura(int $year): CarbonPeriod
-    {
-        try {
-            $date = self::ashura[$year];
-        } catch (RuntimeException) {
-            throw InvalidYear::range($this->countryCode(), 1970, 2037);
-        }
-
-        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
-        $end = $start->addDay();
-
-        return CarbonPeriod::create($start, '1 day', $end);
     }
 }

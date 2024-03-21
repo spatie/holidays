@@ -123,6 +123,10 @@ abstract class Country
         }
     }
 
+    /**
+     * @param array<string, array<CarbonImmutable|CarbonPeriod|string>> $holidays
+     * @return array<string, CarbonImmutable>
+     */
     protected function convertPeriods(
         array $holidays,
         int $year,
@@ -149,15 +153,17 @@ abstract class Country
 
                     $result[$holidayName] = $day->toImmutable();
                 }
-            } else {
-                if ($holiday instanceof CarbonInterface) {
-                    if ($holiday->year !== $year) {
-                        continue;
-                    }
-                }
 
-                $result[$name] = $holiday;
+                continue;
             }
+
+            if ($holiday instanceof CarbonImmutable) {
+                if ($holiday->year !== $year) {
+                    continue;
+                }
+            }
+
+            $result[$name] = $holiday;
         }
 
         return $result;
