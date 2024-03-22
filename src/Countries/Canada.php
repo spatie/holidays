@@ -31,6 +31,7 @@ class Canada extends Country
     {
         $easter = $this->easter($year);
 
+        /** @var CarbonImmutable $victoriaDay */
         $victoriaDay = (new CarbonImmutable("last monday of May $year"))->startOfDay();
 
         if ($victoriaDay->day < 25) {

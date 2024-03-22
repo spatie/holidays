@@ -3,11 +3,14 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Contracts\Islamic;
 
-class Syria extends Country implements HasTranslations
+class Syria extends Country implements HasTranslations, Islamic
 {
+    use IslamicCalendar;
     use Translatable;
 
     public function countryCode(): string
@@ -22,6 +25,7 @@ class Syria extends Country implements HasTranslations
 
     protected function allHolidays(int $year): array
     {
+        // @todo the islamic holidays should be calculated
         return array_merge([
             "New Year\n's Day" => '01-01',
             "Mother\n's Day" => '03-21',
@@ -37,13 +41,20 @@ class Syria extends Country implements HasTranslations
             'The commemoration of the birth of the Prophet Muhammad' => '09-15',
             'The October Liberation War' => '10-06',
             'Christmas' => '12-25',
-        ], $this->variableHolidays($year));
+        ],
+            $this->variableHolidays($year),
+            $this->islamicHolidays($year),
+        );
     }
 
     /** @return array<string, string|CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        // The variable holidays all follow the lunar calendar, so their dates are not confirmed.
         return [];
+    }
+
+    public function islamicHolidays(int $year): array
+    {
+        return []; // @todo
     }
 }
