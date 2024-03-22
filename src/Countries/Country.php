@@ -135,9 +135,9 @@ abstract class Country
      * @return array<string, CarbonImmutable>
      */
     protected function convertPeriods(
-        CarbonPeriod $period,
-        int $year,
         string $name,
+        int $year,
+        CarbonPeriod $period,
         string $suffix = 'Day',
         string $prefix = '',
         bool $includeEve = false,

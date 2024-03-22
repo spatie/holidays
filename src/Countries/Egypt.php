@@ -315,9 +315,9 @@ class Egypt extends Country implements HasTranslations, Islamic
                 'Islamic New Year' => $this->islamicNewYear($year),
                 'Birthday of the Prophet Muhammad' => $this->prophetMuhammadBirthday($year),
             ],
-            $this->convertPeriods($eidAlAdha[0], $year, 'Eid al-Adha'),
-            $this->convertPeriods($eidAlFitr[0], $year, 'Eid al-Fitr'),
-            $this->convertPeriods($ashura[0], $year, 'Ashura'),
+            $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0]),
+            $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0]),
+            $this->convertPeriods('Ashura', $year, $ashura[0]),
         );
     }
 
