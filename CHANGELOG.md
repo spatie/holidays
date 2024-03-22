@@ -2,6 +2,21 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.8.0 - 2024-03-08
+
+### What's Changed
+
+* Adding holidays for Bahrain by @bo3bdo in https://github.com/spatie/holidays/pull/206
+* Add default locale by @Nielsvanpach in https://github.com/spatie/holidays/pull/208
+* Fix: Canada Victoria Day correction in test and calculation by @mercury64 in https://github.com/spatie/holidays/pull/211
+
+### New Contributors
+
+* @bo3bdo made their first contribution in https://github.com/spatie/holidays/pull/206
+* @mercury64 made their first contribution in https://github.com/spatie/holidays/pull/211
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.7.0...1.8.0
+
 ## 1.7.0 - 2024-02-08
 
 ### What's Changed
