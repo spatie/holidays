@@ -5,15 +5,18 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Carbon\Exceptions\InvalidFormatException;
+use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Egypt extends Country implements HasTranslations
+class Egypt extends Country implements HasTranslations, Islamic
 {
+    use IslamicCalendar;
     use Translatable;
 
-    protected const EID_AL_FITR_HOLIDAYS = [
+    protected const eidAlFitr = [
         2005 => '11-04',
         2006 => '10-24',
         2007 => '10-13',
@@ -49,7 +52,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '11-09',
     ];
 
-    protected const ARAFAT_DAY_HOLIDAYS = [
+    protected const arafat = [
         2005 => '01-21',
         2006 => '01-10',
         2007 => '01-01',
@@ -85,7 +88,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '01-26',
     ];
 
-    protected const EID_AL_ADHA_HOLIDAYS = [
+    protected const eidAlAdha = [
         2005 => '01-22',
         2006 => '01-11',
         2007 => '01-02',
@@ -121,7 +124,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '01-27',
     ];
 
-    protected const ISLAMIC_NEW_YEAR_HOLIDAYS = [
+    protected const islamicNewYear = [
         2005 => '02-10',
         2006 => '01-31',
         2007 => '01-20',
@@ -157,7 +160,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '02-17',
     ];
 
-    protected const ASHURA_HOLIDAYS = [
+    protected const ashura = [
         2005 => '02-19',
         2006 => '02-09',
         2007 => '01-29',
@@ -193,7 +196,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '02-25',
     ];
 
-    protected const PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS = [
+    protected const prophetMuhammadBirthday = [
         2005 => '04-21',
         2006 => '04-11',
         2007 => '03-31',
@@ -262,12 +265,12 @@ class Egypt extends Country implements HasTranslations
     {
         $orthodoxEaster = $this->orthodoxEaster($year);
 
-        $eidAlFitrDates = $this->getIslamicHolidayDatesForYear(self::EID_AL_FITR_HOLIDAYS, $year, 'Eid al-Fitr', 3);
-        $eidAlAdhaDates = $this->getIslamicHolidayDatesForYear(self::EID_AL_ADHA_HOLIDAYS, $year, 'Eid al-Adha', 4);
-        $arafatDayDates = $this->getIslamicHolidayDatesForYear(self::ARAFAT_DAY_HOLIDAYS, $year, 'Arafat Day');
-        $islamicNewYearDates = $this->getIslamicHolidayDatesForYear(self::ISLAMIC_NEW_YEAR_HOLIDAYS, $year, 'Islamic New Year');
-        $ashuraDates = $this->getIslamicHolidayDatesForYear(self::ASHURA_HOLIDAYS, $year, 'Ashura');
-        $prophetMuhammadBirthdayDates = $this->getIslamicHolidayDatesForYear(self::PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS, $year, 'Birthday of the Prophet Muhammad');
+        $eidAlFitrDates = $this->getIslamicHolidayDatesForYear(self::eidAlFitr, $year, 'Eid al-Fitr', 3);
+        $eidAlAdhaDates = $this->getIslamicHolidayDatesForYear(self::eidAlAdha, $year, 'Eid al-Adha', 4);
+        $arafatDayDates = $this->getIslamicHolidayDatesForYear(self::arafat, $year, 'Arafat Day');
+        $islamicNewYearDates = $this->getIslamicHolidayDatesForYear(self::islamicNewYear, $year, 'Islamic New Year');
+        $ashuraDates = $this->getIslamicHolidayDatesForYear(self::ashura, $year, 'Ashura');
+        $prophetMuhammadBirthdayDates = $this->getIslamicHolidayDatesForYear(self::prophetMuhammadBirthday, $year, 'Birthday of the Prophet Muhammad');
 
         return array_merge([
             'Coptic Good Friday' => $orthodoxEaster->subDays(2)->toImmutable(),
@@ -366,5 +369,10 @@ class Egypt extends Country implements HasTranslations
         }
 
         return $adjustedHolidays;
+    }
+
+    public function islamicHolidays(int $year): array
+    {
+        // TODO: Implement islamicHolidays() method.
     }
 }
