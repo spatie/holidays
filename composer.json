@@ -28,7 +28,7 @@
         "laravel/pint": "^1.0",
         "laravel/prompts": "^0.1.15",
         "pestphp/pest": "^2.31",
-        "phpstan/phpstan": "^1.10.56",
+        "phpstan/phpstan": "1.10.60",
         "spatie/invade": "^2.0",
         "spatie/ray": "^1.40.1",
         "symfony/var-dumper": "^6.4"
