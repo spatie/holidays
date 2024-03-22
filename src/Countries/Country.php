@@ -143,7 +143,7 @@ abstract class Country
             $eve = $period->first()?->subDay();
 
             if ($eve && $eve->year === $year) {
-                $allDays[$name . ' Eve'] = $eve->toImmutable();
+                $allDays[$name.' Eve'] = $eve->toImmutable();
             }
         }
 
@@ -166,5 +166,4 @@ abstract class Country
 
         return $allDays;
     }
-
 }

@@ -2,8 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Carbon\CarbonPeriod;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
