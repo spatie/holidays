@@ -7,8 +7,9 @@ use Carbon\CarbonPeriod;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Contracts\Islamic;
 
-class Bahrain extends Country implements HasTranslations
+class Bahrain extends Country implements HasTranslations, Islamic
 {
     use IslamicCalendar;
     use Translatable;
@@ -151,30 +152,32 @@ class Bahrain extends Country implements HasTranslations
 
     protected function allHolidays(int $year): array
     {
-        $variableHolidays = $this->variableHolidays($year);
-
         return array_merge([
             'New Year\'s Day' => '1-1',
             'Labour Day' => '5-1',
             'National Day' => '12-16',
             'National Day 2' => '12-17',
-        ], $variableHolidays);
+        ],
+            $this->islamicHolidays($year)
+        );
     }
 
-    /**
-     * @return array<string, CarbonPeriod|string>
-     */
-    protected function variableHolidays(int $year): array
+    public function islamicHolidays(int $year): array
     {
+        $eidAlFitr = $this->eidAlFitr($year);
+        $eidAlAdha = $this->eidAlAdha($year, 3);
+        $ashura = $this->ashura($year);
+
         $holidays = [
-            'Eid al-Fitr' => $this->eidAlFitr($year),
-            'Eid al-Adha' => $this->eidAlAdha($year, 3),
             'Arafat Day' => self::arafatDay[$year],
             'Islamic New Year' => self::islamicNewYear[$year],
-            'Ashura' => $this->ashura($year),
             'Birthday of the Prophet Muhammad' => self::prophetMuhammadBirthday[$year],
         ];
 
-        return $this->convertPeriods($holidays, $year);
+        return array_merge($holidays,
+            $this->convertPeriods($eidAlAdha[0], $year, 'Eid al-Adha'),
+            $this->convertPeriods($eidAlFitr[0], $year, 'Eid al-Fitr'),
+            $this->convertPeriods($ashura[0], $year, 'Ashura'),
+        );
     }
 }

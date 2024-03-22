@@ -215,19 +215,19 @@ class Turkey extends Country implements HasTranslations, Islamic
         $eidAlAdha = $this->eidAlAdha($year);
 
         $holidays = array_merge(
-            $this->handleCarbonPeriod($eidAlAdha[0], $year, 'Eid al-Adha', includeEve: true),
-            $this->handleCarbonPeriod($eidAlFitr[0], $year, 'Eid al-Fitr', includeEve: true),
+            $this->convertPeriods($eidAlAdha[0], $year, 'Eid al-Adha', includeEve: true),
+            $this->convertPeriods($eidAlFitr[0], $year, 'Eid al-Fitr', includeEve: true),
         );
 
         if (count($eidAlAdha) > 1) {
             $holidays = array_merge($holidays,
-                $this->handleCarbonPeriod($eidAlAdha[1], $year, '2. Eid al-Adha', includeEve: true),
+                $this->convertPeriods($eidAlAdha[1], $year, '2. Eid al-Adha', includeEve: true),
             );
         }
 
         if (count($eidAlFitr) > 1) {
             $holidays = array_merge($holidays,
-                $this->handleCarbonPeriod($eidAlFitr[1], $year, '2. Eid al-Fitr', includeEve: true),
+                $this->convertPeriods($eidAlFitr[1], $year, '2. Eid al-Fitr', includeEve: true),
             );
         }
 

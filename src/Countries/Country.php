@@ -125,61 +125,11 @@ abstract class Country
 
     /**
      * Convert holidays that are represented as CarbonPeriods to an array of CarbonImmutable dates.
-     * This is useful for holidays like Eid-al-Fitr that happen on multiple days.
-     *
-     * @param array<string, string|CarbonImmutable|CarbonPeriod|array<CarbonPeriod>> $holidays
-     * @return array<string, CarbonImmutable|string>
-     */
-    protected function convertPeriods(
-        array $holidays,
-        int $year,
-        string $suffix = 'Day',
-        string $prefix = ''
-    ): array {
-        $allDays = [];
-
-        foreach ($holidays as $name => $holiday) {
-            if (is_string($holiday)) {
-                $allDays[$name] = $holiday;
-
-                continue;
-            }
-
-            if ($holiday instanceof CarbonImmutable) {
-                $allDays[$name] = $holiday;
-
-                continue;
-            }
-
-            if ($holiday instanceof CarbonPeriod) {
-                $allDays = array_merge(
-                    $allDays,
-                    $this->handleCarbonPeriod($holiday, $year, $name, $suffix, $prefix)
-                );
-
-                continue;
-            }
-
-            foreach ($holiday as $day) {
-                if ($day instanceof CarbonPeriod) {
-                    $allDays = array_merge(
-                        $allDays,
-                        $this->handleCarbonPeriod($day, $year, $name, $suffix, $prefix)
-                    );
-                }
-            }
-        }
-
-        return $allDays;
-    }
-
-    /**
-     * Convert holidays that are represented as CarbonPeriods to an array of CarbonImmutable dates.
      * This is useful for holidays like `Eid-al-Fitr` that happen on multiple days.
      *
      * @return array<string, CarbonImmutable>
      */
-    protected function handleCarbonPeriod(
+    protected function convertPeriods(
         CarbonPeriod $period,
         int $year,
         string $name,
