@@ -34,7 +34,7 @@ it('can calculate victory day for republic of srpska in bosnia and herzegovina h
 });
 
 it('can translate holidays into english', function () {
-    $holidays = Holidays::for(country: 'ba', locale: 'en', year: 2024)->get();
+    $holidays = Holidays::for(country: 'ba', year: 2024, locale: 'en')->get();
 
     expect($holidays)
         ->toBeArray()

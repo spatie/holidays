@@ -3,11 +3,15 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 
-class BosniaAndHerzegovina extends Country
+class BosniaAndHerzegovina extends Country implements HasTranslations
 {
-    private const REGIONS = [
+    use Translatable;
+
+    protected const REGIONS = [
         'ba-rs',
         'ba-fbih',
         'ba-bd',
@@ -23,6 +27,11 @@ class BosniaAndHerzegovina extends Country
     public function countryCode(): string
     {
         return 'ba';
+    }
+
+    public function defaultLocale(): string
+    {
+        return 'hr';
     }
 
     protected function allHolidays(int $year): array
