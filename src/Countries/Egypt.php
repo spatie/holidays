@@ -4,15 +4,18 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Egypt extends Country implements HasTranslations
+class Egypt extends Country implements HasTranslations, Islamic
 {
+    use IslamicCalendar;
     use Translatable;
 
-    protected const EID_AL_FITR_HOLIDAYS = [
+    protected const eidAlFitr = [
         2005 => '11-04',
         2006 => '10-24',
         2007 => '10-13',
@@ -48,7 +51,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '11-09',
     ];
 
-    protected const ARAFAT_DAY_HOLIDAYS = [
+    protected const arafat = [
         2005 => '01-21',
         2006 => '01-10',
         2007 => '01-01',
@@ -84,7 +87,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '01-26',
     ];
 
-    protected const EID_AL_ADHA_HOLIDAYS = [
+    protected const eidAlAdha = [
         2005 => '01-22',
         2006 => '01-11',
         2007 => '01-02',
@@ -120,7 +123,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '01-27',
     ];
 
-    protected const ISLAMIC_NEW_YEAR_HOLIDAYS = [
+    protected const islamicNewYear = [
         2005 => '02-10',
         2006 => '01-31',
         2007 => '01-20',
@@ -156,7 +159,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '02-17',
     ];
 
-    protected const ASHURA_HOLIDAYS = [
+    protected const ashura = [
         2005 => '02-19',
         2006 => '02-09',
         2007 => '01-29',
@@ -192,7 +195,7 @@ class Egypt extends Country implements HasTranslations
         2037 => '02-25',
     ];
 
-    protected const PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS = [
+    protected const prophetMuhammadBirthday = [
         2005 => '04-21',
         2006 => '04-11',
         2007 => '03-31',
@@ -240,9 +243,6 @@ class Egypt extends Country implements HasTranslations
 
     protected function allHolidays(int $year): array
     {
-        $fixedHolidays = $this->fixedHolidays($year);
-        $variableHolidays = $this->variableHolidays($year);
-
         return array_merge([
             'New Year\'s Day' => '1-1',
             'Flooding of the Nile' => '8-15',
@@ -251,71 +251,23 @@ class Egypt extends Country implements HasTranslations
             'Nayrouz' => '9-11',
             'September Equinox' => '9-22',
             'December Solstice' => '12-21',
-        ], $fixedHolidays, $variableHolidays);
+        ],
+            $this->fixedHolidays($year),
+            $this->variableHolidays($year),
+            $this->islamicHolidays($year),
+        );
     }
 
-    /**
-     * @return array<string, CarbonInterface>
-     */
+    /** @return array<string, CarbonInterface> */
     protected function variableHolidays(int $year): array
     {
         $orthodoxEaster = $this->orthodoxEaster($year);
 
-        $eidAlFitrDates = $this->getIslamicHolidayDatesForYear(self::EID_AL_FITR_HOLIDAYS, $year, 'Eid al-Fitr', 3);
-        $eidAlAdhaDates = $this->getIslamicHolidayDatesForYear(self::EID_AL_ADHA_HOLIDAYS, $year, 'Eid al-Adha', 4);
-        $arafatDayDates = $this->getIslamicHolidayDatesForYear(self::ARAFAT_DAY_HOLIDAYS, $year, 'Arafat Day');
-        $islamicNewYearDates = $this->getIslamicHolidayDatesForYear(self::ISLAMIC_NEW_YEAR_HOLIDAYS, $year, 'Islamic New Year');
-        $ashuraDates = $this->getIslamicHolidayDatesForYear(self::ASHURA_HOLIDAYS, $year, 'Ashura');
-        $prophetMuhammadBirthdayDates = $this->getIslamicHolidayDatesForYear(self::PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS, $year, 'Birthday of the Prophet Muhammad');
-
-        return array_merge([
+        return [
             'Coptic Good Friday' => $orthodoxEaster->subDays(2)->toImmutable(),
             'Coptic Holy Saturday' => $orthodoxEaster->subDays()->toImmutable(),
             'Coptic Easter Sunday' => $orthodoxEaster->toImmutable(),
-        ], $eidAlFitrDates, $eidAlAdhaDates, $arafatDayDates, $islamicNewYearDates, $ashuraDates, $prophetMuhammadBirthdayDates);
-    }
-
-    /**
-     * Prepare holiday dates for the given year.
-     *
-     * @param  array<int, string>  $holidayDates  Array mapping years to dates.
-     * @param  int  $year  The year for which to prepare holiday dates.
-     * @param  string  $holidayName  The name of the holiday.
-     * @param  int  $duration  The duration of the holiday in days.
-     * @return array<string, CarbonImmutable> An array of holiday dates.
-     */
-    private function getIslamicHolidayDatesForYear(array $holidayDates, int $year, string $holidayName, int $duration = 1): array
-    {
-        $dates = [];
-
-        /**
-         * No reliable sources exist for Islamic holidays observed in Egypt prior to 2005.
-         * So we'll only calculate holidays from 2005 onwards.
-         *
-         * @see https://www.timeanddate.com/holidays/egypt
-         */
-        if ($year < 2005) {
-            throw InvalidYear::yearTooLow(2005);
-        }
-
-        if (! isset($holidayDates[$year])) {
-            return $dates;
-        }
-
-        $startDay = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s', $year, $holidayDates[$year]));
-
-        if ($duration === 1) {
-            // For single-day holidays, use the holiday name without "Day"
-            $dates[$holidayName] = $startDay;
-        } else {
-            // For multi-day holidays, append "Day N" for the second day onwards
-            for ($i = 0; $i < $duration; $i++) {
-                $dayLabel = $i === 0 ? $holidayName : sprintf('%s Day %d', $holidayName, $i + 1);
-                $dates[$dayLabel] = $startDay->addDays($i);
-            }
-        }
-
-        return $dates;
+        ];
     }
 
     /**
@@ -341,9 +293,35 @@ class Egypt extends Country implements HasTranslations
         return $holidays;
     }
 
-    /**
-     * @return array<string, CarbonInterface>
-     */
+    public function islamicHolidays(int $year): array
+    {
+        /**
+         * No reliable sources exist for Islamic holidays observed in Egypt prior to 2005.
+         * So we'll only calculate holidays from 2005 onwards.
+         *
+         * @see https://www.timeanddate.com/holidays/egypt
+         */
+        if ($year < 2005) {
+            throw InvalidYear::yearTooLow(2005);
+        }
+
+        $eidAlFitr = $this->eidAlFitr($year);
+        $eidAlAdha = $this->eidAlAdha($year);
+        $ashura = $this->ashura($year, 1);
+
+        return array_merge(
+            [
+                'Arafat Day' => $this->arafat($year),
+                'Islamic New Year' => $this->islamicNewYear($year),
+                'Birthday of the Prophet Muhammad' => $this->prophetMuhammadBirthday($year),
+            ],
+            $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0]),
+            $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0]),
+            $this->convertPeriods('Ashura', $year, $ashura[0]),
+        );
+    }
+
+    /** @return array<string, CarbonInterface> */
     private function adjustForWeekend(string $name, CarbonImmutable $date): array
     {
         $adjustedHolidays = [];
