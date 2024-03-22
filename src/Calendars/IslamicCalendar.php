@@ -10,29 +10,29 @@ use Spatie\Holidays\Exceptions\InvalidYear;
 /** @mixin Country */
 trait IslamicCalendar
 {
-    /** @return CarbonPeriod|array<CarbonPeriod> */
-    public function eidAlFitr(int $year, int $totalDays = 3): CarbonPeriod|array
+    /** @return array<CarbonPeriod> */
+    public function eidAlFitr(int $year, int $totalDays = 3): array
     {
         return $this->getHoliday(self::eidAlFitr, $year, $totalDays);
     }
 
-    /** @return CarbonPeriod|array<CarbonPeriod> */
-    public function eidAlAdha(int $year, int $totalDays = 4): CarbonPeriod|array
+    /** @return array<CarbonPeriod> */
+    public function eidAlAdha(int $year, int $totalDays = 4): array
     {
         return $this->getHoliday(self::eidAlAdha, $year, $totalDays);
     }
 
-    /** @return CarbonPeriod|array<CarbonPeriod> */
-    protected function ashura(int $year, int $totalDays = 2): CarbonPeriod|array
+    /** @return array<CarbonPeriod> */
+    protected function ashura(int $year, int $totalDays = 2): array
     {
         return $this->getHoliday(self::ashura, $year, $totalDays);
     }
 
     /**
-     * @param  array<int, string|array<string>>  $collection
-     * @return CarbonPeriod|array<CarbonPeriod>
+     * @param  array<string|array<string>>  $collection
+     * @return array<CarbonPeriod>
      */
-    protected function getHoliday(array $collection, int $year, int $totalDays): CarbonPeriod|array
+    protected function getHoliday(array $collection, int $year, int $totalDays): array
     {
         $date = $collection[$year] ?? null;
 
@@ -49,7 +49,7 @@ trait IslamicCalendar
         }
 
         if (! is_array($date)) {
-            return $this->createPeriod($date, $year, $totalDays);
+            return [$this->createPeriod($date, $year, $totalDays)];
         }
 
         // Twice a year
@@ -78,7 +78,7 @@ trait IslamicCalendar
         return CarbonPeriod::create($start, '1 day', $end);
     }
 
-    /** @param array<int, string|array<string>> $collection */
+    /** @param array<string|array<string>> $collection */
     protected function getOverlapping(array $collection, int $year, int $totalDays): ?string
     {
         if ($year === 1970) {

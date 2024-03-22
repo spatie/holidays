@@ -124,8 +124,11 @@ abstract class Country
     }
 
     /**
-     * @param  array<string, array<CarbonImmutable|CarbonPeriod|string>>  $holidays
-     * @return array<string, CarbonImmutable>
+     * Convert holidays that are represented as CarbonPeriods to an array of CarbonImmutable dates.
+     * This is useful for holidays like Eid-al-Fitr that happen on multiple days.
+     *
+     * @param array<string, string|CarbonImmutable|CarbonPeriod|array<CarbonPeriod>> $holidays
+     * @return array<string, CarbonImmutable|string>
      */
     protected function convertPeriods(
         array $holidays,
@@ -133,39 +136,85 @@ abstract class Country
         string $suffix = 'Day',
         string $prefix = ''
     ): array {
-        $result = [];
+        $allDays = [];
 
         foreach ($holidays as $name => $holiday) {
-            if ($holiday instanceof CarbonPeriod) {
-                /** @var CarbonInterface $day */
-                foreach ($holiday as $index => $day) {
-                    if ($day->year !== $year) {
-                        continue;
-                    }
-
-                    if ($index === 0) {
-                        $formattedSuffix = '';
-                    } else {
-                        $formattedSuffix = " {$suffix} ".$index + 1;
-                    }
-
-                    $holidayName = "{$prefix}{$name}{$formattedSuffix}";
-
-                    $result[$holidayName] = $day->toImmutable();
-                }
+            if (is_string($holiday)) {
+                $allDays[$name] = $holiday;
 
                 continue;
             }
 
             if ($holiday instanceof CarbonImmutable) {
-                if ($holiday->year !== $year) {
-                    continue;
-                }
+                $allDays[$name] = $holiday;
+
+                continue;
             }
 
-            $result[$name] = $holiday;
+            if ($holiday instanceof CarbonPeriod) {
+                $allDays = array_merge(
+                    $allDays,
+                    $this->handleCarbonPeriod($holiday, $year, $name, $suffix, $prefix)
+                );
+
+                continue;
+            }
+
+            foreach ($holiday as $day) {
+                if ($day instanceof CarbonPeriod) {
+                    $allDays = array_merge(
+                        $allDays,
+                        $this->handleCarbonPeriod($day, $year, $name, $suffix, $prefix)
+                    );
+                }
+            }
         }
 
-        return $result;
+        return $allDays;
     }
+
+    /**
+     * Convert holidays that are represented as CarbonPeriods to an array of CarbonImmutable dates.
+     * This is useful for holidays like `Eid-al-Fitr` that happen on multiple days.
+     *
+     * @return array<string, CarbonImmutable>
+     */
+    protected function handleCarbonPeriod(
+        CarbonPeriod $period,
+        int $year,
+        string $name,
+        string $suffix = 'Day',
+        string $prefix = '',
+        bool $includeEve = false,
+    ): array {
+        $allDays = [];
+
+        if ($includeEve) {
+            $eve = $period->first()?->subDay();
+
+            if ($eve && $eve->year === $year) {
+                $allDays[$name . ' Eve'] = $eve->toImmutable();
+            }
+        }
+
+        /** @var CarbonInterface $day */
+        foreach ($period as $index => $day) {
+            if ($day->year !== $year) {
+                continue; // Lunar based holidays can overlap in 2 years
+            }
+
+            if ($index > 0) {
+                $formattedSuffix = " {$suffix} ".$index + 1;
+            } else {
+                $formattedSuffix = '';
+            }
+
+            $holidayName = "{$prefix}{$name}{$formattedSuffix}";
+
+            $allDays[$holidayName] = $day->toImmutable();
+        }
+
+        return $allDays;
+    }
+
 }

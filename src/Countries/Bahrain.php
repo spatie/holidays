@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonInterface;
+use Carbon\CarbonPeriod;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
@@ -161,7 +162,7 @@ class Bahrain extends Country implements HasTranslations
     }
 
     /**
-     * @return array<string, CarbonInterface>
+     * @return array<string, CarbonPeriod|string>
      */
     protected function variableHolidays(int $year): array
     {

@@ -1,13 +1,23 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Argument of an invalid type Carbon\\\\CarbonPeriod supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Countries/Country.php
+
+		-
 			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Ternary operator condition is always true\\.$#"
-			count: 3
+			message: "#^Binary operation \"\\+\" between non\\-falsy\\-string and 1 results in an error\\.$#"
+			count: 1
+			path: src/Countries/Country.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:ashura\\.$#"
+			count: 1
 			path: src/Countries/Turkey.php
 
 		-

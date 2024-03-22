@@ -2,6 +2,8 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
+use Carbon\CarbonPeriod;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
@@ -207,46 +209,28 @@ class Turkey extends Country implements HasTranslations, Islamic
         ], $newHolidays, $this->islamicHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
     public function islamicHolidays(int $year): array
     {
         $eidAlFitr = $this->eidAlFitr($year);
         $eidAlAdha = $this->eidAlAdha($year);
 
-        if (is_array($eidAlAdha)) {
-            $holidays = [
-                'Eid al-Adha Eve' => $eidAlAdha[0]->first()?->subDay()->toImmutable(),
-                'Eid al-Adha' => $eidAlAdha[0],
-            ];
+        $holidays = array_merge(
+            $this->handleCarbonPeriod($eidAlAdha[0], $year, 'Eid al-Adha', includeEve: true),
+            $this->handleCarbonPeriod($eidAlFitr[0], $year, 'Eid al-Fitr', includeEve: true),
+        );
 
-            $holidays = array_merge($holidays, [
-                '2. Eid al-Adha Eve' => $eidAlAdha[1]->first()?->subDay()->toImmutable(),
-                '2. Eid al-Adha' => $eidAlAdha[1],
-            ]);
-        } else {
-            $holidays = [
-                'Eid al-Adha Eve' => $eidAlAdha->first()?->subDay()->toImmutable(),
-                'Eid al-Adha' => $eidAlAdha,
-            ];
+        if (count($eidAlAdha) > 1) {
+            $holidays = array_merge($holidays,
+                $this->handleCarbonPeriod($eidAlAdha[1], $year, '2. Eid al-Adha', includeEve: true),
+            );
         }
 
-        if (is_array($eidAlFitr)) {
-            $holidays = array_merge($holidays, [
-                'Eid al-Fitr Eve' => $eidAlFitr[0]->first()?->subDay()->toImmutable(),
-                'Eid al-Fitr' => $eidAlFitr[0],
-            ]);
-
-            $holidays = array_merge($holidays, [
-                '2. Eid al-Fitr Eve' => $eidAlFitr[1]->first()?->subDay()->toImmutable(),
-                '2. Eid al-Fitr' => $eidAlFitr[1],
-            ]);
-        } else {
-            $holidays = array_merge($holidays, [
-                'Eid al-Fitr Eve' => $eidAlFitr->first()?->subDay()->toImmutable(),
-                'Eid al-Fitr' => $eidAlFitr,
-            ]);
+        if (count($eidAlFitr) > 1) {
+            $holidays = array_merge($holidays,
+                $this->handleCarbonPeriod($eidAlFitr[1], $year, '2. Eid al-Fitr', includeEve: true),
+            );
         }
 
-        return $this->convertPeriods($holidays, $year);
+        return $holidays;
     }
 }
