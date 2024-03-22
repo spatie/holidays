@@ -1,0 +1,46 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2030-01-01"
+    },
+    {
+        "name": "Day after New Year's Day",
+        "date": "2030-01-02"
+    },
+    {
+        "name": "Waitangi Day",
+        "date": "2030-02-06"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2030-04-19"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2030-04-22"
+    },
+    {
+        "name": "ANZAC Day",
+        "date": "2030-04-25"
+    },
+    {
+        "name": "King's Birthday",
+        "date": "2030-06-03"
+    },
+    {
+        "name": "Matariki",
+        "date": "2030-06-21"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2030-10-28"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2030-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2030-12-26"
+    }
+]

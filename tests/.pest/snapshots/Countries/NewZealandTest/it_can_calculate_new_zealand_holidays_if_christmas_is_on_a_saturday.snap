@@ -1,0 +1,46 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2027-01-01"
+    },
+    {
+        "name": "Day after New Year's Day (Mondayisation)",
+        "date": "2027-01-04"
+    },
+    {
+        "name": "Waitangi Day (Mondayisation)",
+        "date": "2027-02-08"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2027-03-26"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2027-03-29"
+    },
+    {
+        "name": "ANZAC Day (Mondayisation)",
+        "date": "2027-04-26"
+    },
+    {
+        "name": "King's Birthday",
+        "date": "2027-06-07"
+    },
+    {
+        "name": "Matariki",
+        "date": "2027-06-25"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2027-10-25"
+    },
+    {
+        "name": "Christmas Day (Mondayisation)",
+        "date": "2027-12-27"
+    },
+    {
+        "name": "Boxing Day (Mondayisation)",
+        "date": "2027-12-28"
+    }
+]

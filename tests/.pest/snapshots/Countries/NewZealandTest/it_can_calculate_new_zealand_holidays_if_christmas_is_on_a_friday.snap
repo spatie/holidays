@@ -1,0 +1,46 @@
+[
+    {
+        "name": "New Year's Day (Mondayisation)",
+        "date": "2028-01-03"
+    },
+    {
+        "name": "Day after New Year's Day (Mondayisation)",
+        "date": "2028-01-04"
+    },
+    {
+        "name": "Waitangi Day (Mondayisation)",
+        "date": "2028-02-07"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2028-04-14"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2028-04-17"
+    },
+    {
+        "name": "ANZAC Day",
+        "date": "2028-04-25"
+    },
+    {
+        "name": "King's Birthday",
+        "date": "2028-06-05"
+    },
+    {
+        "name": "Matariki",
+        "date": "2028-07-14"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2028-10-23"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2028-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2028-12-26"
+    }
+]
