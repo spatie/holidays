@@ -3,13 +3,44 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Albania extends Country implements HasTranslations
+class Albania extends Country implements HasTranslations, Islamic
 {
+    use IslamicCalendar;
     use Translatable;
+
+    public const eidAlFitr = [
+        2024 => '04-10',
+        2025 => '03-30',
+        2026 => '03-20',
+        2027 => '03-09',
+        2028 => '02-26',
+        2029 => '02-14',
+        2030 => '02-04',
+        2031 => '01-24',
+        2032 => '01-14',
+        2033 => '01-02',
+        2034 => '12-12',
+    ];
+
+    public const eidAlAdha = [
+        2024 => '06-17',
+        2025 => '06-07',
+        2026 => '05-27',
+        2027 => '05-17',
+        2028 => '05-05',
+        2029 => '04-24',
+        2030 => '04-14',
+        2031 => '04-03',
+        2032 => '03-22',
+        2033 => '03-12',
+        2034 => '03-01',
+    ];
 
     public function countryCode(): string
     {
@@ -33,7 +64,10 @@ class Albania extends Country implements HasTranslations
             'Dita e Çlirimit' => '11-29',
             'Dita Kombëtare e Rinisë' => '12-08',
             'Krishtlindja' => '12-25',
-        ], $this->variableHolidays($year));
+        ],
+            $this->variableHolidays($year),
+            $this->islamicHolidays($year),
+        );
     }
 
     /** @return array<string, CarbonImmutable|string> */
@@ -42,53 +76,22 @@ class Albania extends Country implements HasTranslations
         return array_filter([
             'E diela e Pashkëve Katolike' => $this->easter($year),
             'E diela e Pashkëve Ortodokse' => $this->orthodoxEaster($year),
-            'Dita e Bajramit të Madh' => $this->getEidAlFitrHoliday($year),
-            'Dita e Kurban Bajramit' => $this->getEidAlAdhaHoliday($year),
         ]);
     }
 
-    private function getEidAlFitrHoliday(int $year): string
+    public function islamicHolidays(int $year): array
     {
         /**
          * Provided until 2034 by qppstudio.net.
          * https://www.qppstudio.net/global-holidays-observances/eid-al-fitr-end-of-ramadan.htm
          */
-        return match ($year) {
-            2024 => '04-10',
-            2025 => '03-30',
-            2026 => '03-20',
-            2027 => '03-09',
-            2028 => '02-26',
-            2029 => '02-14',
-            2030 => '02-04',
-            2031 => '01-24',
-            2032 => '01-14',
-            2033 => '01-02',
-            2034 => '12-12',
-            default => throw InvalidYear::range('Albania', 2024, 2034),
-        };
-    }
+        if ($year < 2024 || $year > 2034) {
+            throw InvalidYear::range('Albania', 2024, 2034);
+        }
 
-    private function getEidAlAdhaHoliday(int $year): string
-    {
-        /**
-         * Tentative dates.
-         * Provided until 2034 by timeanddate.com.
-         * https://www.timeanddate.com/holidays/us/eid-al-adha
-         */
-        return match ($year) {
-            2024 => '06-17',
-            2025 => '06-07',
-            2026 => '05-27',
-            2027 => '05-17',
-            2028 => '05-05',
-            2029 => '04-24',
-            2030 => '04-14',
-            2031 => '04-03',
-            2032 => '03-22',
-            2033 => '03-12',
-            2034 => '03-01',
-            default => throw InvalidYear::range('Albania', 2024, 2034),
-        };
+        return [
+            'Dita e Bajramit të Madh' => self::eidAlFitr[$year],
+            'Dita e Kurban Bajramit' => self::eidAlAdha[$year],
+        ];
     }
 }
