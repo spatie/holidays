@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Carbon\CarbonPeriod;
+use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
@@ -31,6 +32,10 @@ abstract class Country
                 } else {
                     $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
                 }
+            }
+
+            if ($date === null) {
+                throw new InvalidFormatException("Invalid date for holiday `{$name}`");
             }
 
             if ($this instanceof HasTranslations) {

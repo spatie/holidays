@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\Exceptions\InvalidFormatException;
 
 class Panama extends Country
 {
@@ -80,11 +81,14 @@ class Panama extends Country
         foreach ($fixedHolidays as $name => $date) {
             $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
 
-            if ($holiday !== false) {
-                $holidays[$name] = $holiday;
-                if ($holiday->isSunday()) {
-                    $holidays[$name.' (Puente)'] = $holiday->addDay();
-                }
+            if ($holiday === null) {
+                throw new InvalidFormatException("Invalid date format for holiday: {$name}");
+            }
+
+            $holidays[$name] = $holiday;
+
+            if ($holiday->isSunday()) {
+                $holidays[$name.' (Puente)'] = $holiday->addDay();
             }
         }
 

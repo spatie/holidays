@@ -72,7 +72,7 @@ trait IslamicCalendar
 
     protected function createPeriod(string $date, int $year, int $totalDays): CarbonPeriod
     {
-        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
         $end = $start->addDays($totalDays - 1)->startOfDay();
 
         return CarbonPeriod::create($start, '1 day', $end);
@@ -95,7 +95,7 @@ trait IslamicCalendar
             $date = end($date);
         }
 
-        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
         $end = $start->addDays($totalDays - 1)->startOfDay();
 
         if ($end->year !== $year) {

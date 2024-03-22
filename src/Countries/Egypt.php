@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidYear;
@@ -303,6 +304,10 @@ class Egypt extends Country implements HasTranslations
         }
 
         $startDay = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s', $year, $holidayDates[$year]));
+
+        if ($startDay === null) {
+            throw new InvalidFormatException("Invalid date format for holiday: {$holidayName}");
+        }
 
         if ($duration === 1) {
             // For single-day holidays, use the holiday name without "Day"
