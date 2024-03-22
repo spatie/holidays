@@ -4,7 +4,6 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
@@ -299,6 +298,7 @@ class Egypt extends Country implements HasTranslations, Islamic
         /**
          * No reliable sources exist for Islamic holidays observed in Egypt prior to 2005.
          * So we'll only calculate holidays from 2005 onwards.
+         *
          * @see https://www.timeanddate.com/holidays/egypt
          */
         if ($year < 2005) {

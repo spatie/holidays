@@ -56,7 +56,7 @@ trait IslamicCalendar
         $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
 
         if ($date === null) {
-            throw new InvalidFormatException("Invalid date for holiday");
+            throw new InvalidFormatException('Invalid date for holiday');
         }
 
         return $date;
