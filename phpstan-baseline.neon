@@ -16,7 +16,22 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:arafat\\.$#"
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
 			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:ashura\\.$#"
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:islamicNewYear\\.$#"
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:prophetMuhammadBirthday\\.$#"
 			count: 1
 			path: src/Countries/Turkey.php
 

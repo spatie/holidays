@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Calendars;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
+use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
@@ -13,26 +14,59 @@ trait IslamicCalendar
     /** @return array<CarbonPeriod> */
     public function eidAlFitr(int $year, int $totalDays = 3): array
     {
-        return $this->getHoliday(self::eidAlFitr, $year, $totalDays);
+        return $this->getMultiDayHoliday(self::eidAlFitr, $year, $totalDays);
     }
 
     /** @return array<CarbonPeriod> */
     public function eidAlAdha(int $year, int $totalDays = 4): array
     {
-        return $this->getHoliday(self::eidAlAdha, $year, $totalDays);
+        return $this->getMultiDayHoliday(self::eidAlAdha, $year, $totalDays);
     }
 
     /** @return array<CarbonPeriod> */
     protected function ashura(int $year, int $totalDays = 2): array
     {
-        return $this->getHoliday(self::ashura, $year, $totalDays);
+        return $this->getMultiDayHoliday(self::ashura, $year, $totalDays);
+    }
+
+    protected function arafat(int $year): CarbonImmutable
+    {
+        return $this->getSingleDayHoliday(self::arafat, $year);
+    }
+
+    protected function islamicNewYear(int $year): CarbonImmutable
+    {
+        return $this->getSingleDayHoliday(self::islamicNewYear, $year);
+    }
+
+    protected function prophetMuhammadBirthday(int $year): CarbonImmutable
+    {
+        return $this->getSingleDayHoliday(self::prophetMuhammadBirthday, $year);
+    }
+
+    /** @param array<string> $collection */
+    protected function getSingleDayHoliday(array $collection, int $year): CarbonImmutable
+    {
+        $date = $collection[$year] ?? null;
+
+        if ($date === null) {
+            throw InvalidYear::range($this->countryCode(), 1970, 2037);
+        }
+
+        $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
+
+        if ($date === null) {
+            throw new InvalidFormatException("Invalid date for holiday");
+        }
+
+        return $date;
     }
 
     /**
      * @param  array<string|array<string>>  $collection
      * @return array<CarbonPeriod>
      */
-    protected function getHoliday(array $collection, int $year, int $totalDays): array
+    protected function getMultiDayHoliday(array $collection, int $year, int $totalDays): array
     {
         $date = $collection[$year] ?? null;
 

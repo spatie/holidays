@@ -33,7 +33,7 @@ class Bahrain extends Country implements HasTranslations, Islamic
         2037 => '11-09',
     ];
 
-    protected const arafatDay = [
+    protected const arafat = [
         2020 => '07-30',
         2021 => '07-19',
         2022 => '07-09',
@@ -167,9 +167,9 @@ class Bahrain extends Country implements HasTranslations, Islamic
         $ashura = $this->ashura($year);
 
         $holidays = [
-            'Arafat Day' => self::arafatDay[$year],
-            'Islamic New Year' => self::islamicNewYear[$year],
-            'Birthday of the Prophet Muhammad' => self::prophetMuhammadBirthday[$year],
+            'Arafat Day' => $this->arafat($year),
+            'Islamic New Year' => $this->islamicNewYear($year),
+            'Birthday of the Prophet Muhammad' => $this->prophetMuhammadBirthday($year),
         ];
 
         return array_merge($holidays,
