@@ -282,6 +282,7 @@ class Switzerland extends Country implements HasTranslations
                 self::GOOD_FRIDAY,
                 self::EASTER_MONDAY,
                 self::WHIT_MONDAY,
+                self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER,
             ],
             'ch-vs' => [
                 self::SAINT_JOSEPHS_DAY,
