@@ -48,6 +48,8 @@ class Switzerland extends Country implements HasTranslations
 
     private const THREE_KINGS_DAY = 'Heilige Drei Könige';
 
+    private const NEUCHATEL_REPUBLIC_DAY = 'Neuenburger Republik tag';
+
     private const SAINT_JOSEPHS_DAY = 'Josefstag';
 
     private const GOOD_FRIDAY = 'Karfreitag';
@@ -211,6 +213,7 @@ class Switzerland extends Country implements HasTranslations
                 self::SAINT_STEPHENS_DAY,
             ],
             'ch-ne' => [
+                self::NEUCHATEL_REPUBLIC_DAY,
                 self::GOOD_FRIDAY,
                 self::LABOUR_DAY,
             ],
@@ -316,7 +319,7 @@ class Switzerland extends Country implements HasTranslations
         );
 
         // Some holidays only happen in some years in some regions
-        if (in_array($this->region, ['ch-ge']) &&
+        if (in_array($this->region, ['ch-ge', 'ch-ne']) &&
             (new CarbonImmutable("{$year}-01-01", 'Europe/Zurich'))->isSunday()) {
             $regionalHolidays[self::NEW_YEARS_NEXT_DAY] = '01-02';
         }
@@ -326,7 +329,7 @@ class Switzerland extends Country implements HasTranslations
             $regionalHolidays[self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY] = '08-02';
         }
 
-        if (in_array($this->region, ['ch-ge']) &&
+        if (in_array($this->region, ['ch-ge', 'ch-ne']) &&
             (new CarbonImmutable("{$year}-12-25", 'Europe/Zurich'))->isSunday()) {
             $regionalHolidays[self::CHRISTMAS_NEXT_DAY] = '12-26';
         }
