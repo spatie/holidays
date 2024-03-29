@@ -14,7 +14,7 @@ jobs:
         stability: [prefer-lowest, prefer-stable]
         carbon: [2.72, 3.0]
 
-    name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }} - Carbon ${{ matrix.carbon }}
+    name: P${{ matrix.php }} - ${{ matrix.stability }} - Carbon ${{ matrix.carbon }}
 
     steps:
       - name: Checkout code
