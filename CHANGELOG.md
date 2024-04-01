@@ -2,6 +2,19 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.9.0 - 2024-03-22
+
+### What's Changed
+
+* Implement Islamic calendar by @Nielsvanpach in https://github.com/spatie/holidays/pull/214
+* Add holidays for Bosnia And Herzegovina by @DesaBL in https://github.com/spatie/holidays/pull/203
+
+### New Contributors
+
+* @DesaBL made their first contribution in https://github.com/spatie/holidays/pull/203
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.8.0...1.9.0
+
 ## 1.8.0 - 2024-03-08
 
 ### What's Changed

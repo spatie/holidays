@@ -32,7 +32,7 @@ class Canada extends Country
         $easter = $this->easter($year);
 
         // the Monday preceding May 25
-        $victoriaDay = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-05-25")
+        $victoriaDay = CarbonImmutable::createFromDate($year, 5, 25)
             ->previous('Monday');
 
         return [
