@@ -177,8 +177,19 @@ class Switzerland extends Country implements HasTranslations
                 self::WHIT_MONDAY,
                 self::SAINT_STEPHENS_DAY,
             ],
-            'ch-fr' => [
+            'ch-fr', 'ch-fr-c' => [ // Catholic part of the canton is the default
                 self::GOOD_FRIDAY,
+                self::CORPUS_CHRISTI,
+                self::ASSUMPTION_DAY,
+                self::ALL_SAINTS_DAY,
+                self::IMMACULATE_CONCEPTION,
+            ],
+            'ch-fr-r' => [ // Reformed part of the canton has special legislation for holidays
+                self::NEW_YEARS_NEXT_DAY,
+                self::GOOD_FRIDAY,
+                self::EASTER_MONDAY,
+                self::WHIT_MONDAY,
+                self::SAINT_STEPHENS_DAY,
             ],
             'ch-ge' => [
                 self::GOOD_FRIDAY,
