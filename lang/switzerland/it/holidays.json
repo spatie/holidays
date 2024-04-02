@@ -1,7 +1,9 @@
 {
     "Neujahr": "Capodanno",
+    "Neujahrs nächster tag": "Il giorno dopo Capodanno",
     "Berchtoldstag": "San Silvestro",
     "Heilige Drei Könige": "Epifania",
+    "Neuenburger Republik tag": "Istituzione della Repubblica di Neuchâtel",
     "Josefstag": "San Giuseppe",
     "Karfreitag": "Venerdì Santo",
     "Ostermontag": "Lunedì di Pasqua",
@@ -10,10 +12,13 @@
     "Pfingstmontag": "Lunedì di Pentecoste",
     "Fronleichnam": "Corpus Domini",
     "Bundesfeier": "Festa nazionale",
+    "Bundesfeier nächster tag": "Il giorno dopo la festa nazionale",
     "Maria Himmelfahrt": "Assunzione",
+    "Genfer Fasten": "Jeûne genevois",
     "Buss- und Bettag": "Digiuno federale",
     "Allerheiligen": "Ognissanti",
     "Maria Empfängnis": "Immacolata Concezione",
     "Weihnachtstag": "Natale",
+    "Weihnachtsnächstertag": "Il giorno dopo la festa di Natale",
     "Stephanstag": "Santo Stefano"
 }
