@@ -2,6 +2,20 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.9.1 - 2024-04-02
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 1.6.0 to 2.0.0 by @dependabot in https://github.com/spatie/holidays/pull/215
+* Fix the Holidays in French speaking Switzerland by @OlinB in https://github.com/spatie/holidays/pull/217
+
+### New Contributors
+
+* @dependabot made their first contribution in https://github.com/spatie/holidays/pull/215
+* @OlinB made their first contribution in https://github.com/spatie/holidays/pull/217
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.9.0...1.9.1
+
 ## 1.9.0 - 2024-03-22
 
 ### What's Changed
