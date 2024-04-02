@@ -1,7 +1,9 @@
 {
     "Neujahr": "Nouvel An",
+    "Neujahrs nächster tag": "Lendemain du Nouvel An",
     "Berchtoldstag": "Saint-Berthold",
     "Heilige Drei Könige": "Épiphanie",
+    "Neuenburger Republik tag": "Instauration de la République de Neuchâtel",
     "Josefstag": "Saint-Joseph",
     "Karfreitag": "Vendredi saint",
     "Ostermontag": "Lundi de Pâques",
@@ -10,10 +12,15 @@
     "Pfingstmontag": "Lundi de Pentecôte",
     "Fronleichnam": "Fête-Dieu",
     "Bundesfeier": "Fête nationale",
+    "Bundesfeier nächster tag": "Lendemain de la Fête nationale",
     "Maria Himmelfahrt": "Assomption",
+    "Genfer Fasten": "Jeûne genevois",
     "Buss- und Bettag": "Jeûne fédéral",
+    "Buss- und Bettag Montag": "Lundi du Jeûne fédéral",
     "Allerheiligen": "Toussaint",
     "Maria Empfängnis": "Immaculée Conception",
     "Weihnachtstag": "Noël",
-    "Stephanstag": "Saint-Étienne"
+    "Weihnachtsnächstertag": "Lendemain de Noël",
+    "Stephanstag": "Saint-Étienne",
+    "Genf Republik tag": "Instauration de la République de Genève"
 }
