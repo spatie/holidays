@@ -76,6 +76,8 @@ class Switzerland extends Country implements HasTranslations
 
     private const FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER = 'Buss- und Bettag';
 
+    private const FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY = 'Buss- und Bettag Montag';
+
     private const ALL_SAINTS_DAY = 'Allerheiligen';
 
     private const IMMACULATE_CONCEPTION = 'Maria Empfängnis';
@@ -85,6 +87,8 @@ class Switzerland extends Country implements HasTranslations
     private const CHRISTMAS_NEXT_DAY = 'Weihnachtsnächstertag';
 
     private const SAINT_STEPHENS_DAY = 'Stephanstag';
+
+    private const GENEVA_REPUBLIC_DAY = 'Genf Republik tag';
 
     public function __construct(protected ?string $region = null)
     {
@@ -125,6 +129,7 @@ class Switzerland extends Country implements HasTranslations
             self::NEW_YEARS_NEXT_DAY => '01-02',
             self::BERCHTOLDS_DAY => '01-02',
             self::THREE_KINGS_DAY => '01-06',
+            self::NEUCHATEL_REPUBLIC_DAY => '03-01',
             self::SAINT_JOSEPHS_DAY => '03-19',
             self::GOOD_FRIDAY => $easter->subDays(2),
             self::EASTER_MONDAY => $easter->addDay(),
@@ -135,10 +140,12 @@ class Switzerland extends Country implements HasTranslations
             self::ASSUMPTION_DAY => '08-15',
             self::GENEVA_DAY_OF_FASTING => (new CarbonImmutable('first sunday of September '.$year, 'Europe/Zurich'))->addDays(4), // Thursday after the first Sunday of September
             self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER => new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich'),
+            self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY => (new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich'))->addDay(),
             self::ALL_SAINTS_DAY => '11-01',
             self::IMMACULATE_CONCEPTION => '12-08',
             self::SAINT_STEPHENS_DAY => '12-26',
             self::CHRISTMAS_NEXT_DAY => '12-26',
+            self::GENEVA_REPUBLIC_DAY => '12-31',
         ];
 
         $currentRegion = match ($this->region) {
@@ -198,6 +205,7 @@ class Switzerland extends Country implements HasTranslations
                 self::EASTER_MONDAY,
                 self::WHIT_MONDAY,
                 self::GENEVA_DAY_OF_FASTING,
+                self::GENEVA_REPUBLIC_DAY,
             ],
             'ch-gl' => [
                 self::GOOD_FRIDAY,
@@ -298,7 +306,7 @@ class Switzerland extends Country implements HasTranslations
                 self::GOOD_FRIDAY,
                 self::EASTER_MONDAY,
                 self::WHIT_MONDAY,
-                self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER,
+                self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY,
             ],
             'ch-vs' => [
                 self::SAINT_JOSEPHS_DAY,
