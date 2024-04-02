@@ -2,11 +2,17 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Calendars\IslamicCalendar;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Contracts\Islamic;
 
-class Tunisia extends Country
+class Tunisia extends Country implements HasTranslations, Islamic
 {
-    private const IslamicNewYear = [
+    use IslamicCalendar;
+    use Translatable;
+
+    private const islamicNewYear = [
         1970 => "03-08",
         1971 => "02-26",
         1973 => "02-03",
@@ -76,7 +82,7 @@ class Tunisia extends Country
         2036 => "02-27",
         2037 => "02-16"
     ];
-    public const ProphetMohammedBirthday = [
+    public const prophetMuhammadBirthday = [
         1970 => "05-17",
         1971 => "05-07",
         1972 => "04-25",
@@ -146,7 +152,7 @@ class Tunisia extends Country
         2036 => "05-07",
         2037 => "04-27"
     ];
-    public const EidAlFitr = [
+    public const eidAlFitr = [
         1970 => "12-11",
         1971 => "11-30",
         1972 => "11-20",
@@ -216,7 +222,7 @@ class Tunisia extends Country
         2036 => "12-02",
         2037 => "11-20",
     ];
-    public const EidAlAdha = [
+    public const eidAlAdha = [
         1970 => "02-17",
         1971 => "02-06",
         1972 => "01-27",
@@ -295,6 +301,11 @@ class Tunisia extends Country
         return 'tn';
     }
 
+    public function defaultLocale(): string
+    {
+        return 'en';
+    }
+
     protected function allHolidays(int $year): array
     {
         $revolutionHoliday = [];
@@ -315,124 +326,22 @@ class Tunisia extends Country
             'Republic Day' => '07-25',
             'Women\'s Day' => '08-13',
             'Evacuation Day' => '10-15',
-        ], $revolutionHoliday, $this->variableHolidays($year));
+        ], $revolutionHoliday, $this->islamicHolidays($year));
     }
 
-    /**
-     * The following holidays are considered public holidays in Tunisia. However, their dates vary each year,
-     * as they are based on the Islamic Hijri (lunar) calendar. These holidays do not have a fixed date and
-     * occur based on the lunar calendar sequence. The order listed reflects the chronological occurrence
-     * of these holidays throughout the year.
-     * @param int $year
-     * @return array<string, CarbonImmutable>
-     */
-    protected function variableHolidays(int $year): array
+    public function islamicHolidays(int $year): array
     {
+        $eidAlFitr = $this->eidAlFitr($year);
+        $eidAlAdha = $this->eidAlAdha($year);
+
         return array_merge(
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::IslamicNewYear,
-                label: 'Islamic new year'
-            ),
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::ProphetMohammedBirthday,
-                label: 'Birthday of the Prophet Mohamed'
-            ),
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::EidAlFitr,
-                label: 'Eid al-Fitr',
-                day: 2
-            ),
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::EidAlAdha,
-                label: 'Eid al-Adha',
-                day: 3
-            )
+            [
+                'Islamic New Year' => $this->islamicNewYear($year),
+                'Birthday of the Prophet Muhammad' => $this->prophetMuhammadBirthday($year),
+            ],
+            $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0]),
+            $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0]),
         );
     }
 
-    /**
-     * @param array<int, string|array<string>> $holidays
-     * @return array<string, CarbonImmutable>
-     */
-    protected function getIslamicHolidays(
-        int    $year,
-        array  $holidays,
-        string $label,
-        int    $day = 1,
-    ): array
-    {
-        $islamicHolidays = [];
-        $counter = 0;
-
-        if ($year != 1970) {
-            $previousHoliday = is_array($holidays[$year - 1]) ? $holidays[$year - 1][1] : $holidays[$year - 1];
-
-            $previousHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year - 1) . '-' . $previousHoliday);
-
-            if ($previousHoliday->addDays($day - 1)->year == $year) {
-                $islamicHolidays = $this->prepareHolidays(
-                    holiday: $previousHoliday,
-                    day: $day,
-                    label: $label,
-                    filterYear: $year
-                );
-                $counter++;
-            }
-        }
-
-        $currentYearHolidays = is_array($holidays[$year]) ? $holidays[$year] : [$holidays[$year]];
-
-        foreach ($currentYearHolidays as $currentYearHoliday) {
-            $currentYearHoliday = CarbonImmutable::createFromFormat('Y-m-d', "$year-$currentYearHoliday");
-
-            $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
-                holiday: $currentYearHoliday,
-                day: $day,
-                label: $label,
-                filterYear: $year,
-                prefix: $counter ? ($counter + 1) . '. ' : ''
-            ));
-            $counter++;
-        }
-
-        if ($year != 2037) {
-            $nextHoliday = is_array($holidays[$year + 1]) ? $holidays[$year + 1][1] : $holidays[$year + 1];
-
-            $nextHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year + 1) . '-' . $nextHoliday);
-
-            if ($nextHoliday->addDays(-1)->year == $year) {
-                $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
-                    holiday: $nextHoliday,
-                    day: $day,
-                    label: $label,
-                    filterYear: $year,
-                    prefix: $counter ? ($counter + 1) . '. ' : ''
-                ));
-            }
-        }
-
-        return $islamicHolidays;
-    }
-
-    /** @return array<string, CarbonImmutable> */
-    protected function prepareHolidays(
-        CarbonImmutable $holiday,
-        int             $day,
-        string          $label,
-        int             $filterYear,
-        string          $prefix = ''
-    ): array
-    {
-        $holidays = [];
-
-        foreach (range(1, $day) as $range) {
-            $holidays[$prefix . $label . ' ' . $range . '. Day'] = $holiday->addDays($range - 1);
-        }
-
-        return array_filter($holidays, fn($holiday) => $holiday->year == $filterYear);
-    }
 }
