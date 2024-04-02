@@ -19,6 +19,8 @@ class Switzerland extends Country implements HasTranslations
         'ch-bs',
         'ch-be',
         'ch-fr',
+        'ch-fr-c',
+        'ch-fr-r',
         'ch-ge',
         'ch-gl',
         'ch-gr',
