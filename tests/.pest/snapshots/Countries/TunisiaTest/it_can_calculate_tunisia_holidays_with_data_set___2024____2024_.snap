@@ -12,20 +12,32 @@
         "date": "2024-04-09"
     },
     {
-        "name": "Eid al-Fitr",
-        "date": "2024-04-12"
+        "name": "Eid al-Fitr day 1",
+        "date": "2024-04-10"
+    },
+    {
+        "name": "Eid al-Fitr day 2",
+        "date": "2024-04-11"
     },
     {
         "name": "Labour Day",
         "date": "2024-05-01"
     },
     {
-        "name": "Eid al-Adha",
-        "date": "2024-06-20"
+        "name": "Arafat Day",
+        "date": "2024-06-16"
+    },
+    {
+        "name": "Eid al-Adha day 1",
+        "date": "2024-06-17"
+    },
+    {
+        "name": "Eid al-Adha day 2",
+        "date": "2024-06-18"
     },
     {
         "name": "Islamic new year",
-        "date": "2024-07-07"
+        "date": "2024-07-08"
     },
     {
         "name": "Republic Day",
@@ -37,7 +49,7 @@
     },
     {
         "name": "Birthday of the Prophet Mohamed",
-        "date": "2024-09-15"
+        "date": "2024-09-16"
     },
     {
         "name": "Evacuation Day",
