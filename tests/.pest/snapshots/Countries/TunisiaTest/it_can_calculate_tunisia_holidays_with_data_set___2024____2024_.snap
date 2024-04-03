@@ -1,0 +1,62 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-03-20"
+    },
+    {
+        "name": "Martyrs' Day",
+        "date": "2024-04-09"
+    },
+    {
+        "name": "Eid al-Fitr day 1",
+        "date": "2024-04-10"
+    },
+    {
+        "name": "Eid al-Fitr day 2",
+        "date": "2024-04-11"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Arafat Day",
+        "date": "2024-06-16"
+    },
+    {
+        "name": "Eid al-Adha day 1",
+        "date": "2024-06-17"
+    },
+    {
+        "name": "Eid al-Adha day 2",
+        "date": "2024-06-18"
+    },
+    {
+        "name": "Islamic new year",
+        "date": "2024-07-08"
+    },
+    {
+        "name": "Republic Day",
+        "date": "2024-07-25"
+    },
+    {
+        "name": "Women's Day",
+        "date": "2024-08-13"
+    },
+    {
+        "name": "Birthday of the Prophet Mohamed",
+        "date": "2024-09-16"
+    },
+    {
+        "name": "Evacuation Day",
+        "date": "2024-10-15"
+    },
+    {
+        "name": "Revolution and Youth Day",
+        "date": "2024-12-17"
+    }
+]
