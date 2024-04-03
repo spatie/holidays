@@ -83,6 +83,7 @@ class Tunisia extends Country implements HasTranslations, Islamic
         2036 => '02-07',
         2037 => '01-26',
     ];
+
     protected const eidAlAdha = [
         2005 => '01-22',
         2006 => '01-11',
@@ -118,6 +119,7 @@ class Tunisia extends Country implements HasTranslations, Islamic
         2036 => '02-08',
         2037 => '01-27',
     ];
+
     protected const islamicNewYear = [
         2005 => '02-10',
         2006 => '01-31',
@@ -153,6 +155,7 @@ class Tunisia extends Country implements HasTranslations, Islamic
         2036 => '02-29',
         2037 => '02-17',
     ];
+
     protected const ashura = [
         2005 => '02-19',
         2006 => '02-09',
@@ -188,6 +191,7 @@ class Tunisia extends Country implements HasTranslations, Islamic
         2036 => '03-08',
         2037 => '02-25',
     ];
+
     protected const prophetMuhammadBirthday = [
         2005 => '04-21',
         2006 => '04-11',
@@ -224,9 +228,6 @@ class Tunisia extends Country implements HasTranslations, Islamic
         2037 => '04-29',
     ];
 
-    /**
-     * @return string
-     */
     public function countryCode(): string
     {
         return 'tn';
@@ -241,7 +242,7 @@ class Tunisia extends Country implements HasTranslations, Islamic
     {
         $revolutionHoliday = [];
 
-        if (2022 > $year && $year >= 2011) {
+        if ($year < 2022 && $year >= 2011) {
             $revolutionHoliday['Revolution and Youth Day'] = '01-14';
         }
 
@@ -275,5 +276,4 @@ class Tunisia extends Country implements HasTranslations, Islamic
             $this->convertPeriods(name: 'Eid al-Adha', year: $year, period: $eidAlAdha[0]),
         );
     }
-
 }
