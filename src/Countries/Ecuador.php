@@ -18,7 +18,7 @@ class Ecuador extends Country
         ], $this->variableHolidays($year));
     }
 
-    public function nearestDay(int $year, int $month, int $day)
+    public function nearestDay(int $year, int $month, int $day): CarbonImmutable
     {
         $date = CarbonImmutable::createFromDate($year, $month, $day);
 
@@ -37,7 +37,7 @@ class Ecuador extends Country
         return $date;
     }
 
-    public function getChristmasHoliday(int $year)
+    public function getChristmasHoliday(int $year): CarbonImmutable
     {
         $date = CarbonImmutable::createFromDate($year, 12, 25);
 
