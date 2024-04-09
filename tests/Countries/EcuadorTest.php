@@ -8,7 +8,7 @@ use Spatie\Holidays\Holidays;
 it('can calculate ecuador holidays', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    $holidays = Holidays::for(country: 'ec')->get();
+    $holidays = Holidays::for(country: 'ec', locale: 'es')->get();
 
     expect($holidays)
         ->toBeArray()

@@ -4,20 +4,28 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Concerns\Observable;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 
-class Ecuador extends Country
+class Ecuador extends Country implements HasTranslations
 {
     use Observable;
+    use Translatable;
 
     public function countryCode(): string
     {
         return 'ec';
     }
 
+    public function defaultLocale(): string
+    {
+        return 'en';
+    }
+
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => '01-01',
+            'New Year\'s Day' => '01-01',
         ], $this->variableHolidays($year));
     }
 
@@ -58,16 +66,16 @@ class Ecuador extends Country
         $carnivalTuesday = $ashWednesday->subDay();
 
         return [
-            'Viernes Santo' => $easter->subDays(2),
-            'Lunes de Carnaval' => $carnivalMonday,
-            'Martes de Carnaval' => $carnivalTuesday,
-            'Día del Trabajo' =>  $this->nearestDay($year, 5, 1),
-            'Batalla de Pichincha' =>  $this->nearestDay($year, 5, 24),
-            'Primer Grito de la Independencia' =>  $this->nearestDay($year, 8, 10),
-            'Independencia de Guayaquil' =>  $this->nearestDay($year, 10, 9),
-            'Día de Los Difuntos' =>  $this->nearestDay($year, 11, 2),
-            'Independencia de Cuenca' =>  $this->nearestDay($year, 11, 3),
-            'Navidad' => $this->getChristmasHoliday($year),
+            'Holy Friday' => $easter->subDays(2),
+            'Carnival Monday' => $carnivalMonday,
+            'Carnival Tuesday' => $carnivalTuesday,
+            'Labor Day' =>  $this->nearestDay($year, 5, 1),
+            'Battle of Pichincha' =>  $this->nearestDay($year, 5, 24),
+            'Independence Day' =>  $this->nearestDay($year, 8, 10),
+            'Independence Of Guayaquil' =>  $this->nearestDay($year, 10, 9),
+            'All Souls\' Day' =>  $this->nearestDay($year, 11, 2),
+            'Independence Of Cuenca' =>  $this->nearestDay($year, 11, 3),
+            'Christmas' => $this->getChristmasHoliday($year),
         ];
     }
 }
