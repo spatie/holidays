@@ -3,9 +3,12 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Observable;
 
 class Ecuador extends Country
 {
+    use Observable;
+
     public function countryCode(): string
     {
         return 'ec';
@@ -39,13 +42,11 @@ class Ecuador extends Country
 
     public function getChristmasHoliday(int $year): CarbonImmutable
     {
-        $date = CarbonImmutable::createFromDate($year, 12, 25);
-
         if($year === 2022) {
-            return $date->addDay();
+            return $this->observedChristmasDay($year);
         }
 
-        return $date;
+        return CarbonImmutable::createFromDate($year, 12, 25);
     }
 
     /** @return array<string, CarbonImmutable> */
