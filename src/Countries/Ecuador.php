@@ -37,6 +37,17 @@ class Ecuador extends Country
         return $date;
     }
 
+    public function getChristmasHoliday(int $year)
+    {
+        $date = CarbonImmutable::createFromDate($year, 12, 25);
+
+        if($year === 2022) {
+            return $date->addDay();
+        }
+
+        return $date;
+    }
+
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
@@ -55,7 +66,7 @@ class Ecuador extends Country
             'Independencia de Guayaquil' =>  $this->nearestDay($year, 10, 9),
             'Día de Los Difuntos' =>  $this->nearestDay($year, 11, 2),
             'Independencia de Cuenca' =>  $this->nearestDay($year, 11, 3),
-            'Navidad' =>  $this->nearestDay($year, 12, 25),
+            'Navidad' => $this->getChristmasHoliday($year),
         ];
     }
 }
