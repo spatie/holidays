@@ -19,7 +19,7 @@ class Ecuador extends Country implements HasTranslations
 
     public function defaultLocale(): string
     {
-        return 'en';
+        return 'es;
     }
 
     protected function allHolidays(int $year): array
