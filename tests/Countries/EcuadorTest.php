@@ -8,6 +8,18 @@ use Spatie\Holidays\Holidays;
 it('can calculate ecuador holidays', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
+    $holidays = Holidays::for(country: 'ec')->get();
+
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    expect(formatDates($holidays))->toMatchSnapshot();
+});
+
+it('can calculate ecuador holidays with spanish translation', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
     $holidays = Holidays::for(country: 'ec', locale: 'es')->get();
 
     expect($holidays)
@@ -16,3 +28,4 @@ it('can calculate ecuador holidays', function () {
 
     expect(formatDates($holidays))->toMatchSnapshot();
 });
+
