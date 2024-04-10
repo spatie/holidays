@@ -17,10 +17,10 @@ it('can calculate ecuador holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-it('can calculate ecuador holidays with spanish translation', function () {
+it('can calculate ecuador holidays with english translation', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    $holidays = Holidays::for(country: 'ec', locale: 'es')->get();
+    $holidays = Holidays::for(country: 'ec', locale: 'en')->get();
 
     expect($holidays)
         ->toBeArray()
