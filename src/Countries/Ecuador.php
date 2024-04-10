@@ -62,8 +62,6 @@ class Ecuador extends Country implements HasTranslations
     {
         $easter = $this->easter($year);
         $ashWednesday = $easter->subDays(46);
-        $carnivalMonday = $ashWednesday->subDays(2);
-        $carnivalTuesday = $ashWednesday->subDay();
 
         return [
             'Holy Friday' => $easter->subDays(2),
