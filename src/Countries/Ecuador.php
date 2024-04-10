@@ -65,8 +65,8 @@ class Ecuador extends Country implements HasTranslations
 
         return [
             'Holy Friday' => $easter->subDays(2),
-            'Carnival Monday' => $carnivalMonday,
-            'Carnival Tuesday' => $carnivalTuesday,
+            'Carnival Monday' => $ashWednesday->subDays(2),
+            'Carnival Tuesday' => $ashWednesday->subDay(),
             'Labor Day' =>  $this->nearestDay($year, 5, 1),
             'Battle of Pichincha' =>  $this->nearestDay($year, 5, 24),
             'Independence Day' =>  $this->nearestDay($year, 8, 10),
