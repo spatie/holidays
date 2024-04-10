@@ -51,7 +51,7 @@ class Ecuador extends Country implements HasTranslations
     public function getChristmasHoliday(int $year): CarbonImmutable
     {
         if($year === 2022) {
-            return $this->observedChristmasDay($year);
+            return $this->sundayToNextMonday('12-25', $year);
         }
 
         return CarbonImmutable::createFromDate($year, 12, 25);
