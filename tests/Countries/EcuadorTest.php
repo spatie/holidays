@@ -28,4 +28,3 @@ it('can calculate ecuador holidays with english translation', function () {
 
     expect(formatDates($holidays))->toMatchSnapshot();
 });
-

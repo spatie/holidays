@@ -33,15 +33,15 @@ class Ecuador extends Country implements HasTranslations
     {
         $date = CarbonImmutable::createFromDate($year, $month, $day);
 
-        if($date->is('Tuesday') || $date->is('Saturday')) {
+        if ($date->is('Tuesday') || $date->is('Saturday')) {
             return $date->subDay();
         }
 
-        if($date->is('Sunday')) {
+        if ($date->is('Sunday')) {
             return $date->addDay();
         }
 
-        if($date->is('Wednesday') || $date->is('Thursday')) {
+        if ($date->is('Wednesday') || $date->is('Thursday')) {
             return $date->next(CarbonImmutable::FRIDAY);
         }
 
@@ -50,7 +50,7 @@ class Ecuador extends Country implements HasTranslations
 
     public function getChristmasHoliday(int $year): CarbonImmutable
     {
-        if($year === 2022) {
+        if ($year === 2022) {
             return $this->sundayToNextMonday('12-25', $year);
         }
 
@@ -67,12 +67,12 @@ class Ecuador extends Country implements HasTranslations
             'Holy Friday' => $easter->subDays(2),
             'Carnival Monday' => $ashWednesday->subDays(2),
             'Carnival Tuesday' => $ashWednesday->subDay(),
-            'Labor Day' =>  $this->nearestDay($year, 5, 1),
-            'Battle of Pichincha' =>  $this->nearestDay($year, 5, 24),
-            'Independence Day' =>  $this->nearestDay($year, 8, 10),
-            'Independence Of Guayaquil' =>  $this->nearestDay($year, 10, 9),
-            'All Souls\' Day' =>  $this->nearestDay($year, 11, 2),
-            'Independence Of Cuenca' =>  $this->nearestDay($year, 11, 3),
+            'Labor Day' => $this->nearestDay($year, 5, 1),
+            'Battle of Pichincha' => $this->nearestDay($year, 5, 24),
+            'Independence Day' => $this->nearestDay($year, 8, 10),
+            'Independence Of Guayaquil' => $this->nearestDay($year, 10, 9),
+            'All Souls\' Day' => $this->nearestDay($year, 11, 2),
+            'Independence Of Cuenca' => $this->nearestDay($year, 11, 3),
             'Christmas' => $this->getChristmasHoliday($year),
         ];
     }
