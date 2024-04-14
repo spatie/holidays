@@ -1,0 +1,78 @@
+[
+    {
+        "name": "Republic Day",
+        "date": "2017-01-26"
+    },
+    {
+        "name": "Holi",
+        "date": "2017-03-13"
+    },
+    {
+        "name": "Rama Navami",
+        "date": "2017-04-04"
+    },
+    {
+        "name": "Mahavir Jayanti",
+        "date": "2017-04-09"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2017-04-14"
+    },
+    {
+        "name": "Buddha Purnima\/Vesak",
+        "date": "2017-05-10"
+    },
+    {
+        "name": "Ramzan Id\\\/Eid-ul-Fitar 1",
+        "date": "2017-06-26"
+    },
+    {
+        "name": "Raksha Bandhan",
+        "date": "2017-08-07"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2017-08-15"
+    },
+    {
+        "name": "Janmashtami",
+        "date": "2017-08-15"
+    },
+    {
+        "name": "Bakrid\/Eid ul-Adha 1",
+        "date": "2017-09-02"
+    },
+    {
+        "name": "Dussehra",
+        "date": "2017-09-30"
+    },
+    {
+        "name": "Muharram\/Ashura 1",
+        "date": "2017-10-01"
+    },
+    {
+        "name": "Mahatma Gandhi Jayanti",
+        "date": "2017-10-02"
+    },
+    {
+        "name": "Diwali\/Deepavali",
+        "date": "2017-10-19"
+    },
+    {
+        "name": "Bhai Dooj",
+        "date": "2017-10-21"
+    },
+    {
+        "name": "Guru Nanak Jayanti",
+        "date": "2017-11-04"
+    },
+    {
+        "name": "Milad un-Nabi\/Id-e-Milad 1",
+        "date": "2017-12-02"
+    },
+    {
+        "name": "Christmas",
+        "date": "2017-12-25"
+    }
+]

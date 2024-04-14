@@ -1,0 +1,78 @@
+[
+    {
+        "name": "Republic Day",
+        "date": "2021-01-26"
+    },
+    {
+        "name": "Holi",
+        "date": "2021-03-29"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2021-04-02"
+    },
+    {
+        "name": "Rama Navami",
+        "date": "2021-04-21"
+    },
+    {
+        "name": "Mahavir Jayanti",
+        "date": "2021-04-25"
+    },
+    {
+        "name": "Ramzan Id\\\/Eid-ul-Fitar 1",
+        "date": "2021-05-14"
+    },
+    {
+        "name": "Buddha Purnima\/Vesak",
+        "date": "2021-05-26"
+    },
+    {
+        "name": "Bakrid\/Eid ul-Adha 1",
+        "date": "2021-07-21"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2021-08-15"
+    },
+    {
+        "name": "Muharram\/Ashura 1",
+        "date": "2021-08-20"
+    },
+    {
+        "name": "Raksha Bandhan",
+        "date": "2021-08-22"
+    },
+    {
+        "name": "Janmashtami",
+        "date": "2021-08-30"
+    },
+    {
+        "name": "Mahatma Gandhi Jayanti",
+        "date": "2021-10-02"
+    },
+    {
+        "name": "Dussehra",
+        "date": "2021-10-15"
+    },
+    {
+        "name": "Milad un-Nabi\/Id-e-Milad 1",
+        "date": "2021-10-19"
+    },
+    {
+        "name": "Diwali\/Deepavali",
+        "date": "2021-11-04"
+    },
+    {
+        "name": "Bhai Dooj",
+        "date": "2021-11-06"
+    },
+    {
+        "name": "Guru Nanak Jayanti",
+        "date": "2021-11-19"
+    },
+    {
+        "name": "Christmas",
+        "date": "2021-12-25"
+    }
+]

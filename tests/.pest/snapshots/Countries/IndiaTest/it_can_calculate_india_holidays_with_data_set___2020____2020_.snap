@@ -1,0 +1,78 @@
+[
+    {
+        "name": "Republic Day",
+        "date": "2020-01-26"
+    },
+    {
+        "name": "Holi",
+        "date": "2020-03-10"
+    },
+    {
+        "name": "Rama Navami",
+        "date": "2020-04-02"
+    },
+    {
+        "name": "Mahavir Jayanti",
+        "date": "2020-04-06"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2020-04-10"
+    },
+    {
+        "name": "Buddha Purnima\/Vesak",
+        "date": "2020-05-07"
+    },
+    {
+        "name": "Ramzan Id\\\/Eid-ul-Fitar 1",
+        "date": "2020-05-25"
+    },
+    {
+        "name": "Bakrid\/Eid ul-Adha 1",
+        "date": "2020-08-01"
+    },
+    {
+        "name": "Raksha Bandhan",
+        "date": "2020-08-03"
+    },
+    {
+        "name": "Janmashtami",
+        "date": "2020-08-12"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2020-08-15"
+    },
+    {
+        "name": "Muharram\/Ashura 1",
+        "date": "2020-08-30"
+    },
+    {
+        "name": "Mahatma Gandhi Jayanti",
+        "date": "2020-10-02"
+    },
+    {
+        "name": "Dussehra",
+        "date": "2020-10-25"
+    },
+    {
+        "name": "Milad un-Nabi\/Id-e-Milad 1",
+        "date": "2020-10-30"
+    },
+    {
+        "name": "Diwali\/Deepavali",
+        "date": "2020-11-14"
+    },
+    {
+        "name": "Bhai Dooj",
+        "date": "2020-11-16"
+    },
+    {
+        "name": "Guru Nanak Jayanti",
+        "date": "2020-11-30"
+    },
+    {
+        "name": "Christmas",
+        "date": "2020-12-25"
+    }
+]

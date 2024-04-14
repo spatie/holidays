@@ -1,0 +1,78 @@
+[
+    {
+        "name": "Republic Day",
+        "date": "2023-01-26"
+    },
+    {
+        "name": "Holi",
+        "date": "2023-03-08"
+    },
+    {
+        "name": "Rama Navami",
+        "date": "2023-03-30"
+    },
+    {
+        "name": "Mahavir Jayanti",
+        "date": "2023-04-04"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2023-04-07"
+    },
+    {
+        "name": "Ramzan Id\\\/Eid-ul-Fitar 1",
+        "date": "2023-04-22"
+    },
+    {
+        "name": "Buddha Purnima\/Vesak",
+        "date": "2023-05-05"
+    },
+    {
+        "name": "Bakrid\/Eid ul-Adha 1",
+        "date": "2023-06-29"
+    },
+    {
+        "name": "Muharram\/Ashura 1",
+        "date": "2023-07-29"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2023-08-15"
+    },
+    {
+        "name": "Raksha Bandhan",
+        "date": "2023-08-30"
+    },
+    {
+        "name": "Janmashtami",
+        "date": "2023-09-07"
+    },
+    {
+        "name": "Milad un-Nabi\/Id-e-Milad 1",
+        "date": "2023-09-28"
+    },
+    {
+        "name": "Mahatma Gandhi Jayanti",
+        "date": "2023-10-02"
+    },
+    {
+        "name": "Dussehra",
+        "date": "2023-10-24"
+    },
+    {
+        "name": "Diwali\/Deepavali",
+        "date": "2023-11-12"
+    },
+    {
+        "name": "Bhai Dooj",
+        "date": "2023-11-15"
+    },
+    {
+        "name": "Guru Nanak Jayanti",
+        "date": "2023-11-27"
+    },
+    {
+        "name": "Christmas",
+        "date": "2023-12-25"
+    }
+]
