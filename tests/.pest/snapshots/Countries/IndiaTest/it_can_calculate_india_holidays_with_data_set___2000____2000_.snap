@@ -1,6 +1,6 @@
 [
     {
-        "name": "Ramzan Id\\\/Eid-ul-Fitar 1",
+        "name": "Ramzan Id\\\/Eid-ul-Fitar",
         "date": "2000-01-08"
     },
     {
@@ -8,7 +8,7 @@
         "date": "2000-01-26"
     },
     {
-        "name": "Bakrid\/Eid ul-Adha 1",
+        "name": "Bakrid\/Eid ul-Adha",
         "date": "2000-03-16"
     },
     {
@@ -20,7 +20,7 @@
         "date": "2000-04-12"
     },
     {
-        "name": "Muharram\/Ashura 1",
+        "name": "Muharram\/Ashura",
         "date": "2000-04-15"
     },
     {
@@ -36,7 +36,7 @@
         "date": "2000-05-18"
     },
     {
-        "name": "Milad un-Nabi\/Id-e-Milad 1",
+        "name": "Milad un-Nabi\/Id-e-Milad",
         "date": "2000-06-16"
     },
     {
@@ -76,7 +76,7 @@
         "date": "2000-12-25"
     },
     {
-        "name": "Ramzan Id\\\/Eid-ul-Fitar 2",
+        "name": "2. Ramzan Id\\\/Eid-ul-Fitar",
         "date": "2000-12-28"
     }
 ]

@@ -4,9 +4,11 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use RuntimeException;
+use Spatie\Holidays\Calendars\IndianCalender;
 
-class India extends Country
+class India extends Country 
 {
+    use IndianCalender;
     /**
      * No library or built-in php intl functions convert dates properly for all years or all country including
      * “geniusts/hijri-dates”. It is most logical to prepare the dates between 1970 and 2037 as a constant property
@@ -523,7 +525,7 @@ class India extends Country
         2037 => '01-27',
     ];
 
-    public const muharramHolidays = [
+    public const ashura = [
         1970 => '03-18',
         1971 => '03-08',
         1972 => '02-25',
@@ -1104,96 +1106,69 @@ class India extends Country
     }
 
     protected function allHolidays(int $year): array
-    {
-        return array_merge([
-            'Republic Day' => '01-26',
-            'Independence Day' => '08-15',
-            'Mahatma Gandhi Jayanti' => '10-02',
-            'Christmas' => '12-25',
-        ], $this->variableHolidays($year));
-    }
+{
+    $new_holidays = [
+        'Holi' => self::holiHolidays[$year],
+        'Good Friday' => self::goodFridayHolidays[$year],
+        'Rama Navami' => self::ramanavamiHolidays[$year],
+        'Mahavir Jayanti' => self::mahavirJayantiHolidays[$year],
+        'Buddha Purnima/Vesak' => self::buddhaPurnimaHolidays[$year],
+        'Raksha Bandhan' => self::rakshabandhanHolidays[$year],
+        'Janmashtami' => self::janmashtamiHolidays[$year],
+        'Dussehra' => self::dussehraHolidays[$year],
+        'Diwali/Deepavali' => self::diwaliHolidays[$year],
+        'Bhai Dooj' => self::bhaiDujHolidays[$year],
+        'Guru Nanak Jayanti' => self::guruNanakHolidays[$year],
+    ];
 
-    /** @return array<string, CarbonImmutable> */
-    public function variableHolidays(int $year): array
-    {
-        $holidays =  [
-            'Holi' => self::holiHolidays[$year],
-            'Good Friday' => self::goodFridayHolidays[$year],
-            'Ramzan Id\/Eid-ul-Fitar 1' => self::ramzanIdHolidays[$year],
-            'Ramzan Id\/Eid-ul-Fitar 2' => '',
-            'Rama Navami' => self::ramanavamiHolidays[$year],
-            'Mahavir Jayanti' => self::mahavirJayantiHolidays[$year],
-            'Buddha Purnima/Vesak' => self::buddhaPurnimaHolidays[$year],
-            'Bakrid/Eid ul-Adha 1' => self::bakridHolidays[$year],
-            'Bakrid/Eid ul-Adha 2' => '',
-            'Muharram/Ashura 1' => self::muharramHolidays[$year],
-            'Muharram/Ashura 2' => '',
-            'Raksha Bandhan' => self::rakshabandhanHolidays[$year],
-            'Janmashtami' => self::janmashtamiHolidays[$year],
-            'Milad un-Nabi/Id-e-Milad 1' => self::miladHolidays[$year],
-            'Milad un-Nabi/Id-e-Milad 2' => '',
-            'Dussehra' => self::dussehraHolidays[$year],
-            'Diwali/Deepavali' => self::diwaliHolidays[$year],
-            'Bhai Dooj' => self::bhaiDujHolidays[$year],
-            'Guru Nanak Jayanti' => self::guruNanakHolidays[$year],
-        ];    
+    return array_merge([
+        'Republic Day' => '01-26',
+        'Independence Day' => '08-15',
+        'Mahatma Gandhi Jayanti' => '10-02',
+        'Christmas' => '12-25',
+    ],$new_holidays, $this->otherHolidays($year));
+}
 
-        $ramzan = self::ramzanIdHolidays[$year];
-        if (is_array($ramzan)) {
-            foreach ($ramzan as $key => $date) {
-                if($key == 0){
-                    $holidays['Ramzan Id\/Eid-ul-Fitar 1'] = $date;
-                }
-                else{
-                    $holidays['Ramzan Id\/Eid-ul-Fitar 2'] = $date;
-                }
-            }
-        } else {
-           unset($holidays['Ramzan Id\/Eid-ul-Fitar 2']);
-        }
-        
-        $milad = self::miladHolidays[$year];
-        if (is_array($milad)) {
-            foreach ($milad as $key => $date) {
-                if($key == 0){
-                    $holidays['Milad un-Nabi/Id-e-Milad 1'] = $date;
-                }
-                else{
-                    $holidays['Milad un-Nabi/Id-e-Milad 2'] = $date;
-                }
-            }
-        } else {
-               unset($holidays['Milad un-Nabi/Id-e-Milad 2']);
+ /** @return array<string, CarbonImmutable> */
+public function otherHolidays(int $year): array
+{
+    $ashura = $this->ashura($year);
+    $miladHolidays = $this->miladHolidays($year);
+    $bakridHolidays = $this->bakridHolidays($year);
+    $ramzanIdHolidays = $this->ramzanIdHolidays($year);
+
+        $holidays = array_merge(
+            $this->convertPeriods('Milad un-Nabi/Id-e-Milad', $year, $miladHolidays[0], includeEve: false),
+            $this->convertPeriods('Muharram/Ashura', $year, $ashura[0], includeEve: false),
+            $this->convertPeriods('Bakrid/Eid ul-Adha', $year, $bakridHolidays[0], includeEve: false),
+            $this->convertPeriods('Ramzan Id\/Eid-ul-Fitar', $year, $ramzanIdHolidays[0], includeEve: false),
+        );
+
+        if (count($miladHolidays) > 1) {
+            $holidays = array_merge($holidays,
+                $this->convertPeriods('2. Milad un-Nabi/Id-e-Milad', $year, $miladHolidays[1], includeEve: false),
+            );
         }
 
-        $muhrram = self::muharramHolidays[$year];
-        if (is_array($muhrram)) {
-            foreach ($muhrram as $key => $date) {
-                if($key == 0){
-                    $holidays['Muharram/Ashura 1'] = $date;
-                }
-                else{
-                    $holidays['Muharram/Ashura 2'] = $date;
-                }
-            }
-        } else {
-           unset($holidays['Muharram/Ashura 2']);
-        }    
-        
-        $bakrid = self::bakridHolidays[$year];
-        if (is_array($bakrid)) {
-            foreach ($bakrid as $key => $date) {
-                if($key == 0){
-                    $holidays['Bakrid/Eid ul-Adha 1'] = $date;
-                }
-                else{
-                    $holidays['Bakrid/Eid ul-Adha 2'] = $date;
-                }
-            }
-        } else {
-           unset($holidays['Bakrid/Eid ul-Adha 2']);
-        }  
+        if (count($ashura) > 1) {
+            $holidays = array_merge($holidays,
+                $this->convertPeriods('2. Muharram/Ashura', $year, $ashura[1], includeEve: false),
+            );
+        }
+
+        if (count($bakridHolidays) > 1) {
+            $holidays = array_merge($holidays,
+                $this->convertPeriods('2. Bakrid/Eid ul-Adha', $year, $bakridHolidays[1], includeEve: false),
+            );
+        }
+
+        if (count($ramzanIdHolidays) > 1) {
+            $holidays = array_merge($holidays,
+                $this->convertPeriods('2. Ramzan Id\/Eid-ul-Fitar', $year, $ramzanIdHolidays[1], includeEve: false),
+            );
+        }
 
         return $holidays;
-    }
+}
+
 }
