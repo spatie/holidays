@@ -11,11 +11,8 @@ class India extends Country
     use IndianCalender;
     /**
      * No library or built-in php intl functions convert dates properly for all years or all country including
-     * “geniusts/hijri-dates”. It is most logical to prepare the dates between 1970 and 2037 as a constant property
-     * for Islamic holidays. Because Islamic holidays predicted and actual dates may change until the last moment.
      * Since the information on wikipedia is incorrect, it was obtained by searching the old calendar
      * on Google Images for each year. The accuracy of the information has been double-checked.
-     * Ramadan and Sacrifice holidays vary for Turkey and other countries.
      * A converter algorithm that will cover all years does not seem possible.
      */
     public const holiHolidays = [
@@ -1106,36 +1103,36 @@ class India extends Country
     }
 
     protected function allHolidays(int $year): array
-{
-    $new_holidays = [
-        'Holi' => self::holiHolidays[$year],
-        'Good Friday' => self::goodFridayHolidays[$year],
-        'Rama Navami' => self::ramanavamiHolidays[$year],
-        'Mahavir Jayanti' => self::mahavirJayantiHolidays[$year],
-        'Buddha Purnima/Vesak' => self::buddhaPurnimaHolidays[$year],
-        'Raksha Bandhan' => self::rakshabandhanHolidays[$year],
-        'Janmashtami' => self::janmashtamiHolidays[$year],
-        'Dussehra' => self::dussehraHolidays[$year],
-        'Diwali/Deepavali' => self::diwaliHolidays[$year],
-        'Bhai Dooj' => self::bhaiDujHolidays[$year],
-        'Guru Nanak Jayanti' => self::guruNanakHolidays[$year],
-    ];
+    {
+        $newHolidays = [
+            'Holi' => self::holiHolidays[$year],
+            'Good Friday' => self::goodFridayHolidays[$year],
+            'Rama Navami' => self::ramanavamiHolidays[$year],
+            'Mahavir Jayanti' => self::mahavirJayantiHolidays[$year],
+            'Buddha Purnima/Vesak' => self::buddhaPurnimaHolidays[$year],
+            'Raksha Bandhan' => self::rakshabandhanHolidays[$year],
+            'Janmashtami' => self::janmashtamiHolidays[$year],
+            'Dussehra' => self::dussehraHolidays[$year],
+            'Diwali/Deepavali' => self::diwaliHolidays[$year],
+            'Bhai Dooj' => self::bhaiDujHolidays[$year],
+            'Guru Nanak Jayanti' => self::guruNanakHolidays[$year],
+        ];
 
-    return array_merge([
-        'Republic Day' => '01-26',
-        'Independence Day' => '08-15',
-        'Mahatma Gandhi Jayanti' => '10-02',
-        'Christmas' => '12-25',
-    ],$new_holidays, $this->otherHolidays($year));
-}
+        return array_merge([
+            'Republic Day' => '01-26',
+            'Independence Day' => '08-15',
+            'Mahatma Gandhi Jayanti' => '10-02',
+            'Christmas' => '12-25',
+        ],$newHolidays, $this->otherHolidays($year));
+    }
 
- /** @return array<string, CarbonImmutable> */
-public function otherHolidays(int $year): array
-{
-    $ashura = $this->ashura($year);
-    $miladHolidays = $this->miladHolidays($year);
-    $bakridHolidays = $this->bakridHolidays($year);
-    $ramzanIdHolidays = $this->ramzanIdHolidays($year);
+    /** @return array<string, CarbonImmutable> */
+    public function otherHolidays(int $year): array
+    {
+        $ashura = $this->ashura($year);
+        $miladHolidays = $this->miladHolidays($year);
+        $bakridHolidays = $this->bakridHolidays($year);
+        $ramzanIdHolidays = $this->ramzanIdHolidays($year);
 
         $holidays = array_merge(
             $this->convertPeriods('Milad un-Nabi/Id-e-Milad', $year, $miladHolidays[0], includeEve: false),
@@ -1169,6 +1166,6 @@ public function otherHolidays(int $year): array
         }
 
         return $holidays;
-}
+    }
 
 }
