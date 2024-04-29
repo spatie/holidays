@@ -54,7 +54,7 @@ class Ecuador extends Country implements HasTranslations
         if ($year === 2022) {
             $observedChristmasDay = $this->sundayToNextMonday('12-25', $year);
 
-            if ($observedChristmasDay !== null ) {
+            if ($observedChristmasDay !== null) {
                 return $observedChristmasDay;
             }
         }
