@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 use Spatie\Holidays\Concerns\Observable;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
@@ -29,7 +30,7 @@ class Ecuador extends Country implements HasTranslations
         ], $this->variableHolidays($year));
     }
 
-    public function nearestDay(int $year, int $month, int $day): CarbonImmutable
+    public function nearestDay(int $year, int $month, int $day): CarbonInterface
     {
         $date = CarbonImmutable::createFromDate($year, $month, $day);
 
@@ -42,22 +43,26 @@ class Ecuador extends Country implements HasTranslations
         }
 
         if ($date->is('Wednesday') || $date->is('Thursday')) {
-            return $date->next(CarbonImmutable::FRIDAY);
+            return $date->next(CarbonInterface::FRIDAY);
         }
 
         return $date;
     }
 
-    public function getChristmasHoliday(int $year): CarbonImmutable
+    public function getChristmasHoliday(int $year): CarbonInterface
     {
         if ($year === 2022) {
-            return $this->sundayToNextMonday('12-25', $year);
+            $observedChristmasDay = $this->sundayToNextMonday('12-25', $year);
+
+            if ($observedChristmasDay !== null ) {
+                return $observedChristmasDay;
+            }
         }
 
         return CarbonImmutable::createFromDate($year, 12, 25);
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonInterface> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
