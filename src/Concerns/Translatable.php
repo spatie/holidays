@@ -36,8 +36,12 @@ trait Translatable
 
     protected function toHyphenSeparated(string $text): string
     {
-        return strtolower(
-            preg_replace('/(?<=\\w)(?=[A-Z])/', '-$1', $text)
-        );
+        $toHyphens = preg_replace('/(?<=\\w)(?=[A-Z])/', '-$1', $text);
+
+        if ($toHyphens === null) {
+            return strtolower($text);
+        }
+
+        return strtolower($toHyphens);
     }
 }
