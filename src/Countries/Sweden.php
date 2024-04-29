@@ -17,8 +17,8 @@ class Sweden extends Country
         return array_merge([
             'Nyårsdagen' => '01-01',
             'Trettondedag jul' => '01-06',
-            'Första maj' => '05-1',
-            'Nationaldagen' => '06-6',
+            'Första maj' => '05-01',
+            'Nationaldagen' => '06-06',
             'Juldagen' => '12-25',
             'Annandag jul' => '12-26',
         ], $this->variableHolidays($year));
