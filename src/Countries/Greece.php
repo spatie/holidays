@@ -32,6 +32,8 @@ class Greece extends Country
         // OrthodoxEaster needs to setTimezone
         $orthodoxEaster = $this->orthodoxEaster($year)->setTimezone("Europe/Athens");
         $cleanMonday = $orthodoxEaster->copy()->subDays(48);
+        $megaliTetarti = $orthodoxEaster->copy()->subDays(4);
+        $megaliPempti = $orthodoxEaster->copy()->subDays(3);
         $megaliParaskevi = $orthodoxEaster->copy()->subDays(2);
         $megaloSavvato = $orthodoxEaster->copy()->subDays(1);
         $deuteraPasha = $orthodoxEaster->copy()->addDay();
@@ -39,7 +41,7 @@ class Greece extends Country
 
         /** @var CarbonImmutable $protomagia */
         $protomagia = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-05-01");
-        $moveProtomagia = [$megaliParaskevi, $megaloSavvato, $orthodoxEaster, $deuteraPasha];
+        $moveProtomagia = [$megaliTetarti, $megaliPempti, $megaliParaskevi, $megaloSavvato, $orthodoxEaster, $deuteraPasha];
 
         if ( in_array($protomagia, $moveProtomagia) ) {
             $protomagia = $orthodoxEaster->copy()->addDays(2);
