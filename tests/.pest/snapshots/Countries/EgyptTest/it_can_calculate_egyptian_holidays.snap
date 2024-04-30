@@ -1,0 +1,130 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Coptic Christmas Day",
+        "date": "2024-01-07"
+    },
+    {
+        "name": "Revolution Day 2011",
+        "date": "2024-01-25"
+    },
+    {
+        "name": "March Equinox",
+        "date": "2024-03-20"
+    },
+    {
+        "name": "Eid al-Fitr",
+        "date": "2024-04-10"
+    },
+    {
+        "name": "Eid al-Fitr Day 2",
+        "date": "2024-04-11"
+    },
+    {
+        "name": "Eid al-Fitr Day 3",
+        "date": "2024-04-12"
+    },
+    {
+        "name": "Sinai Liberation Day",
+        "date": "2024-04-25"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Day off for Labour Day",
+        "date": "2024-05-02"
+    },
+    {
+        "name": "Coptic Good Friday",
+        "date": "2024-05-03"
+    },
+    {
+        "name": "Coptic Holy Saturday",
+        "date": "2024-05-04"
+    },
+    {
+        "name": "Coptic Easter Sunday",
+        "date": "2024-05-05"
+    },
+    {
+        "name": "Spring Festival",
+        "date": "2024-05-06"
+    },
+    {
+        "name": "Day off for Spring Festival",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Arafat Day",
+        "date": "2024-06-16"
+    },
+    {
+        "name": "Eid al-Adha",
+        "date": "2024-06-17"
+    },
+    {
+        "name": "Eid al-Adha Day 2",
+        "date": "2024-06-18"
+    },
+    {
+        "name": "Eid al-Adha Day 3",
+        "date": "2024-06-19"
+    },
+    {
+        "name": "Eid al-Adha Day 4",
+        "date": "2024-06-20"
+    },
+    {
+        "name": "June Solstice",
+        "date": "2024-06-21"
+    },
+    {
+        "name": "June 30 Revolution Day",
+        "date": "2024-06-30"
+    },
+    {
+        "name": "Islamic New Year",
+        "date": "2024-07-08"
+    },
+    {
+        "name": "Ashura",
+        "date": "2024-07-17"
+    },
+    {
+        "name": "Revolution Day",
+        "date": "2024-07-23"
+    },
+    {
+        "name": "Day off for Revolution Day",
+        "date": "2024-07-25"
+    },
+    {
+        "name": "Flooding of the Nile",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Nayrouz",
+        "date": "2024-09-11"
+    },
+    {
+        "name": "Birthday of the Prophet Muhammad",
+        "date": "2024-09-16"
+    },
+    {
+        "name": "September Equinox",
+        "date": "2024-09-22"
+    },
+    {
+        "name": "Armed Forces Day",
+        "date": "2024-10-06"
+    },
+    {
+        "name": "December Solstice",
+        "date": "2024-12-21"
+    }
+]

@@ -68,6 +68,16 @@ use Spatie\Holidays\Holidays;
 $holidays = Holidays::for(country: 'be', year: 2024))->get();
 ```
 
+### Getting holidays in a specific language
+
+```php
+use Spatie\Holidays\Holidays;
+
+$holidays = Holidays::for(country: 'be', locale: 'fr'))->get();
+```
+
+If the locale is not supported for a country, an exception will be thrown.
+
 ### Determining if a date is a holiday 
 
 If you need to see if a date is a holiday, you can use the `isHoliday` method.
@@ -88,12 +98,20 @@ use Spatie\Holidays\Holidays;
 Holidays::for('be')->getName('2024-01-01'); // Nieuwjaar
 ```
 
-### Package limitations
-1. Islamic holidays are not supported (yet)
+### Determining whether a country is supported
+
+To verify whether a country is supported, you can use the `has` method.
+
+```php
+use Spatie\Holidays\Holidays;
+
+Holidays::has('be'); // true
+Holidays::has('unknown'); // false
+```
 
 ## Contributing
 
-This is a community driven package. If you find any errors, please create an issue or a pull request.
+This is a community driven package. If you find any errors, please create a pull request with the fix, or at least open an issue.
 
 ## Adding a new country
 
@@ -101,18 +119,19 @@ This is a community driven package. If you find any errors, please create an iss
 2. Add a test for the new country in the `tests` directory.
 3. Run the tests so a snapshot gets created.
 4. Verify the result in the newly created snapshot is correct.
+5. If the country has multiple languages, add a file in the `lang/` directory.
 
 In case your country has specific rules for calculating holidays,
 for example region specific holidays, you can pass this to the constructor of your country class.
 
 ```php
-$holidays = Holidays::for(Austria::make(region: 'de-bw'))->get();
+$holidays = Holidays::for(Germany::make(region: 'DE-BW'))->get();
 ```
 
-The value, `de-bw`, will be passed to the region parameter of the constructor of a country.
+The value, `DE-BW`, will be passed to the region parameter of the constructor of a country.
 
 ```php
-class Austria extends Country
+class Germany extends Country
 {
     protected function __construct(
         protected ?string $region = null,

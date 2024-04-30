@@ -24,8 +24,7 @@ class Netherlands extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        /** @var CarbonImmutable $koningsDag */
-        $koningsDag = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-04-27");
+        $koningsDag = CarbonImmutable::createFromDate($year, 4, 27);
 
         if ($koningsDag->isSunday()) {
             $koningsDag = $koningsDag->subDay();
