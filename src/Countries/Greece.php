@@ -31,16 +31,14 @@ class Greece extends Country
     {
 
         $orthodoxEaster = $this->orthodoxEaster($year);
-
         $megaliTetarti = $orthodoxEaster->copy()->subDays(4);
         $megaliPempti = $orthodoxEaster->copy()->subDays(3);
         $megaliParaskevi = $orthodoxEaster->copy()->subDays(2);
         $megaloSavvato = $orthodoxEaster->copy()->subDay();
         $deuteraPasha = $orthodoxEaster->copy()->addDay();
-
         $protomagia = CarbonImmutable::createFromDate($year, 5, 1)->startOfDay();
-        $moveProtomagia = [$megaliTetarti, $megaliPempti, $megaliParaskevi, $megaloSavvato, $orthodoxEaster, $deuteraPasha];
 
+        $moveProtomagia = [$megaliTetarti, $megaliPempti, $megaliParaskevi, $megaloSavvato, $orthodoxEaster, $deuteraPasha];
         if (in_array($protomagia, $moveProtomagia, true)) {
             $protomagia = $orthodoxEaster->copy()->addDays(2);
         }
