@@ -39,7 +39,7 @@ class Greece extends Country
         $protomagia = CarbonImmutable::createFromDate($year, 5, 1)->startOfDay();
 
         $moveProtomagia = [$megaliTetarti, $megaliPempti, $megaliParaskevi, $megaloSavvato, $orthodoxEaster, $deuteraPasha];
-        if (in_array($protomagia, $moveProtomagia)) { //no true here
+        if (in_array($protomagia, $moveProtomagia)) {
             $protomagia = $orthodoxEaster->copy()->addDays(2);
         }
 
