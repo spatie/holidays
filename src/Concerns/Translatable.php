@@ -14,7 +14,8 @@ trait Translatable
 
         $locale = $locale ?? $this->defaultLocale();
 
-        $countryName = strtolower($country);
+        $countryName = $this->toHyphenSeparated($country);
+
         $filePath = __DIR__."/../../lang/{$countryName}/{$locale}/holidays.json";
 
         if (file_exists($filePath)) {
@@ -31,5 +32,16 @@ trait Translatable
         $data = json_decode($content, true);
 
         return $data[$name] ?? $name;
+    }
+
+    protected function toHyphenSeparated(string $text): string
+    {
+        $toHyphens = preg_replace('/(?<=\\w)(?=[A-Z])/', '-$1', $text);
+
+        if ($toHyphens === null) {
+            return strtolower($text);
+        }
+
+        return strtolower($toHyphens);
     }
 }

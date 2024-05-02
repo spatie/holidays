@@ -2,6 +2,22 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.10.0 - 2024-04-29
+
+### What's Changed
+
+* add Tunisia Holidays by @mr-wolf-gb in https://github.com/spatie/holidays/pull/109
+* Add holidays for Ecuador by @insoutt in https://github.com/spatie/holidays/pull/218
+* Bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot in https://github.com/spatie/holidays/pull/221
+* feat: remove canceled day of the rest from `Slovakia` country by @patressz in https://github.com/spatie/holidays/pull/223
+
+### New Contributors
+
+* @mr-wolf-gb made their first contribution in https://github.com/spatie/holidays/pull/109
+* @insoutt made their first contribution in https://github.com/spatie/holidays/pull/218
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.9.1...1.10.0
+
 ## 1.9.1 - 2024-04-02
 
 ### What's Changed
