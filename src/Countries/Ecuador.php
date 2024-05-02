@@ -58,6 +58,7 @@ class Ecuador extends Country implements HasTranslations
                 return $observedChristmasDay;
             }
         }
+
         return CarbonImmutable::createFromDate($year, 12, 25);
     }
 
