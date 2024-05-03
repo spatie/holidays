@@ -7,13 +7,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os: [ubuntu-latest]
         php: [8.3, 8.2, 8.1]
         stability: [prefer-lowest, prefer-stable]
+        carbon: [2.72, 3.2]
 
-    name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: P${{ matrix.php }} - ${{ matrix.stability }} - Carbon ${{ matrix.carbon }}
 
     steps:
       - name: Checkout code
@@ -32,7 +33,9 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Install dependencies
-        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+        run: |
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+          composer require nesbot/carbon:^${{ matrix.carbon }} --${{ matrix.stability }} -W --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
         run: composer show -D

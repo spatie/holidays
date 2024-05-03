@@ -3,20 +3,21 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
+use Carbon\CarbonInterface;
+use Carbon\CarbonPeriod;
+use Carbon\Exceptions\InvalidFormatException;
+use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
-use Spatie\Holidays\Exceptions\UnsupportedCountry;
 
 abstract class Country
 {
-    use Translatable;
-
     abstract public function countryCode(): string;
 
     /** @return array<string, string|CarbonImmutable> */
     abstract protected function allHolidays(int $year): array;
 
-    /** @return array<string, CarbonImmutable|string> */
+    /** @return array<string, CarbonImmutable> */
     public function get(int $year, ?string $locale = null): array
     {
         $this->ensureYearCanBeCalculated($year);
@@ -26,10 +27,20 @@ abstract class Country
         $translatedHolidays = [];
         foreach ($allHolidays as $name => $date) {
             if (is_string($date)) {
-                $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+                if (strlen($date) > 5) {
+                    $date = (new CarbonImmutable($date.' '.$year))->startOfDay();
+                } else {
+                    $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+                }
             }
 
-            $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);
+            if ($date === null) {
+                throw new InvalidFormatException("Invalid date for holiday `{$name}`");
+            }
+
+            if ($this instanceof HasTranslations) {
+                $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);
+            }
 
             $translatedHolidays[$name] = $date;
         }
@@ -128,7 +139,7 @@ abstract class Country
         $country = self::find($countryCode);
 
         if (! $country) {
-            throw UnsupportedCountry::make($countryCode);
+            throw InvalidCountry::notFound($countryCode);
         }
 
         return $country;
@@ -144,11 +155,55 @@ abstract class Country
          * https://www.php.net/manual/en/function.easter-date.php
          */
         if ($year < 1970) {
-            throw InvalidYear::yearTooLow();
+            throw InvalidYear::yearTooLow(1970);
         }
 
         if ($year > 2037) {
-            throw InvalidYear::yearTooHigh();
+            throw InvalidYear::yearTooHigh(2038);
         }
+    }
+
+    /**
+     * Convert holidays that are represented as CarbonPeriods to an array of CarbonImmutable dates.
+     * This is useful for holidays like `Eid-al-Fitr` that happen on multiple days.
+     *
+     * @return array<string, CarbonImmutable>
+     */
+    protected function convertPeriods(
+        string $name,
+        int $year,
+        CarbonPeriod $period,
+        string $suffix = 'Day',
+        string $prefix = '',
+        bool $includeEve = false,
+    ): array {
+        $allDays = [];
+
+        if ($includeEve) {
+            $eve = $period->first()?->subDay();
+
+            if ($eve && $eve->year === $year) {
+                $allDays[$name.' Eve'] = $eve->toImmutable();
+            }
+        }
+
+        /** @var CarbonInterface $day */
+        foreach ($period as $index => $day) {
+            if ($day->year !== $year) {
+                continue; // Lunar based holidays can overlap in 2 years
+            }
+
+            if ($index > 0) {
+                $formattedSuffix = " {$suffix} ".$index + 1;
+            } else {
+                $formattedSuffix = '';
+            }
+
+            $holidayName = "{$prefix}{$name}{$formattedSuffix}";
+
+            $allDays[$holidayName] = $day->toImmutable();
+        }
+
+        return $allDays;
     }
 }

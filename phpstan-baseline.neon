@@ -1,9 +1,29 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot call method modify\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:arafat\\.$#"
 			count: 1
-			path: src/Countries/Australia.php
+			path: src/Countries/Albania.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:ashura\\.$#"
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:islamicNewYear\\.$#"
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:prophetMuhammadBirthday\\.$#"
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: "#^Argument of an invalid type Carbon\\\\CarbonPeriod supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Countries/Country.php
 
 		-
 			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
@@ -11,19 +31,29 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Cannot call method startOfDay\\(\\) on Carbon\\\\CarbonImmutable\\|false\\.$#"
-			count: 2
-			path: src/Countries/Country.php
-
-		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Country\\:\\:get\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\|string\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|false\\>\\.$#"
+			message: "#^Binary operation \"\\+\" between non\\-falsy\\-string and 1 results in an error\\.$#"
 			count: 1
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function uasort expects callable\\(bool\\|Carbon\\\\CarbonImmutable, bool\\|Carbon\\\\CarbonImmutable\\)\\: int, Closure\\(Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\)\\: int\\<\\-1, 1\\> given\\.$#"
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:arafat\\.$#"
 			count: 1
-			path: src/Countries/Country.php
+			path: src/Countries/Turkey.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:ashura\\.$#"
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:islamicNewYear\\.$#"
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:prophetMuhammadBirthday\\.$#"
+			count: 1
+			path: src/Countries/Turkey.php
 
 		-
 			message: "#^Cannot call method setTimeStamp\\(\\) on DateTime\\|false\\.$#"
@@ -40,7 +70,3 @@ parameters:
 			count: 1
 			path: src/Holidays.php
 
-		-
-			message: "#^Property Spatie\\\\Holidays\\\\Holidays\\:\\:\\$holidays \\(array\\<string, Carbon\\\\CarbonImmutable\\>\\) does not accept array\\<string, Carbon\\\\CarbonImmutable\\|string\\>\\.$#"
-			count: 1
-			path: src/Holidays.php

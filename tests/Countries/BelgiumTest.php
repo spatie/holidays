@@ -16,3 +16,12 @@ it('can calculate belgian holidays', function () {
 
     expect(formatDates($holidays))->toMatchSnapshot();
 });
+
+it('can get holidays in another locale', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
+    $holidays = Holidays::for(country: 'be', locale: 'fr')->get();
+
+    expect($holidays[0]['name'])
+        ->toBe("Jour de l'An");
+});

@@ -3,12 +3,21 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 
-class Montenegro extends Country
+class Montenegro extends Country implements HasTranslations
 {
+    use Translatable;
+
     public function countryCode(): string
     {
         return 'me';
+    }
+
+    public function defaultLocale(): string
+    {
+        return 'sr';
     }
 
     public function allHolidays(int $year): array
@@ -35,15 +44,12 @@ class Montenegro extends Country
     /** @return array<string, CarbonImmutable> */
     public function variableHolidays(int $year): array
     {
-        // Orthodox Easter calculation needs to be in the same timezone as the country
-        $orthodoxEaster = $this->orthodoxEaster($year)->setTimezone('Europe/Podgorica');
-        $goodFriday = $orthodoxEaster->copy()->subDays(2);
-        $orthodoxEasterMonday = $orthodoxEaster->copy()->addDay();
+        $orthodoxEaster = $this->orthodoxEaster($year);
 
         return [
             'Vaskrs' => $orthodoxEaster,
-            'Vaskršnji ponedjeljak' => $orthodoxEasterMonday,
-            'Veliki petak' => $goodFriday,
+            'Vaskršnji ponedjeljak' => $orthodoxEaster->copy()->addDay(),
+            'Veliki petak' => $orthodoxEaster->copy()->subDays(2),
         ];
     }
 }

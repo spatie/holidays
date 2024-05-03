@@ -29,32 +29,31 @@ class Greece extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        // OrthodoxEaster needs to setTimezone
-        $orthodoxEaster = $this->orthodoxEaster($year)->setTimezone('Europe/Athens');
-        $cleanMonday = $orthodoxEaster->copy()->subDays(48);
+
+        $orthodoxEaster = $this->orthodoxEaster($year);
+        $megaliTetarti = $orthodoxEaster->copy()->subDays(4);
+        $megaliPempti = $orthodoxEaster->copy()->subDays(3);
         $megaliParaskevi = $orthodoxEaster->copy()->subDays(2);
-        $megaloSavvato = $orthodoxEaster->copy()->subDays(1);
+        $megaloSavvato = $orthodoxEaster->copy()->subDay();
         $deuteraPasha = $orthodoxEaster->copy()->addDay();
-        $agiouPneumatos = $orthodoxEaster->copy()->addDays(50);
+        $protomagia = CarbonImmutable::createFromDate($year, 5, 1)->startOfDay();
 
-        /** @var CarbonImmutable $protomagia */
-        $protomagia = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-05-01");
-        $moveProtomagia = [$megaliParaskevi, $megaloSavvato, $orthodoxEaster, $deuteraPasha];
-
+        $moveProtomagia = [$megaliTetarti, $megaliPempti, $megaliParaskevi, $megaloSavvato, $orthodoxEaster, $deuteraPasha];
         if (in_array($protomagia, $moveProtomagia)) {
             $protomagia = $orthodoxEaster->copy()->addDays(2);
         }
+
         if ($protomagia->isSunday()) {
             $protomagia = $protomagia->copy()->addDay();
         }
 
         return [
-            'Καθαρά Δευτέρα' => $cleanMonday, //always Monday
+            'Καθαρά Δευτέρα' => $orthodoxEaster->copy()->subDays(48), //always Monday
             'Πρωτομαγιά' => $protomagia,
             'Μεγάλη Παρασκευή' => $megaliParaskevi,
             'Κυριακή του Πάσχα' => $orthodoxEaster,
             'Δευτέρα του Πάσχα' => $deuteraPasha,
-            'Αγίου Πνεύματος' => $agiouPneumatos, //always Monday
+            'Αγίου Πνεύματος' => $orthodoxEaster->copy()->addDays(50), //always Monday
         ];
     }
 }

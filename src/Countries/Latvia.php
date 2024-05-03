@@ -3,9 +3,12 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Observable;
 
 class Latvia extends Country
 {
+    use Observable;
+
     public function countryCode(): string
     {
         return 'lv';
@@ -24,7 +27,10 @@ class Latvia extends Country
             'Pirmie Ziemassvētki' => '12-25',
             'Otrie Ziemassvētki' => '12-26',
             'Vecgada vakars' => '12-31',
-        ], $this->variableHolidays($year), $this->postponedHolidays($year));
+        ],
+            $this->variableHolidays($year),
+            $this->observedHolidays($year)
+        );
     }
 
     /** @return array<string, CarbonImmutable> */
@@ -40,22 +46,25 @@ class Latvia extends Country
     }
 
     /** @return array<string, string> */
-    protected function postponedHolidays(int $year): array
+    protected function observedHolidays(int $year): array
     {
-        // If the holidays - May 4 and November 18 - fall on a Saturday or Sunday,
-        // the next working day is designated as a holiday.
-        $holidays = [];
+        $holidays = [
+            'Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena' => '05-04',
+            'Latvijas Republikas proklamēšanas diena' => '11-18',
+        ];
 
-        $date = new CarbonImmutable();
+        foreach ($holidays as $name => $date) {
+            $observedDay = $this->weekendToNextMonday($date, $year);
 
-        $date = $date->setDate($year, 5, 4);
-        if ($date->isWeekend()) {
-            $holidays['Pārceltā 4. maija brīvdiena'] = $date->nextWeekday()->format('m-d');
-        }
+            if ($observedDay) {
+                if ($name === 'Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena') {
+                    $holidays['Pārceltā 4. maija brīvdiena'] = $observedDay;
+                }
 
-        $date = $date->setDate($year, 11, 18);
-        if ($date->isWeekend()) {
-            $holidays['Pārceltā 18. novembra brīvdiena'] = $date->nextWeekday()->format('m-d');
+                if ($name === 'Latvijas Republikas proklamēšanas diena') {
+                    $holidays['Pārceltā 18. novembra brīvdiena'] = $observedDay;
+                }
+            }
         }
 
         return $holidays;

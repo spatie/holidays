@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Neujahr",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Karfreitag",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Ostermontag",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Tag der Arbeit",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Auffahrt",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Pfingstmontag",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "Bundesfeier",
+        "date": "2024-08-01"
+    },
+    {
+        "name": "Buss- und Bettag",
+        "date": "2024-09-15"
+    },
+    {
+        "name": "Weihnachtstag",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Stephanstag",
+        "date": "2024-12-26"
+    }
+]

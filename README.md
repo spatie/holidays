@@ -117,12 +117,9 @@ Holidays::has('be'); // true
 Holidays::has('unknown'); // false
 ```
 
-### Package limitations
-1. Islamic holidays are not supported (yet)
-
 ## Contributing
 
-This is a community driven package. If you find any errors, please create an issue or a pull request.
+This is a community driven package. If you find any errors, please create a pull request with the fix, or at least open an issue.
 
 ## Adding a new country
 
@@ -136,13 +133,13 @@ In case your country has specific rules for calculating holidays,
 for example region specific holidays, you can pass this to the constructor of your country class.
 
 ```php
-$holidays = Holidays::for(Austria::make(region: 'de-bw'))->get();
+$holidays = Holidays::for(Germany::make(region: 'DE-BW'))->get();
 ```
 
-The value, `de-bw`, will be passed to the region parameter of the constructor of a country.
+The value, `DE-BW`, will be passed to the region parameter of the constructor of a country.
 
 ```php
-class Austria extends Country
+class Germany extends Country
 {
     protected function __construct(
         protected ?string $region = null,
