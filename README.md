@@ -125,7 +125,7 @@ In case your country has specific rules for calculating holidays,
 for example region specific holidays, you can pass this to the constructor of your country class.
 
 ```php
-$holidays = Holidays::for(Germany::make(region: 'DE-BW'))->get();
+$holidays = Holidays::for(Germany::make('DE-BW'))->get();
 ```
 
 The value, `DE-BW`, will be passed to the region parameter of the constructor of a country.
