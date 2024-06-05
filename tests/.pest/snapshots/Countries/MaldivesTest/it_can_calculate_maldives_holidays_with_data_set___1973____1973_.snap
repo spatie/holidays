@@ -1,0 +1,54 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "1973-01-01"
+    },
+    {
+        "name": "Eid al-Adha Eve",
+        "date": "1973-01-13"
+    },
+    {
+        "name": "Eid al-Adha",
+        "date": "1973-01-14"
+    },
+    {
+        "name": "Eid al-Adha Day 2",
+        "date": "1973-01-15"
+    },
+    {
+        "name": "Eid al-Adha Day 3",
+        "date": "1973-01-16"
+    },
+    {
+        "name": "Eid al-Adha Day 4",
+        "date": "1973-01-17"
+    },
+    {
+        "name": "Independence Day",
+        "date": "1973-07-26"
+    },
+    {
+        "name": "Eid al-Fitr Eve",
+        "date": "1973-10-27"
+    },
+    {
+        "name": "Eid al-Fitr",
+        "date": "1973-10-28"
+    },
+    {
+        "name": "Eid al-Fitr Day 2",
+        "date": "1973-10-29"
+    },
+    {
+        "name": "Eid al-Fitr Day 3",
+        "date": "1973-10-30"
+    },
+    {
+        "name": "Victory Day",
+        "date": "1973-11-03"
+    },
+    {
+        "name": "Republic Day",
+        "date": "1973-11-11"
+    }
+]

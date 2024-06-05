@@ -1,0 +1,58 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2021-01-01"
+    },
+    {
+        "name": "National Day",
+        "date": "2021-01-24"
+    },
+    {
+        "name": "Eid al-Fitr Eve",
+        "date": "2021-05-12"
+    },
+    {
+        "name": "Eid al-Fitr",
+        "date": "2021-05-13"
+    },
+    {
+        "name": "Eid al-Fitr Day 2",
+        "date": "2021-05-14"
+    },
+    {
+        "name": "Eid al-Fitr Day 3",
+        "date": "2021-05-15"
+    },
+    {
+        "name": "Eid al-Adha Eve",
+        "date": "2021-07-19"
+    },
+    {
+        "name": "Eid al-Adha",
+        "date": "2021-07-20"
+    },
+    {
+        "name": "Eid al-Adha Day 2",
+        "date": "2021-07-21"
+    },
+    {
+        "name": "Eid al-Adha Day 3",
+        "date": "2021-07-22"
+    },
+    {
+        "name": "Eid al-Adha Day 4",
+        "date": "2021-07-23"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2021-07-26"
+    },
+    {
+        "name": "Victory Day",
+        "date": "2021-11-03"
+    },
+    {
+        "name": "Republic Day",
+        "date": "2021-11-11"
+    }
+]

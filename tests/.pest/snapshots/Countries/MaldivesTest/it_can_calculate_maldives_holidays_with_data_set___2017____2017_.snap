@@ -1,0 +1,58 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2017-01-01"
+    },
+    {
+        "name": "National Day",
+        "date": "2017-01-24"
+    },
+    {
+        "name": "Eid al-Fitr Eve",
+        "date": "2017-06-25"
+    },
+    {
+        "name": "Eid al-Fitr",
+        "date": "2017-06-26"
+    },
+    {
+        "name": "Eid al-Fitr Day 2",
+        "date": "2017-06-27"
+    },
+    {
+        "name": "Eid al-Fitr Day 3",
+        "date": "2017-06-28"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2017-07-26"
+    },
+    {
+        "name": "Eid al-Adha Eve",
+        "date": "2017-08-31"
+    },
+    {
+        "name": "Eid al-Adha",
+        "date": "2017-09-01"
+    },
+    {
+        "name": "Eid al-Adha Day 2",
+        "date": "2017-09-02"
+    },
+    {
+        "name": "Eid al-Adha Day 3",
+        "date": "2017-09-03"
+    },
+    {
+        "name": "Eid al-Adha Day 4",
+        "date": "2017-09-04"
+    },
+    {
+        "name": "Victory Day",
+        "date": "2017-11-03"
+    },
+    {
+        "name": "Republic Day",
+        "date": "2017-11-11"
+    }
+]

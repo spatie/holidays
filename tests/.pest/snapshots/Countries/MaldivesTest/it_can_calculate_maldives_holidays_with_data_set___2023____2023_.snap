@@ -1,0 +1,58 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2023-01-01"
+    },
+    {
+        "name": "National Day",
+        "date": "2023-01-24"
+    },
+    {
+        "name": "Eid al-Fitr Eve",
+        "date": "2023-04-20"
+    },
+    {
+        "name": "Eid al-Fitr",
+        "date": "2023-04-21"
+    },
+    {
+        "name": "Eid al-Fitr Day 2",
+        "date": "2023-04-22"
+    },
+    {
+        "name": "Eid al-Fitr Day 3",
+        "date": "2023-04-23"
+    },
+    {
+        "name": "Eid al-Adha Eve",
+        "date": "2023-06-27"
+    },
+    {
+        "name": "Eid al-Adha",
+        "date": "2023-06-28"
+    },
+    {
+        "name": "Eid al-Adha Day 2",
+        "date": "2023-06-29"
+    },
+    {
+        "name": "Eid al-Adha Day 3",
+        "date": "2023-06-30"
+    },
+    {
+        "name": "Eid al-Adha Day 4",
+        "date": "2023-07-01"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2023-07-26"
+    },
+    {
+        "name": "Victory Day",
+        "date": "2023-11-03"
+    },
+    {
+        "name": "Republic Day",
+        "date": "2023-11-11"
+    }
+]
