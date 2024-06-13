@@ -33,7 +33,7 @@ class Slovakia extends Country
         }
         
         if ($year < 2024) {
-            $holidays['Sedembolestná Panna Mária'] = '09-01',
+            $holidays['Sedembolestná Panna Mária'] = '09-01';
         }
         
         return $holidays;
