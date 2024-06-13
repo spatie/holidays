@@ -2,14 +2,12 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use GeniusTS\HijriDate\Date;
 use GeniusTS\HijriDate\Hijri;
 
 class Benin extends Country
 {
-
     public const ProphetMohammedBirthday = [
         1970 => '05-17',
         1971 => '05-07',
@@ -231,14 +229,14 @@ class Benin extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "Fête du Nouvel An"                           => '01-01',
-            "Fête annuelle des réligions traditionnelles" => '01-10',
-            "Fete annuelle des réligions traditionnelles" => '01-10',
-            "Fete du travail"                             => '05-01',
-            "Fête de l'indépendance"                      => '08-01',
-            "Jour de la Toussaint"                        => '11-01',
-            "Jour de Noel"                                => '12-25',
-            "Jour de l'assomption"                        => '08-15',
+            'Fête du Nouvel An' => '01-01',
+            'Fête annuelle des réligions traditionnelles' => '01-10',
+            'Fete annuelle des réligions traditionnelles' => '01-10',
+            'Fete du travail' => '05-01',
+            "Fête de l'indépendance" => '08-01',
+            'Jour de la Toussaint' => '11-01',
+            'Jour de Noel' => '12-25',
+            "Jour de l'assomption" => '08-15',
         ], $this->variableHolidays($year));
     }
 
@@ -246,7 +244,7 @@ class Benin extends Country
      * Some dates vary each year,as they are based on the Islamic Hijri (lunar) calendar. These holidays do not have a fixed date and
      * occur based on the lunar calendar sequence. The order listed reflects the chronological occurrence
      * of these holidays throughout the year.
-     * @param int $year
+     *
      * @return array<string, CarbonImmutable>
      */
     protected function variableHolidays(int $year): array
@@ -255,9 +253,9 @@ class Benin extends Country
 
         return array_merge(
             [
-                "Lundi de Pâques"     => $easter->addDays(1),
-                "Jour de l’Ascension" => $easter->addDays(40),
-                "Lundi de Pentecôte"  => $easter->addDays(50),
+                'Lundi de Pâques' => $easter->addDays(1),
+                'Jour de l’Ascension' => $easter->addDays(40),
+                'Lundi de Pentecôte' => $easter->addDays(50),
             ],
             $this->getIslamicHolidays(
                 year: $year,
@@ -280,23 +278,22 @@ class Benin extends Country
     }
 
     /**
-     * @param array<int, string|array<string>> $holidays
+     * @param  array<int, string|array<string>>  $holidays
      * @return array<string, CarbonImmutable>
      */
     protected function getIslamicHolidays(
-        int    $year,
-        array  $holidays,
+        int $year,
+        array $holidays,
         string $label,
-        int    $day = 1,
-    ): array
-    {
+        int $day = 1,
+    ): array {
         $islamicHolidays = [];
         $counter = 0;
 
         if ($year != 1970) {
             $previousHoliday = is_array($holidays[$year - 1]) ? $holidays[$year - 1][1] : $holidays[$year - 1];
 
-            $previousHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year - 1) . '-' . $previousHoliday);
+            $previousHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year - 1).'-'.$previousHoliday);
 
             if ($previousHoliday->addDays($day - 1)->year == $year) {
                 $islamicHolidays = $this->prepareHolidays(
@@ -319,7 +316,7 @@ class Benin extends Country
                 day: $day,
                 label: $label,
                 filterYear: $year,
-                prefix: $counter ? ($counter + 1) . '. ' : ''
+                prefix: $counter ? ($counter + 1).'. ' : ''
             ));
             $counter++;
         }
@@ -327,7 +324,7 @@ class Benin extends Country
         if ($year != 2037) {
             $nextHoliday = is_array($holidays[$year + 1]) ? $holidays[$year + 1][1] : $holidays[$year + 1];
 
-            $nextHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year + 1) . '-' . $nextHoliday);
+            $nextHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year + 1).'-'.$nextHoliday);
 
             if ($nextHoliday->addDays(-1)->year == $year) {
                 $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
@@ -335,7 +332,7 @@ class Benin extends Country
                     day: $day,
                     label: $label,
                     filterYear: $year,
-                    prefix: $counter ? ($counter + 1) . '. ' : ''
+                    prefix: $counter ? ($counter + 1).'. ' : ''
                 ));
             }
         }
@@ -346,19 +343,17 @@ class Benin extends Country
     /** @return array<string, CarbonImmutable> */
     protected function prepareHolidays(
         CarbonImmutable $holiday,
-        int             $day,
-        string          $label,
-        int             $filterYear,
-        string          $prefix = ''
-    ): array
-    {
+        int $day,
+        string $label,
+        int $filterYear,
+        string $prefix = ''
+    ): array {
         $holidays = [];
 
         foreach (range(1, $day) as $range) {
-            $holidays[$prefix . $label . ' - Jour ' . $range] = $holiday->addDays($range - 1);
+            $holidays[$prefix.$label.' - Jour '.$range] = $holiday->addDays($range - 1);
         }
 
-        return array_filter($holidays, fn($holiday) => $holiday->year == $filterYear);
+        return array_filter($holidays, fn ($holiday) => $holiday->year == $filterYear);
     }
-
 }
