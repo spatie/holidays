@@ -31,11 +31,11 @@ class Slovakia extends Country
         if ($year === 2018) {
             $holidays['Výročie Deklarácie slovenského národa'] = '10-30';
         }
-        
+
         if ($year < 2024) {
             $holidays['Sedembolestná Panna Mária'] = '09-01';
         }
-        
+
         return $holidays;
     }
 
