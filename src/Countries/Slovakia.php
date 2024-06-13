@@ -29,7 +29,7 @@ class Slovakia extends Country
         ], $this->variableHolidays($year));
 
         if ($year === 2018) {
-            $holidays['Výročie Deklarácie slovenského národa'] = '10-30',
+            $holidays['Výročie Deklarácie slovenského národa'] = '10-30';
         }
         
         if ($year < 2024) {
