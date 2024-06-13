@@ -3,12 +3,12 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use RuntimeException;
 use Spatie\Holidays\Calendars\IndianCalender;
 
-class India extends Country 
+class India extends Country
 {
     use IndianCalender;
+
     /**
      * No library or built-in php intl functions convert dates properly for all years or all country including
      * Since the information on wikipedia is incorrect, it was obtained by searching the old calendar
@@ -46,7 +46,7 @@ class India extends Country
         1997 => '03-24',
         1998 => '03-13',
         1999 => '03-02',
-        2000 => '03-20', 
+        2000 => '03-20',
         2001 => '03-10',
         2002 => '03-29',
         2003 => '03-18',
@@ -117,7 +117,7 @@ class India extends Country
         1997 => '03-28',
         1998 => '04-10',
         1999 => '04-02',
-        2000 => '04-21', 
+        2000 => '04-21',
         2001 => '04-13',
         2002 => '03-29',
         2003 => '04-18',
@@ -211,7 +211,7 @@ class India extends Country
         2017 => '06-26',
         2018 => [
             '06-15',
-            '06-16'
+            '06-16',
         ],
         2019 => '06-05',
         2020 => '05-25',
@@ -268,7 +268,7 @@ class India extends Country
         1997 => '04-16',
         1998 => '04-05',
         1999 => '03-25',
-        2000 => '04-12', 
+        2000 => '04-12',
         2001 => '04-02',
         2002 => '04-21',
         2003 => '04-11',
@@ -307,6 +307,7 @@ class India extends Country
         2036 => '04-05',
         2037 => '03-25',
     ];
+
     public const mahavirJayantiHolidays = [
         1970 => '04-19',
         1971 => '04-08',
@@ -338,7 +339,7 @@ class India extends Country
         1997 => '04-20',
         1998 => '04-09',
         1999 => '03-29',
-        2000 => '04-16', 
+        2000 => '04-16',
         2001 => '04-06',
         2002 => '04-25',
         2003 => '04-15',
@@ -409,7 +410,7 @@ class India extends Country
         1997 => '05-22',
         1998 => '05-11',
         1999 => '04-30',
-        2000 => '05-18', 
+        2000 => '05-18',
         2001 => '05-07',
         2002 => '05-26',
         2003 => '05-16',
@@ -448,6 +449,7 @@ class India extends Country
         2036 => '05-10',
         2037 => '04-29',
     ];
+
     public const bakridHolidays = [
         1970 => '02-17',
         1971 => '02-06',
@@ -455,7 +457,7 @@ class India extends Country
         1973 => '01-15',
         1974 => [
             '01-04',
-            '12-25'
+            '12-25',
         ],
         1975 => '12-14',
         1976 => '12-02',
@@ -482,7 +484,7 @@ class India extends Country
         1997 => '04-18',
         1998 => '04-08',
         1999 => '03-28',
-        2000 => '03-16', 
+        2000 => '03-16',
         2001 => '03-06',
         2002 => '02-23',
         2003 => '02-12',
@@ -532,7 +534,7 @@ class India extends Country
         1976 => '01-12',
         1977 => [
             '01-01',
-            '12-21'
+            '12-21',
         ],
         1978 => '12-11',
         1979 => '11-30',
@@ -556,7 +558,7 @@ class India extends Country
         1997 => '05-18',
         1998 => '05-07',
         1999 => '04-26',
-        2000 => '04-15', 
+        2000 => '04-15',
         2001 => '04-04',
         2002 => '03-24',
         2003 => '03-14',
@@ -567,7 +569,7 @@ class India extends Country
         2008 => '01-19',
         2009 => [
             '01-07',
-            '12-27'
+            '12-27',
         ],
         2010 => '12-17',
         2011 => '12-06',
@@ -630,7 +632,7 @@ class India extends Country
         1997 => '08-18',
         1998 => '08-07',
         1999 => '08-26',
-        2000 => '08-15', 
+        2000 => '08-15',
         2001 => '08-04',
         2002 => '08-22',
         2003 => '08-12',
@@ -701,7 +703,7 @@ class India extends Country
         1997 => '08-25',
         1998 => '08-15',
         1999 => '09-03',
-        2000 => '08-23', 
+        2000 => '08-23',
         2001 => '08-12',
         2002 => '08-31',
         2003 => '08-20',
@@ -740,6 +742,7 @@ class India extends Country
         2036 => '08-15',
         2037 => '09-03',
     ];
+
     public const miladHolidays = [
         1970 => '05-19',
         1971 => '05-09',
@@ -755,7 +758,7 @@ class India extends Country
         1981 => '01-19',
         1982 => [
             '01-09',
-            '12-29'
+            '12-29',
         ],
         1983 => '12-18',
         1984 => '12-07',
@@ -774,7 +777,7 @@ class India extends Country
         1997 => '07-19',
         1998 => '07-08',
         1999 => '06-27',
-        2000 => '06-16', 
+        2000 => '06-16',
         2001 => '06-05',
         2002 => '05-25',
         2003 => '05-15',
@@ -845,7 +848,7 @@ class India extends Country
         1997 => '10-11',
         1998 => '10-01',
         1999 => '10-19',
-        2000 => '10-07', 
+        2000 => '10-07',
         2001 => '10-26',
         2002 => '10-15',
         2003 => '10-05',
@@ -884,6 +887,7 @@ class India extends Country
         2036 => '09-29',
         2037 => '10-18',
     ];
+
     public const diwaliHolidays = [
         1970 => '10-29',
         1971 => '10-18',
@@ -915,7 +919,7 @@ class India extends Country
         1997 => '10-30',
         1998 => '10-19',
         1999 => '11-07',
-        2000 => '10-26', 
+        2000 => '10-26',
         2001 => '11-14',
         2002 => '11-04',
         2003 => '10-25',
@@ -986,7 +990,7 @@ class India extends Country
         1997 => '11-02',
         1998 => '10-22',
         1999 => '11-09',
-        2000 => '10-28', 
+        2000 => '10-28',
         2001 => '11-16',
         2002 => '11-06',
         2003 => '10-26',
@@ -1025,6 +1029,7 @@ class India extends Country
         2036 => '10-21',
         2037 => '11-08',
     ];
+
     public const guruNanakHolidays = [
         1970 => '11-13',
         1971 => '11-02',
@@ -1056,7 +1061,7 @@ class India extends Country
         1997 => '11-14',
         1998 => '11-04',
         1999 => '11-23',
-        2000 => '11-11', 
+        2000 => '11-11',
         2001 => '11-30',
         2002 => '11-19',
         2003 => '11-08',
@@ -1096,7 +1101,6 @@ class India extends Country
         2037 => '11-22',
     ];
 
-   
     public function countryCode(): string
     {
         return 'in';
@@ -1123,7 +1127,7 @@ class India extends Country
             'Independence Day' => '08-15',
             'Mahatma Gandhi Jayanti' => '10-02',
             'Christmas' => '12-25',
-        ],$newHolidays, $this->otherHolidays($year));
+        ], $newHolidays, $this->otherHolidays($year));
     }
 
     /** @return array<string, CarbonImmutable> */
@@ -1167,5 +1171,4 @@ class India extends Country
 
         return $holidays;
     }
-
 }

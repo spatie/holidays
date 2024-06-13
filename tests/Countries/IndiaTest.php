@@ -28,11 +28,10 @@ it('does not return a holiday falsely', function () {
 });
 
 it('can calculate India holidays', function ($year) {
-	CarbonImmutable::setTestNow($year.'-01-01');
-	$holidays = Holidays::for('in')->get();
+    CarbonImmutable::setTestNow($year.'-01-01');
+    $holidays = Holidays::for('in')->get();
 
-	expect($holidays)->toBeArray()->not()->toBeEmpty();
+    expect($holidays)->toBeArray()->not()->toBeEmpty();
 
-	expect(formatDates($holidays))->toMatchSnapshot();
+    expect(formatDates($holidays))->toMatchSnapshot();
 })->with([1970, 1977, 2000, 2018, 2037]);
-
