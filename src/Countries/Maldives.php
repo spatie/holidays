@@ -158,9 +158,9 @@ class Maldives extends Country implements HasTranslations, Islamic
 
         return array_merge([
             "New Year's Day" => '01-01',
-            "Independence Day" => '07-26',
-            "Victory Day" => '11-03',
-            "Republic Day" => '11-11',
+            'Independence Day' => '07-26',
+            'Victory Day' => '11-03',
+            'Republic Day' => '11-11',
         ], $newHolidays, $this->islamicHolidays($year));
     }
 
