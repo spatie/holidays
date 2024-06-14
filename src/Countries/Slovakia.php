@@ -13,7 +13,7 @@ class Slovakia extends Country
 
     protected function allHolidays(int $year): array
     {
-        return array_merge([
+        $holidays = array_merge([
             'Deň vzniku Slovenskej republiky' => '01-01',
             'Zjavenie Pána (Traja králi)' => '01-06',
             'Sviatok práce' => '05-01',
@@ -27,6 +27,16 @@ class Slovakia extends Country
             'Prvý sviatok vianočný' => '12-25',
             'Druhý sviatok vianočný' => '12-26',
         ], $this->variableHolidays($year));
+
+        if ($year === 2018) {
+            $holidays['Výročie Deklarácie slovenského národa'] = '10-30';
+        }
+
+        if ($year < 2024) {
+            $holidays['Sedembolestná Panna Mária'] = '09-01';
+        }
+
+        return $holidays;
     }
 
     /** @return array<string, CarbonImmutable> */

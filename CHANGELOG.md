@@ -2,6 +2,32 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.11.0 - 2024-06-13
+
+### What's Changed
+
+* Add holidays for korea by @jws1837 in https://github.com/spatie/holidays/pull/222
+* Update Sweden.php to always use leading zero in day by @adevade in https://github.com/spatie/holidays/pull/224
+* Bump dependabot/fetch-metadata from 2.0.0 to 2.1.0 by @dependabot in https://github.com/spatie/holidays/pull/225
+* Add greece holidays by @lowv-developer in https://github.com/spatie/holidays/pull/226
+* Update README.md to remove named parameter from make by @arnebr in https://github.com/spatie/holidays/pull/227
+* Add Holidays - Pakistan by @muhammad-nauman in https://github.com/spatie/holidays/pull/19
+* Update Slovakia.php by @hamrak in https://github.com/spatie/holidays/pull/228
+* Add Moroccan Holidays by @YazidKHALDI in https://github.com/spatie/holidays/pull/56
+* Add Benin Holidays by @Massoud114 in https://github.com/spatie/holidays/pull/145
+* Add indian holidays by @webmavensteam in https://github.com/spatie/holidays/pull/220
+
+### New Contributors
+
+* @jws1837 made their first contribution in https://github.com/spatie/holidays/pull/222
+* @muhammad-nauman made their first contribution in https://github.com/spatie/holidays/pull/19
+* @hamrak made their first contribution in https://github.com/spatie/holidays/pull/228
+* @YazidKHALDI made their first contribution in https://github.com/spatie/holidays/pull/56
+* @Massoud114 made their first contribution in https://github.com/spatie/holidays/pull/145
+* @webmavensteam made their first contribution in https://github.com/spatie/holidays/pull/220
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.10.0...1.11.0
+
 ## 1.10.0 - 2024-04-29
 
 ### What's Changed
