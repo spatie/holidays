@@ -20,4 +20,9 @@ class InvalidYear extends RuntimeException
     {
         return new self("Only years between {$start} and {$end} are supported for {$country}.");
     }
+
+    public static function invalidHijriYear(): self
+    {
+        return new self('Unable to get the Hijri year.');
+    }
 }
