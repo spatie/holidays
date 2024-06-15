@@ -17,7 +17,7 @@ use Rector\TypeDeclaration\Rector\Closure\AddClosureVoidReturnTypeWhereNoReturnR
 return RectorConfig::configure()
     ->withPaths(['src'])
     ->withPhpSets(php81: true)
-    //->withPreparedSets(deadCode: true, codingStyle: true, typeDeclarations: true)
+    ->withPreparedSets(deadCode: true, typeDeclarations: true)
     ->withSkip([
         NullToStrictStringFuncCallArgRector::class,
         ClosureToArrowFunctionRector::class,

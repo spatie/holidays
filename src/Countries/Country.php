@@ -46,7 +46,7 @@ abstract class Country
         }
 
         uasort($translatedHolidays,
-            fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
+            fn (CarbonImmutable $a, CarbonImmutable $b): int => $a->timestamp <=> $b->timestamp
         );
 
         return $translatedHolidays;

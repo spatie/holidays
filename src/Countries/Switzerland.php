@@ -335,7 +335,7 @@ class Switzerland extends Country implements HasTranslations
 
         $regionalHolidays = array_filter(
             $regionallyDifferentHolidays,
-            fn ($key) => in_array($key, $currentRegion),
+            fn ($key): bool => in_array($key, $currentRegion),
             ARRAY_FILTER_USE_KEY
         );
 

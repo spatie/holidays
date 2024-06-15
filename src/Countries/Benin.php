@@ -354,6 +354,6 @@ class Benin extends Country
             $holidays[$prefix.$label.' - Jour '.$range] = $holiday->addDays($range - 1);
         }
 
-        return array_filter($holidays, fn ($holiday) => $holiday->year == $filterYear);
+        return array_filter($holidays, fn ($holiday): bool => $holiday->year == $filterYear);
     }
 }

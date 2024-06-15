@@ -60,7 +60,7 @@ class Holidays
         $holidays = array_column($holidays, 'date');
 
         $formattedHolidays = array_map(
-            fn (string $holiday) => CarbonImmutable::parse($holiday)->format('Y-m-d'),
+            fn (string $holiday): string => CarbonImmutable::parse($holiday)->format('Y-m-d'),
             $holidays
         );
 

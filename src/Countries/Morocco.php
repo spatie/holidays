@@ -139,7 +139,7 @@ class Morocco extends Country implements HasTranslations
      * @param  float  $floatNum  The floating-point number to be rounded.
      * @return float The rounded integer value.
      */
-    private function intPart($floatNum)
+    private function intPart(int|float $floatNum): float
     {
         // Check if the floating-point number is negative
         if ($floatNum < -0.0000001) {
