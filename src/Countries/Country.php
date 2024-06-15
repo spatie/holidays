@@ -3,6 +3,9 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
+use Carbon\CarbonPeriod;
+use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
@@ -29,6 +32,10 @@ abstract class Country
                 } else {
                     $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
                 }
+            }
+
+            if ($date === null) {
+                throw new InvalidFormatException("Invalid date for holiday `{$name}`");
             }
 
             if ($this instanceof HasTranslations) {
@@ -119,5 +126,49 @@ abstract class Country
         if ($year > 2037) {
             throw InvalidYear::yearTooHigh(2038);
         }
+    }
+
+    /**
+     * Convert holidays that are represented as CarbonPeriods to an array of CarbonImmutable dates.
+     * This is useful for holidays like `Eid-al-Fitr` that happen on multiple days.
+     *
+     * @return array<string, CarbonImmutable>
+     */
+    protected function convertPeriods(
+        string $name,
+        int $year,
+        CarbonPeriod $period,
+        string $suffix = 'Day',
+        string $prefix = '',
+        bool $includeEve = false,
+    ): array {
+        $allDays = [];
+
+        if ($includeEve) {
+            $eve = $period->first()?->subDay();
+
+            if ($eve && $eve->year === $year) {
+                $allDays[$name.' Eve'] = $eve->toImmutable();
+            }
+        }
+
+        /** @var CarbonInterface $day */
+        foreach ($period as $index => $day) {
+            if ($day->year !== $year) {
+                continue; // Lunar based holidays can overlap in 2 years
+            }
+
+            if ($index > 0) {
+                $formattedSuffix = " {$suffix} ".$index + 1;
+            } else {
+                $formattedSuffix = '';
+            }
+
+            $holidayName = "{$prefix}{$name}{$formattedSuffix}";
+
+            $allDays[$holidayName] = $day->toImmutable();
+        }
+
+        return $allDays;
     }
 }

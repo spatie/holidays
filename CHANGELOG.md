@@ -2,6 +2,90 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.11.0 - 2024-06-13
+
+### What's Changed
+
+* Add holidays for korea by @jws1837 in https://github.com/spatie/holidays/pull/222
+* Update Sweden.php to always use leading zero in day by @adevade in https://github.com/spatie/holidays/pull/224
+* Bump dependabot/fetch-metadata from 2.0.0 to 2.1.0 by @dependabot in https://github.com/spatie/holidays/pull/225
+* Add greece holidays by @lowv-developer in https://github.com/spatie/holidays/pull/226
+* Update README.md to remove named parameter from make by @arnebr in https://github.com/spatie/holidays/pull/227
+* Add Holidays - Pakistan by @muhammad-nauman in https://github.com/spatie/holidays/pull/19
+* Update Slovakia.php by @hamrak in https://github.com/spatie/holidays/pull/228
+* Add Moroccan Holidays by @YazidKHALDI in https://github.com/spatie/holidays/pull/56
+* Add Benin Holidays by @Massoud114 in https://github.com/spatie/holidays/pull/145
+* Add indian holidays by @webmavensteam in https://github.com/spatie/holidays/pull/220
+
+### New Contributors
+
+* @jws1837 made their first contribution in https://github.com/spatie/holidays/pull/222
+* @muhammad-nauman made their first contribution in https://github.com/spatie/holidays/pull/19
+* @hamrak made their first contribution in https://github.com/spatie/holidays/pull/228
+* @YazidKHALDI made their first contribution in https://github.com/spatie/holidays/pull/56
+* @Massoud114 made their first contribution in https://github.com/spatie/holidays/pull/145
+* @webmavensteam made their first contribution in https://github.com/spatie/holidays/pull/220
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.10.0...1.11.0
+
+## 1.10.0 - 2024-04-29
+
+### What's Changed
+
+* add Tunisia Holidays by @mr-wolf-gb in https://github.com/spatie/holidays/pull/109
+* Add holidays for Ecuador by @insoutt in https://github.com/spatie/holidays/pull/218
+* Bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot in https://github.com/spatie/holidays/pull/221
+* feat: remove canceled day of the rest from `Slovakia` country by @patressz in https://github.com/spatie/holidays/pull/223
+
+### New Contributors
+
+* @mr-wolf-gb made their first contribution in https://github.com/spatie/holidays/pull/109
+* @insoutt made their first contribution in https://github.com/spatie/holidays/pull/218
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.9.1...1.10.0
+
+## 1.9.1 - 2024-04-02
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 1.6.0 to 2.0.0 by @dependabot in https://github.com/spatie/holidays/pull/215
+* Fix the Holidays in French speaking Switzerland by @OlinB in https://github.com/spatie/holidays/pull/217
+
+### New Contributors
+
+* @dependabot made their first contribution in https://github.com/spatie/holidays/pull/215
+* @OlinB made their first contribution in https://github.com/spatie/holidays/pull/217
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.9.0...1.9.1
+
+## 1.9.0 - 2024-03-22
+
+### What's Changed
+
+* Implement Islamic calendar by @Nielsvanpach in https://github.com/spatie/holidays/pull/214
+* Add holidays for Bosnia And Herzegovina by @DesaBL in https://github.com/spatie/holidays/pull/203
+
+### New Contributors
+
+* @DesaBL made their first contribution in https://github.com/spatie/holidays/pull/203
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.8.0...1.9.0
+
+## 1.8.0 - 2024-03-08
+
+### What's Changed
+
+* Adding holidays for Bahrain by @bo3bdo in https://github.com/spatie/holidays/pull/206
+* Add default locale by @Nielsvanpach in https://github.com/spatie/holidays/pull/208
+* Fix: Canada Victoria Day correction in test and calculation by @mercury64 in https://github.com/spatie/holidays/pull/211
+
+### New Contributors
+
+* @bo3bdo made their first contribution in https://github.com/spatie/holidays/pull/206
+* @mercury64 made their first contribution in https://github.com/spatie/holidays/pull/211
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.7.0...1.8.0
+
 ## 1.7.0 - 2024-02-08
 
 ### What's Changed

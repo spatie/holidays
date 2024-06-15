@@ -4,7 +4,6 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Belgium;
 use Spatie\Holidays\Countries\Netherlands;
 use Spatie\Holidays\Exceptions\InvalidCountry;
-use Spatie\Holidays\Exceptions\InvalidLocale;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Holidays;
 
@@ -100,6 +99,16 @@ it('can get translated holiday names', function () {
     expect($result[0]['name'])->toBe('Jour de l\'An');
 });
 
-it('cannot get translated holiday names for unsupported locales', function () {
-    Holidays::for(country: 'be', year: 2020, locale: 'en')->get();
-})->throws(InvalidLocale::class, 'Locale `en` is not supported for country `Belgium`.');
+it('default when the locale file is missing', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
+    // so we don't need to have a translation file for the language in the Country class
+    $holidays = Holidays::for(country: 'be', locale: 'en')->get();
+
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    expect($holidays[0]['name'])->toBe('Nieuwjaar');
+    expect($holidays[0]['date']->format('Y-m-d'))->toBe('2024-01-01');
+});

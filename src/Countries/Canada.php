@@ -31,11 +31,9 @@ class Canada extends Country
     {
         $easter = $this->easter($year);
 
-        $victoriaDay = (new CarbonImmutable("last monday of May $year"))->startOfDay();
-
-        if ($victoriaDay->day < 25) {
-            $victoriaDay = $victoriaDay->addWeek();
-        }
+        // the Monday preceding May 25
+        $victoriaDay = CarbonImmutable::createFromDate($year, 5, 25)
+            ->previous('Monday');
 
         return [
             'Victoria Day' => $victoriaDay,

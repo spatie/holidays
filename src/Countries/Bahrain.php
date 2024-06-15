@@ -2,17 +2,17 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
+use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
-use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Contracts\Islamic;
 
-class Bahrain extends Country implements HasTranslations
+class Bahrain extends Country implements HasTranslations, Islamic
 {
+    use IslamicCalendar;
     use Translatable;
 
-    protected const EID_AL_FITR_HOLIDAYS = [
+    protected const eidAlFitr = [
         2020 => '05-24',
         2021 => '05-13',
         2022 => '05-02',
@@ -33,7 +33,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '11-09',
     ];
 
-    protected const ARAFAT_DAY_HOLIDAYS = [
+    protected const arafat = [
         2020 => '07-30',
         2021 => '07-19',
         2022 => '07-09',
@@ -54,7 +54,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '01-26',
     ];
 
-    protected const EID_AL_ADHA_HOLIDAYS = [
+    protected const eidAlAdha = [
         2020 => '07-31',
         2021 => '07-20',
         2022 => '07-09',
@@ -75,7 +75,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '01-27',
     ];
 
-    protected const ISLAMIC_NEW_YEAR_HOLIDAYS = [
+    protected const islamicNewYear = [
         2020 => '08-20',
         2021 => '08-09',
         2022 => '07-30',
@@ -96,7 +96,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '02-17',
     ];
 
-    protected const ASHURA_HOLIDAYS = [
+    protected const ashura = [
         2020 => '08-30',
         2021 => '08-19',
         2022 => '08-08',
@@ -117,7 +117,7 @@ class Bahrain extends Country implements HasTranslations
         2037 => '02-25',
     ];
 
-    protected const PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS = [
+    protected const prophetMuhammadBirthday = [
         2020 => '10-29',
         2021 => '10-21',
         2022 => '10-08',
@@ -150,72 +150,32 @@ class Bahrain extends Country implements HasTranslations
 
     protected function allHolidays(int $year): array
     {
-        $variableHolidays = $this->variableHolidays($year);
-
         return array_merge([
             'New Year\'s Day' => '1-1',
             'Labour Day' => '5-1',
             'National Day' => '12-16',
             'National Day 2' => '12-17',
-        ], $variableHolidays);
+        ],
+            $this->islamicHolidays($year)
+        );
     }
 
-    /**
-     * @return array<string, CarbonInterface>
-     */
-    protected function variableHolidays(int $year): array
+    public function islamicHolidays(int $year): array
     {
+        $eidAlFitr = $this->eidAlFitr($year);
+        $eidAlAdha = $this->eidAlAdha($year, 3);
+        $ashura = $this->ashura($year);
+
         $holidays = [
-            ['EID_AL_FITR_HOLIDAYS', 'Eid al-Fitr', 3],
-            ['EID_AL_ADHA_HOLIDAYS', 'Eid al-Adha', 3],
-            ['ARAFAT_DAY_HOLIDAYS', 'Arafat Day'],
-            ['ISLAMIC_NEW_YEAR_HOLIDAYS', 'Islamic New Year'],
-            ['ASHURA_HOLIDAYS', 'Ashura', 2],
-            ['PROPHET_MUHAMMAD_BIRTHDAY_HOLIDAYS', 'Birthday of the Prophet Muhammad'],
+            'Arafat Day' => $this->arafat($year),
+            'Islamic New Year' => $this->islamicNewYear($year),
+            'Birthday of the Prophet Muhammad' => $this->prophetMuhammadBirthday($year),
         ];
 
-        $dates = [];
-        foreach ($holidays as $holiday) {
-            $dates = array_merge($dates, $this->getIslamicHolidayDatesForYear(constant('self::'.$holiday[0]), $year, $holiday[1], $holiday[2] ?? 1));
-        }
-
-        return $dates;
-    }
-
-    /**
-     * Prepare holiday dates for the given year.
-     *
-     * @param  array<int, string>  $holidayDates  Array mapping years to dates.
-     * @param  int  $year  The year for which to prepare holiday dates.
-     * @param  string  $holidayName  The name of the holiday.
-     * @param  int  $duration  The duration of the holiday in days.
-     * @return array<string, CarbonImmutable> An array of holiday dates.
-     */
-    private function getIslamicHolidayDatesForYear(array $holidayDates, int $year, string $holidayName, int $duration = 1): array
-    {
-        $dates = [];
-
-        if ($year < 2020) {
-            throw InvalidYear::yearTooLow(2020);
-        }
-
-        if (! isset($holidayDates[$year])) {
-            return $dates;
-        }
-
-        $startDay = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s', $year, $holidayDates[$year]));
-
-        if ($duration === 1) {
-            // For single-day holidays, use the holiday name without "Day"
-            $dates[$holidayName] = $startDay;
-        } else {
-            // For multi-day holidays, append "Day N" for the second day onwards
-            for ($i = 0; $i < $duration; $i++) {
-                $dayLabel = $i === 0 ? $holidayName : sprintf('%s Day %d', $holidayName, $i + 1);
-                $dates[$dayLabel] = $startDay->addDays($i);
-            }
-        }
-
-        return $dates;
+        return array_merge($holidays,
+            $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0]),
+            $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0]),
+            $this->convertPeriods('Ashura', $year, $ashura[0]),
+        );
     }
 }

@@ -8,22 +8,20 @@ trait Translatable
 {
     public function translate(string $country, string $name, ?string $locale = null): string
     {
-        if ($locale === null) {
-            return $name;
-
-        }
-
         if ($locale === $this->defaultLocale()) {
             return $name;
         }
 
-        $countryName = strtolower($country);
+        $locale = $locale ?? $this->defaultLocale();
+
+        $countryName = $this->toHyphenSeparated($country);
+
         $filePath = __DIR__."/../../lang/{$countryName}/{$locale}/holidays.json";
 
         if (file_exists($filePath)) {
             $content = file_get_contents($filePath);
         } else {
-            throw InvalidLocale::notFound($country, $locale);
+            return $name;
         }
 
         if ($content === false) {
@@ -33,10 +31,17 @@ trait Translatable
         /** @var array<string, string> $data */
         $data = json_decode($content, true);
 
-        if (! isset($data[$name])) {
-            return $name;
+        return $data[$name] ?? $name;
+    }
+
+    protected function toHyphenSeparated(string $text): string
+    {
+        $toHyphens = preg_replace('/(?<=\\w)(?=[A-Z])/', '-$1', $text);
+
+        if ($toHyphens === null) {
+            return strtolower($text);
         }
 
-        return $data[$name];
+        return strtolower($toHyphens);
     }
 }

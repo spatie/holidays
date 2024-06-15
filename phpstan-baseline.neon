@@ -1,13 +1,58 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:arafat\\.$#"
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:ashura\\.$#"
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:islamicNewYear\\.$#"
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:prophetMuhammadBirthday\\.$#"
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: "#^Argument of an invalid type Carbon\\\\CarbonPeriod supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Countries/Country.php
+
+		-
 			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Ternary operator condition is always true\\.$#"
-			count: 3
+			message: "#^Binary operation \"\\+\" between non\\-falsy\\-string and 1 results in an error\\.$#"
+			count: 1
+			path: src/Countries/Country.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:arafat\\.$#"
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:ashura\\.$#"
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:islamicNewYear\\.$#"
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:prophetMuhammadBirthday\\.$#"
+			count: 1
 			path: src/Countries/Turkey.php
 
 		-

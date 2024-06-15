@@ -1,0 +1,46 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Lunes de Carnaval",
+        "date": "2024-02-12"
+    },
+    {
+        "name": "Martes de Carnaval",
+        "date": "2024-02-13"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "D\u00eda del Trabajo",
+        "date": "2024-05-03"
+    },
+    {
+        "name": "Batalla de Pichincha",
+        "date": "2024-05-24"
+    },
+    {
+        "name": "Primer Grito de la Independencia",
+        "date": "2024-08-09"
+    },
+    {
+        "name": "Independencia de Guayaquil",
+        "date": "2024-10-11"
+    },
+    {
+        "name": "D\u00eda de Los Difuntos",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Independencia de Cuenca",
+        "date": "2024-11-04"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]
