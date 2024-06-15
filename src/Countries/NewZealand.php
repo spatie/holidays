@@ -23,6 +23,7 @@ class NewZealand extends Country
         );
     }
 
+    /** @return array<string, string|CarbonInterface> */
     protected function observedHolidays(int $year): array
     {
         //https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
@@ -53,6 +54,7 @@ class NewZealand extends Country
         return $holidays;
     }
 
+    /** @return array<string, CarbonInterface> */
     protected function variableHolidays(int $year): array
     {
         //Easter
@@ -67,13 +69,20 @@ class NewZealand extends Country
         //Labour Day
         $labourMonday = CarbonImmutable::parse("fourth monday of october {$year}");
 
-        return [
+        $holidays = [
             'Good Friday' => $goodFriday,
             'Easter Monday' => $easterMonday,
             $sovereignTitle => $sovereignMonday,
-            'Matariki' => $this->calculateMatariki($year),
             'Labour Day' => $labourMonday,
         ];
+
+        $matariki = $this->calculateMatariki($year);
+
+        if ($matariki) {
+            $holidays['Matariki'] = $matariki;
+        }
+
+        return $holidays;
     }
 
     protected function secondOfJanuary(int $year): ?CarbonInterface
@@ -131,7 +140,7 @@ class NewZealand extends Country
         ];
 
         return isset($matarikiDates[$year])
-        ? CarbonImmutable::createFromFormat('Y-m-d', $matarikiDates[$year])->setTimezone('Pacific/Auckland')
+        ? CarbonImmutable::createFromFormat('Y-m-d', $matarikiDates[$year])?->setTimezone('Pacific/Auckland')
         : null; // Return null if year not defined
     }
 }
