@@ -30,7 +30,7 @@ class Wales extends Country
     protected function observedHolidays(int $year): array
     {
         $holidays = [
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
             'Christmas Day' => '12-25',
             'Boxing Day' => '12-26',
         ];

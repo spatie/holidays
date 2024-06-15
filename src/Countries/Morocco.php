@@ -24,7 +24,7 @@ class Morocco extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
             'Proclamation of Independence Day' => '01-11',
             'Amazigh New Year (ⵉⴹ ⵏ ⵢⵉⵏⵏⴰⵢⵔ)' => '01-14',
             'Labour Day' => '05-01',
@@ -78,6 +78,7 @@ class Morocco extends Country implements HasTranslations
                     throw InvalidYear::yearTooLow(1976);
                 }
             }
+
             // Store the Gregorian date of the Islamic holiday
             $islamicHolidaysOnGregorian[$holidayTitle] = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day']));
         }
@@ -98,8 +99,7 @@ class Morocco extends Country implements HasTranslations
      */
     private function islamicToGregorian(int $y, int $m, int $d): array
     {
-        $delta = 0;
-        $jd = $this->intPart((11 * $y + 3) / 30) + 354 * $y + 30 * $m - $this->intPart(($m - 1) / 2) + $d + 1948440 - 385 + $delta;
+        $jd = $this->intPart((11 * $y + 3) / 30) + 354 * $y + 30 * $m - $this->intPart(($m - 1) / 2) + $d + 1948440 - 385;
         if ($jd > 2299160) {
             $l = $jd + 68569;
             $n = $this->intPart((4 * $l) / 146097);

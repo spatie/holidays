@@ -28,8 +28,8 @@ class NewZealand extends Country
     {
         //https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
         $holidays = [
-            'New Year\'s Day' => '01-01',
-            'Day after New Year\'s Day' => '01-02',
+            "New Year's Day" => '01-01',
+            "Day after New Year's Day" => '01-02',
             'Waitangi Day' => '02-06',
             'ANZAC Day' => '04-25',
             'Christmas Day' => '12-25',
@@ -39,7 +39,7 @@ class NewZealand extends Country
         //https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-falling-on-a-weekend/
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
-                'Day after New Year\'s Day' => $this->secondOfJanuary($year),
+                "Day after New Year's Day" => $this->secondOfJanuary($year),
                 'Christmas Day' => $this->observedChristmasDay($year),
                 'Boxing Day' => $this->observedBoxingDay($year),
                 default => $this->weekendToNextMonday($date, $year),

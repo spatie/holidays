@@ -309,7 +309,7 @@ class Benin extends Country
         $currentYearHolidays = is_array($holidays[$year]) ? $holidays[$year] : [$holidays[$year]];
 
         foreach ($currentYearHolidays as $currentYearHoliday) {
-            $currentYearHoliday = CarbonImmutable::createFromFormat('Y-m-d', "$year-$currentYearHoliday");
+            $currentYearHoliday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$currentYearHoliday}");
 
             $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
                 holiday: $currentYearHoliday,

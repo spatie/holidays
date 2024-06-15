@@ -26,9 +26,9 @@ class Scotland extends Wales
     protected function observedHolidays(int $year): array
     {
         $holidays = [
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
             '2nd January' => '01-02',
-            'St Andrew\'s Day' => '11-30',
+            "St Andrew's Day" => '11-30',
             'Christmas Day' => '12-25',
             'Boxing Day' => '12-26',
         ];

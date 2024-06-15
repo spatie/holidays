@@ -14,7 +14,7 @@ class Philippines extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
             'Araw ng Kagitingan' => '04-09',
             'Labor Day' => '05-01',
             'Independence Day' => '06-12',

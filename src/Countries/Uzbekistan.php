@@ -143,7 +143,7 @@ class Uzbekistan extends Country implements HasTranslations
         return array_merge([
             'Yangi yil' => '01-01',
             'Xalqaro xotin-qizlar kuni' => '03-08',
-            'Navro\'z' => '03-21',
+            "Navro'z" => '03-21',
             'Xotira va qadrlash kuni' => '05-09',
             'Mustaqillik kuni' => '09-01',
             'Ustoz va murabbiylar kuni' => '10-01',
@@ -162,6 +162,7 @@ class Uzbekistan extends Country implements HasTranslations
                 $holidays['Ramazon Hayiti'.$prefix] = $holiday;
             }
         }
+
         if (isset(self::sacrificeHolidays[$year])) {
             foreach ((array) self::sacrificeHolidays[$year] as $key => $holiday) {
                 $prefix = $key == 0 ? '' : ' '.($key + 1);

@@ -25,9 +25,9 @@ class NorthernIreland extends Wales
     protected function observedHolidays(int $year): array
     {
         $holidays = [
-            'New Year\'s Day' => '01-01',
-            'St Patrick\'s Day' => '03-17',
-            'Battle of the Boyne (Orangemen\'s Day)' => '07-12',
+            "New Year's Day" => '01-01',
+            "St Patrick's Day" => '03-17',
+            "Battle of the Boyne (Orangemen's Day)" => '07-12',
             'Christmas Day' => '12-25',
             'Boxing Day' => '12-26',
         ];

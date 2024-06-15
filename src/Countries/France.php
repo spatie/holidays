@@ -19,7 +19,7 @@ class France extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Jour de l\'An' => '01-01',
+            "Jour de l'An" => '01-01',
             'Fête du Travail' => '05-01',
             'Victoire 1945' => '05-08',
             'Fête Nationale' => '07-14',
@@ -55,12 +55,12 @@ class France extends Country
     {
         return match ($this->region) {
             'FR-57', 'FR-67', 'FR-68' => ['Saint-Étienne' => '12-26'],
-            'FR-971', 'FR-MF' => ['Abolition de l\'esclavage' => '05-27'],
-            'FR-972' => ['Abolition de l\'esclavage' => '05-22'],
-            'FR-973' => ['Abolition de l\'esclavage' => '06-10'],
-            'FR-974' => ['Abolition de l\'esclavage' => '12-20'],
-            'FR-976' => ['Abolition de l\'esclavage' => '04-27'],
-            'FR-BL' => ['Abolition de l\'esclavage' => '10-09'],
+            'FR-971', 'FR-MF' => ["Abolition de l'esclavage" => '05-27'],
+            'FR-972' => ["Abolition de l'esclavage" => '05-22'],
+            'FR-973' => ["Abolition de l'esclavage" => '06-10'],
+            'FR-974' => ["Abolition de l'esclavage" => '12-20'],
+            'FR-976' => ["Abolition de l'esclavage" => '04-27'],
+            'FR-BL' => ["Abolition de l'esclavage" => '10-09'],
             default => [],
         };
     }

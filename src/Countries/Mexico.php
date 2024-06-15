@@ -25,13 +25,13 @@ class Mexico extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $constitutionDay = (new CarbonImmutable("first monday of february $year"))
+        $constitutionDay = (new CarbonImmutable("first monday of february {$year}"))
             ->setTimezone('America/Mexico_City');
 
-        $benitoJuarezBirth = (new CarbonImmutable("third monday of March $year"))
+        $benitoJuarezBirth = (new CarbonImmutable("third monday of March {$year}"))
             ->setTimezone('America/Mexico_City');
 
-        $revolutionDay = (new CarbonImmutable("third monday of november $year"))
+        $revolutionDay = (new CarbonImmutable("third monday of november {$year}"))
             ->setTimezone('America/Mexico_City');
 
         $holidays = [

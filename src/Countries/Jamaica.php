@@ -27,7 +27,7 @@ class Jamaica extends Country
     protected function fixedHolidays(int $year): array
     {
         $holidays = [
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
             'Labour Day' => '05-23',
             'Emancipation Day' => '08-01',
             'Independence Day' => '08-06',

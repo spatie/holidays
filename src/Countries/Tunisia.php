@@ -251,12 +251,12 @@ class Tunisia extends Country implements HasTranslations, Islamic
         }
 
         return array_merge([
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
             'Independence Day' => '03-20',
-            'Martyrs\' Day' => '04-09',
+            "Martyrs' Day" => '04-09',
             'Labour Day' => '05-01',
             'Republic Day' => '07-25',
-            'Women\'s Day' => '08-13',
+            "Women's Day" => '08-13',
             'Evacuation Day' => '10-15',
         ], $revolutionHoliday, $this->islamicHolidays($year));
     }

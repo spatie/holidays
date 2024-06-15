@@ -14,7 +14,7 @@ class Tanzania extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
             'Labor Day' => '05-01',
             'Saba Saba Day' => '07-07',
             'Farmers Day (Nane Nane Day)' => '08-08',
