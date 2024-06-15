@@ -2,6 +2,22 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.12.0 - 2024-06-15
+
+### What's Changed
+
+* Add Maldivian holidays by @ahmedmansoor in https://github.com/spatie/holidays/pull/229
+* Add fr lang for Morocco holidays by @kitro in https://github.com/spatie/holidays/pull/230
+* Add New Zealand Holidays by @jpgnz in https://github.com/spatie/holidays/pull/207
+
+### New Contributors
+
+* @ahmedmansoor made their first contribution in https://github.com/spatie/holidays/pull/229
+* @kitro made their first contribution in https://github.com/spatie/holidays/pull/230
+* @jpgnz made their first contribution in https://github.com/spatie/holidays/pull/207
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.11.0...1.12.0
+
 ## 1.11.0 - 2024-06-13
 
 ### What's Changed
