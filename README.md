@@ -65,7 +65,7 @@ You can also pass a specific year.
 ```php
 use Spatie\Holidays\Holidays;
 
-$holidays = Holidays::for(country: 'be', year: 2024))->get();
+$holidays = Holidays::for(country: 'be', year: 2024)->get();
 ```
 
 ### Getting holidays in a specific language
@@ -73,7 +73,7 @@ $holidays = Holidays::for(country: 'be', year: 2024))->get();
 ```php
 use Spatie\Holidays\Holidays;
 
-$holidays = Holidays::for(country: 'be', locale: 'fr'))->get();
+$holidays = Holidays::for(country: 'be', locale: 'fr')->get();
 ```
 
 If the locale is not supported for a country, an exception will be thrown.
