@@ -34,7 +34,7 @@ class Holidays
         return Country::find($country) !== null;
     }
 
-    /** @return array<array{name: string, date: string}> */
+    /** @return array<array{name: string, date: CarbonImmutable}> */
     public function get(Country|string|null $country = null, ?int $year = null): array
     {
         $country ??= $this->country;
