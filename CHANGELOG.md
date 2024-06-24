@@ -2,6 +2,19 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.13.0 - 2024-06-24
+
+### What's Changed
+
+* Add getInRange function by @inDeev in https://github.com/spatie/holidays/pull/150
+* docs: fix code examples in README.md by @Chris53897 in https://github.com/spatie/holidays/pull/231
+
+### New Contributors
+
+* @Chris53897 made their first contribution in https://github.com/spatie/holidays/pull/231
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.12.0...1.13.0
+
 ## 1.12.0 - 2024-06-15
 
 ### What's Changed
