@@ -8,8 +8,7 @@ class France extends Country
 {
     protected function __construct(
         protected ?string $region = null,
-    ) {
-    }
+    ) {}
 
     public function countryCode(): string
     {

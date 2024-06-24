@@ -17,8 +17,7 @@ class Holidays
         protected ?string $locale = null,
         protected ?CarbonImmutable $from = null,
         protected ?CarbonImmutable $to = null,
-    ) {
-    }
+    ) {}
 
     public static function for(Country|string $country, ?int $year = null, ?string $locale = null): static
     {
@@ -57,21 +56,22 @@ class Holidays
      * E.g. to retrieve all holidays in between
      *    - 2020-01-01 and 2024-12-31, you could use: getInRange('2020-01-01', '2024-12-31'), getInRange('2020-01', '2024-12') or getInRange('2020', '2024')
      *    - 2024-06-01 and 2025-05-30, you could use: getInRange('2024-06-01', '2025-05-30'), getInRange('2024-06', '2025-05')
+     *
      * @return array<string, string> date => name
      */
     public function getInRange(CarbonInterface|string $from, CarbonInterface|string $to): array
     {
         if (! $from instanceof CarbonImmutable) {
             $from = match (strlen($from)) {
-                4 => CarbonImmutable::parse($from . '-01-01'),
-                7 => CarbonImmutable::parse($from . '-01'),
+                4 => CarbonImmutable::parse($from.'-01-01'),
+                7 => CarbonImmutable::parse($from.'-01'),
                 default => CarbonImmutable::parse($from),
             };
         }
 
         if (! $to instanceof CarbonImmutable) {
             $to = match (strlen($to)) {
-                4 => CarbonImmutable::parse($to . '-12-31'),
+                4 => CarbonImmutable::parse($to.'-12-31'),
                 7 => CarbonImmutable::parse($to)->endOfMonth(),
                 default => CarbonImmutable::parse($to),
             };

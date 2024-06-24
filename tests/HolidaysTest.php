@@ -84,7 +84,6 @@ it('can get the holiday name of a date', function () {
     expect($result)->toBeNull();
 });
 
-
 it('can get all holidays between two dates', function (string|CarbonImmutable $from, string|CarbonImmutable $to, int $expectedCount, string $firstName, string $lastName) {
     $holidays = Holidays::for('be')->getInRange($from, $to);
 
