@@ -21,7 +21,7 @@ trait ChineseCalendar
     {
         $timestamp = (int) $this->getFormatter()->parse($year.'-'.$input);
 
-        return (new CarbonImmutable())
+        return (new CarbonImmutable)
             ->setTimeStamp($timestamp)
             ->setTimezone(new DateTimeZone($this->chineseCalendarTimezone));
     }
