@@ -2,6 +2,20 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.13.1 - 2024-09-06
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot in https://github.com/spatie/holidays/pull/233
+* Wrong date fixed by @juref-specto in https://github.com/spatie/holidays/pull/235
+* feat: improve PHPDoc for get() by @Chris53897 in https://github.com/spatie/holidays/pull/232
+
+### New Contributors
+
+* @juref-specto made their first contribution in https://github.com/spatie/holidays/pull/235
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.13.0...1.13.1
+
 ## 1.13.0 - 2024-06-24
 
 ### What's Changed
