@@ -55,7 +55,7 @@ class Taiwan extends Country
         }
 
         $dateTime = new DateTime;
-        $dateTime->setTimestamp($parsedTimestamp);
+        $dateTime->setTimestamp((int) $parsedTimestamp);
         $dateTime->setTimezone(new DateTimeZone($this->timezone));
 
         return $dateTime->format('m-d');

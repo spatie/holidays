@@ -76,7 +76,7 @@ abstract class Country
             }
         }
 
-        usort($allHolidays, static fn (array $a, array $b) => $a['date'] <=> $b['date']);
+        usort($allHolidays, static fn (array $a, array $b): int => $a['date'] <=> $b['date']);
 
         $mappedHolidays = [];
         /** @var array{date: CarbonImmutable, name: string} $holiday */
