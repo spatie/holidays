@@ -2,6 +2,19 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.14.0 - 2024-10-01
+
+### What's Changed
+
+* Update laravel/prompts requirement from ^0.1.15 to ^0.2.0 by @dependabot in https://github.com/spatie/holidays/pull/238
+* Add Malaysia holiday by @pisyek in https://github.com/spatie/holidays/pull/17
+
+### New Contributors
+
+* @pisyek made their first contribution in https://github.com/spatie/holidays/pull/17
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.13.1...1.14.0
+
 ## 1.13.1 - 2024-09-06
 
 ### What's Changed
