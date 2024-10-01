@@ -41,6 +41,36 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:arafat\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:ashura\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:eidAlAdha\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:eidAlFitr\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:islamicNewYear\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:prophetMuhammadBirthday\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
 			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Morocco\\:\\:variableHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|null\\>\\.$#"
 			count: 1
 			path: src/Countries/Morocco.php
