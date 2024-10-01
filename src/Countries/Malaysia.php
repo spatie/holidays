@@ -10,12 +10,11 @@ use Spatie\Holidays\Exceptions\InvalidRegion;
 class Malaysia extends Country
 {
     use ChineseCalendar;
-
     use IslamicCalendar;
 
     protected string $timezone = 'Asia/Kuala_Lumpur';
 
-    /** @var array<int, string> $regions */
+    /** @var array<int, string> */
     protected array $regions = [
         'jhr',
         'kdh',
@@ -37,8 +36,7 @@ class Malaysia extends Country
 
     protected function __construct(
         protected ?string $region = null,
-    ) {
-    }
+    ) {}
 
     public function countryCode(): string
     {
@@ -48,11 +46,11 @@ class Malaysia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-                'Hari Pekerja' => '05-01',
-                'Hari Kebangsaan' => '08-31',
-                'Hari Malaysia' => '09-16',
-                'Hari Krismas' => '12-25',
-            ], $this->variableHolidays($year), $this->regionHolidays($year));
+            'Hari Pekerja' => '05-01',
+            'Hari Kebangsaan' => '08-31',
+            'Hari Malaysia' => '09-16',
+            'Hari Krismas' => '12-25',
+        ], $this->variableHolidays($year), $this->regionHolidays($year));
     }
 
     /**
@@ -85,7 +83,7 @@ class Malaysia extends Country
      */
     protected function regionHolidays(int $year): array
     {
-        if ($this->region && !$this->validRegion($this->region)) {
+        if ($this->region && ! $this->validRegion($this->region)) {
             throw InvalidRegion::notFound($this->region);
         }
 
@@ -99,7 +97,7 @@ class Malaysia extends Country
 
     /**
      * return holiday by region, if not set return all
-     * 
+     *
      * @return array<string, CarbonImmutable|string>
      */
     protected function holidaysByRegion(int $year): array
@@ -164,7 +162,7 @@ class Malaysia extends Country
             2026 => CarbonImmutable::createFromDate($year, 7, 21),
             default => null,
         };
-        
+
         if ($hariHolJohor) {
             $johorHolidays['Hari Hol Johor'] = $hariHolJohor;
         }
@@ -203,7 +201,7 @@ class Malaysia extends Country
             in_array($year, range(2010, 2022)) => CarbonImmutable::createFromDate($year, 11, 11),
             in_array($year, range(2023, 2026)) => CarbonImmutable::createFromDate($year, 9, 29),
             default => null,
-    
+
         };
 
         if ($kingBirthday) {
@@ -215,7 +213,7 @@ class Malaysia extends Country
             in_array($year, range(2023, 2026)) => CarbonImmutable::createFromDate($year, 9, 30),
             default => null,
         };
-        
+
         if ($kingBirthdaySecondDay) {
             $kelantanHolidays['Hari Keputeraan Sultan Kelantan Hari Kedua'] = $kingBirthdaySecondDay;
         }
@@ -336,7 +334,7 @@ class Malaysia extends Country
             'Hari Deepavali' => '01-01',
         ];
     }
-    
+
     /**
      * @return array<string, CarbonImmutable|string>
      */
@@ -425,7 +423,7 @@ class Malaysia extends Country
     protected function goodFriday(int $year): CarbonImmutable
     {
         $easter = $this->easter($year);
-        
+
         return $easter->subDays(2);
     }
 

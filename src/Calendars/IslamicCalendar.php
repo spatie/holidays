@@ -2,20 +2,19 @@
 
 namespace Spatie\Holidays\Calendars;
 
+use Carbon\CarbonImmutable;
+use Carbon\CarbonPeriod;
+use Carbon\Exceptions\InvalidFormatException;
 use DateTime;
 use DateTimeZone;
-use IntlCalendar;
 use IntlDateFormatter;
-use Carbon\CarbonPeriod;
-use Carbon\CarbonImmutable;
-use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
 /** @mixin Country */
 trait IslamicCalendar
 {
-      protected string $islamicCalendarTimezone = 'UTC';
+    protected string $islamicCalendarTimezone = 'UTC';
 
     /** @return array<CarbonPeriod> */
     public function eidAlFitr(int $year, int $totalDays = 3): array
@@ -144,7 +143,7 @@ trait IslamicCalendar
 
         return null;
     }
-  
+
     public function setIslamicCalendarTimezone(string $islamicCalendarTimezone): static
     {
         $this->islamicCalendarTimezone = $islamicCalendarTimezone;
@@ -168,9 +167,9 @@ trait IslamicCalendar
     {
         $formatter = $this->getIslamicCalendarFormatter();
         $formatter->setPattern('yyyy');
-        $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/' . ($nextYear ? $year + 1 : $year));
+        $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/'.($nextYear ? $year + 1 : $year));
 
-        if (!$dateTime) {
+        if (! $dateTime) {
             throw InvalidYear::invalidHijriYear();
         }
 
@@ -183,7 +182,7 @@ trait IslamicCalendar
         $formatter = $this->getIslamicCalendarFormatter();
         $timestamp = (int) $formatter->parse(sprintf('%s-%s', $hijriYear, $input));
 
-        return (new CarbonImmutable())
+        return (new CarbonImmutable)
             ->setTimeStamp($timestamp)
             ->setTimezone(new DateTimeZone($this->islamicCalendarTimezone));
     }
