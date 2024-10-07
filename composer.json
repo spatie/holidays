@@ -27,7 +27,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.0",
-        "laravel/prompts": "^0.2.0",
+        "laravel/prompts": "^0.3.0",
         "pestphp/pest": "^2.31",
         "phpstan/phpstan": "^1.10.56",
         "rector/rector": "^1.0",
