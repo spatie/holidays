@@ -1,6 +1,6 @@
 [
     {
-        "name": "New Year's",
+        "name": "New Year's Day",
         "date": "2024-01-01"
     },
     {
@@ -12,23 +12,23 @@
         "date": "2024-04-01"
     },
     {
-        "name": "Labour",
+        "name": "Labour day",
         "date": "2024-05-01"
     },
     {
-        "name": "Madaraka",
+        "name": "Madaraka Day",
         "date": "2024-06-01"
     },
     {
-        "name": "Mazingira",
+        "name": "Mazingira Day",
         "date": "2024-10-10"
     },
     {
-        "name": "Mashujaa",
+        "name": "Mashujaa Day",
         "date": "2024-10-20"
     },
     {
-        "name": "Jamhuri",
+        "name": "Jamhuri Day",
         "date": "2024-12-01"
     },
     {
@@ -36,7 +36,7 @@
         "date": "2024-12-25"
     },
     {
-        "name": "Boxing",
+        "name": "Boxing Day",
         "date": "2024-12-26"
     }
 ]

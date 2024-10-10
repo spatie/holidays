@@ -14,14 +14,14 @@ class Kenya extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's" => '01-01',
-            'Labour' => '05-01',
-            'Madaraka' => '06-01',
-            'Mazingira' => '10-10',
-            'Mashujaa' => '10-20',
-            'Jamhuri' => '12-01',
+            "New Year's Day" => '01-01',
+            'Labour day' => '05-01',
+            'Madaraka Day' => '06-01',
+            'Mazingira Day' => '10-10',
+            'Mashujaa Day' => '10-20',
+            'Jamhuri Day' => '12-01',
             'Christmas' => '12-25',
-            'Boxing' => '12-26',
+            'Boxing Day' => '12-26',
         ], $this->variableHolidays($year));
     }
 
