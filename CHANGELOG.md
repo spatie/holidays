@@ -2,6 +2,19 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.14.1 - 2024-10-10
+
+### What's Changed
+
+* Update laravel/prompts requirement from ^0.2.0 to ^0.3.0 by @dependabot in https://github.com/spatie/holidays/pull/244
+* update(holiday): Utamaduni day renamed to Mazingira day by @vamuigua in https://github.com/spatie/holidays/pull/245
+
+### New Contributors
+
+* @vamuigua made their first contribution in https://github.com/spatie/holidays/pull/245
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.14.0...1.14.1
+
 ## 1.14.0 - 2024-10-01
 
 ### What's Changed
