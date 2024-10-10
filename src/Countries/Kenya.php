@@ -17,7 +17,7 @@ class Kenya extends Country
             "New Year's Day" => '01-01',
             'Labour day' => '05-01',
             'Madaraka Day' => '06-01',
-            'Mazingira Day' => '10-10',
+            $this->getOctober10HolidayName($year) => '10-10',
             'Mashujaa Day' => '10-20',
             'Jamhuri Day' => '12-01',
             'Christmas' => '12-25',
@@ -34,5 +34,16 @@ class Kenya extends Country
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
         ];
+    }
+
+    /** @return string */
+    protected function getOctober10HolidayName(int $year): string
+    {
+        return match (true) {
+            $year >= 2024 => 'Mazingira Day',
+            $year >= 2022 => 'Utamaduni Day',
+            $year >= 2019 => 'Huduma Day',
+            default => 'Moi Day'
+        };
     }
 }

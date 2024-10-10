@@ -1,0 +1,42 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2021-01-01"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2021-04-02"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2021-04-05"
+    },
+    {
+        "name": "Labour day",
+        "date": "2021-05-01"
+    },
+    {
+        "name": "Madaraka Day",
+        "date": "2021-06-01"
+    },
+    {
+        "name": "Huduma Day",
+        "date": "2021-10-10"
+    },
+    {
+        "name": "Mashujaa Day",
+        "date": "2021-10-20"
+    },
+    {
+        "name": "Jamhuri Day",
+        "date": "2021-12-01"
+    },
+    {
+        "name": "Christmas",
+        "date": "2021-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2021-12-26"
+    }
+]
