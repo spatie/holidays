@@ -36,7 +36,6 @@ class Kenya extends Country
         ];
     }
 
-    /** @return string */
     protected function getOctober10HolidayName(int $year): string
     {
         return match (true) {
