@@ -17,7 +17,7 @@ class Kenya extends Country
             "New Year's" => '01-01',
             'Labour' => '05-01',
             'Madaraka' => '06-01',
-            'Utamaduni' => '10-10',
+            'Mazingira' => '10-10',
             'Mashujaa' => '10-20',
             'Jamhuri' => '12-01',
             'Christmas' => '12-25',
