@@ -25,3 +25,9 @@ it('provides holiday for Nepal in year 2024', function () {
 
     expect(formatDates($holidays))->toMatchSnapshot();
 });
+
+it('checks for holidays in Nepal for 2025', function () {
+    $isHoliday = Holidays::for('np')->isHoliday('2025-03-13');
+
+    expect($isHoliday)->toBeTrue();
+});
