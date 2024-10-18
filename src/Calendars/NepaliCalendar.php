@@ -13,6 +13,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on the first day of the Bikram Sambat calendar. (Baishakh - 01/01)
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $nepaliNewYear = [
         'calendar' => 'Bikram Sambat',
@@ -24,6 +30,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on 15 Jestha - 02/15 of the Bikram Sambat calendar.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $nationalRepublicDay = [
         'calendar' => 'Bikram Sambat',
@@ -35,6 +47,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on 27 Paush - 09/27 of the Bikram Sambat calendar.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $prithiviJayanti = [
         'calendar' => 'Bikram Sambat',
@@ -46,6 +64,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on 16 Magh - 10/16 of the Bikram Sambat calendar.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $martyrsDay = [
         'calendar' => 'Bikram Sambat',
@@ -57,6 +81,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on 7 Falgun - 11/07 of the Bikram Sambat calendar.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $democracyDay = [
         'calendar' => 'Bikram Sambat',
@@ -68,6 +98,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on 3 Ashwin - 04/03 of the Bikram Sambat calendar.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $constitutionDay = [
         'calendar' => 'Bikram Sambat',
@@ -79,6 +115,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on 1 Magh - 10/01 of the Bikram Sambat calendar.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $makarSankrantiHoliday = [
         'calendar' => 'Bikram Sambat',
@@ -90,6 +132,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Celebrated on the first day of "Dashain" festival.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $ghatasthapanaHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -101,6 +149,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Celebrated on the 7th day of "Dashain" festival.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $fulpatiHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -112,6 +166,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Celebrated on the 8th day of "Dashain" festival.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $mahaNawamiHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -123,6 +183,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Celebrated on the 9th day of "Dashain" festival.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $mahaAsthamiHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -134,6 +200,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Celebrated on the 10th day of "Dashain" festival.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $vijayaDashamiHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -145,6 +217,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Celebrated on the 11th day of "Dashain" festival.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $ekadashiHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -156,6 +234,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Celebrated on the 3rd day of "Tihar" festival.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $laxmiPujaHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -167,6 +251,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Celebrated on the 4th day of "Tihar" festival.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $govardhanPujaHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -178,6 +268,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Celebrated on the 5th day of "Tihar" festival.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $bhaiTikaHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -189,6 +285,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Chhat Parva is a festival dedicated to the Sun God.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $chhatParvaHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -200,6 +302,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Tamu Loshar is the New Year of the Gurung community.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $tamuLosharHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -211,6 +319,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Sonam Losar is the New Year of the Tamang community.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $sonamLosarHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -222,6 +336,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Gyalpo Loshar is the New Year of the Sherpa community.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $gyalpoLosharHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -233,6 +353,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Udhauli Parva is the festival of the Kirat community.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $udhauliParvaHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -244,6 +370,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar. Mahashivaratri is a Hindu festival dedicated to Lord Shiva.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $mahashivaratriHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -255,6 +387,12 @@ trait NepaliCalendar
 
     /**
      * Celebrated on according to lunar calendar.
+     *
+     * @var array{
+     *     calendar: string,
+     *     label: string,
+     *     dates: array<int, string>
+     * }
      */
     public array $holiHoliday = [
         'calendar' => 'Lunar Calendar',
@@ -266,6 +404,8 @@ trait NepaliCalendar
 
     /**
      * Holidays according to Bikram Sambat calendar.
+     *
+     * @return array<string,string>
      */
     public function holidaysAccordingToBikramSambatCalendar(int $year): array
     {
@@ -284,6 +424,8 @@ trait NepaliCalendar
 
     /**
      * Holidays according to lunar calendar.
+     *
+     * @return array<string,string>
      */
     public function holidaysAccordingToLunarCalendar(int $year): array
     {
@@ -312,7 +454,7 @@ trait NepaliCalendar
     /**
      * Holiday according to Gregorian calendar.
      *
-     * @return array<string, string>
+     * @return array<string,string>
      */
     public function holidayAccordingToGregorianCalendar(): array
     {

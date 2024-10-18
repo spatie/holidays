@@ -13,12 +13,14 @@ class Nepal extends Country
         return 'np';
     }
 
-    public function allHolidays(int $year): array
+    /** @return array<string,string> */
+    protected function allHolidays(int $year): array
     {
         return array_merge($this->holidayAccordingToGregorianCalendar(), $this->variableHolidays($year));
     }
 
-    public function variableHolidays(int $year): array
+    /** @return array<string,string> */
+    protected function variableHolidays(int $year): array
     {
         return array_merge($this->holidaysAccordingToBikramSambatCalendar($year), $this->holidaysAccordingToLunarCalendar($year));
     }
