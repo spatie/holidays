@@ -2,6 +2,18 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.15.0 - 2024-10-19
+
+### What's Changed
+
+* feat: add calendar for Nepal by @maskeynihal in https://github.com/spatie/holidays/pull/247
+
+### New Contributors
+
+* @maskeynihal made their first contribution in https://github.com/spatie/holidays/pull/247
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.14.1...1.15.0
+
 ## 1.14.1 - 2024-10-10
 
 ### What's Changed
