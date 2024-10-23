@@ -1,27 +1,111 @@
 [
     {
+        "name": "Shab-e-Meraj",
+        "date": "2024-02-07"
+    },
+    {
         "name": "International Mother Language Day",
         "date": "2024-02-21"
     },
     {
-        "name": "Birthday of Sheikh Mujibur Rahman",
-        "date": "2024-03-17"
+        "name": "Shab-e-Barat",
+        "date": "2024-02-25"
     },
     {
         "name": "Independence Day",
         "date": "2024-03-26"
     },
     {
-        "name": "Bengali New Year",
-        "date": "2024-04-14"
+        "name": "Shab-e-Qadr",
+        "date": "2024-04-06"
+    },
+    {
+        "name": "Eid ul-Fitr Eve",
+        "date": "2024-04-07"
+    },
+    {
+        "name": "Eid ul-Fitr",
+        "date": "2024-04-08"
+    },
+    {
+        "name": "Eid ul-Fitr Day 2",
+        "date": "2024-04-09"
+    },
+    {
+        "name": "Eid ul-Fitr Day 3",
+        "date": "2024-04-10"
+    },
+    {
+        "name": "Eid ul-Fitr Day 4",
+        "date": "2024-04-11"
+    },
+    {
+        "name": "Eid ul-Fitr Day 5",
+        "date": "2024-04-12"
+    },
+    {
+        "name": "Pohela Boishakh",
+        "date": "2024-04-15"
+    },
+    {
+        "name": "Buddha Purnima",
+        "date": "2024-04-20"
     },
     {
         "name": "May Day",
         "date": "2024-05-01"
     },
     {
+        "name": "Eid ul-Adha Eve",
+        "date": "2024-06-14"
+    },
+    {
+        "name": "Eid ul-Adha",
+        "date": "2024-06-15"
+    },
+    {
+        "name": "Eid ul-Adha Day 2",
+        "date": "2024-06-16"
+    },
+    {
+        "name": "Eid ul-Adha Day 3",
+        "date": "2024-06-17"
+    },
+    {
+        "name": "Eid ul-Adha Day 4",
+        "date": "2024-06-18"
+    },
+    {
+        "name": "Eid ul-Adha Day 5",
+        "date": "2024-06-19"
+    },
+    {
+        "name": "Eid ul-Adha Day 6",
+        "date": "2024-06-20"
+    },
+    {
+        "name": "Ashura",
+        "date": "2024-07-28"
+    },
+    {
         "name": "National Mourning Day",
         "date": "2024-08-15"
+    },
+    {
+        "name": "Jonmashtomi",
+        "date": "2024-08-18"
+    },
+    {
+        "name": "Eid-e-Miladunnabi",
+        "date": "2024-09-27"
+    },
+    {
+        "name": "Durga Puja",
+        "date": "2024-10-30"
+    },
+    {
+        "name": "Durga Puja Day 2",
+        "date": "2024-10-31"
     },
     {
         "name": "Victory Day",
