@@ -2,6 +2,18 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.16.0 - 2024-12-18
+
+### What's Changed
+
+* Add new country `Paraguay` by @hschimpf in https://github.com/spatie/holidays/pull/254
+
+### New Contributors
+
+* @hschimpf made their first contribution in https://github.com/spatie/holidays/pull/254
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.15.0...1.16.0
+
 ## 1.15.0 - 2024-10-19
 
 ### What's Changed
