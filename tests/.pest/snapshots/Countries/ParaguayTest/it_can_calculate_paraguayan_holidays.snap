@@ -1,0 +1,46 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "D\u00eda de los H\u00e9roes",
+        "date": "2024-03-01"
+    },
+    {
+        "name": "Jueves Santo",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "D\u00eda del Trabajador",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "D\u00eda de la Independencia Nacional",
+        "date": "2024-05-15"
+    },
+    {
+        "name": "Paz del Chaco",
+        "date": "2024-06-12"
+    },
+    {
+        "name": "Fundaci\u00f3n de Asunci\u00f3n",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Batalla de Boquer\u00f3n",
+        "date": "2024-09-29"
+    },
+    {
+        "name": "Virgen de Caacup\u00e9",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]
