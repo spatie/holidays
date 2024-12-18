@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Spatie\Holidays\Countries;
 
@@ -41,7 +43,7 @@ final class Paraguay extends Country implements HasTranslations
 
         return [
             'Paz del Chaco' => $this->chacoArmistice($year),
-            'Jueves Santo'  => $easter->subDays(3),
+            'Jueves Santo' => $easter->subDays(3),
             'Viernes Santo' => $easter->subDays(2),
         ];
     }

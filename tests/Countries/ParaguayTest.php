@@ -26,14 +26,14 @@ it('can get holidays in another locale', function (): void {
     $holidays_gn = Holidays::for(country: 'py', locale: 'gn')->get();
 
     expect($holidays_gn[0]['name'])
-        ->toBe("Ary Pyahu");
+        ->toBe('Ary Pyahu');
 });
 
 it('can calculate Chacho Armistice holiday', function (int $year, int $valid_day, int $invalid_day): void {
     CarbonImmutable::setTestNow("$year-01-01");
 
     expect(Holidays::for('py')->isHoliday("$year-06-$valid_day"))->toBeTrue()
-     ->and(Holidays::for('py')->isHoliday("$year-06-$invalid_day"))->toBeFalse();
+        ->and(Holidays::for('py')->isHoliday("$year-06-$invalid_day"))->toBeFalse();
 })->with([
     [2012, 12, 16],
     [2013, 12, 16],
