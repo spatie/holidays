@@ -48,8 +48,8 @@ final class Paraguay extends Country implements HasTranslations
 
     private function chacoArmistice(int $year): CarbonImmutable
     {
-        // En 2014, el Día de la Paz del Chaco se trasladó al 16 de junio (Decreto N.º 280 firmado en septiembre del 2013)
-        // Para años posteriores, la fecha se mantiene como el 12 de junio
+        // In 2014, the Day of Chaco Armistice was moved to June 16th (Decree N.º 280 signed in September 2013)
+        // For later years, the date remains as June 12th
         return CarbonImmutable::createFromDate($year, 06, $year === 2014 ? 16 : 12);
     }
 }
