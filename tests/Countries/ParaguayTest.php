@@ -18,10 +18,15 @@ it('can calculate paraguayan holidays', function (): void {
 it('can get holidays in another locale', function (): void {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    $holidays = Holidays::for(country: 'py', locale: 'en')->get();
+    $holidays_en = Holidays::for(country: 'py', locale: 'en')->get();
 
-    expect($holidays[0]['name'])
+    expect($holidays_en[0]['name'])
         ->toBe("New Year's Day");
+
+    $holidays_gn = Holidays::for(country: 'py', locale: 'gn')->get();
+
+    expect($holidays_gn[0]['name'])
+        ->toBe("Ary Pyahu");
 });
 
 it('can calculate Chacho Armistice holiday', function (int $year, int $valid_day, int $invalid_day): void {
