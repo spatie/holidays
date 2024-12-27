@@ -393,4 +393,116 @@ class Spain extends Country
             default => throw InvalidRegion::notFound($this->region),
         };
     }
+
+    protected function regionHolidays2025(): array
+    {
+        $sanJose = ['San José' => '03-19'];
+        $juevesSanto = ['Jueves Santo' => '04-17'];
+        $lunesPascua = ['Lunes de Pascua' => '04-21'];
+        $fiestaSacrificio = ['Fiesta del Sacrificio Eid al-Adha' => '06-07'];
+        $sanJuan = ['San Juan' => '06-24'];
+        $santiagoApostol = ['Santiago Apóstol' => '07-25'];
+        $inmaculadaConcepcion = ['Lunes siguiente a la Inmaculada Concepción' => '12-08'];
+
+        return match ($this->region) {
+            // Andalucía
+            'es-an' => [
+                    'Día de Andalucía' => '02-28',
+                ] + $juevesSanto + $inmaculadaConcepcion,
+
+            // Aragón
+            'es-ar' => [
+                    'San Jorge / Día de Aragón' => '04-23',
+                ] + $juevesSanto + $inmaculadaConcepcion,
+
+            // Principado de Asturias
+            'es-as' => [
+                    'Día de Asturias' => '09-08',
+                ] + $juevesSanto + $inmaculadaConcepcion,
+
+            // Cantabria
+            'es-cb' => $juevesSanto + $lunesPascua + $santiagoApostol,
+
+            // Ciudad Autónoma de Ceuta
+            'es-ce' => [
+                    'Nuestra Señora de África' => '08-05',
+                ] + $juevesSanto + $fiestaSacrificio,
+
+            // Castilla y León
+            'es-cl' => [
+                    'Fiesta de Castilla y León' => '04-23',
+                ] + $juevesSanto + $inmaculadaConcepcion,
+
+            // Castilla-La Mancha
+            'es-cm' => [
+                    'Corpus Christi' => '06-19',
+                    'Día de Castilla-La Mancha' => '05-31',
+                ] + $juevesSanto,
+
+            // Canarias
+            'es-cn' => [
+                    'Día de Canarias' => '05-30',
+                ] + $juevesSanto,
+
+            // Cataluña / Catalunya
+            'es-ct' => [
+                    'Fiesta Nacional de Cataluña' => '09-11',
+                    'San Esteban' => '12-26',
+                ] + $lunesPascua + $sanJuan,
+
+            // Extremadura
+            'es-ex' => [
+                    'Día de Extremadura' => '09-08',
+                ] + $juevesSanto + $inmaculadaConcepcion,
+
+            // Galicia
+            'es-ga' => [
+                    'Día de las Letras Gallegas' => '05-17',
+                    'Santiago Apóstol / Día de Galicia' => '07-25',
+                ] + $juevesSanto,
+
+            // Islas Baleares / Illes Balears
+            'es-ib' => [
+                    'Día de les Illes Balears' => '03-01',
+                    'San Esteban' => '12-26',
+                ] + $juevesSanto + $lunesPascua,
+
+            // Región de Murcia
+            'es-mc' => [
+                    'Día de la Región de Murcia' => '06-09'
+                ] + $sanJose + $juevesSanto + $inmaculadaConcepcion,
+
+            // Comunidad de Madrid
+            'es-md' => [
+                    'Fiesta de la Comunidad de Madrid' => '05-02',
+                ] + $juevesSanto + $santiagoApostol,
+
+            // Ciudad Autónoma de Melilla
+            'es-ml' => $juevesSanto + $fiestaSacrificio + $inmaculadaConcepcion,
+
+            // Comunidad Foral de Navarra / Nafarroako Foru Komunitatea
+            'es-nc' => [
+                    'Día de Navarra: San Francisco Javier' => '12-03',
+                ] + $juevesSanto + $lunesPascua + $santiagoApostol,
+
+            // País Vasco / Euskal Herria
+            'es-pv' => [
+                    'Día del País Vasco / Euskadiko Eguna' => '10-25'
+                ] + $juevesSanto + $lunesPascua + $santiagoApostol,
+
+            // La Rioja
+            'es-ri' => [
+                    'Lunes siguiente al Día de La Rioja' => '06-09',
+                ] + $juevesSanto + $lunesPascua,
+
+            // Comunidad Valenciana / Comunitat Valenciana
+            'es-vc' => [
+                    'Día de la Comunidad Valenciana' => '10-09',
+                ] + $sanJose + $lunesPascua + $sanJuan,
+
+            null => [],
+            default => throw InvalidRegion::notFound($this->region),
+        };
+    }
+
 }
