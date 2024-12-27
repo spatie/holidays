@@ -7,7 +7,7 @@ use Spatie\Holidays\Countries\Spain;
 use Spatie\Holidays\Holidays;
 
 it('can calculate spanish holidays', function () {
-    CarbonImmutable::setTestNow('2024-01-01');
+    CarbonImmutable::setTestNow('2025-01-01');
 
     $holidays = Holidays::for(country: 'es')->get();
 
@@ -19,9 +19,9 @@ it('can calculate spanish holidays', function () {
 });
 
 it('can calculate spanish regional holidays', function () {
-    CarbonImmutable::setTestNow('2024-01-01');
+    CarbonImmutable::setTestNow('2025-01-01');
 
-    $holidays = Holidays::for(Spain::make('es-ar'))->get();
+    $holidays = Holidays::for(Spain::make('es-ct'))->get();
 
     expect($holidays)
         ->toBeArray()
