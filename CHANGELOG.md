@@ -2,6 +2,21 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.17.0 - 2024-12-30
+
+### What's Changed
+
+* Fix: some of the dates for Argentina where incorrectly formated by @Akrista in https://github.com/spatie/holidays/pull/255
+* Regenerate pest snapshot for Argentina /  Generate pest snapshot for Indonesia test by @Akrista in https://github.com/spatie/holidays/pull/256
+* Spain regional holidays 2025 by @prodelpe in https://github.com/spatie/holidays/pull/258
+
+### New Contributors
+
+* @Akrista made their first contribution in https://github.com/spatie/holidays/pull/255
+* @prodelpe made their first contribution in https://github.com/spatie/holidays/pull/258
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.16.0...1.17.0
+
 ## 1.16.0 - 2024-12-18
 
 ### What's Changed
