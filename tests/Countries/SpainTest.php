@@ -120,4 +120,3 @@ it('can calculate spanish regional holidays 2022', function () {
         ->and(formatDates($holidays))
         ->toMatchSnapshot();
 });
-
