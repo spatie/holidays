@@ -48,12 +48,12 @@ class Greece extends Country
         }
 
         return [
-            'Καθαρά Δευτέρα' => $orthodoxEaster->copy()->subDays(48), //always Monday
+            'Καθαρά Δευτέρα' => $orthodoxEaster->copy()->subDays(48), // always Monday
             'Πρωτομαγιά' => $protomagia,
             'Μεγάλη Παρασκευή' => $megaliParaskevi,
             'Κυριακή του Πάσχα' => $orthodoxEaster,
             'Δευτέρα του Πάσχα' => $deuteraPasha,
-            'Αγίου Πνεύματος' => $orthodoxEaster->copy()->addDays(50), //always Monday
+            'Αγίου Πνεύματος' => $orthodoxEaster->copy()->addDays(50), // always Monday
         ];
     }
 }

@@ -10,7 +10,7 @@ use Spatie\Holidays\Contracts\Islamic;
 
 class Syria extends Country implements HasTranslations, Islamic
 {
-    //use IslamicCalendar;
+    // use IslamicCalendar;
     use Translatable;
 
     public function countryCode(): string

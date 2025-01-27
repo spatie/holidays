@@ -26,7 +26,7 @@ class NewZealand extends Country
     /** @return array<string, string|CarbonInterface> */
     protected function observedHolidays(int $year): array
     {
-        //https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
+        // https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
         $holidays = [
             "New Year's Day" => '01-01',
             "Day after New Year's Day" => '01-02',
@@ -36,7 +36,7 @@ class NewZealand extends Country
             'Boxing Day' => '12-26',
         ];
 
-        //https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-falling-on-a-weekend/
+        // https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-falling-on-a-weekend/
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
                 "Day after New Year's Day" => $this->secondOfJanuary($year),
@@ -57,16 +57,16 @@ class NewZealand extends Country
     /** @return array<string, CarbonInterface> */
     protected function variableHolidays(int $year): array
     {
-        //Easter
+        // Easter
         $easterSunday = $this->easter($year);
         $goodFriday = $easterSunday->subDays(2);
         $easterMonday = $easterSunday->addDay();
 
-        //Sovereign Birthday
+        // Sovereign Birthday
         $sovereignTitle = $this->sovereignBirthdayKey($year);
         $sovereignMonday = CarbonImmutable::parse("first monday of june {$year}");
 
-        //Labour Day
+        // Labour Day
         $labourMonday = CarbonImmutable::parse("fourth monday of october {$year}");
 
         $holidays = [
@@ -104,7 +104,7 @@ class NewZealand extends Country
 
     private function calculateMatariki(int $year): ?CarbonImmutable
     {
-        //https://www.tepapa.govt.nz/discover-collections/read-watch-play/matariki-maori-new-year/dates-for-matariki-public-holiday
+        // https://www.tepapa.govt.nz/discover-collections/read-watch-play/matariki-maori-new-year/dates-for-matariki-public-holiday
         $matarikiDates = [
             2022 => '2022-06-24',
             2023 => '2023-07-14',
