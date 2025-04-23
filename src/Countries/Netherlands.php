@@ -15,13 +15,12 @@ class Netherlands extends Country
     {
         return array_merge([
             'Nieuwjaarsdag' => '01-01',
-            'Bevrijdingsdag' => '05-05',
             'Eerste kerstdag' => '12-25',
             'Tweede kerstdag' => '12-26',
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, string|CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $koningsDag = CarbonImmutable::createFromDate($year, 4, 27);
@@ -32,14 +31,19 @@ class Netherlands extends Country
 
         $easter = $this->easter($year);
 
-        return [
+        $holidays = [
             'Koningsdag' => $koningsDag,
-            'Goede Vrijdag' => $easter->subDays(2),
             'Eerste paasdag' => $easter,
             'Tweede paasdag' => $easter->addDay(),
             'Hemelvaartsdag' => $easter->addDays(39),
             'Eerste pinksterdag' => $easter->addDays(49),
             'Tweede pinksterdag' => $easter->addDays(50),
         ];
+
+        if ($year % 5 === 0) {
+            $holidays['Bevrijdingsdag'] = '05-05';
+        }
+
+        return $holidays;
     }
 }

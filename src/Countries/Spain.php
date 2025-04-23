@@ -394,6 +394,7 @@ class Spain extends Country
         };
     }
 
+    /** @return array<string, string> */
     protected function regionHolidays2025(): array
     {
         $sanJose = ['San José' => '03-19'];
