@@ -13,7 +13,7 @@ it('calculates new zealand holidays by date', function (string $name, string $da
     expect($holidayName)->toBe($name)->and($isHoliday)->toBeTrue();
 
 })->with([
-    //2023
+    // 2023
     ['New Year\'s Day (Mondayisation)', '2023-01-02'],
     ['Day after New Year\'s Day (Mondayisation)', '2023-01-03'],
     ['Waitangi Day', '2023-02-06'],
@@ -25,7 +25,7 @@ it('calculates new zealand holidays by date', function (string $name, string $da
     ['Labour Day', '2023-10-23'],
     ['Christmas Day', '2023-12-25'],
     ['Boxing Day', '2023-12-26'],
-    //2024
+    // 2024
     ['New Year\'s Day', '2024-01-01'],
     ['Day after New Year\'s Day', '2024-01-02'],
     ['Waitangi Day', '2024-02-06'],
@@ -37,7 +37,7 @@ it('calculates new zealand holidays by date', function (string $name, string $da
     ['Labour Day', '2024-10-28'],
     ['Christmas Day', '2024-12-25'],
     ['Boxing Day', '2024-12-26'],
-    //2025
+    // 2025
     ['New Year\'s Day', '2025-01-01'],
     ['Day after New Year\'s Day', '2025-01-02'],
     ['Waitangi Day', '2025-02-06'],
@@ -49,7 +49,7 @@ it('calculates new zealand holidays by date', function (string $name, string $da
     ['Labour Day', '2025-10-27'],
     ['Christmas Day', '2025-12-25'],
     ['Boxing Day', '2025-12-26'],
-    //2027 - Lots of Mondayisation
+    // 2027 - Lots of Mondayisation
     ['New Year\'s Day', '2027-01-01'],
     ['Day after New Year\'s Day (Mondayisation)', '2027-01-04'],
     ['Waitangi Day (Mondayisation)', '2027-02-08'],
