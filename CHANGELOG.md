@@ -2,6 +2,20 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.17.1 - 2025-04-23
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/spatie/holidays/pull/259
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/spatie/holidays/pull/260
+* Tweak Netherlands holidays by @mbardelmeijer in https://github.com/spatie/holidays/pull/263
+
+### New Contributors
+
+* @mbardelmeijer made their first contribution in https://github.com/spatie/holidays/pull/263
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.17.0...1.17.1
+
 ## 1.17.0 - 2024-12-30
 
 ### What's Changed
