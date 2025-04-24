@@ -1,38 +1,90 @@
 [
     {
-        "name": "Tahun Baru",
-        "date": "2024-01-01"
+        "name": "Tahun Baru Islam",
+        "date": "2024-07-08"
+    },
+    {
+        "name": "Maulid Nabi Muhammad SAW",
+        "date": "2024-09-16"
+    },
+    {
+        "name": "Tahun Baru Masehi",
+        "date": "2025-01-01"
+    },
+    {
+        "name": "Isra Mikraj Nabi Muhammad SAW",
+        "date": "2025-01-27"
+    },
+    {
+        "name": "Cuti Tahun Baru Imlek",
+        "date": "2025-01-28"
     },
     {
         "name": "Tahun Baru Imlek",
-        "date": "2024-02-10"
+        "date": "2025-01-29"
     },
     {
-        "name": "Jumat Agung",
-        "date": "2024-03-29"
+        "name": "Hari Raya Idul Fitri 1",
+        "date": "2025-03-31"
     },
     {
-        "name": "Hari Paskah",
-        "date": "2024-03-31"
+        "name": "Hari Raya Idul Fitri 2",
+        "date": "2025-04-01"
+    },
+    {
+        "name": "Cuti Hari Raya Idul Fitri 1",
+        "date": "2025-04-02"
+    },
+    {
+        "name": "Cuti Hari Raya Idul Fitri 2",
+        "date": "2025-04-03"
+    },
+    {
+        "name": "Cuti Hari Raya Idul Fitri 3",
+        "date": "2025-04-04"
+    },
+    {
+        "name": "Wafat Yesus Kristus",
+        "date": "2025-04-18"
+    },
+    {
+        "name": "Hari Raya Paskah",
+        "date": "2025-04-20"
     },
     {
         "name": "Hari Buruh Internasional",
-        "date": "2024-05-01"
+        "date": "2025-05-01"
     },
     {
         "name": "Kenaikan Yesus Kristus",
-        "date": "2024-05-09"
+        "date": "2025-05-29"
+    },
+    {
+        "name": "Cuti Kenaikan Yesus Kristus",
+        "date": "2025-05-30"
     },
     {
         "name": "Hari Lahir Pancasila",
-        "date": "2024-06-01"
+        "date": "2025-06-01"
     },
     {
-        "name": "Hari Kemerdekaan",
-        "date": "2024-08-17"
+        "name": "Hari Raya Idul Adha",
+        "date": "2025-06-07"
     },
     {
-        "name": "Hari Raya Natal",
-        "date": "2024-12-25"
+        "name": "Cuti Hari Raya Idul Adha",
+        "date": "2025-06-08"
+    },
+    {
+        "name": "Hari Proklamasi Kemerdekaan",
+        "date": "2025-08-17"
+    },
+    {
+        "name": "Kelahiran Yesus Kristus",
+        "date": "2025-12-25"
+    },
+    {
+        "name": "Cuti Kelahiran Yesus Kristus",
+        "date": "2025-12-26"
     }
 ]
