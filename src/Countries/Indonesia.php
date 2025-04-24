@@ -2,9 +2,10 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Calendars\ChineseCalendar;
 use Spatie\Holidays\Calendars\IslamicCalendar;
-use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
 
 class Indonesia extends Country implements HasTranslations
@@ -14,6 +15,12 @@ class Indonesia extends Country implements HasTranslations
     use Translatable;
 
     protected string $timezone = 'Asia/Jakarta';
+    public const eidAlFitr = [];
+    public const eidAlAdha = [];
+    public const ashura = [];
+    public const arafat = [];
+    public const islamicNewYear = [];
+    public const prophetMuhammadBirthday = [];
 
     public function defaultLocale(): string
     {
@@ -31,16 +38,17 @@ class Indonesia extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge(
-            $this->nationalHolidays($year),
+            $this->nationalHolidays(),
             $this->islamicHolidays($year),
             $this->christianHolidays($year),
             $this->chineseHolidays($year),
-            $this->hinduHolidays($year),
-            $this->buddhistHolidays($year),
+            $this->hinduHolidays(),
+            $this->buddhistHolidays(),
         );
     }
 
-    public function nationalHolidays(int $year): array
+     /** @return array<string, string> */
+    public function nationalHolidays(): array
     {
         return [
             'Hari Proklamasi Kemerdekaan' => '08-17', // 17 Agustus
@@ -49,6 +57,7 @@ class Indonesia extends Country implements HasTranslations
         ];
     }
 
+     /** @return array<string, CarbonImmutable> */
     public function islamicHolidays(int $year): array
     {
         $this->setIslamicCalendarTimezone($this->timezone);
@@ -60,13 +69,14 @@ class Indonesia extends Country implements HasTranslations
             'Cuti Hari Raya Idul Adha' => $this->islamicToGregorianDate('12-10', $year, false)->addDay(), // 11 Dzulhijjah
             'Hari Raya Idul Fitri 1' => $this->islamicToGregorianDate('10-1', $year, false), // 1 Syawal
             'Hari Raya Idul Fitri 2' => $this->islamicToGregorianDate('10-1', $year, false)->addDay(), // 2 Syawal
-            'Cuti Hari Raya Idul Fitri 1' => $this->islamicToGregorianDate('10-1', $year, false)->addDay(2), // 3 Syawal
+            'Cuti Hari Raya Idul Fitri 1' => $this->islamicToGregorianDate('10-1', $year, false)->addDays(2), // 3 Syawal
             'Cuti Hari Raya Idul Fitri 2' => $this->islamicToGregorianDate('10-1', $year, false)->addDays(3), // 4 Syawal
             'Cuti Hari Raya Idul Fitri 3' => $this->islamicToGregorianDate('10-1', $year, false)->addDays(4), // 5 Syawal
             'Maulid Nabi Muhammad SAW' => $this->islamicToGregorianDate('3-12', $year, false), // 12 Rabi'ul Awal
         ];
     }
 
+     /** @return array<string, CarbonImmutable|string> */
     public function christianHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -82,17 +92,19 @@ class Indonesia extends Country implements HasTranslations
         ];
     }
 
+     /** @return array<string, CarbonImmutable> */
     public function chineseHolidays(int $year): array
     {
         $this->setChineseCalendarTimezone($this->timezone);
 
         return [
-            'Cuti Tahun Baru Imlek' => $this->chineseToGregorianDate('01-01', $year, false)->subDay(),
-            'Tahun Baru Imlek' => $this->chineseToGregorianDate('01-01', $year, false),
+            'Cuti Tahun Baru Imlek' => $this->chineseToGregorianDate('01-01', $year)->subDay(),
+            'Tahun Baru Imlek' => $this->chineseToGregorianDate('01-01', $year),
         ];
     }
 
-    public function hinduHolidays(int $year): array
+     /** @return array<string, CarbonImmutable> */
+    public function hinduHolidays(): array
     {
         return [
             // Cuti Hari Suci Nyepi
@@ -100,7 +112,8 @@ class Indonesia extends Country implements HasTranslations
         ];
     }
 
-    public function buddhistHolidays(int $year): array
+     /** @return array<string, CarbonImmutable> */
+    public function buddhistHolidays(): array
     {
         return [
             // Hari Raya Waisak
