@@ -17,7 +17,6 @@ class Mexico extends Country
             'Año Nuevo' => '01-01',
             'Día Internacional de los Trabajadores' => '05-01',
             'Día de Independencia' => '09-16',
-            'Cambio de Gobierno' => '10-01',
             'Navidad' => '12-25',
         ], $this->variableHolidays($year));
     }
