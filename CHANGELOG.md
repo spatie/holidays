@@ -2,6 +2,19 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.17.2 - 2025-05-05
+
+### What's Changed
+
+* refactor: simplify null coalescing and optional chaining in getOverlapping by @Ayoub-Mabrouk in https://github.com/spatie/holidays/pull/265
+* fix: remove non-variable holiday "Cambio de Gobierno" from Mexico by @Kenny1291 in https://github.com/spatie/holidays/pull/270
+
+### New Contributors
+
+* @Ayoub-Mabrouk made their first contribution in https://github.com/spatie/holidays/pull/265
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.17.1...1.17.2
+
 ## 1.17.1 - 2025-04-23
 
 ### What's Changed
