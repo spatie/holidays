@@ -2,6 +2,14 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.17.3 - 2025-05-05
+
+### What's Changed
+
+* feat: add Christmas Eve from year 2025 for Poland by @Kenny1291 in https://github.com/spatie/holidays/pull/271
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.17.2...1.17.3
+
 ## 1.17.2 - 2025-05-05
 
 ### What's Changed
