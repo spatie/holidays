@@ -38,10 +38,6 @@ trait Translatable
     {
         $toHyphens = preg_replace('/(?<=\\w)(?=[A-Z])/', '-$1', $text);
 
-        if ($toHyphens === null) {
-            return strtolower($text);
-        }
-
-        return strtolower($toHyphens);
+        return strtolower($toHyphens ?? $text);
     }
 }
