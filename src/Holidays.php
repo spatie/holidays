@@ -96,14 +96,15 @@ class Holidays
             ->calculate()
             ->toArray();
 
-        $holidays = array_column($holidays, 'date');
+        $formattedDate = $date->format('Y-m-d');
 
-        $formattedHolidays = array_map(
-            fn (string $holiday): string => CarbonImmutable::parse($holiday)->format('Y-m-d'),
-            $holidays
-        );
+        foreach ($holidays as $holiday) {
+            if (CarbonImmutable::parse($holiday['date'])->format('Y-m-d') === $formattedDate) {
+                return true;
+            }
+        }
 
-        return in_array($date->format('Y-m-d'), $formattedHolidays);
+        return false;
     }
 
     public function getName(CarbonInterface|string $date, Country|string|null $country = null): ?string
