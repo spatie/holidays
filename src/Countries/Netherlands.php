@@ -3,10 +3,23 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasTranslations;
 
-class Netherlands extends Country
+class Netherlands extends Country implements HasTranslations
 {
+    use Translatable;
+
+    protected function __construct(
+        protected ?string $region = null,
+    ) {}
+
     public function countryCode(): string
+    {
+        return 'nl';
+    }
+
+    public function defaultLocale(): string
     {
         return 'nl';
     }
