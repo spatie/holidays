@@ -81,7 +81,7 @@ class Holidays
             [$from, $to] = [$to, $from];
         }
 
-        return $this->country->getInRange($from, $to);
+        return $this->country->getInRange($from, $to, $this->locale);
     }
 
     public function isHoliday(CarbonInterface|string $date, Country|string|null $country = null): bool
