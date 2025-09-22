@@ -2,6 +2,31 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.18.0 - 2025-09-22
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/spatie/holidays/pull/274
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/spatie/holidays/pull/281
+* Bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/spatie/holidays/pull/283
+* ci: add tests for PHP 8.4 by @Chris53897 in https://github.com/spatie/holidays/pull/287
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/spatie/holidays/pull/278
+* Add 2 missing Slovenian holidays by @aljazromih in https://github.com/spatie/holidays/pull/276
+* Add English translation for Dutch holidays by @ericwoude in https://github.com/spatie/holidays/pull/277
+* fix: invalid historical date for `Slovakia` country by @patressz in https://github.com/spatie/holidays/pull/284
+* Review italian holidays translations by @danielebarbaro in https://github.com/spatie/holidays/pull/282
+* Synced Islamic Dates for Turkey by @thecaliskan in https://github.com/spatie/holidays/pull/286
+* Add new country `Georgia` by @lukakilai in https://github.com/spatie/holidays/pull/288
+
+### New Contributors
+
+* @aljazromih made their first contribution in https://github.com/spatie/holidays/pull/276
+* @ericwoude made their first contribution in https://github.com/spatie/holidays/pull/277
+* @danielebarbaro made their first contribution in https://github.com/spatie/holidays/pull/282
+* @lukakilai made their first contribution in https://github.com/spatie/holidays/pull/288
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.17.3...1.18.0
+
 ## 1.17.3 - 2025-05-05
 
 ### What's Changed
