@@ -32,8 +32,9 @@ class Slovakia extends Country
             $holidays['Výročie Deklarácie slovenského národa'] = '10-30';
         }
 
+        // Until and including the year 2023, September 1st was a public holiday.
         if ($year < 2024) {
-            $holidays['Sedembolestná Panna Mária'] = '09-01';
+            $holidays['Deň Ústavy Slovenskej republiky'] = '09-01';
         }
 
         return $holidays;
