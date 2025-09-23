@@ -53,7 +53,7 @@ abstract class Country
     }
 
     /** @return array<string, string>  date => name */
-    public function getInRange(?CarbonImmutable $from, ?CarbonImmutable $to): array
+    public function getInRange(?CarbonImmutable $from, ?CarbonImmutable $to, ?string $locale = null): array
     {
         $from ??= CarbonImmutable::now()->startOfYear();
         $to ??= CarbonImmutable::now()->endOfYear();
@@ -64,7 +64,7 @@ abstract class Country
         $allHolidays = [];
 
         for ($year = $from->year; $year <= $to->year; $year++) {
-            $yearHolidays = $this->get($year);
+            $yearHolidays = $this->get($year, $locale);
             /**
              * @var string $name
              * @var CarbonImmutable $date
