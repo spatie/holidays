@@ -58,7 +58,7 @@ class Spain extends Country
             return $this->$method();
         }
 
-        throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2024);
+        throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2025);
     }
 
     /** @return array<string, string> */
