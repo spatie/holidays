@@ -2,6 +2,19 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.19.0 - 2025-10-14
+
+### What's Changed
+
+* Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/spatie/holidays/pull/290
+* fix: updated InvalidYear exception by @fabkho in https://github.com/spatie/holidays/pull/280
+
+### New Contributors
+
+* @fabkho made their first contribution in https://github.com/spatie/holidays/pull/280
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.18.0...1.19.0
+
 ## 1.18.0 - 2025-09-22
 
 ### What's Changed
