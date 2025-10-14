@@ -2,6 +2,18 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.20.0 - 2025-10-14
+
+### What's Changed
+
+* add Tag der Befreiung in 2025 for Berlin by @hebbet in https://github.com/spatie/holidays/pull/291
+
+### New Contributors
+
+* @hebbet made their first contribution in https://github.com/spatie/holidays/pull/291
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.19.0...1.20.0
+
 ## 1.19.0 - 2025-10-14
 
 ### What's Changed
