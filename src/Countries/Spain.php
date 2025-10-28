@@ -531,8 +531,8 @@ class Spain extends Country
 
             // Principado de Asturias
             'es-as' => [
-                    'Día de Asturias' => '09-08',
-                ] + $juevesSanto + $trasladoTodosLosSantos + $trasladoConstitucion,
+                'Día de Asturias' => '09-08',
+            ] + $juevesSanto + $trasladoTodosLosSantos + $trasladoConstitucion,
 
             // Islas Baleares / Illes Balears
             'es-ib' => [
