@@ -2,6 +2,20 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.21.0 - 2025-10-28
+
+### What's Changed
+
+* ci: add tests for PHP 8.5 by @Chris53897 in https://github.com/spatie/holidays/pull/292
+* Spain holidays in 2026 by @NasimAwabdy in https://github.com/spatie/holidays/pull/295
+* feat: add Labour Day to region 'ch-tg' for Switzerland by @Kenny1291 in https://github.com/spatie/holidays/pull/294
+
+### New Contributors
+
+* @NasimAwabdy made their first contribution in https://github.com/spatie/holidays/pull/295
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.20.0...1.21.0
+
 ## 1.20.0 - 2025-10-14
 
 ### What's Changed
