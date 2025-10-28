@@ -286,6 +286,7 @@ class Switzerland extends Country implements HasTranslations
                 self::BERCHTOLDS_DAY,
                 self::GOOD_FRIDAY,
                 self::EASTER_MONDAY,
+                self::LABOUR_DAY,
                 self::WHIT_MONDAY,
                 self::SAINT_STEPHENS_DAY,
             ],
