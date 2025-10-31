@@ -2,6 +2,20 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.22.0 - 2025-10-31
+
+### What's Changed
+
+* Added Symfony 8 support to all symfony/* packages. by @thecaliskan in https://github.com/spatie/holidays/pull/298
+* feat: add honduras by @Camilosh24 in https://github.com/spatie/holidays/pull/296
+* Fix locale in getInRange method  by @kitro in https://github.com/spatie/holidays/pull/297
+
+### New Contributors
+
+* @Camilosh24 made their first contribution in https://github.com/spatie/holidays/pull/296
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.21.0...1.22.0
+
 ## 1.21.0 - 2025-10-28
 
 ### What's Changed
