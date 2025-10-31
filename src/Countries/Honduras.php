@@ -2,8 +2,8 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 
 class Honduras extends Country
 {
@@ -82,8 +82,8 @@ class Honduras extends Country
 
         return [
             'miercoles' => $miercoles,
-            'jueves'    => $miercoles->addDay(),
-            'viernes'   => $miercoles->addDays(2),
+            'jueves' => $miercoles->addDay(),
+            'viernes' => $miercoles->addDays(2),
         ];
     }
 }
