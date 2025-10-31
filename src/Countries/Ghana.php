@@ -31,8 +31,7 @@ class Ghana extends Country
             'Constitution Day' => '01-07',
             'Independence Day' => '03-06',
             'May Day' => '05-01',
-            "Founder's Day" => '08-04',
-            'Kwame Nkrumah Memorial Day' => '09-21',
+            "Founder's Day" => '09-21',
             'Christmas Day' => '12-25',
             'Boxing Day' => '12-26',
         ];
@@ -41,7 +40,7 @@ class Ghana extends Country
             $observedDay = match ($name) {
                 'Christmas Day' => $this->observedChristmasDay($year),
                 'Boxing Day' => $this->observedBoxingDay($year),
-                default => $this->weekendToNextMonday($date, $year),
+                default => $this->dayToNextFridayOrMonday($date, $year),
             };
 
             if ($observedDay) {
