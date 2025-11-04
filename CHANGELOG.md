@@ -2,6 +2,15 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.22.1 - 2025-11-04
+
+### What's Changed
+
+* refactor(isHoliday): simplify date comparison logic and improve efficiency  by @Ayoub-Mabrouk in https://github.com/spatie/holidays/pull/268
+* perf: implement lazy-initialized Chinese calendar formatter by @Ayoub-Mabrouk in https://github.com/spatie/holidays/pull/266
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.22.0...1.22.1
+
 ## 1.22.0 - 2025-10-31
 
 ### What's Changed
