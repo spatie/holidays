@@ -110,23 +110,15 @@ trait IndianCalender
             return null;
         }
 
-        $date = $collection[$year - 1] ?? null;
-
-        if ($date === null) {
-            throw InvalidYear::range($this->countryCode(), 1970, 2037);
-        }
+        $date = $collection[$year - 1] ?? throw InvalidYear::range($this->countryCode(), 1970, 2037);
 
         if (is_array($date)) {
             $date = end($date);
         }
 
         $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
-        $end = $start->addDays($totalDays - 1)->startOfDay();
+        $end = $start?->addDays($totalDays - 1)->startOfDay();
 
-        if ($end->year !== $year) {
-            return (string) $date;
-        }
-
-        return null;
+        return ($end?->year !== $year) ? (string) $date : null;
     }
 }

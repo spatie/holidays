@@ -105,7 +105,7 @@ class Germany extends Country implements HasTranslations
                     $beHolidays['Internationaler Frauentag'] = '03-08';
                 }
 
-                if ($year === 2020) {
+                if ($year === 2020 || $year === 2025) {
                     $beHolidays['Tag der Befreiung'] = '05-08';
                 }
 

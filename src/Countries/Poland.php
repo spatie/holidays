@@ -26,16 +26,22 @@ class Poland extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<string, CarbonImmutable|string> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
-        return [
+        $variableHolidays = [
             'Wielkanoc' => $easter,
             'Poniedziałek Wielkanocny' => $easter->addDay(),
             'Zielone Świątki' => $easter->addWeeks(7),
             'Boże Ciało' => $easter->addDays(60),
         ];
+
+        if ($year >= 2025) {
+            $variableHolidays = array_merge($variableHolidays, ['wigilii Bożego Narodzenia' => '12-24']);
+        }
+
+        return $variableHolidays;
     }
 }

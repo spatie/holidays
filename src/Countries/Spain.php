@@ -58,7 +58,7 @@ class Spain extends Country
             return $this->$method();
         }
 
-        throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2024);
+        throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2025);
     }
 
     /** @return array<string, string> */
@@ -500,6 +500,123 @@ class Spain extends Country
             'es-vc' => [
                 'Día de la Comunidad Valenciana' => '10-09',
             ] + $sanJose + $lunesPascua + $sanJuan,
+
+            null => [],
+            default => throw InvalidRegion::notFound($this->region),
+        };
+    }
+
+    /** @return array<string, string> */
+    protected function regionHolidays2026(): array
+    {
+        $sanJose = ['San José' => '03-19'];
+        $juevesSanto = ['Jueves Santo' => '04-02'];
+        $lunesPascua = ['Lunes de Pascua' => '04-06'];
+        $eidAlAdha = ['Eid al-Adha (Fiesta del Sacrificio)' => '05-27'];
+        $sanJuan = ['San Juan' => '06-24'];
+        $santiagoApostol = ['Santiago Apóstol' => '07-25'];
+        $trasladoTodosLosSantos = ['Traslado de Todos los Santos' => '11-02'];
+        $trasladoConstitucion = ['Traslado del Día de la Constitución' => '12-07'];
+
+        return match ($this->region) {
+            // Andalucía
+            'es-an' => [
+                'Día de Andalucía' => '02-28',
+            ] + $juevesSanto + $trasladoTodosLosSantos + $trasladoConstitucion,
+
+            // Aragón
+            'es-ar' => [
+                'San Jorge, Día de Aragón' => '04-23',
+            ] + $juevesSanto + $trasladoTodosLosSantos + $trasladoConstitucion,
+
+            // Principado de Asturias
+            'es-as' => [
+                'Día de Asturias' => '09-08',
+            ] + $juevesSanto + $trasladoTodosLosSantos + $trasladoConstitucion,
+
+            // Islas Baleares / Illes Balears
+            'es-ib' => [
+                'Lunes siguiente Día de les Illes Balears' => '03-02',
+                'Segunda Fiesta de Navidad (Sant Esteve)' => '12-26',
+            ] + $juevesSanto + $lunesPascua,
+
+            // País Vasco / Euskal Herria
+            'es-pv' => $sanJose + $juevesSanto + $lunesPascua + $santiagoApostol,
+
+            // Canarias
+            'es-cn' => [
+                'Día de Canarias' => '05-30',
+            ] + $juevesSanto + $trasladoTodosLosSantos,
+
+            // Cantabria
+            'es-cb' => [
+                'Día de las Instituciones de Cantabria' => '07-28',
+                'La Bien Aparecida' => '09-15',
+            ] + $juevesSanto + $trasladoConstitucion,
+
+            // Castilla-La Mancha
+            'es-cm' => [
+                'Corpus Christi' => '06-04',
+            ] + $juevesSanto + $lunesPascua + $trasladoTodosLosSantos,
+
+            // Castilla y León
+            'es-cl' => [
+                'Fiesta de la Comunidad Autónoma' => '04-23',
+            ] + $juevesSanto + $trasladoTodosLosSantos + $trasladoConstitucion,
+
+            // Cataluña / Catalunya
+            'es-ct' => [
+                'Diada Nacional de Cataluña' => '09-11',
+                'Sant Esteve' => '12-26',
+            ] + $lunesPascua + $sanJuan,
+
+            // Extremadura
+            'es-ex' => [
+                'Día de Extremadura' => '09-08',
+            ] + $juevesSanto + $trasladoTodosLosSantos + $trasladoConstitucion,
+
+            // Galicia
+            'es-ga' => [
+                'Día Nacional de Galicia (Santiago Apóstol)' => '07-25',
+            ] + $sanJose + $juevesSanto + $sanJuan,
+
+            // La Rioja
+            'es-ri' => [
+                'Día de La Rioja' => '06-09',
+            ] + $juevesSanto + $lunesPascua + $trasladoConstitucion,
+
+            // Comunidad de Madrid
+            'es-md' => [
+                'Fiesta de la Comunidad de Madrid' => '05-02',
+            ] + $juevesSanto + $trasladoTodosLosSantos + $trasladoConstitucion,
+
+            // Región de Murcia
+            'es-mc' => [
+                'Día de la Región de Murcia' => '06-09',
+            ] + $sanJose + $juevesSanto + $trasladoConstitucion,
+
+            // Comunidad Foral de Navarra / Nafarroako Foru Komunitatea
+            'es-nc' => [
+                'San Francisco Javier' => '12-03',
+            ] + $sanJose + $juevesSanto + $lunesPascua + $trasladoTodosLosSantos,
+
+            // Comunidad Valenciana / Comunitat Valenciana
+            'es-vc' => [
+                'Día de la Comunitat Valenciana' => '10-09',
+            ] + $sanJose + $lunesPascua + $sanJuan,
+
+            // Ciudad Autónoma de Ceuta
+            'es-ce' => [
+                'Nuestra Señora de África' => '08-05',
+                'Día de Ceuta' => '09-02',
+            ] + $juevesSanto + $eidAlAdha,
+
+            // Ciudad Autónoma de Melilla
+            'es-ml' => [
+                'Eid al-Fitr' => '03-20',
+                'Virgen de la Victoria' => '09-08',
+                'Día de Melilla' => '09-17',
+            ] + $juevesSanto + $eidAlAdha + $trasladoConstitucion,
 
             null => [],
             default => throw InvalidRegion::notFound($this->region),
