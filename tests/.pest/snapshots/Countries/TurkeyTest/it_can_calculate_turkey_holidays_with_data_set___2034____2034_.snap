@@ -5,23 +5,23 @@
     },
     {
         "name": "Kurban Bayram\u0131 Arifesi",
-        "date": "2034-02-27"
-    },
-    {
-        "name": "Kurban Bayram\u0131 1. G\u00fcn",
         "date": "2034-02-28"
     },
     {
-        "name": "Kurban Bayram\u0131 2. G\u00fcn",
+        "name": "Kurban Bayram\u0131 1. G\u00fcn",
         "date": "2034-03-01"
     },
     {
-        "name": "Kurban Bayram\u0131 3. G\u00fcn",
+        "name": "Kurban Bayram\u0131 2. G\u00fcn",
         "date": "2034-03-02"
     },
     {
-        "name": "Kurban Bayram\u0131 4. G\u00fcn",
+        "name": "Kurban Bayram\u0131 3. G\u00fcn",
         "date": "2034-03-03"
+    },
+    {
+        "name": "Kurban Bayram\u0131 4. G\u00fcn",
+        "date": "2034-03-04"
     },
     {
         "name": "Ulusal Egemenlik ve \u00c7ocuk Bayram\u0131",
@@ -53,18 +53,18 @@
     },
     {
         "name": "Ramazan Bayram\u0131 Arifesi",
-        "date": "2034-12-10"
-    },
-    {
-        "name": "Ramazan Bayram\u0131 1. G\u00fcn",
         "date": "2034-12-11"
     },
     {
-        "name": "Ramazan Bayram\u0131 2. G\u00fcn",
+        "name": "Ramazan Bayram\u0131 1. G\u00fcn",
         "date": "2034-12-12"
     },
     {
-        "name": "Ramazan Bayram\u0131 3. G\u00fcn",
+        "name": "Ramazan Bayram\u0131 2. G\u00fcn",
         "date": "2034-12-13"
+    },
+    {
+        "name": "Ramazan Bayram\u0131 3. G\u00fcn",
+        "date": "2034-12-14"
     }
 ]

@@ -36,7 +36,9 @@ class Slovenia extends Country
         $easter = $this->easter($year);
 
         return [
+            'Velikonočna nedelja' => $easter, // Easter Sunday
             'Velikonočni ponedeljek' => $easter->addDay(), // Easter Monday
+            'Binkoštna nedelja' => $easter->addDays(49), // Whit Sunday
         ];
     }
 }
