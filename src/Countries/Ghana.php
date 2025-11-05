@@ -76,4 +76,29 @@ class Ghana extends Country
             // The dates for their observation are provided by the Office of the Chief Imam in the course of the year.
         ];
     }
+
+    protected function dayToNextFridayOrMonday(string|CarbonInterface $date, int $year): ?CarbonInterface
+    {
+        $christmasDay = (new CarbonImmutable($year.'-12-25'))->startOfDay();
+        $boxingDay = (new CarbonImmutable($year.'-12-26'))->startOfDay();
+        $newYearDay = (new CarbonImmutable($year.'-01-01'))->startOfDay();
+
+        if (is_string($date)) {
+            $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        }
+
+        if ($date->isSameDay($christmasDay) || $date->isSameDay($boxingDay) || $date->isSameDay($newYearDay)) {
+            return $date;
+        }
+
+        if ($date->isWeekend()) {
+            return $date->next('monday');
+        }
+
+        if ($date->isWeekday() && !$date->isFriday()) {
+            return $date->next('friday');
+        }
+
+        return null;
+    }
 }
