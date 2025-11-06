@@ -31,8 +31,7 @@ class Ghana extends Country
             'Constitution Day' => '01-07',
             'Independence Day' => '03-06',
             'May Day' => '05-01',
-            "Founder's Day" => '08-04',
-            'Kwame Nkrumah Memorial Day' => '09-21',
+            "Founder's Day" => '09-21',
             'Christmas Day' => '12-25',
             'Boxing Day' => '12-26',
         ];
@@ -41,7 +40,7 @@ class Ghana extends Country
             $observedDay = match ($name) {
                 'Christmas Day' => $this->observedChristmasDay($year),
                 'Boxing Day' => $this->observedBoxingDay($year),
-                default => $this->weekendToNextMonday($date, $year),
+                default => $this->dayToNextFridayOrMonday($date, $year),
             };
 
             if ($observedDay) {
@@ -76,5 +75,30 @@ class Ghana extends Country
             // NB: *** There are no fixed dates for the Eid-Ul-Fitr and Eid-Ul-Adha because they are movable feasts.
             // The dates for their observation are provided by the Office of the Chief Imam in the course of the year.
         ];
+    }
+
+    protected function dayToNextFridayOrMonday(string|CarbonInterface $date, int $year): ?CarbonInterface
+    {
+        $christmasDay = (new CarbonImmutable($year.'-12-25'))->startOfDay();
+        $boxingDay = (new CarbonImmutable($year.'-12-26'))->startOfDay();
+        $newYearDay = (new CarbonImmutable($year.'-01-01'))->startOfDay();
+
+        if (is_string($date)) {
+            $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        }
+
+        if ($date->isSameDay($christmasDay) || $date->isSameDay($boxingDay) || $date->isSameDay($newYearDay)) {
+            return $date;
+        }
+
+        if ($date->isWeekend()) {
+            return $date->next('monday');
+        }
+
+        if ($date->isWeekday() && !$date->isFriday()) {
+            return $date->next('friday');
+        }
+
+        return null;
     }
 }
