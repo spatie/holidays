@@ -95,7 +95,7 @@ class Ghana extends Country
             return $date->next('monday');
         }
 
-        if ($date->isWeekday() && !$date->isFriday()) {
+        if ($date->isWeekday() && ! $date->isFriday()) {
             return $date->next('friday');
         }
 
