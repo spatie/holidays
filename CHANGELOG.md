@@ -2,6 +2,14 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.23.0 - 2025-11-06
+
+### What's Changed
+
+* update holidays in Ghana by @petersowah in https://github.com/spatie/holidays/pull/285
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.22.1...1.23.0
+
 ## 1.22.1 - 2025-11-04
 
 ### What's Changed
