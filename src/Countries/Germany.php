@@ -110,7 +110,7 @@ class Germany extends Country implements HasTranslations
                 }
 
                 if ($year === 2028) {
-                    $beHolidays['75-jährige Jubiläum des Volksaufstands in der DDR'] = '06-17';
+                    $beHolidays['75-jähriges Jubiläum des Volksaufstands in der DDR'] = '06-17';
                 }
 
                 return $beHolidays;
