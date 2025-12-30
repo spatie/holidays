@@ -109,6 +109,10 @@ class Germany extends Country implements HasTranslations
                     $beHolidays['Tag der Befreiung'] = '05-08';
                 }
 
+                if ($year === 2028) {
+                    $beHolidays['75-jährige Jubiläum des Volksaufstands in der DDR'] = '06-17';
+                }
+
                 return $beHolidays;
             case 'DE-BB':
                 if ($year >= 1991) {
