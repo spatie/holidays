@@ -12,8 +12,7 @@ class Germany extends Country implements HasTranslations
 
     protected function __construct(
         protected ?string $region = null,
-    ) {
-    }
+    ) {}
 
     public function countryCode(): string
     {
@@ -105,7 +104,8 @@ class Germany extends Country implements HasTranslations
                 if ($year >= 2019) {
                     $beHolidays['Internationaler Frauentag'] = '03-08';
                 }
-                if ($year === 2020) {
+
+                if ($year === 2020 || $year === 2025) {
                     $beHolidays['Tag der Befreiung'] = '05-08';
                 }
 
@@ -171,6 +171,7 @@ class Germany extends Country implements HasTranslations
                     $snHolidays['Reformationstag'] = '10-31';
 
                 }
+
                 if ($year > 1994) {
                     $snHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
 
@@ -183,6 +184,7 @@ class Germany extends Country implements HasTranslations
                     $stHolidays['Reformationstag'] = '10-31';
 
                 }
+
                 if ($year >= 1991) {
                     $stHolidays['Heilige Drei Könige'] = '01-06';
                 }
@@ -191,6 +193,7 @@ class Germany extends Country implements HasTranslations
                 if ($year >= 1990) {
                     $thHolidays['Reformationstag'] = '10-31';
                 }
+
                 if ($year >= 2019) {
                     $thHolidays['Weltkindertag'] = '09-20';
                 }

@@ -28,7 +28,7 @@ class Taiwan extends Country
     /** @return array<string, string> */
     protected function variableHolidays(int $year): array
     {
-        return array_filter(array_map(fn ($date) => $this->lunarCalendar($date, $year), [
+        return array_filter(array_map(fn ($date): ?string => $this->lunarCalendar($date, $year), [
             '農曆春節-正月初一' => '01-01',
             '農曆春節-正月初二' => '01-02',
             '農曆春節-正月初三' => '01-03',
@@ -55,7 +55,7 @@ class Taiwan extends Country
         }
 
         $dateTime = new DateTime;
-        $dateTime->setTimestamp($parsedTimestamp);
+        $dateTime->setTimestamp((int) $parsedTimestamp);
         $dateTime->setTimezone(new DateTimeZone($this->timezone));
 
         return $dateTime->format('m-d');

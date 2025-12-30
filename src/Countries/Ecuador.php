@@ -26,7 +26,7 @@ class Ecuador extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
         ], $this->variableHolidays($year));
     }
 
@@ -76,7 +76,7 @@ class Ecuador extends Country implements HasTranslations
             'Battle of Pichincha' => $this->nearestDay($year, 5, 24),
             'Independence Day' => $this->nearestDay($year, 8, 10),
             'Independence Of Guayaquil' => $this->nearestDay($year, 10, 9),
-            'All Souls\' Day' => $this->nearestDay($year, 11, 2),
+            "All Souls' Day" => $this->nearestDay($year, 11, 2),
             'Independence Of Cuenca' => $this->nearestDay($year, 11, 3),
             'Christmas' => $this->getChristmasHoliday($year),
         ];

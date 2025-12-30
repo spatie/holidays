@@ -8,7 +8,7 @@ class Denmark extends Country
 {
     public function countryCode(): string
     {
-        return 'da';
+        return 'dk';
     }
 
     protected function allHolidays(int $year): array

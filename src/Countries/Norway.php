@@ -27,7 +27,7 @@ class Norway extends Country
     {
         $easter = $this->easter($year);
 
-        $holidays = [
+        return [
             'Skjærtorsdag' => $easter->subDays(3),
             'Langfredag' => $easter->subDays(2),
             'Første påskedag' => $easter,
@@ -36,7 +36,5 @@ class Norway extends Country
             'Første pinsedag' => $easter->addDays(49),
             'Andre pinsedag' => $easter->addDays(50),
         ];
-
-        return $holidays;
     }
 }

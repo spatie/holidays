@@ -14,10 +14,10 @@ class Ireland extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => '01-01',
-            'Saint Patrick\'s Day' => '03-17',
+            "New Year's Day" => '01-01',
+            "Saint Patrick's Day" => '03-17',
             'Christmas Day' => '12-25',
-            'Saint Stephen\'s Day' => '12-26',
+            "Saint Stephen's Day" => '12-26',
         ], $this->variableHolidays($year));
     }
 
@@ -33,13 +33,13 @@ class Ireland extends Country
         ];
 
         if ($year >= 2023) {
-            $stBrigidsDay = (new CarbonImmutable("$year-02-01"))->startOfDay();
+            $stBrigidsDay = (new CarbonImmutable("{$year}-02-01"))->startOfDay();
 
             if (! $stBrigidsDay->isFriday()) {
                 $stBrigidsDay = 'first monday of February';
             }
 
-            $variableHolidays['St Brigid\'s Day'] = $stBrigidsDay;
+            $variableHolidays["St Brigid's Day"] = $stBrigidsDay;
         }
 
         return $variableHolidays;

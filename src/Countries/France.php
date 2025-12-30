@@ -8,8 +8,7 @@ class France extends Country
 {
     protected function __construct(
         protected ?string $region = null,
-    ) {
-    }
+    ) {}
 
     public function countryCode(): string
     {
@@ -19,7 +18,7 @@ class France extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Jour de l\'An' => '01-01',
+            "Jour de l'An" => '01-01',
             'Fête du Travail' => '05-01',
             'Victoire 1945' => '05-08',
             'Fête Nationale' => '07-14',
@@ -53,26 +52,15 @@ class France extends Country
     /** @return array<string, string> */
     protected function regionHolidays(): array
     {
-        switch ($this->region) {
-            case 'FR-57':
-            case 'FR-67':
-            case 'FR-68':
-                return ['Saint-Étienne' => '12-26'];
-            case 'FR-971':
-            case 'FR-MF':
-                return ['Abolition de l\'esclavage' => '05-27'];
-            case 'FR-972':
-                return ['Abolition de l\'esclavage' => '05-22'];
-            case 'FR-973':
-                return ['Abolition de l\'esclavage' => '06-10'];
-            case 'FR-974':
-                return ['Abolition de l\'esclavage' => '12-20'];
-            case 'FR-976':
-                return ['Abolition de l\'esclavage' => '04-27'];
-            case 'FR-BL':
-                return ['Abolition de l\'esclavage' => '10-09'];
-        }
-
-        return [];
+        return match ($this->region) {
+            'FR-57', 'FR-67', 'FR-68' => ['Saint-Étienne' => '12-26'],
+            'FR-971', 'FR-MF' => ["Abolition de l'esclavage" => '05-27'],
+            'FR-972' => ["Abolition de l'esclavage" => '05-22'],
+            'FR-973' => ["Abolition de l'esclavage" => '06-10'],
+            'FR-974' => ["Abolition de l'esclavage" => '12-20'],
+            'FR-976' => ["Abolition de l'esclavage" => '04-27'],
+            'FR-BL' => ["Abolition de l'esclavage" => '10-09'],
+            default => [],
+        };
     }
 }

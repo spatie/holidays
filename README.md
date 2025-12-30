@@ -65,15 +65,23 @@ You can also pass a specific year.
 ```php
 use Spatie\Holidays\Holidays;
 
-$holidays = Holidays::for(country: 'be', year: 2024))->get();
+$holidays = Holidays::for(country: 'be', year: 2024)->get();
+```
+
+### Getting holidays between two dates
+
+You can also get all holidays between two dates (inclusive).
+
+```php
+use Spatie\Holidays\Holidays;
+
+$holidays = Holidays::for('be')->getInRange('2023-06-01', '2024-05-31');
 ```
 
 ### Getting holidays in a specific language
 
 ```php
-use Spatie\Holidays\Holidays;
-
-$holidays = Holidays::for(country: 'be', locale: 'fr'))->get();
+$holidays = Holidays::for(country: 'be', locale: 'fr')->get();
 ```
 
 If the locale is not supported for a country, an exception will be thrown.

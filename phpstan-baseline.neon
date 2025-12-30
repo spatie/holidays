@@ -21,6 +21,11 @@ parameters:
 			path: src/Countries/Albania.php
 
 		-
+			message: "#^Parameter \\$holiday of method Spatie\\\\Holidays\\\\Countries\\\\Benin\\:\\:prepareHolidays\\(\\) expects Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\|null given\\.$#"
+			count: 3
+			path: src/Countries/Benin.php
+
+		-
 			message: "#^Argument of an invalid type Carbon\\\\CarbonPeriod supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: src/Countries/Country.php
@@ -34,6 +39,41 @@ parameters:
 			message: "#^Binary operation \"\\+\" between non\\-falsy\\-string and 1 results in an error\\.$#"
 			count: 1
 			path: src/Countries/Country.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:arafat\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:ashura\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:eidAlAdha\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:eidAlFitr\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:islamicNewYear\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:prophetMuhammadBirthday\\.$#"
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Morocco\\:\\:variableHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|null\\>\\.$#"
+			count: 1
+			path: src/Countries/Morocco.php
 
 		-
 			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:arafat\\.$#"
@@ -65,8 +105,4 @@ parameters:
 			count: 1
 			path: src/Countries/Turkmenistan.php
 
-		-
-			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(Carbon\\\\CarbonImmutable\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: non\\-falsy\\-string given\\.$#"
-			count: 1
-			path: src/Holidays.php
 

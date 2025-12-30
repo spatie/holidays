@@ -10,30 +10,33 @@ trait ChineseCalendar
 {
     protected string $chineseCalendarTimezone = 'Asia/Shanghai';
 
+    private ?IntlDateFormatter $formatter = null;
+
     public function setChineseCalendarTimezone(string $chineseCalendarTimezone): static
     {
-        $this->chineseCalendarTimezone = $chineseCalendarTimezone;
+        if ($this->chineseCalendarTimezone !== $chineseCalendarTimezone) {
+            $this->chineseCalendarTimezone = $chineseCalendarTimezone;
+            $this->formatter = null;
+        }
 
         return $this;
     }
 
     protected function chineseToGregorianDate(string $input, int $year): CarbonImmutable
     {
-        $timestamp = (int) $this->getFormatter()->parse($year.'-'.$input);
-
-        return (new CarbonImmutable())
-            ->setTimeStamp($timestamp)
+        return (new CarbonImmutable)
+            ->setTimestamp((int) $this->getFormatter()->parse($year.'-'.$input))
             ->setTimezone(new DateTimeZone($this->chineseCalendarTimezone));
     }
 
     protected function getFormatter(): IntlDateFormatter
     {
-        return new IntlDateFormatter(
-            locale: 'zh-CN@calendar=chinese',
-            dateType: IntlDateFormatter::SHORT,
-            timeType: IntlDateFormatter::NONE,
-            timezone: $this->chineseCalendarTimezone,
-            calendar: IntlDateFormatter::TRADITIONAL
+        return $this->formatter ??= new IntlDateFormatter(
+            'zh-CN@calendar=chinese',
+            IntlDateFormatter::SHORT,
+            IntlDateFormatter::NONE,
+            $this->chineseCalendarTimezone,
+            IntlDateFormatter::TRADITIONAL
         );
     }
 }

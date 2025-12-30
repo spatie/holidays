@@ -20,7 +20,7 @@ class Montenegro extends Country implements HasTranslations
         return 'sr';
     }
 
-    public function allHolidays(int $year): array
+    protected function allHolidays(int $year): array
     {
         // Montenegro has two days off for most holidays
         return array_merge([

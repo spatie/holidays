@@ -46,10 +46,45 @@ abstract class Country
         }
 
         uasort($translatedHolidays,
-            fn (CarbonImmutable $a, CarbonImmutable $b) => $a->timestamp <=> $b->timestamp
+            fn (CarbonImmutable $a, CarbonImmutable $b): int => $a->timestamp <=> $b->timestamp
         );
 
         return $translatedHolidays;
+    }
+
+    /** @return array<string, string>  date => name */
+    public function getInRange(?CarbonImmutable $from, ?CarbonImmutable $to, ?string $locale = null): array
+    {
+        $from ??= CarbonImmutable::now()->startOfYear();
+        $to ??= CarbonImmutable::now()->endOfYear();
+
+        $this->ensureYearCanBeCalculated($from->year);
+        $this->ensureYearCanBeCalculated($to->year);
+
+        $allHolidays = [];
+
+        for ($year = $from->year; $year <= $to->year; $year++) {
+            $yearHolidays = $this->get($year, $locale);
+            /**
+             * @var string $name
+             * @var CarbonImmutable $date
+             */
+            foreach ($yearHolidays as $name => $date) {
+                if ($date->between($from, $to)) {
+                    $allHolidays[] = ['date' => $date, 'name' => $name];
+                }
+            }
+        }
+
+        usort($allHolidays, static fn (array $a, array $b): int => $a['date'] <=> $b['date']);
+
+        $mappedHolidays = [];
+        /** @var array{date: CarbonImmutable, name: string} $holiday */
+        foreach ($allHolidays as $holiday) {
+            $mappedHolidays[$holiday['date']->toDateString()] = $holiday['name'];
+        }
+
+        return $mappedHolidays;
     }
 
     public static function make(): static
@@ -79,6 +114,10 @@ abstract class Country
     public static function find(string $countryCode): ?Country
     {
         $countryCode = strtolower($countryCode);
+
+        if ($countryCode === 'da') {
+            $countryCode = 'dk'; // @todo remove with new major and change the ISO code for Denmark
+        }
 
         foreach (glob(__DIR__.'/../Countries/*.php') as $filename) {
             if (basename($filename) === 'Country.php') {

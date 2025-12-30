@@ -1,0 +1,46 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Day after New Year's Day",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Waitangi Day",
+        "date": "2024-02-06"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "ANZAC Day",
+        "date": "2024-04-25"
+    },
+    {
+        "name": "King's Birthday",
+        "date": "2024-06-03"
+    },
+    {
+        "name": "Matariki",
+        "date": "2024-06-28"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-10-28"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2024-12-26"
+    }
+]

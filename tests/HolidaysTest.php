@@ -84,6 +84,22 @@ it('can get the holiday name of a date', function () {
     expect($result)->toBeNull();
 });
 
+it('can get all holidays between two dates', function (string|CarbonImmutable $from, string|CarbonImmutable $to, int $expectedCount, string $firstName, string $lastName) {
+    $holidays = Holidays::for('be')->getInRange($from, $to);
+
+    expect($holidays)->toBeArray();
+    expect($holidays)->toHaveCount($expectedCount);
+    expect(reset($holidays))->toBe($firstName);
+    expect(end($holidays))->toBe($lastName);
+})->with([
+    ['2020', '2024', 50, 'Nieuwjaar', 'Kerstmis'],
+    ['2024-06', '2025-05', 9, 'Nationale Feestdag', 'OLH Hemelvaart'],
+    ['2023-06-01', '2024-05-30', 10, 'Nationale Feestdag', 'Pinkstermaandag'],
+    ['2024-05-30', '2023-06-01', 10, 'Nationale Feestdag', 'Pinkstermaandag'],
+    [CarbonImmutable::parse('2023-06-01'), CarbonImmutable::parse('2024-05-30'), 10, 'Nationale Feestdag', 'Pinkstermaandag'],
+    [CarbonImmutable::parse('2023-06-01'), '2024-05', 10, 'Nationale Feestdag', 'Pinkstermaandag'],
+]);
+
 it('can get the country is supported', function () {
     $result = Holidays::has(country: 'be');
     expect($result)->toBeTrue();

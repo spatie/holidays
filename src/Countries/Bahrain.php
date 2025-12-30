@@ -151,7 +151,7 @@ class Bahrain extends Country implements HasTranslations, Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => '1-1',
+            "New Year's Day" => '1-1',
             'Labour Day' => '5-1',
             'National Day' => '12-16',
             'National Day 2' => '12-17',

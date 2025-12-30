@@ -286,6 +286,7 @@ class Switzerland extends Country implements HasTranslations
                 self::BERCHTOLDS_DAY,
                 self::GOOD_FRIDAY,
                 self::EASTER_MONDAY,
+                self::LABOUR_DAY,
                 self::WHIT_MONDAY,
                 self::SAINT_STEPHENS_DAY,
             ],
@@ -335,7 +336,7 @@ class Switzerland extends Country implements HasTranslations
 
         $regionalHolidays = array_filter(
             $regionallyDifferentHolidays,
-            fn ($key) => in_array($key, $currentRegion),
+            fn ($key): bool => in_array($key, $currentRegion),
             ARRAY_FILTER_USE_KEY
         );
 

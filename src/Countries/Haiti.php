@@ -18,7 +18,7 @@ class Haiti extends Country
             'Jour des Aieux' => '01-2',
             'Fête du Travail / Fête des Travailleurs' => '05-01',
             'Jour du Drapeau et de l\'Université' => '05-18',
-            'L\'Assomption de Marie' => '08-15',
+            "L'Assomption de Marie" => '08-15',
             'Anniversaire de la mort de Dessalines' => '10-17',
             'Toussaint' => '11-01',
             'Jour des Morts' => '11-02',

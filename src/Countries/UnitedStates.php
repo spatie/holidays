@@ -12,7 +12,7 @@ class UnitedStates extends Country
     protected function allHolidays(int $year): array
     {
         $holidays = array_merge([
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
             'Independence Day' => '07-04',
             'Veterans Day' => '11-11',
             'Christmas' => '12-25',
@@ -30,7 +30,7 @@ class UnitedStates extends Country
     {
         return [
             'Martin Luther King Day' => 'third monday of January',
-            'Presidents\' Day' => 'third monday of February',
+            "Presidents' Day" => 'third monday of February',
             'Memorial Day' => 'last monday of May',
             'Labor Day' => 'first monday of September',
             'Columbus Day' => 'second monday of October',

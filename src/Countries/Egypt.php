@@ -244,7 +244,7 @@ class Egypt extends Country implements HasTranslations, Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => '1-1',
+            "New Year's Day" => '1-1',
             'Flooding of the Nile' => '8-15',
             'March Equinox' => '3-20',
             'June Solstice' => '6-21',

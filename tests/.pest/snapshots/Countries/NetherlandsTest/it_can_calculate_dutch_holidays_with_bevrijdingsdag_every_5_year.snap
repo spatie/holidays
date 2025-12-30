@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Nieuwjaarsdag",
+        "date": "2025-01-01"
+    },
+    {
+        "name": "Eerste paasdag",
+        "date": "2025-04-20"
+    },
+    {
+        "name": "Tweede paasdag",
+        "date": "2025-04-21"
+    },
+    {
+        "name": "Koningsdag",
+        "date": "2025-04-26"
+    },
+    {
+        "name": "Bevrijdingsdag",
+        "date": "2025-05-05"
+    },
+    {
+        "name": "Hemelvaartsdag",
+        "date": "2025-05-29"
+    },
+    {
+        "name": "Eerste pinksterdag",
+        "date": "2025-06-08"
+    },
+    {
+        "name": "Tweede pinksterdag",
+        "date": "2025-06-09"
+    },
+    {
+        "name": "Eerste kerstdag",
+        "date": "2025-12-25"
+    },
+    {
+        "name": "Tweede kerstdag",
+        "date": "2025-12-26"
+    }
+]

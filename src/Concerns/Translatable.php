@@ -12,7 +12,7 @@ trait Translatable
             return $name;
         }
 
-        $locale = $locale ?? $this->defaultLocale();
+        $locale ??= $this->defaultLocale();
 
         $countryName = $this->toHyphenSeparated($country);
 

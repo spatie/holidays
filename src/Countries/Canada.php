@@ -15,7 +15,7 @@ class Canada extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Year\'s Day' => '01-01',
+            "New Year's Day" => '01-01',
             'Canada Day' => '07-01',
             'Civic Holiday' => 'first monday of August',
             'Labour Day' => 'first monday of September',

@@ -88,7 +88,7 @@ class Vietnam extends Country implements HasTranslations
             return [];
         }
 
-        $independenceDay = CarbonImmutable::parse("$year-09-02")->startOfDay();
+        $independenceDay = CarbonImmutable::parse("{$year}-09-02")->startOfDay();
 
         if ($independenceDay->dayOfWeek === CarbonInterface::MONDAY) {
             return ['Ngày Sau Quốc Khánh' => $independenceDay->addDay()];

@@ -66,6 +66,7 @@ class Turkmenistan extends Country
     {
         $formatter = $this->getIslamicFormatter();
         $formatter->setPattern('yyyy');
+
         $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/'.($nextYear ? $year + 1 : $year));
 
         return (int) $formatter->format($dateTime);

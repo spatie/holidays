@@ -17,7 +17,6 @@ class Mexico extends Country
             'Año Nuevo' => '01-01',
             'Día Internacional de los Trabajadores' => '05-01',
             'Día de Independencia' => '09-16',
-            'Cambio de Gobierno' => '10-01',
             'Navidad' => '12-25',
         ], $this->variableHolidays($year));
     }
@@ -25,13 +24,13 @@ class Mexico extends Country
     /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        $constitutionDay = (new CarbonImmutable("first monday of february $year"))
+        $constitutionDay = (new CarbonImmutable("first monday of february {$year}"))
             ->setTimezone('America/Mexico_City');
 
-        $benitoJuarezBirth = (new CarbonImmutable("third monday of March $year"))
+        $benitoJuarezBirth = (new CarbonImmutable("third monday of March {$year}"))
             ->setTimezone('America/Mexico_City');
 
-        $revolutionDay = (new CarbonImmutable("third monday of november $year"))
+        $revolutionDay = (new CarbonImmutable("third monday of november {$year}"))
             ->setTimezone('America/Mexico_City');
 
         $holidays = [
