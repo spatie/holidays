@@ -2,6 +2,24 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 1.24.0 - 2026-01-22
+
+### What's Changed
+
+* Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/spatie/holidays/pull/299
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/spatie/holidays/pull/304
+* Add Iceland holidays by @mikktol in https://github.com/spatie/holidays/pull/306
+* add 75th anniversary of the uprising in the GDR in 2028 for Berlin by @arnebr in https://github.com/spatie/holidays/pull/302
+* Remove duplicate snapshot by @xHeaven in https://github.com/spatie/holidays/pull/301
+* Fix duplicate entry for Arafat Day 2 in holidays.json by @JakubNovak123 in https://github.com/spatie/holidays/pull/303
+
+### New Contributors
+
+* @mikktol made their first contribution in https://github.com/spatie/holidays/pull/306
+* @JakubNovak123 made their first contribution in https://github.com/spatie/holidays/pull/303
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.23.0...1.24.0
+
 ## 1.23.0 - 2025-11-06
 
 ### What's Changed
