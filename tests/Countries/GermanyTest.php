@@ -67,6 +67,14 @@ it('can calculate german berlin holiday Victory in Europe Day in year 2020', fun
     expect($holiday)->toBeTrue();
 
 });
+it('can calculate german berlin holiday 75th anniversary of the uprising in the GDR in year 2028', function () {
+    CarbonImmutable::setTestNow('2028-01-01');
+
+    $holiday = Holidays::for(Germany::make('DE-BE'))->isHoliday('2028-06-17');
+
+    expect($holiday)->toBeTrue();
+
+});
 /*
  This test will check for all regional holidays in Germany. Source: https://en.wikipedia.org/wiki/Public_holidays_in_Germany
     The total numbers are referenced in the wikipedia article.
