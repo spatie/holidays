@@ -14,7 +14,7 @@ class Albania extends Country implements HasTranslations, Islamic
     use IslamicCalendar;
     use Translatable;
 
-    public const eidAlFitr = [
+    protected const eidAlFitr = [
         2024 => '04-10',
         2025 => '03-30',
         2026 => '03-20',
@@ -28,7 +28,7 @@ class Albania extends Country implements HasTranslations, Islamic
         2034 => '12-12',
     ];
 
-    public const eidAlAdha = [
+    protected const eidAlAdha = [
         2024 => '06-17',
         2025 => '06-07',
         2026 => '05-27',

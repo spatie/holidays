@@ -40,7 +40,7 @@ class NorthernIreland extends Wales
             $observedDay = match ($name) {
                 'Christmas Day' => $this->observedChristmasDay($year),
                 'Boxing Day' => $this->observedBoxingDay($year),
-                default => $this->weekendToNextMonday($date, $year),
+                default => $this->weekendToNextMonday($date),
             };
 
             if ($observedDay) {

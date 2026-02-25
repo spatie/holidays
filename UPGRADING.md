@@ -88,3 +88,25 @@ Countries with region support now implement the `HasRegions` interface, which pr
 All regional countries now validate region codes in the constructor and throw `InvalidRegion` for unknown codes. If you were passing invalid region codes that were silently ignored in v1, they will now throw an exception.
 
 The Netherlands no longer accepts a `$region` constructor parameter (it was never used).
+
+## `Observable` trait methods no longer accept strings or `$year`
+
+In v1, `weekendToNextMonday()` and `sundayToNextMonday()` accepted a string date and a `$year` parameter:
+
+```php
+// v1
+$this->weekendToNextMonday('01-01', $year);
+$this->sundayToNextMonday('12-25', $year);
+```
+
+In v2, these methods only accept a `CarbonInterface` instance and the `$year` parameter has been removed:
+
+```php
+// v2
+$this->weekendToNextMonday(CarbonImmutable::createFromDate($year, 1, 1));
+$this->sundayToNextMonday(CarbonImmutable::createFromDate($year, 12, 25));
+```
+
+## Calendar lookup constants are now `protected`
+
+The calendar date lookup arrays on `Albania`, `Turkey`, and `India` (e.g. `eidAlFitr`, `eidAlAdha`, `holiHolidays`, etc.) have been changed from `public const` to `protected const`. If you were referencing these constants externally, use the country's public holiday API instead.

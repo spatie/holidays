@@ -32,7 +32,7 @@ class SouthAfrica extends Country
         ];
 
         foreach ($holidays as $name => $date) {
-            $observedDay = $this->sundayToNextMonday($date, $year);
+            $observedDay = $this->sundayToNextMonday($date);
 
             if ($observedDay) {
                 $holidays[$name.' Observed'] = $observedDay;

@@ -3,11 +3,14 @@
 namespace Spatie\Holidays\Calendars;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Countries\Country;
 
 /**
  * Nepal follows Bikram Sambat calendar. Bikram Sambat is a solar calendar based on ancient Hindu tradition. https://en.wikipedia.org/wiki/Vikram_Samvat
  *
  * Holiday in Nepal is celebrated according to the Bikram Sambat calendar, lunar calendar, and Gregorian calendar.
+ *
+ * @mixin Country
  */
 trait NepaliCalendar
 {

@@ -7,12 +7,8 @@ use Carbon\CarbonInterface;
 
 trait Observable
 {
-    protected function weekendToNextMonday(string|CarbonInterface $date, int $year): ?CarbonInterface
+    protected function weekendToNextMonday(CarbonInterface $date): ?CarbonInterface
     {
-        if (is_string($date)) {
-            $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
-        }
-
         if ($date->isWeekend()) {
             return $date->next('monday');
         }
@@ -20,12 +16,8 @@ trait Observable
         return null;
     }
 
-    protected function sundayToNextMonday(string|CarbonInterface $date, int $year): ?CarbonInterface
+    protected function sundayToNextMonday(CarbonInterface $date): ?CarbonInterface
     {
-        if (is_string($date)) {
-            $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
-        }
-
         if ($date->isSunday()) {
             return $date->next('monday');
         }
