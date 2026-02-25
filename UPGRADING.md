@@ -110,3 +110,54 @@ $this->sundayToNextMonday(CarbonImmutable::createFromDate($year, 12, 25));
 ## Calendar lookup constants are now `protected`
 
 The calendar date lookup arrays on `Albania`, `Turkey`, and `India` (e.g. `eidAlFitr`, `eidAlAdha`, `holiHolidays`, etc.) have been changed from `public const` to `protected const`. If you were referencing these constants externally, use the country's public holiday API instead.
+
+## Translation system: `HasTranslations` and `Translatable` removed
+
+In v1, countries opted into translation support by implementing `HasTranslations` and using the `Translatable` trait:
+
+```php
+// v1
+use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Concerns\Translatable;
+
+class Germany extends Country implements HasTranslations
+{
+    use Translatable;
+
+    public function defaultLocale(): string
+    {
+        return 'de';
+    }
+}
+```
+
+In v2, translation is built into the `Country` base class. The `HasTranslations` interface and `Translatable` trait have been removed. Countries that define holidays in a non-English language override the `protected defaultLocale()` method:
+
+```php
+// v2
+class Germany extends Country
+{
+    protected function defaultLocale(): string
+    {
+        return 'de';
+    }
+}
+```
+
+Any country can now have translations without code changes — just add a JSON file at `lang/{countryCode}/{locale}/holidays.json`.
+
+### Translation file paths changed
+
+Translation files have moved from `lang/{hyphenated-class-name}/` to `lang/{countryCode}/`:
+
+```
+# v1
+lang/germany/en/holidays.json
+lang/bosnia-and-herzegovina/en/holidays.json
+
+# v2
+lang/de/en/holidays.json
+lang/ba/en/holidays.json
+```
+
+If you had custom translation files, move them to the new paths.

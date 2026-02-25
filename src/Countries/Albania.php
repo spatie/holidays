@@ -4,15 +4,12 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Albania extends Country implements HasTranslations, Islamic
+class Albania extends Country implements Islamic
 {
     use IslamicCalendar;
-    use Translatable;
 
     protected const eidAlFitr = [
         2024 => '04-10',
@@ -47,7 +44,7 @@ class Albania extends Country implements HasTranslations, Islamic
         return 'al';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'al';
     }

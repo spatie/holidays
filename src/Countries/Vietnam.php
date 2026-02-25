@@ -5,20 +5,17 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Spatie\Holidays\Calendars\ChineseCalendar;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 
-class Vietnam extends Country implements HasTranslations
+class Vietnam extends Country
 {
     use ChineseCalendar;
-    use Translatable;
 
     public function countryCode(): string
     {
         return 'vn';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'vi';
     }

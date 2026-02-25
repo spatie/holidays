@@ -3,15 +3,11 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasRegions;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 
-class Germany extends Country implements HasRegions, HasTranslations
+class Germany extends Country implements HasRegions
 {
-    use Translatable;
-
     protected function __construct(
         protected ?string $region = null,
     ) {
@@ -35,7 +31,7 @@ class Germany extends Country implements HasRegions, HasTranslations
         return 'de';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'de';
     }

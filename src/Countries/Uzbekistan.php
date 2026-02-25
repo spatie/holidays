@@ -3,13 +3,9 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 
-class Uzbekistan extends Country implements HasTranslations
+class Uzbekistan extends Country
 {
-    use Translatable;
-
     /**
      * Islamic holidays (Ramadan & Sacrifice) are obtained constantly from 1991 to 2037 (https://www.timeanddate.com/holidays/uzbekistan/)
      */
@@ -127,7 +123,7 @@ class Uzbekistan extends Country implements HasTranslations
         return 'uz';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'uz';
     }
