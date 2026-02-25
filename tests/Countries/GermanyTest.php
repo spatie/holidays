@@ -115,7 +115,7 @@ it('can calculate german holidays in local', function (string $locale, string $n
     $result = Holidays::for(country: 'de', year: 2024, locale: $locale)->get();
 
     expect($result)->toBeArray();
-    expect($result[0]['name'])->toBe($newYearsDayName);
+    expect($result[0]->name)->toBe($newYearsDayName);
 })->with(
     [
         ['en', 'New Year'],

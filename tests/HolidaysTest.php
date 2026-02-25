@@ -5,6 +5,7 @@ use Spatie\Holidays\Countries\Belgium;
 use Spatie\Holidays\Countries\Netherlands;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Holiday;
 use Spatie\Holidays\Holidays;
 
 it('can get all holidays of the current year', function () {
@@ -16,15 +17,16 @@ it('can get all holidays of the current year', function () {
         ->toBeArray()
         ->not()->toBeEmpty();
 
-    expect($holidays[0]['name'])->toBe('Nieuwjaar');
-    expect($holidays[0]['date']->format('Y-m-d'))->toBe('2024-01-01');
+    expect($holidays[0])->toBeInstanceOf(Holiday::class);
+    expect($holidays[0]->name)->toBe('Nieuwjaar');
+    expect($holidays[0]->date->format('Y-m-d'))->toBe('2024-01-01');
 });
 
 it('can get holidays of other years', function (string $year) {
     $holidays = Holidays::for(Belgium::make(), year: $year)->get();
 
-    expect($holidays[0]['name'])->toBe('Nieuwjaar');
-    expect($holidays[0]['date']->format('Y-m-d'))->toBe("{$year}-01-01");
+    expect($holidays[0]->name)->toBe('Nieuwjaar');
+    expect($holidays[0]->date->format('Y-m-d'))->toBe("{$year}-01-01");
 })->with(
     ['2023'],
     ['2024'],
@@ -34,9 +36,9 @@ it('can get holidays of other years', function (string $year) {
 it('can get all holidays of another year and a specific country', function () {
     $holidays = Holidays::for(Netherlands::make(), year: 2020)->get();
 
-    expect($holidays)->toContainElement(function (array $holidayProperties) {
-        return $holidayProperties['name'] === 'Bevrijdingsdag'
-            && $holidayProperties['date']->format('Y-m-d') === '2020-05-05';
+    expect($holidays)->toContainElement(function (Holiday $holiday) {
+        return $holiday->name === 'Bevrijdingsdag'
+            && $holiday->date->format('Y-m-d') === '2020-05-05';
     });
 });
 
@@ -89,8 +91,9 @@ it('can get all holidays between two dates', function (string|CarbonImmutable $f
 
     expect($holidays)->toBeArray();
     expect($holidays)->toHaveCount($expectedCount);
-    expect(reset($holidays))->toBe($firstName);
-    expect(end($holidays))->toBe($lastName);
+    expect($holidays[0])->toBeInstanceOf(Holiday::class);
+    expect($holidays[0]->name)->toBe($firstName);
+    expect(end($holidays)->name)->toBe($lastName);
 })->with([
     ['2020', '2024', 50, 'Nieuwjaar', 'Kerstmis'],
     ['2024-06', '2025-05', 9, 'Nationale Feestdag', 'OLH Hemelvaart'],
@@ -112,19 +115,35 @@ it('can get translated holiday names', function () {
     $result = Holidays::for(country: 'be', year: 2020, locale: 'fr')->get();
 
     expect($result)->toBeArray();
-    expect($result[0]['name'])->toBe('Jour de l\'An');
+    expect($result[0]->name)->toBe('Jour de l\'An');
 });
 
 it('default when the locale file is missing', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    // so we don't need to have a translation file for the language in the Country class
     $holidays = Holidays::for(country: 'be', locale: 'en')->get();
 
     expect($holidays)
         ->toBeArray()
         ->not()->toBeEmpty();
 
-    expect($holidays[0]['name'])->toBe('Nieuwjaar');
-    expect($holidays[0]['date']->format('Y-m-d'))->toBe('2024-01-01');
+    expect($holidays[0]->name)->toBe('Nieuwjaar');
+    expect($holidays[0]->date->format('Y-m-d'))->toBe('2024-01-01');
+});
+
+it('can json serialize holidays', function () {
+    $holidays = Holidays::for(Belgium::make(), year: 2024)->get();
+
+    $json = json_encode($holidays[0]);
+
+    expect($json)->toBeString();
+
+    $decoded = json_decode($json, true);
+
+    expect($decoded)->toBe([
+        'name' => 'Nieuwjaar',
+        'date' => '2024-01-01',
+        'type' => 'national',
+        'region' => null,
+    ]);
 });

@@ -22,7 +22,7 @@ it('can calculate iran holidays in local', function (string $locale, string $new
     $result = Holidays::for(country: 'ir', locale: $locale)->get();
 
     expect($result)->toBeArray();
-    expect($result[7]['name'])->toBe($newYearsDayName);
+    expect($result[7]->name)->toBe($newYearsDayName);
 })->with(
     [
         ['en', 'Sizdah Bedar'],

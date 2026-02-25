@@ -20,12 +20,12 @@ it('can get holidays in another locale', function (): void {
 
     $holidays_en = Holidays::for(country: 'py', locale: 'en')->get();
 
-    expect($holidays_en[0]['name'])
+    expect($holidays_en[0]->name)
         ->toBe("New Year's Day");
 
     $holidays_gn = Holidays::for(country: 'py', locale: 'gn')->get();
 
-    expect($holidays_gn[0]['name'])
+    expect($holidays_gn[0]->name)
         ->toBe('Ary Pyahu');
 });
 
