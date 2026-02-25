@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Dia de Ano Novo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Dia do Inicio da Luta Armada de Liberta\u00e7\u00e3o Nacional",
+        "date": "2024-02-04"
+    },
+    {
+        "name": "Carnaval",
+        "date": "2024-02-13"
+    },
+    {
+        "name": "Dia Internacional da Mulher",
+        "date": "2024-03-08"
+    },
+    {
+        "name": "Sexta Feira Santa",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "P\u00e1scoa",
+        "date": "2024-03-31"
+    },
+    {
+        "name": "Dia da Paz",
+        "date": "2024-04-04"
+    },
+    {
+        "name": "Dia Internacional do Trabalhador",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Dia do Fundador da Na\u00e7\u00e3o e do Her\u00f3i Nacional",
+        "date": "2024-09-17"
+    },
+    {
+        "name": "Dia dos Finados",
+        "date": "2024-11-02"
+    },
+    {
+        "name": "Dia da Independ\u00eancia Nacional",
+        "date": "2024-11-11"
+    },
+    {
+        "name": "Dia do Natal",
+        "date": "2024-12-25"
+    }
+]

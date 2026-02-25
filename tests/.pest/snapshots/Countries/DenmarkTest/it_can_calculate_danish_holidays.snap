@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Nyt\u00e5r",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Sk\u00e6rtorsdag",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Langfredag",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "P\u00e5skedag",
+        "date": "2024-03-31"
+    },
+    {
+        "name": "Anden P\u00e5skedag",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Kristi Himmelfartsdag",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Pinse",
+        "date": "2024-05-19"
+    },
+    {
+        "name": "Anden Pinsedag",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "Juleaften",
+        "date": "2024-12-24"
+    },
+    {
+        "name": "Juledag",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Anden Juledag",
+        "date": "2024-12-26"
+    }
+]

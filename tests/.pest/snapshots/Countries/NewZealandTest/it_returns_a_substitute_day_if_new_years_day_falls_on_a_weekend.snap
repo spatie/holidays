@@ -1,0 +1,46 @@
+[
+    {
+        "name": "New Year's Day (Mondayisation)",
+        "date": "2033-01-03"
+    },
+    {
+        "name": "Day after New Year's Day (Mondayisation)",
+        "date": "2033-01-04"
+    },
+    {
+        "name": "Waitangi Day (Mondayisation)",
+        "date": "2033-02-07"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2033-04-15"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2033-04-18"
+    },
+    {
+        "name": "ANZAC Day",
+        "date": "2033-04-25"
+    },
+    {
+        "name": "King's Birthday",
+        "date": "2033-06-06"
+    },
+    {
+        "name": "Matariki",
+        "date": "2033-06-24"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2033-10-24"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2033-12-26"
+    },
+    {
+        "name": "Christmas Day (Mondayisation)",
+        "date": "2033-12-27"
+    }
+]

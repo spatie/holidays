@@ -1,0 +1,38 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2020-01-01"
+    },
+    {
+        "name": "2nd January",
+        "date": "2020-01-02"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2020-04-10"
+    },
+    {
+        "name": "Early May bank holiday (VE day)",
+        "date": "2020-05-08"
+    },
+    {
+        "name": "Spring bank holiday",
+        "date": "2020-05-25"
+    },
+    {
+        "name": "Summer bank holiday",
+        "date": "2020-08-03"
+    },
+    {
+        "name": "St Andrew's Day",
+        "date": "2020-11-30"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2020-12-25"
+    },
+    {
+        "name": "Boxing Day (substitute day)",
+        "date": "2020-12-28"
+    }
+]

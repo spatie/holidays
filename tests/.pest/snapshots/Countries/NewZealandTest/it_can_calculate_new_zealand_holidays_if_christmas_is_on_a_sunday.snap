@@ -1,0 +1,46 @@
+[
+    {
+        "name": "New Year's Day (Mondayisation)",
+        "date": "2022-01-03"
+    },
+    {
+        "name": "Day after New Year's Day (Mondayisation)",
+        "date": "2022-01-04"
+    },
+    {
+        "name": "Waitangi Day (Mondayisation)",
+        "date": "2022-02-07"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2022-04-15"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2022-04-18"
+    },
+    {
+        "name": "ANZAC Day",
+        "date": "2022-04-25"
+    },
+    {
+        "name": "Queen's Birthday",
+        "date": "2022-06-06"
+    },
+    {
+        "name": "Matariki",
+        "date": "2022-06-24"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2022-10-24"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2022-12-26"
+    },
+    {
+        "name": "Christmas Day (Mondayisation)",
+        "date": "2022-12-27"
+    }
+]

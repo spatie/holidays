@@ -1,0 +1,74 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Reyes Magos",
+        "date": "2024-01-08"
+    },
+    {
+        "name": "D\u00eda de San Jos\u00e9",
+        "date": "2024-03-25"
+    },
+    {
+        "name": "Jueves Santo",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "D\u00eda del Trabajo",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Ascenci\u00f3n de Jes\u00fas",
+        "date": "2024-05-13"
+    },
+    {
+        "name": "Corpus Christi",
+        "date": "2024-06-03"
+    },
+    {
+        "name": "Sagrado coraz\u00f3n de Jes\u00fas",
+        "date": "2024-06-10"
+    },
+    {
+        "name": "San Pedro y San Pablo",
+        "date": "2024-07-01"
+    },
+    {
+        "name": "D\u00eda de la independencia",
+        "date": "2024-07-20"
+    },
+    {
+        "name": "Batalla de Boyac\u00e1",
+        "date": "2024-08-07"
+    },
+    {
+        "name": "Asunci\u00f3n de la Virgen",
+        "date": "2024-08-19"
+    },
+    {
+        "name": "D\u00eda de la raza",
+        "date": "2024-10-14"
+    },
+    {
+        "name": "Todos los santos",
+        "date": "2024-11-04"
+    },
+    {
+        "name": "Independencia de Cartagena",
+        "date": "2024-11-11"
+    },
+    {
+        "name": "Inmaculada Concepci\u00f3n",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]

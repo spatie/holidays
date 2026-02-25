@@ -1,0 +1,46 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Jueves Santo",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "S\u00e1bado Santo",
+        "date": "2024-03-30"
+    },
+    {
+        "name": "D\u00eda de las Am\u00e9ricas",
+        "date": "2024-04-14"
+    },
+    {
+        "name": "D\u00eda del Trabajo",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "D\u00eda de la Independencia",
+        "date": "2024-09-15"
+    },
+    {
+        "name": "Feriado Moraz\u00e1nico (3 Octubre)",
+        "date": "2024-10-02"
+    },
+    {
+        "name": "Feriado Moraz\u00e1nico (12 Octubre)",
+        "date": "2024-10-03"
+    },
+    {
+        "name": "Feriado Moraz\u00e1nico (21 Octubre)",
+        "date": "2024-10-04"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]

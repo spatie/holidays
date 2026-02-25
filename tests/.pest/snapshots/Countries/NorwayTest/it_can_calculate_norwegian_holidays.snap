@@ -1,0 +1,50 @@
+[
+    {
+        "name": "F\u00f8rste nytt\u00e5rsdag",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Skj\u00e6rtorsdag",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Langfredag",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "F\u00f8rste p\u00e5skedag",
+        "date": "2024-03-31"
+    },
+    {
+        "name": "Andre p\u00e5skedag,",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Arbeidernes dag",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Kristi Himmelfartsdag",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Grunnlovsdag",
+        "date": "2024-05-17"
+    },
+    {
+        "name": "F\u00f8rste pinsedag",
+        "date": "2024-05-19"
+    },
+    {
+        "name": "Andre pinsedag",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "F\u00f8rste juledag",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Andre juledag",
+        "date": "2024-12-26"
+    }
+]

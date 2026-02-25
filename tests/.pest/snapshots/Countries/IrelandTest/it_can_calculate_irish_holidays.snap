@@ -1,0 +1,42 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "St Brigid's Day",
+        "date": "2024-02-05"
+    },
+    {
+        "name": "Saint Patrick's Day",
+        "date": "2024-03-17"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "May Public Holiday",
+        "date": "2024-05-06"
+    },
+    {
+        "name": "June Public Holiday",
+        "date": "2024-06-03"
+    },
+    {
+        "name": "August Public Holiday",
+        "date": "2024-08-05"
+    },
+    {
+        "name": "October Public Holiday",
+        "date": "2024-10-28"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Saint Stephen's Day",
+        "date": "2024-12-26"
+    }
+]

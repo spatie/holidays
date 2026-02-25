@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Nova godina - prvi dan",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Nova godina - drugi dan",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Badnji dan (za pravoslavce)",
+        "date": "2024-01-06"
+    },
+    {
+        "name": "Bo\u017ei\u0107 (za pravoslavce)",
+        "date": "2024-01-07"
+    },
+    {
+        "name": "Praznik rada - prvi dan",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Praznik rada - drugi dan",
+        "date": "2024-05-02"
+    },
+    {
+        "name": "Badnji dan (za rimokatolike)",
+        "date": "2024-12-24"
+    },
+    {
+        "name": "Bo\u017ei\u0107 (za rimokatolike)",
+        "date": "2024-12-25"
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "name": "D\u00eda de A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "D\u00eda del Estado Plurinacional",
+        "date": "2024-01-22"
+    },
+    {
+        "name": "Lunes de Carnaval",
+        "date": "2024-02-12"
+    },
+    {
+        "name": "Martes de Carnaval",
+        "date": "2024-02-13"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "D\u00eda del Trabajador",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Corpus Christi",
+        "date": "2024-05-30"
+    },
+    {
+        "name": "A\u00f1o Nuevo Aymara",
+        "date": "2024-06-21"
+    },
+    {
+        "name": "D\u00eda de la Independencia",
+        "date": "2024-08-06"
+    },
+    {
+        "name": "D\u00eda de Todos los Santos",
+        "date": "2024-11-02"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]

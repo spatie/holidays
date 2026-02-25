@@ -1,0 +1,42 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Epifan\u00eda del Se\u00f1or",
+        "date": "2024-01-06"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "D\u00eda del Trabajador",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Asunci\u00f3n de la Virgen",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Fiesta Nacional de Espa\u00f1a",
+        "date": "2024-10-12"
+    },
+    {
+        "name": "Todos los Santos",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "D\u00eda de la Constituci\u00f3n Espa\u00f1ola",
+        "date": "2024-12-06"
+    },
+    {
+        "name": "Inmaculada Concepci\u00f3n",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]

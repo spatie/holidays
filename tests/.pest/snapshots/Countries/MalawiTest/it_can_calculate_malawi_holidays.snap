@@ -1,0 +1,46 @@
+[
+    {
+        "name": "New Years  Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "John Chilembwe Day",
+        "date": "2024-01-15"
+    },
+    {
+        "name": "Martyrs Day",
+        "date": "2024-03-03"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Kamuzu Day",
+        "date": "2024-05-14"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-07-06"
+    },
+    {
+        "name": "Mothers Day",
+        "date": "2024-10-15"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2024-12-26"
+    }
+]

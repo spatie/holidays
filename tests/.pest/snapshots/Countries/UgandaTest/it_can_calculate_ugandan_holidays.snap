@@ -1,0 +1,50 @@
+[
+    {
+        "name": "New Year's  Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "NRM Liberation Day",
+        "date": "2024-01-26"
+    },
+    {
+        "name": "Archbishop Janani Luwum Day",
+        "date": "2024-02-16"
+    },
+    {
+        "name": "International Women's Day",
+        "date": "2024-03-08"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Martyrs' Day",
+        "date": "2024-06-03"
+    },
+    {
+        "name": "National Hereos Day",
+        "date": "2024-06-09"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-10-09"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2024-12-26"
+    }
+]

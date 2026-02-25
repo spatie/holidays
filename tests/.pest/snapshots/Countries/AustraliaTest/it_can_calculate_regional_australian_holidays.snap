@@ -1,0 +1,54 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Australia Day",
+        "date": "2024-01-26"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-03-11"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Saturday before Easter Sunday",
+        "date": "2024-03-30"
+    },
+    {
+        "name": "Easter Sunday",
+        "date": "2024-03-31"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Anzac Day",
+        "date": "2024-04-25"
+    },
+    {
+        "name": "King's Birthday",
+        "date": "2024-06-10"
+    },
+    {
+        "name": "Friday before AFL Grand Final",
+        "date": "2024-09-27"
+    },
+    {
+        "name": "Melbourne Cup",
+        "date": "2024-11-05"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2024-12-26"
+    }
+]

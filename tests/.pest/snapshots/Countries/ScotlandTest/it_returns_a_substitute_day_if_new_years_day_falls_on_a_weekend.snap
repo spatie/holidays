@@ -1,0 +1,38 @@
+[
+    {
+        "name": "New Year's Day (substitute day)",
+        "date": "2033-01-03"
+    },
+    {
+        "name": "2nd January (substitute day)",
+        "date": "2033-01-04"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2033-04-15"
+    },
+    {
+        "name": "Early May bank holiday",
+        "date": "2033-05-02"
+    },
+    {
+        "name": "Spring bank holiday",
+        "date": "2033-05-30"
+    },
+    {
+        "name": "Summer bank holiday",
+        "date": "2033-08-01"
+    },
+    {
+        "name": "St Andrew's Day",
+        "date": "2033-11-30"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2033-12-26"
+    },
+    {
+        "name": "Christmas Day (substitute day)",
+        "date": "2033-12-27"
+    }
+]

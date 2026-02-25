@@ -1,0 +1,34 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "D\u00eda de la Constituci\u00f3n",
+        "date": "2024-02-04"
+    },
+    {
+        "name": "Natalicio de Benito Ju\u00e1rez",
+        "date": "2024-03-17"
+    },
+    {
+        "name": "D\u00eda Internacional de los Trabajadores",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "D\u00eda de Independencia",
+        "date": "2024-09-16"
+    },
+    {
+        "name": "Cambio de Gobierno",
+        "date": "2024-09-30"
+    },
+    {
+        "name": "D\u00eda de la Revoluci\u00f3n",
+        "date": "2024-11-17"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]

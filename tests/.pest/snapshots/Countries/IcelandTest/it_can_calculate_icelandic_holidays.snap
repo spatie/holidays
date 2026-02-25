@@ -1,0 +1,58 @@
+[
+    {
+        "name": "N\u00fd\u00e1rsdagur",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Sk\u00edrdagur",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "F\u00f6studagurinn langi",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "P\u00e1skadagur",
+        "date": "2024-03-31"
+    },
+    {
+        "name": "Annar \u00ed p\u00e1skum",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Sumardagurinn fyrsti",
+        "date": "2024-04-25"
+    },
+    {
+        "name": "Verkal\u00fd\u00f0sdagurinn",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Uppstigningardagur",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Hv\u00edtasunnudagur",
+        "date": "2024-05-19"
+    },
+    {
+        "name": "Annar \u00ed hv\u00edtasunnu",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "\u00dej\u00f3\u00f0h\u00e1t\u00ed\u00f0ardagurinn",
+        "date": "2024-06-17"
+    },
+    {
+        "name": "Fr\u00eddagur verslunarmanna",
+        "date": "2024-08-05"
+    },
+    {
+        "name": "J\u00f3ladagur",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Annar \u00ed j\u00f3lum",
+        "date": "2024-12-26"
+    }
+]

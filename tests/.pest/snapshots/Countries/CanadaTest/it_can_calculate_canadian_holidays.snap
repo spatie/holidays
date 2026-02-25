@@ -1,0 +1,50 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-04-01"
+    },
+    {
+        "name": "Victoria Day",
+        "date": "2024-05-20"
+    },
+    {
+        "name": "Canada Day",
+        "date": "2024-07-01"
+    },
+    {
+        "name": "Civic Holiday",
+        "date": "2024-08-05"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-09-02"
+    },
+    {
+        "name": "National Day for Truth and Reconciliation",
+        "date": "2024-09-30"
+    },
+    {
+        "name": "Thanksgiving",
+        "date": "2024-10-14"
+    },
+    {
+        "name": "Remembrance Day",
+        "date": "2024-11-11"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Boxing Day",
+        "date": "2024-12-26"
+    }
+]

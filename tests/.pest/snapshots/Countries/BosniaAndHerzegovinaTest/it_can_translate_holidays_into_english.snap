@@ -1,0 +1,34 @@
+[
+    {
+        "name": "New Year - first day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "New Year - second day",
+        "date": "2024-01-02"
+    },
+    {
+        "name": "Christmas Eve (Orthodox)",
+        "date": "2024-01-06"
+    },
+    {
+        "name": "Christmas (Orthodox)",
+        "date": "2024-01-07"
+    },
+    {
+        "name": "Labour Day - first day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Labour Day - second day",
+        "date": "2024-05-02"
+    },
+    {
+        "name": "Christmas Eve (Catholic)",
+        "date": "2024-12-24"
+    },
+    {
+        "name": "Christmas (Catholic)",
+        "date": "2024-12-25"
+    }
+]

@@ -1,0 +1,62 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Eid al-Fitr",
+        "date": "2024-04-10"
+    },
+    {
+        "name": "Eid al-Fitr Day 2",
+        "date": "2024-04-11"
+    },
+    {
+        "name": "Eid al-Fitr Day 3",
+        "date": "2024-04-12"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Arafat Day",
+        "date": "2024-06-16"
+    },
+    {
+        "name": "Eid al-Adha",
+        "date": "2024-06-17"
+    },
+    {
+        "name": "Eid al-Adha Day 2",
+        "date": "2024-06-18"
+    },
+    {
+        "name": "Eid al-Adha Day 3",
+        "date": "2024-06-19"
+    },
+    {
+        "name": "Islamic New Year",
+        "date": "2024-07-08"
+    },
+    {
+        "name": "Ashura",
+        "date": "2024-07-17"
+    },
+    {
+        "name": "Ashura Day 2",
+        "date": "2024-07-18"
+    },
+    {
+        "name": "Birthday of the Prophet Muhammad",
+        "date": "2024-09-16"
+    },
+    {
+        "name": "National Day",
+        "date": "2024-12-16"
+    },
+    {
+        "name": "National Day 2",
+        "date": "2024-12-17"
+    }
+]

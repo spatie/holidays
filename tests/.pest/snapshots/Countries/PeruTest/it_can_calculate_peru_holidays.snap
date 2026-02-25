@@ -1,0 +1,66 @@
+[
+    {
+        "name": "A\u00f1o nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Jueves Santo",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "D\u00eda del Trabajo",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Batalla de Arica y D\u00eda de la bandera",
+        "date": "2024-06-07"
+    },
+    {
+        "name": "D\u00eda de San Pedro y San Pablo",
+        "date": "2024-06-29"
+    },
+    {
+        "name": "D\u00eda de la Fuerza A\u00e9rea del Per\u00fa",
+        "date": "2024-07-23"
+    },
+    {
+        "name": "D\u00eda de la Independencia",
+        "date": "2024-07-28"
+    },
+    {
+        "name": "Fiestas Patrias",
+        "date": "2024-07-29"
+    },
+    {
+        "name": "Batalla de Jun\u00edn",
+        "date": "2024-08-06"
+    },
+    {
+        "name": "Santa Rosa de Lima",
+        "date": "2024-08-30"
+    },
+    {
+        "name": "Combate de Angamos",
+        "date": "2024-10-08"
+    },
+    {
+        "name": "D\u00eda de Todos los Santos",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Inmaculada Concepci\u00f3n",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "Batalla de Ayacucho",
+        "date": "2024-12-09"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]

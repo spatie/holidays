@@ -1,0 +1,42 @@
+[
+    {
+        "name": "A\u00f1o nuevo",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Jueves santo",
+        "date": "2024-03-28"
+    },
+    {
+        "name": "Viernes santo",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "D\u00eda internacional de los trabajadores",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "D\u00eda de las madres",
+        "date": "2024-05-30"
+    },
+    {
+        "name": "Aniversario de la revoluci\u00f3n",
+        "date": "2024-07-19"
+    },
+    {
+        "name": "Aniversario de la batalla de san jacinto",
+        "date": "2024-09-14"
+    },
+    {
+        "name": "Aniversario de la independencia",
+        "date": "2024-09-15"
+    },
+    {
+        "name": "D\u00eda de la inmaculada concepci\u00f3n",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "Navidad",
+        "date": "2024-12-25"
+    }
+]
