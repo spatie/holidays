@@ -1,6 +1,5 @@
 <?php
 
-use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\CountryRegistry;
 
 arch('it will not use debugging functions')
