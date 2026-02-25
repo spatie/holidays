@@ -1,16 +1,5 @@
 [
     {
-<<<<<<< Updated upstream
-        "name": "New Year\n's Day",
-        "date": "2024-01-01"
-    },
-    {
-        "name": "Mother\n's Day",
-        "date": "2024-03-21"
-    },
-    {
-        "name": "Teacher\n's Day",
-=======
         "name": "New Year's Day",
         "date": "2024-01-01"
     },
@@ -20,7 +9,6 @@
     },
     {
         "name": "Teacher's Day",
->>>>>>> Stashed changes
         "date": "2024-03-21"
     },
     {
@@ -32,8 +20,6 @@
         "date": "2024-04-10"
     },
     {
-<<<<<<< Updated upstream
-=======
         "name": "Eid al-Fitr Day 2",
         "date": "2024-04-11"
     },
@@ -42,7 +28,6 @@
         "date": "2024-04-12"
     },
     {
->>>>>>> Stashed changes
         "name": "Syrian Independence Day",
         "date": "2024-04-17"
     },
@@ -55,26 +40,11 @@
         "date": "2024-05-05"
     },
     {
-<<<<<<< Updated upstream
-        "name": "Martyr\n's Day",
-=======
         "name": "Martyr's Day",
->>>>>>> Stashed changes
         "date": "2024-05-06"
     },
     {
         "name": "Eid al-Adha",
-<<<<<<< Updated upstream
-        "date": "2024-06-16"
-    },
-    {
-        "name": "Islamic New Year",
-        "date": "2024-07-07"
-    },
-    {
-        "name": "The commemoration of the birth of the Prophet Muhammad",
-        "date": "2024-09-15"
-=======
         "date": "2024-06-17"
     },
     {
@@ -96,7 +66,6 @@
     {
         "name": "The commemoration of the birth of the Prophet Muhammad",
         "date": "2024-09-16"
->>>>>>> Stashed changes
     },
     {
         "name": "The October Liberation War",
