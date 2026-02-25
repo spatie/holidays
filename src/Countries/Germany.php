@@ -210,6 +210,6 @@ class Germany extends Country implements HasTranslations
 
     protected function getRepentanceAndPrayerDay(int $year): CarbonImmutable
     {
-        return (new CarbonImmutable('next wednesday '.$year.'-11-15'))->startOfDay();
+        return new CarbonImmutable('next wednesday '.$year.'-11-15')->startOfDay();
     }
 }

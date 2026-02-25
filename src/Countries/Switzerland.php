@@ -11,7 +11,7 @@ class Switzerland extends Country implements HasTranslations
 {
     use Translatable;
 
-    private const REGIONS = [
+    private const array REGIONS = [
         'ch-ag',
         'ch-ar',
         'ch-ai',
@@ -42,53 +42,53 @@ class Switzerland extends Country implements HasTranslations
         'ch-zh',
     ];
 
-    private const NEW_YEARS_DAY = 'Neujahr';
+    private const string NEW_YEARS_DAY = 'Neujahr';
 
-    private const NEW_YEARS_NEXT_DAY = 'Neujahrs nächster tag';
+    private const string NEW_YEARS_NEXT_DAY = 'Neujahrs nächster tag';
 
-    private const BERCHTOLDS_DAY = 'Berchtoldstag';
+    private const string BERCHTOLDS_DAY = 'Berchtoldstag';
 
-    private const THREE_KINGS_DAY = 'Heilige Drei Könige';
+    private const string THREE_KINGS_DAY = 'Heilige Drei Könige';
 
-    private const NEUCHATEL_REPUBLIC_DAY = 'Neuenburger Republik tag';
+    private const string NEUCHATEL_REPUBLIC_DAY = 'Neuenburger Republik tag';
 
-    private const SAINT_JOSEPHS_DAY = 'Josefstag';
+    private const string SAINT_JOSEPHS_DAY = 'Josefstag';
 
-    private const GOOD_FRIDAY = 'Karfreitag';
+    private const string GOOD_FRIDAY = 'Karfreitag';
 
-    private const EASTER_MONDAY = 'Ostermontag';
+    private const string EASTER_MONDAY = 'Ostermontag';
 
-    private const LABOUR_DAY = 'Tag der Arbeit';
+    private const string LABOUR_DAY = 'Tag der Arbeit';
 
-    private const ASCENSION_DAY = 'Auffahrt';
+    private const string ASCENSION_DAY = 'Auffahrt';
 
-    private const WHIT_MONDAY = 'Pfingstmontag';
+    private const string WHIT_MONDAY = 'Pfingstmontag';
 
-    private const CORPUS_CHRISTI = 'Fronleichnam';
+    private const string CORPUS_CHRISTI = 'Fronleichnam';
 
-    private const SWISS_NATIONAL_HOLIDAY = 'Bundesfeier';
+    private const string SWISS_NATIONAL_HOLIDAY = 'Bundesfeier';
 
-    private const SWISS_NATIONAL_HOLIDAY_NEXT_DAY = 'Bundesfeier nächster tag';
+    private const string SWISS_NATIONAL_HOLIDAY_NEXT_DAY = 'Bundesfeier nächster tag';
 
-    private const ASSUMPTION_DAY = 'Maria Himmelfahrt';
+    private const string ASSUMPTION_DAY = 'Maria Himmelfahrt';
 
-    private const GENEVA_DAY_OF_FASTING = 'Genfer Fasten';
+    private const string GENEVA_DAY_OF_FASTING = 'Genfer Fasten';
 
-    private const FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER = 'Buss- und Bettag';
+    private const string FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER = 'Buss- und Bettag';
 
-    private const FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY = 'Buss- und Bettag Montag';
+    private const string FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY = 'Buss- und Bettag Montag';
 
-    private const ALL_SAINTS_DAY = 'Allerheiligen';
+    private const string ALL_SAINTS_DAY = 'Allerheiligen';
 
-    private const IMMACULATE_CONCEPTION = 'Maria Empfängnis';
+    private const string IMMACULATE_CONCEPTION = 'Maria Empfängnis';
 
-    private const CHRISTMAS_DAY = 'Weihnachtstag';
+    private const string CHRISTMAS_DAY = 'Weihnachtstag';
 
-    private const CHRISTMAS_NEXT_DAY = 'Weihnachtsnächstertag';
+    private const string CHRISTMAS_NEXT_DAY = 'Weihnachtsnächstertag';
 
-    private const SAINT_STEPHENS_DAY = 'Stephanstag';
+    private const string SAINT_STEPHENS_DAY = 'Stephanstag';
 
-    private const GENEVA_REPUBLIC_DAY = 'Genf Republik tag';
+    private const string GENEVA_REPUBLIC_DAY = 'Genf Republik tag';
 
     public function __construct(protected ?string $region = null)
     {
@@ -138,9 +138,9 @@ class Switzerland extends Country implements HasTranslations
             self::CORPUS_CHRISTI => $easter->addDays(60),
             self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY => '08-02',
             self::ASSUMPTION_DAY => '08-15',
-            self::GENEVA_DAY_OF_FASTING => (new CarbonImmutable('first sunday of September '.$year, 'Europe/Zurich'))->addDays(4), // Thursday after the first Sunday of September
+            self::GENEVA_DAY_OF_FASTING => new CarbonImmutable('first sunday of September '.$year, 'Europe/Zurich')->addDays(4), // Thursday after the first Sunday of September
             self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER => new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich'),
-            self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY => (new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich'))->addDay(),
+            self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY => new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich')->addDay(),
             self::ALL_SAINTS_DAY => '11-01',
             self::IMMACULATE_CONCEPTION => '12-08',
             self::SAINT_STEPHENS_DAY => '12-26',
@@ -342,17 +342,17 @@ class Switzerland extends Country implements HasTranslations
 
         // Some holidays only happen in some years in some regions
         if (in_array($this->region, ['ch-ge', 'ch-ne']) &&
-            (new CarbonImmutable("{$year}-01-01", 'Europe/Zurich'))->isSunday()) {
+            new CarbonImmutable("{$year}-01-01", 'Europe/Zurich')->isSunday()) {
             $regionalHolidays[self::NEW_YEARS_NEXT_DAY] = '01-02';
         }
 
         if (in_array($this->region, ['ch-ge']) &&
-            (new CarbonImmutable("{$year}-08-01", 'Europe/Zurich'))->isSunday()) {
+            new CarbonImmutable("{$year}-08-01", 'Europe/Zurich')->isSunday()) {
             $regionalHolidays[self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY] = '08-02';
         }
 
         if (in_array($this->region, ['ch-ge', 'ch-ne']) &&
-            (new CarbonImmutable("{$year}-12-25", 'Europe/Zurich'))->isSunday()) {
+            new CarbonImmutable("{$year}-12-25", 'Europe/Zurich')->isSunday()) {
             $regionalHolidays[self::CHRISTMAS_NEXT_DAY] = '12-26';
         }
 

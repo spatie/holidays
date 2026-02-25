@@ -1,107 +1,176 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:arafat\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Albania\:\:arafat\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Albania.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:ashura\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Albania\:\:ashura\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Albania.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:islamicNewYear\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Albania\:\:islamicNewYear\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Albania.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Albania\\:\\:prophetMuhammadBirthday\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Albania\:\:prophetMuhammadBirthday\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Albania.php
 
 		-
-			message: "#^Parameter \\$holiday of method Spatie\\\\Holidays\\\\Countries\\\\Benin\\:\\:prepareHolidays\\(\\) expects Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\|null given\\.$#"
+			message: '#^Parameter \#1 \$array \(array\{''E diela e Pashkëve Katolike''\: Carbon\\CarbonImmutable, ''E diela e Pashkëve Ortodokse''\: Carbon\\CarbonImmutable\}\) to function array_filter does not contain falsy values, the array will always stay the same\.$#'
+			identifier: arrayFilter.same
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Albania\:\:getMultiDayHoliday\(\) expects array\<array\<string\>\|string\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Albania\:\:getSingleDayHoliday\(\) expects array\<string\>, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/Countries/Albania.php
+
+		-
+			message: '#^Parameter \$holiday of method Spatie\\Holidays\\Countries\\Benin\:\:prepareHolidays\(\) expects Carbon\\CarbonImmutable, Carbon\\CarbonImmutable\|null given\.$#'
+			identifier: argument.type
 			count: 3
 			path: src/Countries/Benin.php
 
 		-
-			message: "#^Argument of an invalid type Carbon\\\\CarbonPeriod supplied for foreach, only iterables are supported\\.$#"
+			message: '#^Argument of an invalid type Carbon\\CarbonPeriod supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
 			count: 1
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
+			message: '#^Argument of an invalid type list\<string\>\|false supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
 			count: 1
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Binary operation \"\\+\" between non\\-falsy\\-string and 1 results in an error\\.$#"
+			message: '#^Binary operation "\+" between mixed and 1 results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 1
 			path: src/Countries/Country.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:arafat\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Malaysia\:\:arafat\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Malaysia.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:ashura\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Malaysia\:\:ashura\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Malaysia.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:eidAlAdha\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Malaysia\:\:eidAlAdha\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Malaysia.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:eidAlFitr\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Malaysia\:\:eidAlFitr\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Malaysia.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:islamicNewYear\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Malaysia\:\:islamicNewYear\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Malaysia.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Malaysia\\:\\:prophetMuhammadBirthday\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Malaysia\:\:prophetMuhammadBirthday\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Malaysia.php
 
 		-
-			message: "#^Method Spatie\\\\Holidays\\\\Countries\\\\Morocco\\:\\:variableHolidays\\(\\) should return array\\<string, Carbon\\\\CarbonImmutable\\> but returns array\\<string, Carbon\\\\CarbonImmutable\\|null\\>\\.$#"
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia\:\:getMultiDayHoliday\(\) expects array\<array\<string\>\|string\>, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/Countries/Malaysia.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia\:\:getSingleDayHoliday\(\) expects array\<string\>, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/Countries/Malaysia.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Morocco\:\:variableHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Countries/Morocco.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:arafat\\.$#"
+			message: '#^Method Spatie\\Holidays\\Countries\\Spain\:\:regionHolidays\(\) should return array\<string, string\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Spain.php
+
+		-
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Turkey\:\:arafat\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Turkey.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:ashura\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Turkey\:\:ashura\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Turkey.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:islamicNewYear\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Turkey\:\:islamicNewYear\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Turkey.php
 
 		-
-			message: "#^Access to undefined constant Spatie\\\\Holidays\\\\Countries\\\\Turkey\\:\\:prophetMuhammadBirthday\\.$#"
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Turkey\:\:prophetMuhammadBirthday\.$#'
+			identifier: classConstant.notFound
 			count: 1
 			path: src/Countries/Turkey.php
 
 		-
-			message: "#^Cannot call method setTimeStamp\\(\\) on DateTime\\|false\\.$#"
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Turkey\:\:getMultiDayHoliday\(\) expects array\<array\<string\>\|string\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Turkey\:\:getSingleDayHoliday\(\) expects array\<string\>, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/Countries/Turkey.php
+
+		-
+			message: '#^Cannot call method setTimeStamp\(\) on DateTime\|false\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: src/Countries/Turkmenistan.php
 
 		-
-			message: "#^Parameter \\#1 \\$datetime of method IntlDateFormatter\\:\\:format\\(\\) expects array\\|DateTimeInterface\\|float\\|int\\|IntlCalendar\\|string, DateTime\\|false given\\.$#"
+			message: '#^Parameter \#1 \$datetime of method IntlDateFormatter\:\:format\(\) expects array\|DateTimeInterface\|float\|int\|IntlCalendar\|string, DateTime\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: src/Countries/Turkmenistan.php
 

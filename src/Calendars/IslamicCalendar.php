@@ -159,6 +159,7 @@ trait IslamicCalendar
     {
         $formatter = $this->getIslamicCalendarFormatter();
         $formatter->setPattern('yyyy');
+
         $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/'.($nextYear ? $year + 1 : $year));
 
         if (! $dateTime) {

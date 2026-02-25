@@ -7,11 +7,13 @@ use Carbon\CarbonInterface;
 
 class Scotland extends Wales
 {
+    #[\Override]
     public function countryCode(): string
     {
         return 'gb-sct';
     }
 
+    #[\Override]
     protected function allHolidays(int $year): array
     {
         return array_merge(
@@ -23,6 +25,7 @@ class Scotland extends Wales
     }
 
     /** @return array<string, string|CarbonInterface> */
+    #[\Override]
     protected function observedHolidays(int $year): array
     {
         $holidays = [
@@ -51,6 +54,7 @@ class Scotland extends Wales
     }
 
     /** @return array<string, string|CarbonImmutable> */
+    #[\Override]
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -64,7 +68,7 @@ class Scotland extends Wales
 
     protected function secondOfJanuary(int $year): ?CarbonInterface
     {
-        $newYearsDay = (new CarbonImmutable($year.'-01-01'))->startOfDay();
+        $newYearsDay = new CarbonImmutable($year.'-01-01')->startOfDay();
         $secondOfJanuary = $newYearsDay->addDay();
 
         return match ($newYearsDay->dayName) {

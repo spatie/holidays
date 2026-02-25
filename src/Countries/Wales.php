@@ -72,13 +72,13 @@ class Wales extends Country
     {
         if ($year === 2020) {
             return [
-                'Early May bank holiday (VE day)' => (new CarbonImmutable('2020-05-08'))->startOfDay(),
+                'Early May bank holiday (VE day)' => new CarbonImmutable('2020-05-08')->startOfDay(),
             ];
         }
 
         if ($year === 2023) {
             return [
-                'Bank holiday for the coronation of King Charles III' => (new CarbonImmutable('2020-05-08'))->startOfDay(),
+                'Bank holiday for the coronation of King Charles III' => new CarbonImmutable('2020-05-08')->startOfDay(),
             ];
         }
 
@@ -90,8 +90,8 @@ class Wales extends Country
     {
         return match ($year) {
             2022 => [
-                'Platinum Jubilee bank holiday' => (new CarbonImmutable('2022-06-03'))->startOfDay(),
-                'Bank Holiday for the State Funeral of Queen Elizabeth II' => (new CarbonImmutable('2022-09-19'))->startOfDay(),
+                'Platinum Jubilee bank holiday' => new CarbonImmutable('2022-06-03')->startOfDay(),
+                'Bank Holiday for the State Funeral of Queen Elizabeth II' => new CarbonImmutable('2022-09-19')->startOfDay(),
             ],
             default => [],
         };

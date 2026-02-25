@@ -87,7 +87,7 @@ class NewZealand extends Country
 
     protected function secondOfJanuary(int $year): ?CarbonInterface
     {
-        $newYearsDay = (new CarbonImmutable($year.'-01-01'))->startOfDay();
+        $newYearsDay = new CarbonImmutable($year.'-01-01')->startOfDay();
         $secondOfJanuary = $newYearsDay->addDay();
 
         return match ($newYearsDay->dayName) {

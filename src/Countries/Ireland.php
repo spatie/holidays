@@ -33,7 +33,7 @@ class Ireland extends Country
         ];
 
         if ($year >= 2023) {
-            $stBrigidsDay = (new CarbonImmutable("{$year}-02-01"))->startOfDay();
+            $stBrigidsDay = new CarbonImmutable("{$year}-02-01")->startOfDay();
 
             if (! $stBrigidsDay->isFriday()) {
                 $stBrigidsDay = 'first monday of February';

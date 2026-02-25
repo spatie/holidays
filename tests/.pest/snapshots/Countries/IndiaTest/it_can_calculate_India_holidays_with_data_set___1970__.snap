@@ -1,0 +1,78 @@
+[
+    {
+        "name": "Republic Day",
+        "date": "1970-01-26"
+    },
+    {
+        "name": "Bakrid\/Eid ul-Adha",
+        "date": "1970-02-17"
+    },
+    {
+        "name": "Muharram\/Ashura",
+        "date": "1970-03-18"
+    },
+    {
+        "name": "Holi",
+        "date": "1970-03-23"
+    },
+    {
+        "name": "Good Friday",
+        "date": "1970-03-27"
+    },
+    {
+        "name": "Rama Navami",
+        "date": "1970-04-15"
+    },
+    {
+        "name": "Mahavir Jayanti",
+        "date": "1970-04-19"
+    },
+    {
+        "name": "Milad un-Nabi\/Id-e-Milad",
+        "date": "1970-05-19"
+    },
+    {
+        "name": "Buddha Purnima\/Vesak",
+        "date": "1970-05-21"
+    },
+    {
+        "name": "Independence Day",
+        "date": "1970-08-15"
+    },
+    {
+        "name": "Raksha Bandhan",
+        "date": "1970-08-17"
+    },
+    {
+        "name": "Janmashtami",
+        "date": "1970-08-24"
+    },
+    {
+        "name": "Mahatma Gandhi Jayanti",
+        "date": "1970-10-02"
+    },
+    {
+        "name": "Dussehra",
+        "date": "1970-10-10"
+    },
+    {
+        "name": "Diwali\/Deepavali",
+        "date": "1970-10-29"
+    },
+    {
+        "name": "Bhai Dooj",
+        "date": "1970-10-31"
+    },
+    {
+        "name": "Guru Nanak Jayanti",
+        "date": "1970-11-13"
+    },
+    {
+        "name": "Ramzan Id\\\/Eid-ul-Fitar",
+        "date": "1970-11-30"
+    },
+    {
+        "name": "Christmas",
+        "date": "1970-12-25"
+    }
+]

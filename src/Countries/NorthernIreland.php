@@ -6,11 +6,13 @@ use Carbon\CarbonInterface;
 
 class NorthernIreland extends Wales
 {
+    #[\Override]
     public function countryCode(): string
     {
         return 'gb-nir';
     }
 
+    #[\Override]
     protected function allHolidays(int $year): array
     {
         return array_merge(
@@ -22,6 +24,7 @@ class NorthernIreland extends Wales
     }
 
     /** @return array<string, string|CarbonInterface> */
+    #[\Override]
     protected function observedHolidays(int $year): array
     {
         $holidays = [

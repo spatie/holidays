@@ -419,7 +419,7 @@ trait NepaliCalendar
             $this->makarSankrantiHoliday['label'] => $this->makarSankrantiHoliday['dates'][$year] ?? null,
         ];
 
-        return array_filter($holidays, fn ($holiday) => $holiday !== null);
+        return array_filter($holidays, fn ($holiday): bool => $holiday !== null);
     }
 
     /**
@@ -448,7 +448,7 @@ trait NepaliCalendar
             $this->holiHoliday['label'] => $this->holiHoliday['dates'][$year] ?? null,
         ];
 
-        return array_filter($holidays, fn ($holiday) => $holiday !== null);
+        return array_filter($holidays, fn ($holiday): bool => $holiday !== null);
     }
 
     /**

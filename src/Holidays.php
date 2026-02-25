@@ -98,13 +98,7 @@ class Holidays
 
         $formattedDate = $date->format('Y-m-d');
 
-        foreach ($holidays as $holiday) {
-            if (CarbonImmutable::parse($holiday['date'])->format('Y-m-d') === $formattedDate) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_any($holidays, fn ($holiday): bool => CarbonImmutable::parse($holiday['date'])->format('Y-m-d') === $formattedDate);
     }
 
     public function getName(CarbonInterface|string $date, Country|string|null $country = null): ?string
