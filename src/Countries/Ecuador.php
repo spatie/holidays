@@ -5,20 +5,17 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Spatie\Holidays\Concerns\Observable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 
-class Ecuador extends Country implements HasTranslations
+class Ecuador extends Country
 {
     use Observable;
-    use Translatable;
 
     public function countryCode(): string
     {
         return 'ec';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'es';
     }

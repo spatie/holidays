@@ -4,15 +4,12 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Syria extends Country implements HasTranslations, Islamic
+class Syria extends Country implements Islamic
 {
     use IslamicCalendar;
-    use Translatable;
 
     protected const eidAlFitr = [
         2005 => '11-04',
@@ -161,11 +158,6 @@ class Syria extends Country implements HasTranslations, Islamic
     public function countryCode(): string
     {
         return 'sy';
-    }
-
-    public function defaultLocale(): string
-    {
-        return 'en';
     }
 
     protected function allHolidays(int $year): array

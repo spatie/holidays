@@ -95,7 +95,7 @@ $holidays = Holidays::for('be')->getInRange('2023-06-01', '2024-05-31');
 $holidays = Holidays::for(country: 'be', locale: 'fr')->get();
 ```
 
-If the locale is not supported for a country, an exception will be thrown.
+If no translation file exists for the given locale, the original holiday names are returned.
 
 ### Regional holidays
 
@@ -167,7 +167,7 @@ This is a community driven package. If you find any errors, please create a pull
 2. Add a test for the new country in the `tests` directory.
 3. Run the tests so a snapshot gets created.
 4. Verify the result in the newly created snapshot is correct.
-5. If the country has multiple languages, add a file in the `lang/` directory.
+5. If the country has multiple languages, add a translation file at `lang/{countryCode}/{locale}/holidays.json`.
 
 If your country has region-specific holidays, implement the `HasRegions` interface:
 

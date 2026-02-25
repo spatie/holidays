@@ -3,19 +3,15 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 
-class Belgium extends Country implements HasTranslations
+class Belgium extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'be';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'nl';
     }

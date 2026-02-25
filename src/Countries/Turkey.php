@@ -4,14 +4,11 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Contracts\Islamic;
 
-class Turkey extends Country implements HasTranslations, Islamic
+class Turkey extends Country implements Islamic
 {
     use IslamicCalendar;
-    use Translatable;
 
     /**
      * No library or built-in php intl functions convert dates properly for all years or all country including
@@ -181,7 +178,7 @@ class Turkey extends Country implements HasTranslations, Islamic
         return 'tr';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'tr';
     }

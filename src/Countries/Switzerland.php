@@ -3,15 +3,11 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasRegions;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 
-class Switzerland extends Country implements HasRegions, HasTranslations
+class Switzerland extends Country implements HasRegions
 {
-    use Translatable;
-
     private const array REGIONS = [
         'ch-ag',
         'ch-ar',
@@ -113,7 +109,7 @@ class Switzerland extends Country implements HasRegions, HasTranslations
         return 'ch';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'de';
     }

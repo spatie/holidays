@@ -4,14 +4,11 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Contracts\Islamic;
 
-class Bahrain extends Country implements HasTranslations, Islamic
+class Bahrain extends Country implements Islamic
 {
     use IslamicCalendar;
-    use Translatable;
 
     protected const eidAlFitr = [
         2020 => '05-24',
@@ -142,11 +139,6 @@ class Bahrain extends Country implements HasTranslations, Islamic
     public function countryCode(): string
     {
         return 'bh';
-    }
-
-    public function defaultLocale(): string
-    {
-        return 'en';
     }
 
     protected function allHolidays(int $year): array

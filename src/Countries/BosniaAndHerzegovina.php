@@ -3,15 +3,11 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasRegions;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 
-class BosniaAndHerzegovina extends Country implements HasRegions, HasTranslations
+class BosniaAndHerzegovina extends Country implements HasRegions
 {
-    use Translatable;
-
     protected const REGIONS = [
         'ba-rs',
         'ba-fbih',
@@ -40,7 +36,7 @@ class BosniaAndHerzegovina extends Country implements HasRegions, HasTranslation
         return 'ba';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'hr';
     }
