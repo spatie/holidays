@@ -192,6 +192,8 @@ class Germany extends Country implements HasTranslations
                 if ($year >= 1991) {
                     $stHolidays['Heilige Drei Könige'] = '01-06';
                 }
+
+                return $stHolidays;
             case 'DE-TH':
                 $thHolidays = [];
                 if ($year >= 1990) {
