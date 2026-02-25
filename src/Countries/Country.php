@@ -7,6 +7,7 @@ use Carbon\CarbonInterface;
 use Carbon\CarbonPeriod;
 use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\CountryRegistry;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
@@ -113,25 +114,13 @@ abstract class Country
 
     public static function find(string $countryCode): ?Country
     {
-        $countryCode = strtolower($countryCode);
+        $class = CountryRegistry::find($countryCode);
 
-        foreach (glob(__DIR__.'/../Countries/*.php') as $filename) {
-            if (basename($filename) === 'Country.php') {
-                continue;
-            }
-
-            // determine class name from file name
-            $countryClass = '\\Spatie\\Holidays\\Countries\\'.basename($filename, '.php');
-
-            /** @var Country $country */
-            $country = new $countryClass;
-
-            if (strtolower($country->countryCode()) === $countryCode) {
-                return $country;
-            }
+        if ($class === null) {
+            return null;
         }
 
-        return null;
+        return new $class;
     }
 
     public static function findOrFail(string $countryCode): Country
