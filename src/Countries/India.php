@@ -3,11 +3,11 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Calendars\IndianCalender;
+use Spatie\Holidays\Calendars\IndianCalendar;
 
 class India extends Country
 {
-    use IndianCalender;
+    use IndianCalendar;
 
     /**
      * No library or built-in php intl functions convert dates properly for all years or all country including

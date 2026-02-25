@@ -9,7 +9,7 @@ use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
 /** @mixin Country */
-trait IndianCalender
+trait IndianCalendar
 {
     /** @return array<CarbonPeriod> */
     protected function ashura(int $year, int $totalDays = 1): array
