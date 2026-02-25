@@ -1,11 +1,46 @@
-# Upgrading to v2
+# Upgrading
 
-## `get()`, `isHoliday()`, and `getName()` no longer accept country/year overrides
+## From v1 to v2
+
+### Breaking changes
+
+#### PHP 8.4+ required
+
+v2 requires PHP 8.4 or higher. Update your `composer.json` accordingly.
+
+#### `get()` and `getInRange()` now return `Holiday[]`
+
+In v1, `get()` returned an associative array of `name => date` and `getInRange()` returned `date => name`:
+
+```php
+// v1
+$holidays = Holidays::for('be')->get();
+// ['Nieuwjaar' => CarbonImmutable, ...]
+
+$holidays = Holidays::for('be')->getInRange('2024-01-01', '2024-12-31');
+// ['2024-01-01' => 'Nieuwjaar', ...]
+```
+
+In v2, both methods return an array of `Holiday` objects:
+
+```php
+// v2
+$holidays = Holidays::for('be')->get();
+
+$holidays[0]->name; // 'Nieuwjaar'
+$holidays[0]->date; // CarbonImmutable('2024-01-01')
+$holidays[0]->type; // HolidayType::National
+
+json_encode($holidays[0]);
+// {"name":"Nieuwjaar","date":"2024-01-01","type":"national","region":null}
+```
+
+#### `get()`, `isHoliday()`, and `getName()` no longer accept country/year overrides
 
 In v1, these methods accepted optional `$country` and `$year` parameters that silently created a new instance:
 
 ```php
-// v1: confusing — silently discards the 'be'/2024 context
+// v1
 $h = Holidays::for('be', 2024);
 $h->get('nl', 2025);
 $h->isHoliday('2024-01-01', 'nl');
@@ -15,203 +50,53 @@ $h->getName('2024-01-01', 'nl');
 In v2, call `Holidays::for()` for each country/year combination:
 
 ```php
-// v2: explicit
+// v2
 Holidays::for('be', 2024)->get();
 Holidays::for('nl', 2025)->get();
 Holidays::for('nl')->isHoliday('2024-01-01');
 Holidays::for('nl')->getName('2024-01-01');
 ```
 
-## `allHolidays()` must return `CarbonImmutable` values
+#### Denmark country code changed
 
-In v1, the `allHolidays()` method in country classes could return a mix of `string` and `CarbonImmutable` values, with the base `Country::get()` handling the conversion:
-
-```php
-// v1: strings were auto-parsed by Country::get()
-protected function allHolidays(int $year): array
-{
-    return [
-        "New Year's Day" => '01-01',
-        'Easter Monday' => $this->easter($year)->addDay(),
-    ];
-}
-```
-
-In v2, all values must be `CarbonImmutable` instances:
-
-```php
-// v2: explicit CarbonImmutable values
-protected function allHolidays(int $year): array
-{
-    return [
-        "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-        'Easter Monday' => $this->easter($year)->addDay(),
-    ];
-}
-```
-
-For relative dates (like "first monday of September"), use `CarbonImmutable::parse()`:
+The Denmark country code has been corrected from `da` to `dk` to match the ISO 3166-1 alpha-2 standard:
 
 ```php
 // v1
-'Labor Day' => 'first monday of September',
+Holidays::for('da')->get();
 
 // v2
-'Labor Day' => CarbonImmutable::parse('first monday of September ' . $year),
+Holidays::for('dk')->get();
 ```
 
-This also means any custom helper methods that accepted `'MM-DD'` strings must now work with `CarbonImmutable` directly.
+#### Global year range removed
 
-## Regions: `HasRegions` interface and `Holidays::for()` region parameter
-
-In v1, region-based holidays required creating a country instance directly:
+In v1, all countries were limited to years 1970–2037. In v2, this global limit has been removed. Most countries now support any year. Countries that depend on precomputed calendar lookup tables (Islamic, Indian, etc.) declare their own range:
 
 ```php
-// v1: only way to use regions
-$holidays = Holidays::for(Germany::make('DE-BW'))->get();
-```
+// v1: throws for ANY country outside 1970–2037
+Holidays::for('be', year: 2050)->get(); // InvalidYear
 
-In v2, you can pass a `region` parameter to `Holidays::for()`:
-
-```php
-// v2: region through the string API
-$holidays = Holidays::for('de', year: 2024, region: 'DE-BW')->get();
-
-// v2: still works with country instances
-$holidays = Holidays::for(Germany::make('DE-BW'), year: 2024)->get();
-```
-
-Countries with region support now implement the `HasRegions` interface, which provides:
-- `regions()` — returns an array of valid region codes
-- `region()` — returns the current region (or null)
-
-All regional countries now validate region codes in the constructor and throw `InvalidRegion` for unknown codes. If you were passing invalid region codes that were silently ignored in v1, they will now throw an exception.
-
-The Netherlands no longer accepts a `$region` constructor parameter (it was never used).
-
-## `Observable` trait methods no longer accept strings or `$year`
-
-In v1, `weekendToNextMonday()` and `sundayToNextMonday()` accepted a string date and a `$year` parameter:
-
-```php
-// v1
-$this->weekendToNextMonday('01-01', $year);
-$this->sundayToNextMonday('12-25', $year);
-```
-
-In v2, these methods only accept a `CarbonInterface` instance and the `$year` parameter has been removed:
-
-```php
-// v2
-$this->weekendToNextMonday(CarbonImmutable::createFromDate($year, 1, 1));
-$this->sundayToNextMonday(CarbonImmutable::createFromDate($year, 12, 25));
-```
-
-## Calendar lookup constants are now `protected`
-
-The calendar date lookup arrays on `Albania`, `Turkey`, and `India` (e.g. `eidAlFitr`, `eidAlAdha`, `holiHolidays`, etc.) have been changed from `public const` to `protected const`. If you were referencing these constants externally, use the country's public holiday API instead.
-
-## `Observable` trait renamed to `HasObservedHolidays`
-
-The `Observable` trait has been renamed to `HasObservedHolidays`:
-
-```php
-// v1
-use Spatie\Holidays\Concerns\Observable;
-use Observable;
-
-// v2
-use Spatie\Holidays\Concerns\HasObservedHolidays;
-use HasObservedHolidays;
-```
-
-The `observedChristmasDay()` and `observedBoxingDay()` methods now accept a `CarbonInterface` date instead of `int $year`:
-
-```php
-// v1
-$this->observedChristmasDay($year);
-$this->observedBoxingDay($year);
-
-// v2
-$this->observedChristmasDay($christmasDate);
-$this->observedBoxingDay($boxingDayDate);
-```
-
-## Translation system: `HasTranslations` and `Translatable` removed
-
-In v1, countries opted into translation support by implementing `HasTranslations` and using the `Translatable` trait:
-
-```php
-// v1
-use Spatie\Holidays\Contracts\HasTranslations;
-use Spatie\Holidays\Concerns\Translatable;
-
-class Germany extends Country implements HasTranslations
-{
-    use Translatable;
-
-    public function defaultLocale(): string
-    {
-        return 'de';
-    }
-}
-```
-
-In v2, translation is built into the `Country` base class. The `HasTranslations` interface and `Translatable` trait have been removed. Countries that define holidays in a non-English language override the `protected defaultLocale()` method:
-
-```php
-// v2
-class Germany extends Country
-{
-    protected function defaultLocale(): string
-    {
-        return 'de';
-    }
-}
-```
-
-Any country can now have translations without code changes — just add a JSON file at `lang/{countryCode}/{locale}/holidays.json`.
-
-### Translation file paths changed
-
-Translation files have moved from `lang/{hyphenated-class-name}/` to `lang/{countryCode}/`:
-
-```
-# v1
-lang/germany/en/holidays.json
-lang/bosnia-and-herzegovina/en/holidays.json
-
-# v2
-lang/de/en/holidays.json
-lang/ba/en/holidays.json
-```
-
-If you had custom translation files, move them to the new paths.
-
-## Global year range removed — per-country ranges instead
-
-In v1, all countries were limited to years 1970–2037:
-
-```php
-// v1: throws for ANY country
-Holidays::for('be', year: 2050)->get(); // InvalidYear exception
-```
-
-In v2, the global limit has been removed. Most countries (~70) now support any year. Countries that depend on precomputed calendar lookup tables (Islamic, Indian, etc.) declare their own supported range via `supportedYearRange()`:
-
-```php
-// v2: Belgium works for any year
+// v2: most countries work for any year
 Holidays::for('be', year: 2050)->get(); // works
 
-// v2: Turkey is limited by its Islamic calendar data
-Holidays::for('tr', year: 2050)->get(); // InvalidYear: Only years between 1970 and 2037 are supported for tr.
+// v2: calendar-dependent countries have their own range
+Holidays::for('tr', year: 2050)->get();
+// InvalidYear: Only years between 1970 and 2037 are supported for tr.
 ```
 
-If you have a custom country class that relied on the global 1970–2037 limit, override `supportedYearRange()` to declare your range:
+### Other improvements
 
-```php
-protected function supportedYearRange(): array
-{
-    return [2005, 2037];
-}
-```
+These are internal changes that don't require any action on your part.
+
+- **`allHolidays()` now requires `CarbonImmutable` values** — the implicit string-to-date parsing (`'MM-DD'`, `'first monday of September'`) has been removed in favor of explicit `CarbonImmutable` instances.
+- **Translation system simplified** — the `HasTranslations` interface and `Translatable` trait have been removed. Translations are now built into the `Country` base class. The `defaultLocale()` method is now `protected`.
+- **Translation file paths changed** — translation files moved from `lang/{hyphenated-class-name}/` to `lang/{countryCode}/` (e.g. `lang/germany/` became `lang/de/`).
+- **`Observable` trait renamed to `HasObservedHolidays`** — its methods now only accept `CarbonInterface` dates instead of strings and `$year` parameters.
+- **Calendar lookup constants** on countries like Albania, Turkey, and India are now `protected const` instead of `public const`.
+- **`supportedYearRange()`** — countries with calendar lookup tables now declare their supported year range explicitly.
+- **Performance** — country discovery now uses a static `CountryRegistry` map instead of filesystem scanning (`glob()`), and date parsing no longer runs regex/string-matching on every holiday.
+- **`ResolvesCalendarDates` trait** deduplicates shared date resolution logic across Islamic, Indian, Chinese, and Nepali calendar traits.
+- **`HasRegions` interface** standardizes how countries declare and validate regional holiday support.
+- **`Holiday` value object and `HolidayType` enum** provide structured, JSON-serializable return data instead of plain arrays.
+- **`region` parameter on `Holidays::for()`** allows passing a region code directly without constructing a country instance.
