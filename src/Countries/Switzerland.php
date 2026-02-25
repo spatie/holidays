@@ -4,10 +4,11 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 
-class Switzerland extends Country implements HasTranslations
+class Switzerland extends Country implements HasRegions, HasTranslations
 {
     use Translatable;
 
@@ -95,6 +96,16 @@ class Switzerland extends Country implements HasTranslations
         if ($region !== null && ! in_array($region, self::REGIONS)) {
             throw InvalidRegion::notFound($region);
         }
+    }
+
+    public static function regions(): array
+    {
+        return self::REGIONS;
+    }
+
+    public function region(): ?string
+    {
+        return $this->region;
     }
 
     public function countryCode(): string

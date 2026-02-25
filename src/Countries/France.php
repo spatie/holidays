@@ -3,12 +3,28 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Contracts\HasRegions;
+use Spatie\Holidays\Exceptions\InvalidRegion;
 
-class France extends Country
+class France extends Country implements HasRegions
 {
     protected function __construct(
         protected ?string $region = null,
-    ) {}
+    ) {
+        if ($region !== null && ! in_array($region, static::regions())) {
+            throw InvalidRegion::notFound($region);
+        }
+    }
+
+    public static function regions(): array
+    {
+        return ['FR-57', 'FR-67', 'FR-68', 'FR-971', 'FR-MF', 'FR-972', 'FR-973', 'FR-974', 'FR-976', 'FR-BL'];
+    }
+
+    public function region(): ?string
+    {
+        return $this->region;
+    }
 
     public function countryCode(): string
     {

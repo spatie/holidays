@@ -55,7 +55,6 @@ foreach ($holidays as $holiday) {
 ```
 
 Alternatively, you could also pass an [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) code to the `for` method.
-In case of region based holidays, these will not be included. Use a country class instead.
 
 ```php
 use Spatie\Holidays\Holidays;
@@ -97,6 +96,35 @@ $holidays = Holidays::for(country: 'be', locale: 'fr')->get();
 ```
 
 If the locale is not supported for a country, an exception will be thrown.
+
+### Regional holidays
+
+Some countries have region-specific holidays. You can pass a region code to the `for` method:
+
+```php
+use Spatie\Holidays\Holidays;
+
+$holidays = Holidays::for('de', year: 2024, region: 'DE-BW')->get();
+```
+
+Or use the country class directly:
+
+```php
+use Spatie\Holidays\Countries\Germany;
+
+$holidays = Holidays::for(Germany::make('DE-BW'), year: 2024)->get();
+```
+
+To discover which regions a country supports, use the `HasRegions` interface:
+
+```php
+use Spatie\Holidays\Contracts\HasRegions;
+use Spatie\Holidays\Countries\Germany;
+
+Germany::regions(); // ['DE-BW', 'DE-BY', 'DE-BE', ...]
+```
+
+Countries that support regions: Australia, Bosnia and Herzegovina, France, Germany, Malaysia, Spain, Switzerland.
 
 ### Determining if a date is a holiday 
 
@@ -141,27 +169,31 @@ This is a community driven package. If you find any errors, please create a pull
 4. Verify the result in the newly created snapshot is correct.
 5. If the country has multiple languages, add a file in the `lang/` directory.
 
-In case your country has specific rules for calculating holidays,
-for example region specific holidays, you can pass this to the constructor of your country class.
+If your country has region-specific holidays, implement the `HasRegions` interface:
 
 ```php
-$holidays = Holidays::for(Germany::make('DE-BW'))->get();
-```
+use Spatie\Holidays\Contracts\HasRegions;
+use Spatie\Holidays\Exceptions\InvalidRegion;
 
-The value, `DE-BW`, will be passed to the region parameter of the constructor of a country.
-
-```php
-class Germany extends Country
+class Germany extends Country implements HasRegions
 {
-    protected function __construct(
-        protected ?string $region = null,
-    ) {
+    protected function __construct(protected ?string $region = null)
+    {
+        if ($region !== null && ! in_array($region, static::regions())) {
+            throw InvalidRegion::notFound($region);
+        }
     }
 
-    protected function allHolidays(int $year): array
+    public static function regions(): array
     {
-        // Here you can use $this->region (or other variables) to calculate holidays
+        return ['DE-BW', 'DE-BY', 'DE-BE', /* ... */];
     }
+
+    public function region(): ?string
+    {
+        return $this->region;
+    }
+}
 ```
 
 Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for more details.

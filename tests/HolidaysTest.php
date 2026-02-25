@@ -1,9 +1,12 @@
 <?php
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Countries\Belgium;
+use Spatie\Holidays\Countries\Germany;
 use Spatie\Holidays\Countries\Netherlands;
 use Spatie\Holidays\Exceptions\InvalidCountry;
+use Spatie\Holidays\Exceptions\InvalidRegion;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Holiday;
 use Spatie\Holidays\Holidays;
@@ -129,6 +132,34 @@ it('default when the locale file is missing', function () {
 
     expect($holidays[0]->name)->toBe('Nieuwjaar');
     expect($holidays[0]->date->format('Y-m-d'))->toBe('2024-01-01');
+});
+
+it('can pass a region through Holidays::for()', function () {
+    $holidays = Holidays::for('de', year: 2024, region: 'DE-BW')->get();
+
+    expect($holidays)->toBeArray()->not()->toBeEmpty();
+
+    $names = array_map(fn (Holiday $h) => $h->name, $holidays);
+    expect($names)->toContain('Heilige Drei Könige');
+});
+
+it('throws for invalid region through Holidays::for()', function () {
+    Holidays::for('de', year: 2024, region: 'INVALID');
+})->throws(InvalidRegion::class);
+
+it('can discover regions from a country that implements HasRegions', function () {
+    $regions = Germany::regions();
+
+    expect($regions)
+        ->toBeArray()
+        ->toContain('DE-BW')
+        ->toContain('DE-BY')
+        ->toContain('DE-BE');
+});
+
+it('can check if a country implements HasRegions', function () {
+    expect(Germany::make())->toBeInstanceOf(HasRegions::class);
+    expect(Belgium::make())->not->toBeInstanceOf(HasRegions::class);
 });
 
 it('can json serialize holidays', function () {

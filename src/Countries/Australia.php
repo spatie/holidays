@@ -3,12 +3,28 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Contracts\HasRegions;
+use Spatie\Holidays\Exceptions\InvalidRegion;
 
-class Australia extends Country
+class Australia extends Country implements HasRegions
 {
-    protected function __construct(
-        protected ?string $region = null,
-    ) {}
+    protected function __construct(protected ?string $region = null)
+    {
+        if ($region !== null && ! in_array($region, static::regions())) {
+            throw InvalidRegion::notFound($region);
+        }
+    }
+
+    /** @return array<string> */
+    public static function regions(): array
+    {
+        return ['act', 'nsw', 'nt', 'qld', 'sa', 'tas', 'vic', 'wa'];
+    }
+
+    public function region(): ?string
+    {
+        return $this->region;
+    }
 
     public function countryCode(): string
     {

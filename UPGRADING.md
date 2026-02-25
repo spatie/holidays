@@ -61,3 +61,30 @@ For relative dates (like "first monday of September"), use `CarbonImmutable::par
 ```
 
 This also means any custom helper methods that accepted `'MM-DD'` strings must now work with `CarbonImmutable` directly.
+
+## Regions: `HasRegions` interface and `Holidays::for()` region parameter
+
+In v1, region-based holidays required creating a country instance directly:
+
+```php
+// v1: only way to use regions
+$holidays = Holidays::for(Germany::make('DE-BW'))->get();
+```
+
+In v2, you can pass a `region` parameter to `Holidays::for()`:
+
+```php
+// v2: region through the string API
+$holidays = Holidays::for('de', year: 2024, region: 'DE-BW')->get();
+
+// v2: still works with country instances
+$holidays = Holidays::for(Germany::make('DE-BW'), year: 2024)->get();
+```
+
+Countries with region support now implement the `HasRegions` interface, which provides:
+- `regions()` — returns an array of valid region codes
+- `region()` — returns the current region (or null)
+
+All regional countries now validate region codes in the constructor and throw `InvalidRegion` for unknown codes. If you were passing invalid region codes that were silently ignored in v1, they will now throw an exception.
+
+The Netherlands no longer accepts a `$region` constructor parameter (it was never used).

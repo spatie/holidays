@@ -3,14 +3,29 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Spain extends Country
+class Spain extends Country implements HasRegions
 {
-    protected function __construct(
-        protected ?string $region = null,
-    ) {}
+    protected function __construct(protected ?string $region = null)
+    {
+        if ($region !== null && ! in_array($region, static::regions())) {
+            throw InvalidRegion::notFound($region);
+        }
+    }
+
+    /** @return array<string> */
+    public static function regions(): array
+    {
+        return ['es-an', 'es-ar', 'es-as', 'es-cb', 'es-ce', 'es-cl', 'es-cm', 'es-cn', 'es-ct', 'es-ex', 'es-ga', 'es-ib', 'es-mc', 'es-md', 'es-ml', 'es-nc', 'es-pv', 'es-ri', 'es-vc'];
+    }
+
+    public function region(): ?string
+    {
+        return $this->region;
+    }
 
     public function countryCode(): string
     {

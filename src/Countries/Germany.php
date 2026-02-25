@@ -4,15 +4,31 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Concerns\Translatable;
+use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Exceptions\InvalidRegion;
 
-class Germany extends Country implements HasTranslations
+class Germany extends Country implements HasRegions, HasTranslations
 {
     use Translatable;
 
     protected function __construct(
         protected ?string $region = null,
-    ) {}
+    ) {
+        if ($region !== null && ! in_array($region, static::regions())) {
+            throw InvalidRegion::notFound($region);
+        }
+    }
+
+    public static function regions(): array
+    {
+        return ['DE-BW', 'DE-BY', 'DE-BE', 'DE-BB', 'DE-HB', 'DE-HH', 'DE-HE', 'DE-MV', 'DE-NI', 'DE-NW', 'DE-RP', 'DE-SL', 'DE-SN', 'DE-ST', 'DE-SH', 'DE-TH'];
+    }
+
+    public function region(): ?string
+    {
+        return $this->region;
+    }
 
     public function countryCode(): string
     {
