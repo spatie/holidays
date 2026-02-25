@@ -8,7 +8,7 @@ use Spatie\Holidays\Countries\Country;
 
 class Holidays
 {
-    /** @var array<string, CarbonImmutable> */
+    /** @var array<Holiday> */
     protected array $holidays = [];
 
     protected function __construct(
@@ -35,7 +35,7 @@ class Holidays
         return Country::find($country) !== null;
     }
 
-    /** @return array<array{name: string, date: CarbonImmutable}> */
+    /** @return array<Holiday> */
     public function get(Country|string|null $country = null, ?int $year = null): array
     {
         $country ??= $this->country;
@@ -43,7 +43,7 @@ class Holidays
 
         return static::for($country, $year, $this->locale)
             ->calculate()
-            ->toArray();
+            ->holidays;
     }
 
     /**
@@ -57,7 +57,7 @@ class Holidays
      *    - 2020-01-01 and 2024-12-31, you could use: getInRange('2020-01-01', '2024-12-31'), getInRange('2020-01', '2024-12') or getInRange('2020', '2024')
      *    - 2024-06-01 and 2025-05-30, you could use: getInRange('2024-06-01', '2025-05-30'), getInRange('2024-06', '2025-05')
      *
-     * @return array<string, string> date => name
+     * @return array<Holiday>
      */
     public function getInRange(CarbonInterface|string $from, CarbonInterface|string $to): array
     {
@@ -81,7 +81,19 @@ class Holidays
             [$from, $to] = [$to, $from];
         }
 
-        return $this->country->getInRange($from, $to, $this->locale);
+        $holidays = [];
+
+        for ($year = $from->year; $year <= $to->year; $year++) {
+            foreach (static::for($this->country, $year, $this->locale)->calculate()->holidays as $holiday) {
+                if ($holiday->date->between($from, $to)) {
+                    $holidays[] = $holiday;
+                }
+            }
+        }
+
+        usort($holidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
+
+        return $holidays;
     }
 
     public function isHoliday(CarbonInterface|string $date, Country|string|null $country = null): bool
@@ -94,11 +106,11 @@ class Holidays
 
         $holidays = static::for($country, $date->year)
             ->calculate()
-            ->toArray();
+            ->holidays;
 
         $formattedDate = $date->format('Y-m-d');
 
-        return array_any($holidays, fn ($holiday): bool => CarbonImmutable::parse($holiday['date'])->format('Y-m-d') === $formattedDate);
+        return array_any($holidays, fn (Holiday $holiday): bool => $holiday->date->format('Y-m-d') === $formattedDate);
     }
 
     public function getName(CarbonInterface|string $date, Country|string|null $country = null): ?string
@@ -111,13 +123,13 @@ class Holidays
 
         $holidays = static::for($country, $date->year)
             ->calculate()
-            ->toArray();
+            ->holidays;
 
         $formattedDate = $date->format('Y-m-d');
 
         foreach ($holidays as $holiday) {
-            if (CarbonImmutable::parse($holiday['date'])->format('Y-m-d') == $formattedDate) {
-                return $holiday['name'];
+            if ($holiday->date->format('Y-m-d') === $formattedDate) {
+                return $holiday->name;
             }
         }
 
@@ -126,23 +138,14 @@ class Holidays
 
     protected function calculate(): self
     {
-        $this->holidays = $this->country->get($this->year, $this->locale);
+        $rawHolidays = $this->country->get($this->year, $this->locale);
+
+        $this->holidays = array_map(
+            static fn (string $name, CarbonImmutable $date): Holiday => new Holiday($name, $date),
+            array_keys($rawHolidays),
+            array_values($rawHolidays),
+        );
 
         return $this;
-    }
-
-    /** @return array<array{name: string, date: CarbonImmutable}> */
-    protected function toArray(): array
-    {
-        $response = [];
-
-        foreach ($this->holidays as $name => $date) {
-            $response[] = [
-                'name' => $name,
-                'date' => $date,
-            ];
-        }
-
-        return $response;
     }
 }
