@@ -115,10 +115,6 @@ abstract class Country
     {
         $countryCode = strtolower($countryCode);
 
-        if ($countryCode === 'da') {
-            $countryCode = 'dk'; // @todo remove with new major and change the ISO code for Denmark
-        }
-
         foreach (glob(__DIR__.'/../Countries/*.php') as $filename) {
             if (basename($filename) === 'Country.php') {
                 continue;

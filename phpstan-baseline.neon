@@ -127,6 +127,30 @@ parameters:
 			path: src/Countries/Spain.php
 
 		-
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Syria\:\:arafat\.$#'
+			identifier: classConstant.notFound
+			count: 1
+			path: src/Countries/Syria.php
+
+		-
+			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Syria\:\:ashura\.$#'
+			identifier: classConstant.notFound
+			count: 1
+			path: src/Countries/Syria.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Syria\:\:getMultiDayHoliday\(\) expects array\<array\<string\>\|string\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Countries/Syria.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Syria\:\:getSingleDayHoliday\(\) expects array\<string\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Countries/Syria.php
+
+		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Turkey\:\:arafat\.$#'
 			identifier: classConstant.notFound
 			count: 1
