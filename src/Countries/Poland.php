@@ -14,19 +14,19 @@ class Poland extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nowy Rok' => '01-01',
-            'Święto Trzech Króli' => '01-06',
-            'Święto Pracy' => '05-01',
-            'Święto Konstytucji 3 Maja' => '05-03',
-            'Święto Wojska Polskiego, Wniebowzięcie Najświętszej Maryi Panny' => '08-15',
-            'Wszystkich Świętych' => '11-01',
-            'Święto Niepodległości' => '11-11',
-            'Boże Narodzenie' => '12-25',
-            'Drugi Dzień Bożego Narodzenia' => '12-26',
+            'Nowy Rok' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Święto Trzech Króli' => CarbonImmutable::createFromDate($year, 1, 6),
+            'Święto Pracy' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Święto Konstytucji 3 Maja' => CarbonImmutable::createFromDate($year, 5, 3),
+            'Święto Wojska Polskiego, Wniebowzięcie Najświętszej Maryi Panny' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Wszystkich Świętych' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Święto Niepodległości' => CarbonImmutable::createFromDate($year, 11, 11),
+            'Boże Narodzenie' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Drugi Dzień Bożego Narodzenia' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable|string> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -39,7 +39,7 @@ class Poland extends Country
         ];
 
         if ($year >= 2025) {
-            $variableHolidays = array_merge($variableHolidays, ['wigilii Bożego Narodzenia' => '12-24']);
+            $variableHolidays = array_merge($variableHolidays, ['wigilii Bożego Narodzenia' => CarbonImmutable::createFromDate($year, 12, 24)]);
         }
 
         return $variableHolidays;

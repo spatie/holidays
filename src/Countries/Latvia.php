@@ -17,16 +17,16 @@ class Latvia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Jaunais gads' => '01-01',
-            'Darba svētki' => '05-01',
-            'Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena' => '05-04',
-            'Līgo diena' => '06-23',
-            'Jāņu diena' => '06-24',
-            'Latvijas Republikas proklamēšanas diena' => '11-18',
-            'Ziemassvētku vakars' => '12-24',
-            'Pirmie Ziemassvētki' => '12-25',
-            'Otrie Ziemassvētki' => '12-26',
-            'Vecgada vakars' => '12-31',
+            'Jaunais gads' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Darba svētki' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena' => CarbonImmutable::createFromDate($year, 5, 4),
+            'Līgo diena' => CarbonImmutable::createFromDate($year, 6, 23),
+            'Jāņu diena' => CarbonImmutable::createFromDate($year, 6, 24),
+            'Latvijas Republikas proklamēšanas diena' => CarbonImmutable::createFromDate($year, 11, 18),
+            'Ziemassvētku vakars' => CarbonImmutable::createFromDate($year, 12, 24),
+            'Pirmie Ziemassvētki' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Otrie Ziemassvētki' => CarbonImmutable::createFromDate($year, 12, 26),
+            'Vecgada vakars' => CarbonImmutable::createFromDate($year, 12, 31),
         ],
             $this->variableHolidays($year),
             $this->observedHolidays($year)
@@ -45,12 +45,12 @@ class Latvia extends Country
         ];
     }
 
-    /** @return array<string, string> */
+    /** @return array<string, CarbonImmutable> */
     protected function observedHolidays(int $year): array
     {
         $holidays = [
-            'Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena' => '05-04',
-            'Latvijas Republikas proklamēšanas diena' => '11-18',
+            'Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena' => CarbonImmutable::createFromDate($year, 5, 4),
+            'Latvijas Republikas proklamēšanas diena' => CarbonImmutable::createFromDate($year, 11, 18),
         ];
 
         foreach ($holidays as $name => $date) {

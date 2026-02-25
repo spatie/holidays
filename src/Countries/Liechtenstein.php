@@ -14,15 +14,15 @@ class Liechtenstein extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Neujahr' => '01-01',
-            'Heilige Drei Könige' => '01-06',
-            'Tag der Arbeit' => '05-01',
-            'Staatsfeiertag / Mariä Himmelfahrt' => '08-15',
-            'Mariä Geburt' => '09-08',
-            'Allerheiligen' => '11-01',
-            'Mariä Empfängnis' => '12-08',
-            'Weihnachten' => '12-25',
-            'Stephanstag' => '12-26',
+            'Neujahr' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Heilige Drei Könige' => CarbonImmutable::createFromDate($year, 1, 6),
+            'Tag der Arbeit' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Staatsfeiertag / Mariä Himmelfahrt' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Mariä Geburt' => CarbonImmutable::createFromDate($year, 9, 8),
+            'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Mariä Empfängnis' => CarbonImmutable::createFromDate($year, 12, 8),
+            'Weihnachten' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Stephanstag' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

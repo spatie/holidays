@@ -2,6 +2,8 @@
 
 namespace Spatie\Holidays\Calendars;
 
+use Carbon\CarbonImmutable;
+
 /**
  * Nepal follows Bikram Sambat calendar. Bikram Sambat is a solar calendar based on ancient Hindu tradition. https://en.wikipedia.org/wiki/Vikram_Samvat
  *
@@ -405,18 +407,18 @@ trait NepaliCalendar
     /**
      * Holidays according to Bikram Sambat calendar.
      *
-     * @return array<string,string>
+     * @return array<string, CarbonImmutable>
      */
     public function holidaysAccordingToBikramSambatCalendar(int $year): array
     {
         $holidays = [
-            $this->nepaliNewYear['label'] => $this->nepaliNewYear['dates'][$year] ?? null,
-            $this->nationalRepublicDay['label'] => $this->nationalRepublicDay['dates'][$year] ?? null,
-            $this->prithiviJayanti['label'] => $this->prithiviJayanti['dates'][$year] ?? null,
-            $this->martyrsDay['label'] => $this->martyrsDay['dates'][$year] ?? null,
-            $this->democracyDay['label'] => $this->democracyDay['dates'][$year] ?? null,
-            $this->constitutionDay['label'] => $this->constitutionDay['dates'][$year] ?? null,
-            $this->makarSankrantiHoliday['label'] => $this->makarSankrantiHoliday['dates'][$year] ?? null,
+            $this->nepaliNewYear['label'] => isset($this->nepaliNewYear['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->nepaliNewYear['dates'][$year]) : null,
+            $this->nationalRepublicDay['label'] => isset($this->nationalRepublicDay['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->nationalRepublicDay['dates'][$year]) : null,
+            $this->prithiviJayanti['label'] => isset($this->prithiviJayanti['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->prithiviJayanti['dates'][$year]) : null,
+            $this->martyrsDay['label'] => isset($this->martyrsDay['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->martyrsDay['dates'][$year]) : null,
+            $this->democracyDay['label'] => isset($this->democracyDay['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->democracyDay['dates'][$year]) : null,
+            $this->constitutionDay['label'] => isset($this->constitutionDay['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->constitutionDay['dates'][$year]) : null,
+            $this->makarSankrantiHoliday['label'] => isset($this->makarSankrantiHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->makarSankrantiHoliday['dates'][$year]) : null,
         ];
 
         return array_filter($holidays, fn ($holiday): bool => $holiday !== null);
@@ -425,27 +427,27 @@ trait NepaliCalendar
     /**
      * Holidays according to lunar calendar.
      *
-     * @return array<string,string>
+     * @return array<string, CarbonImmutable>
      */
     public function holidaysAccordingToLunarCalendar(int $year): array
     {
         $holidays = [
-            $this->ghatasthapanaHoliday['label'] => $this->ghatasthapanaHoliday['dates'][$year] ?? null,
-            $this->fulpatiHoliday['label'] => $this->fulpatiHoliday['dates'][$year] ?? null,
-            $this->mahaNawamiHoliday['label'] => $this->mahaNawamiHoliday['dates'][$year] ?? null,
-            $this->mahaAsthamiHoliday['label'] => $this->mahaAsthamiHoliday['dates'][$year] ?? null,
-            $this->vijayaDashamiHoliday['label'] => $this->vijayaDashamiHoliday['dates'][$year] ?? null,
-            $this->ekadashiHoliday['label'] => $this->ekadashiHoliday['dates'][$year] ?? null,
-            $this->laxmiPujaHoliday['label'] => $this->laxmiPujaHoliday['dates'][$year] ?? null,
-            $this->govardhanPujaHoliday['label'] => $this->govardhanPujaHoliday['dates'][$year] ?? null,
-            $this->bhaiTikaHoliday['label'] => $this->bhaiTikaHoliday['dates'][$year] ?? null,
-            $this->chhatParvaHoliday['label'] => $this->chhatParvaHoliday['dates'][$year] ?? null,
-            $this->tamuLosharHoliday['label'] => $this->tamuLosharHoliday['dates'][$year] ?? null,
-            $this->sonamLosarHoliday['label'] => $this->sonamLosarHoliday['dates'][$year] ?? null,
-            $this->gyalpoLosharHoliday['label'] => $this->gyalpoLosharHoliday['dates'][$year] ?? null,
-            $this->udhauliParvaHoliday['label'] => $this->udhauliParvaHoliday['dates'][$year] ?? null,
-            $this->mahashivaratriHoliday['label'] => $this->mahashivaratriHoliday['dates'][$year] ?? null,
-            $this->holiHoliday['label'] => $this->holiHoliday['dates'][$year] ?? null,
+            $this->ghatasthapanaHoliday['label'] => isset($this->ghatasthapanaHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->ghatasthapanaHoliday['dates'][$year]) : null,
+            $this->fulpatiHoliday['label'] => isset($this->fulpatiHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->fulpatiHoliday['dates'][$year]) : null,
+            $this->mahaNawamiHoliday['label'] => isset($this->mahaNawamiHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->mahaNawamiHoliday['dates'][$year]) : null,
+            $this->mahaAsthamiHoliday['label'] => isset($this->mahaAsthamiHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->mahaAsthamiHoliday['dates'][$year]) : null,
+            $this->vijayaDashamiHoliday['label'] => isset($this->vijayaDashamiHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->vijayaDashamiHoliday['dates'][$year]) : null,
+            $this->ekadashiHoliday['label'] => isset($this->ekadashiHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->ekadashiHoliday['dates'][$year]) : null,
+            $this->laxmiPujaHoliday['label'] => isset($this->laxmiPujaHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->laxmiPujaHoliday['dates'][$year]) : null,
+            $this->govardhanPujaHoliday['label'] => isset($this->govardhanPujaHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->govardhanPujaHoliday['dates'][$year]) : null,
+            $this->bhaiTikaHoliday['label'] => isset($this->bhaiTikaHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->bhaiTikaHoliday['dates'][$year]) : null,
+            $this->chhatParvaHoliday['label'] => isset($this->chhatParvaHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->chhatParvaHoliday['dates'][$year]) : null,
+            $this->tamuLosharHoliday['label'] => isset($this->tamuLosharHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->tamuLosharHoliday['dates'][$year]) : null,
+            $this->sonamLosarHoliday['label'] => isset($this->sonamLosarHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->sonamLosarHoliday['dates'][$year]) : null,
+            $this->gyalpoLosharHoliday['label'] => isset($this->gyalpoLosharHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->gyalpoLosharHoliday['dates'][$year]) : null,
+            $this->udhauliParvaHoliday['label'] => isset($this->udhauliParvaHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->udhauliParvaHoliday['dates'][$year]) : null,
+            $this->mahashivaratriHoliday['label'] => isset($this->mahashivaratriHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->mahashivaratriHoliday['dates'][$year]) : null,
+            $this->holiHoliday['label'] => isset($this->holiHoliday['dates'][$year]) ? CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".$this->holiHoliday['dates'][$year]) : null,
         ];
 
         return array_filter($holidays, fn ($holiday): bool => $holiday !== null);
@@ -454,13 +456,13 @@ trait NepaliCalendar
     /**
      * Holiday according to Gregorian calendar.
      *
-     * @return array<string,string>
+     * @return array<string, CarbonImmutable>
      */
-    public function holidayAccordingToGregorianCalendar(): array
+    public function holidayAccordingToGregorianCalendar(int $year): array
     {
         return [
-            'International Labor Day' => '05-01',
-            'Christmas' => '12-25',
+            'International Labor Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Christmas' => CarbonImmutable::createFromDate($year, 12, 25),
         ];
     }
 }

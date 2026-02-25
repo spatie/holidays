@@ -28,12 +28,12 @@ class NewZealand extends Country
     {
         // https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
         $holidays = [
-            "New Year's Day" => '01-01',
-            "Day after New Year's Day" => '01-02',
-            'Waitangi Day' => '02-06',
-            'ANZAC Day' => '04-25',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            "Day after New Year's Day" => CarbonImmutable::createFromDate($year, 1, 2),
+            'Waitangi Day' => CarbonImmutable::createFromDate($year, 2, 6),
+            'ANZAC Day' => CarbonImmutable::createFromDate($year, 4, 25),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
         // https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-falling-on-a-weekend/

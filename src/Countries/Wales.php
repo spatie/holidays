@@ -30,9 +30,9 @@ class Wales extends Country
     protected function observedHolidays(int $year): array
     {
         $holidays = [
-            "New Year's Day" => '01-01',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
         foreach ($holidays as $name => $date) {
@@ -51,7 +51,7 @@ class Wales extends Country
         return $holidays;
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easterSunday = $this->easter($year);
@@ -62,8 +62,8 @@ class Wales extends Country
         return [
             'Good Friday' => $goodFriday,
             'Easter Monday' => $easterMonday,
-            'Spring bank holiday' => 'last monday of may',
-            'Summer bank holiday' => 'last monday of august',
+            'Spring bank holiday' => CarbonImmutable::parse('last monday of may '.$year),
+            'Summer bank holiday' => CarbonImmutable::parse('last monday of august '.$year),
         ];
     }
 
@@ -82,7 +82,7 @@ class Wales extends Country
             ];
         }
 
-        return ['Early May bank holiday' => 'first monday of may'];
+        return ['Early May bank holiday' => CarbonImmutable::parse('first monday of may '.$year)];
     }
 
     /** @return array<string, string|CarbonInterface> */

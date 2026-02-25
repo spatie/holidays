@@ -108,7 +108,7 @@ class Switzerland extends Country implements HasTranslations
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     public function regionalHolidays(int $year): array
     {
@@ -119,33 +119,33 @@ class Switzerland extends Country implements HasTranslations
         $easter = $this->easter($year);
 
         $sharedHolidays = [
-            self::NEW_YEARS_DAY => '01-01',
+            self::NEW_YEARS_DAY => CarbonImmutable::createFromDate($year, 1, 1),
             self::ASCENSION_DAY => $easter->addDays(39),
-            self::SWISS_NATIONAL_HOLIDAY => '08-01',
-            self::CHRISTMAS_DAY => '12-25',
+            self::SWISS_NATIONAL_HOLIDAY => CarbonImmutable::createFromDate($year, 8, 1),
+            self::CHRISTMAS_DAY => CarbonImmutable::createFromDate($year, 12, 25),
         ];
 
         $regionallyDifferentHolidays = [
-            self::NEW_YEARS_NEXT_DAY => '01-02',
-            self::BERCHTOLDS_DAY => '01-02',
-            self::THREE_KINGS_DAY => '01-06',
-            self::NEUCHATEL_REPUBLIC_DAY => '03-01',
-            self::SAINT_JOSEPHS_DAY => '03-19',
+            self::NEW_YEARS_NEXT_DAY => CarbonImmutable::createFromDate($year, 1, 2),
+            self::BERCHTOLDS_DAY => CarbonImmutable::createFromDate($year, 1, 2),
+            self::THREE_KINGS_DAY => CarbonImmutable::createFromDate($year, 1, 6),
+            self::NEUCHATEL_REPUBLIC_DAY => CarbonImmutable::createFromDate($year, 3, 1),
+            self::SAINT_JOSEPHS_DAY => CarbonImmutable::createFromDate($year, 3, 19),
             self::GOOD_FRIDAY => $easter->subDays(2),
             self::EASTER_MONDAY => $easter->addDay(),
-            self::LABOUR_DAY => '05-01',
+            self::LABOUR_DAY => CarbonImmutable::createFromDate($year, 5, 1),
             self::WHIT_MONDAY => $easter->addDays(50),
             self::CORPUS_CHRISTI => $easter->addDays(60),
-            self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY => '08-02',
-            self::ASSUMPTION_DAY => '08-15',
+            self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY => CarbonImmutable::createFromDate($year, 8, 2),
+            self::ASSUMPTION_DAY => CarbonImmutable::createFromDate($year, 8, 15),
             self::GENEVA_DAY_OF_FASTING => new CarbonImmutable('first sunday of September '.$year, 'Europe/Zurich')->addDays(4), // Thursday after the first Sunday of September
             self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER => new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich'),
             self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY => new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich')->addDay(),
-            self::ALL_SAINTS_DAY => '11-01',
-            self::IMMACULATE_CONCEPTION => '12-08',
-            self::SAINT_STEPHENS_DAY => '12-26',
-            self::CHRISTMAS_NEXT_DAY => '12-26',
-            self::GENEVA_REPUBLIC_DAY => '12-31',
+            self::ALL_SAINTS_DAY => CarbonImmutable::createFromDate($year, 11, 1),
+            self::IMMACULATE_CONCEPTION => CarbonImmutable::createFromDate($year, 12, 8),
+            self::SAINT_STEPHENS_DAY => CarbonImmutable::createFromDate($year, 12, 26),
+            self::CHRISTMAS_NEXT_DAY => CarbonImmutable::createFromDate($year, 12, 26),
+            self::GENEVA_REPUBLIC_DAY => CarbonImmutable::createFromDate($year, 12, 31),
         ];
 
         $currentRegion = match ($this->region) {
@@ -343,17 +343,17 @@ class Switzerland extends Country implements HasTranslations
         // Some holidays only happen in some years in some regions
         if (in_array($this->region, ['ch-ge', 'ch-ne']) &&
             new CarbonImmutable("{$year}-01-01", 'Europe/Zurich')->isSunday()) {
-            $regionalHolidays[self::NEW_YEARS_NEXT_DAY] = '01-02';
+            $regionalHolidays[self::NEW_YEARS_NEXT_DAY] = CarbonImmutable::createFromDate($year, 1, 2);
         }
 
         if (in_array($this->region, ['ch-ge']) &&
             new CarbonImmutable("{$year}-08-01", 'Europe/Zurich')->isSunday()) {
-            $regionalHolidays[self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY] = '08-02';
+            $regionalHolidays[self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY] = CarbonImmutable::createFromDate($year, 8, 2);
         }
 
         if (in_array($this->region, ['ch-ge', 'ch-ne']) &&
             new CarbonImmutable("{$year}-12-25", 'Europe/Zurich')->isSunday()) {
-            $regionalHolidays[self::CHRISTMAS_NEXT_DAY] = '12-26';
+            $regionalHolidays[self::CHRISTMAS_NEXT_DAY] = CarbonImmutable::createFromDate($year, 12, 26);
         }
 
         return array_merge($regionalHolidays, $sharedHolidays);
@@ -366,11 +366,11 @@ class Switzerland extends Country implements HasTranslations
         }
 
         return array_merge([
-            self::NEW_YEARS_DAY => '01-01',
-            self::BERCHTOLDS_DAY => '01-02',
-            self::SWISS_NATIONAL_HOLIDAY => '08-01',
-            self::CHRISTMAS_DAY => '12-25',
-            self::SAINT_STEPHENS_DAY => '12-26',
+            self::NEW_YEARS_DAY => CarbonImmutable::createFromDate($year, 1, 1),
+            self::BERCHTOLDS_DAY => CarbonImmutable::createFromDate($year, 1, 2),
+            self::SWISS_NATIONAL_HOLIDAY => CarbonImmutable::createFromDate($year, 8, 1),
+            self::CHRISTMAS_DAY => CarbonImmutable::createFromDate($year, 12, 25),
+            self::SAINT_STEPHENS_DAY => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

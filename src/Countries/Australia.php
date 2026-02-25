@@ -18,11 +18,11 @@ class Australia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Australia Day' => '01-26',
-            'Anzac Day' => '04-25',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Australia Day' => CarbonImmutable::createFromDate($year, 1, 26),
+            'Anzac Day' => CarbonImmutable::createFromDate($year, 4, 25),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

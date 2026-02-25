@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
@@ -190,20 +191,20 @@ class Turkey extends Country implements HasTranslations, Islamic
         $newHolidays = [];
 
         if ($year >= 2009) {
-            $newHolidays['Labor and Solidarity Day'] = '05-01';
+            $newHolidays['Labor and Solidarity Day'] = CarbonImmutable::createFromDate($year, 5, 1);
         }
 
         if ($year >= 2017) {
-            $newHolidays['Democracy and National Unity Day'] = '07-15';
+            $newHolidays['Democracy and National Unity Day'] = CarbonImmutable::createFromDate($year, 7, 15);
         }
 
         return array_merge([
-            "New Year's Day" => '01-01',
-            "National Sovereignty and Children's Day" => '04-23',
-            'Commemoration of Atatürk, Youth and Sports Day' => '05-19',
-            'Victory Day' => '08-30',
-            'Republic Day Eve' => '10-28',
-            'Republic Day' => '10-29',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            "National Sovereignty and Children's Day" => CarbonImmutable::createFromDate($year, 4, 23),
+            'Commemoration of Atatürk, Youth and Sports Day' => CarbonImmutable::createFromDate($year, 5, 19),
+            'Victory Day' => CarbonImmutable::createFromDate($year, 8, 30),
+            'Republic Day Eve' => CarbonImmutable::createFromDate($year, 10, 28),
+            'Republic Day' => CarbonImmutable::createFromDate($year, 10, 29),
         ], $newHolidays, $this->islamicHolidays($year));
     }
 

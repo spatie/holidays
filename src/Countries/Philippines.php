@@ -14,17 +14,17 @@ class Philippines extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Araw ng Kagitingan' => '04-09',
-            'Labor Day' => '05-01',
-            'Independence Day' => '06-12',
-            'Bonifacio Day' => '11-27',
-            'Christmas Day' => '12-25',
-            'Rizal Day' => '12-30',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Araw ng Kagitingan' => CarbonImmutable::createFromDate($year, 4, 9),
+            'Labor Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 6, 12),
+            'Bonifacio Day' => CarbonImmutable::createFromDate($year, 11, 27),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Rizal Day' => CarbonImmutable::createFromDate($year, 12, 30),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $nationalHeroes = new CarbonImmutable("last monday of august {$year}");

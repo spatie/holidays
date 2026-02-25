@@ -24,16 +24,16 @@ class Morocco extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Proclamation of Independence Day' => '01-11',
-            'Amazigh New Year (ⵉⴹ ⵏ ⵢⵉⵏⵏⴰⵢⵔ)' => '01-14',
-            'Labour Day' => '05-01',
-            'Throne Day' => '07-30',
-            'Oued Ed-Dahab Day' => '08-14',
-            'Revolution Day' => '08-20',
-            'Youth Day' => '08-21',
-            'Green March' => '11-06',
-            'Independence Day' => '11-18',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Proclamation of Independence Day' => CarbonImmutable::createFromDate($year, 1, 11),
+            'Amazigh New Year (ⵉⴹ ⵏ ⵢⵉⵏⵏⴰⵢⵔ)' => CarbonImmutable::createFromDate($year, 1, 14),
+            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Throne Day' => CarbonImmutable::createFromDate($year, 7, 30),
+            'Oued Ed-Dahab Day' => CarbonImmutable::createFromDate($year, 8, 14),
+            'Revolution Day' => CarbonImmutable::createFromDate($year, 8, 20),
+            'Youth Day' => CarbonImmutable::createFromDate($year, 8, 21),
+            'Green March' => CarbonImmutable::createFromDate($year, 11, 6),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 11, 18),
         ], $this->variableHolidays($year));
     }
 

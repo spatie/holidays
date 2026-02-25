@@ -14,10 +14,10 @@ class Denmark extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nytår' => '01-01',
-            'Juleaften' => '12-24',
-            'Juledag' => '12-25',
-            'Anden Juledag' => '12-26',
+            'Nytår' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Juleaften' => CarbonImmutable::createFromDate($year, 12, 24),
+            'Juledag' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Anden Juledag' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

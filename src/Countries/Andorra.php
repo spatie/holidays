@@ -14,16 +14,16 @@ class Andorra extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Any nou' => '01-01',
-            'Reis' => '01-06',
-            'Dia de la Constitució' => '03-14',
-            'Festa del Treball' => '05-01',
-            'Assumpció' => '08-15',
-            'Mare de Déu de Meritxell' => '09-08',
-            'Tots Sants' => '11-01',
-            'Immaculada Concepció' => '11-08',
-            'Nadal' => '12-25',
-            'Sant Esteve' => '12-26',
+            'Any nou' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Reis' => CarbonImmutable::createFromDate($year, 1, 6),
+            'Dia de la Constitució' => CarbonImmutable::createFromDate($year, 3, 14),
+            'Festa del Treball' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Assumpció' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Mare de Déu de Meritxell' => CarbonImmutable::createFromDate($year, 9, 8),
+            'Tots Sants' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Immaculada Concepció' => CarbonImmutable::createFromDate($year, 11, 8),
+            'Nadal' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Sant Esteve' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

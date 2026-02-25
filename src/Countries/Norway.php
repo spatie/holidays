@@ -14,11 +14,11 @@ class Norway extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Første nyttårsdag' => '01-01',
-            'Arbeidernes dag' => '05-01',
-            'Grunnlovsdag' => '05-17',
-            'Første juledag' => '12-25',
-            'Andre juledag' => '12-26',
+            'Første nyttårsdag' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Arbeidernes dag' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Grunnlovsdag' => CarbonImmutable::createFromDate($year, 5, 17),
+            'Første juledag' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Andre juledag' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

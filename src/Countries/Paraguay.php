@@ -25,14 +25,14 @@ final class Paraguay extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => '01-01',
-            'Día de los Héroes' => '03-01',
-            'Día del Trabajador' => '05-01',
-            'Día de la Independencia Nacional' => '05-15',
-            'Fundación de Asunción' => '08-15',
-            'Batalla de Boquerón' => '09-29',
-            'Virgen de Caacupé' => '12-08',
-            'Navidad' => '12-25',
+            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Día de los Héroes' => CarbonImmutable::createFromDate($year, 3, 1),
+            'Día del Trabajador' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Día de la Independencia Nacional' => CarbonImmutable::createFromDate($year, 5, 15),
+            'Fundación de Asunción' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Batalla de Boquerón' => CarbonImmutable::createFromDate($year, 9, 29),
+            'Virgen de Caacupé' => CarbonImmutable::createFromDate($year, 12, 8),
+            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

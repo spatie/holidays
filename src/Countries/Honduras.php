@@ -15,10 +15,10 @@ class Honduras extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => '01-01',
-            'Día del Trabajo' => '05-01',
-            'Día de la Independencia' => '09-15',
-            'Navidad' => '12-25',
+            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Día del Trabajo' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Día de la Independencia' => CarbonImmutable::createFromDate($year, 9, 15),
+            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

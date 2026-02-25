@@ -14,16 +14,16 @@ class Portugal extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Dia de Ano Novo' => '01-01',
-            'Dia da Liberdade' => '04-25',
-            'Dia do Trabalhador' => '05-01',
-            'Dia de Portugal' => '06-10',
-            'Assunção da Nossa Senhora' => '08-15',
-            'Implantação da República' => '10-05',
-            'Dia de Todos os Santos' => '11-01',
-            'Restauração da Independência' => '12-01',
-            'Imaculada Conceição' => '12-08',
-            'Natal' => '12-25',
+            'Dia de Ano Novo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Dia da Liberdade' => CarbonImmutable::createFromDate($year, 4, 25),
+            'Dia do Trabalhador' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Dia de Portugal' => CarbonImmutable::createFromDate($year, 6, 10),
+            'Assunção da Nossa Senhora' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Implantação da República' => CarbonImmutable::createFromDate($year, 10, 5),
+            'Dia de Todos os Santos' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Restauração da Independência' => CarbonImmutable::createFromDate($year, 12, 1),
+            'Imaculada Conceição' => CarbonImmutable::createFromDate($year, 12, 8),
+            'Natal' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

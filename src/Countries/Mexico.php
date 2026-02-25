@@ -14,10 +14,10 @@ class Mexico extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => '01-01',
-            'Día Internacional de los Trabajadores' => '05-01',
-            'Día de Independencia' => '09-16',
-            'Navidad' => '12-25',
+            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Día Internacional de los Trabajadores' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Día de Independencia' => CarbonImmutable::createFromDate($year, 9, 16),
+            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

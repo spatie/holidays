@@ -171,14 +171,14 @@ class Syria extends Country implements HasTranslations, Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            "Mother's Day" => '03-21',
-            "Teacher's Day" => '03-21',
-            'Syrian Independence Day' => '04-17',
-            'Labor Day' => '05-01',
-            "Martyr's Day" => '05-06',
-            'The October Liberation War' => '10-06',
-            'Christmas' => '12-25',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            "Mother's Day" => CarbonImmutable::createFromDate($year, 3, 21),
+            "Teacher's Day" => CarbonImmutable::createFromDate($year, 3, 21),
+            'Syrian Independence Day' => CarbonImmutable::createFromDate($year, 4, 17),
+            'Labor Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            "Martyr's Day" => CarbonImmutable::createFromDate($year, 5, 6),
+            'The October Liberation War' => CarbonImmutable::createFromDate($year, 10, 6),
+            'Christmas' => CarbonImmutable::createFromDate($year, 12, 25),
         ],
             $this->variableHolidays($year),
             $this->islamicHolidays($year),

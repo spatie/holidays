@@ -15,12 +15,12 @@ class Sweden extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nyårsdagen' => '01-01',
-            'Trettondedag jul' => '01-06',
-            'Första maj' => '05-01',
-            'Nationaldagen' => '06-06',
-            'Juldagen' => '12-25',
-            'Annandag jul' => '12-26',
+            'Nyårsdagen' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Trettondedag jul' => CarbonImmutable::createFromDate($year, 1, 6),
+            'Första maj' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Nationaldagen' => CarbonImmutable::createFromDate($year, 6, 6),
+            'Juldagen' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Annandag jul' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

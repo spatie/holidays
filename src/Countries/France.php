@@ -18,17 +18,17 @@ class France extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "Jour de l'An" => '01-01',
-            'Fête du Travail' => '05-01',
-            'Victoire 1945' => '05-08',
-            'Fête Nationale' => '07-14',
-            'Assomption' => '08-15',
-            'Toussaint' => '11-01',
-            'Armistice 1918' => '11-11',
-            'Noël' => '12-25',
+            "Jour de l'An" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Fête du Travail' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Victoire 1945' => CarbonImmutable::createFromDate($year, 5, 8),
+            'Fête Nationale' => CarbonImmutable::createFromDate($year, 7, 14),
+            'Assomption' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Toussaint' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Armistice 1918' => CarbonImmutable::createFromDate($year, 11, 11),
+            'Noël' => CarbonImmutable::createFromDate($year, 12, 25),
         ],
             $this->variableHolidays($year),
-            $this->regionHolidays());
+            $this->regionHolidays($year));
     }
 
     /** @return array<string, CarbonImmutable> */
@@ -49,17 +49,17 @@ class France extends Country
         return $holidays;
     }
 
-    /** @return array<string, string> */
-    protected function regionHolidays(): array
+    /** @return array<string, CarbonImmutable> */
+    protected function regionHolidays(int $year): array
     {
         return match ($this->region) {
-            'FR-57', 'FR-67', 'FR-68' => ['Saint-Étienne' => '12-26'],
-            'FR-971', 'FR-MF' => ["Abolition de l'esclavage" => '05-27'],
-            'FR-972' => ["Abolition de l'esclavage" => '05-22'],
-            'FR-973' => ["Abolition de l'esclavage" => '06-10'],
-            'FR-974' => ["Abolition de l'esclavage" => '12-20'],
-            'FR-976' => ["Abolition de l'esclavage" => '04-27'],
-            'FR-BL' => ["Abolition de l'esclavage" => '10-09'],
+            'FR-57', 'FR-67', 'FR-68' => ['Saint-Étienne' => CarbonImmutable::createFromDate($year, 12, 26)],
+            'FR-971', 'FR-MF' => ["Abolition de l'esclavage" => CarbonImmutable::createFromDate($year, 5, 27)],
+            'FR-972' => ["Abolition de l'esclavage" => CarbonImmutable::createFromDate($year, 5, 22)],
+            'FR-973' => ["Abolition de l'esclavage" => CarbonImmutable::createFromDate($year, 6, 10)],
+            'FR-974' => ["Abolition de l'esclavage" => CarbonImmutable::createFromDate($year, 12, 20)],
+            'FR-976' => ["Abolition de l'esclavage" => CarbonImmutable::createFromDate($year, 4, 27)],
+            'FR-BL' => ["Abolition de l'esclavage" => CarbonImmutable::createFromDate($year, 10, 9)],
             default => [],
         };
     }

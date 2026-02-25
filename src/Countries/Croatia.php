@@ -14,17 +14,17 @@ class Croatia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nova godina' => '01-01',
-            'Bogojavljenje' => '01-06',
-            'Praznik rada' => '05-01',
-            'Dan državnosti' => '05-30',
-            'Dan antifašističke borbe' => '06-22',
-            'Dan pobjede i domovinske zahvalnosti i Dan hrvatskih branitelja' => '08-05',
-            'Velika Gospa' => '08-15',
-            'Svi sveti' => '11-01',
-            'Dan sjećanja na žrtve Domovinskog rata i Dan sjećanja na žrtvu Vukovara i Škabrnje' => '11-18',
-            'Božić' => '12-25',
-            'Sveti Stjepan' => '12-26',
+            'Nova godina' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Bogojavljenje' => CarbonImmutable::createFromDate($year, 1, 6),
+            'Praznik rada' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Dan državnosti' => CarbonImmutable::createFromDate($year, 5, 30),
+            'Dan antifašističke borbe' => CarbonImmutable::createFromDate($year, 6, 22),
+            'Dan pobjede i domovinske zahvalnosti i Dan hrvatskih branitelja' => CarbonImmutable::createFromDate($year, 8, 5),
+            'Velika Gospa' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Svi sveti' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Dan sjećanja na žrtve Domovinskog rata i Dan sjećanja na žrtvu Vukovara i Škabrnje' => CarbonImmutable::createFromDate($year, 11, 18),
+            'Božić' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Sveti Stjepan' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

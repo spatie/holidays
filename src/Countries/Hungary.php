@@ -14,14 +14,14 @@ class Hungary extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Újév' => '01-01',
-            '1848-as forradalom évfordulója' => '03-15',
-            'A munka ünnepe' => '05-01',
-            'Államalapítás ünnepe' => '08-20',
-            '1956-os forradalom évfordulója' => '10-23',
-            'Mindenszentek' => '11-01',
-            'Karácsony' => '12-25',
-            'Karácsony másnapja' => '12-26',
+            'Újév' => CarbonImmutable::createFromDate($year, 1, 1),
+            '1848-as forradalom évfordulója' => CarbonImmutable::createFromDate($year, 3, 15),
+            'A munka ünnepe' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Államalapítás ünnepe' => CarbonImmutable::createFromDate($year, 8, 20),
+            '1956-os forradalom évfordulója' => CarbonImmutable::createFromDate($year, 10, 23),
+            'Mindenszentek' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Karácsony' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Karácsony másnapja' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

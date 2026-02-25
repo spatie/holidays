@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
@@ -243,21 +244,21 @@ class Tunisia extends Country implements HasTranslations, Islamic
         $revolutionHoliday = [];
 
         if ($year < 2022 && $year >= 2011) {
-            $revolutionHoliday['Revolution and Youth Day'] = '01-14';
+            $revolutionHoliday['Revolution and Youth Day'] = CarbonImmutable::createFromDate($year, 1, 14);
         }
 
         if ($year >= 2022) {
-            $revolutionHoliday['Revolution and Youth Day'] = '12-17';
+            $revolutionHoliday['Revolution and Youth Day'] = CarbonImmutable::createFromDate($year, 12, 17);
         }
 
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Independence Day' => '03-20',
-            "Martyrs' Day" => '04-09',
-            'Labour Day' => '05-01',
-            'Republic Day' => '07-25',
-            "Women's Day" => '08-13',
-            'Evacuation Day' => '10-15',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 3, 20),
+            "Martyrs' Day" => CarbonImmutable::createFromDate($year, 4, 9),
+            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Republic Day' => CarbonImmutable::createFromDate($year, 7, 25),
+            "Women's Day" => CarbonImmutable::createFromDate($year, 8, 13),
+            'Evacuation Day' => CarbonImmutable::createFromDate($year, 10, 15),
         ], $revolutionHoliday, $this->islamicHolidays($year));
     }
 

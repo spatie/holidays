@@ -14,16 +14,16 @@ class Uganda extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's  Day" => '01-01',
-            'NRM Liberation Day' => '01-26',
-            'Archbishop Janani Luwum Day' => '02-16',
-            "International Women's Day" => '03-08',
-            'Labour Day' => '05-01',
-            "Martyrs' Day" => '06-03',
-            'National Hereos Day' => '06-09',
-            'Independence Day' => '10-09',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's  Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'NRM Liberation Day' => CarbonImmutable::createFromDate($year, 1, 26),
+            'Archbishop Janani Luwum Day' => CarbonImmutable::createFromDate($year, 2, 16),
+            "International Women's Day" => CarbonImmutable::createFromDate($year, 3, 8),
+            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            "Martyrs' Day" => CarbonImmutable::createFromDate($year, 6, 3),
+            'National Hereos Day' => CarbonImmutable::createFromDate($year, 6, 9),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 10, 9),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

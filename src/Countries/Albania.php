@@ -55,22 +55,22 @@ class Albania extends Country implements HasTranslations, Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Viti i Ri' => '01-01',
-            'Dita e Verës' => '03-14',
-            'Dita e Sulltan Nevruzit' => '03-22',
-            'Dita Ndërkombëtare e Punëtorëve' => '05-01',
-            'Dita e Shenjtërimit të Shenjt Terezës' => '09-05',
-            'Dita e Pavarësisë' => '11-28',
-            'Dita e Çlirimit' => '11-29',
-            'Dita Kombëtare e Rinisë' => '12-08',
-            'Krishtlindja' => '12-25',
+            'Viti i Ri' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Dita e Verës' => CarbonImmutable::createFromDate($year, 3, 14),
+            'Dita e Sulltan Nevruzit' => CarbonImmutable::createFromDate($year, 3, 22),
+            'Dita Ndërkombëtare e Punëtorëve' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Dita e Shenjtërimit të Shenjt Terezës' => CarbonImmutable::createFromDate($year, 9, 5),
+            'Dita e Pavarësisë' => CarbonImmutable::createFromDate($year, 11, 28),
+            'Dita e Çlirimit' => CarbonImmutable::createFromDate($year, 11, 29),
+            'Dita Kombëtare e Rinisë' => CarbonImmutable::createFromDate($year, 12, 8),
+            'Krishtlindja' => CarbonImmutable::createFromDate($year, 12, 25),
         ],
             $this->variableHolidays($year),
             $this->islamicHolidays($year),
         );
     }
 
-    /** @return array<string, CarbonImmutable|string> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         return array_filter([
@@ -90,8 +90,8 @@ class Albania extends Country implements HasTranslations, Islamic
         }
 
         return [
-            'Dita e Bajramit të Madh' => self::eidAlFitr[$year],
-            'Dita e Kurban Bajramit' => self::eidAlAdha[$year],
+            'Dita e Bajramit të Madh' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::eidAlFitr[$year]),
+            'Dita e Kurban Bajramit' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::eidAlAdha[$year]),
         ];
     }
 }

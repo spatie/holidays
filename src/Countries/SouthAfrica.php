@@ -19,16 +19,16 @@ class SouthAfrica extends Country
         // https://en.wikipedia.org/wiki/Public_holidays_in_South_Africa
         // https://www.gov.za/about-sa/public-holidays
         $holidays = [
-            "New Year's Day" => '01-01',
-            'Human Rights Day' => '03-21',
-            'Freedom Day' => '04-27',
-            "Workers' Day" => '05-01',
-            'Youth Day' => '06-16',
-            "National Women's Day" => '08-09',
-            'Heritage Day' => '09-24',
-            'Day of Reconciliation' => '12-16',
-            'Christmas Day' => '12-25',
-            'Day of Goodwill' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Human Rights Day' => CarbonImmutable::createFromDate($year, 3, 21),
+            'Freedom Day' => CarbonImmutable::createFromDate($year, 4, 27),
+            "Workers' Day" => CarbonImmutable::createFromDate($year, 5, 1),
+            'Youth Day' => CarbonImmutable::createFromDate($year, 6, 16),
+            "National Women's Day" => CarbonImmutable::createFromDate($year, 8, 9),
+            'Heritage Day' => CarbonImmutable::createFromDate($year, 9, 24),
+            'Day of Reconciliation' => CarbonImmutable::createFromDate($year, 12, 16),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Day of Goodwill' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
         foreach ($holidays as $name => $date) {

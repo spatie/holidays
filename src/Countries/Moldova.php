@@ -14,16 +14,16 @@ class Moldova extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Anul Nou' => '01-01',
-            'Crăciunul pe stil vechi' => '01-07',
-            'A doua zi de Crăciun pe stil vechi' => '01-08',
-            'Ziua Internațională a Femeii' => '03-08',
-            'Ziua Muncii' => '05-01',
-            'Ziua Europei' => '05-09',
-            'Ziua Internațională a Copilului' => '06-01',
-            'Ziua Independenței' => '08-27',
-            'Ziua Limbii Române' => '08-31',
-            'Crăciunul pe stil nou' => '12-25',
+            'Anul Nou' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Crăciunul pe stil vechi' => CarbonImmutable::createFromDate($year, 1, 7),
+            'A doua zi de Crăciun pe stil vechi' => CarbonImmutable::createFromDate($year, 1, 8),
+            'Ziua Internațională a Femeii' => CarbonImmutable::createFromDate($year, 3, 8),
+            'Ziua Muncii' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Ziua Europei' => CarbonImmutable::createFromDate($year, 5, 9),
+            'Ziua Internațională a Copilului' => CarbonImmutable::createFromDate($year, 6, 1),
+            'Ziua Independenței' => CarbonImmutable::createFromDate($year, 8, 27),
+            'Ziua Limbii Române' => CarbonImmutable::createFromDate($year, 8, 31),
+            'Crăciunul pe stil nou' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

@@ -17,14 +17,14 @@ class Korea extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            '신정' => '01-01',
-            '3ㆍ1절' => '03-01',
-            '어린이날' => '05-05',
-            '현충일' => '06-06',
-            '광복절' => '08-15',
-            '개천절' => '10-03',
-            '한글날' => '10-09',
-            '크리스마스' => '12-15',
+            '신정' => CarbonImmutable::createFromDate($year, 1, 1),
+            '3ㆍ1절' => CarbonImmutable::createFromDate($year, 3, 1),
+            '어린이날' => CarbonImmutable::createFromDate($year, 5, 5),
+            '현충일' => CarbonImmutable::createFromDate($year, 6, 6),
+            '광복절' => CarbonImmutable::createFromDate($year, 8, 15),
+            '개천절' => CarbonImmutable::createFromDate($year, 10, 3),
+            '한글날' => CarbonImmutable::createFromDate($year, 10, 9),
+            '크리스마스' => CarbonImmutable::createFromDate($year, 12, 15),
         ], $this->variableHolidays($year));
     }
 

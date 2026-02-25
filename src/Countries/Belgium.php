@@ -23,13 +23,13 @@ class Belgium extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nieuwjaar' => '01-01',
-            'Dag van de Arbeid' => '05-01',
-            'Nationale Feestdag' => '07-21',
-            'OLV Hemelvaart' => '08-15',
-            'Allerheiligen' => '11-01',
-            'Wapenstilstand' => '11-11',
-            'Kerstmis' => '12-25',
+            'Nieuwjaar' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Dag van de Arbeid' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Nationale Feestdag' => CarbonImmutable::createFromDate($year, 7, 21),
+            'OLV Hemelvaart' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Wapenstilstand' => CarbonImmutable::createFromDate($year, 11, 11),
+            'Kerstmis' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 
