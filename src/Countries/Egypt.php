@@ -233,6 +233,11 @@ class Egypt extends Country implements Islamic
         return 'eg';
     }
 
+    protected function supportedYearRange(): array
+    {
+        return [2005, 2037];
+    }
+
     protected function allHolidays(int $year): array
     {
         return array_merge([

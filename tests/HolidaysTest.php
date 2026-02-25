@@ -49,13 +49,19 @@ it('cannot get all holidays of an unknown country code', function () {
     Holidays::for(country: 'unknown');
 })->throws(InvalidCountry::class);
 
-it('cannot get holidays for years before 1970', function () {
-    Holidays::for(country: 'be', year: 1969)->get();
-})->throws(InvalidYear::class, 'Holidays can only be calculated for years after 1970.');
+it('cannot get holidays for years before supported range', function () {
+    Holidays::for(country: 'tr', year: 1969)->get();
+})->throws(InvalidYear::class, 'Only years between 1970 and 2037 are supported for tr.');
 
-it('cannot get holidays for years after 2037', function () {
-    Holidays::for(country: 'be', year: 2038)->get();
-})->throws(InvalidYear::class, 'Holidays can only be calculated for years before 2038');
+it('cannot get holidays for years after supported range', function () {
+    Holidays::for(country: 'tr', year: 2038)->get();
+})->throws(InvalidYear::class, 'Only years between 1970 and 2037 are supported for tr.');
+
+it('can get holidays for any year when country has no year limit', function () {
+    $holidays = Holidays::for(country: 'be', year: 2050)->get();
+
+    expect($holidays)->toBeArray()->not()->toBeEmpty();
+});
 
 it('can see if a date is a holiday', function () {
     $result = Holidays::for(Belgium::make())->isHoliday('2024-01-01');

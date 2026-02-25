@@ -11,13 +11,13 @@ use Spatie\Holidays\Exceptions\InvalidYear;
 /** @mixin Country */
 trait ResolvesCalendarDates
 {
-    /** @param array<string> $collection */
+    /** @param array<int, string> $collection */
     protected function getSingleDayHoliday(array $collection, int $year): CarbonImmutable
     {
         $date = $collection[$year] ?? null;
 
         if ($date === null) {
-            throw InvalidYear::range($this->countryCode(), 1970, 2037);
+            $this->throwUnsupportedYear($collection);
         }
 
         $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
@@ -30,7 +30,7 @@ trait ResolvesCalendarDates
     }
 
     /**
-     * @param  array<string|array<string>>  $collection
+     * @param  array<int, string|array<string>>  $collection
      * @return array<CarbonPeriod>
      */
     protected function getMultiDayHoliday(array $collection, int $year, int $totalDays): array
@@ -38,7 +38,7 @@ trait ResolvesCalendarDates
         $date = $collection[$year] ?? null;
 
         if ($date === null) {
-            throw InvalidYear::range($this->countryCode(), 1970, 2037);
+            $this->throwUnsupportedYear($collection);
         }
 
         $overlap = $this->getOverlapping($collection, $year, $totalDays);
@@ -78,14 +78,21 @@ trait ResolvesCalendarDates
         return CarbonPeriod::create($start, '1 day', $end);
     }
 
-    /** @param array<string|array<string>> $collection */
+    /** @param array<int, string|array<string>> $collection */
     protected function getOverlapping(array $collection, int $year, int $totalDays): ?string
     {
-        if ($year === 1970) {
+        /** @var non-empty-array<int, string|array<string>> $collection */
+        $minYear = min(array_keys($collection));
+
+        if ($year <= $minYear) {
             return null;
         }
 
-        $date = $collection[$year - 1] ?? throw InvalidYear::range($this->countryCode(), 1970, 2037);
+        $date = $collection[$year - 1] ?? null;
+
+        if ($date === null) {
+            $this->throwUnsupportedYear($collection);
+        }
 
         if (is_array($date)) {
             $date = end($date);
@@ -95,5 +102,13 @@ trait ResolvesCalendarDates
         $end = $start?->addDays($totalDays - 1)->startOfDay();
 
         return ($end?->year !== $year) ? (string) $date : null;
+    }
+
+    /** @param non-empty-array<int, mixed> $collection */
+    private function throwUnsupportedYear(array $collection): never
+    {
+        $keys = array_keys($collection);
+
+        throw InvalidYear::range($this->countryCode(), min($keys), max($keys));
     }
 }

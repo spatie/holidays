@@ -44,6 +44,11 @@ class Albania extends Country implements Islamic
         return 'al';
     }
 
+    protected function supportedYearRange(): array
+    {
+        return [2024, 2034];
+    }
+
     protected function defaultLocale(): string
     {
         return 'al';
