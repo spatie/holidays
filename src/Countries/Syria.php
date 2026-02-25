@@ -5,8 +5,6 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
-use Spatie\Holidays\Exceptions\InvalidYear;
-
 class Syria extends Country implements Islamic
 {
     use IslamicCalendar;
@@ -196,10 +194,6 @@ class Syria extends Country implements Islamic
 
     public function islamicHolidays(int $year): array
     {
-        if ($year < 2005 || $year > 2037) {
-            throw InvalidYear::range('Syria', 2005, 2037);
-        }
-
         $eidAlFitr = $this->eidAlFitr($year, totalDays: 3);
         $eidAlAdha = $this->eidAlAdha($year, totalDays: 4);
 
