@@ -244,12 +244,12 @@ class Egypt extends Country implements HasTranslations, Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '1-1',
-            'Flooding of the Nile' => '8-15',
-            'March Equinox' => '3-20',
-            'June Solstice' => '6-21',
-            'Nayrouz' => '9-11',
-            'September Equinox' => '9-22',
+            "New Year's Day" => '01-01',
+            'Flooding of the Nile' => '08-15',
+            'March Equinox' => '03-20',
+            'June Solstice' => '06-21',
+            'Nayrouz' => '09-11',
+            'September Equinox' => '09-22',
             'December Solstice' => '12-21',
         ],
             $this->fixedHolidays($year),
