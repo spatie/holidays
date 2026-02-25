@@ -41,7 +41,7 @@ class Scotland extends Wales
                 '2nd January' => $this->secondOfJanuary($year),
                 'Christmas Day' => $this->observedChristmasDay($year),
                 'Boxing Day' => $this->observedBoxingDay($year),
-                default => $this->weekendToNextMonday($date, $year),
+                default => $this->weekendToNextMonday($date),
             };
 
             if ($observedDay) {

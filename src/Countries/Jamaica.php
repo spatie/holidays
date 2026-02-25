@@ -38,7 +38,7 @@ class Jamaica extends Country
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
                 'Labour Day', 'Boxing Day' => $this->observed($name, $date, $year),
-                default => $this->sundayToNextMonday($date, $year),
+                default => $this->sundayToNextMonday($date),
             };
 
             if ($observedDay) {

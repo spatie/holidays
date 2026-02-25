@@ -22,7 +22,7 @@ class Turkey extends Country implements HasTranslations, Islamic
      * Ramadan and Sacrifice holidays vary for Turkey and other countries.
      * A converter algorithm that will cover all years does not seem possible.
      */
-    public const eidAlFitr = [
+    protected const eidAlFitr = [
         1970 => '12-01',
         1971 => '11-20',
         1972 => '11-08',
@@ -99,7 +99,7 @@ class Turkey extends Country implements HasTranslations, Islamic
         2037 => '11-09',
     ];
 
-    public const eidAlAdha = [
+    protected const eidAlAdha = [
         1970 => '02-17',
         1971 => '02-16',
         1972 => '01-27',

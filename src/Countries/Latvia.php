@@ -54,7 +54,7 @@ class Latvia extends Country
         ];
 
         foreach ($holidays as $name => $date) {
-            $observedDay = $this->weekendToNextMonday($date, $year);
+            $observedDay = $this->weekendToNextMonday($date);
 
             if ($observedDay) {
                 if ($name === 'Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena') {

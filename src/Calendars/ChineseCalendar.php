@@ -5,7 +5,9 @@ namespace Spatie\Holidays\Calendars;
 use Carbon\CarbonImmutable;
 use DateTimeZone;
 use IntlDateFormatter;
+use Spatie\Holidays\Countries\Country;
 
+/** @mixin Country */
 trait ChineseCalendar
 {
     protected string $chineseCalendarTimezone = 'Asia/Shanghai';
