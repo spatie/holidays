@@ -109,12 +109,6 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
-			message: '#^Binary operation "\+" between mixed and 1 results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: src/Countries/Country.php
-
-		-
 			message: '#^Anonymous function should return Carbon\\CarbonImmutable but returns Carbon\\CarbonImmutable\|null\.$#'
 			identifier: return.type
 			count: 1

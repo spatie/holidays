@@ -210,7 +210,7 @@ abstract class Country
             }
 
             if ($index > 0) {
-                $formattedSuffix = " {$suffix} ".$index + 1;
+                $formattedSuffix = " {$suffix} " . ($index + 1);
             } else {
                 $formattedSuffix = '';
             }
