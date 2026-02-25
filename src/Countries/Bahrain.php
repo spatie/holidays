@@ -141,6 +141,11 @@ class Bahrain extends Country implements Islamic
         return 'bh';
     }
 
+    protected function supportedYearRange(): array
+    {
+        return [2020, 2037];
+    }
+
     protected function allHolidays(int $year): array
     {
         return array_merge([

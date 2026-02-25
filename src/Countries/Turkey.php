@@ -178,6 +178,11 @@ class Turkey extends Country implements Islamic
         return 'tr';
     }
 
+    protected function supportedYearRange(): array
+    {
+        return [1970, 2037];
+    }
+
     protected function defaultLocale(): string
     {
         return 'tr';

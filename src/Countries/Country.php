@@ -158,21 +158,24 @@ abstract class Country
         return $country;
     }
 
+    /** @return array{int, int}|null */
+    protected function supportedYearRange(): ?array
+    {
+        return null;
+    }
+
     protected function ensureYearCanBeCalculated(int $year): void
     {
-        /**
-         * Most holidays have Easter as an anchor. Elsewhere in the
-         * code we use PHP's native easter-date function, which can only handle
-         * years between 1970 and 2037
-         *
-         * https://www.php.net/manual/en/function.easter-date.php
-         */
-        if ($year < 1970) {
-            throw InvalidYear::yearTooLow(1970);
+        $range = $this->supportedYearRange();
+
+        if ($range === null) {
+            return;
         }
 
-        if ($year > 2037) {
-            throw InvalidYear::yearTooHigh(2038);
+        [$min, $max] = $range;
+
+        if ($year < $min || $year > $max) {
+            throw InvalidYear::range($this->countryCode(), $min, $max);
         }
     }
 

@@ -226,6 +226,11 @@ class Benin extends Country
         return 'bj';
     }
 
+    protected function supportedYearRange(): array
+    {
+        return [1970, 2037];
+    }
+
     protected function allHolidays(int $year): array
     {
         return array_merge([

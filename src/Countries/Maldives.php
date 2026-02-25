@@ -141,6 +141,11 @@ class Maldives extends Country implements Islamic
         return 'mv';
     }
 
+    protected function supportedYearRange(): array
+    {
+        return [2020, 2037];
+    }
+
     protected function defaultLocale(): string
     {
         return 'dv'; // Dhivehi, the language spoken in the Maldives

@@ -231,6 +231,11 @@ class Tunisia extends Country implements Islamic
         return 'tn';
     }
 
+    protected function supportedYearRange(): array
+    {
+        return [2005, 2037];
+    }
+
     protected function defaultLocale(): string
     {
         return 'en';

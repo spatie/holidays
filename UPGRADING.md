@@ -187,3 +187,31 @@ lang/ba/en/holidays.json
 ```
 
 If you had custom translation files, move them to the new paths.
+
+## Global year range removed — per-country ranges instead
+
+In v1, all countries were limited to years 1970–2037:
+
+```php
+// v1: throws for ANY country
+Holidays::for('be', year: 2050)->get(); // InvalidYear exception
+```
+
+In v2, the global limit has been removed. Most countries (~70) now support any year. Countries that depend on precomputed calendar lookup tables (Islamic, Indian, etc.) declare their own supported range via `supportedYearRange()`:
+
+```php
+// v2: Belgium works for any year
+Holidays::for('be', year: 2050)->get(); // works
+
+// v2: Turkey is limited by its Islamic calendar data
+Holidays::for('tr', year: 2050)->get(); // InvalidYear: Only years between 1970 and 2037 are supported for tr.
+```
+
+If you have a custom country class that relied on the global 1970–2037 limit, override `supportedYearRange()` to declare your range:
+
+```php
+protected function supportedYearRange(): array
+{
+    return [2005, 2037];
+}
+```
