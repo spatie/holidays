@@ -39,8 +39,8 @@ class Scotland extends Wales
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
                 '2nd January' => $this->secondOfJanuary($year),
-                'Christmas Day' => $this->observedChristmasDay($year),
-                'Boxing Day' => $this->observedBoxingDay($year),
+                'Christmas Day' => $this->observedChristmasDay($date),
+                'Boxing Day' => $this->observedBoxingDay($date),
                 default => $this->weekendToNextMonday($date),
             };
 

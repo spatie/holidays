@@ -4,11 +4,11 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Spatie\Holidays\Concerns\Observable;
+use Spatie\Holidays\Concerns\HasObservedHolidays;
 
 class Jamaica extends Country
 {
-    use Observable;
+    use HasObservedHolidays;
 
     public function countryCode(): string
     {

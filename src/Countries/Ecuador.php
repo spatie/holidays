@@ -4,13 +4,13 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Spatie\Holidays\Concerns\Observable;
+use Spatie\Holidays\Concerns\HasObservedHolidays;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
 
 class Ecuador extends Country implements HasTranslations
 {
-    use Observable;
+    use HasObservedHolidays;
     use Translatable;
 
     public function countryCode(): string

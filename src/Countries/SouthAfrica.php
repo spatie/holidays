@@ -3,11 +3,11 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Observable;
+use Spatie\Holidays\Concerns\HasObservedHolidays;
 
 class SouthAfrica extends Country
 {
-    use Observable;
+    use HasObservedHolidays;
 
     public function countryCode(): string
     {
