@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
+
 class Syria extends Country implements Islamic
 {
     use IslamicCalendar;
