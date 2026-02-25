@@ -4,6 +4,13 @@
         "date": "2024-01-01"
     },
     {
+<<<<<<< Updated upstream
+=======
+        "name": "Heilige Drei K\u00f6nige",
+        "date": "2024-01-06"
+    },
+    {
+>>>>>>> Stashed changes
         "name": "Karfreitag",
         "date": "2024-03-29"
     },
@@ -24,10 +31,13 @@
         "date": "2024-05-20"
     },
     {
+<<<<<<< Updated upstream
         "name": "Weltkindertag",
         "date": "2024-09-20"
     },
     {
+=======
+>>>>>>> Stashed changes
         "name": "Tag der deutschen Einheit",
         "date": "2024-10-03"
     },
