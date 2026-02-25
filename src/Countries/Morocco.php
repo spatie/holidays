@@ -66,7 +66,7 @@ class Morocco extends Country
                 $vlideYear = $GregorianDate['year'];
 
                 if ($vlideYear < 1976) {
-                    throw InvalidYear::yearTooLow(1976);
+                    throw InvalidYear::range($this->countryCode(), 1976, $year);
                 }
             }
 

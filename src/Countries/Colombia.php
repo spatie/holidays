@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
 
 class Colombia extends Country
 {
@@ -24,7 +23,7 @@ class Colombia extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -46,7 +45,7 @@ class Colombia extends Country
         ];
     }
 
-    private function emilianiHoliday(int $year, int $month, int $day): CarbonInterface
+    private function emilianiHoliday(int $year, int $month, int $day): CarbonImmutable
     {
         $dateObj = CarbonImmutable::createFromDate($year, $month, $day, 'America/Bogota')->startOfDay();
 
@@ -54,6 +53,6 @@ class Colombia extends Country
             return $dateObj;
         }
 
-        return $dateObj->next('Monday');
+        return $dateObj->next('Monday')->toImmutable();
     }
 }

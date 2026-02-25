@@ -24,7 +24,7 @@ class Sweden extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -32,13 +32,13 @@ class Sweden extends Country
         $midsummerDay = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-06-20")->startOfDay();
 
         if (! $midsummerDay->isSaturday()) {
-            $midsummerDay = $midsummerDay->next(CarbonInterface::SATURDAY);
+            $midsummerDay = $midsummerDay->next(CarbonInterface::SATURDAY)->toImmutable();
         }
 
         $halloween = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-10-31")->startOfDay();
 
         if (! $halloween->isSaturday()) {
-            $halloween = $halloween->next(CarbonInterface::SATURDAY);
+            $halloween = $halloween->next(CarbonInterface::SATURDAY)->toImmutable();
         }
 
         return [

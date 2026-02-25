@@ -25,13 +25,7 @@ parameters:
 			path: src/Countries/Albania.php
 
 		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Albania\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Albania.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Albania\:\:islamicHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
+			message: '#^Method Spatie\\Holidays\\Countries\\Albania\:\:islamicHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
 			identifier: return.type
 			count: 1
 			path: src/Countries/Albania.php
@@ -67,12 +61,6 @@ parameters:
 			path: src/Countries/Albania.php
 
 		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Bahrain\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Bahrain.php
-
-		-
 			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Bahrain\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
 			identifier: argument.type
 			count: 1
@@ -91,20 +79,14 @@ parameters:
 			path: src/Countries/Benin.php
 
 		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Canada\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Canada.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Colombia\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Colombia.php
-
-		-
 			message: '#^Argument of an invalid type Carbon\\CarbonPeriod supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
+			count: 1
+			path: src/Countries/Country.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
 			count: 1
 			path: src/Countries/Country.php
 
@@ -113,18 +95,6 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: src/Countries/Czechia.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Ecuador\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Ecuador.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Egypt\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\|Carbon\\CarbonPeriod\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Egypt.php
 
 		-
 			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Egypt\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
@@ -137,24 +107,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/Countries/Egypt.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Finland\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Finland.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Ghana\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Ghana.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Iceland\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Iceland.php
 
 		-
 			message: '#^Method Spatie\\Holidays\\Countries\\India\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
@@ -173,18 +125,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/Countries/India.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Jamaica\:\:fixedHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Jamaica.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Latvia\:\:observedHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Latvia.php
 
 		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Malaysia\:\:arafat\.$#'
@@ -247,12 +187,6 @@ parameters:
 			path: src/Countries/Malaysia.php
 
 		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Maldives\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Maldives.php
-
-		-
 			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Maldives\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
 			identifier: argument.type
 			count: 1
@@ -271,28 +205,10 @@ parameters:
 			path: src/Countries/Morocco.php
 
 		-
-			message: '#^Method Spatie\\Holidays\\Countries\\NewZealand\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/NewZealand.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\SouthAfrica\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/SouthAfrica.php
-
-		-
 			message: '#^Method Spatie\\Holidays\\Countries\\Spain\:\:regionHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns mixed\.$#'
 			identifier: return.type
 			count: 1
 			path: src/Countries/Spain.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Sweden\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Sweden.php
 
 		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Syria\:\:arafat\.$#'
@@ -303,12 +219,6 @@ parameters:
 		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Syria\:\:ashura\.$#'
 			identifier: classConstant.notFound
-			count: 1
-			path: src/Countries/Syria.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Syria\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
-			identifier: return.type
 			count: 1
 			path: src/Countries/Syria.php
 
@@ -335,12 +245,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/Countries/Syria.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Tunisia\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Tunisia.php
 
 		-
 			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Tunisia\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
@@ -375,12 +279,6 @@ parameters:
 		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Turkey\:\:prophetMuhammadBirthday\.$#'
 			identifier: classConstant.notFound
-			count: 1
-			path: src/Countries/Turkey.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Turkey\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
-			identifier: return.type
 			count: 1
 			path: src/Countries/Turkey.php
 

@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
 use Spatie\Holidays\Concerns\HasObservedHolidays;
 
 class Jamaica extends Country
@@ -62,16 +61,16 @@ class Jamaica extends Country
         ];
     }
 
-    protected function observed(string $name, CarbonImmutable $date, int $year): ?CarbonInterface
+    protected function observed(string $name, CarbonImmutable $date, int $year): ?CarbonImmutable
     {
         $holiday = $date;
 
         if ($name === 'Labour Day' && $holiday->isSaturday()) {
-            return $holiday->next('monday');
+            return $holiday->next('monday')->toImmutable();
         }
 
         if ($name === 'Boxing Day' && $holiday->isMonday()) {
-            return $holiday->next('tuesday');
+            return $holiday->next('tuesday')->toImmutable();
         }
 
         return null;

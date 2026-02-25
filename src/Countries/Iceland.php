@@ -37,7 +37,7 @@ class Iceland extends Country
         ];
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -45,7 +45,7 @@ class Iceland extends Country
         // First Day of Summer: Thursday between 19 and 25 April
         $firstDayOfSummer = CarbonImmutable::createFromDate($year, 4, 19)->next(
             CarbonInterface::THURSDAY,
-        );
+        )->toImmutable();
 
         if ($firstDayOfSummer->day > 25) {
             $firstDayOfSummer = $firstDayOfSummer->subWeek();
@@ -54,7 +54,7 @@ class Iceland extends Country
         // Commerce Day: First Monday in August
         $commerceDay = CarbonImmutable::createFromDate($year, 8, 1);
         if ($commerceDay->dayOfWeek !== CarbonInterface::MONDAY) {
-            $commerceDay = $commerceDay->next(CarbonInterface::MONDAY);
+            $commerceDay = $commerceDay->next(CarbonInterface::MONDAY)->toImmutable();
         }
 
         return [

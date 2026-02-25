@@ -107,7 +107,7 @@ use Spatie\Holidays\Countries\Zambia;
 final class CountryRegistry
 {
     /** @var array<string, class-string<Country>> */
-    private const MAP = [
+    private const array MAP = [
         'al' => Albania::class,
         'ad' => Andorra::class,
         'ao' => Angola::class,

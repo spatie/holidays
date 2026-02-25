@@ -27,7 +27,7 @@ class Ecuador extends Country
         ], $this->variableHolidays($year));
     }
 
-    public function nearestDay(int $year, int $month, int $day): CarbonInterface
+    public function nearestDay(int $year, int $month, int $day): CarbonImmutable
     {
         $date = CarbonImmutable::createFromDate($year, $month, $day);
 
@@ -40,13 +40,13 @@ class Ecuador extends Country
         }
 
         if ($date->is('Wednesday') || $date->is('Thursday')) {
-            return $date->next(CarbonInterface::FRIDAY);
+            return $date->next(CarbonInterface::FRIDAY)->toImmutable();
         }
 
         return $date;
     }
 
-    public function getChristmasHoliday(int $year): CarbonInterface
+    public function getChristmasHoliday(int $year): CarbonImmutable
     {
         if ($year === 2022) {
             $observedChristmasDay = $this->sundayToNextMonday(CarbonImmutable::createFromDate($year, 12, 25));
@@ -59,7 +59,7 @@ class Ecuador extends Country
         return CarbonImmutable::createFromDate($year, 12, 25);
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);

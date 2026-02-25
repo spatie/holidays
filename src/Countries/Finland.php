@@ -38,13 +38,13 @@ class Finland extends Country
         ];
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         $midsummerDay = CarbonImmutable::createFromDate($year, 6, 20)
-            ->next(CarbonInterface::SATURDAY);
+            ->next(CarbonInterface::SATURDAY)->toImmutable();
 
         return [
             'Pitkäperjantai' => $easter->subDays(2),
@@ -56,7 +56,7 @@ class Finland extends Country
                 ? $midsummerDay->subWeek()
                 : $midsummerDay,
             'Pyhäinpäivä' => CarbonImmutable::createFromDate($year, 10, 31)
-                ->next(CarbonInterface::SATURDAY),
+                ->next(CarbonInterface::SATURDAY)->toImmutable(),
         ];
     }
 }

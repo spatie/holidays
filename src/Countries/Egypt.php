@@ -255,7 +255,7 @@ class Egypt extends Country implements Islamic
         );
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $orthodoxEaster = $this->orthodoxEaster($year);
@@ -268,7 +268,7 @@ class Egypt extends Country implements Islamic
     }
 
     /**
-     * @return array<string, CarbonInterface>
+     * @return array<string, CarbonImmutable>
      */
     private function fixedHolidays(int $year): array
     {
@@ -299,7 +299,7 @@ class Egypt extends Country implements Islamic
          * @see https://www.timeanddate.com/holidays/egypt
          */
         if ($year < 2005) {
-            throw InvalidYear::yearTooLow(2005);
+            throw InvalidYear::range($this->countryCode(), 2005, 2037);
         }
 
         $eidAlFitr = $this->eidAlFitr($year);
@@ -318,18 +318,18 @@ class Egypt extends Country implements Islamic
         );
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     private function adjustForWeekend(string $name, CarbonImmutable $date): array
     {
         $adjustedHolidays = [];
 
         // Explicitly define this logic to avoid timezone confusion on the CarbonInterface::next() method
         if ($date->isFriday() || $date->isSaturday()) {
-            $adjustedHolidays["Day off for {$name}"] = $date->next(CarbonInterface::SUNDAY);
+            $adjustedHolidays["Day off for {$name}"] = $date->next(CarbonInterface::SUNDAY)->toImmutable();
         } elseif ($date->isSunday() || $date->isThursday()) {
             $adjustedHolidays[$name] = $date;
         } else {
-            $adjustedHolidays["Day off for {$name}"] = $date->next(CarbonInterface::THURSDAY);
+            $adjustedHolidays["Day off for {$name}"] = $date->next(CarbonInterface::THURSDAY)->toImmutable();
         }
 
         return $adjustedHolidays;

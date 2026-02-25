@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
 
 class Canada extends Country
 {
@@ -26,14 +25,14 @@ class Canada extends Country
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string|CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         // the Monday preceding May 25
         $victoriaDay = CarbonImmutable::createFromDate($year, 5, 25)
-            ->previous('Monday');
+            ->previous('Monday')->toImmutable();
 
         return [
             'Victoria Day' => $victoriaDay,

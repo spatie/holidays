@@ -23,7 +23,7 @@ class Ghana extends Country
         );
     }
 
-    /** @return array<string, string|CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function observedHolidays(int $year): array
     {
         $holidays = [
@@ -51,18 +51,18 @@ class Ghana extends Country
         return $holidays;
     }
 
-    protected function observed(string $date, int $year): CarbonInterface
+    protected function observed(string $date, int $year): CarbonImmutable
     {
         $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
 
         if ($holiday->isWeekend()) {
-            return $holiday->next('monday');
+            return $holiday->next('monday')->toImmutable();
         }
 
         return $holiday;
     }
 
-    /** @return array<string, string|CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -77,7 +77,7 @@ class Ghana extends Country
         ];
     }
 
-    protected function dayToNextFridayOrMonday(string|CarbonInterface $date, int $year): ?CarbonInterface
+    protected function dayToNextFridayOrMonday(string|CarbonInterface $date, int $year): ?CarbonImmutable
     {
         $christmasDay = new CarbonImmutable("{$year}-12-25")->startOfDay();
         $boxingDay = new CarbonImmutable("{$year}-12-26")->startOfDay();
@@ -88,15 +88,15 @@ class Ghana extends Country
         }
 
         if ($date->isSameDay($christmasDay) || $date->isSameDay($boxingDay) || $date->isSameDay($newYearDay)) {
-            return $date;
+            return $date->toImmutable();
         }
 
         if ($date->isWeekend()) {
-            return $date->next('monday');
+            return $date->next('monday')->toImmutable();
         }
 
         if ($date->isWeekday() && ! $date->isFriday()) {
-            return $date->next('friday');
+            return $date->next('friday')->toImmutable();
         }
 
         return null;

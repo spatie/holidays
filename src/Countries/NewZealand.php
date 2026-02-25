@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
 use Spatie\Holidays\Concerns\HasObservedHolidays;
 
 class NewZealand extends Country
@@ -23,7 +22,7 @@ class NewZealand extends Country
         );
     }
 
-    /** @return array<string, string|CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function observedHolidays(int $year): array
     {
         // https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
@@ -54,7 +53,7 @@ class NewZealand extends Country
         return $holidays;
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         // Easter
@@ -85,14 +84,14 @@ class NewZealand extends Country
         return $holidays;
     }
 
-    protected function secondOfJanuary(int $year): ?CarbonInterface
+    protected function secondOfJanuary(int $year): ?CarbonImmutable
     {
         $newYearsDay = new CarbonImmutable("{$year}-01-01")->startOfDay();
         $secondOfJanuary = $newYearsDay->addDay();
 
         return match ($newYearsDay->dayName) {
-            'Friday' => $secondOfJanuary->next('monday'),
-            'Saturday', 'Sunday' => $secondOfJanuary->next('tuesday'),
+            'Friday' => $secondOfJanuary->next('monday')->toImmutable(),
+            'Saturday', 'Sunday' => $secondOfJanuary->next('tuesday')->toImmutable(),
             default => null,
         };
     }
