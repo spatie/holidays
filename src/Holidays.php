@@ -36,14 +36,9 @@ class Holidays
     }
 
     /** @return array<Holiday> */
-    public function get(Country|string|null $country = null, ?int $year = null): array
+    public function get(): array
     {
-        $country ??= $this->country;
-        $year ??= $this->year;
-
-        return static::for($country, $year, $this->locale)
-            ->calculate()
-            ->holidays;
+        return $this->calculate()->holidays;
     }
 
     /**
@@ -96,15 +91,13 @@ class Holidays
         return $holidays;
     }
 
-    public function isHoliday(CarbonInterface|string $date, Country|string|null $country = null): bool
+    public function isHoliday(CarbonInterface|string $date): bool
     {
         if (! $date instanceof CarbonImmutable) {
             $date = CarbonImmutable::parse($date);
         }
 
-        $country ??= $this->country;
-
-        $holidays = static::for($country, $date->year)
+        $holidays = static::for($this->country, $date->year, $this->locale)
             ->calculate()
             ->holidays;
 
@@ -113,15 +106,13 @@ class Holidays
         return array_any($holidays, fn (Holiday $holiday): bool => $holiday->date->format('Y-m-d') === $formattedDate);
     }
 
-    public function getName(CarbonInterface|string $date, Country|string|null $country = null): ?string
+    public function getName(CarbonInterface|string $date): ?string
     {
         if (! $date instanceof CarbonImmutable) {
             $date = CarbonImmutable::parse($date);
         }
 
-        $country ??= $this->country;
-
-        $holidays = static::for($country, $date->year)
+        $holidays = static::for($this->country, $date->year, $this->locale)
             ->calculate()
             ->holidays;
 
