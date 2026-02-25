@@ -93,6 +93,7 @@ These are internal changes that don't require any action on your part.
 - **Translation system simplified** — the `HasTranslations` interface and `Translatable` trait have been removed. Translations are now built into the `Country` base class. The `defaultLocale()` method is now `protected`.
 - **Translation file paths changed** — translation files moved from `lang/{hyphenated-class-name}/` to `lang/{countryCode}/` (e.g. `lang/germany/` became `lang/de/`).
 - **`Observable` trait renamed to `HasObservedHolidays`** — its methods now only accept `CarbonInterface` dates instead of strings and `$year` parameters.
+- **`Islamic` interface tightened** — `islamicHolidays()` return type changed from `array<string, string|CarbonImmutable|CarbonPeriod>` to `array<string, CarbonImmutable>`.
 - **Calendar lookup constants** on countries like Albania, Turkey, and India are now `protected const` instead of `public const`.
 - **`supportedYearRange()`** — countries with calendar lookup tables now declare their supported year range explicitly.
 - **Performance** — country discovery now uses a static `CountryRegistry` map instead of filesystem scanning (`glob()`), and date parsing no longer runs regex/string-matching on every holiday.
