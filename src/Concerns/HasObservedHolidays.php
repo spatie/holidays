@@ -2,10 +2,9 @@
 
 namespace Spatie\Holidays\Concerns;
 
-use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 
-trait Observable
+trait HasObservedHolidays
 {
     protected function weekendToNextMonday(CarbonInterface $date): ?CarbonInterface
     {
@@ -25,10 +24,8 @@ trait Observable
         return null;
     }
 
-    protected function observedChristmasDay(int $year): ?CarbonInterface
+    protected function observedChristmasDay(CarbonInterface $christmasDay): ?CarbonInterface
     {
-        $christmasDay = new CarbonImmutable($year.'-12-25')->startOfDay();
-
         return match ($christmasDay->dayName) {
             'Saturday' => $christmasDay->next('monday'),
             'Sunday' => $christmasDay->next('tuesday'),
@@ -36,10 +33,8 @@ trait Observable
         };
     }
 
-    protected function observedBoxingDay(int $year): ?CarbonInterface
+    protected function observedBoxingDay(CarbonInterface $boxingDay): ?CarbonInterface
     {
-        $boxingDay = new CarbonImmutable($year.'-12-26')->startOfDay();
-
         return match ($boxingDay->dayName) {
             'Saturday' => $boxingDay->next('monday'),
             'Sunday' => $boxingDay->next('tuesday'),

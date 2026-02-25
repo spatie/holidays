@@ -4,11 +4,11 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Spatie\Holidays\Concerns\Observable;
+use Spatie\Holidays\Concerns\HasObservedHolidays;
 
 class Wales extends Country
 {
-    use Observable;
+    use HasObservedHolidays;
 
     public function countryCode(): string
     {
@@ -37,8 +37,8 @@ class Wales extends Country
 
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
-                'Christmas Day' => $this->observedChristmasDay($year),
-                'Boxing Day' => $this->observedBoxingDay($year),
+                'Christmas Day' => $this->observedChristmasDay($date),
+                'Boxing Day' => $this->observedBoxingDay($date),
                 default => $this->weekendToNextMonday($date),
             };
 

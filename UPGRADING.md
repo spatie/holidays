@@ -111,6 +111,32 @@ $this->sundayToNextMonday(CarbonImmutable::createFromDate($year, 12, 25));
 
 The calendar date lookup arrays on `Albania`, `Turkey`, and `India` (e.g. `eidAlFitr`, `eidAlAdha`, `holiHolidays`, etc.) have been changed from `public const` to `protected const`. If you were referencing these constants externally, use the country's public holiday API instead.
 
+## `Observable` trait renamed to `HasObservedHolidays`
+
+The `Observable` trait has been renamed to `HasObservedHolidays`:
+
+```php
+// v1
+use Spatie\Holidays\Concerns\Observable;
+use Observable;
+
+// v2
+use Spatie\Holidays\Concerns\HasObservedHolidays;
+use HasObservedHolidays;
+```
+
+The `observedChristmasDay()` and `observedBoxingDay()` methods now accept a `CarbonInterface` date instead of `int $year`:
+
+```php
+// v1
+$this->observedChristmasDay($year);
+$this->observedBoxingDay($year);
+
+// v2
+$this->observedChristmasDay($christmasDate);
+$this->observedBoxingDay($boxingDayDate);
+```
+
 ## Translation system: `HasTranslations` and `Translatable` removed
 
 In v1, countries opted into translation support by implementing `HasTranslations` and using the `Translatable` trait:
