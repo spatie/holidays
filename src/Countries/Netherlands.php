@@ -10,10 +10,6 @@ class Netherlands extends Country implements HasTranslations
 {
     use Translatable;
 
-    protected function __construct(
-        protected ?string $region = null,
-    ) {}
-
     public function countryCode(): string
     {
         return 'nl';

@@ -19,12 +19,12 @@ class Holidays
         protected ?CarbonImmutable $to = null,
     ) {}
 
-    public static function for(Country|string $country, ?int $year = null, ?string $locale = null): static
+    public static function for(Country|string $country, ?int $year = null, ?string $locale = null, ?string $region = null): static
     {
         $year ??= CarbonImmutable::now()->year;
 
         if (is_string($country)) {
-            $country = Country::findOrFail($country);
+            $country = Country::findOrFail($country, $region);
         }
 
         return new static($country, $year, $locale);

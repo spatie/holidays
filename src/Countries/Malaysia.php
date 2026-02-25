@@ -5,17 +5,17 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\ChineseCalendar;
 use Spatie\Holidays\Calendars\IslamicCalendar;
+use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 
-class Malaysia extends Country
+class Malaysia extends Country implements HasRegions
 {
     use ChineseCalendar;
     use IslamicCalendar;
 
     protected string $timezone = 'Asia/Kuala_Lumpur';
 
-    /** @var array<int, string> */
-    protected array $regions = [
+    protected const array REGIONS = [
         'jhr',
         'kdh',
         'ktn',
@@ -52,9 +52,22 @@ class Malaysia extends Country
         2024 => '11-01', 2025 => '10-20', 2026 => '11-08',
     ];
 
-    protected function __construct(
-        protected ?string $region = null,
-    ) {}
+    protected function __construct(protected ?string $region = null)
+    {
+        if ($region !== null && ! in_array($region, static::regions())) {
+            throw InvalidRegion::notFound($region);
+        }
+    }
+
+    public static function regions(): array
+    {
+        return self::REGIONS;
+    }
+
+    public function region(): ?string
+    {
+        return $this->region;
+    }
 
     public function countryCode(): string
     {
@@ -101,16 +114,7 @@ class Malaysia extends Country
      */
     protected function regionHolidays(int $year): array
     {
-        if ($this->region && ! $this->validRegion($this->region)) {
-            throw InvalidRegion::notFound($this->region);
-        }
-
         return $this->holidaysByRegion($year);
-    }
-
-    protected function validRegion(string $region): bool
-    {
-        return in_array($region, $this->regions);
     }
 
     /**

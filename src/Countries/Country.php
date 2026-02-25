@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Carbon\CarbonPeriod;
+use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\CountryRegistry;
 use Spatie\Holidays\Exceptions\InvalidCountry;
@@ -101,7 +102,7 @@ abstract class Country
         return $easter->addDays(easter_days($year, CAL_EASTER_ALWAYS_JULIAN));
     }
 
-    public static function find(string $countryCode): ?Country
+    public static function find(string $countryCode, ?string $region = null): ?Country
     {
         $class = CountryRegistry::find($countryCode);
 
@@ -109,12 +110,16 @@ abstract class Country
             return null;
         }
 
+        if ($region !== null && is_a($class, HasRegions::class, true)) {
+            return new $class($region);
+        }
+
         return new $class;
     }
 
-    public static function findOrFail(string $countryCode): Country
+    public static function findOrFail(string $countryCode, ?string $region = null): Country
     {
-        $country = self::find($countryCode);
+        $country = self::find($countryCode, $region);
 
         if (! $country) {
             throw InvalidCountry::notFound($countryCode);
