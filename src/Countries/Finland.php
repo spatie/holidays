@@ -24,21 +24,21 @@ class Finland extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge(
-            $this->fixedHolidays(),
+            $this->fixedHolidays($year),
             $this->variableHolidays($year)
         );
     }
 
-    /** @return array<string, string> */
-    protected function fixedHolidays(): array
+    /** @return array<string, CarbonImmutable> */
+    protected function fixedHolidays(int $year): array
     {
         return [
-            'Uudenvuodenpäivä' => '01-01',
-            'Loppiainen' => '01-06',
-            'Vappu' => '05-01',
-            'Itsenäisyyspäivä' => '12-06',
-            'Joulupäivä' => '12-25',
-            'Tapaninpäivä' => '12-26',
+            'Uudenvuodenpäivä' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Loppiainen' => CarbonImmutable::createFromDate($year, 1, 6),
+            'Vappu' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Itsenäisyyspäivä' => CarbonImmutable::createFromDate($year, 12, 6),
+            'Joulupäivä' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Tapaninpäivä' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
     }
 

@@ -14,15 +14,15 @@ class Austria extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Neujahr' => '01-01',
-            'Heilige Drei Könige' => '01-06',
-            'Staatsfeiertag' => '05-01',
-            'Mariä Himmelfahrt' => '08-15',
-            'Nationalfeiertag' => '10-26',
-            'Allerheiligen' => '11-01',
-            'Mariä Empfängnis' => '12-08',
-            'Christtag' => '12-25',
-            'Stefanitag' => '12-26',
+            'Neujahr' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Heilige Drei Könige' => CarbonImmutable::createFromDate($year, 1, 6),
+            'Staatsfeiertag' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Mariä Himmelfahrt' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Nationalfeiertag' => CarbonImmutable::createFromDate($year, 10, 26),
+            'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Mariä Empfängnis' => CarbonImmutable::createFromDate($year, 12, 8),
+            'Christtag' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Stefanitag' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

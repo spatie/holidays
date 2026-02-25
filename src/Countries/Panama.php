@@ -3,7 +3,6 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Carbon\Exceptions\InvalidFormatException;
 
 class Panama extends Country
 {
@@ -18,23 +17,23 @@ class Panama extends Country
     protected function allHolidays(int $year): array
     {
         $fixedHolidays = [
-            'Año Nuevo' => '01-01',
-            'Día de los Mártires' => '01-09',
-            'Día del Trabajador' => '05-01',
-            'Separación de Panamá de Colombia' => '11-03',
-            'Día de los Símbolos Patrios' => '11-04',
-            'Día de Consolidación de la Separación de Panamá con Colombia en Colón' => '11-05',
-            'Grito de la Independencia' => '11-10',
-            'Independencia de Panamá de España' => '11-28',
-            'Día de las Madres' => '12-08',
-            'Día de los Caídos por la invasión de Estados Unidos a Panamá' => '12-20',
-            'Navidad' => '12-25',
+            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Día de los Mártires' => CarbonImmutable::createFromDate($year, 1, 9),
+            'Día del Trabajador' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Separación de Panamá de Colombia' => CarbonImmutable::createFromDate($year, 11, 3),
+            'Día de los Símbolos Patrios' => CarbonImmutable::createFromDate($year, 11, 4),
+            'Día de Consolidación de la Separación de Panamá con Colombia en Colón' => CarbonImmutable::createFromDate($year, 11, 5),
+            'Grito de la Independencia' => CarbonImmutable::createFromDate($year, 11, 10),
+            'Independencia de Panamá de España' => CarbonImmutable::createFromDate($year, 11, 28),
+            'Día de las Madres' => CarbonImmutable::createFromDate($year, 12, 8),
+            'Día de los Caídos por la invasión de Estados Unidos a Panamá' => CarbonImmutable::createFromDate($year, 12, 20),
+            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
         ];
 
         return array_merge(
             $fixedHolidays,
             $this->variableHolidays($year),
-            $this->calculateBridgeDays($fixedHolidays, $year),
+            $this->calculateBridgeDays($fixedHolidays),
         );
     }
 
@@ -70,20 +69,15 @@ class Panama extends Country
      *  established for a national celebration to coincide with a Sunday, the following Monday
      *  will be enabled as a mandatory weekly rest day"
      *
-     * @param  array<string, string>  $fixedHolidays  Array of holidays in the format ['holiday name' => 'mm-dd']
-     * @param  int  $year  The year for which to calculate the holidays
+     * @param  array<string, CarbonImmutable>  $fixedHolidays
      * @return array<string, CarbonImmutable>
      */
-    protected function calculateBridgeDays(array $fixedHolidays, int $year): array
+    protected function calculateBridgeDays(array $fixedHolidays): array
     {
         $holidays = [];
 
         foreach ($fixedHolidays as $name => $date) {
-            $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
-
-            if ($holiday === null) {
-                throw new InvalidFormatException("Invalid date format for holiday: {$name}");
-            }
+            $holiday = $date;
 
             $holidays[$name] = $holiday;
 

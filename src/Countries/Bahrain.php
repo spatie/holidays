@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
@@ -151,10 +152,10 @@ class Bahrain extends Country implements HasTranslations, Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '1-1',
-            'Labour Day' => '5-1',
-            'National Day' => '12-16',
-            'National Day 2' => '12-17',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'National Day' => CarbonImmutable::createFromDate($year, 12, 16),
+            'National Day 2' => CarbonImmutable::createFromDate($year, 12, 17),
         ],
             $this->islamicHolidays($year)
         );

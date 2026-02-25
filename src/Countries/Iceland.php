@@ -24,20 +24,20 @@ class Iceland extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge(
-            $this->fixedHolidays(),
+            $this->fixedHolidays($year),
             $this->variableHolidays($year),
         );
     }
 
-    /** @return array<string, string> */
-    protected function fixedHolidays(): array
+    /** @return array<string, CarbonImmutable> */
+    protected function fixedHolidays(int $year): array
     {
         return [
-            'Nýársdagur' => '01-01',
-            'Verkalýðsdagurinn' => '05-01',
-            'Þjóðhátíðardagurinn' => '06-17',
-            'Jóladagur' => '12-25',
-            'Annar í jólum' => '12-26',
+            'Nýársdagur' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Verkalýðsdagurinn' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Þjóðhátíðardagurinn' => CarbonImmutable::createFromDate($year, 6, 17),
+            'Jóladagur' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Annar í jólum' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
     }
 

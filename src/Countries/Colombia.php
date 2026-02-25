@@ -15,12 +15,12 @@ class Colombia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => '01-01',
-            'Día del Trabajo' => '05-01',
-            'Día de la independencia' => '07-20',
-            'Batalla de Boyacá' => '08-07',
-            'Inmaculada Concepción' => '12-08',
-            'Navidad' => '12-25',
+            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Día del Trabajo' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Día de la independencia' => CarbonImmutable::createFromDate($year, 7, 20),
+            'Batalla de Boyacá' => CarbonImmutable::createFromDate($year, 8, 7),
+            'Inmaculada Concepción' => CarbonImmutable::createFromDate($year, 12, 8),
+            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

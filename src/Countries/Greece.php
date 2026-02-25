@@ -14,14 +14,14 @@ class Greece extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Πρωτοχρονιά' => '01-01',
-            'Θεοφάνια' => '01-06',
-            '25η Μαρτίου' => '03-25',
-            'Πρωτομαγιά' => '05-01',
-            'Δεκαπενταύγουστος' => '08-15',
-            '28η Οκτωβρίου' => '10-28',
-            'Χριστούγεννα' => '12-25',
-            'Σύναξη της Θεοτόκου' => '12-26',
+            'Πρωτοχρονιά' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Θεοφάνια' => CarbonImmutable::createFromDate($year, 1, 6),
+            '25η Μαρτίου' => CarbonImmutable::createFromDate($year, 3, 25),
+            'Πρωτομαγιά' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Δεκαπενταύγουστος' => CarbonImmutable::createFromDate($year, 8, 15),
+            '28η Οκτωβρίου' => CarbonImmutable::createFromDate($year, 10, 28),
+            'Χριστούγεννα' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Σύναξη της Θεοτόκου' => CarbonImmutable::createFromDate($year, 12, 26),
 
         ], $this->variableHolidays($year));
     }

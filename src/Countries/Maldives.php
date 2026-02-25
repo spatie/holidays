@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Concerns\Translatable;
 use Spatie\Holidays\Contracts\HasTranslations;
@@ -153,14 +154,14 @@ class Maldives extends Country implements HasTranslations, Islamic
         $newHolidays = [];
 
         if ($year >= 2015) {
-            $newHolidays['National Day'] = '01-24';
+            $newHolidays['National Day'] = CarbonImmutable::createFromDate($year, 1, 24);
         }
 
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Independence Day' => '07-26',
-            'Victory Day' => '11-03',
-            'Republic Day' => '11-11',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 7, 26),
+            'Victory Day' => CarbonImmutable::createFromDate($year, 11, 3),
+            'Republic Day' => CarbonImmutable::createFromDate($year, 11, 11),
         ], $newHolidays, $this->islamicHolidays($year));
     }
 

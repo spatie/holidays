@@ -14,29 +14,29 @@ class Ireland extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            "Saint Patrick's Day" => '03-17',
-            'Christmas Day' => '12-25',
-            "Saint Stephen's Day" => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            "Saint Patrick's Day" => CarbonImmutable::createFromDate($year, 3, 17),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            "Saint Stephen's Day" => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $variableHolidays = [
             'Easter Monday' => $this->easter($year)->addDay(),
-            'May Public Holiday' => 'first monday of May',
-            'June Public Holiday' => 'first monday of June',
-            'August Public Holiday' => 'first monday of August',
-            'October Public Holiday' => 'last monday of October',
+            'May Public Holiday' => CarbonImmutable::parse('first monday of May '.$year),
+            'June Public Holiday' => CarbonImmutable::parse('first monday of June '.$year),
+            'August Public Holiday' => CarbonImmutable::parse('first monday of August '.$year),
+            'October Public Holiday' => CarbonImmutable::parse('last monday of October '.$year),
         ];
 
         if ($year >= 2023) {
             $stBrigidsDay = new CarbonImmutable("{$year}-02-01")->startOfDay();
 
             if (! $stBrigidsDay->isFriday()) {
-                $stBrigidsDay = 'first monday of February';
+                $stBrigidsDay = CarbonImmutable::parse('first monday of February '.$year);
             }
 
             $variableHolidays["St Brigid's Day"] = $stBrigidsDay;

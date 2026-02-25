@@ -23,16 +23,16 @@ class Jamaica extends Country
         );
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<string, CarbonImmutable> */
     protected function fixedHolidays(int $year): array
     {
         $holidays = [
-            "New Year's Day" => '01-01',
-            'Labour Day' => '05-23',
-            'Emancipation Day' => '08-01',
-            'Independence Day' => '08-06',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 23),
+            'Emancipation Day' => CarbonImmutable::createFromDate($year, 8, 1),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 8, 6),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
         foreach ($holidays as $name => $date) {
@@ -49,7 +49,7 @@ class Jamaica extends Country
         return $holidays;
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -58,13 +58,13 @@ class Jamaica extends Country
             'Ash Wednesday' => $easter->subDays(46),
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
-            'National Heroes Day' => 'third monday of October',
+            'National Heroes Day' => CarbonImmutable::parse('third monday of October '.$year),
         ];
     }
 
-    protected function observed(string $name, string $date, int $year): ?CarbonInterface
+    protected function observed(string $name, CarbonImmutable $date, int $year): ?CarbonInterface
     {
-        $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        $holiday = $date;
 
         if ($name === 'Labour Day' && $holiday->isSaturday()) {
             return $holiday->next('monday');

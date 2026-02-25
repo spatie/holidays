@@ -15,15 +15,15 @@ class DominicanRepublic extends Country
     protected function allHolidays(int $year): array
     {
         return [
-            'Año Nuevo' => '01-01',
-            'Día de la Altagracia' => '01-21',
-            'Día de Duarte' => '01-26',
-            'Día de la Independencia' => '02-27',
-            'Día del Trabajo' => '05-01',
-            'Día de la Restauración' => '08-16',
-            'Día de las Mercedes' => '09-24',
-            'Día de la Constitución' => '11-06',
-            'Navidad' => '12-25',
+            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Día de la Altagracia' => CarbonImmutable::createFromDate($year, 1, 21),
+            'Día de Duarte' => CarbonImmutable::createFromDate($year, 1, 26),
+            'Día de la Independencia' => CarbonImmutable::createFromDate($year, 2, 27),
+            'Día del Trabajo' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Día de la Restauración' => CarbonImmutable::createFromDate($year, 8, 16),
+            'Día de las Mercedes' => CarbonImmutable::createFromDate($year, 9, 24),
+            'Día de la Constitución' => CarbonImmutable::createFromDate($year, 11, 6),
+            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
         ];
     }
 }

@@ -17,11 +17,11 @@ class Indonesia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Tahun Baru' => '01-01',
-            'Hari Buruh Internasional' => '05-01',
-            'Hari Lahir Pancasila' => '06-01',
-            'Hari Kemerdekaan' => '08-17',
-            'Hari Raya Natal' => '12-25',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Hari Buruh Internasional' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Hari Lahir Pancasila' => CarbonImmutable::createFromDate($year, 6, 1),
+            'Hari Kemerdekaan' => CarbonImmutable::createFromDate($year, 8, 17),
+            'Hari Raya Natal' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

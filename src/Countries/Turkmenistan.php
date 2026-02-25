@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use DateTime;
 use DateTimeZone;
 use IntlDateFormatter;
@@ -18,18 +19,18 @@ class Turkmenistan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Täze ýyl' => '01-01',
-            'Halkara zenanlar güni' => '03-08',
-            'Milli bahar baýramy 1-nji güni' => '03-21',
-            'Milli bahar baýramy 2-nji güni' => '03-22',
-            'Türkmenistanyň Konstitusiýasynyň we Türkmenistanyň Döwlet baýdagynyň güni' => '05-18',
-            'Türkmenistanyň Garaşsyzlyk güni' => '09-27',
-            'Hatyra güni' => '10-06',
-            'Halkara Bitaraplyk güni' => '12-12',
+            'Täze ýyl' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Halkara zenanlar güni' => CarbonImmutable::createFromDate($year, 3, 8),
+            'Milli bahar baýramy 1-nji güni' => CarbonImmutable::createFromDate($year, 3, 21),
+            'Milli bahar baýramy 2-nji güni' => CarbonImmutable::createFromDate($year, 3, 22),
+            'Türkmenistanyň Konstitusiýasynyň we Türkmenistanyň Döwlet baýdagynyň güni' => CarbonImmutable::createFromDate($year, 5, 18),
+            'Türkmenistanyň Garaşsyzlyk güni' => CarbonImmutable::createFromDate($year, 9, 27),
+            'Hatyra güni' => CarbonImmutable::createFromDate($year, 10, 6),
+            'Halkara Bitaraplyk güni' => CarbonImmutable::createFromDate($year, 12, 12),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         return [
@@ -40,7 +41,7 @@ class Turkmenistan extends Country
         ];
     }
 
-    protected function islamicCalendar(string $input, int $year, bool $nextYear = false): string
+    protected function islamicCalendar(string $input, int $year, bool $nextYear = false): CarbonImmutable
     {
         $hijriYear = $this->getHijriYear(year: $year, nextYear: $nextYear);
         $formatter = $this->getIslamicFormatter();
@@ -48,7 +49,7 @@ class Turkmenistan extends Country
         $timeStamp = $formatter->parse($input.'/'.$hijriYear.' AH');
         $dateTime = date_create()->setTimeStamp($timeStamp)->setTimezone(new DateTimeZone($this->timezone));
 
-        return $dateTime->format('m-d');
+        return new CarbonImmutable($dateTime->format('Y-m-d'));
     }
 
     protected function getIslamicFormatter(): IntlDateFormatter

@@ -14,14 +14,14 @@ class Luxembourg extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Neijoerschdag' => '01-01',
-            'Dag vun der Aarbecht' => '05-01',
-            'Europadag' => '05-09',
-            'Nationalfeierdag' => '06-23',
-            'Mariä Himmelfahrt' => '08-15',
-            'Allerhellgen' => '11-01',
-            'Chrëschtdag' => '12-25',
-            'Stiefesdag' => '12-26',
+            'Neijoerschdag' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Dag vun der Aarbecht' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Europadag' => CarbonImmutable::createFromDate($year, 5, 9),
+            'Nationalfeierdag' => CarbonImmutable::createFromDate($year, 6, 23),
+            'Mariä Himmelfahrt' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Allerhellgen' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Chrëschtdag' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Stiefesdag' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

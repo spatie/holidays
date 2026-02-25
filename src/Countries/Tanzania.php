@@ -14,16 +14,16 @@ class Tanzania extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Labor Day' => '05-01',
-            'Saba Saba Day' => '07-07',
-            'Farmers Day (Nane Nane Day)' => '08-08',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Labor Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Saba Saba Day' => CarbonImmutable::createFromDate($year, 7, 7),
+            'Farmers Day (Nane Nane Day)' => CarbonImmutable::createFromDate($year, 8, 8),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -35,27 +35,27 @@ class Tanzania extends Country
 
         // Zanzibar Revolutionary Day celebrations started in 1964
         if ($year >= 1964) {
-            $variable_holidays['Zanzibar Revolutionary Day'] = '01-12';
+            $variable_holidays['Zanzibar Revolutionary Day'] = CarbonImmutable::createFromDate($year, 1, 12);
         }
 
         // Karume Day celebrations started in 1973
         if ($year >= 1973) {
-            $variable_holidays['Karume Day'] = '04-07';
+            $variable_holidays['Karume Day'] = CarbonImmutable::createFromDate($year, 4, 7);
         }
 
         //  'Union Day celebrations started in 1964
         if ($year >= 1964) {
-            $variable_holidays['Union Day'] = '04-26';
+            $variable_holidays['Union Day'] = CarbonImmutable::createFromDate($year, 4, 26);
         }
 
         // Nyerere Day day celebrations started in 2000
         if ($year >= 2000) {
-            $variable_holidays['Nyerere Day'] = '10-14';
+            $variable_holidays['Nyerere Day'] = CarbonImmutable::createFromDate($year, 10, 14);
         }
 
         // Independence Day celebrations started in 1961
         if ($year >= 1961) {
-            $variable_holidays['Independence Day'] = '12-09';
+            $variable_holidays['Independence Day'] = CarbonImmutable::createFromDate($year, 12, 9);
         }
 
         return $variable_holidays;

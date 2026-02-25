@@ -64,15 +64,15 @@ class Malaysia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Hari Pekerja' => '05-01',
-            'Hari Kebangsaan' => '08-31',
-            'Hari Malaysia' => '09-16',
-            'Hari Krismas' => '12-25',
+            'Hari Pekerja' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Hari Kebangsaan' => CarbonImmutable::createFromDate($year, 8, 31),
+            'Hari Malaysia' => CarbonImmutable::createFromDate($year, 9, 16),
+            'Hari Krismas' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year), $this->regionHolidays($year));
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function variableHolidays(int $year): array
     {
@@ -97,7 +97,7 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionHolidays(int $year): array
     {
@@ -116,7 +116,7 @@ class Malaysia extends Country
     /**
      * return holiday by region, if not set return all
      *
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function holidaysByRegion(int $year): array
     {
@@ -159,12 +159,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionJohor(int $year): array
     {
         $johorHolidays = array_filter([
-            'Hari Keputeraan Sultan Johor' => '03-23',
+            'Hari Keputeraan Sultan Johor' => CarbonImmutable::createFromDate($year, 3, 23),
             'Hari Thaipusam' => $this->hariThaipusam($year),
             'Awal Ramadan' => $this->islamicToGregorianDate('09-01', $year),
             'Hari Deepavali' => $this->hariDeepavali($year),
@@ -189,7 +189,7 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionKedah(int $year): array
     {
@@ -204,7 +204,7 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionKelantan(int $year): array
     {
@@ -240,12 +240,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionKualaLumpur(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Hari Thaipusam' => $this->hariThaipusam($year),
             'Hari Wilayah Persekutuan' => $this->hariWilayah($year),
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
@@ -254,12 +254,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionLabuan(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Hari Wilayah Persekutuan' => $this->hariWilayah($year),
             'Pesta Kaamatan' => $this->pestaKaamatan($year),
             'Pesta Kaamatan Hari Kedua' => $this->pestaKaamatan($year)->addDay(),
@@ -269,12 +269,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionMelaka(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Awal Ramadan' => $this->islamicToGregorianDate('09-01', $year),
             'Hari Perisytiharan Melaka Sebagai Bandaraya Bersejarah' => CarbonImmutable::createFromDate($year, 4, 15),
             'Harijadi Yang di-Pertua Negeri Melaka' => CarbonImmutable::createFromDate($year, 8, 24),
@@ -283,12 +283,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionNegeri9(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Hari Thaipusam' => $this->hariThaipusam($year),
             'Israk dan Mikraj' => $this->islamicToGregorianDate('07-27', $year),
             'Hari Keputeraan Yang Di-Pertuan Besar Negeri Sembilan' => CarbonImmutable::createFromDate($year, 1, 14),
@@ -297,12 +297,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionPahang(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
             'Hari Hol Pahang' => CarbonImmutable::createFromDate($year, 5, 22),
             'Hari Keputeraan Sultan Pahang' => CarbonImmutable::createFromDate($year, 7, 30),
@@ -311,12 +311,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionPenang(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Hari Thaipusam' => $this->hariThaipusam($year),
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
             'Hari Bandar Warisan Dunia Georgetown' => CarbonImmutable::createFromDate($year, 7, 7),
@@ -326,12 +326,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionPerak(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Hari Thaipusam' => $this->hariThaipusam($year),
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
             'Hari Keputeraan Sultan Perak' => CarbonImmutable::parse("first friday of november {$year}"),
@@ -340,7 +340,7 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionPerlis(int $year): array
     {
@@ -354,12 +354,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionPutrajaya(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Hari Thaipusam' => $this->hariThaipusam($year),
             'Hari Wilayah Persekutuan' => $this->hariWilayah($year),
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
@@ -368,12 +368,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionSabah(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Pesta Kaamatan' => $this->pestaKaamatan($year),
             'Pesta Kaamatan Hari Kedua' => $this->pestaKaamatan($year)->addDays(1),
             'Good Friday' => $this->goodFriday($year),
@@ -384,12 +384,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionSarawak(int $year): array
     {
         return [
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Hari Sarawak' => CarbonImmutable::createFromDate($year, 7, 22),
             'Hari Gawai' => CarbonImmutable::createFromDate($year, 6, 1),
             'Hari Gawai Kedua' => CarbonImmutable::createFromDate($year, 6, 2),
@@ -399,12 +399,12 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionSelangor(int $year): array
     {
         return array_filter([
-            'Tahun Baru' => '01-01',
+            'Tahun Baru' => CarbonImmutable::createFromDate($year, 1, 1),
             'Hari Thaipusam' => $this->hariThaipusam($year),
             'Hari Nurul Al-Quran' => $this->islamicToGregorianDate('09-17', $year),
             'Hari Deepavali' => $this->hariDeepavali($year),
@@ -413,7 +413,7 @@ class Malaysia extends Country
     }
 
     /**
-     * @return array<string, CarbonImmutable|string>
+     * @return array<string, CarbonImmutable>
      */
     protected function regionTerengganu(int $year): array
     {

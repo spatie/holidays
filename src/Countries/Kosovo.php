@@ -14,15 +14,15 @@ class Kosovo extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Viti i Ri' => '01-01',
-            'Krishtlindjet ortodokse' => '01-07',
-            'Dita Ndërkombëtare e Punës' => '05-01',
-            'Dita e Evropës' => '05-09',
-            'Krishtlindjet Katolike' => '12-25',
+            'Viti i Ri' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Krishtlindjet ortodokse' => CarbonImmutable::createFromDate($year, 1, 7),
+            'Dita Ndërkombëtare e Punës' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Dita e Evropës' => CarbonImmutable::createFromDate($year, 5, 9),
+            'Krishtlindjet Katolike' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable|string> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $holidays = [];
@@ -31,8 +31,8 @@ class Kosovo extends Country
         $holidays['Pashkët Ortodokse'] = $this->orthodoxEaster($year);
 
         if ($year >= 2008) {
-            $holidays['Dita e Pavarësisë së Republikës së Kosovës'] = '02-17';
-            $holidays['Dita e Kushtetutës së Republikës së Kosovës'] = '04-09';
+            $holidays['Dita e Pavarësisë së Republikës së Kosovës'] = CarbonImmutable::createFromDate($year, 2, 17);
+            $holidays['Dita e Kushtetutës së Republikës së Kosovës'] = CarbonImmutable::createFromDate($year, 4, 9);
         }
 
         // TODO: Implement islamic holidays

@@ -14,13 +14,13 @@ class Guatemala extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => '01-01',
-            'Día de los Trabajadores' => '05-01',
-            'Día del Ejército' => '06-31',
-            'Día de la Independencia' => '09-15',
-            'Día de la Revolución' => '10-20',
-            'Día de Todos los Santos' => '11-01',
-            'Navidad' => '12-25',
+            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Día de los Trabajadores' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Día del Ejército' => CarbonImmutable::createFromDate($year, 6, 31),
+            'Día de la Independencia' => CarbonImmutable::createFromDate($year, 9, 15),
+            'Día de la Revolución' => CarbonImmutable::createFromDate($year, 10, 20),
+            'Día de Todos los Santos' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

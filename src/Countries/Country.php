@@ -5,7 +5,6 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Carbon\CarbonPeriod;
-use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\CountryRegistry;
 use Spatie\Holidays\Exceptions\InvalidCountry;
@@ -15,7 +14,7 @@ abstract class Country
 {
     abstract public function countryCode(): string;
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<string, CarbonImmutable> */
     abstract protected function allHolidays(int $year): array;
 
     /** @return array<string, CarbonImmutable> */
@@ -25,32 +24,22 @@ abstract class Country
 
         $allHolidays = $this->allHolidays($year);
 
-        $translatedHolidays = [];
-        foreach ($allHolidays as $name => $date) {
-            if (is_string($date)) {
-                if (strlen($date) > 5) {
-                    $date = new CarbonImmutable($date.' '.$year)->startOfDay();
-                } else {
-                    $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
-                }
+        if ($this instanceof HasTranslations) {
+            $translatedHolidays = [];
+            $countryName = basename(str_replace('\\', '/', static::class));
+
+            foreach ($allHolidays as $name => $date) {
+                $translatedHolidays[$this->translate($countryName, $name, $locale)] = $date;
             }
 
-            if ($date === null) {
-                throw new InvalidFormatException("Invalid date for holiday `{$name}`");
-            }
-
-            if ($this instanceof HasTranslations) {
-                $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);
-            }
-
-            $translatedHolidays[$name] = $date;
+            $allHolidays = $translatedHolidays;
         }
 
-        uasort($translatedHolidays,
+        uasort($allHolidays,
             fn (CarbonImmutable $a, CarbonImmutable $b): int => $a->timestamp <=> $b->timestamp
         );
 
-        return $translatedHolidays;
+        return $allHolidays;
     }
 
     /** @return array<string, string>  date => name */

@@ -27,10 +27,10 @@ class Germany extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Neujahr' => '01-01',
-            'Tag der Arbeit' => '05-01',
-            '1. Weihnachtstag' => '12-25',
-            '2. Weihnachtstag' => '12-26',
+            'Neujahr' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Tag der Arbeit' => CarbonImmutable::createFromDate($year, 5, 1),
+            '1. Weihnachtstag' => CarbonImmutable::createFromDate($year, 12, 25),
+            '2. Weihnachtstag' => CarbonImmutable::createFromDate($year, 12, 26),
         ],
             $this->variableHolidays($year),
             $this->historicalHolidays($year),
@@ -51,15 +51,15 @@ class Germany extends Country implements HasTranslations
         ];
     }
 
-    /** @return array<string, string> */
+    /** @return array<string, CarbonImmutable> */
     protected function historicalHolidays(int $year): array
     {
         $historicalHolidays = [];
 
         if ($year >= 1954 && $year <= 1990) {
-            $historicalHolidays['Tag der deutschen Einheit'] = '06-17';
+            $historicalHolidays['Tag der deutschen Einheit'] = CarbonImmutable::createFromDate($year, 6, 17);
         } else {
-            $historicalHolidays['Tag der deutschen Einheit'] = '10-03';
+            $historicalHolidays['Tag der deutschen Einheit'] = CarbonImmutable::createFromDate($year, 10, 3);
         }
 
         if ($year >= 1990 && $year <= 1994) {
@@ -67,13 +67,13 @@ class Germany extends Country implements HasTranslations
         }
 
         if ($year === 2017) {
-            $historicalHolidays['Reformationstag'] = '10-31';
+            $historicalHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
         }
 
         return $historicalHolidays;
     }
 
-    /** @return array<string, CarbonImmutable|string> */
+    /** @return array<string, CarbonImmutable> */
     protected function regionHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -81,19 +81,19 @@ class Germany extends Country implements HasTranslations
         switch ($this->region) {
             case 'DE-BW':
                 return [
-                    'Heilige Drei Könige' => '01-06',
+                    'Heilige Drei Könige' => CarbonImmutable::createFromDate($year, 1, 6),
                     'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => '11-01',
+                    'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
                 ];
             case 'DE-BY':
                 $byHolidays = [
-                    'Heilige Drei Könige' => '01-06',
+                    'Heilige Drei Könige' => CarbonImmutable::createFromDate($year, 1, 6),
                     'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => '11-01',
-                    'Mariä Himmelfahrt' => '08-15',
+                    'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
+                    'Mariä Himmelfahrt' => CarbonImmutable::createFromDate($year, 8, 15),
                 ];
                 if ($year >= 1948 && $year <= 1969) {
-                    $byHolidays['Josefstag'] = '03-19';
+                    $byHolidays['Josefstag'] = CarbonImmutable::createFromDate($year, 3, 19);
                 }
 
                 return $byHolidays;
@@ -102,15 +102,15 @@ class Germany extends Country implements HasTranslations
                 $beHolidays = [
                 ];
                 if ($year >= 2019) {
-                    $beHolidays['Internationaler Frauentag'] = '03-08';
+                    $beHolidays['Internationaler Frauentag'] = CarbonImmutable::createFromDate($year, 3, 8);
                 }
 
                 if ($year === 2020 || $year === 2025) {
-                    $beHolidays['Tag der Befreiung'] = '05-08';
+                    $beHolidays['Tag der Befreiung'] = CarbonImmutable::createFromDate($year, 5, 8);
                 }
 
                 if ($year === 2028) {
-                    $beHolidays['75-jähriges Jubiläum des Volksaufstands in der DDR'] = '06-17';
+                    $beHolidays['75-jähriges Jubiläum des Volksaufstands in der DDR'] = CarbonImmutable::createFromDate($year, 6, 17);
                 }
 
                 return $beHolidays;
@@ -118,7 +118,7 @@ class Germany extends Country implements HasTranslations
                 if ($year >= 1991) {
                     return [
                         'Ostersonntag' => $easter,
-                        'Reformationstag' => '10-31',
+                        'Reformationstag' => CarbonImmutable::createFromDate($year, 10, 31),
                         'Pfingstsonntag' => $easter->addDays(49),
                     ];
                 }
@@ -133,7 +133,7 @@ class Germany extends Country implements HasTranslations
             case 'DE-SH':
                 if ($year >= 2017) {
                     return [
-                        'Reformationstag' => '10-31',
+                        'Reformationstag' => CarbonImmutable::createFromDate($year, 10, 31),
                     ];
                 }
 
@@ -148,11 +148,11 @@ class Germany extends Country implements HasTranslations
             case 'DE-MV':
                 $mvHolidays = [];
                 if ($year >= 1990) {
-                    $mvHolidays['Reformationstag'] = '10-31';
+                    $mvHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
                 }
 
                 if ($year >= 2023) {
-                    $mvHolidays['Internationaler Frauentag'] = '03-08';
+                    $mvHolidays['Internationaler Frauentag'] = CarbonImmutable::createFromDate($year, 3, 8);
                 }
 
                 return $mvHolidays;
@@ -161,18 +161,18 @@ class Germany extends Country implements HasTranslations
 
                 return [
                     'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => '11-01',
+                    'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
                 ];
             case 'DE-SL':
                 return [
                     'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => '11-01',
-                    'Mariä Himmelfahrt' => '08-15',
+                    'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
+                    'Mariä Himmelfahrt' => CarbonImmutable::createFromDate($year, 8, 15),
                 ];
             case 'DE-SN':
                 $snHolidays = [];
                 if ($year >= 1990) {
-                    $snHolidays['Reformationstag'] = '10-31';
+                    $snHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
 
                 }
 
@@ -185,23 +185,23 @@ class Germany extends Country implements HasTranslations
             case 'DE-ST':
                 $stHolidays = [];
                 if ($year >= 1990) {
-                    $stHolidays['Reformationstag'] = '10-31';
+                    $stHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
 
                 }
 
                 if ($year >= 1991) {
-                    $stHolidays['Heilige Drei Könige'] = '01-06';
+                    $stHolidays['Heilige Drei Könige'] = CarbonImmutable::createFromDate($year, 1, 6);
                 }
 
                 return $stHolidays;
             case 'DE-TH':
                 $thHolidays = [];
                 if ($year >= 1990) {
-                    $thHolidays['Reformationstag'] = '10-31';
+                    $thHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
                 }
 
                 if ($year >= 2019) {
-                    $thHolidays['Weltkindertag'] = '09-20';
+                    $thHolidays['Weltkindertag'] = CarbonImmutable::createFromDate($year, 9, 20);
                 }
 
                 return $thHolidays;

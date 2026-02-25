@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use DateTime;
 use DateTimeZone;
 use IntlDateFormatter;
@@ -18,17 +19,17 @@ class Taiwan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            '元旦' => '01-01',
-            '228和平紀念日' => '02-28',
-            '兒童節' => '04-04',
-            '雙十國慶' => '10-10',
+            '元旦' => CarbonImmutable::createFromDate($year, 1, 1),
+            '228和平紀念日' => CarbonImmutable::createFromDate($year, 2, 28),
+            '兒童節' => CarbonImmutable::createFromDate($year, 4, 4),
+            '雙十國慶' => CarbonImmutable::createFromDate($year, 10, 10),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
-        return array_filter(array_map(fn (string $date): ?string => $this->lunarCalendar($date, $year), [
+        return array_filter(array_map(fn (string $date): ?CarbonImmutable => $this->lunarCalendar($date, $year), [
             '農曆春節-正月初一' => '01-01',
             '農曆春節-正月初二' => '01-02',
             '農曆春節-正月初三' => '01-03',
@@ -37,7 +38,7 @@ class Taiwan extends Country
         ]));
     }
 
-    protected function lunarCalendar(string $input, int $year): ?string
+    protected function lunarCalendar(string $input, int $year): ?CarbonImmutable
     {
         $formatter = new IntlDateFormatter(
             locale: 'zh-TW@calendar=chinese',
@@ -58,6 +59,6 @@ class Taiwan extends Country
         $dateTime->setTimestamp((int) $parsedTimestamp);
         $dateTime->setTimezone(new DateTimeZone($this->timezone));
 
-        return $dateTime->format('m-d');
+        return new CarbonImmutable($dateTime->format('Y-m-d'));
     }
 }

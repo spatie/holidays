@@ -14,14 +14,14 @@ class ElSalvador extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => '01-01',
-            'Día del Trabajo' => '05-01',
-            'Día de la Madre' => '05-10',
-            'Día del Padre' => '06-17',
-            'Fiesta Divino Salvador del Mundo' => '08-06',
-            'Día de la Independencia' => '09-15',
-            'Día de Los Difuntos' => '11-02',
-            'Navidad' => '12-25',
+            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Día del Trabajo' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Día de la Madre' => CarbonImmutable::createFromDate($year, 5, 10),
+            'Día del Padre' => CarbonImmutable::createFromDate($year, 6, 17),
+            'Fiesta Divino Salvador del Mundo' => CarbonImmutable::createFromDate($year, 8, 6),
+            'Día de la Independencia' => CarbonImmutable::createFromDate($year, 9, 15),
+            'Día de Los Difuntos' => CarbonImmutable::createFromDate($year, 11, 2),
+            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

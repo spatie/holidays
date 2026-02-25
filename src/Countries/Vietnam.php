@@ -27,13 +27,13 @@ class Vietnam extends Country implements HasTranslations
     {
         return array_merge([
             // New Year's Day
-            'Tết Dương Lịch' => '01-01',
+            'Tết Dương Lịch' => CarbonImmutable::createFromDate($year, 1, 1),
             // Day of Southern Liberation and National Reunification
-            'Ngày Giải Phóng Miền Nam, Thống Nhất Đất Nước' => '04-30',
+            'Ngày Giải Phóng Miền Nam, Thống Nhất Đất Nước' => CarbonImmutable::createFromDate($year, 4, 30),
             // Labour Day
-            'Ngày Quốc Tế Lao Động' => '05-01',
+            'Ngày Quốc Tế Lao Động' => CarbonImmutable::createFromDate($year, 5, 1),
             // Independence Day
-            'Ngày Quốc Khánh' => '09-02',
+            'Ngày Quốc Khánh' => CarbonImmutable::createFromDate($year, 9, 2),
         ], $this->variableHolidays($year));
     }
 

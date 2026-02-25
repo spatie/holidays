@@ -23,14 +23,14 @@ class Bangladesh extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'International Mother Language Day' => '02-21',
-            'Birthday of Sheikh Mujibur Rahman' => '03-17',
-            'Independence Day' => '03-26',
-            'Bengali New Year' => '04-14',
-            'May Day' => '05-01',
-            'National Mourning Day' => '08-15',
-            'Victory Day' => '12-16',
-            'Christmas Day' => '12-25',
+            'International Mother Language Day' => CarbonImmutable::createFromDate($year, 2, 21),
+            'Birthday of Sheikh Mujibur Rahman' => CarbonImmutable::createFromDate($year, 3, 17),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 3, 26),
+            'Bengali New Year' => CarbonImmutable::createFromDate($year, 4, 14),
+            'May Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'National Mourning Day' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Victory Day' => CarbonImmutable::createFromDate($year, 12, 16),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

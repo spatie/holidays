@@ -14,14 +14,14 @@ class Kenya extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Labour day' => '05-01',
-            'Madaraka Day' => '06-01',
-            $this->getOctober10HolidayName($year) => '10-10',
-            'Mashujaa Day' => '10-20',
-            'Jamhuri Day' => '12-01',
-            'Christmas' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Labour day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Madaraka Day' => CarbonImmutable::createFromDate($year, 6, 1),
+            $this->getOctober10HolidayName($year) => CarbonImmutable::createFromDate($year, 10, 10),
+            'Mashujaa Day' => CarbonImmutable::createFromDate($year, 10, 20),
+            'Jamhuri Day' => CarbonImmutable::createFromDate($year, 12, 1),
+            'Christmas' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

@@ -14,15 +14,15 @@ class Malawi extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Years  Day' => '01-01',
-            'John Chilembwe Day' => '01-15',
-            'Martyrs Day' => '03-03',
-            'Labour Day' => '05-01',
-            'Kamuzu Day' => '05-14',
-            'Independence Day' => '07-06',
-            'Mothers Day' => '10-15',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            'New Years  Day' => CarbonImmutable::createFromDate($year, 1, 1),
+            'John Chilembwe Day' => CarbonImmutable::createFromDate($year, 1, 15),
+            'Martyrs Day' => CarbonImmutable::createFromDate($year, 3, 3),
+            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Kamuzu Day' => CarbonImmutable::createFromDate($year, 5, 14),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 7, 6),
+            'Mothers Day' => CarbonImmutable::createFromDate($year, 10, 15),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

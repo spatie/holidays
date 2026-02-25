@@ -14,15 +14,15 @@ class Ukraine extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Новий Рік' => '01-01',
-            'Міжнародний жіночий день' => '03-08',
-            'День праці' => '05-01',
-            'День пам\'яті та перемоги над нацизмом у Другій світовій війні 1939 – 1945 років' => '05-08',
-            'День Конституції України' => '06-28',
-            'День Української Державності' => '07-15',
-            'День Незалежності України' => '08-24',
-            'День захисників і захисниць України' => '10-01',
-            'Різдво Христове' => '12-25',
+            'Новий Рік' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Міжнародний жіночий день' => CarbonImmutable::createFromDate($year, 3, 8),
+            'День праці' => CarbonImmutable::createFromDate($year, 5, 1),
+            'День пам\'яті та перемоги над нацизмом у Другій світовій війні 1939 – 1945 років' => CarbonImmutable::createFromDate($year, 5, 8),
+            'День Конституції України' => CarbonImmutable::createFromDate($year, 6, 28),
+            'День Української Державності' => CarbonImmutable::createFromDate($year, 7, 15),
+            'День Незалежності України' => CarbonImmutable::createFromDate($year, 8, 24),
+            'День захисників і захисниць України' => CarbonImmutable::createFromDate($year, 10, 1),
+            'Різдво Христове' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

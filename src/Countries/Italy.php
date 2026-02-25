@@ -14,16 +14,16 @@ class Italy extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Capodanno' => '01-01',
-            'Epifania' => '01-06',
-            'Festa della Liberazione' => '04-25',
-            'Festa dei Lavoratori' => '05-01',
-            'Festa della Repubblica' => '06-02',
-            'Assunzione di Maria' => '08-15',
-            'Ognissanti' => '11-01',
-            'Immacolata Concezione' => '12-08',
-            'Natale' => '12-25',
-            'Santo Stefano' => '12-26',
+            'Capodanno' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Epifania' => CarbonImmutable::createFromDate($year, 1, 6),
+            'Festa della Liberazione' => CarbonImmutable::createFromDate($year, 4, 25),
+            'Festa dei Lavoratori' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Festa della Repubblica' => CarbonImmutable::createFromDate($year, 6, 2),
+            'Assunzione di Maria' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Ognissanti' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Immacolata Concezione' => CarbonImmutable::createFromDate($year, 12, 8),
+            'Natale' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Santo Stefano' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

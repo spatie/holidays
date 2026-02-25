@@ -26,7 +26,7 @@ class Ecuador extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
         ], $this->variableHolidays($year));
     }
 

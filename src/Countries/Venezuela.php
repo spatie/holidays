@@ -14,16 +14,16 @@ class Venezuela extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año nuevo' => '01-01',
-            'Declaración de la Independencia' => '04-19',
-            'Día del Trabajador' => '05-01',
-            'Aniversario de la Batalla de Carabobo' => '06-24',
-            'Día de la Independencia' => '07-05',
-            'Natalicio de Simón Bolívar' => '07-24',
-            'Día de la Resistencia Indígena' => '10-12',
-            'Víspera de Navidad' => '12-24',
-            'Navidad' => '12-25',
-            'Día de Fin de Año' => '12-31',
+            'Año nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Declaración de la Independencia' => CarbonImmutable::createFromDate($year, 4, 19),
+            'Día del Trabajador' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Aniversario de la Batalla de Carabobo' => CarbonImmutable::createFromDate($year, 6, 24),
+            'Día de la Independencia' => CarbonImmutable::createFromDate($year, 7, 5),
+            'Natalicio de Simón Bolívar' => CarbonImmutable::createFromDate($year, 7, 24),
+            'Día de la Resistencia Indígena' => CarbonImmutable::createFromDate($year, 10, 12),
+            'Víspera de Navidad' => CarbonImmutable::createFromDate($year, 12, 24),
+            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Día de Fin de Año' => CarbonImmutable::createFromDate($year, 12, 31),
         ], $this->variableHolidays($year));
     }
 

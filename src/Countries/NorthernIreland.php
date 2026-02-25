@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 
 class NorthernIreland extends Wales
@@ -28,11 +29,11 @@ class NorthernIreland extends Wales
     protected function observedHolidays(int $year): array
     {
         $holidays = [
-            "New Year's Day" => '01-01',
-            "St Patrick's Day" => '03-17',
-            "Battle of the Boyne (Orangemen's Day)" => '07-12',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            "St Patrick's Day" => CarbonImmutable::createFromDate($year, 3, 17),
+            "Battle of the Boyne (Orangemen's Day)" => CarbonImmutable::createFromDate($year, 7, 12),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
         foreach ($holidays as $name => $date) {

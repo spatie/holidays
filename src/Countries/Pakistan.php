@@ -14,12 +14,12 @@ class Pakistan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Kashmir Solidarity Day' => '02-05',
-            'Pakistan Day' => '03-23',
-            'Labour Day' => '05-01',
-            'Independence Day' => '08-14',
-            'Iqbal Day' => '11-09',
-            'Quaid-e-Azam Day' => '12-25',
+            'Kashmir Solidarity Day' => CarbonImmutable::createFromDate($year, 2, 5),
+            'Pakistan Day' => CarbonImmutable::createFromDate($year, 3, 23),
+            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 8, 14),
+            'Iqbal Day' => CarbonImmutable::createFromDate($year, 11, 9),
+            'Quaid-e-Azam Day' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

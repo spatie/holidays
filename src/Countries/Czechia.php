@@ -43,7 +43,7 @@ class Czechia extends Country
         ];
 
         $filteredHolidays = array_map(
-            static fn (array $holiday): string => $holiday[0],
+            fn (array $holiday): CarbonImmutable => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday[0]}"),
             array_filter($holidays,
                 static fn (array $holiday): bool => $holiday[1] === true
             )

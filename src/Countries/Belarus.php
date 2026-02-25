@@ -23,15 +23,15 @@ class Belarus extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Новы год' => '01-01',
-            'Новы год (другі дзень)' => '01-02',
-            'Нараджэнне Хрыстова (праваслаўнае Раство)' => '01-07',
-            'Дзень жанчын' => '03-08',
-            'Свята працы' => '05-01',
-            'Дзень Перамогі' => '05-09',
-            'Дзень Незалежнасці' => '07-03',
-            'Дзень Кастрычніцкай рэвалюцыі' => '11-07',
-            'Нараджэнне Хрыстова (каталіцкае Раство)' => '12-25',
+            'Новы год' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Новы год (другі дзень)' => CarbonImmutable::createFromDate($year, 1, 2),
+            'Нараджэнне Хрыстова (праваслаўнае Раство)' => CarbonImmutable::createFromDate($year, 1, 7),
+            'Дзень жанчын' => CarbonImmutable::createFromDate($year, 3, 8),
+            'Свята працы' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Дзень Перамогі' => CarbonImmutable::createFromDate($year, 5, 9),
+            'Дзень Незалежнасці' => CarbonImmutable::createFromDate($year, 7, 3),
+            'Дзень Кастрычніцкай рэвалюцыі' => CarbonImmutable::createFromDate($year, 11, 7),
+            'Нараджэнне Хрыстова (каталіцкае Раство)' => CarbonImmutable::createFromDate($year, 12, 25),
         ], $this->variableHolidays($year));
     }
 

@@ -15,14 +15,14 @@ class Canada extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Canada Day' => '07-01',
-            'Civic Holiday' => 'first monday of August',
-            'Labour Day' => 'first monday of September',
-            'National Day for Truth and Reconciliation' => '09-30',
-            'Remembrance Day' => '11-11',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Canada Day' => CarbonImmutable::createFromDate($year, 7, 1),
+            'Civic Holiday' => CarbonImmutable::parse('first monday of August '.$year),
+            'Labour Day' => CarbonImmutable::parse('first monday of September '.$year),
+            'National Day for Truth and Reconciliation' => CarbonImmutable::createFromDate($year, 9, 30),
+            'Remembrance Day' => CarbonImmutable::createFromDate($year, 11, 11),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 
@@ -39,7 +39,7 @@ class Canada extends Country
             'Victoria Day' => $victoriaDay,
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
-            'Thanksgiving' => 'second monday of October',
+            'Thanksgiving' => CarbonImmutable::parse('second monday of October '.$year),
         ];
     }
 }

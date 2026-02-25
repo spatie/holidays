@@ -244,13 +244,13 @@ class Egypt extends Country implements HasTranslations, Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Flooding of the Nile' => '08-15',
-            'March Equinox' => '03-20',
-            'June Solstice' => '06-21',
-            'Nayrouz' => '09-11',
-            'September Equinox' => '09-22',
-            'December Solstice' => '12-21',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Flooding of the Nile' => CarbonImmutable::createFromDate($year, 8, 15),
+            'March Equinox' => CarbonImmutable::createFromDate($year, 3, 20),
+            'June Solstice' => CarbonImmutable::createFromDate($year, 6, 21),
+            'Nayrouz' => CarbonImmutable::createFromDate($year, 9, 11),
+            'September Equinox' => CarbonImmutable::createFromDate($year, 9, 22),
+            'December Solstice' => CarbonImmutable::createFromDate($year, 12, 21),
         ],
             $this->fixedHolidays($year),
             $this->variableHolidays($year),

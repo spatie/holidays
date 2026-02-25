@@ -229,14 +229,14 @@ class Benin extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Fête du Nouvel An' => '01-01',
-            'Fête annuelle des réligions traditionnelles' => '01-10',
-            'Fete annuelle des réligions traditionnelles' => '01-10',
-            'Fete du travail' => '05-01',
-            "Fête de l'indépendance" => '08-01',
-            'Jour de la Toussaint' => '11-01',
-            'Jour de Noel' => '12-25',
-            "Jour de l'assomption" => '08-15',
+            'Fête du Nouvel An' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Fête annuelle des réligions traditionnelles' => CarbonImmutable::createFromDate($year, 1, 10),
+            'Fete annuelle des réligions traditionnelles' => CarbonImmutable::createFromDate($year, 1, 10),
+            'Fete du travail' => CarbonImmutable::createFromDate($year, 5, 1),
+            "Fête de l'indépendance" => CarbonImmutable::createFromDate($year, 8, 1),
+            'Jour de la Toussaint' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Jour de Noel' => CarbonImmutable::createFromDate($year, 12, 25),
+            "Jour de l'assomption" => CarbonImmutable::createFromDate($year, 8, 15),
         ], $this->variableHolidays($year));
     }
 

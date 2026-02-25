@@ -14,15 +14,15 @@ class Estonia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Uusaasta' => '01-01',
-            'Iseseisvuspäev' => '02-24',
-            'Kevadpüha' => '05-01',
-            'Võidupüha' => '06-23',
-            'Jaanipäev' => '06-24',
-            'Taasiseseisvumispäev' => '08-20',
-            'Jõululaupäev' => '12-24',
-            'Esimene jõulupüha' => '12-25',
-            'Teine jõulupüha' => '12-26',
+            'Uusaasta' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Iseseisvuspäev' => CarbonImmutable::createFromDate($year, 2, 24),
+            'Kevadpüha' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Võidupüha' => CarbonImmutable::createFromDate($year, 6, 23),
+            'Jaanipäev' => CarbonImmutable::createFromDate($year, 6, 24),
+            'Taasiseseisvumispäev' => CarbonImmutable::createFromDate($year, 8, 20),
+            'Jõululaupäev' => CarbonImmutable::createFromDate($year, 12, 24),
+            'Esimene jõulupüha' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Teine jõulupüha' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

@@ -27,13 +27,13 @@ class Netherlands extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nieuwjaarsdag' => '01-01',
-            'Eerste kerstdag' => '12-25',
-            'Tweede kerstdag' => '12-26',
+            'Nieuwjaarsdag' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Eerste kerstdag' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Tweede kerstdag' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<string, CarbonImmutable> */
     protected function variableHolidays(int $year): array
     {
         $koningsDag = CarbonImmutable::createFromDate($year, 4, 27);
@@ -54,7 +54,7 @@ class Netherlands extends Country implements HasTranslations
         ];
 
         if ($year % 5 === 0) {
-            $holidays['Bevrijdingsdag'] = '05-05';
+            $holidays['Bevrijdingsdag'] = CarbonImmutable::createFromDate($year, 5, 5);
         }
 
         return $holidays;

@@ -14,18 +14,18 @@ class Lithuania extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Naujieji metai' => '01-01',
-            'Lietuvos valstybės atkūrimo diena' => '02-16',
-            'Nepriklausomybės atkūrimo diena' => '03-11',
-            'Tarptautinė darbo diena' => '05-01',
-            'Joninės' => '06-24',
-            'Karaliaus Mindaugo karūnavimo diena' => '07-06',
-            'Žolinė' => '08-15',
-            'Visų šventųjų diena' => '11-01',
-            'Vėlinės' => '11-02',
-            'Šv. Kūčios' => '12-24',
-            'Šv. Kalėdos' => '12-25',
-            'Šv. Kalėdų antroji diena' => '12-26',
+            'Naujieji metai' => CarbonImmutable::createFromDate($year, 1, 1),
+            'Lietuvos valstybės atkūrimo diena' => CarbonImmutable::createFromDate($year, 2, 16),
+            'Nepriklausomybės atkūrimo diena' => CarbonImmutable::createFromDate($year, 3, 11),
+            'Tarptautinė darbo diena' => CarbonImmutable::createFromDate($year, 5, 1),
+            'Joninės' => CarbonImmutable::createFromDate($year, 6, 24),
+            'Karaliaus Mindaugo karūnavimo diena' => CarbonImmutable::createFromDate($year, 7, 6),
+            'Žolinė' => CarbonImmutable::createFromDate($year, 8, 15),
+            'Visų šventųjų diena' => CarbonImmutable::createFromDate($year, 11, 1),
+            'Vėlinės' => CarbonImmutable::createFromDate($year, 11, 2),
+            'Šv. Kūčios' => CarbonImmutable::createFromDate($year, 12, 24),
+            'Šv. Kalėdos' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Šv. Kalėdų antroji diena' => CarbonImmutable::createFromDate($year, 12, 26),
         ], $this->variableHolidays($year));
     }
 

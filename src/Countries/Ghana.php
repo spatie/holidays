@@ -27,13 +27,13 @@ class Ghana extends Country
     protected function observedHolidays(int $year): array
     {
         $holidays = [
-            "New Year's Day" => '01-01',
-            'Constitution Day' => '01-07',
-            'Independence Day' => '03-06',
-            'May Day' => '05-01',
-            "Founder's Day" => '09-21',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            'Constitution Day' => CarbonImmutable::createFromDate($year, 1, 7),
+            'Independence Day' => CarbonImmutable::createFromDate($year, 3, 6),
+            'May Day' => CarbonImmutable::createFromDate($year, 5, 1),
+            "Founder's Day" => CarbonImmutable::createFromDate($year, 9, 21),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
         foreach ($holidays as $name => $date) {
@@ -68,7 +68,7 @@ class Ghana extends Country
         $easter = $this->easter($year);
 
         return [
-            'Farmers Day' => 'first friday of December',
+            'Farmers Day' => CarbonImmutable::parse('first friday of December '.$year),
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
 

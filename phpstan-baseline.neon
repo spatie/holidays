@@ -25,6 +25,18 @@ parameters:
 			path: src/Countries/Albania.php
 
 		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Albania\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Albania\:\:islamicHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Albania.php
+
+		-
 			message: '#^Parameter \#1 \$array \(array\{''E diela e Pashkëve Katolike''\: Carbon\\CarbonImmutable, ''E diela e Pashkëve Ortodokse''\: Carbon\\CarbonImmutable\}\) to function array_filter does not contain falsy values, the array will always stay the same\.$#'
 			identifier: arrayFilter.same
 			count: 1
@@ -43,10 +55,28 @@ parameters:
 			path: src/Countries/Albania.php
 
 		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Bahrain\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Bahrain.php
+
+		-
 			message: '#^Parameter \$holiday of method Spatie\\Holidays\\Countries\\Benin\:\:prepareHolidays\(\) expects Carbon\\CarbonImmutable, Carbon\\CarbonImmutable\|null given\.$#'
 			identifier: argument.type
 			count: 3
 			path: src/Countries/Benin.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Canada\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Canada.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Colombia\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Colombia.php
 
 		-
 			message: '#^Argument of an invalid type Carbon\\CarbonPeriod supplied for foreach, only iterables are supported\.$#'
@@ -59,6 +89,60 @@ parameters:
 			identifier: binaryOp.invalid
 			count: 1
 			path: src/Countries/Country.php
+
+		-
+			message: '#^Anonymous function should return Carbon\\CarbonImmutable but returns Carbon\\CarbonImmutable\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Czechia.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Ecuador\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Ecuador.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Egypt\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\|Carbon\\CarbonPeriod\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Egypt.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Finland\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Finland.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Ghana\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Ghana.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Iceland\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Iceland.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\India\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/India.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Jamaica\:\:fixedHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Jamaica.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Latvia\:\:observedHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Latvia.php
 
 		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Malaysia\:\:arafat\.$#'
@@ -109,16 +193,40 @@ parameters:
 			path: src/Countries/Malaysia.php
 
 		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Maldives\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Maldives.php
+
+		-
 			message: '#^Method Spatie\\Holidays\\Countries\\Morocco\:\:variableHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
 			identifier: return.type
 			count: 1
 			path: src/Countries/Morocco.php
 
 		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Spain\:\:regionHolidays\(\) should return array\<string, string\> but returns mixed\.$#'
+			message: '#^Method Spatie\\Holidays\\Countries\\NewZealand\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/NewZealand.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\SouthAfrica\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/SouthAfrica.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Spain\:\:regionHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns mixed\.$#'
 			identifier: return.type
 			count: 1
 			path: src/Countries/Spain.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Sweden\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonInterface\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Sweden.php
 
 		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Syria\:\:arafat\.$#'
@@ -133,6 +241,12 @@ parameters:
 			path: src/Countries/Syria.php
 
 		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Syria\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Syria.php
+
+		-
 			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Syria\:\:getMultiDayHoliday\(\) expects array\<array\<string\>\|string\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
@@ -143,6 +257,12 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/Countries/Syria.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Tunisia\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Tunisia.php
 
 		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Turkey\:\:arafat\.$#'
@@ -169,6 +289,12 @@ parameters:
 			path: src/Countries/Turkey.php
 
 		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Turkey\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|Carbon\\CarbonPeriod\|string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Turkey.php
+
+		-
 			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Turkey\:\:getMultiDayHoliday\(\) expects array\<array\<string\>\|string\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
@@ -191,5 +317,11 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/Countries/Turkmenistan.php
+
+		-
+			message: '#^Method Spatie\\Holidays\\Countries\\Uzbekistan\:\:variableHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Countries/Uzbekistan.php
 
 

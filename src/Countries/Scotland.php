@@ -29,11 +29,11 @@ class Scotland extends Wales
     protected function observedHolidays(int $year): array
     {
         $holidays = [
-            "New Year's Day" => '01-01',
-            '2nd January' => '01-02',
-            "St Andrew's Day" => '11-30',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            '2nd January' => CarbonImmutable::createFromDate($year, 1, 2),
+            "St Andrew's Day" => CarbonImmutable::createFromDate($year, 11, 30),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
         foreach ($holidays as $name => $date) {
@@ -53,7 +53,7 @@ class Scotland extends Wales
         return $holidays;
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<string, CarbonImmutable> */
     #[\Override]
     protected function variableHolidays(int $year): array
     {
@@ -61,8 +61,8 @@ class Scotland extends Wales
 
         return [
             'Good Friday' => $easter->subDays(2),
-            'Spring bank holiday' => 'last monday of may',
-            'Summer bank holiday' => 'first monday of august',
+            'Spring bank holiday' => CarbonImmutable::parse('last monday of may '.$year),
+            'Summer bank holiday' => CarbonImmutable::parse('first monday of august '.$year),
         ];
     }
 
