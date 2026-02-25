@@ -5,19 +5,15 @@ declare(strict_types=1);
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 
-final class Paraguay extends Country implements HasTranslations
+final class Paraguay extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'py';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'es';
     }

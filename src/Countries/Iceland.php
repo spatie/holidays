@@ -4,19 +4,15 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 
-class Iceland extends Country implements HasTranslations
+class Iceland extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'is';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'is';
     }

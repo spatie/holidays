@@ -6,7 +6,6 @@ use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Carbon\CarbonPeriod;
 use Spatie\Holidays\Contracts\HasRegions;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\CountryRegistry;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
@@ -25,15 +24,16 @@ abstract class Country
 
         $allHolidays = $this->allHolidays($year);
 
-        if ($this instanceof HasTranslations) {
-            $translatedHolidays = [];
-            $countryName = basename(str_replace('\\', '/', static::class));
+        $translations = $this->loadTranslations($locale);
+
+        if ($translations !== null) {
+            $translated = [];
 
             foreach ($allHolidays as $name => $date) {
-                $translatedHolidays[$this->translate($countryName, $name, $locale)] = $date;
+                $translated[$translations[$name] ?? $name] = $date;
             }
 
-            $allHolidays = $translatedHolidays;
+            $allHolidays = $translated;
         }
 
         uasort($allHolidays,
@@ -41,6 +41,36 @@ abstract class Country
         );
 
         return $allHolidays;
+    }
+
+    protected function defaultLocale(): ?string
+    {
+        return null;
+    }
+
+    /** @return array<string, string>|null */
+    private function loadTranslations(?string $locale): ?array
+    {
+        $locale ??= $this->defaultLocale();
+
+        if ($locale === null) {
+            return null;
+        }
+
+        $filePath = __DIR__."/../../lang/{$this->countryCode()}/{$locale}/holidays.json";
+
+        if (! file_exists($filePath)) {
+            return null;
+        }
+
+        $content = file_get_contents($filePath);
+
+        if ($content === false) {
+            return null;
+        }
+
+        /** @var array<string, string> */
+        return json_decode($content, true);
     }
 
     /** @return array<string, string>  date => name */

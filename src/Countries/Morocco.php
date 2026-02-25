@@ -3,22 +3,13 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
-class Morocco extends Country implements HasTranslations
+class Morocco extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'ma';
-    }
-
-    public function defaultLocale(): string
-    {
-        return 'en';
     }
 
     protected function allHolidays(int $year): array
