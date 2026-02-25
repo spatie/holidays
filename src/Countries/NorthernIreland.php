@@ -44,7 +44,7 @@ class NorthernIreland extends Wales
             };
 
             if ($observedDay) {
-                $holidays[$name.' (substitute day)'] = $observedDay;
+                $holidays["{$name} (substitute day)"] = $observedDay;
                 unset($holidays[$name]);
             }
         }

@@ -42,7 +42,7 @@ class Jamaica extends Country
             };
 
             if ($observedDay) {
-                $holidays[$name.' Observed'] = $observedDay;
+                $holidays["{$name} Observed"] = $observedDay;
             }
         }
 
@@ -58,7 +58,7 @@ class Jamaica extends Country
             'Ash Wednesday' => $easter->subDays(46),
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
-            'National Heroes Day' => CarbonImmutable::parse('third monday of October '.$year),
+            'National Heroes Day' => CarbonImmutable::parse("third monday of October {$year}"),
         ];
     }
 

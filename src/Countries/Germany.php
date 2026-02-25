@@ -68,11 +68,9 @@ class Germany extends Country implements HasRegions
     {
         $historicalHolidays = [];
 
-        if ($year >= 1954 && $year <= 1990) {
-            $historicalHolidays['Tag der deutschen Einheit'] = CarbonImmutable::createFromDate($year, 6, 17);
-        } else {
-            $historicalHolidays['Tag der deutschen Einheit'] = CarbonImmutable::createFromDate($year, 10, 3);
-        }
+        $historicalHolidays['Tag der deutschen Einheit'] = ($year >= 1954 && $year <= 1990)
+            ? CarbonImmutable::createFromDate($year, 6, 17)
+            : CarbonImmutable::createFromDate($year, 10, 3);
 
         if ($year >= 1990 && $year <= 1994) {
             $historicalHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
@@ -224,6 +222,6 @@ class Germany extends Country implements HasRegions
 
     protected function getRepentanceAndPrayerDay(int $year): CarbonImmutable
     {
-        return new CarbonImmutable('next wednesday '.$year.'-11-15')->startOfDay();
+        return new CarbonImmutable("next wednesday {$year}-11-15")->startOfDay();
     }
 }

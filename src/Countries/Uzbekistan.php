@@ -155,14 +155,14 @@ class Uzbekistan extends Country
         if (isset(self::ramadanHolidays[$year])) {
             foreach ((array) self::ramadanHolidays[$year] as $key => $holiday) {
                 $prefix = $key == 0 ? '' : ' '.($key + 1);
-                $holidays['Ramazon Hayiti'.$prefix] = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday}");
+                $holidays["Ramazon Hayiti{$prefix}"] = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday}");
             }
         }
 
         if (isset(self::sacrificeHolidays[$year])) {
             foreach ((array) self::sacrificeHolidays[$year] as $key => $holiday) {
                 $prefix = $key == 0 ? '' : ' '.($key + 1);
-                $holidays['Qurbon Hayiti'.$prefix] = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday}");
+                $holidays["Qurbon Hayiti{$prefix}"] = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday}");
             }
         }
 

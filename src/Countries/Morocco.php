@@ -53,24 +53,23 @@ class Morocco extends Country
         ];
 
         $islamicHolidaysOnGregorian = [];
-        // Convert Hijri dates to Gregorian and filter based on the input year
+
         foreach ($islamicHolidaysOnHijri as $holidayTitle => $hijriHolidayDate) {
             [$hijriHolidayMonth, $hijriHolidayDay] = explode('-', $hijriHolidayDate);
-            $vlideYear = null;
 
             $GregorianDate = $this->islamicToGregorian($currentHijriYear, (int) $hijriHolidayMonth, (int) $hijriHolidayDay);
             $vlideYear = $GregorianDate['year'];
             $tempCurrentHijriYear = $currentHijriYear;
+
             while ($vlideYear != $year) {
-                // Convert the current Hijri holiday to Gregorian
                 $GregorianDate = $this->islamicToGregorian($tempCurrentHijriYear--, (int) $hijriHolidayMonth, (int) $hijriHolidayDay);
                 $vlideYear = $GregorianDate['year'];
+
                 if ($vlideYear < 1976) {
                     throw InvalidYear::yearTooLow(1976);
                 }
             }
 
-            // Store the Gregorian date of the Islamic holiday
             $islamicHolidaysOnGregorian[$holidayTitle] = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day']));
         }
 

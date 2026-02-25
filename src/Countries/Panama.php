@@ -82,7 +82,7 @@ class Panama extends Country
             $holidays[$name] = $holiday;
 
             if ($holiday->isSunday()) {
-                $holidays[$name.' (Puente)'] = $holiday->addDay();
+                $holidays["{$name} (Puente)"] = $holiday->addDay();
             }
         }
 

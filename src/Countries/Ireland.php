@@ -26,17 +26,17 @@ class Ireland extends Country
     {
         $variableHolidays = [
             'Easter Monday' => $this->easter($year)->addDay(),
-            'May Public Holiday' => CarbonImmutable::parse('first monday of May '.$year),
-            'June Public Holiday' => CarbonImmutable::parse('first monday of June '.$year),
-            'August Public Holiday' => CarbonImmutable::parse('first monday of August '.$year),
-            'October Public Holiday' => CarbonImmutable::parse('last monday of October '.$year),
+            'May Public Holiday' => CarbonImmutable::parse("first monday of May {$year}"),
+            'June Public Holiday' => CarbonImmutable::parse("first monday of June {$year}"),
+            'August Public Holiday' => CarbonImmutable::parse("first monday of August {$year}"),
+            'October Public Holiday' => CarbonImmutable::parse("last monday of October {$year}"),
         ];
 
         if ($year >= 2023) {
             $stBrigidsDay = new CarbonImmutable("{$year}-02-01")->startOfDay();
 
             if (! $stBrigidsDay->isFriday()) {
-                $stBrigidsDay = CarbonImmutable::parse('first monday of February '.$year);
+                $stBrigidsDay = CarbonImmutable::parse("first monday of February {$year}");
             }
 
             $variableHolidays["St Brigid's Day"] = $stBrigidsDay;

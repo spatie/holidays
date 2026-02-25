@@ -46,7 +46,7 @@ class Turkmenistan extends Country
         $hijriYear = $this->getHijriYear(year: $year, nextYear: $nextYear);
         $formatter = $this->getIslamicFormatter();
 
-        $timeStamp = $formatter->parse($input.'/'.$hijriYear.' AH');
+        $timeStamp = $formatter->parse("{$input}/{$hijriYear} AH");
         $dateTime = date_create()->setTimeStamp($timeStamp)->setTimezone(new DateTimeZone($this->timezone));
 
         return new CarbonImmutable($dateTime->format('Y-m-d'));

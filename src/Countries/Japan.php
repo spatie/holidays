@@ -34,10 +34,10 @@ class Japan extends Country
     protected function variableHolidays(int $year): array
     {
         return [
-            '成人の日' => CarbonImmutable::parse('second monday of january '.$year),
-            '海の日' => CarbonImmutable::parse('third monday of july '.$year),
-            '敬老の日' => CarbonImmutable::parse('third monday of september '.$year),
-            'スポーツの日' => CarbonImmutable::parse('second monday of october '.$year),
+            '成人の日' => CarbonImmutable::parse("second monday of january {$year}"),
+            '海の日' => CarbonImmutable::parse("third monday of july {$year}"),
+            '敬老の日' => CarbonImmutable::parse("third monday of september {$year}"),
+            'スポーツの日' => CarbonImmutable::parse("second monday of october {$year}"),
         ];
     }
 }

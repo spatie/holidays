@@ -45,7 +45,7 @@ class Scotland extends Wales
             };
 
             if ($observedDay) {
-                $holidays[$name.' (substitute day)'] = $observedDay;
+                $holidays["{$name} (substitute day)"] = $observedDay;
                 unset($holidays[$name]);
             }
         }
@@ -61,14 +61,14 @@ class Scotland extends Wales
 
         return [
             'Good Friday' => $easter->subDays(2),
-            'Spring bank holiday' => CarbonImmutable::parse('last monday of may '.$year),
-            'Summer bank holiday' => CarbonImmutable::parse('first monday of august '.$year),
+            'Spring bank holiday' => CarbonImmutable::parse("last monday of may {$year}"),
+            'Summer bank holiday' => CarbonImmutable::parse("first monday of august {$year}"),
         ];
     }
 
     protected function secondOfJanuary(int $year): ?CarbonInterface
     {
-        $newYearsDay = new CarbonImmutable($year.'-01-01')->startOfDay();
+        $newYearsDay = new CarbonImmutable("{$year}-01-01")->startOfDay();
         $secondOfJanuary = $newYearsDay->addDay();
 
         return match ($newYearsDay->dayName) {

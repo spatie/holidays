@@ -68,7 +68,7 @@ class Ghana extends Country
         $easter = $this->easter($year);
 
         return [
-            'Farmers Day' => CarbonImmutable::parse('first friday of December '.$year),
+            'Farmers Day' => CarbonImmutable::parse("first friday of December {$year}"),
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
 
@@ -79,9 +79,9 @@ class Ghana extends Country
 
     protected function dayToNextFridayOrMonday(string|CarbonInterface $date, int $year): ?CarbonInterface
     {
-        $christmasDay = new CarbonImmutable($year.'-12-25')->startOfDay();
-        $boxingDay = new CarbonImmutable($year.'-12-26')->startOfDay();
-        $newYearDay = new CarbonImmutable($year.'-01-01')->startOfDay();
+        $christmasDay = new CarbonImmutable("{$year}-12-25")->startOfDay();
+        $boxingDay = new CarbonImmutable("{$year}-12-26")->startOfDay();
+        $newYearDay = new CarbonImmutable("{$year}-01-01")->startOfDay();
 
         if (is_string($date)) {
             $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();

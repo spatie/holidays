@@ -356,7 +356,7 @@ class Benin extends Country
         $holidays = [];
 
         foreach (range(1, $day) as $range) {
-            $holidays[$prefix.$label.' - Jour '.$range] = $holiday->addDays($range - 1);
+            $holidays["{$prefix}{$label} - Jour {$range}"] = $holiday->addDays($range - 1);
         }
 
         return array_filter($holidays, fn ($holiday): bool => $holiday->year == $filterYear);

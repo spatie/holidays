@@ -199,7 +199,7 @@ abstract class Country
             $eve = $period->first()?->subDay();
 
             if ($eve && $eve->year === $year) {
-                $allDays[$name.' Eve'] = $eve->toImmutable();
+                $allDays["{$name} Eve"] = $eve->toImmutable();
             }
         }
 
@@ -209,11 +209,9 @@ abstract class Country
                 continue; // Lunar based holidays can overlap in 2 years
             }
 
-            if ($index > 0) {
-                $formattedSuffix = " {$suffix} ".($index + 1);
-            } else {
-                $formattedSuffix = '';
-            }
+            $formattedSuffix = $index > 0
+                ? " {$suffix} ".($index + 1)
+                : '';
 
             $holidayName = "{$prefix}{$name}{$formattedSuffix}";
 

@@ -145,9 +145,9 @@ class Switzerland extends Country implements HasRegions
             self::CORPUS_CHRISTI => $easter->addDays(60),
             self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY => CarbonImmutable::createFromDate($year, 8, 2),
             self::ASSUMPTION_DAY => CarbonImmutable::createFromDate($year, 8, 15),
-            self::GENEVA_DAY_OF_FASTING => new CarbonImmutable('first sunday of September '.$year, 'Europe/Zurich')->addDays(4), // Thursday after the first Sunday of September
-            self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER => new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich'),
-            self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY => new CarbonImmutable('third sunday of September '.$year, 'Europe/Zurich')->addDay(),
+            self::GENEVA_DAY_OF_FASTING => new CarbonImmutable("first sunday of September {$year}", 'Europe/Zurich')->addDays(4), // Thursday after the first Sunday of September
+            self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER => new CarbonImmutable("third sunday of September {$year}", 'Europe/Zurich'),
+            self::FEDERAL_DAY_OF_THANKSGIVING_REPENTANCE_AND_PRAYER_MONDAY => new CarbonImmutable("third sunday of September {$year}", 'Europe/Zurich')->addDay(),
             self::ALL_SAINTS_DAY => CarbonImmutable::createFromDate($year, 11, 1),
             self::IMMACULATE_CONCEPTION => CarbonImmutable::createFromDate($year, 12, 8),
             self::SAINT_STEPHENS_DAY => CarbonImmutable::createFromDate($year, 12, 26),

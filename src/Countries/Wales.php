@@ -43,7 +43,7 @@ class Wales extends Country
             };
 
             if ($observedDay) {
-                $holidays[$name.' (substitute day)'] = $observedDay;
+                $holidays["{$name} (substitute day)"] = $observedDay;
                 unset($holidays[$name]);
             }
         }
@@ -62,8 +62,8 @@ class Wales extends Country
         return [
             'Good Friday' => $goodFriday,
             'Easter Monday' => $easterMonday,
-            'Spring bank holiday' => CarbonImmutable::parse('last monday of may '.$year),
-            'Summer bank holiday' => CarbonImmutable::parse('last monday of august '.$year),
+            'Spring bank holiday' => CarbonImmutable::parse("last monday of may {$year}"),
+            'Summer bank holiday' => CarbonImmutable::parse("last monday of august {$year}"),
         ];
     }
 
@@ -82,7 +82,7 @@ class Wales extends Country
             ];
         }
 
-        return ['Early May bank holiday' => CarbonImmutable::parse('first monday of may '.$year)];
+        return ['Early May bank holiday' => CarbonImmutable::parse("first monday of may {$year}")];
     }
 
     /** @return array<string, string|CarbonInterface> */

@@ -17,8 +17,8 @@ class Canada extends Country
         return array_merge([
             "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
             'Canada Day' => CarbonImmutable::createFromDate($year, 7, 1),
-            'Civic Holiday' => CarbonImmutable::parse('first monday of August '.$year),
-            'Labour Day' => CarbonImmutable::parse('first monday of September '.$year),
+            'Civic Holiday' => CarbonImmutable::parse("first monday of August {$year}"),
+            'Labour Day' => CarbonImmutable::parse("first monday of September {$year}"),
             'National Day for Truth and Reconciliation' => CarbonImmutable::createFromDate($year, 9, 30),
             'Remembrance Day' => CarbonImmutable::createFromDate($year, 11, 11),
             'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
@@ -39,7 +39,7 @@ class Canada extends Country
             'Victoria Day' => $victoriaDay,
             'Good Friday' => $easter->subDays(2),
             'Easter Monday' => $easter->addDay(),
-            'Thanksgiving' => CarbonImmutable::parse('second monday of October '.$year),
+            'Thanksgiving' => CarbonImmutable::parse("second monday of October {$year}"),
         ];
     }
 }

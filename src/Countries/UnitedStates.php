@@ -31,12 +31,12 @@ class UnitedStates extends Country
     protected function variableHolidays(int $year): array
     {
         return [
-            'Martin Luther King Day' => CarbonImmutable::parse('third monday of January '.$year),
-            "Presidents' Day" => CarbonImmutable::parse('third monday of February '.$year),
-            'Memorial Day' => CarbonImmutable::parse('last monday of May '.$year),
-            'Labor Day' => CarbonImmutable::parse('first monday of September '.$year),
-            'Columbus Day' => CarbonImmutable::parse('second monday of October '.$year),
-            'Thanksgiving' => CarbonImmutable::parse('fourth thursday of November '.$year),
+            'Martin Luther King Day' => CarbonImmutable::parse("third monday of January {$year}"),
+            "Presidents' Day" => CarbonImmutable::parse("third monday of February {$year}"),
+            'Memorial Day' => CarbonImmutable::parse("last monday of May {$year}"),
+            'Labor Day' => CarbonImmutable::parse("first monday of September {$year}"),
+            'Columbus Day' => CarbonImmutable::parse("second monday of October {$year}"),
+            'Thanksgiving' => CarbonImmutable::parse("fourth thursday of November {$year}"),
         ];
     }
 }

@@ -58,15 +58,15 @@ class Holidays
     {
         if (! $from instanceof CarbonImmutable) {
             $from = match (strlen($from)) {
-                4 => CarbonImmutable::parse($from.'-01-01'),
-                7 => CarbonImmutable::parse($from.'-01'),
+                4 => CarbonImmutable::parse("{$from}-01-01"),
+                7 => CarbonImmutable::parse("{$from}-01"),
                 default => CarbonImmutable::parse($from),
             };
         }
 
         if (! $to instanceof CarbonImmutable) {
             $to = match (strlen($to)) {
-                4 => CarbonImmutable::parse($to.'-12-31'),
+                4 => CarbonImmutable::parse("{$to}-12-31"),
                 7 => CarbonImmutable::parse($to)->endOfMonth(),
                 default => CarbonImmutable::parse($to),
             };

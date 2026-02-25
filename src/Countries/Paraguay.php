@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 
-final class Paraguay extends Country
+class Paraguay extends Country
 {
     public function countryCode(): string
     {
