@@ -9,9 +9,11 @@ This package can calculate public holidays for a country.
 ```php
 use Spatie\Holidays\Holidays;
 
-// returns an array of Belgian holidays
-// for the current year
+// returns an array of Holiday objects for the current year
 $holidays = Holidays::for('be')->get();
+
+$holidays[0]->name; // 'Nieuwjaar'
+$holidays[0]->date; // CarbonImmutable('2024-01-01')
 ```
 
 ## Support us
@@ -36,15 +38,20 @@ We support the countries listed in [this directory](https://github.com/spatie/ho
 
 ## Usage
 
-You can get all holidays for a country by using the `get` method.
+You can get all holidays for a country by using the `get` method. It returns an array of `Holiday` objects.
 
 ```php
 use Spatie\Holidays\Holidays;
 use Spatie\Holidays\Countries\Belgium;
 
-// returns an array of Belgian holidays
-// for the current year
-$holidays = Holidays::for(Belgium::make())->get(); 
+// returns Holiday[] for the current year
+$holidays = Holidays::for(Belgium::make())->get();
+
+foreach ($holidays as $holiday) {
+    echo $holiday->name;       // 'Nieuwjaar'
+    echo $holiday->date;       // CarbonImmutable instance
+    echo $holiday->type->value; // 'national'
+}
 ```
 
 Alternatively, you could also pass an [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) code to the `for` method.
@@ -53,9 +60,14 @@ In case of region based holidays, these will not be included. Use a country clas
 ```php
 use Spatie\Holidays\Holidays;
 
-// returns an array of Belgian holidays
-// for the current year
 $holidays = Holidays::for('be')->get();
+```
+
+The `Holiday` object implements `JsonSerializable`, so you can easily convert it to JSON:
+
+```php
+json_encode($holidays[0]);
+// {"name":"Nieuwjaar","date":"2024-01-01","type":"national","region":null}
 ```
 
 ### Getting holidays for a specific year
@@ -70,7 +82,7 @@ $holidays = Holidays::for(country: 'be', year: 2024)->get();
 
 ### Getting holidays between two dates
 
-You can also get all holidays between two dates (inclusive).
+You can also get all holidays between two dates (inclusive). This also returns `Holiday[]`.
 
 ```php
 use Spatie\Holidays\Holidays;
