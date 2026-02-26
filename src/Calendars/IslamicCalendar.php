@@ -17,10 +17,10 @@ trait IslamicCalendar
 
     protected string $islamicCalendarTimezone = 'UTC';
 
-    /** @return array<int, string> */
+    /** @return array<int, string|array<string>> */
     abstract protected function eidAlFitrDates(): array;
 
-    /** @return array<int, string> */
+    /** @return array<int, string|array<string>> */
     abstract protected function eidAlAdhaDates(): array;
 
     /** @return array<int, string>|null */
