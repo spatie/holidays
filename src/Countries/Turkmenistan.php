@@ -48,7 +48,13 @@ class Turkmenistan extends Country
         $formatter = $this->getIslamicFormatter();
 
         $timeStamp = $formatter->parse("{$input}/{$hijriYear} AH");
-        $dateTime = date_create()->setTimeStamp($timeStamp)->setTimezone(new DateTimeZone($this->timezone));
+        if ($timeStamp === false) {
+            throw new \RuntimeException("Failed to parse hijri date: {$input}/{$hijriYear} AH");
+        }
+
+        $dateTime = new DateTime;
+        $dateTime->setTimestamp((int) $timeStamp);
+        $dateTime = $dateTime->setTimezone(new DateTimeZone($this->timezone));
 
         return new CarbonImmutable($dateTime->format('Y-m-d'));
     }
@@ -70,7 +76,15 @@ class Turkmenistan extends Country
         $formatter->setPattern('yyyy');
 
         $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/'.($nextYear ? $year + 1 : $year));
+        if ($dateTime === false) {
+            throw new \RuntimeException('Failed to create datetime');
+        }
 
-        return (int) $formatter->format($dateTime);
+        $formatted = $formatter->format($dateTime);
+        if ($formatted === false) {
+            throw new \RuntimeException('Failed to format hijri year');
+        }
+
+        return (int) $formatted;
     }
 }

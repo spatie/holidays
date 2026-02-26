@@ -57,7 +57,7 @@ class Ghana extends Country
 
     protected function observed(string $date, int $year): CarbonImmutable
     {
-        $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        $holiday = $this->createDate('Y-m-d', "{$year}-{$date}");
 
         if ($holiday->isWeekend()) {
             return $holiday->next('monday')->toImmutable();
@@ -85,7 +85,7 @@ class Ghana extends Country
         $newYearDay = new CarbonImmutable("{$year}-01-01")->startOfDay();
 
         if (is_string($date)) {
-            $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+            $date = $this->createDate('Y-m-d', "{$year}-{$date}");
         }
 
         if ($date->isSameDay($christmasDay) || $date->isSameDay($boxingDay) || $date->isSameDay($newYearDay)) {

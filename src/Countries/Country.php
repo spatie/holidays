@@ -106,8 +106,7 @@ abstract class Country
 
     protected function easter(int $year): CarbonImmutable
     {
-        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-03-21")
-            ->startOfDay();
+        $easter = $this->createDate('Y-m-d', "{$year}-03-21");
 
         return $easter->addDays(easter_days($year));
     }
@@ -117,8 +116,7 @@ abstract class Country
         // Paschal full moon date
         // Not covered edge case:
         // when the full moon is on a 3 April, Easter is the next Sunday
-        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-04-03")
-            ->startOfDay();
+        $easter = $this->createDate('Y-m-d', "{$year}-04-03");
 
         return $easter->addDays(easter_days($year, CAL_EASTER_ALWAYS_JULIAN));
     }
@@ -201,8 +199,10 @@ abstract class Country
                 continue; // Lunar based holidays can overlap in 2 years
             }
 
-            $formattedSuffix = $index > 0
-                ? " {$suffix} ".($index + 1)
+            /** @var int $indexInt */
+            $indexInt = $index;
+            $formattedSuffix = $indexInt > 0
+                ? " {$suffix} ".($indexInt + 1)
                 : '';
 
             $holidayName = "{$prefix}{$name}{$formattedSuffix}";
@@ -211,5 +211,16 @@ abstract class Country
         }
 
         return $allDays;
+    }
+
+    protected function createDate(string $format, string $date): CarbonImmutable
+    {
+        $result = CarbonImmutable::createFromFormat($format, $date);
+
+        if ($result === null) {
+            throw new \RuntimeException("Invalid date format: {$date}");
+        }
+
+        return $result;
     }
 }

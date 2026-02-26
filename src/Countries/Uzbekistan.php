@@ -2,7 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holiday;
 
 class Uzbekistan extends Country
@@ -156,14 +155,14 @@ class Uzbekistan extends Country
         if (isset(self::ramadanHolidays[$year])) {
             foreach ((array) self::ramadanHolidays[$year] as $key => $holiday) {
                 $prefix = $key == 0 ? '' : ' '.($key + 1);
-                $holidays[] = Holiday::national("Ramazon Hayiti{$prefix}", CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday}"));
+                $holidays[] = Holiday::national("Ramazon Hayiti{$prefix}", "{$year}-{$holiday}");
             }
         }
 
         if (isset(self::sacrificeHolidays[$year])) {
             foreach ((array) self::sacrificeHolidays[$year] as $key => $holiday) {
                 $prefix = $key == 0 ? '' : ' '.($key + 1);
-                $holidays[] = Holiday::national("Qurbon Hayiti{$prefix}", CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday}"));
+                $holidays[] = Holiday::national("Qurbon Hayiti{$prefix}", "{$year}-{$holiday}");
             }
         }
 
