@@ -2,20 +2,16 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Holiday;
 
-class Belgium extends Country implements HasTranslations
+class Belgium extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'be';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'nl';
     }
@@ -23,25 +19,25 @@ class Belgium extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nieuwjaar' => '01-01',
-            'Dag van de Arbeid' => '05-01',
-            'Nationale Feestdag' => '07-21',
-            'OLV Hemelvaart' => '08-15',
-            'Allerheiligen' => '11-01',
-            'Wapenstilstand' => '11-11',
-            'Kerstmis' => '12-25',
+            Holiday::national('Nieuwjaar', "{$year}-01-01"),
+            Holiday::national('Dag van de Arbeid', "{$year}-05-01"),
+            Holiday::national('Nationale Feestdag', "{$year}-07-21"),
+            Holiday::national('OLV Hemelvaart', "{$year}-08-15"),
+            Holiday::national('Allerheiligen', "{$year}-11-01"),
+            Holiday::national('Wapenstilstand', "{$year}-11-11"),
+            Holiday::national('Kerstmis', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Paasmaandag' => $easter->addDay(),
-            'OLH Hemelvaart' => $easter->addDays(39),
-            'Pinkstermaandag' => $easter->addDays(50),
+            Holiday::national('Paasmaandag', $easter->addDay()),
+            Holiday::national('OLH Hemelvaart', $easter->addDays(39)),
+            Holiday::national('Pinkstermaandag', $easter->addDays(50)),
         ];
     }
 }

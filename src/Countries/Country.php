@@ -5,54 +5,77 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Carbon\CarbonPeriod;
-use Carbon\Exceptions\InvalidFormatException;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Contracts\HasRegions;
+use Spatie\Holidays\CountryRegistry;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Holiday;
+use Spatie\Holidays\HolidayType;
 
 abstract class Country
 {
     abstract public function countryCode(): string;
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<Holiday> */
     abstract protected function allHolidays(int $year): array;
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     public function get(int $year, ?string $locale = null): array
     {
         $this->ensureYearCanBeCalculated($year);
 
-        $allHolidays = $this->allHolidays($year);
+        $holidays = $this->allHolidays($year);
 
-        $translatedHolidays = [];
-        foreach ($allHolidays as $name => $date) {
-            if (is_string($date)) {
-                if (strlen($date) > 5) {
-                    $date = (new CarbonImmutable($date.' '.$year))->startOfDay();
-                } else {
-                    $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
-                }
-            }
+        $translations = $this->loadTranslations($locale);
 
-            if ($date === null) {
-                throw new InvalidFormatException("Invalid date for holiday `{$name}`");
-            }
-
-            if ($this instanceof HasTranslations) {
-                $name = $this->translate(basename(str_replace('\\', '/', static::class)), $name, $locale);
-            }
-
-            $translatedHolidays[$name] = $date;
+        if ($translations !== null) {
+            $holidays = array_map(
+                static fn (Holiday $holiday): Holiday => Holiday::make(
+                    $translations[$holiday->name] ?? $holiday->name,
+                    $holiday->date,
+                    $holiday->type,
+                    $holiday->region,
+                ),
+                $holidays,
+            );
         }
 
-        uasort($translatedHolidays,
-            fn (CarbonImmutable $a, CarbonImmutable $b): int => $a->timestamp <=> $b->timestamp
-        );
+        usort($holidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
 
-        return $translatedHolidays;
+        return $holidays;
     }
 
-    /** @return array<string, string>  date => name */
+    protected function defaultLocale(): ?string
+    {
+        return null;
+    }
+
+    /** @return array<string, string>|null */
+    private function loadTranslations(?string $locale): ?array
+    {
+        $locale ??= $this->defaultLocale();
+
+        if ($locale === null) {
+            return null;
+        }
+
+        $filePath = __DIR__."/../../lang/{$this->countryCode()}/{$locale}/holidays.json";
+
+        if (! file_exists($filePath)) {
+            return null;
+        }
+
+        $content = file_get_contents($filePath);
+
+        if ($content === false) {
+            return null;
+        }
+
+        /** @var array<string, string> */
+        return json_decode($content, true);
+    }
+
+    /** @return array<Holiday> */
     public function getInRange(?CarbonImmutable $from, ?CarbonImmutable $to, ?string $locale = null): array
     {
         $from ??= CarbonImmutable::now()->startOfYear();
@@ -64,27 +87,16 @@ abstract class Country
         $allHolidays = [];
 
         for ($year = $from->year; $year <= $to->year; $year++) {
-            $yearHolidays = $this->get($year, $locale);
-            /**
-             * @var string $name
-             * @var CarbonImmutable $date
-             */
-            foreach ($yearHolidays as $name => $date) {
-                if ($date->between($from, $to)) {
-                    $allHolidays[] = ['date' => $date, 'name' => $name];
+            foreach ($this->get($year, $locale) as $holiday) {
+                if ($holiday->date->between($from, $to)) {
+                    $allHolidays[] = $holiday;
                 }
             }
         }
 
-        usort($allHolidays, static fn (array $a, array $b): int => $a['date'] <=> $b['date']);
+        usort($allHolidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
 
-        $mappedHolidays = [];
-        /** @var array{date: CarbonImmutable, name: string} $holiday */
-        foreach ($allHolidays as $holiday) {
-            $mappedHolidays[$holiday['date']->toDateString()] = $holiday['name'];
-        }
-
-        return $mappedHolidays;
+        return $allHolidays;
     }
 
     public static function make(): static
@@ -94,8 +106,7 @@ abstract class Country
 
     protected function easter(int $year): CarbonImmutable
     {
-        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-03-21")
-            ->startOfDay();
+        $easter = $this->createDate('Y-m-d', "{$year}-03-21");
 
         return $easter->addDays(easter_days($year));
     }
@@ -105,42 +116,29 @@ abstract class Country
         // Paschal full moon date
         // Not covered edge case:
         // when the full moon is on a 3 April, Easter is the next Sunday
-        $easter = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-04-03")
-            ->startOfDay();
+        $easter = $this->createDate('Y-m-d', "{$year}-04-03");
 
         return $easter->addDays(easter_days($year, CAL_EASTER_ALWAYS_JULIAN));
     }
 
-    public static function find(string $countryCode): ?Country
+    public static function find(string $countryCode, ?string $region = null): ?Country
     {
-        $countryCode = strtolower($countryCode);
+        $class = CountryRegistry::find($countryCode);
 
-        if ($countryCode === 'da') {
-            $countryCode = 'dk'; // @todo remove with new major and change the ISO code for Denmark
+        if ($class === null) {
+            return null;
         }
 
-        foreach (glob(__DIR__.'/../Countries/*.php') as $filename) {
-            if (basename($filename) === 'Country.php') {
-                continue;
-            }
-
-            // determine class name from file name
-            $countryClass = '\\Spatie\\Holidays\\Countries\\'.basename($filename, '.php');
-
-            /** @var Country $country */
-            $country = new $countryClass;
-
-            if (strtolower($country->countryCode()) === $countryCode) {
-                return $country;
-            }
+        if ($region !== null && is_a($class, HasRegions::class, true)) {
+            return new $class($region);
         }
 
-        return null;
+        return new $class;
     }
 
-    public static function findOrFail(string $countryCode): Country
+    public static function findOrFail(string $countryCode, ?string $region = null): Country
     {
-        $country = self::find($countryCode);
+        $country = self::find($countryCode, $region);
 
         if (! $country) {
             throw InvalidCountry::notFound($countryCode);
@@ -149,34 +147,38 @@ abstract class Country
         return $country;
     }
 
+    /** @return array{int, int}|null */
+    protected function supportedYearRange(): ?array
+    {
+        return null;
+    }
+
     protected function ensureYearCanBeCalculated(int $year): void
     {
-        /**
-         * Most holidays have Easter as an anchor. Elsewhere in the
-         * code we use PHP's native easter-date function, which can only handle
-         * years between 1970 and 2037
-         *
-         * https://www.php.net/manual/en/function.easter-date.php
-         */
-        if ($year < 1970) {
-            throw InvalidYear::yearTooLow(1970);
+        $range = $this->supportedYearRange();
+
+        if ($range === null) {
+            return;
         }
 
-        if ($year > 2037) {
-            throw InvalidYear::yearTooHigh(2038);
+        [$min, $max] = $range;
+
+        if ($year < $min || $year > $max) {
+            throw InvalidYear::range($this->countryCode(), $min, $max);
         }
     }
 
     /**
-     * Convert holidays that are represented as CarbonPeriods to an array of CarbonImmutable dates.
+     * Convert holidays that are represented as CarbonPeriods to an array of Holiday objects.
      * This is useful for holidays like `Eid-al-Fitr` that happen on multiple days.
      *
-     * @return array<string, CarbonImmutable>
+     * @return array<Holiday>
      */
     protected function convertPeriods(
         string $name,
         int $year,
         CarbonPeriod $period,
+        HolidayType $type = HolidayType::National,
         string $suffix = 'Day',
         string $prefix = '',
         bool $includeEve = false,
@@ -187,27 +189,39 @@ abstract class Country
             $eve = $period->first()?->subDay();
 
             if ($eve && $eve->year === $year) {
-                $allDays[$name.' Eve'] = $eve->toImmutable();
+                $allDays[] = Holiday::make("{$name} Eve", $eve->toImmutable(), $type);
             }
         }
 
         /** @var CarbonInterface $day */
+        // @phpstan-ignore-next-line
         foreach ($period as $index => $day) {
             if ($day->year !== $year) {
                 continue; // Lunar based holidays can overlap in 2 years
             }
 
-            if ($index > 0) {
-                $formattedSuffix = " {$suffix} ".$index + 1;
-            } else {
-                $formattedSuffix = '';
-            }
+            /** @var int $indexInt */
+            $indexInt = $index;
+            $formattedSuffix = $indexInt > 0
+                ? " {$suffix} ".($indexInt + 1)
+                : '';
 
             $holidayName = "{$prefix}{$name}{$formattedSuffix}";
 
-            $allDays[$holidayName] = $day->toImmutable();
+            $allDays[] = Holiday::make($holidayName, $day->toImmutable(), $type);
         }
 
         return $allDays;
+    }
+
+    protected function createDate(string $format, string $date): CarbonImmutable
+    {
+        $result = CarbonImmutable::createFromFormat($format, $date);
+
+        if ($result === null) {
+            throw new \RuntimeException("Invalid date format: {$date}");
+        }
+
+        return $result;
     }
 }

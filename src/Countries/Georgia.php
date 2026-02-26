@@ -2,20 +2,16 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Holiday;
 
-class Georgia extends Country implements HasTranslations
+class Georgia extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'ge';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'ge';
     }
@@ -23,33 +19,33 @@ class Georgia extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'ახალი წელი' => '01-01',
-            'ახალი წლის სადღესასწაულო დღე' => '01-02',
-            'შობა' => '01-07',
-            'ნათლისღება' => '01-19',
-            'დედის დღე' => '03-03',
-            'ქალთა საერთაშორისო დღე' => '03-08',
-            'ერთიანობის დღე' => '04-09',
-            'გამარჯვების დღე' => '05-09',
-            'წმ. ანდრია პირველწოდებულის ხსენების დღე' => '05-12',
-            'ოჯახის სიწმინდის დღე' => '05-17',
-            'დამოუკიდებლობის დღე' => '05-26',
-            'მარიამობა' => '08-28',
-            'სვეტიცხოვლობა' => '10-14',
-            'გიორგობა' => '11-23',
+            Holiday::national('ახალი წელი', "{$year}-01-01"),
+            Holiday::national('ახალი წლის სადღესასწაულო დღე', "{$year}-01-02"),
+            Holiday::national('შობა', "{$year}-01-07"),
+            Holiday::national('ნათლისღება', "{$year}-01-19"),
+            Holiday::national('დედის დღე', "{$year}-03-03"),
+            Holiday::national('ქალთა საერთაშორისო დღე', "{$year}-03-08"),
+            Holiday::national('ერთიანობის დღე', "{$year}-04-09"),
+            Holiday::national('გამარჯვების დღე', "{$year}-05-09"),
+            Holiday::national('წმ. ანდრია პირველწოდებულის ხსენების დღე', "{$year}-05-12"),
+            Holiday::national('ოჯახის სიწმინდის დღე', "{$year}-05-17"),
+            Holiday::national('დამოუკიდებლობის დღე', "{$year}-05-26"),
+            Holiday::national('მარიამობა', "{$year}-08-28"),
+            Holiday::national('სვეტიცხოვლობა', "{$year}-10-14"),
+            Holiday::national('გიორგობა', "{$year}-11-23"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $orthodoxEaster = $this->orthodoxEaster($year);
 
         return [
-            'აღდგომა' => $orthodoxEaster,
-            'წითელი პარასკევი' => $orthodoxEaster->subDays(2),
-            'დიდი შაბათი' => $orthodoxEaster->subDay(),
-            'მიცვალებულთა მოხსენიების დღე' => $orthodoxEaster->addDay(),
+            Holiday::national('აღდგომა', $orthodoxEaster),
+            Holiday::national('წითელი პარასკევი', $orthodoxEaster->subDays(2)),
+            Holiday::national('დიდი შაბათი', $orthodoxEaster->subDay()),
+            Holiday::national('მიცვალებულთა მოხსენიების დღე', $orthodoxEaster->addDay()),
         ];
     }
 }

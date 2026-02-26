@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Tanzania extends Country
 {
@@ -14,50 +14,45 @@ class Tanzania extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Labor Day' => '05-01',
-            'Saba Saba Day' => '07-07',
-            'Farmers Day (Nane Nane Day)' => '08-08',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national('Labor Day', "{$year}-05-01"),
+            Holiday::national('Saba Saba Day', "{$year}-07-07"),
+            Holiday::national('Farmers Day (Nane Nane Day)', "{$year}-08-08"),
+            Holiday::national('Christmas Day', "{$year}-12-25"),
+            Holiday::national('Boxing Day', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
-        $variable_holidays = [
-            'Easter Monday' => $easter->addDay(),
-            'Good Friday' => $easter->addDays(-2),
+        $holidays = [
+            Holiday::national('Easter Monday', $easter->addDay()),
+            Holiday::national('Good Friday', $easter->addDays(-2)),
         ];
 
-        // Zanzibar Revolutionary Day celebrations started in 1964
         if ($year >= 1964) {
-            $variable_holidays['Zanzibar Revolutionary Day'] = '01-12';
+            $holidays[] = Holiday::national('Zanzibar Revolutionary Day', "{$year}-01-12");
         }
 
-        // Karume Day celebrations started in 1973
         if ($year >= 1973) {
-            $variable_holidays['Karume Day'] = '04-07';
+            $holidays[] = Holiday::national('Karume Day', "{$year}-04-07");
         }
 
-        //  'Union Day celebrations started in 1964
         if ($year >= 1964) {
-            $variable_holidays['Union Day'] = '04-26';
+            $holidays[] = Holiday::national('Union Day', "{$year}-04-26");
         }
 
-        // Nyerere Day day celebrations started in 2000
         if ($year >= 2000) {
-            $variable_holidays['Nyerere Day'] = '10-14';
+            $holidays[] = Holiday::national('Nyerere Day', "{$year}-10-14");
         }
 
-        // Independence Day celebrations started in 1961
         if ($year >= 1961) {
-            $variable_holidays['Independence Day'] = '12-09';
+            $holidays[] = Holiday::national('Independence Day', "{$year}-12-09");
         }
 
-        return $variable_holidays;
+        return $holidays;
     }
 }

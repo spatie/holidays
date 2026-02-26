@@ -13,9 +13,9 @@ class SriLanka extends Country
 
     protected function allHolidays(int $year): array
     {
-        // Sri lanka has a committee that decides the holidays for the year
-        // instead of following a full moon calendar.
-
-        throw InvalidCountry::notFound($this->countryCode());
+        throw InvalidCountry::notCalculable(
+            $this->countryCode(),
+            'Sri Lanka uses a government committee to determine holidays each year, so they cannot be computed programmatically.',
+        );
     }
 }

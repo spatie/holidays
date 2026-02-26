@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Pakistan extends Country
 {
@@ -14,19 +14,18 @@ class Pakistan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Kashmir Solidarity Day' => '02-05',
-            'Pakistan Day' => '03-23',
-            'Labour Day' => '05-01',
-            'Independence Day' => '08-14',
-            'Iqbal Day' => '11-09',
-            'Quaid-e-Azam Day' => '12-25',
+            Holiday::national('Kashmir Solidarity Day', "{$year}-02-05"),
+            Holiday::national('Pakistan Day', "{$year}-03-23"),
+            Holiday::national('Labour Day', "{$year}-05-01"),
+            Holiday::national('Independence Day', "{$year}-08-14"),
+            Holiday::national('Iqbal Day', "{$year}-11-09"),
+            Holiday::national('Quaid-e-Azam Day', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
-        // The variable holidays are all follow lunar calendar so their dates are not confirmed.
         return [];
     }
 }

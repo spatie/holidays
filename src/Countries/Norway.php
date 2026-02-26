@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Norway extends Country
 {
@@ -14,27 +14,27 @@ class Norway extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Første nyttårsdag' => '01-01',
-            'Arbeidernes dag' => '05-01',
-            'Grunnlovsdag' => '05-17',
-            'Første juledag' => '12-25',
-            'Andre juledag' => '12-26',
+            Holiday::national('Første nyttårsdag', "{$year}-01-01"),
+            Holiday::national('Arbeidernes dag', "{$year}-05-01"),
+            Holiday::national('Grunnlovsdag', "{$year}-05-17"),
+            Holiday::national('Første juledag', "{$year}-12-25"),
+            Holiday::national('Andre juledag', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Skjærtorsdag' => $easter->subDays(3),
-            'Langfredag' => $easter->subDays(2),
-            'Første påskedag' => $easter,
-            'Andre påskedag,' => $easter->addDay(),
-            'Kristi Himmelfartsdag' => $easter->addDays(39),
-            'Første pinsedag' => $easter->addDays(49),
-            'Andre pinsedag' => $easter->addDays(50),
+            Holiday::national('Skjærtorsdag', $easter->subDays(3)),
+            Holiday::national('Langfredag', $easter->subDays(2)),
+            Holiday::national('Første påskedag', $easter),
+            Holiday::national('Andre påskedag,', $easter->addDay()),
+            Holiday::national('Kristi Himmelfartsdag', $easter->addDays(39)),
+            Holiday::national('Første pinsedag', $easter->addDays(49)),
+            Holiday::national('Andre pinsedag', $easter->addDays(50)),
         ];
     }
 }

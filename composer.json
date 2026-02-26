@@ -20,20 +20,20 @@
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^8.4",
         "ext-intl": "*",
         "ext-calendar": "*",
-        "nesbot/carbon": "^2.72.1|^3.0"
+        "nesbot/carbon": "^3.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
         "laravel/prompts": "^0.3.0",
-        "pestphp/pest": "^2.31|^3.0|^4.0",
-        "phpstan/phpstan": "^1.10.56",
-        "rector/rector": "^1.0",
+        "pestphp/pest": "^4.0",
+        "phpstan/phpstan": "^2.0",
+        "rector/rector": "^2.0",
         "spatie/invade": "^2.0",
         "spatie/ray": "^1.40.1",
-        "symfony/var-dumper": "^6.4||^7.1 || ^8.0"
+        "symfony/var-dumper": "^8.0"
     },
     "autoload": {
         "psr-4": {

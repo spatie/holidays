@@ -15,6 +15,7 @@ it('can calculate syria holidays', function () {
         ->not()->toBeEmpty()
         ->and(formatDates($holidays))->toMatchSnapshot();
 });
+
 it('can translate syria holidays into arabic', function () {
     $holidays = Holidays::for(country: 'sy', year: 2024, locale: 'ar')->get();
     expect($holidays)

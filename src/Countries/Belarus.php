@@ -2,20 +2,16 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Holiday;
 
-class Belarus extends Country implements HasTranslations
+class Belarus extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'by';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'be';
     }
@@ -23,25 +19,25 @@ class Belarus extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Новы год' => '01-01',
-            'Новы год (другі дзень)' => '01-02',
-            'Нараджэнне Хрыстова (праваслаўнае Раство)' => '01-07',
-            'Дзень жанчын' => '03-08',
-            'Свята працы' => '05-01',
-            'Дзень Перамогі' => '05-09',
-            'Дзень Незалежнасці' => '07-03',
-            'Дзень Кастрычніцкай рэвалюцыі' => '11-07',
-            'Нараджэнне Хрыстова (каталіцкае Раство)' => '12-25',
+            Holiday::national('Новы год', "{$year}-01-01"),
+            Holiday::national('Новы год (другі дзень)', "{$year}-01-02"),
+            Holiday::national('Нараджэнне Хрыстова (праваслаўнае Раство)', "{$year}-01-07"),
+            Holiday::national('Дзень жанчын', "{$year}-03-08"),
+            Holiday::national('Свята працы', "{$year}-05-01"),
+            Holiday::national('Дзень Перамогі', "{$year}-05-09"),
+            Holiday::national('Дзень Незалежнасці', "{$year}-07-03"),
+            Holiday::national('Дзень Кастрычніцкай рэвалюцыі', "{$year}-11-07"),
+            Holiday::national('Нараджэнне Хрыстова (каталіцкае Раство)', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->orthodoxEaster($year);
 
         return [
-            'Радаўніца' => $easter->addDays(9),
+            Holiday::national('Радаўніца', $easter->addDays(9)),
         ];
     }
 }

@@ -1,23 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Holiday;
 
-final class Paraguay extends Country implements HasTranslations
+class Paraguay extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'py';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'es';
     }
@@ -25,26 +20,26 @@ final class Paraguay extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => '01-01',
-            'Día de los Héroes' => '03-01',
-            'Día del Trabajador' => '05-01',
-            'Día de la Independencia Nacional' => '05-15',
-            'Fundación de Asunción' => '08-15',
-            'Batalla de Boquerón' => '09-29',
-            'Virgen de Caacupé' => '12-08',
-            'Navidad' => '12-25',
+            Holiday::national('Año Nuevo', "{$year}-01-01"),
+            Holiday::national('Día de los Héroes', "{$year}-03-01"),
+            Holiday::national('Día del Trabajador', "{$year}-05-01"),
+            Holiday::national('Día de la Independencia Nacional', "{$year}-05-15"),
+            Holiday::national('Fundación de Asunción', "{$year}-08-15"),
+            Holiday::national('Batalla de Boquerón', "{$year}-09-29"),
+            Holiday::national('Virgen de Caacupé', "{$year}-12-08"),
+            Holiday::national('Navidad', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     private function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Paz del Chaco' => $this->chacoArmistice($year),
-            'Jueves Santo' => $easter->subDays(3),
-            'Viernes Santo' => $easter->subDays(2),
+            Holiday::national('Paz del Chaco', $this->chacoArmistice($year)),
+            Holiday::national('Jueves Santo', $easter->subDays(3)),
+            Holiday::national('Viernes Santo', $easter->subDays(2)),
         ];
     }
 

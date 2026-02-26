@@ -10,4 +10,9 @@ class InvalidCountry extends RuntimeException
     {
         return new self("Country code `{$countryCode}` is not supported.");
     }
+
+    public static function notCalculable(string $countryCode, string $reason): self
+    {
+        return new self("Holidays for `{$countryCode}` cannot be calculated: {$reason}");
+    }
 }

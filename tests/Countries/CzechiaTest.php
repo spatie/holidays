@@ -52,7 +52,7 @@ it('gives right holidays for specific years', function (int $year, array $contai
     );
 
     $givenNames = array_map(
-        static fn (array $holidayProperties) => $holidayProperties['name'],
+        static fn ($holiday) => $holiday->name,
         $holidays
     );
 
