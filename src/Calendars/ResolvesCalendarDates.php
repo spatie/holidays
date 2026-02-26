@@ -30,7 +30,7 @@ trait ResolvesCalendarDates
     }
 
     /**
-     * @param  non-empty-array<int, string|array<string>>  $collection
+     * @param  array<int, string|array<string>>  $collection
      * @return array<CarbonPeriod>
      */
     protected function getMultiDayHoliday(array $collection, int $year, int $totalDays): array
@@ -38,7 +38,7 @@ trait ResolvesCalendarDates
         $date = $collection[$year] ?? null;
 
         if ($date === null) {
-            $this->throwUnsupportedYear($collection);
+            return [];
         }
 
         $overlap = $this->getOverlapping($collection, $year, $totalDays);

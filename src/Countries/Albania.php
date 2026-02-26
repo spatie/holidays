@@ -11,6 +11,7 @@ class Albania extends Country implements Islamic
 {
     use IslamicCalendar;
 
+    /** @return non-empty-array<int, string> */
     protected function eidAlFitrDates(): array
     {
         return [
@@ -28,6 +29,7 @@ class Albania extends Country implements Islamic
         ];
     }
 
+    /** @return non-empty-array<int, string> */
     protected function eidAlAdhaDates(): array
     {
         return [
