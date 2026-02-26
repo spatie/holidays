@@ -2,7 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IndianCalendar;
 use Spatie\Holidays\Holiday;
 
@@ -1115,17 +1114,17 @@ class India extends Country
     protected function allHolidays(int $year): array
     {
         $religiousHolidays = [
-            Holiday::religious('Holi', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::holiHolidays[$year])),
-            Holiday::religious('Good Friday', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::goodFridayHolidays[$year])),
-            Holiday::religious('Rama Navami', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::ramanavamiHolidays[$year])),
-            Holiday::religious('Mahavir Jayanti', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::mahavirJayantiHolidays[$year])),
-            Holiday::religious('Buddha Purnima/Vesak', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::buddhaPurnimaHolidays[$year])),
-            Holiday::religious('Raksha Bandhan', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::rakshabandhanHolidays[$year])),
-            Holiday::religious('Janmashtami', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::janmashtamiHolidays[$year])),
-            Holiday::religious('Dussehra', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::dussehraHolidays[$year])),
-            Holiday::religious('Diwali/Deepavali', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::diwaliHolidays[$year])),
-            Holiday::religious('Bhai Dooj', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::bhaiDujHolidays[$year])),
-            Holiday::religious('Guru Nanak Jayanti', CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::guruNanakHolidays[$year])),
+            Holiday::religious('Holi', "{$year}-".self::holiHolidays[$year]),
+            Holiday::religious('Good Friday', "{$year}-".self::goodFridayHolidays[$year]),
+            Holiday::religious('Rama Navami', "{$year}-".self::ramanavamiHolidays[$year]),
+            Holiday::religious('Mahavir Jayanti', "{$year}-".self::mahavirJayantiHolidays[$year]),
+            Holiday::religious('Buddha Purnima/Vesak', "{$year}-".self::buddhaPurnimaHolidays[$year]),
+            Holiday::religious('Raksha Bandhan', "{$year}-".self::rakshabandhanHolidays[$year]),
+            Holiday::religious('Janmashtami', "{$year}-".self::janmashtamiHolidays[$year]),
+            Holiday::religious('Dussehra', "{$year}-".self::dussehraHolidays[$year]),
+            Holiday::religious('Diwali/Deepavali', "{$year}-".self::diwaliHolidays[$year]),
+            Holiday::religious('Bhai Dooj', "{$year}-".self::bhaiDujHolidays[$year]),
+            Holiday::religious('Guru Nanak Jayanti', "{$year}-".self::guruNanakHolidays[$year]),
         ];
 
         return array_merge([

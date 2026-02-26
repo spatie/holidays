@@ -2,7 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Exceptions\InvalidYear;
 use Spatie\Holidays\Holiday;
 
@@ -71,7 +70,7 @@ class Morocco extends Country
                 }
             }
 
-            $holidays[] = Holiday::national($holidayTitle, CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day'])));
+            $holidays[] = Holiday::national($holidayTitle, sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day']));
         }
 
         return $holidays;

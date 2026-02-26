@@ -252,7 +252,7 @@ class Benin extends Country
         return array_merge(
             [
                 Holiday::national('Lundi de Pâques', $easter->addDays(1)),
-                Holiday::national('Jour de l' . json_decode('"\u2019"') . 'Ascension', $easter->addDays(40)),
+                Holiday::national('Jour de l'.json_decode('"\u2019"').'Ascension', $easter->addDays(40)),
                 Holiday::national('Lundi de Pentecôte', $easter->addDays(50)),
             ],
             $this->getIslamicHolidays(
@@ -291,7 +291,7 @@ class Benin extends Country
         if ($year != 1970) {
             $previousHoliday = is_array($holidays[$year - 1]) ? $holidays[$year - 1][1] : $holidays[$year - 1];
 
-            $previousHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year - 1).'-'.$previousHoliday);
+            $previousHoliday = $this->createDate('Y-m-d', ($year - 1).'-'.$previousHoliday);
 
             if ($previousHoliday->addDays($day - 1)->year == $year) {
                 $islamicHolidays = $this->prepareHolidays(
@@ -307,7 +307,7 @@ class Benin extends Country
         $currentYearHolidays = is_array($holidays[$year]) ? $holidays[$year] : [$holidays[$year]];
 
         foreach ($currentYearHolidays as $currentYearHoliday) {
-            $currentYearHoliday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$currentYearHoliday}");
+            $currentYearHoliday = $this->createDate('Y-m-d', "{$year}-{$currentYearHoliday}");
 
             $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
                 holiday: $currentYearHoliday,
@@ -322,7 +322,7 @@ class Benin extends Country
         if ($year != 2037) {
             $nextHoliday = is_array($holidays[$year + 1]) ? $holidays[$year + 1][1] : $holidays[$year + 1];
 
-            $nextHoliday = CarbonImmutable::createFromFormat('Y-m-d', ($year + 1).'-'.$nextHoliday);
+            $nextHoliday = $this->createDate('Y-m-d', ($year + 1).'-'.$nextHoliday);
 
             if ($nextHoliday->addDays(-1)->year == $year) {
                 $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(

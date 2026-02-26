@@ -2,7 +2,6 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Holiday;
 
 class Czechia extends Country
@@ -45,7 +44,7 @@ class Czechia extends Country
         $filteredHolidays = [];
         foreach ($holidays as $name => $holiday) {
             if ($holiday[1]) {
-                $filteredHolidays[] = Holiday::national($name, CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday[0]}"));
+                $filteredHolidays[] = Holiday::national($name, "{$year}-{$holiday[0]}");
             }
         }
 
