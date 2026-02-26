@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class DominicanRepublic extends Country
 {
@@ -11,19 +11,19 @@ class DominicanRepublic extends Country
         return 'do';
     }
 
-    /** @return array<string, CarbonImmutable | string> */
+    /** @return array<Holiday> */
     protected function allHolidays(int $year): array
     {
         return [
-            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Día de la Altagracia' => CarbonImmutable::createFromDate($year, 1, 21),
-            'Día de Duarte' => CarbonImmutable::createFromDate($year, 1, 26),
-            'Día de la Independencia' => CarbonImmutable::createFromDate($year, 2, 27),
-            'Día del Trabajo' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Día de la Restauración' => CarbonImmutable::createFromDate($year, 8, 16),
-            'Día de las Mercedes' => CarbonImmutable::createFromDate($year, 9, 24),
-            'Día de la Constitución' => CarbonImmutable::createFromDate($year, 11, 6),
-            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Año Nuevo', "{$year}-01-01"),
+            Holiday::national('Día de la Altagracia', "{$year}-01-21"),
+            Holiday::national('Día de Duarte', "{$year}-01-26"),
+            Holiday::national('Día de la Independencia', "{$year}-02-27"),
+            Holiday::national('Día del Trabajo', "{$year}-05-01"),
+            Holiday::national('Día de la Restauración', "{$year}-08-16"),
+            Holiday::national('Día de las Mercedes', "{$year}-09-24"),
+            Holiday::national('Día de la Constitución', "{$year}-11-06"),
+            Holiday::national('Navidad', "{$year}-12-25"),
         ];
     }
 }

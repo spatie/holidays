@@ -6,6 +6,7 @@ use Carbon\CarbonImmutable;
 use DateTime;
 use DateTimeZone;
 use IntlDateFormatter;
+use Spatie\Holidays\Holiday;
 
 class Taiwan extends Country
 {
@@ -19,23 +20,33 @@ class Taiwan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            '元旦' => CarbonImmutable::createFromDate($year, 1, 1),
-            '228和平紀念日' => CarbonImmutable::createFromDate($year, 2, 28),
-            '兒童節' => CarbonImmutable::createFromDate($year, 4, 4),
-            '雙十國慶' => CarbonImmutable::createFromDate($year, 10, 10),
+            Holiday::national('元旦', "{$year}-01-01"),
+            Holiday::national('228和平紀念日', "{$year}-02-28"),
+            Holiday::national('兒童節', "{$year}-04-04"),
+            Holiday::national('雙十國慶', "{$year}-10-10"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
-        return array_filter(array_map(fn (string $date): ?CarbonImmutable => $this->lunarCalendar($date, $year), [
+        $holidays = [];
+        $dates = [
             '農曆春節-正月初一' => '01-01',
             '農曆春節-正月初二' => '01-02',
             '農曆春節-正月初三' => '01-03',
             '端午節' => '05-05',
             '中秋節' => '08-15',
-        ]));
+        ];
+
+        foreach ($dates as $name => $date) {
+            $holidayDate = $this->lunarCalendar($date, $year);
+            if ($holidayDate !== null) {
+                $holidays[] = Holiday::national($name, $holidayDate);
+            }
+        }
+
+        return $holidays;
     }
 
     protected function lunarCalendar(string $input, int $year): ?CarbonImmutable

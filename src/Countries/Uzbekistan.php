@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Uzbekistan extends Country
 {
@@ -128,7 +128,7 @@ class Uzbekistan extends Country
         return 'uz';
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function allHolidays(int $year): array
     {
         // After gaining independence on September 1, 1991, Uzbekistan introduced a new set of public holidays.
@@ -137,17 +137,17 @@ class Uzbekistan extends Country
         }
 
         return array_merge([
-            'Yangi yil' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Xalqaro xotin-qizlar kuni' => CarbonImmutable::createFromDate($year, 3, 8),
-            "Navro'z" => CarbonImmutable::createFromDate($year, 3, 21),
-            'Xotira va qadrlash kuni' => CarbonImmutable::createFromDate($year, 5, 9),
-            'Mustaqillik kuni' => CarbonImmutable::createFromDate($year, 9, 1),
-            'Ustoz va murabbiylar kuni' => CarbonImmutable::createFromDate($year, 10, 1),
-            'Konstitutsiya kuni' => CarbonImmutable::createFromDate($year, 12, 8),
+            Holiday::national('Yangi yil', "{$year}-01-01"),
+            Holiday::national('Xalqaro xotin-qizlar kuni', "{$year}-03-08"),
+            Holiday::national("Navro'z", "{$year}-03-21"),
+            Holiday::national('Xotira va qadrlash kuni', "{$year}-05-09"),
+            Holiday::national('Mustaqillik kuni', "{$year}-09-01"),
+            Holiday::national('Ustoz va murabbiylar kuni', "{$year}-10-01"),
+            Holiday::national('Konstitutsiya kuni', "{$year}-12-08"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $holidays = [];
@@ -155,14 +155,14 @@ class Uzbekistan extends Country
         if (isset(self::ramadanHolidays[$year])) {
             foreach ((array) self::ramadanHolidays[$year] as $key => $holiday) {
                 $prefix = $key == 0 ? '' : ' '.($key + 1);
-                $holidays["Ramazon Hayiti{$prefix}"] = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday}");
+                $holidays[] = Holiday::national("Ramazon Hayiti{$prefix}", "{$year}-{$holiday}");
             }
         }
 
         if (isset(self::sacrificeHolidays[$year])) {
             foreach ((array) self::sacrificeHolidays[$year] as $key => $holiday) {
                 $prefix = $key == 0 ? '' : ' '.($key + 1);
-                $holidays["Qurbon Hayiti{$prefix}"] = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday}");
+                $holidays[] = Holiday::national("Qurbon Hayiti{$prefix}", "{$year}-{$holiday}");
             }
         }
 

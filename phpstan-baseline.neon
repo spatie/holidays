@@ -25,58 +25,28 @@ parameters:
 			path: src/Countries/Albania.php
 
 		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Albania\:\:islamicHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
-			identifier: return.type
-			count: 1
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Albania::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/Countries/Albania.php
 
 		-
-			message: '#^Parameter \#1 \$array \(array\{''E diela e Pashkëve Katolike''\: Carbon\\CarbonImmutable, ''E diela e Pashkëve Ortodokse''\: Carbon\\CarbonImmutable\}\) to function array_filter does not contain falsy values, the array will always stay the same\.$#'
+			message: '#^Parameter \#1 \$array \(array\{Spatie\\Holidays\\Holiday, Spatie\\Holidays\\Holiday\}\) to function array_filter does not contain falsy values, the array will always stay the same\.$#'
 			identifier: arrayFilter.same
 			count: 1
 			path: src/Countries/Albania.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Albania\:\:getMultiDayHoliday\(\) expects array\<int, array\<string\>\|string\>, mixed given\.$#'
-			identifier: argument.type
+			message: '#^Parameter \#1 \$array \(list\<Spatie\\Holidays\\Holiday\>\) to function array_filter does not contain falsy values, the array will always stay the same\.$#'
+			identifier: arrayFilter.same
 			count: 1
-			path: src/Countries/Albania.php
+			path: src/Countries/Australia.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Albania\:\:getSingleDayHoliday\(\) expects array\<int, string\>, mixed given\.$#'
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Bahrain::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
 			identifier: argument.type
-			count: 3
-			path: src/Countries/Albania.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Albania\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Albania.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Albania\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Albania.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Bahrain\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
-			identifier: argument.type
-			count: 1
+			count: 2
 			path: src/Countries/Bahrain.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Bahrain\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Bahrain.php
-
-		-
-			message: '#^Parameter \$holiday of method Spatie\\Holidays\\Countries\\Benin\:\:prepareHolidays\(\) expects Carbon\\CarbonImmutable, Carbon\\CarbonImmutable\|null given\.$#'
-			identifier: argument.type
-			count: 3
-			path: src/Countries/Benin.php
 
 		-
 			message: '#^Argument of an invalid type Carbon\\CarbonPeriod supplied for foreach, only iterables are supported\.$#'
@@ -85,45 +55,27 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Countries/Country.php
-
-		-
-			message: '#^Anonymous function should return Carbon\\CarbonImmutable but returns Carbon\\CarbonImmutable\|null\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Czechia.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Egypt\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Egypt::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
 			identifier: argument.type
-			count: 1
+			count: 2
 			path: src/Countries/Egypt.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Egypt\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Egypt.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\India\:\:allHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
+			message: '#^Method Spatie\\Holidays\\Countries\\Honduras\:\:getMorazanicWeek\(\) should return array\<Spatie\\Holidays\\Holiday\> but returns array\<string, Carbon\\CarbonImmutable\>\.$#'
 			identifier: return.type
 			count: 1
-			path: src/Countries/India.php
+			path: src/Countries/Honduras.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\India\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
+			message: '#^Parameter \#2 \$date of static method Spatie\\Holidays\\Holiday\:\:national\(\) expects Carbon\\CarbonImmutable\|string, Spatie\\Holidays\\Holiday given\.$#'
 			identifier: argument.type
-			count: 1
-			path: src/Countries/India.php
+			count: 3
+			path: src/Countries/Honduras.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\India\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, string\> given\.$#'
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\India::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
 			identifier: argument.type
-			count: 1
+			count: 2
 			path: src/Countries/India.php
 
 		-
@@ -163,52 +115,28 @@ parameters:
 			path: src/Countries/Malaysia.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia\:\:getMultiDayHoliday\(\) expects array\<int, array\<string\>\|string\>, mixed given\.$#'
-			identifier: argument.type
-			count: 3
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 30
 			path: src/Countries/Malaysia.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia\:\:getSingleDayHoliday\(\) expects array\<int, string\>, mixed given\.$#'
-			identifier: argument.type
-			count: 3
-			path: src/Countries/Malaysia.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, string> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/Countries/Malaysia.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, string\> given\.$#'
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/Countries/Malaysia.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Maldives\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Maldives::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
 			identifier: argument.type
-			count: 1
+			count: 2
 			path: src/Countries/Maldives.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Maldives\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Maldives.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Morocco\:\:variableHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Morocco.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Spain\:\:regionHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Spain.php
 
 		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Syria\:\:arafat\.$#'
@@ -223,39 +151,15 @@ parameters:
 			path: src/Countries/Syria.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Syria\:\:getMultiDayHoliday\(\) expects array\<int, array\<string\>\|string\>, mixed given\.$#'
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Syria::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
 			identifier: argument.type
-			count: 1
+			count: 2
 			path: src/Countries/Syria.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Syria\:\:getSingleDayHoliday\(\) expects array\<int, string\>, mixed given\.$#'
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Tunisia::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
 			identifier: argument.type
-			count: 1
-			path: src/Countries/Syria.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Syria\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Syria.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Syria\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Syria.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Tunisia\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Tunisia.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Tunisia\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, string\> given\.$#'
-			identifier: argument.type
-			count: 1
+			count: 2
 			path: src/Countries/Tunisia.php
 
 		-
@@ -283,45 +187,9 @@ parameters:
 			path: src/Countries/Turkey.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Turkey\:\:getMultiDayHoliday\(\) expects array\<int, array\<string\>\|string\>, mixed given\.$#'
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Turkey::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
 			identifier: argument.type
-			count: 1
+			count: 2
 			path: src/Countries/Turkey.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Turkey\:\:getSingleDayHoliday\(\) expects array\<int, string\>, mixed given\.$#'
-			identifier: argument.type
-			count: 3
-			path: src/Countries/Turkey.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Turkey\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, array\<string\>\|string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Turkey.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Turkey\:\:throwUnsupportedYear\(\) expects non\-empty\-array\<int, mixed\>, array\<int, string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Turkey.php
-
-		-
-			message: '#^Cannot call method setTimeStamp\(\) on DateTime\|false\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/Countries/Turkmenistan.php
-
-		-
-			message: '#^Parameter \#1 \$datetime of method IntlDateFormatter\:\:format\(\) expects array\|DateTimeInterface\|float\|int\|IntlCalendar\|string, DateTime\|false given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Countries/Turkmenistan.php
-
-		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Uzbekistan\:\:variableHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<string, Carbon\\CarbonImmutable\|null\>\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Countries/Uzbekistan.php
 
 

@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Concerns\HasObservedHolidays;
+use Spatie\Holidays\Holiday;
 
 class NewZealand extends Country
 {
@@ -22,7 +23,7 @@ class NewZealand extends Country
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function observedHolidays(int $year): array
     {
         // https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
@@ -36,6 +37,7 @@ class NewZealand extends Country
         ];
 
         // https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-falling-on-a-weekend/
+        $result = [];
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
                 "Day after New Year's Day" => $this->secondOfJanuary($year),
@@ -45,15 +47,16 @@ class NewZealand extends Country
             };
 
             if ($observedDay) {
-                $holidays["{$name} (Mondayisation)"] = $observedDay;
-                unset($holidays[$name]);
+                $result[] = Holiday::national("{$name} (Mondayisation)", $observedDay);
+            } else {
+                $result[] = Holiday::national($name, $date);
             }
         }
 
-        return $holidays;
+        return $result;
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         // Easter
@@ -69,16 +72,16 @@ class NewZealand extends Country
         $labourMonday = CarbonImmutable::parse("fourth monday of october {$year}");
 
         $holidays = [
-            'Good Friday' => $goodFriday,
-            'Easter Monday' => $easterMonday,
-            $sovereignTitle => $sovereignMonday,
-            'Labour Day' => $labourMonday,
+            Holiday::national('Good Friday', $goodFriday),
+            Holiday::national('Easter Monday', $easterMonday),
+            Holiday::national($sovereignTitle, $sovereignMonday),
+            Holiday::national('Labour Day', $labourMonday),
         ];
 
         $matariki = $this->calculateMatariki($year);
 
         if ($matariki) {
-            $holidays['Matariki'] = $matariki;
+            $holidays[] = Holiday::national('Matariki', $matariki);
         }
 
         return $holidays;

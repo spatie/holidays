@@ -6,6 +6,7 @@ use Carbon\CarbonImmutable;
 use DateTime;
 use DateTimeZone;
 use IntlDateFormatter;
+use Spatie\Holidays\Holiday;
 
 class Turkmenistan extends Country
 {
@@ -19,25 +20,25 @@ class Turkmenistan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Täze ýyl' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Halkara zenanlar güni' => CarbonImmutable::createFromDate($year, 3, 8),
-            'Milli bahar baýramy 1-nji güni' => CarbonImmutable::createFromDate($year, 3, 21),
-            'Milli bahar baýramy 2-nji güni' => CarbonImmutable::createFromDate($year, 3, 22),
-            'Türkmenistanyň Konstitusiýasynyň we Türkmenistanyň Döwlet baýdagynyň güni' => CarbonImmutable::createFromDate($year, 5, 18),
-            'Türkmenistanyň Garaşsyzlyk güni' => CarbonImmutable::createFromDate($year, 9, 27),
-            'Hatyra güni' => CarbonImmutable::createFromDate($year, 10, 6),
-            'Halkara Bitaraplyk güni' => CarbonImmutable::createFromDate($year, 12, 12),
+            Holiday::national('Täze ýyl', "{$year}-01-01"),
+            Holiday::national('Halkara zenanlar güni', "{$year}-03-08"),
+            Holiday::national('Milli bahar baýramy 1-nji güni', "{$year}-03-21"),
+            Holiday::national('Milli bahar baýramy 2-nji güni', "{$year}-03-22"),
+            Holiday::national('Türkmenistanyň Konstitusiýasynyň we Türkmenistanyň Döwlet baýdagynyň güni', "{$year}-05-18"),
+            Holiday::national('Türkmenistanyň Garaşsyzlyk güni', "{$year}-09-27"),
+            Holiday::national('Hatyra güni', "{$year}-10-06"),
+            Holiday::national('Halkara Bitaraplyk güni', "{$year}-12-12"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         return [
-            'Oraza baýramy' => $this->islamicCalendar('01-10', $year),
-            'Gurban baýramy 1-nji güni' => $this->islamicCalendar('10-12', $year),
-            'Gurban baýramy 2-nji güni' => $this->islamicCalendar('11-12', $year),
-            'Gurban baýramy 3-nji güni' => $this->islamicCalendar('12-12', $year),
+            Holiday::national('Oraza baýramy', $this->islamicCalendar('01-10', $year)),
+            Holiday::national('Gurban baýramy 1-nji güni', $this->islamicCalendar('10-12', $year)),
+            Holiday::national('Gurban baýramy 2-nji güni', $this->islamicCalendar('11-12', $year)),
+            Holiday::national('Gurban baýramy 3-nji güni', $this->islamicCalendar('12-12', $year)),
         ];
     }
 
@@ -47,7 +48,13 @@ class Turkmenistan extends Country
         $formatter = $this->getIslamicFormatter();
 
         $timeStamp = $formatter->parse("{$input}/{$hijriYear} AH");
-        $dateTime = date_create()->setTimeStamp($timeStamp)->setTimezone(new DateTimeZone($this->timezone));
+        if ($timeStamp === false) {
+            throw new \RuntimeException("Failed to parse hijri date: {$input}/{$hijriYear} AH");
+        }
+
+        $dateTime = new DateTime;
+        $dateTime->setTimestamp((int) $timeStamp);
+        $dateTime = $dateTime->setTimezone(new DateTimeZone($this->timezone));
 
         return new CarbonImmutable($dateTime->format('Y-m-d'));
     }
@@ -69,7 +76,15 @@ class Turkmenistan extends Country
         $formatter->setPattern('yyyy');
 
         $dateTime = DateTime::createFromFormat('d/m/Y', '01/01/'.($nextYear ? $year + 1 : $year));
+        if ($dateTime === false) {
+            throw new \RuntimeException('Failed to create datetime');
+        }
 
-        return (int) $formatter->format($dateTime);
+        $formatted = $formatter->format($dateTime);
+        if ($formatted === false) {
+            throw new \RuntimeException('Failed to format hijri year');
+        }
+
+        return (int) $formatted;
     }
 }

@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Concerns\HasObservedHolidays;
+use Spatie\Holidays\Holiday;
 
 class SouthAfrica extends Country
 {
@@ -31,25 +32,28 @@ class SouthAfrica extends Country
             'Day of Goodwill' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
+        $result = [];
         foreach ($holidays as $name => $date) {
+            $result[] = Holiday::national($name, $date);
+
             $observedDay = $this->sundayToNextMonday($date);
 
             if ($observedDay) {
-                $holidays["{$name} Observed"] = $observedDay;
+                $result[] = Holiday::national("{$name} Observed", $observedDay);
             }
         }
 
-        return array_merge($holidays, $this->variableHolidays($year));
+        return array_merge($result, $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Good Friday' => $easter->subDays(2),
-            'Family Day' => $easter->addDay(),
+            Holiday::national('Good Friday', $easter->subDays(2)),
+            Holiday::national('Family Day', $easter->addDay()),
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Ukraine extends Country
 {
@@ -14,26 +14,26 @@ class Ukraine extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Новий Рік' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Міжнародний жіночий день' => CarbonImmutable::createFromDate($year, 3, 8),
-            'День праці' => CarbonImmutable::createFromDate($year, 5, 1),
-            'День пам\'яті та перемоги над нацизмом у Другій світовій війні 1939 – 1945 років' => CarbonImmutable::createFromDate($year, 5, 8),
-            'День Конституції України' => CarbonImmutable::createFromDate($year, 6, 28),
-            'День Української Державності' => CarbonImmutable::createFromDate($year, 7, 15),
-            'День Незалежності України' => CarbonImmutable::createFromDate($year, 8, 24),
-            'День захисників і захисниць України' => CarbonImmutable::createFromDate($year, 10, 1),
-            'Різдво Христове' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Новий Рік', "{$year}-01-01"),
+            Holiday::national('Міжнародний жіночий день', "{$year}-03-08"),
+            Holiday::national('День праці', "{$year}-05-01"),
+            Holiday::national('День пам\'яті та перемоги над нацизмом у Другій світовій війні 1939 – 1945 років', "{$year}-05-08"),
+            Holiday::national('День Конституції України', "{$year}-06-28"),
+            Holiday::national('День Української Державності', "{$year}-07-15"),
+            Holiday::national('День Незалежності України', "{$year}-08-24"),
+            Holiday::national('День захисників і захисниць України', "{$year}-10-01"),
+            Holiday::national('Різдво Христове', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->orthodoxEaster($year);
 
         return [
-            'Великодній Понеділок' => $easter->addDay(),
-            'Трійця' => $easter->addDays(50),
+            Holiday::national('Великодній Понеділок', $easter->addDay()),
+            Holiday::national('Трійця', $easter->addDays(50)),
         ];
     }
 }

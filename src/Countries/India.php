@@ -2,8 +2,8 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IndianCalendar;
+use Spatie\Holidays\Holiday;
 
 class India extends Country
 {
@@ -1113,29 +1113,29 @@ class India extends Country
 
     protected function allHolidays(int $year): array
     {
-        $newHolidays = [
-            'Holi' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::holiHolidays[$year]),
-            'Good Friday' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::goodFridayHolidays[$year]),
-            'Rama Navami' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::ramanavamiHolidays[$year]),
-            'Mahavir Jayanti' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::mahavirJayantiHolidays[$year]),
-            'Buddha Purnima/Vesak' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::buddhaPurnimaHolidays[$year]),
-            'Raksha Bandhan' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::rakshabandhanHolidays[$year]),
-            'Janmashtami' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::janmashtamiHolidays[$year]),
-            'Dussehra' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::dussehraHolidays[$year]),
-            'Diwali/Deepavali' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::diwaliHolidays[$year]),
-            'Bhai Dooj' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::bhaiDujHolidays[$year]),
-            'Guru Nanak Jayanti' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::guruNanakHolidays[$year]),
+        $religiousHolidays = [
+            Holiday::religious('Holi', "{$year}-".self::holiHolidays[$year]),
+            Holiday::religious('Good Friday', "{$year}-".self::goodFridayHolidays[$year]),
+            Holiday::religious('Rama Navami', "{$year}-".self::ramanavamiHolidays[$year]),
+            Holiday::religious('Mahavir Jayanti', "{$year}-".self::mahavirJayantiHolidays[$year]),
+            Holiday::religious('Buddha Purnima/Vesak', "{$year}-".self::buddhaPurnimaHolidays[$year]),
+            Holiday::religious('Raksha Bandhan', "{$year}-".self::rakshabandhanHolidays[$year]),
+            Holiday::religious('Janmashtami', "{$year}-".self::janmashtamiHolidays[$year]),
+            Holiday::religious('Dussehra', "{$year}-".self::dussehraHolidays[$year]),
+            Holiday::religious('Diwali/Deepavali', "{$year}-".self::diwaliHolidays[$year]),
+            Holiday::religious('Bhai Dooj', "{$year}-".self::bhaiDujHolidays[$year]),
+            Holiday::religious('Guru Nanak Jayanti', "{$year}-".self::guruNanakHolidays[$year]),
         ];
 
         return array_merge([
-            'Republic Day' => CarbonImmutable::createFromDate($year, 1, 26),
-            'Independence Day' => CarbonImmutable::createFromDate($year, 8, 15),
-            'Mahatma Gandhi Jayanti' => CarbonImmutable::createFromDate($year, 10, 2),
-            'Christmas' => CarbonImmutable::createFromDate($year, 12, 25),
-        ], $newHolidays, $this->otherHolidays($year));
+            Holiday::national('Republic Day', "{$year}-01-26"),
+            Holiday::national('Independence Day', "{$year}-08-15"),
+            Holiday::national('Mahatma Gandhi Jayanti', "{$year}-10-02"),
+            Holiday::national('Christmas', "{$year}-12-25"),
+        ], $religiousHolidays, $this->otherHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     public function otherHolidays(int $year): array
     {
         $ashura = $this->ashura($year);

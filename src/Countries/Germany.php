@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Exceptions\InvalidRegion;
+use Spatie\Holidays\Holiday;
 
 class Germany extends Country implements HasRegions
 {
@@ -39,10 +40,10 @@ class Germany extends Country implements HasRegions
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Neujahr' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Tag der Arbeit' => CarbonImmutable::createFromDate($year, 5, 1),
-            '1. Weihnachtstag' => CarbonImmutable::createFromDate($year, 12, 25),
-            '2. Weihnachtstag' => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national('Neujahr', "{$year}-01-01"),
+            Holiday::national('Tag der Arbeit', "{$year}-05-01"),
+            Holiday::national('1. Weihnachtstag', "{$year}-12-25"),
+            Holiday::national('2. Weihnachtstag', "{$year}-12-26"),
         ],
             $this->variableHolidays($year),
             $this->historicalHolidays($year),
@@ -50,40 +51,40 @@ class Germany extends Country implements HasRegions
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Karfreitag' => $easter->subDays(2),
-            'Ostermontag' => $easter->addDay(),
-            'Himmelfahrt' => $easter->addDays(39),
-            'Pfingstmontag' => $easter->addDays(50),
+            Holiday::national('Karfreitag', $easter->subDays(2)),
+            Holiday::national('Ostermontag', $easter->addDay()),
+            Holiday::national('Himmelfahrt', $easter->addDays(39)),
+            Holiday::national('Pfingstmontag', $easter->addDays(50)),
         ];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function historicalHolidays(int $year): array
     {
-        $historicalHolidays = [];
+        $holidays = [];
 
-        $historicalHolidays['Tag der deutschen Einheit'] = ($year >= 1954 && $year <= 1990)
-            ? CarbonImmutable::createFromDate($year, 6, 17)
-            : CarbonImmutable::createFromDate($year, 10, 3);
+        $holidays[] = Holiday::national('Tag der deutschen Einheit', ($year >= 1954 && $year <= 1990)
+            ? "{$year}-06-17"
+            : "{$year}-10-03");
 
         if ($year >= 1990 && $year <= 1994) {
-            $historicalHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
+            $holidays[] = Holiday::national('Buß- und Bettag', $this->getRepentanceAndPrayerDay($year));
         }
 
         if ($year === 2017) {
-            $historicalHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
+            $holidays[] = Holiday::national('Reformationstag', "{$year}-10-31");
         }
 
-        return $historicalHolidays;
+        return $holidays;
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function regionHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -91,51 +92,50 @@ class Germany extends Country implements HasRegions
         switch ($this->region) {
             case 'DE-BW':
                 return [
-                    'Heilige Drei Könige' => CarbonImmutable::createFromDate($year, 1, 6),
-                    'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
+                    Holiday::regional('Heilige Drei Könige', "{$year}-01-06", 'DE-BW'),
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), 'DE-BW'),
+                    Holiday::regional('Allerheiligen', "{$year}-11-01", 'DE-BW'),
                 ];
             case 'DE-BY':
                 $byHolidays = [
-                    'Heilige Drei Könige' => CarbonImmutable::createFromDate($year, 1, 6),
-                    'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
-                    'Mariä Himmelfahrt' => CarbonImmutable::createFromDate($year, 8, 15),
+                    Holiday::regional('Heilige Drei Könige', "{$year}-01-06", 'DE-BY'),
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), 'DE-BY'),
+                    Holiday::regional('Allerheiligen', "{$year}-11-01", 'DE-BY'),
+                    Holiday::regional('Mariä Himmelfahrt', "{$year}-08-15", 'DE-BY'),
                 ];
                 if ($year >= 1948 && $year <= 1969) {
-                    $byHolidays['Josefstag'] = CarbonImmutable::createFromDate($year, 3, 19);
+                    $byHolidays[] = Holiday::regional('Josefstag', "{$year}-03-19", 'DE-BY');
                 }
 
                 return $byHolidays;
 
             case 'DE-BE':
-                $beHolidays = [
-                ];
+                $beHolidays = [];
                 if ($year >= 2019) {
-                    $beHolidays['Internationaler Frauentag'] = CarbonImmutable::createFromDate($year, 3, 8);
+                    $beHolidays[] = Holiday::regional('Internationaler Frauentag', "{$year}-03-08", 'DE-BE');
                 }
 
                 if ($year === 2020 || $year === 2025) {
-                    $beHolidays['Tag der Befreiung'] = CarbonImmutable::createFromDate($year, 5, 8);
+                    $beHolidays[] = Holiday::regional('Tag der Befreiung', "{$year}-05-08", 'DE-BE');
                 }
 
                 if ($year === 2028) {
-                    $beHolidays['75-jähriges Jubiläum des Volksaufstands in der DDR'] = CarbonImmutable::createFromDate($year, 6, 17);
+                    $beHolidays[] = Holiday::regional('75-jähriges Jubiläum des Volksaufstands in der DDR', "{$year}-06-17", 'DE-BE');
                 }
 
                 return $beHolidays;
             case 'DE-BB':
                 if ($year >= 1991) {
                     return [
-                        'Ostersonntag' => $easter,
-                        'Reformationstag' => CarbonImmutable::createFromDate($year, 10, 31),
-                        'Pfingstsonntag' => $easter->addDays(49),
+                        Holiday::regional('Ostersonntag', $easter, 'DE-BB'),
+                        Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-BB'),
+                        Holiday::regional('Pfingstsonntag', $easter->addDays(49), 'DE-BB'),
                     ];
                 }
 
                 return [
-                    'Ostersonntag' => $easter,
-                    'Pfingstsonntag' => $easter->addDays(49),
+                    Holiday::regional('Ostersonntag', $easter, 'DE-BB'),
+                    Holiday::regional('Pfingstsonntag', $easter->addDays(49), 'DE-BB'),
                 ];
             case 'DE-HB':
             case 'DE-HH':
@@ -143,7 +143,7 @@ class Germany extends Country implements HasRegions
             case 'DE-SH':
                 if ($year >= 2017) {
                     return [
-                        'Reformationstag' => CarbonImmutable::createFromDate($year, 10, 31),
+                        Holiday::regional('Reformationstag', "{$year}-10-31", $this->region),
                     ];
                 }
 
@@ -151,18 +151,18 @@ class Germany extends Country implements HasRegions
 
             case 'DE-HE':
                 return [
-                    'Ostersonntag' => $easter,
-                    'Pfingstsonntag' => $easter->addDays(49),
-                    'Fronleichnam' => $easter->addDays(60),
+                    Holiday::regional('Ostersonntag', $easter, 'DE-HE'),
+                    Holiday::regional('Pfingstsonntag', $easter->addDays(49), 'DE-HE'),
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), 'DE-HE'),
                 ];
             case 'DE-MV':
                 $mvHolidays = [];
                 if ($year >= 1990) {
-                    $mvHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
+                    $mvHolidays[] = Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-MV');
                 }
 
                 if ($year >= 2023) {
-                    $mvHolidays['Internationaler Frauentag'] = CarbonImmutable::createFromDate($year, 3, 8);
+                    $mvHolidays[] = Holiday::regional('Internationaler Frauentag', "{$year}-03-08", 'DE-MV');
                 }
 
                 return $mvHolidays;
@@ -170,24 +170,24 @@ class Germany extends Country implements HasRegions
             case 'DE-RP':
 
                 return [
-                    'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), $this->region),
+                    Holiday::regional('Allerheiligen', "{$year}-11-01", $this->region),
                 ];
             case 'DE-SL':
                 return [
-                    'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
-                    'Mariä Himmelfahrt' => CarbonImmutable::createFromDate($year, 8, 15),
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), 'DE-SL'),
+                    Holiday::regional('Allerheiligen', "{$year}-11-01", 'DE-SL'),
+                    Holiday::regional('Mariä Himmelfahrt', "{$year}-08-15", 'DE-SL'),
                 ];
             case 'DE-SN':
                 $snHolidays = [];
                 if ($year >= 1990) {
-                    $snHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
+                    $snHolidays[] = Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-SN');
 
                 }
 
                 if ($year > 1994) {
-                    $snHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
+                    $snHolidays[] = Holiday::regional('Buß- und Bettag', $this->getRepentanceAndPrayerDay($year), 'DE-SN');
 
                 }
 
@@ -195,23 +195,23 @@ class Germany extends Country implements HasRegions
             case 'DE-ST':
                 $stHolidays = [];
                 if ($year >= 1990) {
-                    $stHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
+                    $stHolidays[] = Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-ST');
 
                 }
 
                 if ($year >= 1991) {
-                    $stHolidays['Heilige Drei Könige'] = CarbonImmutable::createFromDate($year, 1, 6);
+                    $stHolidays[] = Holiday::regional('Heilige Drei Könige', "{$year}-01-06", 'DE-ST');
                 }
 
                 return $stHolidays;
             case 'DE-TH':
                 $thHolidays = [];
                 if ($year >= 1990) {
-                    $thHolidays['Reformationstag'] = CarbonImmutable::createFromDate($year, 10, 31);
+                    $thHolidays[] = Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-TH');
                 }
 
                 if ($year >= 2019) {
-                    $thHolidays['Weltkindertag'] = CarbonImmutable::createFromDate($year, 9, 20);
+                    $thHolidays[] = Holiday::regional('Weltkindertag', "{$year}-09-20", 'DE-TH');
                 }
 
                 return $thHolidays;

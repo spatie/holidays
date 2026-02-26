@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Panama extends Country
 {
@@ -17,17 +17,17 @@ class Panama extends Country
     protected function allHolidays(int $year): array
     {
         $fixedHolidays = [
-            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Día de los Mártires' => CarbonImmutable::createFromDate($year, 1, 9),
-            'Día del Trabajador' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Separación de Panamá de Colombia' => CarbonImmutable::createFromDate($year, 11, 3),
-            'Día de los Símbolos Patrios' => CarbonImmutable::createFromDate($year, 11, 4),
-            'Día de Consolidación de la Separación de Panamá con Colombia en Colón' => CarbonImmutable::createFromDate($year, 11, 5),
-            'Grito de la Independencia' => CarbonImmutable::createFromDate($year, 11, 10),
-            'Independencia de Panamá de España' => CarbonImmutable::createFromDate($year, 11, 28),
-            'Día de las Madres' => CarbonImmutable::createFromDate($year, 12, 8),
-            'Día de los Caídos por la invasión de Estados Unidos a Panamá' => CarbonImmutable::createFromDate($year, 12, 20),
-            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Año Nuevo', "{$year}-01-01"),
+            Holiday::national('Día de los Mártires', "{$year}-01-09"),
+            Holiday::national('Día del Trabajador', "{$year}-05-01"),
+            Holiday::national('Separación de Panamá de Colombia', "{$year}-11-03"),
+            Holiday::national('Día de los Símbolos Patrios', "{$year}-11-04"),
+            Holiday::national('Día de Consolidación de la Separación de Panamá con Colombia en Colón', "{$year}-11-05"),
+            Holiday::national('Grito de la Independencia', "{$year}-11-10"),
+            Holiday::national('Independencia de Panamá de España', "{$year}-11-28"),
+            Holiday::national('Día de las Madres', "{$year}-12-08"),
+            Holiday::national('Día de los Caídos por la invasión de Estados Unidos a Panamá', "{$year}-12-20"),
+            Holiday::national('Navidad', "{$year}-12-25"),
         ];
 
         return array_merge(
@@ -37,19 +37,19 @@ class Panama extends Country
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Carnaval (Día 1)' => $easter->subDays(50),
-            'Carnaval (Día 2)' => $easter->subDays(49),
-            'Carnaval (Día 3)' => $easter->subDays(48),
-            'Carnaval (Día 4)' => $easter->subDays(47),
-            'Jueves Santo' => $easter->subDays(3),
-            'Viernes Santo' => $easter->subDays(2),
-            'Sábado de Gloria' => $easter->subDays(1),
+            Holiday::national('Carnaval (Día 1)', $easter->subDays(50)),
+            Holiday::national('Carnaval (Día 2)', $easter->subDays(49)),
+            Holiday::national('Carnaval (Día 3)', $easter->subDays(48)),
+            Holiday::national('Carnaval (Día 4)', $easter->subDays(47)),
+            Holiday::national('Jueves Santo', $easter->subDays(3)),
+            Holiday::national('Viernes Santo', $easter->subDays(2)),
+            Holiday::national('Sábado de Gloria', $easter->subDays(1)),
         ];
     }
 
@@ -69,23 +69,21 @@ class Panama extends Country
      *  established for a national celebration to coincide with a Sunday, the following Monday
      *  will be enabled as a mandatory weekly rest day"
      *
-     * @param  array<string, CarbonImmutable>  $fixedHolidays
-     * @return array<string, CarbonImmutable>
+     * @param  array<Holiday>  $fixedHolidays
+     * @return array<Holiday>
      */
     protected function calculateBridgeDays(array $fixedHolidays): array
     {
-        $holidays = [];
+        $bridgeDays = [];
 
-        foreach ($fixedHolidays as $name => $date) {
-            $holiday = $date;
+        foreach ($fixedHolidays as $holiday) {
+            $date = $holiday->date;
 
-            $holidays[$name] = $holiday;
-
-            if ($holiday->isSunday()) {
-                $holidays["{$name} (Puente)"] = $holiday->addDay();
+            if ($date->isSunday()) {
+                $bridgeDays[] = Holiday::national($holiday->name.' (Puente)', $date->addDay());
             }
         }
 
-        return $holidays;
+        return $bridgeDays;
     }
 }

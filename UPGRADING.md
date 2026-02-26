@@ -89,7 +89,7 @@ Holidays::for('tr', year: 2050)->get();
 
 These are internal changes that don't require any action on your part.
 
-- **`allHolidays()` now requires `CarbonImmutable` values** — the implicit string-to-date parsing (`'MM-DD'`, `'first monday of September'`) has been removed in favor of explicit `CarbonImmutable` instances.
+- **`Holiday::national()` and `Holiday::religious()` accept both strings and `CarbonImmutable`** — dates can be passed as strings (e.g., `"{$year}-01-01"`) or `CarbonImmutable` instances. The `createDate()` helper in the `Country` base class provides type-safe date parsing with explicit error handling.
 - **Translation system simplified** — the `HasTranslations` interface and `Translatable` trait have been removed. Translations are now built into the `Country` base class. The `defaultLocale()` method is now `protected`.
 - **Translation file paths changed** — translation files moved from `lang/{hyphenated-class-name}/` to `lang/{countryCode}/` (e.g. `lang/germany/` became `lang/de/`).
 - **`Observable` trait renamed to `HasObservedHolidays`** — its methods now only accept `CarbonInterface` dates instead of strings and `$year` parameters.

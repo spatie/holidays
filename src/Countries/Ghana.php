@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Spatie\Holidays\Concerns\HasObservedHolidays;
+use Spatie\Holidays\Holiday;
 
 class Ghana extends Country
 {
@@ -23,7 +24,7 @@ class Ghana extends Country
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function observedHolidays(int $year): array
     {
         $holidays = [
@@ -36,6 +37,7 @@ class Ghana extends Country
             'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
+        $result = [];
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
                 'Christmas Day' => $this->observedChristmasDay($date),
@@ -44,16 +46,18 @@ class Ghana extends Country
             };
 
             if ($observedDay) {
-                $holidays[$name] = $observedDay;
+                $result[] = Holiday::national($name, $observedDay);
+            } else {
+                $result[] = Holiday::national($name, $date);
             }
         }
 
-        return $holidays;
+        return $result;
     }
 
     protected function observed(string $date, int $year): CarbonImmutable
     {
-        $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+        $holiday = $this->createDate('Y-m-d', "{$year}-{$date}");
 
         if ($holiday->isWeekend()) {
             return $holiday->next('monday')->toImmutable();
@@ -62,18 +66,15 @@ class Ghana extends Country
         return $holiday;
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Farmers Day' => CarbonImmutable::parse("first friday of December {$year}"),
-            'Good Friday' => $easter->subDays(2),
-            'Easter Monday' => $easter->addDay(),
-
-            // NB: *** There are no fixed dates for the Eid-Ul-Fitr and Eid-Ul-Adha because they are movable feasts.
-            // The dates for their observation are provided by the Office of the Chief Imam in the course of the year.
+            Holiday::national('Farmers Day', CarbonImmutable::parse("first friday of December {$year}")),
+            Holiday::national('Good Friday', $easter->subDays(2)),
+            Holiday::national('Easter Monday', $easter->addDay()),
         ];
     }
 
@@ -84,7 +85,7 @@ class Ghana extends Country
         $newYearDay = new CarbonImmutable("{$year}-01-01")->startOfDay();
 
         if (is_string($date)) {
-            $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")->startOfDay();
+            $date = $this->createDate('Y-m-d', "{$year}-{$date}");
         }
 
         if ($date->isSameDay($christmasDay) || $date->isSameDay($boxingDay) || $date->isSameDay($newYearDay)) {

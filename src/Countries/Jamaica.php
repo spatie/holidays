@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Concerns\HasObservedHolidays;
+use Spatie\Holidays\Holiday;
 
 class Jamaica extends Country
 {
@@ -22,7 +23,7 @@ class Jamaica extends Country
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function fixedHolidays(int $year): array
     {
         $holidays = [
@@ -34,6 +35,7 @@ class Jamaica extends Country
             'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
+        $result = [];
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
                 'Labour Day', 'Boxing Day' => $this->observed($name, $date, $year),
@@ -41,23 +43,25 @@ class Jamaica extends Country
             };
 
             if ($observedDay) {
-                $holidays["{$name} Observed"] = $observedDay;
+                $result[] = Holiday::national("{$name} Observed", $observedDay);
+            } else {
+                $result[] = Holiday::national($name, $date);
             }
         }
 
-        return $holidays;
+        return $result;
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Ash Wednesday' => $easter->subDays(46),
-            'Good Friday' => $easter->subDays(2),
-            'Easter Monday' => $easter->addDay(),
-            'National Heroes Day' => CarbonImmutable::parse("third monday of October {$year}"),
+            Holiday::national('Ash Wednesday', $easter->subDays(46)),
+            Holiday::national('Good Friday', $easter->subDays(2)),
+            Holiday::national('Easter Monday', $easter->addDay()),
+            Holiday::national('National Heroes Day', CarbonImmutable::parse("third monday of October {$year}")),
         ];
     }
 

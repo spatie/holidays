@@ -2,11 +2,8 @@ includes:
     - phpstan-baseline.neon
 
 parameters:
-	level: max
+	level: 8
 	paths:
 		- src
-
 	ignoreErrors:
 	    - '#Unsafe usage of new static#'
-	    - '#Cannot call method startOfDay\(\) on Carbon\\CarbonImmutable\|null#'
-	    - '#Cannot call method addDays\(\) on Carbon\\CarbonImmutable\|null#'

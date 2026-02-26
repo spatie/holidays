@@ -36,9 +36,18 @@ class Holidays
     }
 
     /** @return array<Holiday> */
-    public function get(): array
+    public function get(?HolidayType $type = null): array
     {
-        return $this->calculate()->holidays;
+        $holidays = $this->calculate()->holidays;
+
+        if ($type !== null) {
+            return array_values(array_filter(
+                $holidays,
+                static fn (Holiday $holiday): bool => $holiday->type === $type,
+            ));
+        }
+
+        return $holidays;
     }
 
     /**
@@ -54,7 +63,7 @@ class Holidays
      *
      * @return array<Holiday>
      */
-    public function getInRange(CarbonInterface|string $from, CarbonInterface|string $to): array
+    public function getInRange(CarbonInterface|string $from, CarbonInterface|string $to, ?HolidayType $type = null): array
     {
         if (! $from instanceof CarbonImmutable) {
             $from = match (strlen($from)) {
@@ -87,6 +96,13 @@ class Holidays
         }
 
         usort($holidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
+
+        if ($type !== null) {
+            return array_values(array_filter(
+                $holidays,
+                static fn (Holiday $holiday): bool => $holiday->type === $type,
+            ));
+        }
 
         return $holidays;
     }
@@ -129,13 +145,7 @@ class Holidays
 
     protected function calculate(): self
     {
-        $rawHolidays = $this->country->get($this->year, $this->locale);
-
-        $this->holidays = array_map(
-            static fn (string $name, CarbonImmutable $date): Holiday => new Holiday($name, $date),
-            array_keys($rawHolidays),
-            array_values($rawHolidays),
-        );
+        $this->holidays = $this->country->get($this->year, $this->locale);
 
         return $this;
     }

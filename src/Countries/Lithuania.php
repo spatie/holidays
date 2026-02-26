@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Lithuania extends Country
 {
@@ -14,29 +14,29 @@ class Lithuania extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Naujieji metai' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Lietuvos valstybės atkūrimo diena' => CarbonImmutable::createFromDate($year, 2, 16),
-            'Nepriklausomybės atkūrimo diena' => CarbonImmutable::createFromDate($year, 3, 11),
-            'Tarptautinė darbo diena' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Joninės' => CarbonImmutable::createFromDate($year, 6, 24),
-            'Karaliaus Mindaugo karūnavimo diena' => CarbonImmutable::createFromDate($year, 7, 6),
-            'Žolinė' => CarbonImmutable::createFromDate($year, 8, 15),
-            'Visų šventųjų diena' => CarbonImmutable::createFromDate($year, 11, 1),
-            'Vėlinės' => CarbonImmutable::createFromDate($year, 11, 2),
-            'Šv. Kūčios' => CarbonImmutable::createFromDate($year, 12, 24),
-            'Šv. Kalėdos' => CarbonImmutable::createFromDate($year, 12, 25),
-            'Šv. Kalėdų antroji diena' => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national('Naujieji metai', "{$year}-01-01"),
+            Holiday::national('Lietuvos valstybės atkūrimo diena', "{$year}-02-16"),
+            Holiday::national('Nepriklausomybės atkūrimo diena', "{$year}-03-11"),
+            Holiday::national('Tarptautinė darbo diena', "{$year}-05-01"),
+            Holiday::national('Joninės', "{$year}-06-24"),
+            Holiday::national('Karaliaus Mindaugo karūnavimo diena', "{$year}-07-06"),
+            Holiday::national('Žolinė', "{$year}-08-15"),
+            Holiday::national('Visų šventųjų diena', "{$year}-11-01"),
+            Holiday::national('Vėlinės', "{$year}-11-02"),
+            Holiday::national('Šv. Kūčios', "{$year}-12-24"),
+            Holiday::national('Šv. Kalėdos', "{$year}-12-25"),
+            Holiday::national('Šv. Kalėdų antroji diena', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Velykos' => $easter,
-            'Velykų antroji diena' => $easter->addDay(),
+            Holiday::national('Velykos', $easter),
+            Holiday::national('Velykų antroji diena', $easter->addDay()),
         ];
     }
 }

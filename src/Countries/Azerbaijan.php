@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Azerbaijan extends Country
 {
@@ -19,21 +19,21 @@ class Azerbaijan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Yeni il' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Beynəlxalq Qadınlar günü' => CarbonImmutable::createFromDate($year, 3, 8),
-            'Novruz bayramı' => CarbonImmutable::createFromDate($year, 3, 20),
-            'Faşizm üzərində qələbə günü' => CarbonImmutable::createFromDate($year, 5, 9),
-            'Müstəqillik Günü' => CarbonImmutable::createFromDate($year, 5, 28),
-            'Azərbaycan xalqının milli qurtuluş günü' => CarbonImmutable::createFromDate($year, 6, 15),
-            'Azərbaycan Respublikasının Silahlı Qüvvələri günü' => CarbonImmutable::createFromDate($year, 6, 26),
-            'Müstəqilliyin bərpası günü' => CarbonImmutable::createFromDate($year, 10, 18),
-            'Zəfər Günü' => CarbonImmutable::createFromDate($year, 11, 8),
-            'Azərbaycan Respublikasının Dövlət bayrağı günü' => CarbonImmutable::createFromDate($year, 11, 9),
-            'Dünya azərbaycanlılarının həmrəyliyi günü' => CarbonImmutable::createFromDate($year, 12, 31),
+            Holiday::national('Yeni il', "{$year}-01-01"),
+            Holiday::national('Beynəlxalq Qadınlar günü', "{$year}-03-08"),
+            Holiday::national('Novruz bayramı', "{$year}-03-20"),
+            Holiday::national('Faşizm üzərində qələbə günü', "{$year}-05-09"),
+            Holiday::national('Müstəqillik Günü', "{$year}-05-28"),
+            Holiday::national('Azərbaycan xalqının milli qurtuluş günü', "{$year}-06-15"),
+            Holiday::national('Azərbaycan Respublikasının Silahlı Qüvvələri günü', "{$year}-06-26"),
+            Holiday::national('Müstəqilliyin bərpası günü', "{$year}-10-18"),
+            Holiday::national('Zəfər Günü', "{$year}-11-08"),
+            Holiday::national('Azərbaycan Respublikasının Dövlət bayrağı günü', "{$year}-11-09"),
+            Holiday::national('Dünya azərbaycanlılarının həmrəyliyi günü', "{$year}-12-31"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         return [];

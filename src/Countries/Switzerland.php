@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Exceptions\InvalidRegion;
+use Spatie\Holidays\Holiday;
 
 class Switzerland extends Country implements HasRegions
 {
@@ -114,9 +115,7 @@ class Switzerland extends Country implements HasRegions
         return 'de';
     }
 
-    /**
-     * @return array<string, CarbonImmutable>
-     */
+    /** @return array<Holiday> */
     public function regionalHolidays(int $year): array
     {
         if ($this->region === null) {
@@ -126,10 +125,10 @@ class Switzerland extends Country implements HasRegions
         $easter = $this->easter($year);
 
         $sharedHolidays = [
-            self::NEW_YEARS_DAY => CarbonImmutable::createFromDate($year, 1, 1),
-            self::ASCENSION_DAY => $easter->addDays(39),
-            self::SWISS_NATIONAL_HOLIDAY => CarbonImmutable::createFromDate($year, 8, 1),
-            self::CHRISTMAS_DAY => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national(self::NEW_YEARS_DAY, "{$year}-01-01"),
+            Holiday::national(self::ASCENSION_DAY, $easter->addDays(39)),
+            Holiday::national(self::SWISS_NATIONAL_HOLIDAY, "{$year}-08-01"),
+            Holiday::national(self::CHRISTMAS_DAY, "{$year}-12-25"),
         ];
 
         $regionallyDifferentHolidays = [
@@ -341,26 +340,31 @@ class Switzerland extends Country implements HasRegions
             default => [],
         };
 
-        $regionalHolidays = array_filter(
+        $regionalHolidayData = array_filter(
             $regionallyDifferentHolidays,
             fn ($key): bool => in_array($key, $currentRegion),
             ARRAY_FILTER_USE_KEY
         );
 
+        $regionalHolidays = [];
+        foreach ($regionalHolidayData as $name => $date) {
+            $regionalHolidays[] = Holiday::regional($name, $date, $this->region);
+        }
+
         // Some holidays only happen in some years in some regions
         if (in_array($this->region, ['ch-ge', 'ch-ne']) &&
             new CarbonImmutable("{$year}-01-01", 'Europe/Zurich')->isSunday()) {
-            $regionalHolidays[self::NEW_YEARS_NEXT_DAY] = CarbonImmutable::createFromDate($year, 1, 2);
+            $regionalHolidays[] = Holiday::regional(self::NEW_YEARS_NEXT_DAY, "{$year}-01-02", $this->region);
         }
 
         if (in_array($this->region, ['ch-ge']) &&
             new CarbonImmutable("{$year}-08-01", 'Europe/Zurich')->isSunday()) {
-            $regionalHolidays[self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY] = CarbonImmutable::createFromDate($year, 8, 2);
+            $regionalHolidays[] = Holiday::regional(self::SWISS_NATIONAL_HOLIDAY_NEXT_DAY, "{$year}-08-02", $this->region);
         }
 
         if (in_array($this->region, ['ch-ge', 'ch-ne']) &&
             new CarbonImmutable("{$year}-12-25", 'Europe/Zurich')->isSunday()) {
-            $regionalHolidays[self::CHRISTMAS_NEXT_DAY] = CarbonImmutable::createFromDate($year, 12, 26);
+            $regionalHolidays[] = Holiday::regional(self::CHRISTMAS_NEXT_DAY, "{$year}-12-26", $this->region);
         }
 
         return array_merge($regionalHolidays, $sharedHolidays);
@@ -373,24 +377,24 @@ class Switzerland extends Country implements HasRegions
         }
 
         return array_merge([
-            self::NEW_YEARS_DAY => CarbonImmutable::createFromDate($year, 1, 1),
-            self::BERCHTOLDS_DAY => CarbonImmutable::createFromDate($year, 1, 2),
-            self::SWISS_NATIONAL_HOLIDAY => CarbonImmutable::createFromDate($year, 8, 1),
-            self::CHRISTMAS_DAY => CarbonImmutable::createFromDate($year, 12, 25),
-            self::SAINT_STEPHENS_DAY => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national(self::NEW_YEARS_DAY, "{$year}-01-01"),
+            Holiday::national(self::BERCHTOLDS_DAY, "{$year}-01-02"),
+            Holiday::national(self::SWISS_NATIONAL_HOLIDAY, "{$year}-08-01"),
+            Holiday::national(self::CHRISTMAS_DAY, "{$year}-12-25"),
+            Holiday::national(self::SAINT_STEPHENS_DAY, "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            self::GOOD_FRIDAY => $easter->subDays(2),
-            self::EASTER_MONDAY => $easter->addDay(),
-            self::ASCENSION_DAY => $easter->addDays(39),
-            self::WHIT_MONDAY => $easter->addDays(50),
+            Holiday::national(self::GOOD_FRIDAY, $easter->subDays(2)),
+            Holiday::national(self::EASTER_MONDAY, $easter->addDay()),
+            Holiday::national(self::ASCENSION_DAY, $easter->addDays(39)),
+            Holiday::national(self::WHIT_MONDAY, $easter->addDays(50)),
         ];
     }
 }

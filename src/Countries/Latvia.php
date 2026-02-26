@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Concerns\HasObservedHolidays;
+use Spatie\Holidays\Holiday;
 
 class Latvia extends Country
 {
@@ -17,35 +18,35 @@ class Latvia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Jaunais gads' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Darba svētki' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena' => CarbonImmutable::createFromDate($year, 5, 4),
-            'Līgo diena' => CarbonImmutable::createFromDate($year, 6, 23),
-            'Jāņu diena' => CarbonImmutable::createFromDate($year, 6, 24),
-            'Latvijas Republikas proklamēšanas diena' => CarbonImmutable::createFromDate($year, 11, 18),
-            'Ziemassvētku vakars' => CarbonImmutable::createFromDate($year, 12, 24),
-            'Pirmie Ziemassvētki' => CarbonImmutable::createFromDate($year, 12, 25),
-            'Otrie Ziemassvētki' => CarbonImmutable::createFromDate($year, 12, 26),
-            'Vecgada vakars' => CarbonImmutable::createFromDate($year, 12, 31),
+            Holiday::national('Jaunais gads', "{$year}-01-01"),
+            Holiday::national('Darba svētki', "{$year}-05-01"),
+            Holiday::national('Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena', "{$year}-05-04"),
+            Holiday::national('Līgo diena', "{$year}-06-23"),
+            Holiday::national('Jāņu diena', "{$year}-06-24"),
+            Holiday::national('Latvijas Republikas proklamēšanas diena', "{$year}-11-18"),
+            Holiday::national('Ziemassvētku vakars', "{$year}-12-24"),
+            Holiday::national('Pirmie Ziemassvētki', "{$year}-12-25"),
+            Holiday::national('Otrie Ziemassvētki', "{$year}-12-26"),
+            Holiday::national('Vecgada vakars', "{$year}-12-31"),
         ],
             $this->variableHolidays($year),
             $this->observedHolidays($year)
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Lielā Piektdiena' => $easter->subDays(2),
-            'Pirmās Lieldienas' => $easter,
-            'Otrās Lieldienas' => $easter->addDay(),
+            Holiday::national('Lielā Piektdiena', $easter->subDays(2)),
+            Holiday::national('Pirmās Lieldienas', $easter),
+            Holiday::national('Otrās Lieldienas', $easter->addDay()),
         ];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function observedHolidays(int $year): array
     {
         $holidays = [
@@ -53,20 +54,21 @@ class Latvia extends Country
             'Latvijas Republikas proklamēšanas diena' => CarbonImmutable::createFromDate($year, 11, 18),
         ];
 
+        $result = [];
         foreach ($holidays as $name => $date) {
             $observedDay = $this->weekendToNextMonday($date);
 
             if ($observedDay) {
                 if ($name === 'Latvijas Republikas Neatkarības deklarācijas pasludināšanas diena') {
-                    $holidays['Pārceltā 4. maija brīvdiena'] = $observedDay;
+                    $result[] = Holiday::national('Pārceltā 4. maija brīvdiena', $observedDay);
                 }
 
                 if ($name === 'Latvijas Republikas proklamēšanas diena') {
-                    $holidays['Pārceltā 18. novembra brīvdiena'] = $observedDay;
+                    $result[] = Holiday::national('Pārceltā 18. novembra brīvdiena', $observedDay);
                 }
             }
         }
 
-        return $holidays;
+        return $result;
     }
 }

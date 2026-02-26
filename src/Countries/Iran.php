@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Iran extends Country
 {
@@ -19,16 +19,16 @@ class Iran extends Country
     protected function allHolidays(int $year): array
     {
         return [
-            'پیروزی انقلاب اسلامی پنجاه و هفت' => CarbonImmutable::createFromDate($year, 2, 11),
-            'روز ملی شدن صنعت نفت' => CarbonImmutable::createFromDate($year, 3, 19),
-            'نخستین روز نوروز' => CarbonImmutable::createFromDate($year, 3, 20),
-            'دومین روز نوروز' => CarbonImmutable::createFromDate($year, 3, 21),
-            'سومین روز نوروز' => CarbonImmutable::createFromDate($year, 3, 22),
-            'چهارمین روز نوروز' => CarbonImmutable::createFromDate($year, 3, 23),
-            'روز جمهوری اسلامی' => CarbonImmutable::createFromDate($year, 3, 31),
-            'سیزده بدر' => CarbonImmutable::createFromDate($year, 4, 1),
-            'رحلت روح‌الله خمینی' => CarbonImmutable::createFromDate($year, 6, 3),
-            'قیام ۱۵ خرداد' => CarbonImmutable::createFromDate($year, 6, 4),
+            Holiday::national('پیروزی انقلاب اسلامی پنجاه و هفت', "{$year}-02-11"),
+            Holiday::national('روز ملی شدن صنعت نفت', "{$year}-03-19"),
+            Holiday::national('نخستین روز نوروز', "{$year}-03-20"),
+            Holiday::national('دومین روز نوروز', "{$year}-03-21"),
+            Holiday::national('سومین روز نوروز', "{$year}-03-22"),
+            Holiday::national('چهارمین روز نوروز', "{$year}-03-23"),
+            Holiday::national('روز جمهوری اسلامی', "{$year}-03-31"),
+            Holiday::national('سیزده بدر', "{$year}-04-01"),
+            Holiday::national('رحلت روح‌الله خمینی', "{$year}-06-03"),
+            Holiday::national('قیام ۱۵ خرداد', "{$year}-06-04"),
         ];
     }
 }

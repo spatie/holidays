@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Canada extends Country
 {
@@ -14,18 +15,18 @@ class Canada extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-            'Canada Day' => CarbonImmutable::createFromDate($year, 7, 1),
-            'Civic Holiday' => CarbonImmutable::parse("first monday of August {$year}"),
-            'Labour Day' => CarbonImmutable::parse("first monday of September {$year}"),
-            'National Day for Truth and Reconciliation' => CarbonImmutable::createFromDate($year, 9, 30),
-            'Remembrance Day' => CarbonImmutable::createFromDate($year, 11, 11),
-            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
-            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national('Canada Day', "{$year}-07-01"),
+            Holiday::national('Civic Holiday', CarbonImmutable::parse("first monday of August {$year}")),
+            Holiday::national('Labour Day', CarbonImmutable::parse("first monday of September {$year}")),
+            Holiday::national('National Day for Truth and Reconciliation', "{$year}-09-30"),
+            Holiday::national('Remembrance Day', "{$year}-11-11"),
+            Holiday::national('Christmas Day', "{$year}-12-25"),
+            Holiday::national('Boxing Day', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -35,10 +36,10 @@ class Canada extends Country
             ->previous('Monday')->toImmutable();
 
         return [
-            'Victoria Day' => $victoriaDay,
-            'Good Friday' => $easter->subDays(2),
-            'Easter Monday' => $easter->addDay(),
-            'Thanksgiving' => CarbonImmutable::parse("second monday of October {$year}"),
+            Holiday::national('Victoria Day', $victoriaDay),
+            Holiday::national('Good Friday', $easter->subDays(2)),
+            Holiday::national('Easter Monday', $easter->addDay()),
+            Holiday::national('Thanksgiving', CarbonImmutable::parse("second monday of October {$year}")),
         ];
     }
 }

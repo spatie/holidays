@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Carbon\CarbonImmutable;
 use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Exceptions\InvalidRegion;
+use Spatie\Holidays\Holiday;
 
 class Australia extends Country implements HasRegions
 {
@@ -34,74 +35,78 @@ class Australia extends Country implements HasRegions
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-            'Australia Day' => CarbonImmutable::createFromDate($year, 1, 26),
-            'Anzac Day' => CarbonImmutable::createFromDate($year, 4, 25),
-            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
-            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national('Australia Day', "{$year}-01-26"),
+            Holiday::national('Anzac Day', "{$year}-04-25"),
+            Holiday::national('Christmas Day', "{$year}-12-25"),
+            Holiday::national('Boxing Day', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Good Friday' => $easter->subDays(2),
-            'Easter Monday' => $easter->addDay(),
+            Holiday::national('Good Friday', $easter->subDays(2)),
+            Holiday::national('Easter Monday', $easter->addDay()),
             // https://en.wikipedia.org/wiki/Public_holidays_in_Australia
             ...array_filter(match ($this->region) {
                 'act' => [
-                    'Canberra Day' => CarbonImmutable::parse("second monday of march {$year}"),
-                    'Easter Saturday' => $easter->subDay(),
-                    'Easter Sunday' => $easter,
-                    'Reconciliation Day' => CarbonImmutable::create($year, 5, 27)?->modify('monday'),
-                    $this->sovereignBirthdayKey($year) => CarbonImmutable::parse("second monday of june {$year}"),
-                    'Labour Day' => CarbonImmutable::parse("first monday of october {$year}"),
+                    Holiday::national('Canberra Day', CarbonImmutable::parse("second monday of march {$year}")),
+                    Holiday::national('Easter Saturday', $easter->subDay()),
+                    Holiday::national('Easter Sunday', $easter),
+                    ...(($reconciliationDay = CarbonImmutable::create($year, 5, 27)?->modify('monday'))
+                        ? [Holiday::national('Reconciliation Day', $reconciliationDay)]
+                        : []),
+                    Holiday::national($this->sovereignBirthdayKey($year), CarbonImmutable::parse("second monday of june {$year}")),
+                    Holiday::national('Labour Day', CarbonImmutable::parse("first monday of october {$year}")),
                 ],
                 'nsw' => [
-                    'Easter Saturday' => $easter->subDay(),
-                    'Easter Sunday' => $easter,
-                    $this->sovereignBirthdayKey($year) => CarbonImmutable::parse("second monday of june {$year}"),
-                    'Labour Day' => CarbonImmutable::parse("first monday of october {$year}"),
+                    Holiday::national('Easter Saturday', $easter->subDay()),
+                    Holiday::national('Easter Sunday', $easter),
+                    Holiday::national($this->sovereignBirthdayKey($year), CarbonImmutable::parse("second monday of june {$year}")),
+                    Holiday::national('Labour Day', CarbonImmutable::parse("first monday of october {$year}")),
                 ],
                 'nt' => [
-                    'Easter Saturday' => $easter->subDay(),
-                    'May Day' => CarbonImmutable::parse("first monday of may {$year}"),
-                    'Picnic Day' => CarbonImmutable::parse("first monday of august {$year}"),
+                    Holiday::national('Easter Saturday', $easter->subDay()),
+                    Holiday::national('May Day', CarbonImmutable::parse("first monday of may {$year}")),
+                    Holiday::national('Picnic Day', CarbonImmutable::parse("first monday of august {$year}")),
                 ],
                 'qld' => [
-                    'The day after Good Friday' => $easter->subDay(),
-                    'Easter Sunday' => $easter,
-                    'Labour Day' => CarbonImmutable::parse("first monday of may {$year}"),
-                    $this->sovereignBirthdayKey($year) => CarbonImmutable::parse("first monday of october {$year}"),
+                    Holiday::national('The day after Good Friday', $easter->subDay()),
+                    Holiday::national('Easter Sunday', $easter),
+                    Holiday::national('Labour Day', CarbonImmutable::parse("first monday of may {$year}")),
+                    Holiday::national($this->sovereignBirthdayKey($year), CarbonImmutable::parse("first monday of october {$year}")),
                 ],
                 'sa' => [
-                    'Adelaide Cup Day' => $year < 2006
+                    Holiday::national('Adelaide Cup Day', $year < 2006
                         ? CarbonImmutable::parse("third monday of may {$year}")
-                        : CarbonImmutable::parse("second monday of march {$year}"),
-                    'The day after Good Friday' => $easter->subDay(),
-                    $this->sovereignBirthdayKey($year) => CarbonImmutable::parse("second monday of june {$year}"),
-                    'Labour Day' => CarbonImmutable::parse("first monday of october {$year}"),
+                        : CarbonImmutable::parse("second monday of march {$year}")),
+                    Holiday::national('The day after Good Friday', $easter->subDay()),
+                    Holiday::national($this->sovereignBirthdayKey($year), CarbonImmutable::parse("second monday of june {$year}")),
+                    Holiday::national('Labour Day', CarbonImmutable::parse("first monday of october {$year}")),
                 ],
                 'tas' => [
-                    'Eight Hours Day' => CarbonImmutable::parse("second monday of march {$year}"),
-                    $this->sovereignBirthdayKey($year) => CarbonImmutable::parse("second monday of june {$year}"),
+                    Holiday::national('Eight Hours Day', CarbonImmutable::parse("second monday of march {$year}")),
+                    Holiday::national($this->sovereignBirthdayKey($year), CarbonImmutable::parse("second monday of june {$year}")),
                 ],
                 'vic' => [
-                    'Labour Day' => CarbonImmutable::parse("second monday of march {$year}"),
-                    'Saturday before Easter Sunday' => $easter->subDay(),
-                    'Easter Sunday' => $easter,
-                    $this->sovereignBirthdayKey($year) => CarbonImmutable::parse("second monday of june {$year}"),
-                    'Friday before AFL Grand Final' => $this->fridayBeforeAflGrandFinal($year),
-                    'Melbourne Cup' => CarbonImmutable::parse("first tuesday of november {$year}"),
+                    Holiday::national('Labour Day', CarbonImmutable::parse("second monday of march {$year}")),
+                    Holiday::national('Saturday before Easter Sunday', $easter->subDay()),
+                    Holiday::national('Easter Sunday', $easter),
+                    Holiday::national($this->sovereignBirthdayKey($year), CarbonImmutable::parse("second monday of june {$year}")),
+                    ...($this->fridayBeforeAflGrandFinal($year)
+                        ? [Holiday::national('Friday before AFL Grand Final', $this->fridayBeforeAflGrandFinal($year))]
+                        : []),
+                    Holiday::national('Melbourne Cup', CarbonImmutable::parse("first tuesday of november {$year}")),
                 ],
                 'wa' => [
-                    'Labour Day' => CarbonImmutable::parse("first monday of march {$year}"),
-                    'Easter Sunday' => $easter,
-                    'Western Australia Day' => CarbonImmutable::parse("first monday of june {$year}"),
-                    $this->sovereignBirthdayKey($year) => CarbonImmutable::parse("last monday of september {$year}"),
+                    Holiday::national('Labour Day', CarbonImmutable::parse("first monday of march {$year}")),
+                    Holiday::national('Easter Sunday', $easter),
+                    Holiday::national('Western Australia Day', CarbonImmutable::parse("first monday of june {$year}")),
+                    Holiday::national($this->sovereignBirthdayKey($year), CarbonImmutable::parse("last monday of september {$year}")),
                 ],
                 default => [],
             }),

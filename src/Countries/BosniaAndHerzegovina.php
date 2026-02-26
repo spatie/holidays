@@ -2,9 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Exceptions\InvalidRegion;
+use Spatie\Holidays\Holiday;
 
 class BosniaAndHerzegovina extends Country implements HasRegions
 {
@@ -44,38 +44,38 @@ class BosniaAndHerzegovina extends Country implements HasRegions
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nova godina - prvi dan' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Nova godina - drugi dan' => CarbonImmutable::createFromDate($year, 1, 2),
-            'Badnji dan (za pravoslavce)' => CarbonImmutable::createFromDate($year, 1, 6),
-            'Božić (za pravoslavce)' => CarbonImmutable::createFromDate($year, 1, 7),
-            'Praznik rada - prvi dan' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Praznik rada - drugi dan' => CarbonImmutable::createFromDate($year, 5, 2),
-            'Badnji dan (za rimokatolike)' => CarbonImmutable::createFromDate($year, 12, 24),
-            'Božić (za rimokatolike)' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Nova godina - prvi dan', "{$year}-01-01"),
+            Holiday::national('Nova godina - drugi dan', "{$year}-01-02"),
+            Holiday::national('Badnji dan (za pravoslavce)', "{$year}-01-06"),
+            Holiday::national('Božić (za pravoslavce)', "{$year}-01-07"),
+            Holiday::national('Praznik rada - prvi dan', "{$year}-05-01"),
+            Holiday::national('Praznik rada - drugi dan', "{$year}-05-02"),
+            Holiday::national('Badnji dan (za rimokatolike)', "{$year}-12-24"),
+            Holiday::national('Božić (za rimokatolike)', "{$year}-12-25"),
         ], $this->regionHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function regionHolidays(int $year): array
     {
         return match ($this->region) {
             'ba-rs' => [
-                'Dan Republike' => CarbonImmutable::createFromDate($year, 1, 9),
-                'Dan pobjede nad fašizmom' => CarbonImmutable::createFromDate($year, 5, 9),
-                'Dan uspostavljanja Opšteg okvirnog sporazuma za mir u BiH' => CarbonImmutable::createFromDate($year, 11, 21),
+                Holiday::national('Dan Republike', "{$year}-01-09"),
+                Holiday::national('Dan pobjede nad fašizmom', "{$year}-05-09"),
+                Holiday::national('Dan uspostavljanja Opšteg okvirnog sporazuma za mir u BiH', "{$year}-11-21"),
             ],
             'ba-fbih' => [
-                'Dan nezavisnosti Bosne i Hercegovine' => CarbonImmutable::createFromDate($year, 3, 1),
-                'Dan državnosti Bosne i Hercegovine' => CarbonImmutable::createFromDate($year, 11, 25),
+                Holiday::national('Dan nezavisnosti Bosne i Hercegovine', "{$year}-03-01"),
+                Holiday::national('Dan državnosti Bosne i Hercegovine', "{$year}-11-25"),
             ],
             'ba-bd' => [
-                'Dan uspostavljanja Brčko distrikta' => CarbonImmutable::createFromDate($year, 3, 8),
+                Holiday::national('Dan uspostavljanja Brčko distrikta', "{$year}-03-08"),
             ],
             default => [],
         };
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     public function variableHolidays(int $year): array
     {
         $orthodoxEaster = $this->orthodoxEaster($year);
@@ -86,18 +86,13 @@ class BosniaAndHerzegovina extends Country implements HasRegions
         $goodFriday = $easter->copy()->subDays(2);
         $easterMonday = $easter->copy()->addDay();
 
-        // TODO: Implement islamic holidays
-
         return [
-            // Orthodox holidays
-            'Vaskrs (za pravoslavce)' => $orthodoxEaster,
-            'Vaskršnji ponedjeljak (za pravoslavce)' => $orthodoxEasterMonday,
-            'Veliki petak (za pravoslavce)' => $orthodoxGoodFriday,
-
-            // Catholic holidays
-            'Vaskrs (za rimokatolike)' => $easter,
-            'Vaskršnji ponedjeljak (za rimokatolike)' => $easterMonday,
-            'Veliki petak (za rimokatolike)' => $goodFriday,
+            Holiday::national('Vaskrs (za pravoslavce)', $orthodoxEaster),
+            Holiday::national('Vaskršnji ponedjeljak (za pravoslavce)', $orthodoxEasterMonday),
+            Holiday::national('Veliki petak (za pravoslavce)', $orthodoxGoodFriday),
+            Holiday::national('Vaskrs (za rimokatolike)', $easter),
+            Holiday::national('Vaskršnji ponedjeljak (za rimokatolike)', $easterMonday),
+            Holiday::national('Veliki petak (za rimokatolike)', $goodFriday),
         ];
     }
 }

@@ -6,6 +6,7 @@ use Carbon\CarbonImmutable;
 use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Exceptions\InvalidRegion;
 use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Holiday;
 
 class Spain extends Country implements HasRegions
 {
@@ -36,32 +37,32 @@ class Spain extends Country implements HasRegions
     {
         return array_merge(
             [
-                'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
-                'Epifanía del Señor' => CarbonImmutable::createFromDate($year, 1, 6),
-                'Día del Trabajador' => CarbonImmutable::createFromDate($year, 5, 1),
-                'Asunción de la Virgen' => CarbonImmutable::createFromDate($year, 8, 15),
-                'Fiesta Nacional de España' => CarbonImmutable::createFromDate($year, 10, 12),
-                'Todos los Santos' => CarbonImmutable::createFromDate($year, 11, 1),
-                'Día de la Constitución Española' => CarbonImmutable::createFromDate($year, 12, 6),
-                'Inmaculada Concepción' => CarbonImmutable::createFromDate($year, 12, 8), // 2024?
-                'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
+                Holiday::national('Año Nuevo', "{$year}-01-01"),
+                Holiday::national('Epifanía del Señor', "{$year}-01-06"),
+                Holiday::national('Día del Trabajador', "{$year}-05-01"),
+                Holiday::national('Asunción de la Virgen', "{$year}-08-15"),
+                Holiday::national('Fiesta Nacional de España', "{$year}-10-12"),
+                Holiday::national('Todos los Santos', "{$year}-11-01"),
+                Holiday::national('Día de la Constitución Española', "{$year}-12-06"),
+                Holiday::national('Inmaculada Concepción', "{$year}-12-08"),
+                Holiday::national('Navidad', "{$year}-12-25"),
             ],
             $this->variableHolidays($year),
             $this->regionHolidays($year),
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Viernes Santo' => $easter->subDays(2),
+            Holiday::national('Viernes Santo', $easter->subDays(2)),
         ];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function regionHolidays(int $year): array
     {
         if ($this->region === null) {
@@ -70,7 +71,14 @@ class Spain extends Country implements HasRegions
 
         $method = "regionHolidays{$year}";
         if (method_exists($this, $method)) {
-            return $this->$method($year);
+            /** @var array<string, CarbonImmutable> $rawHolidays */
+            $rawHolidays = $this->$method($year);
+
+            return array_map(
+                fn (CarbonImmutable $date, string $name): Holiday => Holiday::regional($name, $date, $this->region),
+                $rawHolidays,
+                array_keys($rawHolidays),
+            );
         }
 
         throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2025);
