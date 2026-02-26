@@ -71,6 +71,7 @@ class Spain extends Country implements HasRegions
 
         $method = "regionHolidays{$year}";
         if (method_exists($this, $method)) {
+            /** @var array<string, CarbonImmutable> $rawHolidays */
             $rawHolidays = $this->$method($year);
 
             return array_map(

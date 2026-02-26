@@ -2,10 +2,10 @@
 
 namespace Spatie\Holidays\Contracts;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 interface Islamic
 {
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     public function islamicHolidays(int $year): array;
 }

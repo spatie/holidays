@@ -210,6 +210,7 @@ class Turkey extends Country implements Islamic
         ], $newHolidays, $this->islamicHolidays($year));
     }
 
+    /** @return array<Holiday> */
     public function islamicHolidays(int $year): array
     {
         $eidAlFitr = $this->eidAlFitr($year);

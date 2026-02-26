@@ -190,7 +190,8 @@ class Malaysia extends Country implements HasRegions
         return $this->uniqueHolidays($holidays);
     }
 
-    /** @param array<Holiday> $holidays */
+    /** @param array<Holiday> $holidays
+     * @return array<Holiday> */
     private function uniqueHolidays(array $holidays): array
     {
         $seen = [];
