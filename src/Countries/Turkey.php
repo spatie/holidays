@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Holiday;
+use Spatie\Holidays\HolidayType;
 
 class Turkey extends Country implements Islamic
 {
@@ -223,19 +224,19 @@ class Turkey extends Country implements Islamic
         $eidAlAdha = $this->eidAlAdha($year);
 
         $holidays = array_merge(
-            $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0], includeEve: true),
-            $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0], includeEve: true),
+            $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0], includeEve: true, type: HolidayType::Religious),
+            $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0], includeEve: true, type: HolidayType::Religious),
         );
 
         if (count($eidAlAdha) > 1) {
             $holidays = array_merge($holidays,
-                $this->convertPeriods('2. Eid al-Adha', $year, $eidAlAdha[1], includeEve: true),
+                $this->convertPeriods('2. Eid al-Adha', $year, $eidAlAdha[1], includeEve: true, type: HolidayType::Religious),
             );
         }
 
         if (count($eidAlFitr) > 1) {
             $holidays = array_merge($holidays,
-                $this->convertPeriods('2. Eid al-Fitr', $year, $eidAlFitr[1], includeEve: true),
+                $this->convertPeriods('2. Eid al-Fitr', $year, $eidAlFitr[1], includeEve: true, type: HolidayType::Religious),
             );
         }
 

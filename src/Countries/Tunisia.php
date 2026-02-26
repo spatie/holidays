@@ -5,6 +5,7 @@ namespace Spatie\Holidays\Countries;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Holiday;
+use Spatie\Holidays\HolidayType;
 
 class Tunisia extends Country implements Islamic
 {
@@ -294,12 +295,12 @@ class Tunisia extends Country implements Islamic
 
         return array_merge(
             [
-                Holiday::national('Arafat Day', $this->arafat($year)),
-                Holiday::national('Islamic New Year', $this->islamicNewYear($year)),
-                Holiday::national('Birthday of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
+                Holiday::religious('Arafat Day', $this->arafat($year)),
+                Holiday::religious('Islamic New Year', $this->islamicNewYear($year)),
+                Holiday::religious('Birthday of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
             ],
-            $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0]),
-            $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0]),
+            $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0], type: HolidayType::Religious),
+            $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0], type: HolidayType::Religious),
         );
     }
 }

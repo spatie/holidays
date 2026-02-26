@@ -110,10 +110,10 @@ class Malaysia extends Country implements HasRegions
         $holidays[] = Holiday::national('Tahun Baru Cina Hari Kedua', $chineseNewYear2);
 
         $rayaAidilfitri = $this->islamicToGregorianDate('10-01', $year);
-        $holidays[] = Holiday::national('Hari Raya Aidilfitri', $rayaAidilfitri);
+        $holidays[] = Holiday::religious('Hari Raya Aidilfitri', $rayaAidilfitri);
 
         $rayaAidilfitri2 = $this->islamicToGregorianDate('10-02', $year);
-        $holidays[] = Holiday::national('Hari Raya Aidilfitri Hari Kedua', $rayaAidilfitri2);
+        $holidays[] = Holiday::religious('Hari Raya Aidilfitri Hari Kedua', $rayaAidilfitri2);
 
         $hariWesak = $this->hariWesak($year);
         if ($hariWesak) {
@@ -121,13 +121,13 @@ class Malaysia extends Country implements HasRegions
         }
 
         $rayaAidiladha = $this->islamicToGregorianDate('12-10', $year);
-        $holidays[] = Holiday::national('Hari Raya Aidiladha', $rayaAidiladha);
+        $holidays[] = Holiday::religious('Hari Raya Aidiladha', $rayaAidiladha);
 
         $awalMuharram = $this->islamicToGregorianDate('01-01', $year, true);
-        $holidays[] = Holiday::national('Awal Muharram', $awalMuharram);
+        $holidays[] = Holiday::religious('Awal Muharram', $awalMuharram);
 
         $maulidurRasul = $this->islamicToGregorianDate('03-12', $year, true);
-        $holidays[] = Holiday::national('Maulidur Rasul', $maulidurRasul);
+        $holidays[] = Holiday::religious('Maulidur Rasul', $maulidurRasul);
 
         $hariKeputeraanYDP = $this->hariKeputeraanYDP($year);
         if ($hariKeputeraanYDP) {

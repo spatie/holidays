@@ -105,8 +105,8 @@ class Albania extends Country implements Islamic
         $eidAlAdhaDate = $dates[$year] ?? null;
 
         return [
-            Holiday::national('Dita e Bajramit të Madh', "{$year}-{$eidAlFitrDate}"),
-            Holiday::national('Dita e Kurban Bajramit', "{$year}-{$eidAlAdhaDate}"),
+            Holiday::religious('Dita e Bajramit të Madh', "{$year}-{$eidAlFitrDate}"),
+            Holiday::religious('Dita e Kurban Bajramit', "{$year}-{$eidAlAdhaDate}"),
         ];
     }
 }
