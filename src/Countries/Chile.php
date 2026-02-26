@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Chile extends Country
 {
@@ -14,34 +14,33 @@ class Chile extends Country
     protected function allHolidays(int $year): array
     {
         return [
-            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Viernes Santo' => CarbonImmutable::createFromDate($year, 3, 29),
-            'Sábado Santo' => CarbonImmutable::createFromDate($year, 3, 30),
-            'Día del Trabajador' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Día de las Glorias Navales' => CarbonImmutable::createFromDate($year, 5, 21),
-            'Día Nacional de los Pueblos Indígenas' => CarbonImmutable::createFromDate($year, 6, 20),
-            'San Pedro y San Pablo' => CarbonImmutable::createFromDate($year, 6, 29),
-            'Día de la Virgen del Carmen' => CarbonImmutable::createFromDate($year, 7, 16),
-            'Asunción de la Virgen' => CarbonImmutable::createFromDate($year, 8, 15),
-            'Independencia Nacional' => CarbonImmutable::createFromDate($year, 9, 18),
-            'Día de las Glorias del Ejército' => CarbonImmutable::createFromDate($year, 9, 19),
-            'Feriado añadido de Fiestas Patrias' => CarbonImmutable::createFromDate($year, 9, 20),
-            'Encuentro de Dos Mundos' => CarbonImmutable::createFromDate($year, 10, 12),
-            'Día de las Iglesias Evangélicas' => CarbonImmutable::createFromDate($year, 10, 31),
-            'Día de Todos los Santos' => CarbonImmutable::createFromDate($year, 11, 1),
-            'Inmaculada Concepción' => CarbonImmutable::createFromDate($year, 12, 8),
-            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Año Nuevo', "{$year}-01-01"),
+            Holiday::national('Viernes Santo', "{$year}-03-29"),
+            Holiday::national('Sábado Santo', "{$year}-03-30"),
+            Holiday::national('Día del Trabajador', "{$year}-05-01"),
+            Holiday::national('Día de las Glorias Navales', "{$year}-05-21"),
+            Holiday::national('Día Nacional de los Pueblos Indígenas', "{$year}-06-20"),
+            Holiday::national('San Pedro y San Pablo', "{$year}-06-29"),
+            Holiday::national('Día de la Virgen del Carmen', "{$year}-07-16"),
+            Holiday::national('Asunción de la Virgen', "{$year}-08-15"),
+            Holiday::national('Independencia Nacional', "{$year}-09-18"),
+            Holiday::national('Día de las Glorias del Ejército', "{$year}-09-19"),
+            Holiday::national('Feriado añadido de Fiestas Patrias', "{$year}-09-20"),
+            Holiday::national('Encuentro de Dos Mundos', "{$year}-10-12"),
+            Holiday::national('Día de las Iglesias Evangélicas', "{$year}-10-31"),
+            Holiday::national('Día de Todos los Santos', "{$year}-11-01"),
+            Holiday::national('Inmaculada Concepción', "{$year}-12-08"),
+            Holiday::national('Navidad', "{$year}-12-25"),
         ];
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Jueves santo' => $easter->subDays(3),
-            'Viernes santo' => $easter->subDays(2),
+            Holiday::national('Día de la Reforma', $easter->subDays(2)),
         ];
     }
 }

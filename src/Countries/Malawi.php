@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Malawi extends Country
 {
@@ -14,28 +14,26 @@ class Malawi extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'New Years  Day' => CarbonImmutable::createFromDate($year, 1, 1),
-            'John Chilembwe Day' => CarbonImmutable::createFromDate($year, 1, 15),
-            'Martyrs Day' => CarbonImmutable::createFromDate($year, 3, 3),
-            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Kamuzu Day' => CarbonImmutable::createFromDate($year, 5, 14),
-            'Independence Day' => CarbonImmutable::createFromDate($year, 7, 6),
-            'Mothers Day' => CarbonImmutable::createFromDate($year, 10, 15),
-            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
-            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national('New Years  Day', "{$year}-01-01"),
+            Holiday::national('John Chilembwe Day', "{$year}-01-15"),
+            Holiday::national('Martyrs Day', "{$year}-03-03"),
+            Holiday::national('Labour Day', "{$year}-05-01"),
+            Holiday::national('Kamuzu Day', "{$year}-05-14"),
+            Holiday::national('Independence Day', "{$year}-07-06"),
+            Holiday::national('Mothers Day', "{$year}-10-15"),
+            Holiday::national('Christmas Day', "{$year}-12-25"),
+            Holiday::national('Boxing Day', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /**
-     * @return array<string, CarbonImmutable>
-     */
+    /** @return array<Holiday> */
     private function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Good Friday' => $easter->subDays(2),
-            'Easter Monday' => $easter->addDay(),
+            Holiday::national('Good Friday', $easter->subDays(2)),
+            Holiday::national('Easter Monday', $easter->addDay()),
         ];
     }
 }

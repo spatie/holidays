@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Poland extends Country
 {
@@ -14,32 +14,32 @@ class Poland extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nowy Rok' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Święto Trzech Króli' => CarbonImmutable::createFromDate($year, 1, 6),
-            'Święto Pracy' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Święto Konstytucji 3 Maja' => CarbonImmutable::createFromDate($year, 5, 3),
-            'Święto Wojska Polskiego, Wniebowzięcie Najświętszej Maryi Panny' => CarbonImmutable::createFromDate($year, 8, 15),
-            'Wszystkich Świętych' => CarbonImmutable::createFromDate($year, 11, 1),
-            'Święto Niepodległości' => CarbonImmutable::createFromDate($year, 11, 11),
-            'Boże Narodzenie' => CarbonImmutable::createFromDate($year, 12, 25),
-            'Drugi Dzień Bożego Narodzenia' => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national('Nowy Rok', "{$year}-01-01"),
+            Holiday::national('Święto Trzech Króli', "{$year}-01-06"),
+            Holiday::national('Święto Pracy', "{$year}-05-01"),
+            Holiday::national('Święto Konstytucji 3 Maja', "{$year}-05-03"),
+            Holiday::national('Święto Wojska Polskiego, Wniebowzięcie Najświętszej Maryi Panny', "{$year}-08-15"),
+            Holiday::national('Wszystkich Świętych', "{$year}-11-01"),
+            Holiday::national('Święto Niepodległości', "{$year}-11-11"),
+            Holiday::national('Boże Narodzenie', "{$year}-12-25"),
+            Holiday::national('Drugi Dzień Bożego Narodzenia', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         $variableHolidays = [
-            'Wielkanoc' => $easter,
-            'Poniedziałek Wielkanocny' => $easter->addDay(),
-            'Zielone Świątki' => $easter->addWeeks(7),
-            'Boże Ciało' => $easter->addDays(60),
+            Holiday::national('Wielkanoc', $easter),
+            Holiday::national('Poniedziałek Wielkanocny', $easter->addDay()),
+            Holiday::national('Zielone Świątki', $easter->addWeeks(7)),
+            Holiday::national('Boże Ciało', $easter->addDays(60)),
         ];
 
         if ($year >= 2025) {
-            $variableHolidays = array_merge($variableHolidays, ['wigilii Bożego Narodzenia' => CarbonImmutable::createFromDate($year, 12, 24)]);
+            $variableHolidays[] = Holiday::national('wigilii Bożego Narodzenia', "{$year}-12-24");
         }
 
         return $variableHolidays;

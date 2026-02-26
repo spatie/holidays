@@ -2,9 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
+use Spatie\Holidays\Holiday;
 
 class Syria extends Country implements Islamic
 {
@@ -167,32 +167,33 @@ class Syria extends Country implements Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-            "Mother's Day" => CarbonImmutable::createFromDate($year, 3, 21),
-            "Teacher's Day" => CarbonImmutable::createFromDate($year, 3, 21),
-            'Syrian Independence Day' => CarbonImmutable::createFromDate($year, 4, 17),
-            'Labor Day' => CarbonImmutable::createFromDate($year, 5, 1),
-            "Martyr's Day" => CarbonImmutable::createFromDate($year, 5, 6),
-            'The October Liberation War' => CarbonImmutable::createFromDate($year, 10, 6),
-            'Christmas' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national("Mother's Day", "{$year}-03-21"),
+            Holiday::national("Teacher's Day", "{$year}-03-21"),
+            Holiday::national('Syrian Independence Day', "{$year}-04-17"),
+            Holiday::national('Labor Day', "{$year}-05-01"),
+            Holiday::national("Martyr's Day", "{$year}-05-06"),
+            Holiday::national('The October Liberation War', "{$year}-10-06"),
+            Holiday::national('Christmas', "{$year}-12-25"),
         ],
             $this->variableHolidays($year),
             $this->islamicHolidays($year),
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
         $orthodoxEaster = $this->orthodoxEaster($year);
 
         return [
-            'Western Easter' => $easter,
-            'Eastern Easter' => $orthodoxEaster,
+            Holiday::national('Western Easter', $easter),
+            Holiday::national('Eastern Easter', $orthodoxEaster),
         ];
     }
 
+    /** @return array<Holiday> */
     public function islamicHolidays(int $year): array
     {
         $eidAlFitr = $this->eidAlFitr($year, totalDays: 3);
@@ -200,8 +201,8 @@ class Syria extends Country implements Islamic
 
         return array_merge(
             [
-                'Islamic New Year' => $this->islamicNewYear($year),
-                'The commemoration of the birth of the Prophet Muhammad' => $this->prophetMuhammadBirthday($year),
+                Holiday::religious('Islamic New Year', $this->islamicNewYear($year)),
+                Holiday::religious('The commemoration of the birth of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
             ],
             $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0]),
             $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0]),

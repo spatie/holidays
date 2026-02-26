@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Moldova extends Country
 {
@@ -14,28 +14,28 @@ class Moldova extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Anul Nou' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Crăciunul pe stil vechi' => CarbonImmutable::createFromDate($year, 1, 7),
-            'A doua zi de Crăciun pe stil vechi' => CarbonImmutable::createFromDate($year, 1, 8),
-            'Ziua Internațională a Femeii' => CarbonImmutable::createFromDate($year, 3, 8),
-            'Ziua Muncii' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Ziua Europei' => CarbonImmutable::createFromDate($year, 5, 9),
-            'Ziua Internațională a Copilului' => CarbonImmutable::createFromDate($year, 6, 1),
-            'Ziua Independenței' => CarbonImmutable::createFromDate($year, 8, 27),
-            'Ziua Limbii Române' => CarbonImmutable::createFromDate($year, 8, 31),
-            'Crăciunul pe stil nou' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Anul Nou', "{$year}-01-01"),
+            Holiday::national('Crăciunul pe stil vechi', "{$year}-01-07"),
+            Holiday::national('A doua zi de Crăciun pe stil vechi', "{$year}-01-08"),
+            Holiday::national('Ziua Internațională a Femeii', "{$year}-03-08"),
+            Holiday::national('Ziua Muncii', "{$year}-05-01"),
+            Holiday::national('Ziua Europei', "{$year}-05-09"),
+            Holiday::national('Ziua Internațională a Copilului', "{$year}-06-01"),
+            Holiday::national('Ziua Independenței', "{$year}-08-27"),
+            Holiday::national('Ziua Limbii Române', "{$year}-08-31"),
+            Holiday::national('Crăciunul pe stil nou', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->orthodoxEaster($year);
 
         return [
-            'Prima zi de Paște' => $easter,
-            'A doua zi de Paște' => $easter->addDay(),
-            'Paștele Blajinilor' => $easter->addDays(8),
+            Holiday::national('Prima zi de Paște', $easter),
+            Holiday::national('A doua zi de Paște', $easter->addDay()),
+            Holiday::national('Paștele Blajinilor', $easter->addDays(8)),
         ];
     }
 }

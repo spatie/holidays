@@ -2,9 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
+use Spatie\Holidays\Holiday;
 
 class Tunisia extends Country implements Islamic
 {
@@ -241,40 +241,44 @@ class Tunisia extends Country implements Islamic
         return 'en';
     }
 
+    /** @return array<Holiday> */
     protected function allHolidays(int $year): array
     {
-        $revolutionHoliday = [];
+        $holidays = [];
+
+        $holidays[] = Holiday::national("New Year's Day", "{$year}-01-01");
+        $holidays[] = Holiday::national('Independence Day', "{$year}-03-20");
+        $holidays[] = Holiday::national("Martyrs' Day", "{$year}-04-09");
+        $holidays[] = Holiday::national('Labour Day', "{$year}-05-01");
+        $holidays[] = Holiday::national('Republic Day', "{$year}-07-25");
+        $holidays[] = Holiday::national("Women's Day", "{$year}-08-13");
+        $holidays[] = Holiday::national('Evacuation Day', "{$year}-10-15");
 
         if ($year < 2022 && $year >= 2011) {
-            $revolutionHoliday['Revolution and Youth Day'] = CarbonImmutable::createFromDate($year, 1, 14);
+            $holidays[] = Holiday::national('Revolution and Youth Day', "{$year}-01-14");
         }
 
         if ($year >= 2022) {
-            $revolutionHoliday['Revolution and Youth Day'] = CarbonImmutable::createFromDate($year, 12, 17);
+            $holidays[] = Holiday::national('Revolution and Youth Day', "{$year}-12-17");
         }
 
-        return array_merge([
-            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-            'Independence Day' => CarbonImmutable::createFromDate($year, 3, 20),
-            "Martyrs' Day" => CarbonImmutable::createFromDate($year, 4, 9),
-            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Republic Day' => CarbonImmutable::createFromDate($year, 7, 25),
-            "Women's Day" => CarbonImmutable::createFromDate($year, 8, 13),
-            'Evacuation Day' => CarbonImmutable::createFromDate($year, 10, 15),
-        ], $revolutionHoliday, $this->islamicHolidays($year));
+        return array_merge($holidays, $this->islamicHolidays($year));
     }
 
+    /** @return array<Holiday> */
     public function islamicHolidays(int $year): array
     {
         $eidAlFitr = $this->eidAlFitr(year: $year, totalDays: 2);
         $eidAlAdha = $this->eidAlAdha(year: $year, totalDays: 2);
 
+        $holidays = [
+            Holiday::national('Arafat Day', $this->arafat($year)),
+            Holiday::national('Islamic New Year', $this->islamicNewYear($year)),
+            Holiday::national('Birthday of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
+        ];
+
         return array_merge(
-            [
-                'Arafat Day' => $this->arafat($year),
-                'Islamic New Year' => $this->islamicNewYear($year),
-                'Birthday of the Prophet Muhammad' => $this->prophetMuhammadBirthday($year),
-            ],
+            $holidays,
             $this->convertPeriods(name: 'Eid al-Fitr', year: $year, period: $eidAlFitr[0]),
             $this->convertPeriods(name: 'Eid al-Adha', year: $year, period: $eidAlAdha[0]),
         );

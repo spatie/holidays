@@ -3,8 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use GeniusTS\HijriDate\Date;
-use GeniusTS\HijriDate\Hijri;
+use Spatie\Holidays\Holiday;
 
 class Benin extends Country
 {
@@ -234,33 +233,27 @@ class Benin extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Fête du Nouvel An' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Fête annuelle des réligions traditionnelles' => CarbonImmutable::createFromDate($year, 1, 10),
-            'Fete annuelle des réligions traditionnelles' => CarbonImmutable::createFromDate($year, 1, 10),
-            'Fete du travail' => CarbonImmutable::createFromDate($year, 5, 1),
-            "Fête de l'indépendance" => CarbonImmutable::createFromDate($year, 8, 1),
-            'Jour de la Toussaint' => CarbonImmutable::createFromDate($year, 11, 1),
-            'Jour de Noel' => CarbonImmutable::createFromDate($year, 12, 25),
-            "Jour de l'assomption" => CarbonImmutable::createFromDate($year, 8, 15),
+            Holiday::national('Fête du Nouvel An', "{$year}-01-01"),
+            Holiday::national('Fête annuelle des réligions traditionnelles', "{$year}-01-10"),
+            Holiday::national('Fete annuelle des réligions traditionnelles', "{$year}-01-10"),
+            Holiday::national('Fete du travail', "{$year}-05-01"),
+            Holiday::national("Fête de l'indépendance", "{$year}-08-01"),
+            Holiday::national('Jour de la Toussaint', "{$year}-11-01"),
+            Holiday::national('Jour de Noel', "{$year}-12-25"),
+            Holiday::national("Jour de l'assomption", "{$year}-08-15"),
         ], $this->variableHolidays($year));
     }
 
-    /**
-     * Some dates vary each year,as they are based on the Islamic Hijri (lunar) calendar. These holidays do not have a fixed date and
-     * occur based on the lunar calendar sequence. The order listed reflects the chronological occurrence
-     * of these holidays throughout the year.
-     *
-     * @return array<string, CarbonImmutable>
-     */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year)->setTimezone('Africa/Porto-Novo');
 
         return array_merge(
             [
-                'Lundi de Pâques' => $easter->addDays(1),
-                'Jour de l’Ascension' => $easter->addDays(40),
-                'Lundi de Pentecôte' => $easter->addDays(50),
+                Holiday::national('Lundi de Pâques', $easter->addDays(1)),
+                Holiday::national('Jour de l\'Ascension', $easter->addDays(40)),
+                Holiday::national('Lundi de Pentecôte', $easter->addDays(50)),
             ],
             $this->getIslamicHolidays(
                 year: $year,
@@ -284,7 +277,7 @@ class Benin extends Country
 
     /**
      * @param  array<int, string|array<string>>  $holidays
-     * @return array<string, CarbonImmutable>
+     * @return array<Holiday>
      */
     protected function getIslamicHolidays(
         int $year,
@@ -345,7 +338,7 @@ class Benin extends Country
         return $islamicHolidays;
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function prepareHolidays(
         CarbonImmutable $holiday,
         int $day,
@@ -356,9 +349,9 @@ class Benin extends Country
         $holidays = [];
 
         foreach (range(1, $day) as $range) {
-            $holidays["{$prefix}{$label} - Jour {$range}"] = $holiday->addDays($range - 1);
+            $holidays[] = Holiday::national("{$prefix}{$label} - Jour {$range}", $holiday->addDays($range - 1));
         }
 
-        return array_filter($holidays, fn ($holiday): bool => $holiday->year == $filterYear);
+        return array_values(array_filter($holidays, fn ($holiday): bool => $holiday->date->year == $filterYear));
     }
 }

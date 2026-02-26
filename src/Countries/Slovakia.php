@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Slovakia extends Country
 {
@@ -14,40 +14,39 @@ class Slovakia extends Country
     protected function allHolidays(int $year): array
     {
         $holidays = array_merge([
-            'Deň vzniku Slovenskej republiky' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Zjavenie Pána (Traja králi)' => CarbonImmutable::createFromDate($year, 1, 6),
-            'Sviatok práce' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Deň víťazstva nad fašizmom' => CarbonImmutable::createFromDate($year, 5, 8),
-            'Sviatok svätého Cyrila a Metoda' => CarbonImmutable::createFromDate($year, 7, 5),
-            'Výročie Slovenského národného povstania' => CarbonImmutable::createFromDate($year, 8, 29),
-            'Sedembolestná Panna Mária' => CarbonImmutable::createFromDate($year, 9, 15),
-            'Sviatok všetkých svätých' => CarbonImmutable::createFromDate($year, 11, 1),
-            'Deň boja za slobodu a demokraciu' => CarbonImmutable::createFromDate($year, 11, 17),
-            'Štedrý deň' => CarbonImmutable::createFromDate($year, 12, 24),
-            'Prvý sviatok vianočný' => CarbonImmutable::createFromDate($year, 12, 25),
-            'Druhý sviatok vianočný' => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national('Deň vzniku Slovenskej republiky', "{$year}-01-01"),
+            Holiday::national('Zjavenie Pána (Traja králi)', "{$year}-01-06"),
+            Holiday::national('Sviatok práce', "{$year}-05-01"),
+            Holiday::national('Deň víťazstva nad fašizmom', "{$year}-05-08"),
+            Holiday::national('Sviatok svätého Cyrila a Metoda', "{$year}-07-05"),
+            Holiday::national('Výročie Slovenského národného povstania', "{$year}-08-29"),
+            Holiday::national('Sedembolestná Panna Mária', "{$year}-09-15"),
+            Holiday::national('Sviatok všetkých svätých', "{$year}-11-01"),
+            Holiday::national('Deň boja za slobodu a demokraciu', "{$year}-11-17"),
+            Holiday::national('Štedrý deň', "{$year}-12-24"),
+            Holiday::national('Prvý sviatok vianočný', "{$year}-12-25"),
+            Holiday::national('Druhý sviatok vianočný', "{$year}-12-26"),
         ], $this->variableHolidays($year));
 
         if ($year === 2018) {
-            $holidays['Výročie Deklarácie slovenského národa'] = CarbonImmutable::createFromDate($year, 10, 30);
+            $holidays[] = Holiday::national('Výročie Deklarácie slovenského národa', "{$year}-10-30");
         }
 
-        // Until and including the year 2023, September 1st was a public holiday.
         if ($year < 2024) {
-            $holidays['Deň Ústavy Slovenskej republiky'] = CarbonImmutable::createFromDate($year, 9, 1);
+            $holidays[] = Holiday::national('Deň Ústavy Slovenskej republiky', "{$year}-09-01");
         }
 
         return $holidays;
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Veľkonočný pondelok' => $easter->addDay(),
-            'Veľký piatok' => $easter->subDays(2),
+            Holiday::national('Veľkonočný pondelok', $easter->addDay()),
+            Holiday::national('Veľký piatok', $easter->subDays(2)),
         ];
     }
 }

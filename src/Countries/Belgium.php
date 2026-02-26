@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Belgium extends Country
 {
@@ -19,25 +19,25 @@ class Belgium extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nieuwjaar' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Dag van de Arbeid' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Nationale Feestdag' => CarbonImmutable::createFromDate($year, 7, 21),
-            'OLV Hemelvaart' => CarbonImmutable::createFromDate($year, 8, 15),
-            'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
-            'Wapenstilstand' => CarbonImmutable::createFromDate($year, 11, 11),
-            'Kerstmis' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Nieuwjaar', "{$year}-01-01"),
+            Holiday::national('Dag van de Arbeid', "{$year}-05-01"),
+            Holiday::national('Nationale Feestdag', "{$year}-07-21"),
+            Holiday::national('OLV Hemelvaart', "{$year}-08-15"),
+            Holiday::national('Allerheiligen', "{$year}-11-01"),
+            Holiday::national('Wapenstilstand', "{$year}-11-11"),
+            Holiday::national('Kerstmis', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Paasmaandag' => $easter->addDay(),
-            'OLH Hemelvaart' => $easter->addDays(39),
-            'Pinkstermaandag' => $easter->addDays(50),
+            Holiday::national('Paasmaandag', $easter->addDay()),
+            Holiday::national('OLH Hemelvaart', $easter->addDays(39)),
+            Holiday::national('Pinkstermaandag', $easter->addDays(50)),
         ];
     }
 }

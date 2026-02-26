@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Serbia extends Country
 {
@@ -14,26 +14,26 @@ class Serbia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nova godina - prvi dan' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Nova godina - drugi dan' => CarbonImmutable::createFromDate($year, 1, 2),
-            'Božić' => CarbonImmutable::createFromDate($year, 1, 7),
-            'Dan državnosti - prvi dan' => CarbonImmutable::createFromDate($year, 2, 15),
-            'Dan državnosti - drugi dan' => CarbonImmutable::createFromDate($year, 2, 16),
-            'Praznik rada - prvi dan' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Praznik rada - drugi dan' => CarbonImmutable::createFromDate($year, 5, 2),
-            'Dan primirja u Prvom svetskom ratu' => CarbonImmutable::createFromDate($year, 11, 11),
+            Holiday::national('Nova godina - prvi dan', "{$year}-01-01"),
+            Holiday::national('Nova godina - drugi dan', "{$year}-01-02"),
+            Holiday::national('Božić', "{$year}-01-07"),
+            Holiday::national('Dan državnosti - prvi dan', "{$year}-02-15"),
+            Holiday::national('Dan državnosti - drugi dan', "{$year}-02-16"),
+            Holiday::national('Praznik rada - prvi dan', "{$year}-05-01"),
+            Holiday::national('Praznik rada - drugi dan', "{$year}-05-02"),
+            Holiday::national('Dan primirja u Prvom svetskom ratu', "{$year}-11-11"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->orthodoxEaster($year);
 
         return [
-            'Veliki petak' => $easter->subDays(2),
-            'Vaskrs' => $easter,
-            'Vaskršnji ponedeljak' => $easter->addDay(),
+            Holiday::national('Veliki petak', $easter->subDays(2)),
+            Holiday::national('Vaskrs', $easter),
+            Holiday::national('Vaskršnji ponedeljak', $easter->addDay()),
         ];
     }
 }

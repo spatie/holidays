@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Holiday;
 
 class Scotland extends Wales
 {
@@ -24,7 +25,7 @@ class Scotland extends Wales
         );
     }
 
-    /** @return array<string, string|CarbonInterface> */
+    /** @return array<Holiday> */
     #[\Override]
     protected function observedHolidays(int $year): array
     {
@@ -36,6 +37,7 @@ class Scotland extends Wales
             'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
+        $result = [];
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
                 '2nd January' => $this->secondOfJanuary($year),
@@ -45,24 +47,25 @@ class Scotland extends Wales
             };
 
             if ($observedDay) {
-                $holidays["{$name} (substitute day)"] = $observedDay;
-                unset($holidays[$name]);
+                $result[] = Holiday::national("{$name} (substitute day)", $observedDay);
+            } else {
+                $result[] = Holiday::national($name, $date);
             }
         }
 
-        return $holidays;
+        return $result;
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     #[\Override]
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Good Friday' => $easter->subDays(2),
-            'Spring bank holiday' => CarbonImmutable::parse("last monday of may {$year}"),
-            'Summer bank holiday' => CarbonImmutable::parse("first monday of august {$year}"),
+            Holiday::national('Good Friday', $easter->subDays(2)),
+            Holiday::national('Spring bank holiday', CarbonImmutable::parse("last monday of may {$year}")),
+            Holiday::national('Summer bank holiday', CarbonImmutable::parse("first monday of august {$year}")),
         ];
     }
 

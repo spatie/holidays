@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class ElSalvador extends Country
 {
@@ -14,26 +14,26 @@ class ElSalvador extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Día del Trabajo' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Día de la Madre' => CarbonImmutable::createFromDate($year, 5, 10),
-            'Día del Padre' => CarbonImmutable::createFromDate($year, 6, 17),
-            'Fiesta Divino Salvador del Mundo' => CarbonImmutable::createFromDate($year, 8, 6),
-            'Día de la Independencia' => CarbonImmutable::createFromDate($year, 9, 15),
-            'Día de Los Difuntos' => CarbonImmutable::createFromDate($year, 11, 2),
-            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Año Nuevo', "{$year}-01-01"),
+            Holiday::national('Día del Trabajo', "{$year}-05-01"),
+            Holiday::national('Día de la Madre', "{$year}-05-10"),
+            Holiday::national('Día del Padre', "{$year}-06-17"),
+            Holiday::national('Fiesta Divino Salvador del Mundo', "{$year}-08-06"),
+            Holiday::national('Día de la Independencia', "{$year}-09-15"),
+            Holiday::national('Día de Los Difuntos', "{$year}-11-02"),
+            Holiday::national('Navidad', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Jueves Santo' => $easter->subDays(3),
-            'Viernes Santo' => $easter->subDays(2),
-            'Sábado de Gloria' => $easter->subDay(),
+            Holiday::national('Jueves Santo', $easter->subDays(3)),
+            Holiday::national('Viernes Santo', $easter->subDays(2)),
+            Holiday::national('Sábado de Gloria', $easter->subDay()),
         ];
     }
 }

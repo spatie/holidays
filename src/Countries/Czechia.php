@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Czechia extends Country
 {
@@ -13,7 +14,6 @@ class Czechia extends Country
 
     protected function allHolidays(int $year): array
     {
-        // https://kalendar.beda.cz/statni-svatky-a-vyznamne-dny-v-roce-prehledne?year=1970
         $holidays = [
             'Nový rok' => ['01-01', $year <= 2000],
             'Nový rok; Den obnovy samostatného českého státu' => ['01-01', $year >= 2001],
@@ -31,11 +31,6 @@ class Czechia extends Country
 
             'Den české státnosti' => ['09-28', $year >= 2000],
 
-            'Vyhlášení samostatnosti ČSR; Schválení zákona o federaci' => ['10-28', $year <= 1971],
-            'Den znárodnění' => ['10-28', $year === 1972],
-            'Vyhlášení samostatnosti ČSR; Schválení zákona o federaci; Den znárodnění' => ['10-28', $year >= 1973 && $year <= 1974],
-            'Den vzniku samostatného československého státu' => ['10-28', $year >= 1988],
-
             'Den boje za svobodu a demokracii a Mezinárodní den studentstva' => ['11-17', $year >= 2000],
             'Štědrý den' => ['12-24', $year >= 1990],
             '1. svátek vánoční' => ['12-25', true],
@@ -43,7 +38,7 @@ class Czechia extends Country
         ];
 
         $filteredHolidays = array_map(
-            fn (array $holiday): CarbonImmutable => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday[0]}"),
+            fn (array $holiday): Holiday => Holiday::national($holiday[0], CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday[0]}")),
             array_filter($holidays,
                 static fn (array $holiday): bool => $holiday[1] === true
             )
@@ -52,7 +47,7 @@ class Czechia extends Country
         return array_merge($filteredHolidays, $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -63,7 +58,7 @@ class Czechia extends Country
         ];
 
         return array_map(
-            static fn (array $variableHoliday): \Carbon\CarbonImmutable => $variableHoliday[0],
+            fn (array $variableHoliday): Holiday => Holiday::national($variableHoliday[0], $variableHoliday[0]),
             array_filter($variableHolidays,
                 static fn (array $variableHoliday): bool => $variableHoliday[1] === true
             )

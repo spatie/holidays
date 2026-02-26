@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Kosovo extends Country
 {
@@ -14,28 +14,26 @@ class Kosovo extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Viti i Ri' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Krishtlindjet ortodokse' => CarbonImmutable::createFromDate($year, 1, 7),
-            'Dita Ndërkombëtare e Punës' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Dita e Evropës' => CarbonImmutable::createFromDate($year, 5, 9),
-            'Krishtlindjet Katolike' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Viti i Ri', "{$year}-01-01"),
+            Holiday::national('Krishtlindjet ortodokse', "{$year}-01-07"),
+            Holiday::national('Dita Ndërkombëtare e Punës', "{$year}-05-01"),
+            Holiday::national('Dita e Evropës', "{$year}-05-09"),
+            Holiday::national('Krishtlindjet Katolike', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $holidays = [];
 
-        $holidays['Pashkët Katolike'] = $this->easter($year);
-        $holidays['Pashkët Ortodokse'] = $this->orthodoxEaster($year);
+        $holidays[] = Holiday::national('Pashkët Katolike', $this->easter($year));
+        $holidays[] = Holiday::national('Pashkët Ortodokse', $this->orthodoxEaster($year));
 
         if ($year >= 2008) {
-            $holidays['Dita e Pavarësisë së Republikës së Kosovës'] = CarbonImmutable::createFromDate($year, 2, 17);
-            $holidays['Dita e Kushtetutës së Republikës së Kosovës'] = CarbonImmutable::createFromDate($year, 4, 9);
+            $holidays[] = Holiday::national('Dita e Pavarësisë së Republikës së Kosovës', "{$year}-02-17");
+            $holidays[] = Holiday::national('Dita e Kushtetutës së Republikës së Kosovës', "{$year}-04-09");
         }
-
-        // TODO: Implement islamic holidays
 
         return $holidays;
     }

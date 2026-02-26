@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Holiday;
 
 class Sweden extends Country
 {
@@ -15,16 +16,16 @@ class Sweden extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nyårsdagen' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Trettondedag jul' => CarbonImmutable::createFromDate($year, 1, 6),
-            'Första maj' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Nationaldagen' => CarbonImmutable::createFromDate($year, 6, 6),
-            'Juldagen' => CarbonImmutable::createFromDate($year, 12, 25),
-            'Annandag jul' => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national('Nyårsdagen', "{$year}-01-01"),
+            Holiday::national('Trettondedag jul', "{$year}-01-06"),
+            Holiday::national('Första maj', "{$year}-05-01"),
+            Holiday::national('Nationaldagen', "{$year}-06-06"),
+            Holiday::national('Juldagen', "{$year}-12-25"),
+            Holiday::national('Annandag jul', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -42,15 +43,15 @@ class Sweden extends Country
         }
 
         return [
-            'Långfredagen' => $easter->subDays(2),
-            'Påskdagen' => $easter,
-            'Annandag påsk' => $easter->addDay(),
-            'Kristi himmelsfärdsdag' => $easter->addDays(39),
-            'Pingstdagen' => $easter->addDays(49),
-            'Midsommardagen' => $midsummerDay->day > 26
+            Holiday::national('Långfredagen', $easter->subDays(2)),
+            Holiday::national('Påskdagen', $easter),
+            Holiday::national('Annandag påsk', $easter->addDay()),
+            Holiday::national('Kristi himmelsfärdsdag', $easter->addDays(39)),
+            Holiday::national('Pingstdagen', $easter->addDays(49)),
+            Holiday::national('Midsommardagen', $midsummerDay->day > 26
                 ? $midsummerDay->subWeek()
-                : $midsummerDay,
-            'Alla helgons dag' => $halloween,
+                : $midsummerDay),
+            Holiday::national('Alla helgons dag', $halloween),
         ];
     }
 }

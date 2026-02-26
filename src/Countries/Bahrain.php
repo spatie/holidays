@@ -2,9 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
+use Spatie\Holidays\Holiday;
 
 class Bahrain extends Country implements Islamic
 {
@@ -149,15 +149,16 @@ class Bahrain extends Country implements Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
-            'National Day' => CarbonImmutable::createFromDate($year, 12, 16),
-            'National Day 2' => CarbonImmutable::createFromDate($year, 12, 17),
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national('Labour Day', "{$year}-05-01"),
+            Holiday::national('National Day', "{$year}-12-16"),
+            Holiday::national('National Day 2', "{$year}-12-17"),
         ],
             $this->islamicHolidays($year)
         );
     }
 
+    /** @return array<Holiday> */
     public function islamicHolidays(int $year): array
     {
         $eidAlFitr = $this->eidAlFitr($year);
@@ -165,9 +166,9 @@ class Bahrain extends Country implements Islamic
         $ashura = $this->ashura($year);
 
         $holidays = [
-            'Arafat Day' => $this->arafat($year),
-            'Islamic New Year' => $this->islamicNewYear($year),
-            'Birthday of the Prophet Muhammad' => $this->prophetMuhammadBirthday($year),
+            Holiday::national('Arafat Day', $this->arafat($year)),
+            Holiday::national('Islamic New Year', $this->islamicNewYear($year)),
+            Holiday::national('Birthday of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
         ];
 
         return array_merge($holidays,

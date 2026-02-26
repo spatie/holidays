@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Liechtenstein extends Country
 {
@@ -14,28 +14,28 @@ class Liechtenstein extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Neujahr' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Heilige Drei Könige' => CarbonImmutable::createFromDate($year, 1, 6),
-            'Tag der Arbeit' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Staatsfeiertag / Mariä Himmelfahrt' => CarbonImmutable::createFromDate($year, 8, 15),
-            'Mariä Geburt' => CarbonImmutable::createFromDate($year, 9, 8),
-            'Allerheiligen' => CarbonImmutable::createFromDate($year, 11, 1),
-            'Mariä Empfängnis' => CarbonImmutable::createFromDate($year, 12, 8),
-            'Weihnachten' => CarbonImmutable::createFromDate($year, 12, 25),
-            'Stephanstag' => CarbonImmutable::createFromDate($year, 12, 26),
+            Holiday::national('Neujahr', "{$year}-01-01"),
+            Holiday::national('Heilige Drei Könige', "{$year}-01-06"),
+            Holiday::national('Tag der Arbeit', "{$year}-05-01"),
+            Holiday::national('Staatsfeiertag / Mariä Himmelfahrt', "{$year}-08-15"),
+            Holiday::national('Mariä Geburt', "{$year}-09-08"),
+            Holiday::national('Allerheiligen', "{$year}-11-01"),
+            Holiday::national('Mariä Empfängnis', "{$year}-12-08"),
+            Holiday::national('Weihnachten', "{$year}-12-25"),
+            Holiday::national('Stephanstag', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Ostermontag' => $easter->addDay(),
-            'Auffahrt' => $easter->addDays(39),
-            'Pfingstmontag' => $easter->addDays(50),
-            'Fronleichnam' => $easter->addDays(60),
+            Holiday::national('Ostermontag', $easter->addDay()),
+            Holiday::national('Auffahrt', $easter->addDays(39)),
+            Holiday::national('Pfingstmontag', $easter->addDays(50)),
+            Holiday::national('Fronleichnam', $easter->addDays(60)),
         ];
     }
 }

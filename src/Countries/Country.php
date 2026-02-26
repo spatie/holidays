@@ -9,38 +9,40 @@ use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\CountryRegistry;
 use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Holiday;
+use Spatie\Holidays\HolidayType;
 
 abstract class Country
 {
     abstract public function countryCode(): string;
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     abstract protected function allHolidays(int $year): array;
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     public function get(int $year, ?string $locale = null): array
     {
         $this->ensureYearCanBeCalculated($year);
 
-        $allHolidays = $this->allHolidays($year);
+        $holidays = $this->allHolidays($year);
 
         $translations = $this->loadTranslations($locale);
 
         if ($translations !== null) {
-            $translated = [];
-
-            foreach ($allHolidays as $name => $date) {
-                $translated[$translations[$name] ?? $name] = $date;
-            }
-
-            $allHolidays = $translated;
+            $holidays = array_map(
+                static fn (Holiday $holiday): Holiday => new Holiday(
+                    $translations[$holiday->name] ?? $holiday->name,
+                    $holiday->date,
+                    $holiday->type,
+                    $holiday->region,
+                ),
+                $holidays,
+            );
         }
 
-        uasort($allHolidays,
-            fn (CarbonImmutable $a, CarbonImmutable $b): int => $a->timestamp <=> $b->timestamp
-        );
+        usort($holidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
 
-        return $allHolidays;
+        return $holidays;
     }
 
     protected function defaultLocale(): ?string
@@ -73,7 +75,7 @@ abstract class Country
         return json_decode($content, true);
     }
 
-    /** @return array<string, string>  date => name */
+    /** @return array<Holiday> */
     public function getInRange(?CarbonImmutable $from, ?CarbonImmutable $to, ?string $locale = null): array
     {
         $from ??= CarbonImmutable::now()->startOfYear();
@@ -85,27 +87,16 @@ abstract class Country
         $allHolidays = [];
 
         for ($year = $from->year; $year <= $to->year; $year++) {
-            $yearHolidays = $this->get($year, $locale);
-            /**
-             * @var string $name
-             * @var CarbonImmutable $date
-             */
-            foreach ($yearHolidays as $name => $date) {
-                if ($date->between($from, $to)) {
-                    $allHolidays[] = ['date' => $date, 'name' => $name];
+            foreach ($this->get($year, $locale) as $holiday) {
+                if ($holiday->date->between($from, $to)) {
+                    $allHolidays[] = $holiday;
                 }
             }
         }
 
-        usort($allHolidays, static fn (array $a, array $b): int => $a['date'] <=> $b['date']);
+        usort($allHolidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
 
-        $mappedHolidays = [];
-        /** @var array{date: CarbonImmutable, name: string} $holiday */
-        foreach ($allHolidays as $holiday) {
-            $mappedHolidays[$holiday['date']->toDateString()] = $holiday['name'];
-        }
-
-        return $mappedHolidays;
+        return $allHolidays;
     }
 
     public static function make(): static
@@ -180,15 +171,16 @@ abstract class Country
     }
 
     /**
-     * Convert holidays that are represented as CarbonPeriods to an array of CarbonImmutable dates.
+     * Convert holidays that are represented as CarbonPeriods to an array of Holiday objects.
      * This is useful for holidays like `Eid-al-Fitr` that happen on multiple days.
      *
-     * @return array<string, CarbonImmutable>
+     * @return array<Holiday>
      */
     protected function convertPeriods(
         string $name,
         int $year,
         CarbonPeriod $period,
+        HolidayType $type = HolidayType::National,
         string $suffix = 'Day',
         string $prefix = '',
         bool $includeEve = false,
@@ -199,7 +191,7 @@ abstract class Country
             $eve = $period->first()?->subDay();
 
             if ($eve && $eve->year === $year) {
-                $allDays["{$name} Eve"] = $eve->toImmutable();
+                $allDays[] = new Holiday("{$name} Eve", $eve->toImmutable(), $type);
             }
         }
 
@@ -215,7 +207,7 @@ abstract class Country
 
             $holidayName = "{$prefix}{$name}{$formattedSuffix}";
 
-            $allDays[$holidayName] = $day->toImmutable();
+            $allDays[] = new Holiday($holidayName, $day->toImmutable(), $type);
         }
 
         return $allDays;

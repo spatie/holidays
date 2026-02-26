@@ -2,11 +2,11 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Holiday;
 
 class Egypt extends Country implements Islamic
 {
@@ -241,13 +241,13 @@ class Egypt extends Country implements Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-            'Flooding of the Nile' => CarbonImmutable::createFromDate($year, 8, 15),
-            'March Equinox' => CarbonImmutable::createFromDate($year, 3, 20),
-            'June Solstice' => CarbonImmutable::createFromDate($year, 6, 21),
-            'Nayrouz' => CarbonImmutable::createFromDate($year, 9, 11),
-            'September Equinox' => CarbonImmutable::createFromDate($year, 9, 22),
-            'December Solstice' => CarbonImmutable::createFromDate($year, 12, 21),
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national('Flooding of the Nile', "{$year}-08-15"),
+            Holiday::national('March Equinox', "{$year}-03-20"),
+            Holiday::national('June Solstice', "{$year}-06-21"),
+            Holiday::national('Nayrouz', "{$year}-09-11"),
+            Holiday::national('September Equinox', "{$year}-09-22"),
+            Holiday::national('December Solstice', "{$year}-12-21"),
         ],
             $this->fixedHolidays($year),
             $this->variableHolidays($year),
@@ -255,49 +255,43 @@ class Egypt extends Country implements Islamic
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $orthodoxEaster = $this->orthodoxEaster($year);
 
         return [
-            'Coptic Good Friday' => $orthodoxEaster->subDays(2)->toImmutable(),
-            'Coptic Holy Saturday' => $orthodoxEaster->subDays()->toImmutable(),
-            'Coptic Easter Sunday' => $orthodoxEaster->toImmutable(),
+            Holiday::national('Coptic Good Friday', $orthodoxEaster->subDays(2)->toImmutable()),
+            Holiday::national('Coptic Holy Saturday', $orthodoxEaster->subDays()->toImmutable()),
+            Holiday::national('Coptic Easter Sunday', $orthodoxEaster->toImmutable()),
         ];
     }
 
-    /**
-     * @return array<string, CarbonImmutable>
-     */
+    /** @return array<Holiday> */
     private function fixedHolidays(int $year): array
     {
         $holidays = [
-            'Coptic Christmas Day' => CarbonImmutable::createFromDate($year, 1, 7),
-            'Revolution Day 2011' => CarbonImmutable::createFromDate($year, 1, 25),
-            'Sinai Liberation Day' => CarbonImmutable::createFromDate($year, 4, 25),
-            'Labour Day' => CarbonImmutable::createFromDate($year, 5, 1),
-            'June 30 Revolution Day' => CarbonImmutable::createFromDate($year, 6, 30),
-            'Revolution Day' => CarbonImmutable::createFromDate($year, 7, 23),
-            'Armed Forces Day' => CarbonImmutable::createFromDate($year, 10, 6),
-            'Spring Festival' => $this->orthodoxEaster($year)->addDay()->toImmutable(),
+            Holiday::national('Coptic Christmas Day', "{$year}-01-07"),
+            Holiday::national('Revolution Day 2011', "{$year}-01-25"),
+            Holiday::national('Sinai Liberation Day', "{$year}-04-25"),
+            Holiday::national('Labour Day', "{$year}-05-01"),
+            Holiday::national('June 30 Revolution Day', "{$year}-06-30"),
+            Holiday::national('Revolution Day', "{$year}-07-23"),
+            Holiday::national('Armed Forces Day', "{$year}-10-06"),
+            Holiday::national('Spring Festival', $this->orthodoxEaster($year)->addDay()->toImmutable()),
         ];
 
-        foreach ($holidays as $name => $date) {
-            $holidays = array_merge($holidays, $this->adjustForWeekend($name, $date));
+        $adjustedHolidays = [];
+        foreach ($holidays as $holiday) {
+            $adjustedHolidays = array_merge($adjustedHolidays, $this->adjustForWeekend($holiday));
         }
 
-        return $holidays;
+        return $adjustedHolidays;
     }
 
+    /** @return array<Holiday> */
     public function islamicHolidays(int $year): array
     {
-        /**
-         * No reliable sources exist for Islamic holidays observed in Egypt prior to 2005.
-         * So we'll only calculate holidays from 2005 onwards.
-         *
-         * @see https://www.timeanddate.com/holidays/egypt
-         */
         if ($year < 2005) {
             throw InvalidYear::range($this->countryCode(), 2005, 2037);
         }
@@ -308,9 +302,9 @@ class Egypt extends Country implements Islamic
 
         return array_merge(
             [
-                'Arafat Day' => $this->arafat($year),
-                'Islamic New Year' => $this->islamicNewYear($year),
-                'Birthday of the Prophet Muhammad' => $this->prophetMuhammadBirthday($year),
+                Holiday::national('Arafat Day', $this->arafat($year)),
+                Holiday::national('Islamic New Year', $this->islamicNewYear($year)),
+                Holiday::national('Birthday of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
             ],
             $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0]),
             $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0]),
@@ -318,18 +312,18 @@ class Egypt extends Country implements Islamic
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
-    private function adjustForWeekend(string $name, CarbonImmutable $date): array
+    /** @return array<Holiday> */
+    private function adjustForWeekend(Holiday $holiday): array
     {
         $adjustedHolidays = [];
 
-        // Explicitly define this logic to avoid timezone confusion on the CarbonInterface::next() method
+        $date = $holiday->date;
         if ($date->isFriday() || $date->isSaturday()) {
-            $adjustedHolidays["Day off for {$name}"] = $date->next(CarbonInterface::SUNDAY)->toImmutable();
+            $adjustedHolidays[] = Holiday::national('Day off for '.$holiday->name, $date->next(CarbonInterface::SUNDAY)->toImmutable());
         } elseif ($date->isSunday() || $date->isThursday()) {
-            $adjustedHolidays[$name] = $date;
+            $adjustedHolidays[] = $holiday;
         } else {
-            $adjustedHolidays["Day off for {$name}"] = $date->next(CarbonInterface::THURSDAY)->toImmutable();
+            $adjustedHolidays[] = Holiday::national('Day off for '.$holiday->name, $date->next(CarbonInterface::THURSDAY)->toImmutable());
         }
 
         return $adjustedHolidays;

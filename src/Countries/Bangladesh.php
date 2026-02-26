@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Bangladesh extends Country
 {
@@ -14,21 +14,20 @@ class Bangladesh extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'International Mother Language Day' => CarbonImmutable::createFromDate($year, 2, 21),
-            'Birthday of Sheikh Mujibur Rahman' => CarbonImmutable::createFromDate($year, 3, 17),
-            'Independence Day' => CarbonImmutable::createFromDate($year, 3, 26),
-            'Bengali New Year' => CarbonImmutable::createFromDate($year, 4, 14),
-            'May Day' => CarbonImmutable::createFromDate($year, 5, 1),
-            'National Mourning Day' => CarbonImmutable::createFromDate($year, 8, 15),
-            'Victory Day' => CarbonImmutable::createFromDate($year, 12, 16),
-            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('International Mother Language Day', "{$year}-02-21"),
+            Holiday::national('Birthday of Sheikh Mujibur Rahman', "{$year}-03-17"),
+            Holiday::national('Independence Day', "{$year}-03-26"),
+            Holiday::national('Bengali New Year', "{$year}-04-14"),
+            Holiday::national('May Day', "{$year}-05-01"),
+            Holiday::national('National Mourning Day', "{$year}-08-15"),
+            Holiday::national('Victory Day', "{$year}-12-16"),
+            Holiday::national('Christmas Day', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
-        // The variable holidays all follow the lunar calendar, so their dates are not confirmed.
         return [];
     }
 }

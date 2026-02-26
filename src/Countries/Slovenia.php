@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Slovenia extends Country
 {
@@ -15,30 +15,30 @@ class Slovenia extends Country
     {
 
         return array_merge([
-            'Novo leto' => CarbonImmutable::createFromDate($year, 1, 1), // New Year's Day
-            'Novo leto 2' => CarbonImmutable::createFromDate($year, 1, 2), // New Year's Day, yes it's a second day
-            'Prešernov dan, slovenski kulturni praznik' => CarbonImmutable::createFromDate($year, 2, 8), // Prešeren Day, Slovenian Cultural Holiday
-            'Dan upora proti okupatorju' => CarbonImmutable::createFromDate($year, 4, 27), // Day of Uprising Against Occupation
-            'Praznik dela' => CarbonImmutable::createFromDate($year, 5, 1),  // Labour Day
-            'Praznik dela 2' => CarbonImmutable::createFromDate($year, 5, 2), // Labour Day, yes it's a second day
-            'Dan državnosti' => CarbonImmutable::createFromDate($year, 6, 25), // Statehood Day
-            'Marijino vnebovzetje' => CarbonImmutable::createFromDate($year, 8, 15), // Assumption of Mary
-            'Dan reformacije' => CarbonImmutable::createFromDate($year, 10, 31), // Reformation Day
-            'Dan spomina na mrtve' => CarbonImmutable::createFromDate($year, 11, 1), // Remembrance Day
-            'Božič' => CarbonImmutable::createFromDate($year, 12, 25), // Christmas Day
-            'Dan samostojnosti in enotnosti' => CarbonImmutable::createFromDate($year, 12, 26), // Independence and Unity Day
+            Holiday::national('Novo leto', "{$year}-01-01"),
+            Holiday::national('Novo leto 2', "{$year}-01-02"),
+            Holiday::national('Prešernov dan, slovenski kulturni praznik', "{$year}-02-08"),
+            Holiday::national('Dan upora proti okupatorju', "{$year}-04-27"),
+            Holiday::national('Praznik dela', "{$year}-05-01"),
+            Holiday::national('Praznik dela 2', "{$year}-05-02"),
+            Holiday::national('Dan državnosti', "{$year}-06-25"),
+            Holiday::national('Marijino vnebovzetje', "{$year}-08-15"),
+            Holiday::national('Dan reformacije', "{$year}-10-31"),
+            Holiday::national('Dan spomina na mrtve', "{$year}-11-01"),
+            Holiday::national('Božič', "{$year}-12-25"),
+            Holiday::national('Dan samostojnosti in enotnosti', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Velikonočna nedelja' => $easter, // Easter Sunday
-            'Velikonočni ponedeljek' => $easter->addDay(), // Easter Monday
-            'Binkoštna nedelja' => $easter->addDays(49), // Whit Sunday
+            Holiday::national('Velikonočna nedelja', $easter),
+            Holiday::national('Velikonočni ponedeljek', $easter->addDay()),
+            Holiday::national('Binkoštna nedelja', $easter->addDays(49)),
         ];
     }
 }

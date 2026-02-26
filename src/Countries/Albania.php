@@ -2,10 +2,10 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Holiday;
 
 class Albania extends Country implements Islamic
 {
@@ -57,27 +57,27 @@ class Albania extends Country implements Islamic
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Viti i Ri' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Dita e Verës' => CarbonImmutable::createFromDate($year, 3, 14),
-            'Dita e Sulltan Nevruzit' => CarbonImmutable::createFromDate($year, 3, 22),
-            'Dita Ndërkombëtare e Punëtorëve' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Dita e Shenjtërimit të Shenjt Terezës' => CarbonImmutable::createFromDate($year, 9, 5),
-            'Dita e Pavarësisë' => CarbonImmutable::createFromDate($year, 11, 28),
-            'Dita e Çlirimit' => CarbonImmutable::createFromDate($year, 11, 29),
-            'Dita Kombëtare e Rinisë' => CarbonImmutable::createFromDate($year, 12, 8),
-            'Krishtlindja' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Viti i Ri', "{$year}-01-01"),
+            Holiday::national('Dita e Verës', "{$year}-03-14"),
+            Holiday::national('Dita e Sulltan Nevruzit', "{$year}-03-22"),
+            Holiday::national('Dita Ndërkombëtare e Punëtorëve', "{$year}-05-01"),
+            Holiday::national('Dita e Shenjtërimit të Shenjt Terezës', "{$year}-09-05"),
+            Holiday::national('Dita e Pavarësisë', "{$year}-11-28"),
+            Holiday::national('Dita e Çlirimit', "{$year}-11-29"),
+            Holiday::national('Dita Kombëtare e Rinisë', "{$year}-12-08"),
+            Holiday::national('Krishtlindja', "{$year}-12-25"),
         ],
             $this->variableHolidays($year),
             $this->islamicHolidays($year),
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         return array_filter([
-            'E diela e Pashkëve Katolike' => $this->easter($year),
-            'E diela e Pashkëve Ortodokse' => $this->orthodoxEaster($year),
+            Holiday::national('E diela e Pashkëve Katolike', $this->easter($year)),
+            Holiday::national('E diela e Pashkëve Ortodokse', $this->orthodoxEaster($year)),
         ]);
     }
 
@@ -92,8 +92,8 @@ class Albania extends Country implements Islamic
         }
 
         return [
-            'Dita e Bajramit të Madh' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::eidAlFitr[$year]),
-            'Dita e Kurban Bajramit' => CarbonImmutable::createFromFormat('Y-m-d', "{$year}-".self::eidAlAdha[$year]),
+            Holiday::national('Dita e Bajramit të Madh', "{$year}-".self::eidAlFitr[$year]),
+            Holiday::national('Dita e Kurban Bajramit', "{$year}-".self::eidAlAdha[$year]),
         ];
     }
 }

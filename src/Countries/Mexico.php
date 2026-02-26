@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Mexico extends Country
 {
@@ -14,14 +15,14 @@ class Mexico extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => CarbonImmutable::createFromDate($year, 1, 1),
-            'Día Internacional de los Trabajadores' => CarbonImmutable::createFromDate($year, 5, 1),
-            'Día de Independencia' => CarbonImmutable::createFromDate($year, 9, 16),
-            'Navidad' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national('Año Nuevo', "{$year}-01-01"),
+            Holiday::national('Día Internacional de los Trabajadores', "{$year}-05-01"),
+            Holiday::national('Día de Independencia', "{$year}-09-16"),
+            Holiday::national('Navidad', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $constitutionDay = new CarbonImmutable("first monday of february {$year}")
@@ -34,15 +35,15 @@ class Mexico extends Country
             ->setTimezone('America/Mexico_City');
 
         $holidays = [
-            'Día de la Constitución' => $constitutionDay,
-            'Natalicio de Benito Juárez' => $benitoJuarezBirth,
-            'Día de la Revolución' => $revolutionDay,
+            Holiday::national('Día de la Constitución', $constitutionDay),
+            Holiday::national('Natalicio de Benito Juárez', $benitoJuarezBirth),
+            Holiday::national('Día de la Revolución', $revolutionDay),
         ];
 
         $executiveChange = $this->governmentChangeDate($year);
 
         if ($executiveChange) {
-            $holidays = array_merge($holidays, ['Cambio de Gobierno' => $executiveChange]);
+            $holidays[] = Holiday::national('Cambio de Gobierno', $executiveChange);
         }
 
         return $holidays;
@@ -50,13 +51,11 @@ class Mexico extends Country
 
     protected function governmentChangeDate(int $year): ?CarbonImmutable
     {
-        $baseYear = 1946; // The first occurrence with president Miguel Aleman Valdes
+        $baseYear = 1946;
 
-        // Check if the current year is a transmission year
         if (($year - $baseYear) % 6 === 0) {
-            return CarbonImmutable::createFromDate($year, 10, 1) // October 1st of the transmission year
+            return CarbonImmutable::createFromDate($year, 10, 1)
                 ->setTimezone('America/Mexico_City');
-
         }
 
         return null;

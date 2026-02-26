@@ -2,9 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
+use Spatie\Holidays\Holiday;
 
 class Maldives extends Country implements Islamic
 {
@@ -151,22 +151,24 @@ class Maldives extends Country implements Islamic
         return 'dv'; // Dhivehi, the language spoken in the Maldives
     }
 
+    /** @return array<Holiday> */
     protected function allHolidays(int $year): array
     {
-        $newHolidays = [];
+        $holidays = [];
+
+        $holidays[] = Holiday::national("New Year's Day", "{$year}-01-01");
+        $holidays[] = Holiday::national('Independence Day', "{$year}-07-26");
+        $holidays[] = Holiday::national('Victory Day', "{$year}-11-03");
+        $holidays[] = Holiday::national('Republic Day', "{$year}-11-11");
 
         if ($year >= 2015) {
-            $newHolidays['National Day'] = CarbonImmutable::createFromDate($year, 1, 24);
+            $holidays[] = Holiday::national('National Day', "{$year}-01-24");
         }
 
-        return array_merge([
-            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-            'Independence Day' => CarbonImmutable::createFromDate($year, 7, 26),
-            'Victory Day' => CarbonImmutable::createFromDate($year, 11, 3),
-            'Republic Day' => CarbonImmutable::createFromDate($year, 11, 11),
-        ], $newHolidays, $this->islamicHolidays($year));
+        return array_merge($holidays, $this->islamicHolidays($year));
     }
 
+    /** @return array<Holiday> */
     public function islamicHolidays(int $year): array
     {
         $eidAlFitr = $this->eidAlFitr($year);

@@ -2,9 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\IslamicCalendar;
 use Spatie\Holidays\Contracts\Islamic;
+use Spatie\Holidays\Holiday;
 
 class Turkey extends Country implements Islamic
 {
@@ -193,20 +193,20 @@ class Turkey extends Country implements Islamic
         $newHolidays = [];
 
         if ($year >= 2009) {
-            $newHolidays['Labor and Solidarity Day'] = CarbonImmutable::createFromDate($year, 5, 1);
+            $newHolidays[] = Holiday::national('Labor and Solidarity Day', "{$year}-05-01");
         }
 
         if ($year >= 2017) {
-            $newHolidays['Democracy and National Unity Day'] = CarbonImmutable::createFromDate($year, 7, 15);
+            $newHolidays[] = Holiday::national('Democracy and National Unity Day', "{$year}-07-15");
         }
 
         return array_merge([
-            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-            "National Sovereignty and Children's Day" => CarbonImmutable::createFromDate($year, 4, 23),
-            'Commemoration of Atatürk, Youth and Sports Day' => CarbonImmutable::createFromDate($year, 5, 19),
-            'Victory Day' => CarbonImmutable::createFromDate($year, 8, 30),
-            'Republic Day Eve' => CarbonImmutable::createFromDate($year, 10, 28),
-            'Republic Day' => CarbonImmutable::createFromDate($year, 10, 29),
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national("National Sovereignty and Children's Day", "{$year}-04-23"),
+            Holiday::national('Commemoration of Atatürk, Youth and Sports Day', "{$year}-05-19"),
+            Holiday::national('Victory Day', "{$year}-08-30"),
+            Holiday::national('Republic Day Eve', "{$year}-10-28"),
+            Holiday::national('Republic Day', "{$year}-10-29"),
         ], $newHolidays, $this->islamicHolidays($year));
     }
 
