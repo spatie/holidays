@@ -64,7 +64,7 @@ class Honduras extends Country
         return $date;
     }
 
-    /** @return array<Holiday> */
+    /** @return array<string, CarbonImmutable> */
     protected function getMorazanicWeek(int $year): array
     {
         $startOfMonth = CarbonImmutable::createFromDate($year, 10, 1);

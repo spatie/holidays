@@ -75,10 +75,10 @@ class Albania extends Country implements Islamic
     /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
-        return array_filter([
+        return [
             Holiday::national('E diela e Pashkëve Katolike', $this->easter($year)),
             Holiday::national('E diela e Pashkëve Ortodokse', $this->orthodoxEaster($year)),
-        ]);
+        ];
     }
 
     public function islamicHolidays(int $year): array
