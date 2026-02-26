@@ -194,6 +194,7 @@ abstract class Country
         }
 
         /** @var CarbonInterface $day */
+        // @phpstan-ignore-next-line
         foreach ($period as $index => $day) {
             if ($day->year !== $year) {
                 continue; // Lunar based holidays can overlap in 2 years

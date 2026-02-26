@@ -1,8 +1,5 @@
-includes:
-    - phpstan-baseline.neon
-
 parameters:
-	level: 8
+	level: max
 	paths:
 		- src
 	ignoreErrors:

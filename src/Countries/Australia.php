@@ -52,7 +52,7 @@ class Australia extends Country implements HasRegions
             Holiday::national('Good Friday', $easter->subDays(2)),
             Holiday::national('Easter Monday', $easter->addDay()),
             // https://en.wikipedia.org/wiki/Public_holidays_in_Australia
-            ...array_filter(match ($this->region) {
+            ...match ($this->region) {
                 'act' => [
                     Holiday::national('Canberra Day', CarbonImmutable::parse("second monday of march {$year}")),
                     Holiday::national('Easter Saturday', $easter->subDay()),
@@ -109,7 +109,7 @@ class Australia extends Country implements HasRegions
                     Holiday::national($this->sovereignBirthdayKey($year), CarbonImmutable::parse("last monday of september {$year}")),
                 ],
                 default => [],
-            }),
+            },
         ];
     }
 

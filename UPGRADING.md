@@ -101,3 +101,4 @@ These are internal changes that don't require any action on your part.
 - **`HasRegions` interface** standardizes how countries declare and validate regional holiday support.
 - **`Holiday` value object and `HolidayType` enum** provide structured, JSON-serializable return data instead of plain arrays.
 - **`region` parameter on `Holidays::for()`** allows passing a region code directly without constructing a country instance.
+- **Islamic calendar methods are stricter** — `arafat()`, `islamicNewYear()`, and `prophetMuhammadBirthday()` now throw `InvalidYear` instead of returning `null` when a year is not found in the lookup table.

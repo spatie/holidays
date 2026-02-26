@@ -38,7 +38,7 @@ trait ResolvesCalendarDates
         $date = $collection[$year] ?? null;
 
         if ($date === null) {
-            $this->throwUnsupportedYear($collection);
+            return [];
         }
 
         $overlap = $this->getOverlapping($collection, $year, $totalDays);
@@ -109,11 +109,13 @@ trait ResolvesCalendarDates
         return ($end?->year !== $year) ? (string) $date : null;
     }
 
-    /** @param non-empty-array<int, mixed> $collection */
+    /** @param array<int, mixed> $collection */
     private function throwUnsupportedYear(array $collection): never
     {
         $keys = array_keys($collection);
+        $min = $keys ? min($keys) : 0;
+        $max = $keys ? max($keys) : 0;
 
-        throw InvalidYear::range($this->countryCode(), min($keys), max($keys));
+        throw InvalidYear::range($this->countryCode(), $min, $max);
     }
 }
