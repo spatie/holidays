@@ -40,14 +40,7 @@ class Holidays
     {
         $holidays = $this->calculate()->holidays;
 
-        if ($type !== null) {
-            return array_values(array_filter(
-                $holidays,
-                static fn (Holiday $holiday): bool => $holiday->type === $type,
-            ));
-        }
-
-        return $holidays;
+        return $this->filterByType($holidays, $type);
     }
 
     /**
@@ -97,14 +90,7 @@ class Holidays
 
         usort($holidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
 
-        if ($type !== null) {
-            return array_values(array_filter(
-                $holidays,
-                static fn (Holiday $holiday): bool => $holiday->type === $type,
-            ));
-        }
-
-        return $holidays;
+        return $this->filterByType($holidays, $type);
     }
 
     public function isHoliday(CarbonInterface|string $date): bool
@@ -115,7 +101,13 @@ class Holidays
             ->calculate()
             ->holidays;
 
-        return array_any($holidays, fn (Holiday $holiday): bool => $holiday->date->isSameDay($date));
+        foreach ($holidays as $holiday) {
+            if ($holiday->date->isSameDay($date)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function getName(CarbonInterface|string $date): ?string
@@ -153,5 +145,18 @@ class Holidays
         }
 
         return CarbonImmutable::parse($date);
+    }
+
+    /** @param array<Holiday> $holidays */
+    private function filterByType(array $holidays, ?HolidayType $type): array
+    {
+        if ($type === null) {
+            return $holidays;
+        }
+
+        return array_values(array_filter(
+            $holidays,
+            static fn (Holiday $holiday): bool => $holiday->type === $type,
+        ));
     }
 }
