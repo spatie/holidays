@@ -30,7 +30,7 @@ abstract class Country
 
         if ($translations !== null) {
             $holidays = array_map(
-                static fn (Holiday $holiday): Holiday => new Holiday(
+                static fn (Holiday $holiday): Holiday => Holiday::make(
                     $translations[$holiday->name] ?? $holiday->name,
                     $holiday->date,
                     $holiday->type,
@@ -189,7 +189,7 @@ abstract class Country
             $eve = $period->first()?->subDay();
 
             if ($eve && $eve->year === $year) {
-                $allDays[] = new Holiday("{$name} Eve", $eve->toImmutable(), $type);
+                $allDays[] = Holiday::make("{$name} Eve", $eve->toImmutable(), $type);
             }
         }
 
@@ -208,7 +208,7 @@ abstract class Country
 
             $holidayName = "{$prefix}{$name}{$formattedSuffix}";
 
-            $allDays[] = new Holiday($holidayName, $day->toImmutable(), $type);
+            $allDays[] = Holiday::make($holidayName, $day->toImmutable(), $type);
         }
 
         return $allDays;

@@ -4,7 +4,6 @@ namespace Spatie\Holidays\Calendars;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
-use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Exceptions\InvalidYear;
 
@@ -20,13 +19,7 @@ trait ResolvesCalendarDates
             $this->throwUnsupportedYear($collection);
         }
 
-        $date = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
-
-        if ($date === null) {
-            throw new InvalidFormatException('Invalid date for holiday');
-        }
-
-        return $date;
+        return $this->createDate('Y-m-d', "{$year}-{$date}");
     }
 
     /**
@@ -72,11 +65,7 @@ trait ResolvesCalendarDates
 
     protected function createPeriod(string $date, int $year, int $totalDays): CarbonPeriod
     {
-        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
-
-        if ($start === null) {
-            throw new \RuntimeException("Invalid date format: {$year}-{$date}");
-        }
+        $start = $this->createDate('Y-m-d', "{$year}-{$date}");
 
         $end = $start->addDays($totalDays - 1)->startOfDay();
 
@@ -103,19 +92,25 @@ trait ResolvesCalendarDates
             $date = end($date);
         }
 
-        $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
-        $end = $start?->addDays($totalDays - 1)->startOfDay();
+        $start = $this->createDate('Y-m-d', "{$year}-{$date}");
+        $end = $start->addDays($totalDays - 1)->startOfDay();
 
-        return ($end?->year !== $year) ? (string) $date : null;
+        return ($end->year !== $year) ? (string) $date : null;
     }
 
     /** @param array<int, mixed> $collection */
     private function throwUnsupportedYear(array $collection): never
     {
-        $keys = array_keys($collection);
-        $min = $keys ? min($keys) : 0;
-        $max = $keys ? max($keys) : 0;
+        if ($collection === []) {
+            throw InvalidYear::range($this->countryCode(), 0, 0);
+        }
 
-        throw InvalidYear::range($this->countryCode(), $min, $max);
+        $years = array_keys($collection);
+
+        throw InvalidYear::range(
+            country: $this->countryCode(),
+            start: min($years),
+            end: max($years),
+        );
     }
 }

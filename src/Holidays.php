@@ -40,14 +40,7 @@ class Holidays
     {
         $holidays = $this->calculate()->holidays;
 
-        if ($type !== null) {
-            return array_values(array_filter(
-                $holidays,
-                static fn (Holiday $holiday): bool => $holiday->type === $type,
-            ));
-        }
-
-        return $holidays;
+        return $this->filterByType($holidays, $type);
     }
 
     /**
@@ -64,6 +57,113 @@ class Holidays
      * @return array<Holiday>
      */
     public function getInRange(CarbonInterface|string $from, CarbonInterface|string $to, ?HolidayType $type = null): array
+    {
+        [$from, $to] = $this->normalizeRange($from, $to);
+
+        $holidays = $this->holidaysBetween($from, $to);
+
+        $holidays = $this->sortHolidays($holidays);
+
+        return $this->filterByType($holidays, $type);
+    }
+
+    /**
+     * @return array<Holiday>
+     */
+    public function getUpcoming(int $count = 3): array
+    {
+        $today = CarbonImmutable::today();
+        $holidays = [];
+        $year = $today->year;
+
+        while (count($holidays) < $count) {
+            $yearHolidays = $this->holidaysForYear($year);
+
+            foreach ($yearHolidays as $holiday) {
+                if ($holiday->date->gte($today)) {
+                    $holidays[] = $holiday;
+                }
+
+                if (count($holidays) >= $count) {
+                    break;
+                }
+            }
+
+            $year++;
+        }
+
+        return $this->sortHolidays($holidays);
+    }
+
+    /**
+     * @return array<LongWeekend>
+     */
+    public function getLongWeekends(int $minimumDays = 4): array
+    {
+        $year = $this->year;
+        $holidays = $this->holidaysForYear($year);
+        $holidays = $this->sortHolidays($holidays);
+
+        $longWeekends = [];
+        $currentGroup = null;
+
+        foreach ($holidays as $holiday) {
+            if ($currentGroup === null) {
+                $currentGroup = [$holiday];
+
+                continue;
+            }
+
+            $lastHoliday = end($currentGroup);
+            $daysBetween = $lastHoliday->date->diffInDays($holiday->date);
+
+            if ($daysBetween <= $minimumDays) {
+                $currentGroup[] = $holiday;
+            } else {
+                $longWeekend = $this->createLongWeekend($currentGroup, $minimumDays);
+                if ($longWeekend) {
+                    $longWeekends[] = $longWeekend;
+                }
+                $currentGroup = [$holiday];
+            }
+        }
+
+        if ($currentGroup !== null) {
+            $longWeekend = $this->createLongWeekend($currentGroup, $minimumDays);
+            if ($longWeekend) {
+                $longWeekends[] = $longWeekend;
+            }
+        }
+
+        return $longWeekends;
+    }
+
+    /**
+     * @param  array<Holiday>  $holidays
+     */
+    private function createLongWeekend(array $holidays, int $minimumDays): ?LongWeekend
+    {
+        if (count($holidays) < 2) {
+            return null;
+        }
+
+        /** @var Holiday $first */
+        $first = $holidays[0];
+        $startDate = $first->date;
+        $endDate = end($holidays)->date;
+        $dayCount = (int) $startDate->diffInDays($endDate) + 1;
+
+        if ($dayCount < $minimumDays) {
+            return null;
+        }
+
+        return new LongWeekend($startDate, $endDate, $dayCount, $holidays);
+    }
+
+    /**
+     * @return array{CarbonImmutable, CarbonImmutable}
+     */
+    private function normalizeRange(CarbonInterface|string $from, CarbonInterface|string $to): array
     {
         if (! $from instanceof CarbonImmutable) {
             $from = match (strlen($from)) {
@@ -85,57 +185,74 @@ class Holidays
             [$from, $to] = [$to, $from];
         }
 
+        return [$from, $to];
+    }
+
+    /** @return array<Holiday> */
+    private function holidaysForYear(int $year): array
+    {
+        return $this->country->get($year, $this->locale);
+    }
+
+    /** @return array<Holiday> */
+    private function holidaysBetween(CarbonImmutable $from, CarbonImmutable $to): array
+    {
         $holidays = [];
 
         for ($year = $from->year; $year <= $to->year; $year++) {
-            foreach (static::for($this->country, $year, $this->locale)->calculate()->holidays as $holiday) {
+            foreach ($this->holidaysForYear($year) as $holiday) {
                 if ($holiday->date->between($from, $to)) {
                     $holidays[] = $holiday;
                 }
             }
         }
 
-        usort($holidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
+        return $holidays;
+    }
 
-        if ($type !== null) {
-            return array_values(array_filter(
-                $holidays,
-                static fn (Holiday $holiday): bool => $holiday->type === $type,
-            ));
-        }
+    /**
+     * @param  array<Holiday>  $holidays
+     * @return array<Holiday>
+     */
+    private function sortHolidays(array $holidays): array
+    {
+        usort($holidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
 
         return $holidays;
     }
 
     public function isHoliday(CarbonInterface|string $date): bool
     {
-        if (! $date instanceof CarbonImmutable) {
-            $date = CarbonImmutable::parse($date);
-        }
+        $date = $this->normalizeDate($date);
 
         $holidays = static::for($this->country, $date->year, $this->locale)
             ->calculate()
             ->holidays;
 
-        $formattedDate = $date->format('Y-m-d');
+        foreach ($holidays as $holiday) {
+            if ($holiday->date->isSameDay($date)) {
+                return true;
+            }
+        }
 
-        return array_any($holidays, fn (Holiday $holiday): bool => $holiday->date->format('Y-m-d') === $formattedDate);
+        return false;
+    }
+
+    public function isTodayHoliday(): bool
+    {
+        return $this->isHoliday(CarbonImmutable::today());
     }
 
     public function getName(CarbonInterface|string $date): ?string
     {
-        if (! $date instanceof CarbonImmutable) {
-            $date = CarbonImmutable::parse($date);
-        }
+        $date = $this->normalizeDate($date);
 
         $holidays = static::for($this->country, $date->year, $this->locale)
             ->calculate()
             ->holidays;
 
-        $formattedDate = $date->format('Y-m-d');
-
         foreach ($holidays as $holiday) {
-            if ($holiday->date->format('Y-m-d') === $formattedDate) {
+            if ($holiday->date->isSameDay($date)) {
                 return $holiday->name;
             }
         }
@@ -148,5 +265,34 @@ class Holidays
         $this->holidays = $this->country->get($this->year, $this->locale);
 
         return $this;
+    }
+
+    private function normalizeDate(CarbonInterface|string $date): CarbonImmutable
+    {
+        if ($date instanceof CarbonImmutable) {
+            return $date;
+        }
+
+        if ($date instanceof CarbonInterface) {
+            return CarbonImmutable::instance($date);
+        }
+
+        return CarbonImmutable::parse($date);
+    }
+
+    /**
+     * @param  array<Holiday>  $holidays
+     * @return array<Holiday>
+     */
+    private function filterByType(array $holidays, ?HolidayType $type): array
+    {
+        if ($type === null) {
+            return $holidays;
+        }
+
+        return array_values(array_filter(
+            $holidays,
+            static fn (Holiday $holiday): bool => $holiday->type === $type,
+        ));
     }
 }
