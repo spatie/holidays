@@ -252,7 +252,7 @@ class Benin extends Country
         return array_merge(
             [
                 Holiday::national('Lundi de Pâques', $easter->addDays(1)),
-                Holiday::national('Jour de l\'Ascension', $easter->addDays(40)),
+                Holiday::national('Jour de l' . json_decode('"\u2019"') . 'Ascension', $easter->addDays(40)),
                 Holiday::national('Lundi de Pentecôte', $easter->addDays(50)),
             ],
             $this->getIslamicHolidays(
