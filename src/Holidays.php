@@ -109,33 +109,25 @@ class Holidays
 
     public function isHoliday(CarbonInterface|string $date): bool
     {
-        if (! $date instanceof CarbonImmutable) {
-            $date = CarbonImmutable::parse($date);
-        }
+        $date = $this->normalizeDate($date);
 
         $holidays = static::for($this->country, $date->year, $this->locale)
             ->calculate()
             ->holidays;
 
-        $formattedDate = $date->format('Y-m-d');
-
-        return array_any($holidays, fn (Holiday $holiday): bool => $holiday->date->format('Y-m-d') === $formattedDate);
+        return array_any($holidays, fn (Holiday $holiday): bool => $holiday->date->isSameDay($date));
     }
 
     public function getName(CarbonInterface|string $date): ?string
     {
-        if (! $date instanceof CarbonImmutable) {
-            $date = CarbonImmutable::parse($date);
-        }
+        $date = $this->normalizeDate($date);
 
         $holidays = static::for($this->country, $date->year, $this->locale)
             ->calculate()
             ->holidays;
 
-        $formattedDate = $date->format('Y-m-d');
-
         foreach ($holidays as $holiday) {
-            if ($holiday->date->format('Y-m-d') === $formattedDate) {
+            if ($holiday->date->isSameDay($date)) {
                 return $holiday->name;
             }
         }
@@ -148,5 +140,18 @@ class Holidays
         $this->holidays = $this->country->get($this->year, $this->locale);
 
         return $this;
+    }
+
+    private function normalizeDate(CarbonInterface|string $date): CarbonImmutable
+    {
+        if ($date instanceof CarbonImmutable) {
+            return $date;
+        }
+
+        if ($date instanceof CarbonInterface) {
+            return CarbonImmutable::instance($date);
+        }
+
+        return CarbonImmutable::parse($date);
     }
 }
