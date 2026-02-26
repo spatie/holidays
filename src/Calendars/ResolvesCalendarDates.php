@@ -102,10 +102,16 @@ trait ResolvesCalendarDates
     /** @param array<int, mixed> $collection */
     private function throwUnsupportedYear(array $collection): never
     {
-        $keys = array_keys($collection);
-        $min = $keys ? min($keys) : 0;
-        $max = $keys ? max($keys) : 0;
+        if ($collection === []) {
+            throw InvalidYear::range($this->countryCode(), 0, 0);
+        }
 
-        throw InvalidYear::range($this->countryCode(), $min, $max);
+        $years = array_keys($collection);
+
+        throw InvalidYear::range(
+            country: $this->countryCode(),
+            start: min($years),
+            end: max($years),
+        );
     }
 }
