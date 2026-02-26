@@ -91,6 +91,10 @@ class Albania extends Country implements Islamic
 
     public function islamicHolidays(int $year): array
     {
+        /**
+         * Provided until 2034 by qppstudio.net.
+         * https://www.qppstudio.net/global-holidays-observances/eid-al-fitr-end-of-ramadan.htm
+         */
         if ($year < 2024 || $year > 2034) {
             throw InvalidYear::range('Albania', 2024, 2034);
         }

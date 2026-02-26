@@ -10,6 +10,15 @@ class Turkey extends Country implements Islamic
 {
     use IslamicCalendar;
 
+    /**
+     * No library or built-in php intl functions convert dates properly for all years or all country including
+     * “geniusts/hijri-dates”. It is most logical to prepare the dates between 1970 and 2037 as a constant property
+     * for Islamic holidays. Because Islamic holidays predicted and actual dates may change until the last moment.
+     * Since the information on wikipedia is incorrect, it was obtained by searching the old calendar
+     * on Google Images for each year. The accuracy of the information has been double-checked.
+     * Ramadan and Sacrifice holidays vary for Turkey and other countries.
+     * A converter algorithm that will cover all years does not seem possible.
+     */
     protected function eidAlFitrDates(): array
     {
         return [
