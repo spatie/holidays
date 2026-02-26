@@ -96,12 +96,18 @@ class Holidays
     }
 
     /** @return array<Holiday> */
+    private function holidaysForYear(int $year): array
+    {
+        return $this->country->get($year, $this->locale);
+    }
+
+    /** @return array<Holiday> */
     private function holidaysBetween(CarbonImmutable $from, CarbonImmutable $to): array
     {
         $holidays = [];
 
         for ($year = $from->year; $year <= $to->year; $year++) {
-            foreach (static::for($this->country, $year, $this->locale)->calculate()->holidays as $holiday) {
+            foreach ($this->holidaysForYear($year) as $holiday) {
                 if ($holiday->date->between($from, $to)) {
                     $holidays[] = $holiday;
                 }
