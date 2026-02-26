@@ -94,24 +94,16 @@ class Malaysia extends Country implements HasRegions
         $holidays = [];
 
         $chineseNewYear1 = $this->chineseToGregorianDate('01-01', $year);
-        if ($chineseNewYear1) {
-            $holidays[] = Holiday::national('Tahun Baru Cina', $chineseNewYear1);
-        }
+        $holidays[] = Holiday::national('Tahun Baru Cina', $chineseNewYear1);
 
         $chineseNewYear2 = $this->chineseToGregorianDate('01-02', $year);
-        if ($chineseNewYear2) {
-            $holidays[] = Holiday::national('Tahun Baru Cina Hari Kedua', $chineseNewYear2);
-        }
+        $holidays[] = Holiday::national('Tahun Baru Cina Hari Kedua', $chineseNewYear2);
 
         $rayaAidilfitri = $this->islamicToGregorianDate('10-01', $year);
-        if ($rayaAidilfitri) {
-            $holidays[] = Holiday::national('Hari Raya Aidilfitri', $rayaAidilfitri);
-        }
+        $holidays[] = Holiday::national('Hari Raya Aidilfitri', $rayaAidilfitri);
 
         $rayaAidilfitri2 = $this->islamicToGregorianDate('10-02', $year);
-        if ($rayaAidilfitri2) {
-            $holidays[] = Holiday::national('Hari Raya Aidilfitri Hari Kedua', $rayaAidilfitri2);
-        }
+        $holidays[] = Holiday::national('Hari Raya Aidilfitri Hari Kedua', $rayaAidilfitri2);
 
         $hariWesak = $this->hariWesak($year);
         if ($hariWesak) {
@@ -119,19 +111,13 @@ class Malaysia extends Country implements HasRegions
         }
 
         $rayaAidiladha = $this->islamicToGregorianDate('12-10', $year);
-        if ($rayaAidiladha) {
-            $holidays[] = Holiday::national('Hari Raya Aidiladha', $rayaAidiladha);
-        }
+        $holidays[] = Holiday::national('Hari Raya Aidiladha', $rayaAidiladha);
 
         $awalMuharram = $this->islamicToGregorianDate('01-01', $year, true);
-        if ($awalMuharram) {
-            $holidays[] = Holiday::national('Awal Muharram', $awalMuharram);
-        }
+        $holidays[] = Holiday::national('Awal Muharram', $awalMuharram);
 
         $maulidurRasul = $this->islamicToGregorianDate('03-12', $year, true);
-        if ($maulidurRasul) {
-            $holidays[] = Holiday::national('Maulidur Rasul', $maulidurRasul);
-        }
+        $holidays[] = Holiday::national('Maulidur Rasul', $maulidurRasul);
 
         $hariKeputeraanYDP = $this->hariKeputeraanYDP($year);
         if ($hariKeputeraanYDP) {
@@ -221,9 +207,7 @@ class Malaysia extends Country implements HasRegions
         }
 
         $awalRamadan = $this->islamicToGregorianDate('09-01', $year);
-        if ($awalRamadan) {
-            $holidays[] = Holiday::regional('Awal Ramadan', $awalRamadan, 'jhr');
-        }
+        $holidays[] = Holiday::regional('Awal Ramadan', $awalRamadan, 'jhr');
 
         $hariDeepavali = $this->hariDeepavali($year);
         if ($hariDeepavali) {
@@ -259,21 +243,15 @@ class Malaysia extends Country implements HasRegions
         }
 
         $israkMikraj = $this->islamicToGregorianDate('07-27', $year);
-        if ($israkMikraj) {
-            $holidays[] = Holiday::regional('Israk dan Mikraj', $israkMikraj, 'kdh');
-        }
+        $holidays[] = Holiday::regional('Israk dan Mikraj', $israkMikraj, 'kdh');
 
         $awalRamadan = $this->islamicToGregorianDate('09-01', $year);
-        if ($awalRamadan) {
-            $holidays[] = Holiday::regional('Awal Ramadan', $awalRamadan, 'kdh');
-        }
+        $holidays[] = Holiday::regional('Awal Ramadan', $awalRamadan, 'kdh');
 
         $holidays[] = Holiday::regional('Hari Keputeraan Sultan Kedah', CarbonImmutable::parse("third sunday of june {$year}"), 'kdh');
 
         $rayaAidiladha2 = $this->islamicToGregorianDate('12-11', $year);
-        if ($rayaAidiladha2) {
-            $holidays[] = Holiday::regional('Hari Raya Aidiladha Hari Kedua', $rayaAidiladha2, 'kdh');
-        }
+        $holidays[] = Holiday::regional('Hari Raya Aidiladha Hari Kedua', $rayaAidiladha2, 'kdh');
 
         $hariDeepavali = $this->hariDeepavali($year);
         if ($hariDeepavali) {
@@ -289,19 +267,13 @@ class Malaysia extends Country implements HasRegions
         $holidays = [];
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'ktn');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'ktn');
 
         $hariArafah = $this->islamicToGregorianDate('12-09', $year);
-        if ($hariArafah) {
-            $holidays[] = Holiday::regional('Hari Arafah', $hariArafah, 'ktn');
-        }
+        $holidays[] = Holiday::regional('Hari Arafah', $hariArafah, 'ktn');
 
         $rayaAidiladha2 = $this->islamicToGregorianDate('12-11', $year);
-        if ($rayaAidiladha2) {
-            $holidays[] = Holiday::regional('Hari Raya Aidiladha Hari Kedua', $rayaAidiladha2, 'ktn');
-        }
+        $holidays[] = Holiday::regional('Hari Raya Aidiladha Hari Kedua', $rayaAidiladha2, 'ktn');
 
         $hariDeepavali = $this->hariDeepavali($year);
         if ($hariDeepavali) {
@@ -347,9 +319,7 @@ class Malaysia extends Country implements HasRegions
         $holidays[] = Holiday::regional('Hari Wilayah Persekutuan', $this->hariWilayah($year), 'kul');
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'kul');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'kul');
 
         $hariDeepavali = $this->hariDeepavali($year);
         if ($hariDeepavali) {
@@ -372,9 +342,7 @@ class Malaysia extends Country implements HasRegions
         $holidays[] = Holiday::regional('Pesta Kaamatan Hari Kedua', $pestaKaamatan->addDay(), 'lbn');
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'lbn');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'lbn');
 
         $hariDeepavali = $this->hariDeepavali($year);
         if ($hariDeepavali) {
@@ -392,9 +360,7 @@ class Malaysia extends Country implements HasRegions
         $holidays[] = Holiday::regional('Tahun Baru', "{$year}-01-01", 'mlk');
 
         $awalRamadan = $this->islamicToGregorianDate('09-01', $year);
-        if ($awalRamadan) {
-            $holidays[] = Holiday::regional('Awal Ramadan', $awalRamadan, 'mlk');
-        }
+        $holidays[] = Holiday::regional('Awal Ramadan', $awalRamadan, 'mlk');
 
         $holidays[] = Holiday::regional('Hari Perisytiharan Melaka Sebagai Bandaraya Bersejarah', "{$year}-04-15", 'mlk');
         $holidays[] = Holiday::regional('Harijadi Yang di-Pertua Negeri Melaka', "{$year}-08-24", 'mlk');
@@ -420,9 +386,7 @@ class Malaysia extends Country implements HasRegions
         }
 
         $israkMikraj = $this->islamicToGregorianDate('07-27', $year);
-        if ($israkMikraj) {
-            $holidays[] = Holiday::regional('Israk dan Mikraj', $israkMikraj, 'nsn');
-        }
+        $holidays[] = Holiday::regional('Israk dan Mikraj', $israkMikraj, 'nsn');
 
         $holidays[] = Holiday::regional('Hari Keputeraan Yang Di-Pertuan Besar Negeri Sembilan', "{$year}-01-14", 'nsn');
 
@@ -442,9 +406,7 @@ class Malaysia extends Country implements HasRegions
         $holidays[] = Holiday::regional('Tahun Baru', "{$year}-01-01", 'phg');
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'phg');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'phg');
 
         $holidays[] = Holiday::regional('Hari Hol Pahang', "{$year}-05-22", 'phg');
         $holidays[] = Holiday::regional('Hari Keputeraan Sultan Pahang', "{$year}-07-30", 'phg');
@@ -470,9 +432,7 @@ class Malaysia extends Country implements HasRegions
         }
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'png');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'png');
 
         $holidays[] = Holiday::regional('Hari Bandar Warisan Dunia Georgetown', "{$year}-07-07", 'png');
         $holidays[] = Holiday::regional('Harijadi Yang di-Pertua Negeri Pulau Pinang', CarbonImmutable::parse("second saturday of july {$year}"), 'png');
@@ -498,9 +458,7 @@ class Malaysia extends Country implements HasRegions
         }
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'prk');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'prk');
 
         $holidays[] = Holiday::regional('Hari Keputeraan Sultan Perak', CarbonImmutable::parse("first friday of november {$year}"), 'prk');
 
@@ -518,21 +476,15 @@ class Malaysia extends Country implements HasRegions
         $holidays = [];
 
         $israkMikraj = $this->islamicToGregorianDate('07-27', $year);
-        if ($israkMikraj) {
-            $holidays[] = Holiday::regional('Israk dan Mikraj', $israkMikraj, 'pls');
-        }
+        $holidays[] = Holiday::regional('Israk dan Mikraj', $israkMikraj, 'pls');
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'pls');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'pls');
 
         $holidays[] = Holiday::regional('Hari Keputeraan Raja Perlis', "{$year}-05-17", 'pls');
 
         $rayaAidiladha2 = $this->islamicToGregorianDate('12-11', $year);
-        if ($rayaAidiladha2) {
-            $holidays[] = Holiday::regional('Hari Raya Aidiladha Hari Kedua', $rayaAidiladha2, 'pls');
-        }
+        $holidays[] = Holiday::regional('Hari Raya Aidiladha Hari Kedua', $rayaAidiladha2, 'pls');
 
         $hariDeepavali = $this->hariDeepavali($year);
         if ($hariDeepavali) {
@@ -557,9 +509,7 @@ class Malaysia extends Country implements HasRegions
         $holidays[] = Holiday::regional('Hari Wilayah Persekutuan', $this->hariWilayah($year), 'pjy');
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'pjy');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'pjy');
 
         $hariDeepavali = $this->hariDeepavali($year);
         if ($hariDeepavali) {
@@ -625,9 +575,7 @@ class Malaysia extends Country implements HasRegions
         }
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'sgr');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'sgr');
 
         $hariDeepavali = $this->hariDeepavali($year);
         if ($hariDeepavali) {
@@ -645,28 +593,20 @@ class Malaysia extends Country implements HasRegions
         $holidays = [];
 
         $israkMikraj = $this->islamicToGregorianDate('07-27', $year);
-        if ($israkMikraj) {
-            $holidays[] = Holiday::regional('Israk dan Mikraj', $israkMikraj, 'trg');
-        }
+        $holidays[] = Holiday::regional('Israk dan Mikraj', $israkMikraj, 'trg');
 
         $holidays[] = Holiday::regional('Hari Ulang Tahun Pertabalan Sultan Terengganu', "{$year}-03-04", 'trg');
 
         $nurulAlQuran = $this->islamicToGregorianDate('09-17', $year);
-        if ($nurulAlQuran) {
-            $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'trg');
-        }
+        $holidays[] = Holiday::regional('Hari Nurul Al-Quran', $nurulAlQuran, 'trg');
 
         $holidays[] = Holiday::regional('Hari Keputeraan Sultan Terengganu', "{$year}-04-26", 'trg');
 
         $hariArafah = $this->islamicToGregorianDate('12-09', $year);
-        if ($hariArafah) {
-            $holidays[] = Holiday::regional('Hari Arafah', $hariArafah, 'trg');
-        }
+        $holidays[] = Holiday::regional('Hari Arafah', $hariArafah, 'trg');
 
         $rayaAidiladha2 = $this->islamicToGregorianDate('12-11', $year);
-        if ($rayaAidiladha2) {
-            $holidays[] = Holiday::regional('Hari Raya Aidiladha Hari Kedua', $rayaAidiladha2, 'trg');
-        }
+        $holidays[] = Holiday::regional('Hari Raya Aidiladha Hari Kedua', $rayaAidiladha2, 'trg');
 
         $hariDeepavali = $this->hariDeepavali($year);
         if ($hariDeepavali) {
