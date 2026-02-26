@@ -184,3 +184,76 @@ it('can json serialize holidays', function () {
         'region' => null,
     ]);
 });
+
+it('can check if today is a holiday', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
+    $result = Holidays::for('be')->isTodayHoliday();
+    expect($result)->toBeTrue();
+
+    CarbonImmutable::setTestNow('2024-01-02');
+
+    $result = Holidays::for('be')->isTodayHoliday();
+    expect($result)->toBeFalse();
+});
+
+it('can get upcoming holidays', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
+    $holidays = Holidays::for('be', 2024)->getUpcoming(3);
+
+    expect($holidays)->toHaveCount(3);
+    expect($holidays[0]->name)->toBe('Nieuwjaar');
+    expect($holidays[1]->name)->toBe('Paasmaandag');
+    expect($holidays[2]->name)->toBe('Dag van de Arbeid');
+});
+
+it('can get upcoming holidays across years', function () {
+    CarbonImmutable::setTestNow('2024-12-25');
+
+    $holidays = Holidays::for('be', 2024)->getUpcoming(3);
+
+    expect($holidays)->toHaveCount(3);
+    expect($holidays[0]->name)->toBe('Kerstmis');
+    expect($holidays[1]->date->year)->toBe(2025);
+    expect($holidays[1]->name)->toBe('Nieuwjaar');
+});
+
+it('can get long weekends', function () {
+    $longWeekends = Holidays::for('de', 2024)->getLongWeekends();
+
+    expect($longWeekends)->toHaveCount(1);
+    expect($longWeekends[0]->startDate->format('Y-m-d'))->toBe('2024-03-29');
+    expect($longWeekends[0]->endDate->format('Y-m-d'))->toBe('2024-04-01');
+    expect($longWeekends[0]->dayCount)->toBe(4);
+    expect($longWeekends[0]->holidays)->toHaveCount(2);
+});
+
+it('can get long weekends with custom minimum days', function () {
+    $longWeekends = Holidays::for('be', 2024)->getLongWeekends(10);
+
+    expect($longWeekends)->toHaveCount(1);
+    expect($longWeekends[0]->startDate->format('Y-m-d'))->toBe('2024-11-01');
+    expect($longWeekends[0]->endDate->format('Y-m-d'))->toBe('2024-11-11');
+});
+
+it('returns empty array when no long weekends exist', function () {
+    $longWeekends = Holidays::for('be', 2024)->getLongWeekends();
+
+    expect($longWeekends)->toBeEmpty();
+});
+
+it('can json serialize long weekends', function () {
+    $longWeekends = Holidays::for('de', 2024)->getLongWeekends();
+
+    $json = json_encode($longWeekends[0]);
+
+    expect($json)->toBeString();
+
+    $decoded = json_decode($json, true);
+
+    expect($decoded['startDate'])->toBe('2024-03-29');
+    expect($decoded['endDate'])->toBe('2024-04-01');
+    expect($decoded['dayCount'])->toBe(4);
+    expect($decoded['holidays'])->toHaveCount(2);
+});

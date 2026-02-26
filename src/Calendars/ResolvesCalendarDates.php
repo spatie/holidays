@@ -4,7 +4,6 @@ namespace Spatie\Holidays\Calendars;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
-use Carbon\Exceptions\InvalidFormatException;
 use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Exceptions\InvalidYear;
 

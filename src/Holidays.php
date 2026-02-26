@@ -68,6 +68,99 @@ class Holidays
     }
 
     /**
+     * @return array<Holiday>
+     */
+    public function getUpcoming(int $count = 3): array
+    {
+        $today = CarbonImmutable::today();
+        $holidays = [];
+        $year = $today->year;
+
+        while (count($holidays) < $count) {
+            $yearHolidays = $this->holidaysForYear($year);
+
+            foreach ($yearHolidays as $holiday) {
+                if ($holiday->date->gte($today)) {
+                    $holidays[] = $holiday;
+                }
+
+                if (count($holidays) >= $count) {
+                    break;
+                }
+            }
+
+            $year++;
+        }
+
+        return $this->sortHolidays($holidays);
+    }
+
+    /**
+     * @return array<LongWeekend>
+     */
+    public function getLongWeekends(int $minimumDays = 4): array
+    {
+        $year = $this->year;
+        $holidays = $this->holidaysForYear($year);
+        $holidays = $this->sortHolidays($holidays);
+
+        $longWeekends = [];
+        $currentGroup = null;
+
+        foreach ($holidays as $holiday) {
+            if ($currentGroup === null) {
+                $currentGroup = [$holiday];
+
+                continue;
+            }
+
+            $lastHoliday = end($currentGroup);
+            $daysBetween = $lastHoliday->date->diffInDays($holiday->date);
+
+            if ($daysBetween <= $minimumDays) {
+                $currentGroup[] = $holiday;
+            } else {
+                $longWeekend = $this->createLongWeekend($currentGroup, $minimumDays);
+                if ($longWeekend) {
+                    $longWeekends[] = $longWeekend;
+                }
+                $currentGroup = [$holiday];
+            }
+        }
+
+        if ($currentGroup !== null) {
+            $longWeekend = $this->createLongWeekend($currentGroup, $minimumDays);
+            if ($longWeekend) {
+                $longWeekends[] = $longWeekend;
+            }
+        }
+
+        return $longWeekends;
+    }
+
+    /**
+     * @param  array<Holiday>  $holidays
+     */
+    private function createLongWeekend(array $holidays, int $minimumDays): ?LongWeekend
+    {
+        if (count($holidays) < 2) {
+            return null;
+        }
+
+        /** @var Holiday $first */
+        $first = $holidays[0];
+        $startDate = $first->date;
+        $endDate = end($holidays)->date;
+        $dayCount = (int) $startDate->diffInDays($endDate) + 1;
+
+        if ($dayCount < $minimumDays) {
+            return null;
+        }
+
+        return new LongWeekend($startDate, $endDate, $dayCount, $holidays);
+    }
+
+    /**
      * @return array{CarbonImmutable, CarbonImmutable}
      */
     private function normalizeRange(CarbonInterface|string $from, CarbonInterface|string $to): array
@@ -143,6 +236,11 @@ class Holidays
         }
 
         return false;
+    }
+
+    public function isTodayHoliday(): bool
+    {
+        return $this->isHoliday(CarbonImmutable::today());
     }
 
     public function getName(CarbonInterface|string $date): ?string

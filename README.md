@@ -131,6 +131,40 @@ Countries that support regions: Australia, Bosnia and Herzegovina, France, Germa
 Holidays::for('be')->isHoliday('2024-01-01'); // true
 ```
 
+### Determining if today is a holiday
+
+```php
+Holidays::for('be')->isTodayHoliday(); // true or false
+```
+
+### Getting upcoming holidays
+
+```php
+$holidays = Holidays::for('be')->getUpcoming(3);
+
+// Returns the next 3 upcoming holidays
+foreach ($holidays as $holiday) {
+    echo $holiday->date; // CarbonImmutable
+    echo $holiday->name;
+}
+```
+
+### Getting long weekends
+
+```php
+$longWeekends = Holidays::for('de', 2024)->getLongWeekends();
+
+// With custom minimum days (default: 4)
+$longWeekends = Holidays::for('de', 2024)->getLongWeekends(3);
+
+foreach ($longWeekends as $weekend) {
+    echo $weekend->startDate; // First day of the long weekend
+    echo $weekend->endDate;   // Last day of the long weekend
+    echo $weekend->dayCount;  // Number of days
+    echo $weekend->holidays;  // Array of Holiday objects
+}
+```
+
 ### Getting the name of a holiday
 
 ```php
