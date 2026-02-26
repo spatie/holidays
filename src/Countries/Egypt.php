@@ -319,10 +319,12 @@ class Egypt extends Country implements Islamic
 
         $date = $holiday->date;
         if ($date->isFriday() || $date->isSaturday()) {
+            $adjustedHolidays[] = $holiday;
             $adjustedHolidays[] = Holiday::national('Day off for '.$holiday->name, $date->next(CarbonInterface::SUNDAY)->toImmutable());
         } elseif ($date->isSunday() || $date->isThursday()) {
             $adjustedHolidays[] = $holiday;
         } else {
+            $adjustedHolidays[] = $holiday;
             $adjustedHolidays[] = Holiday::national('Day off for '.$holiday->name, $date->next(CarbonInterface::THURSDAY)->toImmutable());
         }
 

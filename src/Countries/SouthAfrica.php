@@ -34,12 +34,12 @@ class SouthAfrica extends Country
 
         $result = [];
         foreach ($holidays as $name => $date) {
+            $result[] = Holiday::national($name, $date);
+
             $observedDay = $this->sundayToNextMonday($date);
 
             if ($observedDay) {
                 $result[] = Holiday::national("{$name} Observed", $observedDay);
-            } else {
-                $result[] = Holiday::national($name, $date);
             }
         }
 

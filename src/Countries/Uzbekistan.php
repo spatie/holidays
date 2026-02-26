@@ -139,7 +139,7 @@ class Uzbekistan extends Country
 
         return array_merge([
             Holiday::national('Yangi yil', "{$year}-01-01"),
-            Holiday::national('Xalqo xotin-qizlar kuni', "{$year}-03-08"),
+            Holiday::national('Xalqaro xotin-qizlar kuni', "{$year}-03-08"),
             Holiday::national("Navro'z", "{$year}-03-21"),
             Holiday::national('Xotira va qadrlash kuni', "{$year}-05-09"),
             Holiday::national('Mustaqillik kuni', "{$year}-09-01"),

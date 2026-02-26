@@ -15,7 +15,7 @@ class NorthMacedonia extends Country
     {
         return array_merge([
             Holiday::national('Нова година', "{$year}-01-01"),
-            Holiday::national('Божик, првиот ден на Божик според правoslavniot календар', "{$year}-01-07"),
+            Holiday::national('Божик, првиот ден на Божик според православниот календар', "{$year}-01-07"),
             Holiday::national('Ден на трудот', "{$year}-05-01"),
             Holiday::national('Св. Кирил и Методиј - Ден на сесловенските просветители', "{$year}-05-24"),
             Holiday::national('Ден на Републиката', "{$year}-08-02"),
@@ -32,7 +32,7 @@ class NorthMacedonia extends Country
         $easter = $this->orthodoxEaster($year);
 
         return [
-            Holiday::national('Велигден, вториот ден на Велигден според правoslavniot календар', $easter->addDay()),
+            Holiday::national('Велигден, вториот ден на Велигден според православниот календар', $easter->addDay()),
         ];
     }
 }
