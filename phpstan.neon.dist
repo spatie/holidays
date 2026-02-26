@@ -5,8 +5,5 @@ parameters:
 	level: max
 	paths:
 		- src
-
 	ignoreErrors:
 	    - '#Unsafe usage of new static#'
-	    - '#Cannot call method startOfDay\(\) on Carbon\\CarbonImmutable\|null#'
-	    - '#Cannot call method addDays\(\) on Carbon\\CarbonImmutable\|null#'

@@ -37,12 +37,12 @@ class Czechia extends Country
             '2. svátek vánoční' => ['12-26', true],
         ];
 
-        $filteredHolidays = array_map(
-            fn (array $holiday): Holiday => Holiday::national($holiday[0], CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday[0]}")),
-            array_filter($holidays,
-                static fn (array $holiday): bool => $holiday[1] === true
-            )
-        );
+        $filteredHolidays = [];
+        foreach ($holidays as $name => $holiday) {
+            if ($holiday[1] === true) {
+                $filteredHolidays[] = Holiday::national($name, CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday[0]}"));
+            }
+        }
 
         return array_merge($filteredHolidays, $this->variableHolidays($year));
     }
@@ -57,11 +57,13 @@ class Czechia extends Country
             'Velký pátek' => [$easter->subDays(2), $year >= 2016],
         ];
 
-        return array_map(
-            fn (array $variableHoliday): Holiday => Holiday::national($variableHoliday[0], $variableHoliday[0]),
-            array_filter($variableHolidays,
-                static fn (array $variableHoliday): bool => $variableHoliday[1] === true
-            )
-        );
+        $result = [];
+        foreach ($variableHolidays as $name => $variableHoliday) {
+            if ($variableHoliday[1] === true) {
+                $result[] = Holiday::national($name, $variableHoliday[0]);
+            }
+        }
+
+        return $result;
     }
 }
