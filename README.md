@@ -153,8 +153,9 @@ This is a community driven package. If you find any errors, please create a pull
 Create a new class in `src/Countries` that extends `Country`. At minimum, you need to implement `countryCode()` and `allHolidays()`:
 
 ```php
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Countries\Country;
+use Spatie\Holidays\Holiday;
+use Spatie\Holidays\HolidayType;
 
 class MyCountry extends Country
 {
@@ -166,14 +167,14 @@ class MyCountry extends Country
     protected function allHolidays(int $year): array
     {
         return [
-            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
-            'Christmas' => CarbonImmutable::createFromDate($year, 12, 25),
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national('Christmas', "{$year}-12-25"),
         ];
     }
 }
 ```
 
-All dates must be `CarbonImmutable` instances. For Easter-based holidays, use the `easter()` or `orthodoxEaster()` helpers:
+The `Holiday::national()` helper accepts both strings and `CarbonImmutable` instances. For Easter-based holidays, use the `easter()` or `orthodoxEaster()` helpers:
 
 ```php
 protected function allHolidays(int $year): array
@@ -181,8 +182,8 @@ protected function allHolidays(int $year): array
     $easter = $this->easter($year);
 
     return [
-        'Good Friday' => $easter->subDays(2),
-        'Easter Monday' => $easter->addDay(),
+        Holiday::national('Good Friday', $easter->subDays(2)),
+        Holiday::national('Easter Monday', $easter->addDay()),
     ];
 }
 ```
@@ -190,7 +191,7 @@ protected function allHolidays(int $year): array
 For relative dates, use `CarbonImmutable::parse()`:
 
 ```php
-'Labor Day' => CarbonImmutable::parse("first monday of September {$year}"),
+Holiday::national('Labor Day', CarbonImmutable::parse("first monday of September {$year}"));
 ```
 
 If your country defines holidays in a non-English language, override `defaultLocale()`:
@@ -253,10 +254,26 @@ If your country moves holidays that fall on a weekend to the next weekday, use t
 
 ```php
 use Spatie\Holidays\Concerns\HasObservedHolidays;
+use Spatie\Holidays\Holiday;
 
 class MyCountry extends Country
 {
     use HasObservedHolidays;
+
+    protected function allHolidays(int $year): array
+    {
+        $holidays = [
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+        ];
+
+        // Example: if New Year's Day falls on a weekend, add an observed day
+        $newYear = $this->sundayToNextMonday($holidays[0]->date);
+        if ($newYear !== null) {
+            $holidays[] = Holiday::observed("New Year's Day (Observed)", $newYear);
+        }
+
+        return $holidays;
+    }
 }
 ```
 
@@ -266,6 +283,23 @@ The trait provides these methods (each returns `null` if no shift applies):
 - `sundayToNextMonday(CarbonInterface $date)` — shifts Sunday to Monday
 - `observedChristmasDay(CarbonInterface $date)` — Saturday to Monday, Sunday to Tuesday
 - `observedBoxingDay(CarbonInterface $date)` — Saturday to Monday, Sunday to Tuesday
+
+### Holiday types
+
+The `Holiday` class supports different holiday types:
+
+```php
+use Spatie\Holidays\Holiday;
+use Spatie\Holidays\HolidayType;
+
+Holiday::national('New Year', "{$year}-01-01");              // Default type
+Holiday::regional('Regional Day', "{$year}-06-01", 'XX-RE'); // With region
+Holiday::religious('Easter', $easterDate);                   // Religious holidays
+Holiday::observed('Observed Day', $observedDate);             // Observed holidays
+Holiday::banked('Bank Holiday', "{$year}-12-25");           // Bank holidays
+```
+
+Available types in `HolidayType` enum: `National`, `Regional`, `Religious`, `Observed`, `Banked`.
 
 ### Calendar systems
 
