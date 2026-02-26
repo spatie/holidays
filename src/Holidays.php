@@ -58,6 +58,20 @@ class Holidays
      */
     public function getInRange(CarbonInterface|string $from, CarbonInterface|string $to, ?HolidayType $type = null): array
     {
+        [$from, $to] = $this->normalizeRange($from, $to);
+
+        $holidays = $this->holidaysBetween($from, $to);
+
+        $holidays = $this->sortHolidays($holidays);
+
+        return $this->filterByType($holidays, $type);
+    }
+
+    /**
+     * @return array{CarbonImmutable, CarbonImmutable}
+     */
+    private function normalizeRange(CarbonInterface|string $from, CarbonInterface|string $to): array
+    {
         if (! $from instanceof CarbonImmutable) {
             $from = match (strlen($from)) {
                 4 => CarbonImmutable::parse("{$from}-01-01"),
@@ -78,6 +92,12 @@ class Holidays
             [$from, $to] = [$to, $from];
         }
 
+        return [$from, $to];
+    }
+
+    /** @return array<Holiday> */
+    private function holidaysBetween(CarbonImmutable $from, CarbonImmutable $to): array
+    {
         $holidays = [];
 
         for ($year = $from->year; $year <= $to->year; $year++) {
@@ -88,9 +108,18 @@ class Holidays
             }
         }
 
+        return $holidays;
+    }
+
+    /**
+     * @param  array<Holiday>  $holidays
+     * @return array<Holiday>
+     */
+    private function sortHolidays(array $holidays): array
+    {
         usort($holidays, static fn (Holiday $a, Holiday $b): int => $a->date->timestamp <=> $b->date->timestamp);
 
-        return $this->filterByType($holidays, $type);
+        return $holidays;
     }
 
     public function isHoliday(CarbonInterface|string $date): bool
@@ -147,7 +176,10 @@ class Holidays
         return CarbonImmutable::parse($date);
     }
 
-    /** @param array<Holiday> $holidays */
+    /**
+     * @param  array<Holiday>  $holidays
+     * @return array<Holiday>
+     */
     private function filterByType(array $holidays, ?HolidayType $type): array
     {
         if ($type === null) {
