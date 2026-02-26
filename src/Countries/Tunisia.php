@@ -49,6 +49,7 @@ class Tunisia extends Country implements Islamic
         ];
     }
 
+    /** @return array<int, string> */
     protected function arafatDates(): array
     {
         return [
@@ -127,6 +128,7 @@ class Tunisia extends Country implements Islamic
         ];
     }
 
+    /** @return array<int, string> */
     protected function islamicNewYearDates(): array
     {
         return [
@@ -166,6 +168,7 @@ class Tunisia extends Country implements Islamic
         ];
     }
 
+    /** @return array<int, string> */
     protected function ashuraDates(): array
     {
         return [
@@ -205,6 +208,7 @@ class Tunisia extends Country implements Islamic
         ];
     }
 
+    /** @return array<int, string> */
     protected function prophetMuhammadBirthdayDates(): array
     {
         return [

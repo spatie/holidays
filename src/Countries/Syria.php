@@ -88,6 +88,7 @@ class Syria extends Country implements Islamic
         ];
     }
 
+    /** @return array<int, string> */
     protected function islamicNewYearDates(): array
     {
         return [
@@ -127,6 +128,7 @@ class Syria extends Country implements Islamic
         ];
     }
 
+    /** @return array<int, string> */
     protected function prophetMuhammadBirthdayDates(): array
     {
         return [
