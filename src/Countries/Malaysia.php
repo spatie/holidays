@@ -16,6 +16,16 @@ class Malaysia extends Country implements HasRegions
 
     protected string $timezone = 'Asia/Kuala_Lumpur';
 
+    protected function eidAlFitrDates(): array
+    {
+        return [];
+    }
+
+    protected function eidAlAdhaDates(): array
+    {
+        return [];
+    }
+
     protected const array REGIONS = [
         'jhr',
         'kdh',

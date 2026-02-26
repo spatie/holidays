@@ -11,7 +11,7 @@ use Spatie\Holidays\Exceptions\InvalidYear;
 /** @mixin Country */
 trait ResolvesCalendarDates
 {
-    /** @param array<int, string> $collection */
+    /** @param non-empty-array<int, string> $collection */
     protected function getSingleDayHoliday(array $collection, int $year): CarbonImmutable
     {
         $date = $collection[$year] ?? null;
@@ -30,7 +30,7 @@ trait ResolvesCalendarDates
     }
 
     /**
-     * @param  array<int, string|array<string>>  $collection
+     * @param  non-empty-array<int, string|array<string>>  $collection
      * @return array<CarbonPeriod>
      */
     protected function getMultiDayHoliday(array $collection, int $year, int $totalDays): array

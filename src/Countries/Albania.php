@@ -11,33 +11,39 @@ class Albania extends Country implements Islamic
 {
     use IslamicCalendar;
 
-    protected const eidAlFitr = [
-        2024 => '04-10',
-        2025 => '03-30',
-        2026 => '03-20',
-        2027 => '03-09',
-        2028 => '02-26',
-        2029 => '02-14',
-        2030 => '02-04',
-        2031 => '01-24',
-        2032 => '01-14',
-        2033 => '01-02',
-        2034 => '12-12',
-    ];
+    protected function eidAlFitrDates(): array
+    {
+        return [
+            2024 => '04-10',
+            2025 => '03-30',
+            2026 => '03-20',
+            2027 => '03-09',
+            2028 => '02-26',
+            2029 => '02-14',
+            2030 => '02-04',
+            2031 => '01-24',
+            2032 => '01-14',
+            2033 => '01-02',
+            2034 => '12-12',
+        ];
+    }
 
-    protected const eidAlAdha = [
-        2024 => '06-17',
-        2025 => '06-07',
-        2026 => '05-27',
-        2027 => '05-17',
-        2028 => '05-05',
-        2029 => '04-24',
-        2030 => '04-14',
-        2031 => '04-03',
-        2032 => '03-22',
-        2033 => '03-12',
-        2034 => '03-01',
-    ];
+    protected function eidAlAdhaDates(): array
+    {
+        return [
+            2024 => '06-17',
+            2025 => '06-07',
+            2026 => '05-27',
+            2027 => '05-17',
+            2028 => '05-05',
+            2029 => '04-24',
+            2030 => '04-14',
+            2031 => '04-03',
+            2032 => '03-22',
+            2033 => '03-12',
+            2034 => '03-01',
+        ];
+    }
 
     public function countryCode(): string
     {
@@ -83,17 +89,18 @@ class Albania extends Country implements Islamic
 
     public function islamicHolidays(int $year): array
     {
-        /**
-         * Provided until 2034 by qppstudio.net.
-         * https://www.qppstudio.net/global-holidays-observances/eid-al-fitr-end-of-ramadan.htm
-         */
         if ($year < 2024 || $year > 2034) {
             throw InvalidYear::range('Albania', 2024, 2034);
         }
 
+        $dates = $this->eidAlFitrDates();
+        $eidAlFitrDate = $dates[$year] ?? null;
+        $dates = $this->eidAlAdhaDates();
+        $eidAlAdhaDate = $dates[$year] ?? null;
+
         return [
-            Holiday::national('Dita e Bajramit të Madh', "{$year}-".self::eidAlFitr[$year]),
-            Holiday::national('Dita e Kurban Bajramit', "{$year}-".self::eidAlAdha[$year]),
+            Holiday::national('Dita e Bajramit të Madh', "{$year}-{$eidAlFitrDate}"),
+            Holiday::national('Dita e Kurban Bajramit', "{$year}-{$eidAlAdhaDate}"),
         ];
     }
 }
