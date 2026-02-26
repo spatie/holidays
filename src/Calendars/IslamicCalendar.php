@@ -23,28 +23,28 @@ trait IslamicCalendar
     /** @return array<int, string|array<string>> */
     abstract protected function eidAlAdhaDates(): array;
 
-    /** @return array<int, string>|null */
-    protected function ashuraDates(): ?array
+    /** @return array<int, string> */
+    protected function ashuraDates(): array
     {
-        return null;
+        return [];
     }
 
-    /** @return array<int, string>|null */
-    protected function arafatDates(): ?array
+    /** @return array<int, string> */
+    protected function arafatDates(): array
     {
-        return null;
+        return [];
     }
 
-    /** @return array<int, string>|null */
-    protected function islamicNewYearDates(): ?array
+    /** @return array<int, string> */
+    protected function islamicNewYearDates(): array
     {
-        return null;
+        return [];
     }
 
-    /** @return array<int, string>|null */
-    protected function prophetMuhammadBirthdayDates(): ?array
+    /** @return array<int, string> */
+    protected function prophetMuhammadBirthdayDates(): array
     {
-        return null;
+        return [];
     }
 
     /** @return array<CarbonPeriod> */
@@ -62,46 +62,22 @@ trait IslamicCalendar
     /** @return array<CarbonPeriod> */
     protected function ashura(int $year, int $totalDays = 2): array
     {
-        $dates = $this->ashuraDates();
-
-        if (! $dates) {
-            return [];
-        }
-
-        return $this->getMultiDayHoliday($dates, $year, $totalDays);
+        return $this->getMultiDayHoliday($this->ashuraDates(), $year, $totalDays);
     }
 
-    protected function arafat(int $year): ?CarbonImmutable
+    protected function arafat(int $year): CarbonImmutable
     {
-        $dates = $this->arafatDates();
-
-        if (! $dates) {
-            return null;
-        }
-
-        return $this->getSingleDayHoliday($dates, $year);
+        return $this->getSingleDayHoliday($this->arafatDates(), $year);
     }
 
-    protected function islamicNewYear(int $year): ?CarbonImmutable
+    protected function islamicNewYear(int $year): CarbonImmutable
     {
-        $dates = $this->islamicNewYearDates();
-
-        if (! $dates) {
-            return null;
-        }
-
-        return $this->getSingleDayHoliday($dates, $year);
+        return $this->getSingleDayHoliday($this->islamicNewYearDates(), $year);
     }
 
-    protected function prophetMuhammadBirthday(int $year): ?CarbonImmutable
+    protected function prophetMuhammadBirthday(int $year): CarbonImmutable
     {
-        $dates = $this->prophetMuhammadBirthdayDates();
-
-        if (! $dates) {
-            return null;
-        }
-
-        return $this->getSingleDayHoliday($dates, $year);
+        return $this->getSingleDayHoliday($this->prophetMuhammadBirthdayDates(), $year);
     }
 
     public function setIslamicCalendarTimezone(string $islamicCalendarTimezone): static

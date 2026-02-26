@@ -187,13 +187,12 @@ class Bahrain extends Country implements Islamic
         $eidAlAdha = $this->eidAlAdha($year, 3);
         $ashura = $this->ashura($year);
 
-        $holidays = [
-            Holiday::national('Arafat Day', $this->arafat($year)),
-            Holiday::national('Islamic New Year', $this->islamicNewYear($year)),
-            Holiday::national('Birthday of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
-        ];
-
-        return array_merge($holidays,
+        return array_merge(
+            [
+                Holiday::national('Arafat Day', $this->arafat($year)),
+                Holiday::national('Islamic New Year', $this->islamicNewYear($year)),
+                Holiday::national('Birthday of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
+            ],
             $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0]),
             $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0]),
             $this->convertPeriods('Ashura', $year, $ashura[0]),

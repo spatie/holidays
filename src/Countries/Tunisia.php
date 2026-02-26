@@ -292,14 +292,12 @@ class Tunisia extends Country implements Islamic
         $eidAlFitr = $this->eidAlFitr($year, 2);
         $eidAlAdha = $this->eidAlAdha($year, 2);
 
-        $holidays = [
-            Holiday::national('Arafat Day', $this->arafat($year)),
-            Holiday::national('Islamic New Year', $this->islamicNewYear($year)),
-            Holiday::national('Birthday of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
-        ];
-
         return array_merge(
-            $holidays,
+            [
+                Holiday::national('Arafat Day', $this->arafat($year)),
+                Holiday::national('Islamic New Year', $this->islamicNewYear($year)),
+                Holiday::national('Birthday of the Prophet Muhammad', $this->prophetMuhammadBirthday($year)),
+            ],
             $this->convertPeriods('Eid al-Fitr', $year, $eidAlFitr[0]),
             $this->convertPeriods('Eid al-Adha', $year, $eidAlAdha[0]),
         );
