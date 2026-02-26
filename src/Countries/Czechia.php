@@ -31,6 +31,11 @@ class Czechia extends Country
 
             'Den české státnosti' => ['09-28', $year >= 2000],
 
+            'Vyhlášení samostatnosti ČSR; Schválení zákona o federaci' => ['10-28', $year <= 1971],
+            'Den znárodnění' => ['10-28', $year === 1972],
+            'Vyhlášení samostatnosti ČSR; Schválení zákona o federaci; Den znárodnění' => ['10-28', $year >= 1973 && $year <= 1974],
+            'Den vzniku samostatného československého státu' => ['10-28', $year >= 1988],
+
             'Den boje za svobodu a demokracii a Mezinárodní den studentstva' => ['11-17', $year >= 2000],
             'Štědrý den' => ['12-24', $year >= 1990],
             '1. svátek vánoční' => ['12-25', true],
@@ -39,7 +44,7 @@ class Czechia extends Country
 
         $filteredHolidays = [];
         foreach ($holidays as $name => $holiday) {
-            if ($holiday[1] === true) {
+            if ($holiday[1]) {
                 $filteredHolidays[] = Holiday::national($name, CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$holiday[0]}"));
             }
         }
@@ -59,7 +64,7 @@ class Czechia extends Country
 
         $result = [];
         foreach ($variableHolidays as $name => $variableHoliday) {
-            if ($variableHoliday[1] === true) {
+            if ($variableHoliday[1]) {
                 $result[] = Holiday::national($name, $variableHoliday[0]);
             }
         }

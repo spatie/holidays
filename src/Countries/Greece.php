@@ -18,7 +18,6 @@ class Greece extends Country
             Holiday::national('Πρωτοχρονιά', "{$year}-01-01"),
             Holiday::national('Θεοφάνια', "{$year}-01-06"),
             Holiday::national('25η Μαρτίου', "{$year}-03-25"),
-            Holiday::national('Πρωτομαγιά', "{$year}-05-01"),
             Holiday::national('Δεκαπενταύγουστος', "{$year}-08-15"),
             Holiday::national('28η Οκτωβρίου', "{$year}-10-28"),
             Holiday::national('Χριστούγεννα', "{$year}-12-25"),

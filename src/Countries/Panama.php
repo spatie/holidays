@@ -74,18 +74,16 @@ class Panama extends Country
      */
     protected function calculateBridgeDays(array $fixedHolidays): array
     {
-        $holidays = [];
+        $bridgeDays = [];
 
         foreach ($fixedHolidays as $holiday) {
             $date = $holiday->date;
 
-            $holidays[] = $holiday;
-
             if ($date->isSunday()) {
-                $holidays[] = Holiday::national($holiday->name.' (Puente)', $date->addDay());
+                $bridgeDays[] = Holiday::national($holiday->name.' (Puente)', $date->addDay());
             }
         }
 
-        return $holidays;
+        return $bridgeDays;
     }
 }
