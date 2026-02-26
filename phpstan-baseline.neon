@@ -25,9 +25,9 @@ parameters:
 			path: src/Countries/Albania.php
 
 		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Albania\:\:islamicHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<int, Spatie\\Holidays\\Holiday\>\.$#'
-			identifier: return.type
-			count: 1
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Albania::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/Countries/Albania.php
 
 		-
@@ -43,9 +43,9 @@ parameters:
 			path: src/Countries/Australia.php
 
 		-
-			message: '#^Return type \(array\<Spatie\\Holidays\\Holiday\>\) of method Spatie\\Holidays\\Countries\\Bahrain\:\:islamicHolidays\(\) should be compatible with return type \(array\<string, Carbon\\CarbonImmutable\>\) of method Spatie\\Holidays\\Contracts\\Islamic\:\:islamicHolidays\(\)$#'
-			identifier: method.childReturnType
-			count: 1
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Bahrain::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/Countries/Bahrain.php
 
 		-
@@ -55,9 +55,9 @@ parameters:
 			path: src/Countries/Country.php
 
 		-
-			message: '#^Return type \(array\<Spatie\\Holidays\\Holiday\>\) of method Spatie\\Holidays\\Countries\\Egypt\:\:islamicHolidays\(\) should be compatible with return type \(array\<string, Carbon\\CarbonImmutable\>\) of method Spatie\\Holidays\\Contracts\\Islamic\:\:islamicHolidays\(\)$#'
-			identifier: method.childReturnType
-			count: 1
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Egypt::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/Countries/Egypt.php
 
 		-
@@ -71,6 +71,12 @@ parameters:
 			identifier: argument.type
 			count: 3
 			path: src/Countries/Honduras.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\India::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Countries/India.php
 
 		-
 			message: '#^Access to undefined constant Spatie\\Holidays\\Countries\\Malaysia\:\:arafat\.$#'
@@ -115,9 +121,21 @@ parameters:
 			path: src/Countries/Malaysia.php
 
 		-
-			message: '#^Return type \(array\<Spatie\\Holidays\\Holiday\>\) of method Spatie\\Holidays\\Countries\\Maldives\:\:islamicHolidays\(\) should be compatible with return type \(array\<string, Carbon\\CarbonImmutable\>\) of method Spatie\\Holidays\\Contracts\\Islamic\:\:islamicHolidays\(\)$#'
-			identifier: method.childReturnType
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, string> given\.$#'
+			identifier: argument.type
 			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Malaysia::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Countries/Malaysia.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Maldives::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/Countries/Maldives.php
 
 		-
@@ -133,15 +151,15 @@ parameters:
 			path: src/Countries/Syria.php
 
 		-
-			message: '#^Return type \(array\<Spatie\\Holidays\\Holiday\>\) of method Spatie\\Holidays\\Countries\\Syria\:\:islamicHolidays\(\) should be compatible with return type \(array\<string, Carbon\\CarbonImmutable\>\) of method Spatie\\Holidays\\Contracts\\Islamic\:\:islamicHolidays\(\)$#'
-			identifier: method.childReturnType
-			count: 1
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Syria::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/Countries/Syria.php
 
 		-
-			message: '#^Return type \(array\<Spatie\\Holidays\\Holiday\>\) of method Spatie\\Holidays\\Countries\\Tunisia\:\:islamicHolidays\(\) should be compatible with return type \(array\<string, Carbon\\CarbonImmutable\>\) of method Spatie\\Holidays\\Contracts\\Islamic\:\:islamicHolidays\(\)$#'
-			identifier: method.childReturnType
-			count: 1
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Tunisia::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/Countries/Tunisia.php
 
 		-
@@ -169,9 +187,9 @@ parameters:
 			path: src/Countries/Turkey.php
 
 		-
-			message: '#^Method Spatie\\Holidays\\Countries\\Turkey\:\:islamicHolidays\(\) should return array\<string, Carbon\\CarbonImmutable\> but returns array\<Spatie\\Holidays\\Holiday\>\.$#'
-			identifier: return.type
-			count: 1
+			message: '#^Parameter \#1 \$collection of method Spatie\\Holidays\\Countries\\Turkey::throwUnsupportedYear\(\) expects non-empty-array<int, mixed>, array<int, array<string>|string> given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/Countries/Turkey.php
 
 

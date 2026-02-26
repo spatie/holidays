@@ -73,6 +73,11 @@ trait ResolvesCalendarDates
     protected function createPeriod(string $date, int $year, int $totalDays): CarbonPeriod
     {
         $start = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}")?->startOfDay();
+
+        if ($start === null) {
+            throw new \RuntimeException("Invalid date format: {$year}-{$date}");
+        }
+
         $end = $start->addDays($totalDays - 1)->startOfDay();
 
         return CarbonPeriod::create($start, '1 day', $end);
