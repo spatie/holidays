@@ -16,3 +16,15 @@ it('can calculate slovak holidays', function () {
 
     expect(formatDates($holidays))->toMatchSnapshot();
 });
+
+it('can calculate slovak holidays 2025', function () {
+    CarbonImmutable::setTestNow('2025-01-01');
+
+    $holidays = Holidays::for(country: 'sk')->get();
+
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    expect(formatDates($holidays))->toMatchSnapshot();
+});
