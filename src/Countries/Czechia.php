@@ -63,7 +63,7 @@ class Czechia extends Country
         ];
 
         return array_map(
-            static fn (array $variableHoliday): \Carbon\CarbonImmutable => $variableHoliday[0],
+            static fn (array $variableHoliday): CarbonImmutable => $variableHoliday[0],
             array_filter($variableHolidays,
                 static fn (array $variableHoliday): bool => $variableHoliday[1] === true
             )

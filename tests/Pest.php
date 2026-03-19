@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\CarbonImmutable;
+
 expect()->extend('toContainElement', function (Closure $closure) {
     foreach ($this->value as $actualSubarray) {
         if ($closure($actualSubarray)) {
@@ -21,7 +23,7 @@ function formatDates(array $holidays): array
     return $holidays;
 }
 
-function findDate(array $holidays, string $name): ?Carbon\CarbonImmutable
+function findDate(array $holidays, string $name): ?CarbonImmutable
 {
     foreach ($holidays as $holiday) {
         if ($holiday['name'] === $name) {
