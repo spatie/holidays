@@ -34,7 +34,7 @@ class Venezuela extends Country
 
         return [
             'Lunes de Carnaval' => $easter->subDays(48),
-            'Martes de Carnaval' => $easter->subDays(42),
+            'Martes de Carnaval' => $easter->subDays(47),
             'Jueves Santo' => $easter->subDays(3),
             'Viernes Santo' => $easter->subDays(2),
         ];
