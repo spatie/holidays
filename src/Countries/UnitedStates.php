@@ -2,6 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
+
 class UnitedStates extends Country
 {
     public function countryCode(): string
@@ -11,18 +14,27 @@ class UnitedStates extends Country
 
     protected function allHolidays(int $year): array
     {
-        $holidays = array_merge([
-            "New Year's Day" => '01-01',
-            'Independence Day' => '07-04',
-            'Veterans Day' => '11-11',
-            'Christmas' => '12-25',
-        ], $this->variableHolidays());
+        $holidays = array_merge(
+            $this->fixedHolidays($year),
+            $this->variableHolidays(),
+        );
 
         if ($year >= 2021) {
-            $holidays['Juneteenth National Independence Day'] = '06-19';
+            $holidays['Juneteenth National Independence Day'] = $this->observed("{$year}-06-19");
         }
 
         return $holidays;
+    }
+
+    /** @return array<string, CarbonImmutable> */
+    protected function fixedHolidays(int $year): array
+    {
+        return [
+            "New Year's Day" => $this->observed("{$year}-01-01"),
+            'Independence Day' => $this->observed("{$year}-07-04"),
+            'Veterans Day' => $this->observed("{$year}-11-11"),
+            'Christmas' => $this->observed("{$year}-12-25"),
+        ];
     }
 
     /** @return array<string, string> */
@@ -36,5 +48,16 @@ class UnitedStates extends Country
             'Columbus Day' => 'second monday of October',
             'Thanksgiving' => 'fourth thursday of November',
         ];
+    }
+
+    protected function observed(string $dateString): CarbonImmutable
+    {
+        $date = CarbonImmutable::createFromFormat('Y-m-d', $dateString)->startOfDay();
+
+        return match ($date->dayOfWeek) {
+            CarbonInterface::SATURDAY => $date->subDay(),
+            CarbonInterface::SUNDAY => $date->addDay(),
+            default => $date,
+        };
     }
 }
