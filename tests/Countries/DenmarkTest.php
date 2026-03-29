@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Holidays;
 
 it('can calculate danish holidays', function () {
@@ -19,4 +20,4 @@ it('can calculate danish holidays', function () {
 
 it('rejects the old da ISO code', function () {
     Holidays::for(country: 'da');
-})->throws(\Spatie\Holidays\Exceptions\InvalidCountry::class);
+})->throws(InvalidCountry::class);

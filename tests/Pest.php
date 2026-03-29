@@ -1,7 +1,7 @@
 <?php
 
-use Spatie\Holidays\Holiday;
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 expect()->extend('toContainElement', function (Closure $closure) {
     foreach ($this->value as $element) {
