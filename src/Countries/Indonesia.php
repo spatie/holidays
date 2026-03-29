@@ -2,8 +2,8 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\ChineseCalendar;
+use Spatie\Holidays\Holiday;
 
 class Indonesia extends Country
 {
@@ -17,24 +17,24 @@ class Indonesia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Tahun Baru' => '01-01',
-            'Hari Buruh Internasional' => '05-01',
-            'Hari Lahir Pancasila' => '06-01',
-            'Hari Kemerdekaan' => '08-17',
-            'Hari Raya Natal' => '12-25',
+            Holiday::national('Tahun Baru', "{$year}-01-01"),
+            Holiday::national('Hari Buruh Internasional', "{$year}-05-01"),
+            Holiday::national('Hari Lahir Pancasila', "{$year}-06-01"),
+            Holiday::national('Hari Kemerdekaan', "{$year}-08-17"),
+            Holiday::national('Hari Raya Natal', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Tahun Baru Imlek' => $this->chineseToGregorianDate('01-01', $year),
-            'Jumat Agung' => $easter->subDays(2),
-            'Hari Paskah' => $easter,
-            'Kenaikan Yesus Kristus' => $easter->addDays(39),
+            Holiday::national('Tahun Baru Imlek', $this->chineseToGregorianDate('01-01', $year)),
+            Holiday::national('Jumat Agung', $easter->subDays(2)),
+            Holiday::national('Hari Paskah', $easter),
+            Holiday::national('Kenaikan Yesus Kristus', $easter->addDays(39)),
         ];
     }
 }

@@ -2,6 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
+
 class Japan extends Country
 {
     public function countryCode(): string
@@ -12,30 +15,30 @@ class Japan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            '元日' => '01-01', // New Year's Day
-            '建国記念の日' => '02-11', // Foundation Day
-            '天皇誕生日' => '02-23', // Emperor's Birthday
-            '春分の日' => '03-20', // Vernal Equinox Day *Decided each year; rarely on 03-21
-            '昭和の日' => '04-29', // Showa Day
-            '憲法記念日' => '05-03', // Constitution Day
-            'みどりの日' => '05-04', // Greenery Day
-            'こどもの日' => '05-05', // Children's Day
-            '山の日' => '08-11', // Mountain Day
-            '秋分の日' => '09-23', // Autumnal Equinox Day  *Decided each year; rarely on 09-22
-            '文化の日' => '11-03', // Culture Day
-            '勤労感謝の日' => '11-23', // Labor Thanksgiving Day
+            Holiday::national('元日', "{$year}-01-01"),
+            Holiday::national('建国記念の日', "{$year}-02-11"),
+            Holiday::national('天皇誕生日', "{$year}-02-23"),
+            Holiday::national('春分の日', "{$year}-03-20"),
+            Holiday::national('昭和の日', "{$year}-04-29"),
+            Holiday::national('憲法記念日', "{$year}-05-03"),
+            Holiday::national('みどりの日', "{$year}-05-04"),
+            Holiday::national('こどもの日', "{$year}-05-05"),
+            Holiday::national('山の日', "{$year}-08-11"),
+            Holiday::national('秋分の日', "{$year}-09-23"),
+            Holiday::national('文化の日', "{$year}-11-03"),
+            Holiday::national('勤労感謝の日', "{$year}-11-23"),
 
-        ], $this->variableHolidays());
+        ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string> */
-    protected function variableHolidays(): array
+    /** @return array<Holiday> */
+    protected function variableHolidays(int $year): array
     {
         return [
-            '成人の日' => 'second monday of january',
-            '海の日' => 'third monday of july',
-            '敬老の日' => 'third monday of september',
-            'スポーツの日' => 'second monday of october',
+            Holiday::national('成人の日', CarbonImmutable::parse("second monday of january {$year}")),
+            Holiday::national('海の日', CarbonImmutable::parse("third monday of july {$year}")),
+            Holiday::national('敬老の日', CarbonImmutable::parse("third monday of september {$year}")),
+            Holiday::national('スポーツの日', CarbonImmutable::parse("second monday of october {$year}")),
         ];
     }
 }

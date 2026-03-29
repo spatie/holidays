@@ -21,7 +21,7 @@ it('can get holidays in another locale', function () {
 
     $holidays = Holidays::for(country: 'al', locale: 'en')->get();
 
-    expect($holidays[0]['name'])
+    expect($holidays[0]->name)
         ->toBe("New Year's Day");
 });
 

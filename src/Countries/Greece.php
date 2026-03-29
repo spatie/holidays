@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Greece extends Country
 {
@@ -14,19 +15,18 @@ class Greece extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Πρωτοχρονιά' => '01-01',
-            'Θεοφάνια' => '01-06',
-            '25η Μαρτίου' => '03-25',
-            'Πρωτομαγιά' => '05-01',
-            'Δεκαπενταύγουστος' => '08-15',
-            '28η Οκτωβρίου' => '10-28',
-            'Χριστούγεννα' => '12-25',
-            'Σύναξη της Θεοτόκου' => '12-26',
+            Holiday::national('Πρωτοχρονιά', "{$year}-01-01"),
+            Holiday::national('Θεοφάνια', "{$year}-01-06"),
+            Holiday::national('25η Μαρτίου', "{$year}-03-25"),
+            Holiday::national('Δεκαπενταύγουστος', "{$year}-08-15"),
+            Holiday::national('28η Οκτωβρίου', "{$year}-10-28"),
+            Holiday::national('Χριστούγεννα', "{$year}-12-25"),
+            Holiday::national('Σύναξη της Θεοτόκου', "{$year}-12-26"),
 
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
 
@@ -48,12 +48,12 @@ class Greece extends Country
         }
 
         return [
-            'Καθαρά Δευτέρα' => $orthodoxEaster->copy()->subDays(48), // always Monday
-            'Πρωτομαγιά' => $protomagia,
-            'Μεγάλη Παρασκευή' => $megaliParaskevi,
-            'Κυριακή του Πάσχα' => $orthodoxEaster,
-            'Δευτέρα του Πάσχα' => $deuteraPasha,
-            'Αγίου Πνεύματος' => $orthodoxEaster->copy()->addDays(50), // always Monday
+            Holiday::national('Καθαρά Δευτέρα', $orthodoxEaster->copy()->subDays(48)),
+            Holiday::national('Πρωτομαγιά', $protomagia),
+            Holiday::national('Μεγάλη Παρασκευή', $megaliParaskevi),
+            Holiday::national('Κυριακή του Πάσχα', $orthodoxEaster),
+            Holiday::national('Δευτέρα του Πάσχα', $deuteraPasha),
+            Holiday::national('Αγίου Πνεύματος', $orthodoxEaster->copy()->addDays(50)),
         ];
     }
 }

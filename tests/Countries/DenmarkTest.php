@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Exceptions\InvalidCountry;
 use Spatie\Holidays\Holidays;
 
 it('can calculate danish holidays', function () {
@@ -17,14 +18,6 @@ it('can calculate danish holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-it('can calculate danish holidays with the wrong ISO code', function () {
-    CarbonImmutable::setTestNow('2024-01-01');
-
-    $holidays = Holidays::for(country: 'da')->get();
-
-    expect($holidays)
-        ->toBeArray()
-        ->not()->toBeEmpty();
-
-    expect(formatDates($holidays))->toMatchSnapshot();
-});
+it('rejects the old da ISO code', function () {
+    Holidays::for(country: 'da');
+})->throws(InvalidCountry::class);

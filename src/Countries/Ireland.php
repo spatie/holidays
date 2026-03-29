@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Ireland extends Country
 {
@@ -14,32 +15,32 @@ class Ireland extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            "Saint Patrick's Day" => '03-17',
-            'Christmas Day' => '12-25',
-            "Saint Stephen's Day" => '12-26',
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national("Saint Patrick's Day", "{$year}-03-17"),
+            Holiday::national('Christmas Day', "{$year}-12-25"),
+            Holiday::national("Saint Stephen's Day", "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string|CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $variableHolidays = [
-            'Easter Monday' => $this->easter($year)->addDay(),
-            'May Public Holiday' => 'first monday of May',
-            'June Public Holiday' => 'first monday of June',
-            'August Public Holiday' => 'first monday of August',
-            'October Public Holiday' => 'last monday of October',
+            Holiday::national('Easter Monday', $this->easter($year)->addDay()),
+            Holiday::national('May Public Holiday', CarbonImmutable::parse("first monday of May {$year}")),
+            Holiday::national('June Public Holiday', CarbonImmutable::parse("first monday of June {$year}")),
+            Holiday::national('August Public Holiday', CarbonImmutable::parse("first monday of August {$year}")),
+            Holiday::national('October Public Holiday', CarbonImmutable::parse("last monday of October {$year}")),
         ];
 
         if ($year >= 2023) {
-            $stBrigidsDay = (new CarbonImmutable("{$year}-02-01"))->startOfDay();
+            $stBrigidsDay = new CarbonImmutable("{$year}-02-01")->startOfDay();
 
             if (! $stBrigidsDay->isFriday()) {
-                $stBrigidsDay = 'first monday of February';
+                $stBrigidsDay = CarbonImmutable::parse("first monday of February {$year}");
             }
 
-            $variableHolidays["St Brigid's Day"] = $stBrigidsDay;
+            $variableHolidays[] = Holiday::national("St Brigid's Day", $stBrigidsDay);
         }
 
         return $variableHolidays;

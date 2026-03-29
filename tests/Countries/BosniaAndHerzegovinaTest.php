@@ -43,5 +43,5 @@ it('can translate holidays into english', function () {
 
     expect(formatDates($holidays))->toMatchSnapshot();
 
-    expect($holidays[0]['name'])->toBe('New Year - first day');
+    expect($holidays[0]->name)->toBe('New Year - first day');
 });

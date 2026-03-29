@@ -1,10 +1,14 @@
 <?php
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Contracts\HasRegions;
 use Spatie\Holidays\Countries\Belgium;
+use Spatie\Holidays\Countries\Germany;
 use Spatie\Holidays\Countries\Netherlands;
 use Spatie\Holidays\Exceptions\InvalidCountry;
+use Spatie\Holidays\Exceptions\InvalidRegion;
 use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Holiday;
 use Spatie\Holidays\Holidays;
 
 it('can get all holidays of the current year', function () {
@@ -16,15 +20,16 @@ it('can get all holidays of the current year', function () {
         ->toBeArray()
         ->not()->toBeEmpty();
 
-    expect($holidays[0]['name'])->toBe('Nieuwjaar');
-    expect($holidays[0]['date']->format('Y-m-d'))->toBe('2024-01-01');
+    expect($holidays[0])->toBeInstanceOf(Holiday::class);
+    expect($holidays[0]->name)->toBe('Nieuwjaar');
+    expect($holidays[0]->date->format('Y-m-d'))->toBe('2024-01-01');
 });
 
 it('can get holidays of other years', function (string $year) {
     $holidays = Holidays::for(Belgium::make(), year: $year)->get();
 
-    expect($holidays[0]['name'])->toBe('Nieuwjaar');
-    expect($holidays[0]['date']->format('Y-m-d'))->toBe("{$year}-01-01");
+    expect($holidays[0]->name)->toBe('Nieuwjaar');
+    expect($holidays[0]->date->format('Y-m-d'))->toBe("{$year}-01-01");
 })->with(
     ['2023'],
     ['2024'],
@@ -34,9 +39,9 @@ it('can get holidays of other years', function (string $year) {
 it('can get all holidays of another year and a specific country', function () {
     $holidays = Holidays::for(Netherlands::make(), year: 2020)->get();
 
-    expect($holidays)->toContainElement(function (array $holidayProperties) {
-        return $holidayProperties['name'] === 'Bevrijdingsdag'
-            && $holidayProperties['date']->format('Y-m-d') === '2020-05-05';
+    expect($holidays)->toContainElement(function (Holiday $holiday) {
+        return $holiday->name === 'Bevrijdingsdag'
+            && $holiday->date->format('Y-m-d') === '2020-05-05';
     });
 });
 
@@ -44,13 +49,19 @@ it('cannot get all holidays of an unknown country code', function () {
     Holidays::for(country: 'unknown');
 })->throws(InvalidCountry::class);
 
-it('cannot get holidays for years before 1970', function () {
-    Holidays::for(country: 'be', year: 1969)->get();
-})->throws(InvalidYear::class, 'Holidays can only be calculated for years after 1970.');
+it('cannot get holidays for years before supported range', function () {
+    Holidays::for(country: 'tr', year: 1969)->get();
+})->throws(InvalidYear::class, 'Only years between 1970 and 2037 are supported for tr.');
 
-it('cannot get holidays for years after 2037', function () {
-    Holidays::for(country: 'be', year: 2038)->get();
-})->throws(InvalidYear::class, 'Holidays can only be calculated for years before 2038');
+it('cannot get holidays for years after supported range', function () {
+    Holidays::for(country: 'tr', year: 2038)->get();
+})->throws(InvalidYear::class, 'Only years between 1970 and 2037 are supported for tr.');
+
+it('can get holidays for any year when country has no year limit', function () {
+    $holidays = Holidays::for(country: 'be', year: 2050)->get();
+
+    expect($holidays)->toBeArray()->not()->toBeEmpty();
+});
 
 it('can see if a date is a holiday', function () {
     $result = Holidays::for(Belgium::make())->isHoliday('2024-01-01');
@@ -89,8 +100,9 @@ it('can get all holidays between two dates', function (string|CarbonImmutable $f
 
     expect($holidays)->toBeArray();
     expect($holidays)->toHaveCount($expectedCount);
-    expect(reset($holidays))->toBe($firstName);
-    expect(end($holidays))->toBe($lastName);
+    expect($holidays[0])->toBeInstanceOf(Holiday::class);
+    expect($holidays[0]->name)->toBe($firstName);
+    expect(end($holidays)->name)->toBe($lastName);
 })->with([
     ['2020', '2024', 50, 'Nieuwjaar', 'Kerstmis'],
     ['2024-06', '2025-05', 9, 'Nationale Feestdag', 'OLH Hemelvaart'],
@@ -112,19 +124,136 @@ it('can get translated holiday names', function () {
     $result = Holidays::for(country: 'be', year: 2020, locale: 'fr')->get();
 
     expect($result)->toBeArray();
-    expect($result[0]['name'])->toBe('Jour de l\'An');
+    expect($result[0]->name)->toBe('Jour de l\'An');
 });
 
 it('default when the locale file is missing', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
-    // so we don't need to have a translation file for the language in the Country class
     $holidays = Holidays::for(country: 'be', locale: 'en')->get();
 
     expect($holidays)
         ->toBeArray()
         ->not()->toBeEmpty();
 
-    expect($holidays[0]['name'])->toBe('Nieuwjaar');
-    expect($holidays[0]['date']->format('Y-m-d'))->toBe('2024-01-01');
+    expect($holidays[0]->name)->toBe('Nieuwjaar');
+    expect($holidays[0]->date->format('Y-m-d'))->toBe('2024-01-01');
+});
+
+it('can pass a region through Holidays::for()', function () {
+    $holidays = Holidays::for('de', year: 2024, region: 'DE-BW')->get();
+
+    expect($holidays)->toBeArray()->not()->toBeEmpty();
+
+    $names = array_map(fn (Holiday $h) => $h->name, $holidays);
+    expect($names)->toContain('Heilige Drei Könige');
+});
+
+it('throws for invalid region through Holidays::for()', function () {
+    Holidays::for('de', year: 2024, region: 'INVALID');
+})->throws(InvalidRegion::class);
+
+it('can discover regions from a country that implements HasRegions', function () {
+    $regions = Germany::regions();
+
+    expect($regions)
+        ->toBeArray()
+        ->toContain('DE-BW')
+        ->toContain('DE-BY')
+        ->toContain('DE-BE');
+});
+
+it('can check if a country implements HasRegions', function () {
+    expect(Germany::make())->toBeInstanceOf(HasRegions::class);
+    expect(Belgium::make())->not->toBeInstanceOf(HasRegions::class);
+});
+
+it('can json serialize holidays', function () {
+    $holidays = Holidays::for(Belgium::make(), year: 2024)->get();
+
+    $json = json_encode($holidays[0]);
+
+    expect($json)->toBeString();
+
+    $decoded = json_decode($json, true);
+
+    expect($decoded)->toBe([
+        'name' => 'Nieuwjaar',
+        'date' => '2024-01-01',
+        'type' => 'national',
+        'region' => null,
+    ]);
+});
+
+it('can check if today is a holiday', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
+    $result = Holidays::for('be')->isTodayHoliday();
+    expect($result)->toBeTrue();
+
+    CarbonImmutable::setTestNow('2024-01-02');
+
+    $result = Holidays::for('be')->isTodayHoliday();
+    expect($result)->toBeFalse();
+});
+
+it('can get upcoming holidays', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
+    $holidays = Holidays::for('be', 2024)->getUpcoming(3);
+
+    expect($holidays)->toHaveCount(3);
+    expect($holidays[0]->name)->toBe('Nieuwjaar');
+    expect($holidays[1]->name)->toBe('Paasmaandag');
+    expect($holidays[2]->name)->toBe('Dag van de Arbeid');
+});
+
+it('can get upcoming holidays across years', function () {
+    CarbonImmutable::setTestNow('2024-12-25');
+
+    $holidays = Holidays::for('be', 2024)->getUpcoming(3);
+
+    expect($holidays)->toHaveCount(3);
+    expect($holidays[0]->name)->toBe('Kerstmis');
+    expect($holidays[1]->date->year)->toBe(2025);
+    expect($holidays[1]->name)->toBe('Nieuwjaar');
+});
+
+it('can get long weekends', function () {
+    $longWeekends = Holidays::for('de', 2024)->getLongWeekends();
+
+    expect($longWeekends)->toHaveCount(1);
+    expect($longWeekends[0]->startDate->format('Y-m-d'))->toBe('2024-03-29');
+    expect($longWeekends[0]->endDate->format('Y-m-d'))->toBe('2024-04-01');
+    expect($longWeekends[0]->dayCount)->toBe(4);
+    expect($longWeekends[0]->holidays)->toHaveCount(2);
+});
+
+it('can get long weekends with custom minimum days', function () {
+    $longWeekends = Holidays::for('be', 2024)->getLongWeekends(10);
+
+    expect($longWeekends)->toHaveCount(1);
+    expect($longWeekends[0]->startDate->format('Y-m-d'))->toBe('2024-11-01');
+    expect($longWeekends[0]->endDate->format('Y-m-d'))->toBe('2024-11-11');
+});
+
+it('returns empty array when no long weekends exist', function () {
+    $longWeekends = Holidays::for('be', 2024)->getLongWeekends();
+
+    expect($longWeekends)->toBeEmpty();
+});
+
+it('can json serialize long weekends', function () {
+    $longWeekends = Holidays::for('de', 2024)->getLongWeekends();
+
+    $json = json_encode($longWeekends[0]);
+
+    expect($json)->toBeString();
+
+    $decoded = json_decode($json, true);
+
+    expect($decoded['startDate'])->toBe('2024-03-29');
+    expect($decoded['endDate'])->toBe('2024-04-01');
+    expect($decoded['dayCount'])->toBe(4);
+    expect($decoded['holidays'])->toHaveCount(2);
 });
