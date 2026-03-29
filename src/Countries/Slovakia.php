@@ -36,6 +36,10 @@ class Slovakia extends Country
             $holidays[] = Holiday::national('Deň Ústavy Slovenskej republiky', "{$year}-09-01");
         }
 
+        if ($year > 2024) {
+            unset($holidays['Deň boja za slobodu a demokraciu']);
+        }
+
         return $holidays;
     }
 
