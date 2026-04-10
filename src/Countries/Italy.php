@@ -20,6 +20,7 @@ class Italy extends Country
             'Festa dei Lavoratori' => '05-01',
             'Festa della Repubblica' => '06-02',
             'Assunzione di Maria' => '08-15',
+            ...$this->saintFrancis($year),
             'Ognissanti' => '11-01',
             'Immacolata Concezione' => '12-08',
             'Natale' => '12-25',
@@ -35,5 +36,15 @@ class Italy extends Country
         return [
             'Lunedì di Pasqua' => $easter->addDay(),
         ];
+    }
+
+    /** @return array<string, string> */
+    protected function saintFrancis(int $year): array
+    {
+        if(($year >= 1939 && $year <= 1976) || $year >= 2026) {
+            return ['San Francesco' => '10-04'];
+        }
+
+        return [];
     }
 }
