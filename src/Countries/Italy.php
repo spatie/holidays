@@ -41,7 +41,7 @@ class Italy extends Country
     /** @return array<Holiday> */
     protected function saintFrancis(int $year): array
     {
-        if(($year >= 1939 && $year <= 1976) || $year >= 2026) {
+        if (($year >= 1939 && $year <= 1976) || $year >= 2026) {
             return [Holiday::national('San Francesco', "{$year}-10-04")];
         }
 
