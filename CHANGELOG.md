@@ -2,6 +2,18 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.0.1 - 2026-04-13
+
+### What's Changed
+
+* Add Saint Francis holiday to Italy by @Lukasss93 in https://github.com/spatie/holidays/pull/327
+
+### New Contributors
+
+* @Lukasss93 made their first contribution in https://github.com/spatie/holidays/pull/327
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.0.0...2.0.1
+
 ## 2.0.0 - 2026-04-13
 
 Upgrade guide: https://github.com/spatie/holidays/blob/main/UPGRADING.md#from-v1-to-v2
