@@ -37,7 +37,10 @@ class Slovakia extends Country
         }
 
         if ($year > 2024) {
-            unset($holidays['Deň boja za slobodu a demokraciu']);
+            $holidays = array_values(array_filter(
+                $holidays,
+                static fn (Holiday $holiday): bool => $holiday->name !== 'Deň boja za slobodu a demokraciu',
+            ));
         }
 
         return $holidays;
