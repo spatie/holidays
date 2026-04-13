@@ -20,6 +20,7 @@ class Italy extends Country
             Holiday::national('Festa dei Lavoratori', "{$year}-05-01"),
             Holiday::national('Festa della Repubblica', "{$year}-06-02"),
             Holiday::national('Assunzione di Maria', "{$year}-08-15"),
+            ...$this->saintFrancis($year),
             Holiday::national('Ognissanti', "{$year}-11-01"),
             Holiday::national('Immacolata Concezione', "{$year}-12-08"),
             Holiday::national('Natale', "{$year}-12-25"),
@@ -35,5 +36,15 @@ class Italy extends Country
         return [
             Holiday::national('Lunedì di Pasqua', $easter->addDay()),
         ];
+    }
+
+    /** @return array<Holiday> */
+    protected function saintFrancis(int $year): array
+    {
+        if(($year >= 1939 && $year <= 1976) || $year >= 2026) {
+            return [Holiday::national('San Francesco', "{$year}-10-04")];
+        }
+
+        return [];
     }
 }
