@@ -237,6 +237,10 @@ protected function defaultLocale(): string
 }
 ```
 
+### Register your country
+
+In `src/CountryRegistry.php`, add your ISO country code and country class to the `MAP` constant.
+
 ### Regional holidays
 
 If your country has region-specific holidays, implement the `HasRegions` interface:
@@ -390,10 +394,6 @@ To add translations for a country, create a JSON file at `lang/{countryCode}/{lo
 ```
 
 The keys must match the holiday names returned by `allHolidays()`.
-
-### Register the country
-
-Add your new country class to the `CountryRegistry` in `src/CountryRegistry.php`.
 
 ### Testing
 
