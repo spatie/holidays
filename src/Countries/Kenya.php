@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Kenya extends Country
 {
@@ -14,25 +14,25 @@ class Kenya extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Labour day' => '05-01',
-            'Madaraka Day' => '06-01',
-            $this->getOctober10HolidayName($year) => '10-10',
-            'Mashujaa Day' => '10-20',
-            'Jamhuri Day' => '12-01',
-            'Christmas' => '12-25',
-            'Boxing Day' => '12-26',
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national('Labour day', "{$year}-05-01"),
+            Holiday::national('Madaraka Day', "{$year}-06-01"),
+            Holiday::national($this->getOctober10HolidayName($year), "{$year}-10-10"),
+            Holiday::national('Mashujaa Day', "{$year}-10-20"),
+            Holiday::national('Jamhuri Day', "{$year}-12-01"),
+            Holiday::national('Christmas', "{$year}-12-25"),
+            Holiday::national('Boxing Day', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Good Friday' => $easter->subDays(2),
-            'Easter Monday' => $easter->addDay(),
+            Holiday::national('Good Friday', $easter->subDays(2)),
+            Holiday::national('Easter Monday', $easter->addDay()),
         ];
     }
 

@@ -6,10 +6,8 @@
 /.gitattributes export-ignore
 /.gitignore export-ignore
 /phpunit.xml.dist export-ignore
-/psalm.xml.dist export-ignore
 /tests export-ignore
 /.editorconfig export-ignore
-/.php-cs-fixer.dist.php export-ignore
 /art export-ignore
 /docs export-ignore
 /UPGRADING.md export-ignore

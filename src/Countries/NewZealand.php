@@ -3,12 +3,12 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
-use Spatie\Holidays\Concerns\Observable;
+use Spatie\Holidays\Concerns\HasObservedHolidays;
+use Spatie\Holidays\Holiday;
 
 class NewZealand extends Country
 {
-    use Observable;
+    use HasObservedHolidays;
 
     public function countryCode(): string
     {
@@ -23,38 +23,40 @@ class NewZealand extends Country
         );
     }
 
-    /** @return array<string, string|CarbonInterface> */
+    /** @return array<Holiday> */
     protected function observedHolidays(int $year): array
     {
         // https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
         $holidays = [
-            "New Year's Day" => '01-01',
-            "Day after New Year's Day" => '01-02',
-            'Waitangi Day' => '02-06',
-            'ANZAC Day' => '04-25',
-            'Christmas Day' => '12-25',
-            'Boxing Day' => '12-26',
+            "New Year's Day" => CarbonImmutable::createFromDate($year, 1, 1),
+            "Day after New Year's Day" => CarbonImmutable::createFromDate($year, 1, 2),
+            'Waitangi Day' => CarbonImmutable::createFromDate($year, 2, 6),
+            'ANZAC Day' => CarbonImmutable::createFromDate($year, 4, 25),
+            'Christmas Day' => CarbonImmutable::createFromDate($year, 12, 25),
+            'Boxing Day' => CarbonImmutable::createFromDate($year, 12, 26),
         ];
 
         // https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-falling-on-a-weekend/
+        $result = [];
         foreach ($holidays as $name => $date) {
             $observedDay = match ($name) {
                 "Day after New Year's Day" => $this->secondOfJanuary($year),
-                'Christmas Day' => $this->observedChristmasDay($year),
-                'Boxing Day' => $this->observedBoxingDay($year),
-                default => $this->weekendToNextMonday($date, $year),
+                'Christmas Day' => $this->observedChristmasDay($date),
+                'Boxing Day' => $this->observedBoxingDay($date),
+                default => $this->weekendToNextMonday($date),
             };
 
             if ($observedDay) {
-                $holidays[$name.' (Mondayisation)'] = $observedDay;
-                unset($holidays[$name]);
+                $result[] = Holiday::national("{$name} (Mondayisation)", $observedDay);
+            } else {
+                $result[] = Holiday::national($name, $date);
             }
         }
 
-        return $holidays;
+        return $result;
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         // Easter
@@ -70,29 +72,29 @@ class NewZealand extends Country
         $labourMonday = CarbonImmutable::parse("fourth monday of october {$year}");
 
         $holidays = [
-            'Good Friday' => $goodFriday,
-            'Easter Monday' => $easterMonday,
-            $sovereignTitle => $sovereignMonday,
-            'Labour Day' => $labourMonday,
+            Holiday::national('Good Friday', $goodFriday),
+            Holiday::national('Easter Monday', $easterMonday),
+            Holiday::national($sovereignTitle, $sovereignMonday),
+            Holiday::national('Labour Day', $labourMonday),
         ];
 
         $matariki = $this->calculateMatariki($year);
 
         if ($matariki) {
-            $holidays['Matariki'] = $matariki;
+            $holidays[] = Holiday::national('Matariki', $matariki);
         }
 
         return $holidays;
     }
 
-    protected function secondOfJanuary(int $year): ?CarbonInterface
+    protected function secondOfJanuary(int $year): ?CarbonImmutable
     {
-        $newYearsDay = (new CarbonImmutable($year.'-01-01'))->startOfDay();
+        $newYearsDay = new CarbonImmutable("{$year}-01-01")->startOfDay();
         $secondOfJanuary = $newYearsDay->addDay();
 
         return match ($newYearsDay->dayName) {
-            'Friday' => $secondOfJanuary->next('monday'),
-            'Saturday', 'Sunday' => $secondOfJanuary->next('tuesday'),
+            'Friday' => $secondOfJanuary->next('monday')->toImmutable(),
+            'Saturday', 'Sunday' => $secondOfJanuary->next('tuesday')->toImmutable(),
             default => null,
         };
     }

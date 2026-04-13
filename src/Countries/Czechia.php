@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Czechia extends Country
 {
@@ -13,7 +13,6 @@ class Czechia extends Country
 
     protected function allHolidays(int $year): array
     {
-        // https://kalendar.beda.cz/statni-svatky-a-vyznamne-dny-v-roce-prehledne?year=1970
         $holidays = [
             'Nový rok' => ['01-01', $year <= 2000],
             'Nový rok; Den obnovy samostatného českého státu' => ['01-01', $year >= 2001],
@@ -42,17 +41,17 @@ class Czechia extends Country
             '2. svátek vánoční' => ['12-26', true],
         ];
 
-        $filteredHolidays = array_map(
-            static fn (array $holiday): string => $holiday[0],
-            array_filter($holidays,
-                static fn (array $holiday): bool => $holiday[1] === true
-            )
-        );
+        $filteredHolidays = [];
+        foreach ($holidays as $name => $holiday) {
+            if ($holiday[1]) {
+                $filteredHolidays[] = Holiday::national($name, "{$year}-{$holiday[0]}");
+            }
+        }
 
         return array_merge($filteredHolidays, $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -62,11 +61,13 @@ class Czechia extends Country
             'Velký pátek' => [$easter->subDays(2), $year >= 2016],
         ];
 
-        return array_map(
-            static fn (array $variableHoliday): CarbonImmutable => $variableHoliday[0],
-            array_filter($variableHolidays,
-                static fn (array $variableHoliday): bool => $variableHoliday[1] === true
-            )
-        );
+        $result = [];
+        foreach ($variableHolidays as $name => $variableHoliday) {
+            if ($variableHoliday[1]) {
+                $result[] = Holiday::national($name, $variableHoliday[0]);
+            }
+        }
+
+        return $result;
     }
 }

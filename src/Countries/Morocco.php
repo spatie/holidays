@@ -2,42 +2,33 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
 use Spatie\Holidays\Exceptions\InvalidYear;
+use Spatie\Holidays\Holiday;
 
-class Morocco extends Country implements HasTranslations
+class Morocco extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'ma';
     }
 
-    public function defaultLocale(): string
-    {
-        return 'en';
-    }
-
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
-            'Proclamation of Independence Day' => '01-11',
-            'Amazigh New Year (ⵉⴹ ⵏ ⵢⵉⵏⵏⴰⵢⵔ)' => '01-14',
-            'Labour Day' => '05-01',
-            'Throne Day' => '07-30',
-            'Oued Ed-Dahab Day' => '08-14',
-            'Revolution Day' => '08-20',
-            'Youth Day' => '08-21',
-            'Green March' => '11-06',
-            'Independence Day' => '11-18',
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national('Proclamation of Independence Day', "{$year}-01-11"),
+            Holiday::national('Amazigh New Year (ⵉⴹ ⵏ ⵢⵉⵏⵏⴰⵢⵔ)', "{$year}-01-14"),
+            Holiday::national('Labour Day', "{$year}-05-01"),
+            Holiday::national('Throne Day', "{$year}-07-30"),
+            Holiday::national('Oued Ed-Dahab Day', "{$year}-08-14"),
+            Holiday::national('Revolution Day', "{$year}-08-20"),
+            Holiday::national('Youth Day', "{$year}-08-21"),
+            Holiday::national('Green March', "{$year}-11-06"),
+            Holiday::national('Independence Day', "{$year}-11-18"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         // Calculate the current Hijri year based on the Gregorian year
@@ -61,29 +52,28 @@ class Morocco extends Country implements HasTranslations
             'Eid al-Adha 2' => '12-11',
         ];
 
-        $islamicHolidaysOnGregorian = [];
-        // Convert Hijri dates to Gregorian and filter based on the input year
+        $holidays = [];
+
         foreach ($islamicHolidaysOnHijri as $holidayTitle => $hijriHolidayDate) {
             [$hijriHolidayMonth, $hijriHolidayDay] = explode('-', $hijriHolidayDate);
-            $vlideYear = null;
 
             $GregorianDate = $this->islamicToGregorian($currentHijriYear, (int) $hijriHolidayMonth, (int) $hijriHolidayDay);
             $vlideYear = $GregorianDate['year'];
             $tempCurrentHijriYear = $currentHijriYear;
+
             while ($vlideYear != $year) {
-                // Convert the current Hijri holiday to Gregorian
                 $GregorianDate = $this->islamicToGregorian($tempCurrentHijriYear--, (int) $hijriHolidayMonth, (int) $hijriHolidayDay);
                 $vlideYear = $GregorianDate['year'];
+
                 if ($vlideYear < 1976) {
-                    throw InvalidYear::yearTooLow(1976);
+                    throw InvalidYear::range($this->countryCode(), 1976, $year);
                 }
             }
 
-            // Store the Gregorian date of the Islamic holiday
-            $islamicHolidaysOnGregorian[$holidayTitle] = CarbonImmutable::createFromFormat('Y-m-d', sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day']));
+            $holidays[] = Holiday::national($holidayTitle, sprintf('%s-%s-%s', $GregorianDate['year'], $GregorianDate['month'], $GregorianDate['day']));
         }
 
-        return $islamicHolidaysOnGregorian;
+        return $holidays;
     }
 
     /**

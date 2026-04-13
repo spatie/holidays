@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Brazil extends Country
 {
@@ -14,27 +14,27 @@ class Brazil extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Dia de Ano Novo' => '01-01',
-            'Dia de Tiradentes' => '04-21',
-            'Dia do Trabalhador' => '05-01',
-            'Independência do Brasil' => '09-07',
-            'Nossa Senhora Aparecida' => '10-12',
-            'Finados' => '11-02',
-            'Proclamação da República' => '11-15',
-            'Dia Nacional de Zumbi e da Consciência Negra' => '11-20',
-            'Natal' => '12-25',
+            Holiday::national('Dia de Ano Novo', "{$year}-01-01"),
+            Holiday::national('Dia de Tiradentes', "{$year}-04-21"),
+            Holiday::national('Dia do Trabalhador', "{$year}-05-01"),
+            Holiday::national('Independência do Brasil', "{$year}-09-07"),
+            Holiday::national('Nossa Senhora Aparecida', "{$year}-10-12"),
+            Holiday::national('Finados', "{$year}-11-02"),
+            Holiday::national('Proclamação da República', "{$year}-11-15"),
+            Holiday::national('Dia Nacional de Zumbi e da Consciência Negra', "{$year}-11-20"),
+            Holiday::national('Natal', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Carnaval' => $easter->subDays(47),
-            'Sexta-feira Santa' => $easter->subDays(2),
-            'Corpus Christi' => $easter->addDays(60),
+            Holiday::national('Carnaval', $easter->subDays(47)),
+            Holiday::national('Sexta-feira Santa', $easter->subDays(2)),
+            Holiday::national('Corpus Christi', $easter->addDays(60)),
         ];
     }
 }

@@ -2,6 +2,9 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
+
 class UnitedStates extends Country
 {
     public function countryCode(): string
@@ -12,29 +15,29 @@ class UnitedStates extends Country
     protected function allHolidays(int $year): array
     {
         $holidays = array_merge([
-            "New Year's Day" => '01-01',
-            'Independence Day' => '07-04',
-            'Veterans Day' => '11-11',
-            'Christmas' => '12-25',
-        ], $this->variableHolidays());
+            Holiday::national("New Year's Day", "{$year}-01-01"),
+            Holiday::national('Independence Day', "{$year}-07-04"),
+            Holiday::national('Veterans Day', "{$year}-11-11"),
+            Holiday::national('Christmas', "{$year}-12-25"),
+        ], $this->variableHolidays($year));
 
         if ($year >= 2021) {
-            $holidays['Juneteenth National Independence Day'] = '06-19';
+            $holidays[] = Holiday::national('Juneteenth National Independence Day', "{$year}-06-19");
         }
 
         return $holidays;
     }
 
-    /** @return array<string, string> */
-    protected function variableHolidays(): array
+    /** @return array<Holiday> */
+    protected function variableHolidays(int $year): array
     {
         return [
-            'Martin Luther King Day' => 'third monday of January',
-            "Presidents' Day" => 'third monday of February',
-            'Memorial Day' => 'last monday of May',
-            'Labor Day' => 'first monday of September',
-            'Columbus Day' => 'second monday of October',
-            'Thanksgiving' => 'fourth thursday of November',
+            Holiday::national('Martin Luther King Day', CarbonImmutable::parse("third monday of January {$year}")),
+            Holiday::national("Presidents' Day", CarbonImmutable::parse("third monday of February {$year}")),
+            Holiday::national('Memorial Day', CarbonImmutable::parse("last monday of May {$year}")),
+            Holiday::national('Labor Day', CarbonImmutable::parse("first monday of September {$year}")),
+            Holiday::national('Columbus Day', CarbonImmutable::parse("second monday of October {$year}")),
+            Holiday::national('Thanksgiving', CarbonImmutable::parse("fourth thursday of November {$year}")),
         ];
     }
 }
