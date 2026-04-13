@@ -2,12 +2,12 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Spatie\Holidays\Calendars\IndianCalender;
+use Spatie\Holidays\Calendars\IndianCalendar;
+use Spatie\Holidays\Holiday;
 
 class India extends Country
 {
-    use IndianCalender;
+    use IndianCalendar;
 
     /**
      * No library or built-in php intl functions convert dates properly for all years or all country including
@@ -15,7 +15,7 @@ class India extends Country
      * on Google Images for each year. The accuracy of the information has been double-checked.
      * A converter algorithm that will cover all years does not seem possible.
      */
-    public const holiHolidays = [
+    protected const holiHolidays = [
         1970 => '03-23',
         1971 => '03-12',
         1972 => '02-29',
@@ -86,7 +86,7 @@ class India extends Country
         2037 => '03-02',
     ];
 
-    public const goodFridayHolidays = [
+    protected const goodFridayHolidays = [
         1970 => '03-27',
         1971 => '04-09',
         1972 => '03-31',
@@ -157,7 +157,7 @@ class India extends Country
         2037 => '04-03',
     ];
 
-    public const ramzanIdHolidays = [
+    protected const ramzanIdHolidays = [
         1970 => '11-30',
         1971 => '11-20',
         1972 => '11-08',
@@ -237,7 +237,7 @@ class India extends Country
         2037 => '11-09',
     ];
 
-    public const ramanavamiHolidays = [
+    protected const ramanavamiHolidays = [
         1970 => '04-15',
         1971 => '04-03',
         1972 => '03-23',
@@ -308,7 +308,7 @@ class India extends Country
         2037 => '03-25',
     ];
 
-    public const mahavirJayantiHolidays = [
+    protected const mahavirJayantiHolidays = [
         1970 => '04-19',
         1971 => '04-08',
         1972 => '03-27',
@@ -379,7 +379,7 @@ class India extends Country
         2037 => '03-29',
     ];
 
-    public const buddhaPurnimaHolidays = [
+    protected const buddhaPurnimaHolidays = [
         1970 => '05-21',
         1971 => '05-10',
         1972 => '05-28',
@@ -450,7 +450,7 @@ class India extends Country
         2037 => '04-29',
     ];
 
-    public const bakridHolidays = [
+    protected const bakridHolidays = [
         1970 => '02-17',
         1971 => '02-06',
         1972 => '01-27',
@@ -524,7 +524,7 @@ class India extends Country
         2037 => '01-27',
     ];
 
-    public const ashura = [
+    protected const ashura = [
         1970 => '03-18',
         1971 => '03-08',
         1972 => '02-25',
@@ -601,7 +601,7 @@ class India extends Country
         2037 => '02-26',
     ];
 
-    public const rakshabandhanHolidays = [
+    protected const rakshabandhanHolidays = [
         1970 => '08-17',
         1971 => '08-06',
         1972 => '08-24',
@@ -672,7 +672,7 @@ class India extends Country
         2037 => '08-25',
     ];
 
-    public const janmashtamiHolidays = [
+    protected const janmashtamiHolidays = [
         1970 => '08-24',
         1971 => '08-13',
         1972 => '09-01',
@@ -743,7 +743,7 @@ class India extends Country
         2037 => '09-03',
     ];
 
-    public const miladHolidays = [
+    protected const miladHolidays = [
         1970 => '05-19',
         1971 => '05-09',
         1972 => '04-27',
@@ -817,7 +817,7 @@ class India extends Country
         2037 => '04-29',
     ];
 
-    public const dussehraHolidays = [
+    protected const dussehraHolidays = [
         1970 => '10-10',
         1971 => '09-30',
         1972 => '10-17',
@@ -888,7 +888,7 @@ class India extends Country
         2037 => '10-18',
     ];
 
-    public const diwaliHolidays = [
+    protected const diwaliHolidays = [
         1970 => '10-29',
         1971 => '10-18',
         1972 => '11-05',
@@ -959,7 +959,7 @@ class India extends Country
         2037 => '11-07',
     ];
 
-    public const bhaiDujHolidays = [
+    protected const bhaiDujHolidays = [
         1970 => '10-31',
         1971 => '10-21',
         1972 => '11-07',
@@ -1030,7 +1030,7 @@ class India extends Country
         2037 => '11-08',
     ];
 
-    public const guruNanakHolidays = [
+    protected const guruNanakHolidays = [
         1970 => '11-13',
         1971 => '11-02',
         1972 => '11-20',
@@ -1106,31 +1106,36 @@ class India extends Country
         return 'in';
     }
 
+    protected function supportedYearRange(): array
+    {
+        return [1970, 2037];
+    }
+
     protected function allHolidays(int $year): array
     {
-        $newHolidays = [
-            'Holi' => self::holiHolidays[$year],
-            'Good Friday' => self::goodFridayHolidays[$year],
-            'Rama Navami' => self::ramanavamiHolidays[$year],
-            'Mahavir Jayanti' => self::mahavirJayantiHolidays[$year],
-            'Buddha Purnima/Vesak' => self::buddhaPurnimaHolidays[$year],
-            'Raksha Bandhan' => self::rakshabandhanHolidays[$year],
-            'Janmashtami' => self::janmashtamiHolidays[$year],
-            'Dussehra' => self::dussehraHolidays[$year],
-            'Diwali/Deepavali' => self::diwaliHolidays[$year],
-            'Bhai Dooj' => self::bhaiDujHolidays[$year],
-            'Guru Nanak Jayanti' => self::guruNanakHolidays[$year],
+        $religiousHolidays = [
+            Holiday::religious('Holi', "{$year}-".self::holiHolidays[$year]),
+            Holiday::religious('Good Friday', "{$year}-".self::goodFridayHolidays[$year]),
+            Holiday::religious('Rama Navami', "{$year}-".self::ramanavamiHolidays[$year]),
+            Holiday::religious('Mahavir Jayanti', "{$year}-".self::mahavirJayantiHolidays[$year]),
+            Holiday::religious('Buddha Purnima/Vesak', "{$year}-".self::buddhaPurnimaHolidays[$year]),
+            Holiday::religious('Raksha Bandhan', "{$year}-".self::rakshabandhanHolidays[$year]),
+            Holiday::religious('Janmashtami', "{$year}-".self::janmashtamiHolidays[$year]),
+            Holiday::religious('Dussehra', "{$year}-".self::dussehraHolidays[$year]),
+            Holiday::religious('Diwali/Deepavali', "{$year}-".self::diwaliHolidays[$year]),
+            Holiday::religious('Bhai Dooj', "{$year}-".self::bhaiDujHolidays[$year]),
+            Holiday::religious('Guru Nanak Jayanti', "{$year}-".self::guruNanakHolidays[$year]),
         ];
 
         return array_merge([
-            'Republic Day' => '01-26',
-            'Independence Day' => '08-15',
-            'Mahatma Gandhi Jayanti' => '10-02',
-            'Christmas' => '12-25',
-        ], $newHolidays, $this->otherHolidays($year));
+            Holiday::national('Republic Day', "{$year}-01-26"),
+            Holiday::national('Independence Day', "{$year}-08-15"),
+            Holiday::national('Mahatma Gandhi Jayanti', "{$year}-10-02"),
+            Holiday::national('Christmas', "{$year}-12-25"),
+        ], $religiousHolidays, $this->otherHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     public function otherHolidays(int $year): array
     {
         $ashura = $this->ashura($year);

@@ -2,8 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Carbon\Exceptions\InvalidFormatException;
+use Spatie\Holidays\Holiday;
 
 class Panama extends Country
 {
@@ -18,39 +17,39 @@ class Panama extends Country
     protected function allHolidays(int $year): array
     {
         $fixedHolidays = [
-            'Año Nuevo' => '01-01',
-            'Día de los Mártires' => '01-09',
-            'Día del Trabajador' => '05-01',
-            'Separación de Panamá de Colombia' => '11-03',
-            'Día de los Símbolos Patrios' => '11-04',
-            'Día de Consolidación de la Separación de Panamá con Colombia en Colón' => '11-05',
-            'Grito de la Independencia' => '11-10',
-            'Independencia de Panamá de España' => '11-28',
-            'Día de las Madres' => '12-08',
-            'Día de los Caídos por la invasión de Estados Unidos a Panamá' => '12-20',
-            'Navidad' => '12-25',
+            Holiday::national('Año Nuevo', "{$year}-01-01"),
+            Holiday::national('Día de los Mártires', "{$year}-01-09"),
+            Holiday::national('Día del Trabajador', "{$year}-05-01"),
+            Holiday::national('Separación de Panamá de Colombia', "{$year}-11-03"),
+            Holiday::national('Día de los Símbolos Patrios', "{$year}-11-04"),
+            Holiday::national('Día de Consolidación de la Separación de Panamá con Colombia en Colón', "{$year}-11-05"),
+            Holiday::national('Grito de la Independencia', "{$year}-11-10"),
+            Holiday::national('Independencia de Panamá de España', "{$year}-11-28"),
+            Holiday::national('Día de las Madres', "{$year}-12-08"),
+            Holiday::national('Día de los Caídos por la invasión de Estados Unidos a Panamá', "{$year}-12-20"),
+            Holiday::national('Navidad', "{$year}-12-25"),
         ];
 
         return array_merge(
             $fixedHolidays,
             $this->variableHolidays($year),
-            $this->calculateBridgeDays($fixedHolidays, $year),
+            $this->calculateBridgeDays($fixedHolidays),
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Carnaval (Día 1)' => $easter->subDays(50),
-            'Carnaval (Día 2)' => $easter->subDays(49),
-            'Carnaval (Día 3)' => $easter->subDays(48),
-            'Carnaval (Día 4)' => $easter->subDays(47),
-            'Jueves Santo' => $easter->subDays(3),
-            'Viernes Santo' => $easter->subDays(2),
-            'Sábado de Gloria' => $easter->subDays(1),
+            Holiday::national('Carnaval (Día 1)', $easter->subDays(50)),
+            Holiday::national('Carnaval (Día 2)', $easter->subDays(49)),
+            Holiday::national('Carnaval (Día 3)', $easter->subDays(48)),
+            Holiday::national('Carnaval (Día 4)', $easter->subDays(47)),
+            Holiday::national('Jueves Santo', $easter->subDays(3)),
+            Holiday::national('Viernes Santo', $easter->subDays(2)),
+            Holiday::national('Sábado de Gloria', $easter->subDays(1)),
         ];
     }
 
@@ -70,28 +69,21 @@ class Panama extends Country
      *  established for a national celebration to coincide with a Sunday, the following Monday
      *  will be enabled as a mandatory weekly rest day"
      *
-     * @param  array<string, string>  $fixedHolidays  Array of holidays in the format ['holiday name' => 'mm-dd']
-     * @param  int  $year  The year for which to calculate the holidays
-     * @return array<string, CarbonImmutable>
+     * @param  array<Holiday>  $fixedHolidays
+     * @return array<Holiday>
      */
-    protected function calculateBridgeDays(array $fixedHolidays, int $year): array
+    protected function calculateBridgeDays(array $fixedHolidays): array
     {
-        $holidays = [];
+        $bridgeDays = [];
 
-        foreach ($fixedHolidays as $name => $date) {
-            $holiday = CarbonImmutable::createFromFormat('Y-m-d', "{$year}-{$date}");
+        foreach ($fixedHolidays as $holiday) {
+            $date = $holiday->date;
 
-            if ($holiday === null) {
-                throw new InvalidFormatException("Invalid date format for holiday: {$name}");
-            }
-
-            $holidays[$name] = $holiday;
-
-            if ($holiday->isSunday()) {
-                $holidays[$name.' (Puente)'] = $holiday->addDay();
+            if ($date->isSunday()) {
+                $bridgeDays[] = Holiday::national($holiday->name.' (Puente)', $date->addDay());
             }
         }
 
-        return $holidays;
+        return $bridgeDays;
     }
 }

@@ -2,14 +2,10 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Holiday;
 
-class Uzbekistan extends Country implements HasTranslations
+class Uzbekistan extends Country
 {
-    use Translatable;
-
     /**
      * Islamic holidays (Ramadan & Sacrifice) are obtained constantly from 1991 to 2037 (https://www.timeanddate.com/holidays/uzbekistan/)
      */
@@ -127,12 +123,12 @@ class Uzbekistan extends Country implements HasTranslations
         return 'uz';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'uz';
     }
 
-    /** @return array<string, CarbonImmutable|string> */
+    /** @return array<Holiday> */
     protected function allHolidays(int $year): array
     {
         // After gaining independence on September 1, 1991, Uzbekistan introduced a new set of public holidays.
@@ -141,17 +137,17 @@ class Uzbekistan extends Country implements HasTranslations
         }
 
         return array_merge([
-            'Yangi yil' => '01-01',
-            'Xalqaro xotin-qizlar kuni' => '03-08',
-            "Navro'z" => '03-21',
-            'Xotira va qadrlash kuni' => '05-09',
-            'Mustaqillik kuni' => '09-01',
-            'Ustoz va murabbiylar kuni' => '10-01',
-            'Konstitutsiya kuni' => '12-08',
+            Holiday::national('Yangi yil', "{$year}-01-01"),
+            Holiday::national('Xalqaro xotin-qizlar kuni', "{$year}-03-08"),
+            Holiday::national("Navro'z", "{$year}-03-21"),
+            Holiday::national('Xotira va qadrlash kuni', "{$year}-05-09"),
+            Holiday::national('Mustaqillik kuni', "{$year}-09-01"),
+            Holiday::national('Ustoz va murabbiylar kuni', "{$year}-10-01"),
+            Holiday::national('Konstitutsiya kuni', "{$year}-12-08"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable|string> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $holidays = [];
@@ -159,14 +155,14 @@ class Uzbekistan extends Country implements HasTranslations
         if (isset(self::ramadanHolidays[$year])) {
             foreach ((array) self::ramadanHolidays[$year] as $key => $holiday) {
                 $prefix = $key == 0 ? '' : ' '.($key + 1);
-                $holidays['Ramazon Hayiti'.$prefix] = $holiday;
+                $holidays[] = Holiday::national("Ramazon Hayiti{$prefix}", "{$year}-{$holiday}");
             }
         }
 
         if (isset(self::sacrificeHolidays[$year])) {
             foreach ((array) self::sacrificeHolidays[$year] as $key => $holiday) {
                 $prefix = $key == 0 ? '' : ' '.($key + 1);
-                $holidays['Qurbon Hayiti'.$prefix] = $holiday;
+                $holidays[] = Holiday::national("Qurbon Hayiti{$prefix}", "{$year}-{$holiday}");
             }
         }
 

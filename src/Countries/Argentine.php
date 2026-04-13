@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Argentine extends Country
 {
@@ -14,27 +14,27 @@ class Argentine extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Día de Año Nuevo' => '01-01',
-            'Carnaval' => '12-02',
-            'Carnaval Día 2' => '02-13',
-            'Día Nacional de la Memoria por la Verdad y la Justicia' => '04-24',
-            'Día del Veterano y de los Caídos en la Guerra de Malvinas' => '02-04',
-            'Día del Trabajador' => '05-01',
-            'Revolución de Mayo' => '05-25',
-            'Paso a la Inmortalidad del General Manuel Belgrano' => '06-20',
-            'Día de la Independencia' => '09-07',
-            'Día de la Inmaculada Concepción de María' => '08-12',
-            'Navidad' => '12-25',
+            Holiday::national('Día de Año Nuevo', "{$year}-01-01"),
+            Holiday::national('Carnaval', "{$year}-02-12"),
+            Holiday::national('Carnaval Día 2', "{$year}-02-13"),
+            Holiday::national('Día Nacional de la Memoria por la Verdad y la Justicia', "{$year}-03-24"),
+            Holiday::national('Día del Veterano y de los Caídos en la Guerra de Malvinas', "{$year}-04-02"),
+            Holiday::national('Día del Trabajador', "{$year}-05-01"),
+            Holiday::national('Revolución de Mayo', "{$year}-05-25"),
+            Holiday::national('Paso a la Inmortalidad del General Manuel Belgrano', "{$year}-06-20"),
+            Holiday::national('Día de la Independencia', "{$year}-07-09"),
+            Holiday::national('Día de la Inmaculada Concepción de María', "{$year}-12-08"),
+            Holiday::national('Navidad', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Viernes Santo' => $easter->subDays(2),
+            Holiday::national('Viernes Santo', $easter->subDays(2)),
         ];
     }
 }

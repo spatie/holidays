@@ -2,9 +2,11 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use DateTime;
 use DateTimeZone;
 use IntlDateFormatter;
+use Spatie\Holidays\Holiday;
 
 class Taiwan extends Country
 {
@@ -18,26 +20,36 @@ class Taiwan extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            '元旦' => '01-01',
-            '228和平紀念日' => '02-28',
-            '兒童節' => '04-04',
-            '雙十國慶' => '10-10',
+            Holiday::national('元旦', "{$year}-01-01"),
+            Holiday::national('228和平紀念日', "{$year}-02-28"),
+            Holiday::national('兒童節', "{$year}-04-04"),
+            Holiday::national('雙十國慶', "{$year}-10-10"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, string> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
-        return array_filter(array_map(fn ($date): ?string => $this->lunarCalendar($date, $year), [
+        $holidays = [];
+        $dates = [
             '農曆春節-正月初一' => '01-01',
             '農曆春節-正月初二' => '01-02',
             '農曆春節-正月初三' => '01-03',
             '端午節' => '05-05',
             '中秋節' => '08-15',
-        ]));
+        ];
+
+        foreach ($dates as $name => $date) {
+            $holidayDate = $this->lunarCalendar($date, $year);
+            if ($holidayDate !== null) {
+                $holidays[] = Holiday::national($name, $holidayDate);
+            }
+        }
+
+        return $holidays;
     }
 
-    protected function lunarCalendar(string $input, int $year): ?string
+    protected function lunarCalendar(string $input, int $year): ?CarbonImmutable
     {
         $formatter = new IntlDateFormatter(
             locale: 'zh-TW@calendar=chinese',
@@ -47,7 +59,7 @@ class Taiwan extends Country
             calendar: IntlDateFormatter::TRADITIONAL
         );
 
-        $lunarDateStr = $year.'-'.$input;
+        $lunarDateStr = "{$year}-{$input}";
         $parsedTimestamp = $formatter->parse($lunarDateStr);
 
         if ($parsedTimestamp === false) {
@@ -58,6 +70,6 @@ class Taiwan extends Country
         $dateTime->setTimestamp((int) $parsedTimestamp);
         $dateTime->setTimezone(new DateTimeZone($this->timezone));
 
-        return $dateTime->format('m-d');
+        return new CarbonImmutable($dateTime->format('Y-m-d'));
     }
 }

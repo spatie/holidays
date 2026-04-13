@@ -1,23 +1,15 @@
 [
     {
-        "name": "Hari Wesak",
-        "date": "2024-01-01"
-    },
-    {
-        "name": "Hari Thaipusam",
-        "date": "2024-01-01"
-    },
-    {
-        "name": "Hari Deepavali",
-        "date": "2024-01-01"
-    },
-    {
         "name": "Tahun Baru",
         "date": "2024-01-01"
     },
     {
         "name": "Hari Keputeraan Yang Di-Pertuan Besar Negeri Sembilan",
         "date": "2024-01-14"
+    },
+    {
+        "name": "Hari Thaipusam",
+        "date": "2024-01-25"
     },
     {
         "name": "Hari Wilayah Persekutuan",
@@ -78,6 +70,10 @@
     {
         "name": "Hari Keputeraan Raja Perlis",
         "date": "2024-05-17"
+    },
+    {
+        "name": "Hari Wesak",
+        "date": "2024-05-22"
     },
     {
         "name": "Hari Hol Pahang",
@@ -174,6 +170,10 @@
     {
         "name": "Harijadi Yang di-Pertua Negeri Sarawak",
         "date": "2024-10-12"
+    },
+    {
+        "name": "Hari Deepavali",
+        "date": "2024-11-01"
     },
     {
         "name": "Hari Keputeraan Sultan Perak",

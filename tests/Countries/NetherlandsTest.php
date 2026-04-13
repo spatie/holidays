@@ -37,5 +37,5 @@ it('can get dutch holidays in english', function () {
         ->toBeArray()
         ->not()->toBeEmpty();
 
-    expect($result[0]['name'])->toBe('New Year\'s Day');
+    expect($result[0]->name)->toBe('New Year\'s Day');
 });

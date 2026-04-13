@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Estonia extends Country
 {
@@ -14,27 +14,27 @@ class Estonia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Uusaasta' => '01-01',
-            'Iseseisvuspäev' => '02-24',
-            'Kevadpüha' => '05-01',
-            'Võidupüha' => '06-23',
-            'Jaanipäev' => '06-24',
-            'Taasiseseisvumispäev' => '08-20',
-            'Jõululaupäev' => '12-24',
-            'Esimene jõulupüha' => '12-25',
-            'Teine jõulupüha' => '12-26',
+            Holiday::national('Uusaasta', "{$year}-01-01"),
+            Holiday::national('Iseseisvuspäev', "{$year}-02-24"),
+            Holiday::national('Kevadpüha', "{$year}-05-01"),
+            Holiday::national('Võidupüha', "{$year}-06-23"),
+            Holiday::national('Jaanipäev', "{$year}-06-24"),
+            Holiday::national('Taasiseseisvumispäev', "{$year}-08-20"),
+            Holiday::national('Jõululaupäev', "{$year}-12-24"),
+            Holiday::national('Esimene jõulupüha', "{$year}-12-25"),
+            Holiday::national('Teine jõulupüha', "{$year}-12-26"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Suur reede' => $easter->subDays(2),
-            'Ülestõusmispühade 1. püha' => $easter,
-            'Nelipühade 1. püha' => $easter->addDays(49),
+            Holiday::national('Suur reede', $easter->subDays(2)),
+            Holiday::national('Ülestõusmispühade 1. püha', $easter),
+            Holiday::national('Nelipühade 1. püha', $easter->addDays(49)),
         ];
     }
 }

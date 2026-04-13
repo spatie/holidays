@@ -4,21 +4,19 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Spatie\Holidays\Concerns\Observable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Concerns\HasObservedHolidays;
+use Spatie\Holidays\Holiday;
 
-class Ecuador extends Country implements HasTranslations
+class Ecuador extends Country
 {
-    use Observable;
-    use Translatable;
+    use HasObservedHolidays;
 
     public function countryCode(): string
     {
         return 'ec';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'es';
     }
@@ -26,11 +24,11 @@ class Ecuador extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            "New Year's Day" => '01-01',
+            Holiday::national("New Year's Day", "{$year}-01-01"),
         ], $this->variableHolidays($year));
     }
 
-    public function nearestDay(int $year, int $month, int $day): CarbonInterface
+    public function nearestDay(int $year, int $month, int $day): CarbonImmutable
     {
         $date = CarbonImmutable::createFromDate($year, $month, $day);
 
@@ -43,16 +41,16 @@ class Ecuador extends Country implements HasTranslations
         }
 
         if ($date->is('Wednesday') || $date->is('Thursday')) {
-            return $date->next(CarbonInterface::FRIDAY);
+            return $date->next(CarbonInterface::FRIDAY)->toImmutable();
         }
 
         return $date;
     }
 
-    public function getChristmasHoliday(int $year): CarbonInterface
+    public function getChristmasHoliday(int $year): CarbonImmutable
     {
         if ($year === 2022) {
-            $observedChristmasDay = $this->sundayToNextMonday('12-25', $year);
+            $observedChristmasDay = $this->sundayToNextMonday(CarbonImmutable::createFromDate($year, 12, 25));
 
             if ($observedChristmasDay !== null) {
                 return $observedChristmasDay;
@@ -62,23 +60,23 @@ class Ecuador extends Country implements HasTranslations
         return CarbonImmutable::createFromDate($year, 12, 25);
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
         $ashWednesday = $easter->subDays(46);
 
         return [
-            'Holy Friday' => $easter->subDays(2),
-            'Carnival Monday' => $ashWednesday->subDays(2),
-            'Carnival Tuesday' => $ashWednesday->subDay(),
-            'Labor Day' => $this->nearestDay($year, 5, 1),
-            'Battle of Pichincha' => $this->nearestDay($year, 5, 24),
-            'Independence Day' => $this->nearestDay($year, 8, 10),
-            'Independence Of Guayaquil' => $this->nearestDay($year, 10, 9),
-            "All Souls' Day" => $this->nearestDay($year, 11, 2),
-            'Independence Of Cuenca' => $this->nearestDay($year, 11, 3),
-            'Christmas' => $this->getChristmasHoliday($year),
+            Holiday::national('Holy Friday', $easter->subDays(2)),
+            Holiday::national('Carnival Monday', $ashWednesday->subDays(2)),
+            Holiday::national('Carnival Tuesday', $ashWednesday->subDay()),
+            Holiday::national('Labor Day', $this->nearestDay($year, 5, 1)),
+            Holiday::national('Battle of Pichincha', $this->nearestDay($year, 5, 24)),
+            Holiday::national('Independence Day', $this->nearestDay($year, 8, 10)),
+            Holiday::national('Independence Of Guayaquil', $this->nearestDay($year, 10, 9)),
+            Holiday::national("All Souls' Day", $this->nearestDay($year, 11, 2)),
+            Holiday::national('Independence Of Cuenca', $this->nearestDay($year, 11, 3)),
+            Holiday::national('Christmas', $this->getChristmasHoliday($year)),
         ];
     }
 }

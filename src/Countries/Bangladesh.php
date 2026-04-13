@@ -2,42 +2,32 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Holiday;
 
-class Bangladesh extends Country implements HasTranslations
+class Bangladesh extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'bd';
     }
 
-    public function defaultLocale(): string
-    {
-        return 'en';
-    }
-
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'International Mother Language Day' => '02-21',
-            'Birthday of Sheikh Mujibur Rahman' => '03-17',
-            'Independence Day' => '03-26',
-            'Bengali New Year' => '04-14',
-            'May Day' => '05-01',
-            'National Mourning Day' => '08-15',
-            'Victory Day' => '12-16',
-            'Christmas Day' => '12-25',
+            Holiday::national('International Mother Language Day', "{$year}-02-21"),
+            Holiday::national('Birthday of Sheikh Mujibur Rahman', "{$year}-03-17"),
+            Holiday::national('Independence Day', "{$year}-03-26"),
+            Holiday::national('Bengali New Year', "{$year}-04-14"),
+            Holiday::national('May Day', "{$year}-05-01"),
+            Holiday::national('National Mourning Day', "{$year}-08-15"),
+            Holiday::national('Victory Day', "{$year}-12-16"),
+            Holiday::national('Christmas Day', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
-        // The variable holidays all follow the lunar calendar, so their dates are not confirmed.
         return [];
     }
 }
