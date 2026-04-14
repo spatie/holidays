@@ -53,7 +53,7 @@ class UnitedStates extends Country
 
     protected function observed(string $dateString): CarbonImmutable
     {
-        $date = CarbonImmutable::createFromFormat('Y-m-d', $dateString)->startOfDay();
+        $date = new CarbonImmutable($dateString);
 
         return match ($date->dayOfWeek) {
             CarbonInterface::SATURDAY => $date->subDay(),
