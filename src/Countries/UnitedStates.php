@@ -3,8 +3,8 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Holiday;
 use Carbon\CarbonInterface;
+use Spatie\Holidays\Holiday;
 
 class UnitedStates extends Country
 {
