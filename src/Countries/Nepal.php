@@ -3,6 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Spatie\Holidays\Calendars\NepaliCalendar;
+use Spatie\Holidays\Holiday;
 
 class Nepal extends Country
 {
@@ -13,13 +14,13 @@ class Nepal extends Country
         return 'np';
     }
 
-    /** @return array<string,string> */
+    /** @return array<Holiday> */
     protected function allHolidays(int $year): array
     {
-        return array_merge($this->holidayAccordingToGregorianCalendar(), $this->variableHolidays($year));
+        return array_merge($this->holidayAccordingToGregorianCalendar($year), $this->variableHolidays($year));
     }
 
-    /** @return array<string,string> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         return array_merge($this->holidaysAccordingToBikramSambatCalendar($year), $this->holidaysAccordingToLunarCalendar($year));

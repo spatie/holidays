@@ -4,19 +4,16 @@ namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Holiday;
 
-class Finland extends Country implements HasTranslations
+class Finland extends Country
 {
-    use Translatable;
-
     public function countryCode(): string
     {
         return 'fi';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'fi';
     }
@@ -24,43 +21,43 @@ class Finland extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge(
-            $this->fixedHolidays(),
+            $this->fixedHolidays($year),
             $this->variableHolidays($year)
         );
     }
 
-    /** @return array<string, string> */
-    protected function fixedHolidays(): array
+    /** @return array<Holiday> */
+    protected function fixedHolidays(int $year): array
     {
         return [
-            'Uudenvuodenpäivä' => '01-01',
-            'Loppiainen' => '01-06',
-            'Vappu' => '05-01',
-            'Itsenäisyyspäivä' => '12-06',
-            'Joulupäivä' => '12-25',
-            'Tapaninpäivä' => '12-26',
+            Holiday::national('Uudenvuodenpäivä', "{$year}-01-01"),
+            Holiday::national('Loppiainen', "{$year}-01-06"),
+            Holiday::national('Vappu', "{$year}-05-01"),
+            Holiday::national('Itsenäisyyspäivä', "{$year}-12-06"),
+            Holiday::national('Joulupäivä', "{$year}-12-25"),
+            Holiday::national('Tapaninpäivä', "{$year}-12-26"),
         ];
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         $midsummerDay = CarbonImmutable::createFromDate($year, 6, 20)
-            ->next(CarbonInterface::SATURDAY);
+            ->next(CarbonInterface::SATURDAY)->toImmutable();
 
         return [
-            'Pitkäperjantai' => $easter->subDays(2),
-            'Pääsiäispäivä' => $easter,
-            'Toinen pääsiäispäivä' => $easter->addDay(),
-            'Helatorstai' => $easter->addDays(39),
-            'Helluntaipäivä' => $easter->addDays(49),
-            'Juhannuspäivä' => $midsummerDay->day > 26
+            Holiday::national('Pitkäperjantai', $easter->subDays(2)),
+            Holiday::national('Pääsiäispäivä', $easter),
+            Holiday::national('Toinen pääsiäispäivä', $easter->addDay()),
+            Holiday::national('Helatorstai', $easter->addDays(39)),
+            Holiday::national('Helluntaipäivä', $easter->addDays(49)),
+            Holiday::national('Juhannuspäivä', $midsummerDay->day > 26
                 ? $midsummerDay->subWeek()
-                : $midsummerDay,
-            'Pyhäinpäivä' => CarbonImmutable::createFromDate($year, 10, 31)
-                ->next(CarbonInterface::SATURDAY),
+                : $midsummerDay),
+            Holiday::national('Pyhäinpäivä', CarbonImmutable::createFromDate($year, 10, 31)
+                ->next(CarbonInterface::SATURDAY)->toImmutable()),
         ];
     }
 }

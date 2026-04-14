@@ -2,7 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 
 class Haiti extends Country
 {
@@ -14,27 +14,27 @@ class Haiti extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Nouvel an / Jour de l\'Indépendance' => '01-01',
-            'Jour des Aieux' => '01-2',
-            'Fête du Travail / Fête des Travailleurs' => '05-01',
-            'Jour du Drapeau et de l\'Université' => '05-18',
-            "L'Assomption de Marie" => '08-15',
-            'Anniversaire de la mort de Dessalines' => '10-17',
-            'Toussaint' => '11-01',
-            'Jour des Morts' => '11-02',
-            'Vertières' => '11-18',
-            'Noël' => '12-25',
+            Holiday::national('Nouvel an / Jour de l\'Indépendance', "{$year}-01-01"),
+            Holiday::national('Jour des Aieux', "{$year}-01-02"),
+            Holiday::national('Fête du Travail / Fête des Travailleurs', "{$year}-05-01"),
+            Holiday::national('Jour du Drapeau et de l\'Université', "{$year}-05-18"),
+            Holiday::national("L'Assomption de Marie", "{$year}-08-15"),
+            Holiday::national('Anniversaire de la mort de Dessalines', "{$year}-10-17"),
+            Holiday::national('Toussaint', "{$year}-11-01"),
+            Holiday::national('Jour des Morts', "{$year}-11-02"),
+            Holiday::national('Vertières', "{$year}-11-18"),
+            Holiday::national('Noël', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Carnaval/Mardi Gras' => $easter->subDays(47),
-            'Vendredi saint' => $easter->subDays(2),
+            Holiday::national('Carnaval/Mardi Gras', $easter->subDays(47)),
+            Holiday::national('Vendredi saint', $easter->subDays(2)),
         ];
     }
 }

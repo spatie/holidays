@@ -3,23 +3,36 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Spatie\Holidays\Concerns\Translatable;
-use Spatie\Holidays\Contracts\HasTranslations;
+use Spatie\Holidays\Contracts\HasRegions;
+use Spatie\Holidays\Exceptions\InvalidRegion;
+use Spatie\Holidays\Holiday;
 
-class Germany extends Country implements HasTranslations
+class Germany extends Country implements HasRegions
 {
-    use Translatable;
-
     protected function __construct(
         protected ?string $region = null,
-    ) {}
+    ) {
+        if ($region !== null && ! in_array($region, static::regions())) {
+            throw InvalidRegion::notFound($region);
+        }
+    }
+
+    public static function regions(): array
+    {
+        return ['DE-BW', 'DE-BY', 'DE-BE', 'DE-BB', 'DE-HB', 'DE-HH', 'DE-HE', 'DE-MV', 'DE-NI', 'DE-NW', 'DE-RP', 'DE-SL', 'DE-SN', 'DE-ST', 'DE-SH', 'DE-TH'];
+    }
+
+    public function region(): ?string
+    {
+        return $this->region;
+    }
 
     public function countryCode(): string
     {
         return 'de';
     }
 
-    public function defaultLocale(): string
+    protected function defaultLocale(): string
     {
         return 'de';
     }
@@ -27,10 +40,10 @@ class Germany extends Country implements HasTranslations
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Neujahr' => '01-01',
-            'Tag der Arbeit' => '05-01',
-            '1. Weihnachtstag' => '12-25',
-            '2. Weihnachtstag' => '12-26',
+            Holiday::national('Neujahr', "{$year}-01-01"),
+            Holiday::national('Tag der Arbeit', "{$year}-05-01"),
+            Holiday::national('1. Weihnachtstag', "{$year}-12-25"),
+            Holiday::national('2. Weihnachtstag', "{$year}-12-26"),
         ],
             $this->variableHolidays($year),
             $this->historicalHolidays($year),
@@ -38,42 +51,40 @@ class Germany extends Country implements HasTranslations
         );
     }
 
-    /** @return array<string, CarbonImmutable> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Karfreitag' => $easter->subDays(2),
-            'Ostermontag' => $easter->addDay(),
-            'Himmelfahrt' => $easter->addDays(39),
-            'Pfingstmontag' => $easter->addDays(50),
+            Holiday::national('Karfreitag', $easter->subDays(2)),
+            Holiday::national('Ostermontag', $easter->addDay()),
+            Holiday::national('Himmelfahrt', $easter->addDays(39)),
+            Holiday::national('Pfingstmontag', $easter->addDays(50)),
         ];
     }
 
-    /** @return array<string, string> */
+    /** @return array<Holiday> */
     protected function historicalHolidays(int $year): array
     {
-        $historicalHolidays = [];
+        $holidays = [];
 
-        if ($year >= 1954 && $year <= 1990) {
-            $historicalHolidays['Tag der deutschen Einheit'] = '06-17';
-        } else {
-            $historicalHolidays['Tag der deutschen Einheit'] = '10-03';
-        }
+        $holidays[] = Holiday::national('Tag der deutschen Einheit', ($year >= 1954 && $year <= 1990)
+            ? "{$year}-06-17"
+            : "{$year}-10-03");
 
         if ($year >= 1990 && $year <= 1994) {
-            $historicalHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
+            $holidays[] = Holiday::national('Buß- und Bettag', $this->getRepentanceAndPrayerDay($year));
         }
 
         if ($year === 2017) {
-            $historicalHolidays['Reformationstag'] = '10-31';
+            $holidays[] = Holiday::national('Reformationstag', "{$year}-10-31");
         }
 
-        return $historicalHolidays;
+        return $holidays;
     }
 
-    /** @return array<string, CarbonImmutable|string> */
+    /** @return array<Holiday> */
     protected function regionHolidays(int $year): array
     {
         $easter = $this->easter($year);
@@ -81,51 +92,50 @@ class Germany extends Country implements HasTranslations
         switch ($this->region) {
             case 'DE-BW':
                 return [
-                    'Heilige Drei Könige' => '01-06',
-                    'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => '11-01',
+                    Holiday::regional('Heilige Drei Könige', "{$year}-01-06", 'DE-BW'),
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), 'DE-BW'),
+                    Holiday::regional('Allerheiligen', "{$year}-11-01", 'DE-BW'),
                 ];
             case 'DE-BY':
                 $byHolidays = [
-                    'Heilige Drei Könige' => '01-06',
-                    'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => '11-01',
-                    'Mariä Himmelfahrt' => '08-15',
+                    Holiday::regional('Heilige Drei Könige', "{$year}-01-06", 'DE-BY'),
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), 'DE-BY'),
+                    Holiday::regional('Allerheiligen', "{$year}-11-01", 'DE-BY'),
+                    Holiday::regional('Mariä Himmelfahrt', "{$year}-08-15", 'DE-BY'),
                 ];
                 if ($year >= 1948 && $year <= 1969) {
-                    $byHolidays['Josefstag'] = '03-19';
+                    $byHolidays[] = Holiday::regional('Josefstag', "{$year}-03-19", 'DE-BY');
                 }
 
                 return $byHolidays;
 
             case 'DE-BE':
-                $beHolidays = [
-                ];
+                $beHolidays = [];
                 if ($year >= 2019) {
-                    $beHolidays['Internationaler Frauentag'] = '03-08';
+                    $beHolidays[] = Holiday::regional('Internationaler Frauentag', "{$year}-03-08", 'DE-BE');
                 }
 
                 if ($year === 2020 || $year === 2025) {
-                    $beHolidays['Tag der Befreiung'] = '05-08';
+                    $beHolidays[] = Holiday::regional('Tag der Befreiung', "{$year}-05-08", 'DE-BE');
                 }
 
                 if ($year === 2028) {
-                    $beHolidays['75-jähriges Jubiläum des Volksaufstands in der DDR'] = '06-17';
+                    $beHolidays[] = Holiday::regional('75-jähriges Jubiläum des Volksaufstands in der DDR', "{$year}-06-17", 'DE-BE');
                 }
 
                 return $beHolidays;
             case 'DE-BB':
                 if ($year >= 1991) {
                     return [
-                        'Ostersonntag' => $easter,
-                        'Reformationstag' => '10-31',
-                        'Pfingstsonntag' => $easter->addDays(49),
+                        Holiday::regional('Ostersonntag', $easter, 'DE-BB'),
+                        Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-BB'),
+                        Holiday::regional('Pfingstsonntag', $easter->addDays(49), 'DE-BB'),
                     ];
                 }
 
                 return [
-                    'Ostersonntag' => $easter,
-                    'Pfingstsonntag' => $easter->addDays(49),
+                    Holiday::regional('Ostersonntag', $easter, 'DE-BB'),
+                    Holiday::regional('Pfingstsonntag', $easter->addDays(49), 'DE-BB'),
                 ];
             case 'DE-HB':
             case 'DE-HH':
@@ -133,7 +143,7 @@ class Germany extends Country implements HasTranslations
             case 'DE-SH':
                 if ($year >= 2017) {
                     return [
-                        'Reformationstag' => '10-31',
+                        Holiday::regional('Reformationstag', "{$year}-10-31", $this->region),
                     ];
                 }
 
@@ -141,18 +151,18 @@ class Germany extends Country implements HasTranslations
 
             case 'DE-HE':
                 return [
-                    'Ostersonntag' => $easter,
-                    'Pfingstsonntag' => $easter->addDays(49),
-                    'Fronleichnam' => $easter->addDays(60),
+                    Holiday::regional('Ostersonntag', $easter, 'DE-HE'),
+                    Holiday::regional('Pfingstsonntag', $easter->addDays(49), 'DE-HE'),
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), 'DE-HE'),
                 ];
             case 'DE-MV':
                 $mvHolidays = [];
                 if ($year >= 1990) {
-                    $mvHolidays['Reformationstag'] = '10-31';
+                    $mvHolidays[] = Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-MV');
                 }
 
                 if ($year >= 2023) {
-                    $mvHolidays['Internationaler Frauentag'] = '03-08';
+                    $mvHolidays[] = Holiday::regional('Internationaler Frauentag', "{$year}-03-08", 'DE-MV');
                 }
 
                 return $mvHolidays;
@@ -160,24 +170,24 @@ class Germany extends Country implements HasTranslations
             case 'DE-RP':
 
                 return [
-                    'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => '11-01',
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), $this->region),
+                    Holiday::regional('Allerheiligen', "{$year}-11-01", $this->region),
                 ];
             case 'DE-SL':
                 return [
-                    'Fronleichnam' => $easter->addDays(60),
-                    'Allerheiligen' => '11-01',
-                    'Mariä Himmelfahrt' => '08-15',
+                    Holiday::regional('Fronleichnam', $easter->addDays(60), 'DE-SL'),
+                    Holiday::regional('Allerheiligen', "{$year}-11-01", 'DE-SL'),
+                    Holiday::regional('Mariä Himmelfahrt', "{$year}-08-15", 'DE-SL'),
                 ];
             case 'DE-SN':
                 $snHolidays = [];
                 if ($year >= 1990) {
-                    $snHolidays['Reformationstag'] = '10-31';
+                    $snHolidays[] = Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-SN');
 
                 }
 
                 if ($year > 1994) {
-                    $snHolidays['Buß- und Bettag'] = $this->getRepentanceAndPrayerDay($year);
+                    $snHolidays[] = Holiday::regional('Buß- und Bettag', $this->getRepentanceAndPrayerDay($year), 'DE-SN');
 
                 }
 
@@ -185,21 +195,23 @@ class Germany extends Country implements HasTranslations
             case 'DE-ST':
                 $stHolidays = [];
                 if ($year >= 1990) {
-                    $stHolidays['Reformationstag'] = '10-31';
+                    $stHolidays[] = Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-ST');
 
                 }
 
                 if ($year >= 1991) {
-                    $stHolidays['Heilige Drei Könige'] = '01-06';
+                    $stHolidays[] = Holiday::regional('Heilige Drei Könige', "{$year}-01-06", 'DE-ST');
                 }
+
+                return $stHolidays;
             case 'DE-TH':
                 $thHolidays = [];
                 if ($year >= 1990) {
-                    $thHolidays['Reformationstag'] = '10-31';
+                    $thHolidays[] = Holiday::regional('Reformationstag', "{$year}-10-31", 'DE-TH');
                 }
 
                 if ($year >= 2019) {
-                    $thHolidays['Weltkindertag'] = '09-20';
+                    $thHolidays[] = Holiday::regional('Weltkindertag', "{$year}-09-20", 'DE-TH');
                 }
 
                 return $thHolidays;
@@ -210,6 +222,6 @@ class Germany extends Country implements HasTranslations
 
     protected function getRepentanceAndPrayerDay(int $year): CarbonImmutable
     {
-        return (new CarbonImmutable('next wednesday '.$year.'-11-15'))->startOfDay();
+        return new CarbonImmutable("next wednesday {$year}-11-15")->startOfDay();
     }
 }

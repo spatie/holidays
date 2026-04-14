@@ -3,7 +3,7 @@
 namespace Spatie\Holidays\Countries;
 
 use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
+use Spatie\Holidays\Holiday;
 
 class Colombia extends Country
 {
@@ -15,38 +15,37 @@ class Colombia extends Country
     protected function allHolidays(int $year): array
     {
         return array_merge([
-            'Año Nuevo' => '01-01',
-            'Día del Trabajo' => '05-01',
-            'Día de la independencia' => '07-20',
-            'Batalla de Boyacá' => '08-07',
-            'Inmaculada Concepción' => '12-08',
-            'Navidad' => '12-25',
+            Holiday::national('Año Nuevo', "{$year}-01-01"),
+            Holiday::national('Día del Trabajo', "{$year}-05-01"),
+            Holiday::national('Día de la independencia', "{$year}-07-20"),
+            Holiday::national('Batalla de Boyacá', "{$year}-08-07"),
+            Holiday::national('Inmaculada Concepción', "{$year}-12-08"),
+            Holiday::national('Navidad', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
-    /** @return array<string, CarbonInterface> */
+    /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
         $easter = $this->easter($year);
 
         return [
-            'Jueves Santo' => $easter->subDays(3),
-            'Viernes Santo' => $easter->subDays(2),
-            'Ascención de Jesús' => $easter->addDays(43),
-            'Corpus Christi' => $easter->addDays(64),
-            'Sagrado corazón de Jesús' => $easter->addDays(71),
-            'Reyes Magos' => $this->emilianiHoliday($year, 1, 6),
-            'Día de San José' => $this->emilianiHoliday($year, 3, 19),
-            'San Pedro y San Pablo' => $this->emilianiHoliday($year, 6, 29),
-            'Asunción de la Virgen' => $this->emilianiHoliday($year, 8, 15),
-            'Día de la raza' => $this->emilianiHoliday($year, 10, 12),
-            'Todos los santos' => $this->emilianiHoliday($year, 11, 1),
-            'Independencia de Cartagena' => $this->emilianiHoliday($year, 11, 11),
-
+            Holiday::national('Jueves Santo', $easter->subDays(3)),
+            Holiday::national('Viernes Santo', $easter->subDays(2)),
+            Holiday::national('Ascención de Jesús', $easter->addDays(43)),
+            Holiday::national('Corpus Christi', $easter->addDays(64)),
+            Holiday::national('Sagrado corazón de Jesús', $easter->addDays(71)),
+            Holiday::national('Reyes Magos', $this->emilianiHoliday($year, 1, 6)),
+            Holiday::national('Día de San José', $this->emilianiHoliday($year, 3, 19)),
+            Holiday::national('San Pedro y San Pablo', $this->emilianiHoliday($year, 6, 29)),
+            Holiday::national('Asunción de la Virgen', $this->emilianiHoliday($year, 8, 15)),
+            Holiday::national('Día de la raza', $this->emilianiHoliday($year, 10, 12)),
+            Holiday::national('Todos los santos', $this->emilianiHoliday($year, 11, 1)),
+            Holiday::national('Independencia de Cartagena', $this->emilianiHoliday($year, 11, 11)),
         ];
     }
 
-    private function emilianiHoliday(int $year, int $month, int $day): CarbonInterface
+    private function emilianiHoliday(int $year, int $month, int $day): CarbonImmutable
     {
         $dateObj = CarbonImmutable::createFromDate($year, $month, $day, 'America/Bogota')->startOfDay();
 
@@ -54,6 +53,6 @@ class Colombia extends Country
             return $dateObj;
         }
 
-        return $dateObj->next('Monday');
+        return $dateObj->next('Monday')->toImmutable();
     }
 }

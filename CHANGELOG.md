@@ -2,6 +2,47 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.0.1 - 2026-04-13
+
+### What's Changed
+
+* Add Saint Francis holiday to Italy by @Lukasss93 in https://github.com/spatie/holidays/pull/327
+
+### New Contributors
+
+* @Lukasss93 made their first contribution in https://github.com/spatie/holidays/pull/327
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.0.0...2.0.1
+
+## 2.0.0 - 2026-04-13
+
+Upgrade guide: https://github.com/spatie/holidays/blob/main/UPGRADING.md#from-v1-to-v2
+
+### What's Changed
+
+* Fix existing country holiday bugs by @Nielsvanpach in https://github.com/spatie/holidays/pull/310
+* V2: Introduce Holiday value object and HolidayType enum by @Nielsvanpach in https://github.com/spatie/holidays/pull/311
+* V2: Replace glob-based country discovery with static CountryRegistry by @Nielsvanpach in https://github.com/spatie/holidays/pull/312
+* V2: Remove country/year override parameters from Holidays API by @Nielsvanpach in https://github.com/spatie/holidays/pull/314
+* V2: Require CarbonImmutable by @Nielsvanpach in https://github.com/spatie/holidays/pull/315
+* V2: Standardize regional holidays with HasRegions interface by @Nielsvanpach in https://github.com/spatie/holidays/pull/316
+* V2: Calendar architecture cleanup by @Nielsvanpach in https://github.com/spatie/holidays/pull/317
+* V2: Translation system refactor by @Nielsvanpach in https://github.com/spatie/holidays/pull/318
+* V2: Observable trait cleanup by @Nielsvanpach in https://github.com/spatie/holidays/pull/319
+* V2: Per-country year ranges by @Nielsvanpach in https://github.com/spatie/holidays/pull/320
+* V2: Add support for regional, observed, banked and religious holidays by @Nielsvanpach in https://github.com/spatie/holidays/pull/321
+* V2: Improve Islamic calendar contracts by @Nielsvanpach in https://github.com/spatie/holidays/pull/322
+* V2: Extend API functionalities by @Nielsvanpach in https://github.com/spatie/holidays/pull/323
+* Fix: remove 'Deň boja za slobodu a demokraciu' Slovakia holiday for 2025+ and add test case by @damianchojnacki in https://github.com/spatie/holidays/pull/324
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by @dependabot[bot] in https://github.com/spatie/holidays/pull/326
+* V2: Architectural rewrite by @Nielsvanpach in https://github.com/spatie/holidays/pull/309
+
+### New Contributors
+
+* @damianchojnacki made their first contribution in https://github.com/spatie/holidays/pull/324
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/1.24.0...2.0.0
+
 ## 1.24.0 - 2026-01-22
 
 ### What's Changed
