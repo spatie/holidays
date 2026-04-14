@@ -34,7 +34,7 @@ class Venezuela extends Country
 
         return [
             Holiday::national('Lunes de Carnaval', $easter->subDays(48)),
-            Holiday::national('Martes de Carnaval', $easter->subDays(42)),
+            Holiday::national('Martes de Carnaval', $easter->subDays(47)),
             Holiday::national('Jueves Santo', $easter->subDays(3)),
             Holiday::national('Viernes Santo', $easter->subDays(2)),
         ];
