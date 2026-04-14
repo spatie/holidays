@@ -2,6 +2,20 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.0.2 - 2026-04-14
+
+### What's Changed
+
+* Fix: Add Carnival Tuesday as public holiday for Venezuela by @MathewsJose in https://github.com/spatie/holidays/pull/313
+* fix: observe US federal holidays on nearest weekday when falling on weekend by @dev-kraken in https://github.com/spatie/holidays/pull/325
+
+### New Contributors
+
+* @MathewsJose made their first contribution in https://github.com/spatie/holidays/pull/313
+* @dev-kraken made their first contribution in https://github.com/spatie/holidays/pull/325
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.0.1...2.0.2
+
 ## 2.0.1 - 2026-04-13
 
 ### What's Changed
