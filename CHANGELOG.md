@@ -2,6 +2,18 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.0.3 - 2026-04-15
+
+### What's Changed
+
+* fix: add Easter Sunday and use official Epiphany name for Croatia by @vblazenka in https://github.com/spatie/holidays/pull/328
+
+### New Contributors
+
+* @vblazenka made their first contribution in https://github.com/spatie/holidays/pull/328
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.0.2...2.0.3
+
 ## 2.0.2 - 2026-04-14
 
 ### What's Changed
