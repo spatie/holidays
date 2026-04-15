@@ -15,7 +15,7 @@ class Croatia extends Country
     {
         return array_merge([
             Holiday::national('Nova godina', "{$year}-01-01"),
-            Holiday::national('Bogojavljenje', "{$year}-01-06"),
+            Holiday::national('Bogojavljenje ili Sveta tri kralja', "{$year}-01-06"),
             Holiday::national('Praznik rada', "{$year}-05-01"),
             Holiday::national('Dan državnosti', "{$year}-05-30"),
             Holiday::national('Dan antifašističke borbe', "{$year}-06-22"),
@@ -34,6 +34,7 @@ class Croatia extends Country
         $easter = $this->easter($year);
 
         return [
+            Holiday::national('Uskrs', $easter),
             Holiday::national('Uskrsni ponedjeljak', $easter->addDay()),
             Holiday::national('Tijelovo', $easter->addDays(60)),
         ];
