@@ -30,6 +30,7 @@ use Spatie\Holidays\Countries\Egypt;
 use Spatie\Holidays\Countries\ElSalvador;
 use Spatie\Holidays\Countries\England;
 use Spatie\Holidays\Countries\Estonia;
+use Spatie\Holidays\Countries\Ethiopia;
 use Spatie\Holidays\Countries\Finland;
 use Spatie\Holidays\Countries\France;
 use Spatie\Holidays\Countries\Georgia;
@@ -135,6 +136,7 @@ final class CountryRegistry
         'sv' => ElSalvador::class,
         'gb-eng' => England::class,
         'ee' => Estonia::class,
+        'et' => Ethiopia::class,
         'fi' => Finland::class,
         'fr' => France::class,
         'ge' => Georgia::class,
