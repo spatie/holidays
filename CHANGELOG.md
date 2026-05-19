@@ -2,6 +2,19 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.1.0 - 2026-05-19
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 3.0.0 to 3.1.0 by @dependabot[bot] in https://github.com/spatie/holidays/pull/329
+* Ethiopian holidays with locale. by @alazark94 in https://github.com/spatie/holidays/pull/330
+
+### New Contributors
+
+* @alazark94 made their first contribution in https://github.com/spatie/holidays/pull/330
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.0.3...2.1.0
+
 ## 2.0.3 - 2026-04-15
 
 ### What's Changed
