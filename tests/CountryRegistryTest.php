@@ -4,6 +4,7 @@ namespace Spatie\Holidays\Tests;
 
 use Spatie\Holidays\Countries\Belgium;
 use Spatie\Holidays\Countries\England;
+use Spatie\Holidays\Countries\Ethiopia;
 use Spatie\Holidays\Countries\Germany;
 use Spatie\Holidays\Countries\Netherlands;
 use Spatie\Holidays\Countries\NorthernIreland;
@@ -22,6 +23,7 @@ it('can find a country by code', function (string $code, string $expectedClass) 
     ['de', Germany::class],
     ['us', UnitedStates::class],
     ['gb-eng', England::class],
+    ['et', Ethiopia::class],
     ['gb-sct', Scotland::class],
     ['gb-nir', NorthernIreland::class],
     ['gb-cym', Wales::class],
@@ -37,6 +39,7 @@ it('find is case insensitive', function (string $code, string $expectedClass) {
     ['De', Germany::class],
     ['US', UnitedStates::class],
     ['GB-ENG', England::class],
+    ['ET', Ethiopia::class],
 ]);
 
 it('returns null for unknown country code', function () {
