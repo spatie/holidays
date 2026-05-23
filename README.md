@@ -123,7 +123,7 @@ use Spatie\Holidays\Countries\Germany;
 Germany::regions(); // ['DE-BW', 'DE-BY', 'DE-BE', ...]
 ```
 
-Countries that support regions: Australia, Bosnia and Herzegovina, France, Germany, Malaysia, Spain, Switzerland.
+Countries that support regions: Australia, Bosnia and Herzegovina, Brazil, France, Germany, Malaysia, Spain, Switzerland.
 
 ### Determining if a date is a holiday
 
