@@ -2,6 +2,18 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.2.0 - 2026-05-24
+
+### What's Changed
+
+* Adds Brazilian regions by @leobeal in https://github.com/spatie/holidays/pull/331
+
+### New Contributors
+
+* @leobeal made their first contribution in https://github.com/spatie/holidays/pull/331
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.1.0...2.2.0
+
 ## 2.1.0 - 2026-05-19
 
 ### What's Changed
