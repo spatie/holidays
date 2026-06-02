@@ -1,7 +1,7 @@
 # Calculate public holidays for a country
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/holidays.svg?style=flat-square)](https://packagist.org/packages/spatie/holidays)
-[![Tests](https://img.shields.io/github/actions/workflow/status/spatie/holidays/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/spatie/holidays/actions/workflows/run-tests.yml)
+[![Tests](https://github.com/spatie/holidays/actions/workflows/run-tests.yml/badge.svg)](https://github.com/spatie/holidays/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/holidays.svg?style=flat-square)](https://packagist.org/packages/spatie/holidays)
 
 This package can calculate public holidays for a country.
