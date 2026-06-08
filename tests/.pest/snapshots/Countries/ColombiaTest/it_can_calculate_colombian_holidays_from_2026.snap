@@ -1,0 +1,78 @@
+[
+    {
+        "name": "A\u00f1o Nuevo",
+        "date": "2026-01-01"
+    },
+    {
+        "name": "Reyes Magos",
+        "date": "2026-01-12"
+    },
+    {
+        "name": "D\u00eda de San Jos\u00e9",
+        "date": "2026-03-23"
+    },
+    {
+        "name": "Jueves Santo",
+        "date": "2026-04-02"
+    },
+    {
+        "name": "Viernes Santo",
+        "date": "2026-04-03"
+    },
+    {
+        "name": "D\u00eda del Trabajo",
+        "date": "2026-05-01"
+    },
+    {
+        "name": "Ascenci\u00f3n de Jes\u00fas",
+        "date": "2026-05-18"
+    },
+    {
+        "name": "Corpus Christi",
+        "date": "2026-06-08"
+    },
+    {
+        "name": "Sagrado coraz\u00f3n de Jes\u00fas",
+        "date": "2026-06-15"
+    },
+    {
+        "name": "San Pedro y San Pablo",
+        "date": "2026-06-29"
+    },
+    {
+        "name": "D\u00eda de Nuestra Se\u00f1ora del Rosario de Chiquinquir\u00e1",
+        "date": "2026-07-13"
+    },
+    {
+        "name": "D\u00eda de la independencia",
+        "date": "2026-07-20"
+    },
+    {
+        "name": "Batalla de Boyac\u00e1",
+        "date": "2026-08-07"
+    },
+    {
+        "name": "Asunci\u00f3n de la Virgen",
+        "date": "2026-08-17"
+    },
+    {
+        "name": "D\u00eda de la raza",
+        "date": "2026-10-12"
+    },
+    {
+        "name": "Todos los santos",
+        "date": "2026-11-02"
+    },
+    {
+        "name": "Independencia de Cartagena",
+        "date": "2026-11-16"
+    },
+    {
+        "name": "Inmaculada Concepci\u00f3n",
+        "date": "2026-12-08"
+    },
+    {
+        "name": "Navidad",
+        "date": "2026-12-25"
+    }
+]
