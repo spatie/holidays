@@ -29,7 +29,7 @@ class Colombia extends Country
     {
         $easter = $this->easter($year);
 
-        return [
+        $holidays = [
             Holiday::national('Jueves Santo', $easter->subDays(3)),
             Holiday::national('Viernes Santo', $easter->subDays(2)),
             Holiday::national('Ascención de Jesús', $easter->addDays(43)),
@@ -43,6 +43,12 @@ class Colombia extends Country
             Holiday::national('Todos los santos', $this->emilianiHoliday($year, 11, 1)),
             Holiday::national('Independencia de Cartagena', $this->emilianiHoliday($year, 11, 11)),
         ];
+
+        if ($year >= 2026) {
+            $holidays[] = Holiday::national('Día de Nuestra Señora del Rosario de Chiquinquirá', $this->emilianiHoliday($year, 7, 9));
+        }
+
+        return $holidays;
     }
 
     private function emilianiHoliday(int $year, int $month, int $day): CarbonImmutable
