@@ -2,6 +2,18 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.3.0 - 2026-06-08
+
+### What's Changed
+
+* Add new Colombian national holiday from year 2026 by @luisprmat in https://github.com/spatie/holidays/pull/332
+
+### New Contributors
+
+* @luisprmat made their first contribution in https://github.com/spatie/holidays/pull/332
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.2.0...2.3.0
+
 ## 2.2.0 - 2026-05-24
 
 ### What's Changed
