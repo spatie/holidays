@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Neujahr",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Karfreitag",
+        "date": "2024-03-29"
+    },
+    {
+        "name": "Auffahrt",
+        "date": "2024-05-09"
+    },
+    {
+        "name": "Fronleichnam",
+        "date": "2024-05-30"
+    },
+    {
+        "name": "Bundesfeier",
+        "date": "2024-08-01"
+    },
+    {
+        "name": "Maria Himmelfahrt",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Allerheiligen",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Maria Empf\u00e4ngnis",
+        "date": "2024-12-08"
+    },
+    {
+        "name": "Weihnachtstag",
+        "date": "2024-12-25"
+    }
+]

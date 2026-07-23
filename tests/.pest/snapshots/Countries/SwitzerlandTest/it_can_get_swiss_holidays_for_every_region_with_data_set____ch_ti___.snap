@@ -4,12 +4,12 @@
         "date": "2024-01-01"
     },
     {
-        "name": "Berchtoldstag",
-        "date": "2024-01-02"
+        "name": "Heilige Drei K\u00f6nige",
+        "date": "2024-01-06"
     },
     {
-        "name": "Karfreitag",
-        "date": "2024-03-29"
+        "name": "Josefstag",
+        "date": "2024-03-19"
     },
     {
         "name": "Ostermontag",
@@ -28,8 +28,28 @@
         "date": "2024-05-20"
     },
     {
+        "name": "Fronleichnam",
+        "date": "2024-05-30"
+    },
+    {
+        "name": "Peter und Paul",
+        "date": "2024-06-29"
+    },
+    {
         "name": "Bundesfeier",
         "date": "2024-08-01"
+    },
+    {
+        "name": "Maria Himmelfahrt",
+        "date": "2024-08-15"
+    },
+    {
+        "name": "Allerheiligen",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Maria Empf\u00e4ngnis",
+        "date": "2024-12-08"
     },
     {
         "name": "Weihnachtstag",

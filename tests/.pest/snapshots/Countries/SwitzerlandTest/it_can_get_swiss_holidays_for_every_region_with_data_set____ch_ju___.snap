@@ -28,15 +28,27 @@
         "date": "2024-05-20"
     },
     {
+        "name": "Fronleichnam",
+        "date": "2024-05-30"
+    },
+    {
+        "name": "Fest der Unabh\u00e4ngigkeit",
+        "date": "2024-06-23"
+    },
+    {
         "name": "Bundesfeier",
         "date": "2024-08-01"
     },
     {
-        "name": "Weihnachtstag",
-        "date": "2024-12-25"
+        "name": "Maria Himmelfahrt",
+        "date": "2024-08-15"
     },
     {
-        "name": "Stephanstag",
-        "date": "2024-12-26"
+        "name": "Allerheiligen",
+        "date": "2024-11-01"
+    },
+    {
+        "name": "Weihnachtstag",
+        "date": "2024-12-25"
     }
 ]

@@ -8,6 +8,10 @@
         "date": "2024-01-02"
     },
     {
+        "name": "Neuenburger Republik tag",
+        "date": "2024-03-01"
+    },
+    {
         "name": "Karfreitag",
         "date": "2024-03-29"
     },
@@ -34,9 +38,5 @@
     {
         "name": "Weihnachtstag",
         "date": "2024-12-25"
-    },
-    {
-        "name": "Stephanstag",
-        "date": "2024-12-26"
     }
 ]
