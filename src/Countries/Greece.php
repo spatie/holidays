@@ -9,7 +9,7 @@ class Greece extends Country
 {
     public function countryCode(): string
     {
-        return 'el';
+        return 'gr';
     }
 
     protected function allHolidays(int $year): array
