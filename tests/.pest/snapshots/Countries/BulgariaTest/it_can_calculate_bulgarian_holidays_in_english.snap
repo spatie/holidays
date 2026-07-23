@@ -1,0 +1,66 @@
+[
+    {
+        "name": "New Year's Day",
+        "date": "2024-01-01"
+    },
+    {
+        "name": "Liberation Day",
+        "date": "2024-03-03"
+    },
+    {
+        "name": "Liberation Day (substitute day)",
+        "date": "2024-03-04"
+    },
+    {
+        "name": "Labour Day",
+        "date": "2024-05-01"
+    },
+    {
+        "name": "Good Friday",
+        "date": "2024-05-03"
+    },
+    {
+        "name": "Holy Saturday",
+        "date": "2024-05-04"
+    },
+    {
+        "name": "Easter Sunday",
+        "date": "2024-05-05"
+    },
+    {
+        "name": "Saint George's Day",
+        "date": "2024-05-06"
+    },
+    {
+        "name": "Easter Monday",
+        "date": "2024-05-06"
+    },
+    {
+        "name": "Saints Cyril and Methodius Day",
+        "date": "2024-05-24"
+    },
+    {
+        "name": "Unification Day",
+        "date": "2024-09-06"
+    },
+    {
+        "name": "Independence Day",
+        "date": "2024-09-22"
+    },
+    {
+        "name": "Independence Day (substitute day)",
+        "date": "2024-09-23"
+    },
+    {
+        "name": "Christmas Eve",
+        "date": "2024-12-24"
+    },
+    {
+        "name": "Christmas Day",
+        "date": "2024-12-25"
+    },
+    {
+        "name": "Second Day of Christmas",
+        "date": "2024-12-26"
+    }
+]

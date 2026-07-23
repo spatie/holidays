@@ -17,6 +17,7 @@ use Spatie\Holidays\Countries\Benin;
 use Spatie\Holidays\Countries\Bolivia;
 use Spatie\Holidays\Countries\BosniaAndHerzegovina;
 use Spatie\Holidays\Countries\Brazil;
+use Spatie\Holidays\Countries\Bulgaria;
 use Spatie\Holidays\Countries\Canada;
 use Spatie\Holidays\Countries\Chile;
 use Spatie\Holidays\Countries\Colombia;
@@ -124,6 +125,7 @@ final class CountryRegistry
         'bo' => Bolivia::class,
         'ba' => BosniaAndHerzegovina::class,
         'br' => Brazil::class,
+        'bg' => Bulgaria::class,
         'ca' => Canada::class,
         'cl' => Chile::class,
         'co' => Colombia::class,
