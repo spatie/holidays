@@ -41,6 +41,7 @@ use Spatie\Holidays\Countries\Greece;
 use Spatie\Holidays\Countries\Guatemala;
 use Spatie\Holidays\Countries\Haiti;
 use Spatie\Holidays\Countries\Honduras;
+use Spatie\Holidays\Countries\HongKong;
 use Spatie\Holidays\Countries\Hungary;
 use Spatie\Holidays\Countries\Iceland;
 use Spatie\Holidays\Countries\India;
@@ -148,6 +149,7 @@ final class CountryRegistry
         'gt' => Guatemala::class,
         'ht' => Haiti::class,
         'hn' => Honduras::class,
+        'hk' => HongKong::class,
         'hu' => Hungary::class,
         'is' => Iceland::class,
         'in' => India::class,
