@@ -9,7 +9,8 @@ use IntlDateFormatter;
 use Spatie\Holidays\Concerns\HasObservedHolidays;
 use Spatie\Holidays\Holiday;
 
-class HongKong extends Country {
+class HongKong extends Country
+{
     use HasObservedHolidays;
 
     protected string $timezone = 'Asia/Hong_Kong';
@@ -33,7 +34,7 @@ class HongKong extends Country {
         $holidayObjects = [];
 
         foreach ($originalHolidays as $name => $date) {
-            $holidayObjects[] = Holiday::national($name, (string)$date);
+            $holidayObjects[] = Holiday::national($name, (string) $date);
         }
 
         // Keep track of every date already taken by a holiday, so that a shifted
@@ -108,7 +109,8 @@ class HongKong extends Country {
     }
 
     /** Make use of lunarCalendar() in Taiwan.php */
-    protected function lunarCalendar(string $input, int $year): ?string {
+    protected function lunarCalendar(string $input, int $year): ?string
+    {
         $formatter = new IntlDateFormatter(
             locale: 'zh-TW@calendar=chinese',
             dateType: IntlDateFormatter::SHORT,
@@ -122,8 +124,8 @@ class HongKong extends Country {
             return null;
         }
 
-        $dateTime = new Datetime()
-            ->setTimestamp((int)$timestamp)
+        $dateTime = new DateTime()
+            ->setTimestamp((int) $timestamp)
             ->setTimezone(new DateTimeZone($this->timezone));
 
         return $dateTime->format('Y-m-d');
@@ -132,7 +134,8 @@ class HongKong extends Country {
     /**
      * @return array<string, string|null>
      */
-    protected function variableHolidays(int $year): array {
+    protected function variableHolidays(int $year): array
+    {
         return array_merge(
             $this->lunarHolidays($year),
             $this->easterHolidays($year),
@@ -142,7 +145,8 @@ class HongKong extends Country {
     /**
      * @return array<string, string|null>
      */
-    protected function lunarHolidays(int $year): array {
+    protected function lunarHolidays(int $year): array
+    {
         $lunarDates = [
             '農曆年初一' => '01-01',
             '農曆年初二' => '01-02',
@@ -162,7 +166,8 @@ class HongKong extends Country {
     /**
      * @return array<string, string>
      */
-    protected function easterHolidays(int $year): array {
+    protected function easterHolidays(int $year): array
+    {
         $easter = $this->easter($year);
 
         return [

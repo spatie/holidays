@@ -10,8 +10,6 @@ it('can calculate hong kong holidays', function () {
 
     $holidays = Holidays::for(country: 'hk')->get();
 
-
-
     expect($holidays)
         ->toBeArray()
         ->not()->toBeEmpty();
