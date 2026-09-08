@@ -15,4 +15,12 @@ it('can calculate turkey holidays', function ($year) {
         ->not()->toBeEmpty();
 
     expect(formatDates($holidays))->toMatchSnapshot();
-})->with([1970, 1973, 1974, 1975, 1999, 2000, 2001, 2005, 2006, 2007, 2008, 2009, 2016, 2017, 2021, 2022, 2023, 2024, 2025, 2032, 2033, 2034, 2037]);
+})->with([1970, 1971, 1973, 1974, 1975, 1999, 2000, 2001, 2005, 2006, 2007, 2008, 2009, 2016, 2017, 2021, 2022, 2023, 2024, 2025, 2032, 2033, 2034, 2037]);
+
+it('places eid al-adha 1971 on 10 dhu al-hijjah 1390', function () {
+    $holidays = Holidays::for(country: 'tr', year: 1971)->get();
+
+    expect(findDate($holidays, 'Kurban Bayramı Arifesi')?->format('Y-m-d'))->toBe('1971-02-05');
+    expect(findDate($holidays, 'Kurban Bayramı 1. Gün')?->format('Y-m-d'))->toBe('1971-02-06');
+    expect(findDate($holidays, 'Kurban Bayramı 4. Gün')?->format('Y-m-d'))->toBe('1971-02-09');
+});

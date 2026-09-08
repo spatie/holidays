@@ -104,7 +104,7 @@ class Turkey extends Country implements Islamic
     {
         return [
             1970 => '02-17',
-            1971 => '02-16',
+            1971 => '02-06',
             1972 => '01-27',
             1973 => '01-15',
             1974 => [
