@@ -145,6 +145,7 @@ final class CountryRegistry
         'ge' => Georgia::class,
         'de' => Germany::class,
         'gh' => Ghana::class,
+        'gr' => Greece::class,
         'el' => Greece::class,
         'gt' => Guatemala::class,
         'ht' => Haiti::class,

@@ -8,6 +8,18 @@ use Spatie\Holidays\Holidays;
 it('can calculate hellenic holidays', function () {
     CarbonImmutable::setTestNow('2024-01-01');
 
+    $holidays = Holidays::for(country: 'gr')->get();
+
+    expect($holidays)
+        ->toBeArray()
+        ->not()->toBeEmpty();
+
+    expect(formatDates($holidays))->toMatchSnapshot();
+});
+
+it('can calculate hellenic holidays with EU abbreviation', function () {
+    CarbonImmutable::setTestNow('2024-01-01');
+
     $holidays = Holidays::for(country: 'el')->get();
 
     expect($holidays)
