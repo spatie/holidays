@@ -80,7 +80,7 @@ class Wales extends Country
 
         if ($year === 2023) {
             return [
-                Holiday::national('Bank holiday for the coronation of King Charles III', new CarbonImmutable('2020-05-08')->startOfDay()),
+                Holiday::national('Bank holiday for the coronation of King Charles III', new CarbonImmutable('2023-05-08')->startOfDay()),
             ];
         }
 
