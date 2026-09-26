@@ -103,6 +103,20 @@ it('can calculate welsh holidays if christmas is on a sunday', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
+it('dates the coronation bank holiday on 8 May 2023', function () {
+    $holidays = Holidays::for('gb-cym', 2023)->get();
+
+    $coronation = array_values(array_filter(
+        $holidays,
+        fn ($holiday) => str_contains($holiday->name, 'coronation'),
+    ));
+
+    expect($coronation)->toHaveCount(1)
+        ->and($coronation[0]->date->toDateString())->toBe('2023-05-08')
+        ->and(Holidays::for('gb-cym')->isHoliday('2023-05-08'))->toBeTrue()
+        ->and(Holidays::for('gb-cym')->getName('2023-05-08'))->toBe('Bank holiday for the coronation of King Charles III');
+});
+
 it('can calculate holidays for 2020', function () {
     CarbonImmutable::setTestNow('2020-01-01');
 

@@ -2,6 +2,10 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## Unreleased
+
+* Date the Welsh coronation bank holiday on 8 May 2023
+
 ## 2.5.1 - 2026-09-08
 
 ### What's Changed
