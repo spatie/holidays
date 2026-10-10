@@ -7,68 +7,14 @@ use Spatie\Holidays\Contracts\Islamic;
 use Spatie\Holidays\Holiday;
 use Spatie\Holidays\HolidayType;
 
-/**
- * Public holidays as defined by Article 24 of the Implementing Regulations of the Saudi Labor Law.
- * Islamic dates follow the Umm al-Qura calendar.
- *
- * @see https://web.archive.org/web/20240610223551/http://laboreducation.hrsd.gov.sa/en/labor-education/322
- */
 class SaudiArabia extends Country implements Islamic
 {
     use IslamicCalendar;
 
-    public function countryCode(): string
-    {
-        return 'sa';
-    }
-
-    protected function supportedYearRange(): array
-    {
-        return [2020, 2037];
-    }
-
-    protected function allHolidays(int $year): array
-    {
-        $holidays = [
-            Holiday::national('National Day', "{$year}-09-23"),
-        ];
-
-        if ($year >= 2022) {
-            $holidays[] = Holiday::national('Founding Day', "{$year}-02-22");
-        }
-
-        return array_merge($holidays, $this->islamicHolidays($year));
-    }
-
-    /** @return array<Holiday> */
-    public function islamicHolidays(int $year): array
-    {
-        $holidays = [
-            Holiday::religious('Arafat Day', $this->arafat($year)),
-        ];
-
-        foreach ($this->eidAlFitr($year, 4) as $period) {
-            $holidays = array_merge(
-                $holidays,
-                $this->convertPeriods('Eid al-Fitr Holiday', $year, $period, type: HolidayType::Religious),
-            );
-        }
-
-        foreach ($this->eidAlAdha($year, 3) as $period) {
-            $holidays = array_merge(
-                $holidays,
-                $this->convertPeriods('Eid al-Adha Holiday', $year, $period, type: HolidayType::Religious),
-            );
-        }
-
-        return $holidays;
-    }
-
     /**
-     * The four-day Eid al-Fitr holiday starts the day after 29 Ramadan,
-     * so it includes 30 Ramadan in years where Ramadan has 30 days.
-     *
-     * @return array<int, string|array<string>>
+     * Per Article 24 of the Implementing Regulations of the Saudi Labor Law, the four-day Eid al-Fitr
+     * holiday starts the day after 29 Ramadan (Umm al-Qura), so it includes 30 Ramadan in long months.
+     * https://web.archive.org/web/20240610223551/http://laboreducation.hrsd.gov.sa/en/labor-education/322
      */
     protected function eidAlFitrDates(): array
     {
@@ -119,7 +65,6 @@ class SaudiArabia extends Country implements Islamic
         ];
     }
 
-    /** @return array<int, string|array<string>> */
     protected function eidAlAdhaDates(): array
     {
         return [
@@ -142,5 +87,46 @@ class SaudiArabia extends Country implements Islamic
             2036 => '02-08',
             2037 => '01-27',
         ];
+    }
+
+    public function countryCode(): string
+    {
+        return 'sa';
+    }
+
+    protected function supportedYearRange(): array
+    {
+        return [2020, 2037];
+    }
+
+    protected function allHolidays(int $year): array
+    {
+        $newHolidays = [];
+
+        if ($year >= 2022) {
+            $newHolidays[] = Holiday::national('Founding Day', "{$year}-02-22");
+        }
+
+        return array_merge([
+            Holiday::national('National Day', "{$year}-09-23"),
+        ], $newHolidays, $this->islamicHolidays($year));
+    }
+
+    /** @return array<Holiday> */
+    public function islamicHolidays(int $year): array
+    {
+        $holidays = [
+            Holiday::religious('Arafat Day', $this->arafat($year)),
+        ];
+
+        foreach ($this->eidAlFitr($year, 4) as $period) {
+            $holidays = array_merge($holidays, $this->convertPeriods('Eid al-Fitr Holiday', $year, $period, type: HolidayType::Religious));
+        }
+
+        foreach ($this->eidAlAdha($year, 3) as $period) {
+            $holidays = array_merge($holidays, $this->convertPeriods('Eid al-Adha Holiday', $year, $period, type: HolidayType::Religious));
+        }
+
+        return $holidays;
     }
 }
