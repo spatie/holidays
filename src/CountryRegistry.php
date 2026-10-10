@@ -82,6 +82,7 @@ use Spatie\Holidays\Countries\Philippines;
 use Spatie\Holidays\Countries\Poland;
 use Spatie\Holidays\Countries\Portugal;
 use Spatie\Holidays\Countries\Romania;
+use Spatie\Holidays\Countries\SaudiArabia;
 use Spatie\Holidays\Countries\Scotland;
 use Spatie\Holidays\Countries\Serbia;
 use Spatie\Holidays\Countries\Slovakia;
@@ -190,6 +191,7 @@ final class CountryRegistry
         'pl' => Poland::class,
         'pt' => Portugal::class,
         'ro' => Romania::class,
+        'sa' => SaudiArabia::class,
         'gb-sct' => Scotland::class,
         'sr' => Serbia::class,
         'sk' => Slovakia::class,
