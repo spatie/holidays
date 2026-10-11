@@ -142,3 +142,21 @@ it('returns null for overlapping at minimum year', function () {
 
     expect($result)->toBeNull();
 });
+
+it('includes the last day of a period regardless of the time of day', function () {
+    CarbonImmutable::setTestNow('2024-06-01 15:30:00');
+
+    $calendar = new TestCalendar;
+
+    $result = invade($calendar)->createPeriod('12-25', 2024, 3);
+
+    $days = array_map(fn ($day) => $day->format('Y-m-d H:i:s'), iterator_to_array($result));
+
+    expect(array_values($days))->toBe([
+        '2024-12-25 00:00:00',
+        '2024-12-26 00:00:00',
+        '2024-12-27 00:00:00',
+    ]);
+
+    CarbonImmutable::setTestNow();
+});

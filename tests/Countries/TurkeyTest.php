@@ -24,3 +24,14 @@ it('places eid al-adha 1971 on 10 dhu al-hijjah 1390', function () {
     expect(findDate($holidays, 'Kurban Bayramı 1. Gün')?->format('Y-m-d'))->toBe('1971-02-06');
     expect(findDate($holidays, 'Kurban Bayramı 4. Gün')?->format('Y-m-d'))->toBe('1971-02-09');
 });
+
+it('returns every day of the eid holidays regardless of the time of day', function () {
+    CarbonImmutable::setTestNow('2027-01-01 15:30:00');
+
+    $holidays = Holidays::for(country: 'tr', year: 2027)->get();
+
+    expect(findDate($holidays, 'Ramazan Bayramı 3. Gün')?->format('Y-m-d'))->toBe('2027-03-11');
+    expect(findDate($holidays, 'Kurban Bayramı 4. Gün')?->format('Y-m-d'))->toBe('2027-05-19');
+
+    CarbonImmutable::setTestNow();
+});
