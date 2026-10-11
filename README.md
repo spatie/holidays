@@ -123,7 +123,13 @@ use Spatie\Holidays\Countries\Germany;
 Germany::regions(); // ['DE-BW', 'DE-BY', 'DE-BE', ...]
 ```
 
-Countries that support regions: Australia, Bosnia and Herzegovina, Brazil, France, Germany, Malaysia, Spain, Switzerland.
+Portugal uses municipal holidays. Its regions are the municipalities, identified by `PT-` followed by their DICO code (distrito + concelho) as published by the INE:
+
+```php
+$holidays = Holidays::for('pt', year: 2024, region: 'PT-1106')->get(); // Lisboa
+```
+
+Countries that support regions: Australia, Bosnia and Herzegovina, Brazil, France, Germany, Malaysia, Portugal, Spain, Switzerland.
 
 ### Determining if a date is a holiday
 
