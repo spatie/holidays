@@ -78,12 +78,6 @@ class Wales extends Country
             ];
         }
 
-        if ($year === 2023) {
-            return [
-                Holiday::national('Bank holiday for the coronation of King Charles III', new CarbonImmutable('2023-05-08')->startOfDay()),
-            ];
-        }
-
         return [Holiday::national('Early May bank holiday', CarbonImmutable::parse("first monday of may {$year}"))];
     }
 
@@ -94,6 +88,9 @@ class Wales extends Country
             2022 => [
                 Holiday::national('Platinum Jubilee bank holiday', new CarbonImmutable('2022-06-03')->startOfDay()),
                 Holiday::national('Bank Holiday for the State Funeral of Queen Elizabeth II', new CarbonImmutable('2022-09-19')->startOfDay()),
+            ],
+            2023 => [
+                Holiday::national('Bank holiday for the coronation of King Charles III', new CarbonImmutable('2023-05-08')->startOfDay()),
             ],
             default => [],
         };
