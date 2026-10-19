@@ -33,7 +33,7 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Install dependencies
-        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+        run: composer update --${{ matrix.stability }} --prefer-stable --prefer-dist --no-interaction
 
       - name: Validate Composer configuration
         run: composer validate --strict

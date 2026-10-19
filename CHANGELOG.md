@@ -2,6 +2,24 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.7.0 - 2026-10-19
+
+### Added
+
+- Add Portuguese municipal holidays for all 308 municipalities using `PT-<DICO>` region codes. National-only queries remain unchanged. Thanks to @rfcmarques for #349.
+- Document the municipal scope and distinguish DICO codes from ISO district codes; autonomous-region-wide holidays are not included.
+
+### Fixed
+
+- Avoid a duplicate municipal holiday for Vizela and apply Ponte de Lima's March 4 holiday only from 2025, preserving its earlier September date.
+
+### Testing and tooling
+
+- Verify all municipality codes and add cross-year movable-date coverage, including council-confirmed Povoação and Lajes das Flores dates.
+- Use stable development dependencies and check PHP 8.4/8.5 with lowest/current dependencies, PHPStan, Pint, and strict Composer validation.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.6.0...2.7.0
+
 ## 2.6.0 - 2026-10-19
 
 ### Added
