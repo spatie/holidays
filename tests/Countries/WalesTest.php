@@ -103,6 +103,18 @@ it('can calculate welsh holidays if christmas is on a sunday', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
+it('keeps the early May bank holiday alongside the coronation holiday', function (string $country) {
+    $calendar = Holidays::for($country, 2023);
+    $holidays = $calendar->get();
+
+    expect(findDate($holidays, 'Early May bank holiday')?->toDateString())->toBe('2023-05-01')
+        ->and(findDate($holidays, 'Bank holiday for the coronation of King Charles III')?->toDateString())->toBe('2023-05-08')
+        ->and($calendar->isHoliday('2023-05-01'))->toBeTrue()
+        ->and($calendar->isHoliday('2023-05-08'))->toBeTrue()
+        ->and($calendar->getName('2023-05-01'))->toBe('Early May bank holiday')
+        ->and($calendar->getName('2023-05-08'))->toBe('Bank holiday for the coronation of King Charles III');
+})->with(['gb-cym', 'gb-eng', 'gb-nir']);
+
 it('can calculate holidays for 2020', function () {
     CarbonImmutable::setTestNow('2020-01-01');
 

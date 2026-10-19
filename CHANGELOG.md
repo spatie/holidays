@@ -2,6 +2,14 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.7.1 - 2026-10-19
+
+### Fixed
+
+- Date the coronation bank holiday on 8 May 2023 and preserve the Early May bank holiday on 1 May for Wales, England, and Northern Ireland. Thanks to @SashaMIT for #344.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.7.0...2.7.1
+
 ## 2.7.0 - 2026-10-19
 
 ### Added
