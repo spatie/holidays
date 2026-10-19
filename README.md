@@ -65,6 +65,8 @@ $holidays = Holidays::for(Belgium::make())->get();
 $holidays = Holidays::for('be')->get();
 ```
 
+For Greece, use the ISO code `gr`. The EU abbreviation `el` remains supported as an alias, and both codes are case-insensitive. `Greece::countryCode()` now returns `gr` instead of `el`; update any code that relies on the previous return value.
+
 The `Holiday` object implements `JsonSerializable`:
 
 ```php
