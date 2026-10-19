@@ -135,3 +135,15 @@ it('can calculate holidays for 2030', function () {
     expect($holidays)->toBeArray()->not()->toBeEmpty();
     expect(formatDates($holidays))->toMatchSnapshot();
 });
+
+it('calculates matariki regardless of the current time of day', function (string $date) {
+    CarbonImmutable::setTestNow($date);
+
+    $matariki = CarbonImmutable::parse('2023-07-14');
+
+    expect(Holidays::for('nz')->getName($matariki))->toBe('Matariki')
+        ->and(Holidays::for('nz')->isHoliday($matariki))->toBeTrue();
+})->with([
+    '10 AM' => '2023-07-14 10:00:00',
+    '10 PM' => '2023-07-14 22:00:00',
+]);
