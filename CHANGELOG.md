@@ -2,6 +2,20 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.5.2 - 2026-10-19
+
+### Fixed
+
+- Include the final day of multi-day holidays regardless of the time of day, including Turkey’s Eid holidays. Periods now consistently start at midnight. Fixes #342 via #348. Thanks to @MohannadElemary.
+
+### Testing and tooling
+
+- Strengthen public-API regression coverage for single-day periods, month/year boundaries, midnight and late-day execution, and holidays sharing a date.
+- Ensure frozen clocks are cleared even when assertions fail.
+- Refresh the PHPUnit schema and add CI formatting and Composer validation checks. PHP 8.4/8.5 and Pest 5 remain supported.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.5.1...2.5.2
+
 ## 2.5.1 - 2026-09-08
 
 ### What's Changed
