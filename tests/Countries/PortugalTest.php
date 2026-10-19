@@ -59,27 +59,42 @@ it('only adds the municipal holiday of the given region', function () {
 });
 
 it('has a municipal holiday for every portuguese region', function () {
+    expect(Portugal::regions())->toHaveCount(308)
+        ->and(array_unique(Portugal::regions()))->toHaveCount(308);
+
     foreach (Portugal::regions() as $region) {
         $regional = array_filter(
             Holidays::for(country: 'pt', year: 2026, region: $region)->get(),
             fn ($holiday) => $holiday->type === HolidayType::Regional,
         );
 
-        expect($regional)->not()->toBeEmpty($region);
+        expect($regional)->toHaveCount(1, $region);
     }
 });
 
-it('can calculate portuguese municipal holidays that depend on a weekday', function () {
-    // Maia: Monday after the second Sunday of July
-    $maia = Holidays::for(country: 'pt', year: 2026, region: 'PT-1306')->get();
+it('uses the municipal holiday applicable to the year in Ponte de Lima', function (int $year, string $name, string $date) {
+    $holidays = Holidays::for(country: 'pt', year: $year, region: 'PT-1607')->get();
 
-    expect($maia[array_key_first(array_filter($maia, fn ($h) => $h->name === 'Nossa Senhora do Bom Despacho'))]->date->toDateString())->toBe('2026-07-13');
+    expect(findDate($holidays, $name)?->toDateString())->toBe($date);
+})->with([
+    [2023, 'Nossa Senhora das Dores', '2023-09-12'],
+    [2024, 'Nossa Senhora das Dores', '2024-09-10'],
+    [2025, 'Outorgação do Foral a vila por D. Teresa', '2025-03-04'],
+    [2026, 'Outorgação do Foral a vila por D. Teresa', '2026-03-04'],
+]);
 
-    // Matosinhos: Tuesday after Pentecost
-    $matosinhos = Holidays::for(country: 'pt', year: 2026, region: 'PT-1308')->get();
+it('can calculate portuguese municipal holidays that depend on a weekday', function (string $region, int $year, string $name, string $date) {
+    $holidays = Holidays::for(country: 'pt', year: $year, region: $region)->get();
 
-    expect($matosinhos[array_key_first(array_filter($matosinhos, fn ($h) => $h->name === 'Terça-feira de Pentecostes'))]->date->toDateString())->toBe('2026-05-26');
-});
+    expect(findDate($holidays, $name)?->toDateString())->toBe($date);
+})->with([
+    ['PT-1306', 2026, 'Nossa Senhora do Bom Despacho', '2026-07-13'],
+    ['PT-1306', 2027, 'Nossa Senhora do Bom Despacho', '2027-07-12'],
+    ['PT-1308', 2026, 'Terça-feira de Pentecostes', '2026-05-26'],
+    ['PT-1308', 2027, 'Terça-feira de Pentecostes', '2027-05-18'],
+    ['PT-1305', 2022, 'Nosso Senhor dos Aflitos', '2022-08-01'],
+    ['PT-0511', 2022, 'Nossa Senhora da Alagada', '2022-08-29'],
+]);
 
 it('throws for an unknown portuguese region', function () {
     Portugal::make('PT-9999');

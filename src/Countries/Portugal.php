@@ -314,7 +314,7 @@ class Portugal extends Country implements HasRegions
             'PT-0311' => [Holiday::regional('Feira da Ladra', CarbonImmutable::parse("first saturday of october {$year}")->addDays(2), $this->region)], // Vieira do Minho
             'PT-0312' => [$this->getSantoAntonioHoliday($year)], // Vila Nova de Famalicão
             'PT-0313' => [$this->getSantoAntonioHoliday($year)], // Vila Verde
-            'PT-0314' => [Holiday::regional('Restauração do município', "{$year}-03-19", $this->region), $this->getSaoJoseHoliday($year)], // Vizela
+            'PT-0314' => [Holiday::regional('Restauração do município', "{$year}-03-19", $this->region)], // Vizela
             default => [],
         };
     }
@@ -728,7 +728,9 @@ class Portugal extends Country implements HasRegions
             'PT-1604' => [Holiday::regional('Outorgação do Foral', "{$year}-03-12", $this->region)], // Monção
             'PT-1605' => [$this->getSaoLourencoHoliday($year)], // Paredes de Coura
             'PT-1606' => [$this->getSaoBartolomeuHoliday($year)], // Ponte da Barca
-            'PT-1607' => [Holiday::regional('Outorgação do Foral a vila por D. Teresa', "{$year}-03-04", $this->region)], // Ponte de Lima
+            'PT-1607' => [$year >= 2025
+                ? Holiday::regional('Outorgação do Foral a vila por D. Teresa', "{$year}-03-04", $this->region)
+                : Holiday::regional('Nossa Senhora das Dores', CarbonImmutable::parse("second sunday of september {$year}")->addDays(2), $this->region)], // Ponte de Lima
             'PT-1608' => [Holiday::regional('São Teotónio', "{$year}-02-18", $this->region)], // Valença
             'PT-1609' => [Holiday::regional('Nossa Senhora da Agonia', "{$year}-08-20", $this->region)], // Viana do Castelo
             'PT-1610' => [Holiday::regional('Dia do Município, dos Bombeiros Voluntários e da Proteção Civil', "{$year}-10-01", $this->region)], // Vila Nova de Cerveira

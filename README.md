@@ -129,6 +129,8 @@ Portugal uses municipal holidays. Its regions are the municipalities, identified
 $holidays = Holidays::for('pt', year: 2024, region: 'PT-1106')->get(); // Lisboa
 ```
 
+All 308 municipalities are supported. These are municipal DICO codes, not ISO 3166-2 district codes. Without a region, only national holidays are returned. Holidays applying to the whole autonomous region of Madeira or the Azores are not currently included.
+
 Countries that support regions: Australia, Bosnia and Herzegovina, Brazil, France, Germany, Malaysia, Portugal, Spain, Switzerland.
 
 ### Determining if a date is a holiday
