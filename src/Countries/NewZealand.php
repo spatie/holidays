@@ -142,7 +142,7 @@ class NewZealand extends Country
         ];
 
         return isset($matarikiDates[$year])
-        ? CarbonImmutable::createFromFormat('Y-m-d', $matarikiDates[$year], 'Pacific/Auckland')
-        : null; // Return null if year not defined
+            ? CarbonImmutable::createFromFormat('!Y-m-d', $matarikiDates[$year])
+            : null;
     }
 }
