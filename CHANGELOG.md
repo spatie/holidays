@@ -2,6 +2,21 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.7.2 - 2026-10-19
+
+### Fixed
+
+- Fix Matariki dates shifting with the current time of day, and ensure the holiday is included in single-day date ranges. Thanks to @FoxbyteMB for #345.
+- Add regression coverage across morning/evening times and UTC, Auckland, and Los Angeles timezones, with isolated test state.
+
+### Development
+
+- Require Pest 5.3.3 while retaining PHP 8.4 and 8.5 test coverage.
+
+No breaking changes. This bugfix release intentionally excludes the unrelated Greece country-code change currently on main.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.7.1...2.7.2
+
 ## 2.7.1 - 2026-10-19
 
 ### Fixed
