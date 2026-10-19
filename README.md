@@ -38,6 +38,8 @@ This package requires PHP 8.4+.
 
 We support the countries listed in [this directory](https://github.com/spatie/holidays/tree/main/src/Countries). If you want to add a country, please create a pull request. See [Adding a new country](#adding-a-new-country) for a guide.
 
+Saudi Arabia (`sa`) supports 2020–2037 and returns the statutory private-sector holidays under [Article 24 of the Saudi Labor Law's implementing regulations](https://www.hrsd.gov.sa/en/knowledge-centre/articles/322). Eid dates follow the Umm al-Qura calendar. Eid al-Fitr leave begins the day after 29 Ramadan, which may be before 1 Shawwal. Public-sector and banking holiday periods, and employer-specific compensatory days off, are not included.
+
 ## Usage
 
 You can get all holidays for a country by using the `get` method. It returns an array of `Holiday` objects.
@@ -123,7 +125,15 @@ use Spatie\Holidays\Countries\Germany;
 Germany::regions(); // ['DE-BW', 'DE-BY', 'DE-BE', ...]
 ```
 
-Countries that support regions: Australia, Bosnia and Herzegovina, Brazil, France, Germany, Malaysia, Spain, Switzerland.
+Portugal uses municipal holidays. Its regions are the municipalities, identified by `PT-` followed by their DICO code (distrito + concelho) as published by the INE:
+
+```php
+$holidays = Holidays::for('pt', year: 2024, region: 'PT-1106')->get(); // Lisboa
+```
+
+All 308 municipalities are supported. These are municipal DICO codes, not ISO 3166-2 district codes. Without a region, only national holidays are returned. Holidays applying to the whole autonomous region of Madeira or the Azores are not currently included.
+
+Countries that support regions: Australia, Bosnia and Herzegovina, Brazil, France, Germany, Malaysia, Portugal, Spain, Switzerland.
 
 ### Determining if a date is a holiday
 

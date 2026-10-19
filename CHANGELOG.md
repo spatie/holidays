@@ -2,6 +2,52 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.7.0 - 2026-10-19
+
+### Added
+
+- Add Portuguese municipal holidays for all 308 municipalities using `PT-<DICO>` region codes. National-only queries remain unchanged. Thanks to @rfcmarques for #349.
+- Document the municipal scope and distinguish DICO codes from ISO district codes; autonomous-region-wide holidays are not included.
+
+### Fixed
+
+- Avoid a duplicate municipal holiday for Vizela and apply Ponte de Lima's March 4 holiday only from 2025, preserving its earlier September date.
+
+### Testing and tooling
+
+- Verify all municipality codes and add cross-year movable-date coverage, including council-confirmed Povoação and Lajes das Flores dates.
+- Use stable development dependencies and check PHP 8.4/8.5 with lowest/current dependencies, PHPStan, Pint, and strict Composer validation.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.6.0...2.7.0
+
+## 2.6.0 - 2026-10-19
+
+### Added
+
+- Add Saudi Arabia (`sa`) public holidays for 2020–2037 using the Umm al-Qura calendar, including Founding Day from 2022, National Day, Eid al-Fitr, Arafat Day, and Eid al-Adha. Both Eid al-Fitr periods in 2033 are supported. Arabic translations are included. Thanks to @123mousab for #347.
+- Document the statutory private-sector scope, excluding public-sector and banking schedules and employer-specific compensatory leave.
+
+### Testing and tooling
+
+- Strengthen Saudi holiday regression coverage outside midnight and verify the exact dates of both 2033 Eid al-Fitr periods.
+- Require Pest 5.3 and explicitly configure Calendar and Composer 2 in the PHP 8.4/8.5 lowest/current dependency matrix.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.5.2...2.6.0
+
+## 2.5.2 - 2026-10-19
+
+### Fixed
+
+- Include the final day of multi-day holidays regardless of the time of day, including Turkey’s Eid holidays. Periods now consistently start at midnight. Fixes #342 via #348. Thanks to @MohannadElemary.
+
+### Testing and tooling
+
+- Strengthen public-API regression coverage for single-day periods, month/year boundaries, midnight and late-day execution, and holidays sharing a date.
+- Ensure frozen clocks are cleared even when assertions fail.
+- Refresh the PHPUnit schema and add CI formatting and Composer validation checks. PHP 8.4/8.5 and Pest 5 remain supported.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.5.1...2.5.2
+
 ## 2.5.1 - 2026-09-08
 
 ### What's Changed
