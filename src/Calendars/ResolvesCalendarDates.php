@@ -67,7 +67,7 @@ trait ResolvesCalendarDates
     {
         $start = $this->createDate('Y-m-d', "{$year}-{$date}")->startOfDay();
 
-        $end = $start->addDays($totalDays - 1)->startOfDay();
+        $end = $start->addDays($totalDays - 1);
 
         return CarbonPeriod::create($start, '1 day', $end);
     }

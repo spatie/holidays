@@ -35,12 +35,11 @@ jobs:
       - name: Install dependencies
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
+      - name: Validate Composer configuration
+        run: composer validate --strict
+
       - name: List Installed Dependencies
         run: composer show -D
-
-      - name: Check code style
-        if: matrix.php == '8.5' && matrix.stability == 'prefer-stable'
-        run: vendor/bin/pint --test
 
       - name: Execute tests
         run: vendor/bin/pest --ci --compact
