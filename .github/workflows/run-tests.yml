@@ -35,6 +35,9 @@ jobs:
       - name: Install dependencies
         run: composer update --${{ matrix.stability }} --prefer-stable --prefer-dist --no-interaction
 
+      - name: Validate Composer configuration
+        run: composer validate --strict
+
       - name: List Installed Dependencies
         run: composer show -D
 

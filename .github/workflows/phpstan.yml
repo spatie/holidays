@@ -24,3 +24,6 @@ jobs:
 
       - name: Run PHPStan
         run: ./vendor/bin/phpstan
+
+      - name: Check PHP code style
+        run: ./vendor/bin/pint --test
