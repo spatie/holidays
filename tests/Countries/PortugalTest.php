@@ -94,6 +94,11 @@ it('can calculate portuguese municipal holidays that depend on a weekday', funct
     ['PT-1308', 2027, 'Terça-feira de Pentecostes', '2027-05-18'],
     ['PT-1305', 2022, 'Nosso Senhor dos Aflitos', '2022-08-01'],
     ['PT-0511', 2022, 'Nossa Senhora da Alagada', '2022-08-29'],
+    ['PT-4204', 2018, 'Oitava do Corpo de Deus', '2018-06-01'],
+    ['PT-4204', 2019, 'Oitava do Corpo de Deus', '2019-06-21'],
+    ['PT-4204', 2026, 'Oitava do Corpo de Deus', '2026-06-05'],
+    ['PT-4801', 2024, 'Nossa Senhora do Rosário', '2024-07-22'],
+    ['PT-4801', 2025, 'Nossa Senhora do Rosário', '2025-07-21'],
 ]);
 
 it('throws for an unknown portuguese region', function () {
