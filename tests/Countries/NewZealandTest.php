@@ -136,14 +136,28 @@ it('can calculate holidays for 2030', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-it('calculates matariki regardless of the current time of day', function (string $date) {
-    CarbonImmutable::setTestNow($date);
+it('calculates matariki regardless of the current time and timezone', function (string $date, string $timezone) {
+    $originalTimezone = date_default_timezone_get();
+    $originalNow = CarbonImmutable::getTestNow();
 
-    $matariki = CarbonImmutable::parse('2023-07-14');
+    try {
+        date_default_timezone_set($timezone);
+        CarbonImmutable::setTestNow($date);
 
-    expect(Holidays::for('nz')->getName($matariki))->toBe('Matariki')
-        ->and(Holidays::for('nz')->isHoliday($matariki))->toBeTrue();
+        $holidays = Holidays::for('nz', 2023);
+        $matariki = findDate($holidays->get(), 'Matariki');
+
+        expect($matariki?->format('Y-m-d H:i:s'))->toBe('2023-07-14 00:00:00')
+            ->and($holidays->getName('2023-07-14'))->toBe('Matariki')
+            ->and($holidays->isHoliday('2023-07-14'))->toBeTrue()
+            ->and($holidays->isHoliday('2023-07-13'))->toBeFalse()
+            ->and($holidays->isHoliday('2023-07-15'))->toBeFalse()
+            ->and(array_column($holidays->getInRange('2023-07-14', '2023-07-14'), 'name'))->toBe(['Matariki']);
+    } finally {
+        CarbonImmutable::setTestNow($originalNow);
+        date_default_timezone_set($originalTimezone);
+    }
 })->with([
     '10 AM' => '2023-07-14 10:00:00',
     '10 PM' => '2023-07-14 22:00:00',
-]);
+])->with(['UTC', 'Pacific/Auckland', 'America/Los_Angeles']);
