@@ -65,7 +65,7 @@ trait ResolvesCalendarDates
 
     protected function createPeriod(string $date, int $year, int $totalDays): CarbonPeriod
     {
-        $start = $this->createDate('Y-m-d', "{$year}-{$date}");
+        $start = $this->createDate('Y-m-d', "{$year}-{$date}")->startOfDay();
 
         $end = $start->addDays($totalDays - 1)->startOfDay();
 

@@ -19,7 +19,7 @@ it('can calculate saudi arabia holidays', function () {
 });
 
 it('matches the holidays announced by the ministry of human resources', function (int $year, array $expectedDates) {
-    CarbonImmutable::setTestNow('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01 12:34:56');
 
     $holidays = Holidays::for(country: 'sa', year: $year)->get();
 
@@ -49,13 +49,17 @@ it('only includes founding day from 2022', function () {
 });
 
 it('includes both eid al-fitr holidays when they fall in the same year', function () {
-    CarbonImmutable::setTestNow('2024-01-01');
+    CarbonImmutable::setTestNow('2024-01-01 12:34:56');
 
     $holidays = Holidays::for(country: 'sa', year: 2033)->get();
 
     $eidAlFitr = array_filter($holidays, fn (Holiday $holiday): bool => str_starts_with($holiday->name, 'Eid al-Fitr'));
 
-    expect($eidAlFitr)->toHaveCount(8);
+    expect(array_values(array_map(fn (Holiday $holiday): string => $holiday->date->format('Y-m-d'), $eidAlFitr)))
+        ->toBe([
+            '2033-01-02', '2033-01-03', '2033-01-04', '2033-01-05',
+            '2033-12-22', '2033-12-23', '2033-12-24', '2033-12-25',
+        ]);
 });
 
 it('can translate saudi arabia holidays to arabic', function () {
