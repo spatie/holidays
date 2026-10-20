@@ -679,7 +679,7 @@ class Spain extends Country implements HasRegions
 
             // País Vasco / Euskal Herria
             'es-pv' => [
-                'Aniversario del Primer Gobierno Vasco' => CarbonImmutable::createFromDate($year, 10, 7),
+                'Aniversario del primer Gobierno de Euskadi' => CarbonImmutable::createFromDate($year, 10, 7),
             ] + $juevesSanto + $lunesPascua,
 
             // Canarias
@@ -710,7 +710,7 @@ class Spain extends Country implements HasRegions
             // Extremadura
             'es-ex' => [
                 'Día de Extremadura' => CarbonImmutable::createFromDate($year, 9, 8),
-                'Traslado de la Asunción de la Virgen' => CarbonImmutable::createFromDate($year, 10, 11),
+                'Sustitución del 15 de agosto' => CarbonImmutable::createFromDate($year, 10, 11),
             ] + $juevesSanto,
 
             // Galicia

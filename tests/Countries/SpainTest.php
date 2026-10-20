@@ -20,6 +20,25 @@ it('can calculate spanish regional holidays 2027', function () {
         ->toMatchSnapshot();
 });
 
+it('can calculate spanish regional holidays 2027 by date', function (string $region, string $date, string $name) {
+    $holidays = Holidays::for(Spain::make($region));
+
+    expect($holidays->isHoliday($date))->toBeTrue()
+        ->and($holidays->getName($date))->toBe($name);
+})->with([
+    'Andalucía' => ['es-an', '2027-03-01', 'Día de Andalucía'],
+    'Extremadura' => ['es-ex', '2027-10-11', 'Sustitución del 15 de agosto'],
+    'País Vasco' => ['es-pv', '2027-10-07', 'Aniversario del primer Gobierno de Euskadi'],
+    'Canarias' => ['es-cn', '2027-08-16', 'Lunes siguiente a la Asunción de la Virgen'],
+]);
+
+it('does not include regional holidays that fall on a Sunday in 2027', function (string $region, string $date) {
+    expect(Holidays::for(Spain::make($region))->isHoliday($date))->toBeFalse();
+})->with([
+    'Madrid' => ['es-md', '2027-05-02'],
+    'Canarias' => ['es-cn', '2027-05-30'],
+]);
+
 // 2025
 it('can calculate spanish holidays 2025', function () {
     CarbonImmutable::setTestNow('2025-01-01');
