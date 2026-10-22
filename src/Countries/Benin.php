@@ -230,128 +230,79 @@ class Benin extends Country
         return [1970, 2037];
     }
 
+    /**
+     * Holiday names follow Law 90-019 of 27 July 1990 fixing the legal holidays.
+     */
     protected function allHolidays(int $year): array
     {
         return array_merge([
             Holiday::national('Fête du Nouvel An', "{$year}-01-01"),
-            Holiday::national('Fête annuelle des réligions traditionnelles', "{$year}-01-10"),
-            Holiday::national('Fete annuelle des réligions traditionnelles', "{$year}-01-10"),
-            Holiday::national('Fete du travail', "{$year}-05-01"),
-            Holiday::national("Fête de l'indépendance", "{$year}-08-01"),
+            Holiday::national('Fête du Travail', "{$year}-05-01"),
+            Holiday::national('Fête Nationale', "{$year}-08-01"),
+            Holiday::national("Jour de l'Assomption", "{$year}-08-15"),
             Holiday::national('Jour de la Toussaint', "{$year}-11-01"),
-            Holiday::national('Jour de Noel', "{$year}-12-25"),
-            Holiday::national("Jour de l'assomption", "{$year}-08-15"),
-        ], $this->variableHolidays($year));
+            Holiday::national('Jour de la Noël', "{$year}-12-25"),
+        ], $this->traditionalReligionsHolidays($year), $this->variableHolidays($year));
+    }
+
+    /** @return array<Holiday> */
+    protected function traditionalReligionsHolidays(int $year): array
+    {
+        $name = 'Fête annuelle des religions traditionnelles';
+
+        // Law 2024-32: the second Friday of January and the Thursday before it.
+        if ($year >= 2025) {
+            $secondFriday = CarbonImmutable::parse("second friday of january {$year}");
+
+            return [
+                Holiday::national($name, $secondFriday->subDay()),
+                Holiday::national($name, $secondFriday),
+            ];
+        }
+
+        // Law 97-031 of 20 August 1997: every 10 January.
+        if ($year >= 1998) {
+            return [Holiday::national($name, "{$year}-01-10")];
+        }
+
+        return [];
     }
 
     /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
-        $easter = $this->easter($year)->setTimezone('Africa/Porto-Novo');
+        $easter = $this->easter($year);
 
         return array_merge(
             [
                 Holiday::national('Lundi de Pâques', $easter->addDays(1)),
-                Holiday::national('Jour de l'.json_decode('"\u2019"').'Ascension', $easter->addDays(40)),
+                Holiday::national("Jour de l'Ascension", $easter->addDays(39)),
                 Holiday::national('Lundi de Pentecôte', $easter->addDays(50)),
             ],
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::ProphetMohammedBirthday,
-                label: 'Jour du Maouloud'
-            ),
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::EidAlFitr,
-                label: 'Fête de Ramadan',
-                day: 2
-            ),
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::EidAlAdha,
-                label: 'Fête de la Tabaski',
-                day: 3
-            ),
+            $this->getIslamicHolidays($year, self::ProphetMohammedBirthday, 'Journée Maouloud'),
+            $this->getIslamicHolidays($year, self::EidAlFitr, 'Jour du Ramadan'),
+            $this->getIslamicHolidays($year, self::EidAlAdha, 'Jour de la Tabaski'),
         );
     }
 
     /**
+     * Each Islamic holiday is a single day off; a year may hold two occurrences.
+     *
      * @param  array<int, string|array<string>>  $holidays
      * @return array<Holiday>
      */
-    protected function getIslamicHolidays(
-        int $year,
-        array $holidays,
-        string $label,
-        int $day = 1,
-    ): array {
+    protected function getIslamicHolidays(int $year, array $holidays, string $label): array
+    {
+        $dates = is_array($holidays[$year]) ? $holidays[$year] : [$holidays[$year]];
+
         $islamicHolidays = [];
-        $counter = 0;
 
-        if ($year != 1970) {
-            $previousHoliday = is_array($holidays[$year - 1]) ? $holidays[$year - 1][1] : $holidays[$year - 1];
+        foreach (array_values($dates) as $index => $date) {
+            $prefix = $index > 0 ? ($index + 1).'. ' : '';
 
-            $previousHoliday = $this->createDate('Y-m-d', ($year - 1).'-'.$previousHoliday);
-
-            if ($previousHoliday->addDays($day - 1)->year == $year) {
-                $islamicHolidays = $this->prepareHolidays(
-                    holiday: $previousHoliday,
-                    day: $day,
-                    label: $label,
-                    filterYear: $year
-                );
-                $counter++;
-            }
-        }
-
-        $currentYearHolidays = is_array($holidays[$year]) ? $holidays[$year] : [$holidays[$year]];
-
-        foreach ($currentYearHolidays as $currentYearHoliday) {
-            $currentYearHoliday = $this->createDate('Y-m-d', "{$year}-{$currentYearHoliday}");
-
-            $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
-                holiday: $currentYearHoliday,
-                day: $day,
-                label: $label,
-                filterYear: $year,
-                prefix: $counter ? ($counter + 1).'. ' : ''
-            ));
-            $counter++;
-        }
-
-        if ($year != 2037) {
-            $nextHoliday = is_array($holidays[$year + 1]) ? $holidays[$year + 1][1] : $holidays[$year + 1];
-
-            $nextHoliday = $this->createDate('Y-m-d', ($year + 1).'-'.$nextHoliday);
-
-            if ($nextHoliday->addDays(-1)->year == $year) {
-                $islamicHolidays = array_merge($islamicHolidays, $this->prepareHolidays(
-                    holiday: $nextHoliday,
-                    day: $day,
-                    label: $label,
-                    filterYear: $year,
-                    prefix: $counter ? ($counter + 1).'. ' : ''
-                ));
-            }
+            $islamicHolidays[] = Holiday::national("{$prefix}{$label}", $this->createDate('Y-m-d', "{$year}-{$date}"));
         }
 
         return $islamicHolidays;
-    }
-
-    /** @return array<Holiday> */
-    protected function prepareHolidays(
-        CarbonImmutable $holiday,
-        int $day,
-        string $label,
-        int $filterYear,
-        string $prefix = ''
-    ): array {
-        $holidays = [];
-
-        foreach (range(1, $day) as $range) {
-            $holidays[] = Holiday::national("{$prefix}{$label} - Jour {$range}", $holiday->addDays($range - 1));
-        }
-
-        return array_values(array_filter($holidays, fn ($holiday): bool => $holiday->date->year == $filterYear));
     }
 }
