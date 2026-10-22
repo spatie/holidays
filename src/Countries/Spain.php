@@ -81,7 +81,7 @@ class Spain extends Country implements HasRegions
             );
         }
 
-        throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2025);
+        throw InvalidYear::range($this->countryCode()." ({$this->region})", 2022, 2027);
     }
 
     /** @return array<string, CarbonImmutable> */
@@ -640,6 +640,114 @@ class Spain extends Country implements HasRegions
                 'Virgen de la Victoria' => CarbonImmutable::createFromDate($year, 9, 8),
                 'Día de Melilla' => CarbonImmutable::createFromDate($year, 9, 17),
             ] + $juevesSanto + $eidAlAdha + $trasladoConstitucion,
+
+            null => [],
+            default => throw InvalidRegion::notFound($this->region),
+        };
+    }
+
+    /** @return array<string, CarbonImmutable> */
+    protected function regionHolidays2027(int $year): array
+    {
+        $sanJose = ['San José' => CarbonImmutable::createFromDate($year, 3, 19)];
+        $juevesSanto = ['Jueves Santo' => CarbonImmutable::createFromDate($year, 3, 25)];
+        $lunesPascua = ['Lunes de Pascua' => CarbonImmutable::createFromDate($year, 3, 29)];
+        $eidAlAdha = ['Eid al-Adha (Fiesta del Sacrificio)' => CarbonImmutable::createFromDate($year, 5, 17)];
+        $sanJuan = ['San Juan' => CarbonImmutable::createFromDate($year, 6, 24)];
+        $lunesAsuncion = ['Lunes siguiente a la Asunción de la Virgen' => CarbonImmutable::createFromDate($year, 8, 16)];
+
+        return match ($this->region) {
+            // Andalucía
+            'es-an' => [
+                'Día de Andalucía' => CarbonImmutable::createFromDate($year, 3, 1),
+            ] + $juevesSanto + $lunesAsuncion,
+
+            // Aragón
+            'es-ar' => [
+                'San Jorge / Día de Aragón' => CarbonImmutable::createFromDate($year, 4, 23),
+            ] + $juevesSanto + $lunesAsuncion,
+
+            // Principado de Asturias
+            'es-as' => [
+                'Día de Asturias' => CarbonImmutable::createFromDate($year, 9, 8),
+            ] + $juevesSanto + $lunesAsuncion,
+
+            // Islas Baleares / Illes Balears
+            'es-ib' => [
+                'Día de les Illes Balears' => CarbonImmutable::createFromDate($year, 3, 1),
+            ] + $juevesSanto + $lunesPascua,
+
+            // País Vasco / Euskal Herria
+            'es-pv' => [
+                'Aniversario del primer Gobierno de Euskadi' => CarbonImmutable::createFromDate($year, 10, 7),
+            ] + $juevesSanto + $lunesPascua,
+
+            // Canarias
+            'es-cn' => $juevesSanto + $lunesAsuncion,
+
+            // Cantabria
+            'es-cb' => [
+                'Día de las Instituciones de Cantabria' => CarbonImmutable::createFromDate($year, 7, 28),
+                'La Bien Aparecida' => CarbonImmutable::createFromDate($year, 9, 15),
+            ] + $juevesSanto,
+
+            // Castilla-La Mancha
+            'es-cm' => [
+                'Corpus Christi' => CarbonImmutable::createFromDate($year, 5, 27),
+                'Día de Castilla-La Mancha' => CarbonImmutable::createFromDate($year, 5, 31),
+            ] + $juevesSanto,
+
+            // Castilla y León
+            'es-cl' => [
+                'Fiesta de Castilla y León' => CarbonImmutable::createFromDate($year, 4, 23),
+            ] + $juevesSanto + $lunesAsuncion,
+
+            // Cataluña / Catalunya
+            'es-ct' => [
+                'Fiesta Nacional de Cataluña' => CarbonImmutable::createFromDate($year, 9, 11),
+            ] + $lunesPascua + $sanJuan,
+
+            // Extremadura
+            'es-ex' => [
+                'Día de Extremadura' => CarbonImmutable::createFromDate($year, 9, 8),
+                'Sustitución del 15 de agosto' => CarbonImmutable::createFromDate($year, 10, 11),
+            ] + $juevesSanto,
+
+            // Galicia
+            'es-ga' => [
+                'Día de las Letras Gallegas' => CarbonImmutable::createFromDate($year, 5, 17),
+            ] + $sanJose + $juevesSanto,
+
+            // La Rioja
+            'es-ri' => [
+                'Día de La Rioja' => CarbonImmutable::createFromDate($year, 6, 9),
+            ] + $juevesSanto + $lunesPascua,
+
+            // Comunidad de Madrid
+            'es-md' => $sanJose + $juevesSanto + $lunesAsuncion,
+
+            // Región de Murcia
+            'es-mc' => [
+                'Día de la Región de Murcia' => CarbonImmutable::createFromDate($year, 6, 9),
+            ] + $sanJose + $juevesSanto,
+
+            // Comunidad Foral de Navarra / Nafarroako Foru Komunitatea
+            'es-nc' => $sanJose + $juevesSanto + $lunesPascua,
+
+            // Comunidad Valenciana / Comunitat Valenciana
+            'es-vc' => [
+                'Día de la Comunitat Valenciana' => CarbonImmutable::createFromDate($year, 10, 9),
+            ] + $sanJose + $lunesPascua,
+
+            // Ciudad Autónoma de Ceuta
+            'es-ce' => [
+                'Nuestra Señora de África' => CarbonImmutable::createFromDate($year, 8, 5),
+            ] + $juevesSanto + $eidAlAdha,
+
+            // Ciudad Autónoma de Melilla
+            'es-ml' => [
+                'Eid al-Fitr' => CarbonImmutable::createFromDate($year, 3, 10),
+            ] + $juevesSanto + $eidAlAdha,
 
             null => [],
             default => throw InvalidRegion::notFound($this->region),
