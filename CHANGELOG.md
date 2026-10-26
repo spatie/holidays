@@ -2,6 +2,24 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.8.1 - 2026-10-26
+
+### Fixed
+
+- Correct Benin traditional-religions festival dates: 10 January from 1998 through 2024, then the second Friday of January and the preceding Thursday from 2025.
+- Correct Ascension to Easter plus 39 days and keep Easter-based dates independent of the current time and timezone.
+- Remove the duplicated festival entry and incorrectly added extra Ramadan and Tabaski days.
+- Preserve existing holiday names, including their historical spelling and day labels, and retain the protected getIslamicHolidays() signature and prepareHolidays() extension hook for subclasses.
+- Add public name-compatibility and custom multi-day/year-boundary regression coverage.
+
+Thanks to @egbavou in https://github.com/spatie/holidays/pull/351.
+
+No breaking API changes. Holiday-date corrections intentionally change previously incorrect calendar results. Existing Islamic date tables are unchanged; discrepancies with local announcements remain outside this fix.
+
+This release is based on 2.8.0 and excludes the unrelated, unreleased Greece country-code change on main.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.8.0...2.8.1
+
 ## 2.8.0 - 2026-10-26
 
 ### Added
