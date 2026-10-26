@@ -234,44 +234,51 @@ class Benin extends Country
     {
         return array_merge([
             Holiday::national('Fête du Nouvel An', "{$year}-01-01"),
-            Holiday::national('Fête annuelle des réligions traditionnelles', "{$year}-01-10"),
-            Holiday::national('Fete annuelle des réligions traditionnelles', "{$year}-01-10"),
             Holiday::national('Fete du travail', "{$year}-05-01"),
             Holiday::national("Fête de l'indépendance", "{$year}-08-01"),
+            Holiday::national("Jour de l'assomption", "{$year}-08-15"),
             Holiday::national('Jour de la Toussaint', "{$year}-11-01"),
             Holiday::national('Jour de Noel', "{$year}-12-25"),
-            Holiday::national("Jour de l'assomption", "{$year}-08-15"),
-        ], $this->variableHolidays($year));
+        ], $this->traditionalReligionsHolidays($year), $this->variableHolidays($year));
+    }
+
+    /** @return array<Holiday> */
+    protected function traditionalReligionsHolidays(int $year): array
+    {
+        $name = 'Fête annuelle des réligions traditionnelles';
+
+        // Law 2024-32: the second Friday of January and the Thursday before it.
+        if ($year >= 2025) {
+            $secondFriday = CarbonImmutable::parse("second friday of january {$year}");
+
+            return [
+                Holiday::national($name, $secondFriday->subDay()),
+                Holiday::national($name, $secondFriday),
+            ];
+        }
+
+        // Law 97-031 of 20 August 1997: every 10 January.
+        if ($year >= 1998) {
+            return [Holiday::national($name, "{$year}-01-10")];
+        }
+
+        return [];
     }
 
     /** @return array<Holiday> */
     protected function variableHolidays(int $year): array
     {
-        $easter = $this->easter($year)->setTimezone('Africa/Porto-Novo');
+        $easter = $this->easter($year);
 
         return array_merge(
             [
                 Holiday::national('Lundi de Pâques', $easter->addDays(1)),
-                Holiday::national('Jour de l'.json_decode('"\u2019"').'Ascension', $easter->addDays(40)),
+                Holiday::national('Jour de l’Ascension', $easter->addDays(39)),
                 Holiday::national('Lundi de Pentecôte', $easter->addDays(50)),
             ],
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::ProphetMohammedBirthday,
-                label: 'Jour du Maouloud'
-            ),
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::EidAlFitr,
-                label: 'Fête de Ramadan',
-                day: 2
-            ),
-            $this->getIslamicHolidays(
-                year: $year,
-                holidays: self::EidAlAdha,
-                label: 'Fête de la Tabaski',
-                day: 3
-            ),
+            $this->getIslamicHolidays($year, self::ProphetMohammedBirthday, 'Jour du Maouloud'),
+            $this->getIslamicHolidays($year, self::EidAlFitr, 'Fête de Ramadan'),
+            $this->getIslamicHolidays($year, self::EidAlAdha, 'Fête de la Tabaski'),
         );
     }
 
