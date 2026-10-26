@@ -2,6 +2,17 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.8.0 - 2026-10-26
+
+### Added
+
+- Support Spain regional holidays for 2027 across all 19 supported regions, following the official BOE calendar. Thanks to @MohannadElemary in https://github.com/spatie/holidays/pull/350.
+- Cover substitute holidays and Sunday exclusions with regression tests.
+
+No breaking changes. This release is based on 2.7.2 and intentionally excludes the unrelated, unreleased Greece country-code change on main. Island-specific and municipal holidays remain outside the regional API scope.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.7.2...2.8.0
+
 ## 2.7.2 - 2026-10-19
 
 ### Fixed
