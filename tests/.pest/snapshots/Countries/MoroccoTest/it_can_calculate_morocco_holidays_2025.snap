@@ -16,7 +16,7 @@
         "date": "2025-03-31"
     },
     {
-        "name": "Eid al-Fitr 2",
+        "name": "Eid al-Fitr Day 2",
         "date": "2025-04-01"
     },
     {
@@ -28,7 +28,7 @@
         "date": "2025-06-07"
     },
     {
-        "name": "Eid al-Adha 2",
+        "name": "Eid al-Adha Day 2",
         "date": "2025-06-08"
     },
     {
@@ -56,8 +56,12 @@
         "date": "2025-09-05"
     },
     {
-        "name": "Birthday of the Prophet Muhammad 2",
+        "name": "Birthday of the Prophet Muhammad Day 2",
         "date": "2025-09-06"
+    },
+    {
+        "name": "Unity Day",
+        "date": "2025-10-31"
     },
     {
         "name": "Green March",
