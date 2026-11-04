@@ -2,6 +2,29 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.8.2 - 2026-11-04
+
+### Fixed
+
+- Correct Moroccan Mawlid dates to September 28–29 in 2023 and August 25–26 in 2026, following Ministry of Habous moon-sighting announcements.
+- Correct Moroccan Islamic New Year 2024 to July 7.
+- Keep Eid al-Fitr 2023 on April 22–23; April 21 was not the announced Moroccan date.
+
+### Added
+
+- Add Moroccan Unity Day (Aid Al Wahda) on October 31 from 2026, with Arabic and French translations. The Royal Office announced it on November 4, 2025, and the implementing holiday decrees followed in 2026; it is not backdated to October 2025.
+- Add source-derived date, second-day name, type-filter, translation and year-boundary regression coverage.
+
+Existing public holiday names, National classification/filtering, translation values, protected variableHolidays() hook and year/calculation behavior are preserved. No breaking API changes. Dates outside the verified corrections retain the existing calculation and should not be treated as newly verified official Moroccan announcements.
+
+Sources: [Royal Office](https://maroc.ma/en/news/his-majesty-king-proclaims-october-31-unity-day-statement-royal-office), [implementing decrees](https://www.cg.gov.ma/fr/node/12714), [Mawlid 2023 primary announcement](https://www.habous.gov.ma/%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D8%A9-4/18850-%D9%81%D8%A7%D8%AA%D8%AD-%D8%B1%D8%A8%D9%8A%D8%B9-%D8%A7%D9%84%D8%A3%D9%88%D9%84-1445%D9%87%D9%80-%D8%A7%D9%84%D8%A3%D8%AD%D8%AF-17-%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1-2023-%D9%88%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D9%88%D9%84%D8%AF-%D8%A7%D9%84%D9%86%D8%A8%D9%88%D9%8A-%D8%A7%D9%84%D8%AE%D9%85%D9%8A%D8%B3-28-%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1.html), [New Year 2024 ministry announcement via MAP](https://fr.le360.ma/societe/le-1er-moharram-1446-correspondra-au-dimanche-7-juillet-2024_EISFYPSRSVHEXPTDUM5NJWICF4/), [Mawlid 2026 ministry announcement via Le Matin](https://lematin.ma/nation/aid-al-mawlid-annabaoui-celebre-au-maroc-le-mardi-25-aout/360884), [Fitr 2023 ministry announcement via Le Matin](https://lematin.ma/express/2023/id-al-fitr-celebre-samedi-22-avril-maroc/389065.html).
+
+Thanks to @YazidKHALDI in https://github.com/spatie/holidays/pull/352.
+
+This isolated patch release is based on 2.8.1 and excludes the unrelated unreleased Greece country-code changes on main. It preserves the existing Spatie-hosted README image. Local release-tree validation: 730 tests / 3,112 assertions, PHPStan, Pint, strict Composer validation, platform checks and security audit. All tag CI checks passed before publication.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.8.1...2.8.2
+
 ## 2.8.1 - 2026-10-26
 
 ### Fixed
