@@ -14,7 +14,7 @@ class Morocco extends Country
 
     protected function allHolidays(int $year): array
     {
-        return array_merge([
+        $holidays = [
             Holiday::national("New Year's Day", "{$year}-01-01"),
             Holiday::national('Proclamation of Independence Day', "{$year}-01-11"),
             Holiday::national('Amazigh New Year (ⵉⴹ ⵏ ⵢⵉⵏⵏⴰⵢⵔ)', "{$year}-01-14"),
@@ -25,7 +25,14 @@ class Morocco extends Country
             Holiday::national('Youth Day', "{$year}-08-21"),
             Holiday::national('Green March', "{$year}-11-06"),
             Holiday::national('Independence Day', "{$year}-11-18"),
-        ], $this->variableHolidays($year));
+        ];
+
+        // Implementing decrees adopted in January 2026: https://www.cg.gov.ma/fr/node/12714
+        if ($year >= 2026) {
+            $holidays[] = Holiday::national('Unity Day', "{$year}-10-31");
+        }
+
+        return array_merge($holidays, $this->variableHolidays($year));
     }
 
     /** @return array<Holiday> */
@@ -52,9 +59,22 @@ class Morocco extends Country
             'Eid al-Adha 2' => '12-11',
         ];
 
+        // Moroccan moon-sighting announcements can differ from the tabular calculation.
+        $announcedDates = [
+            2023 => ['03-12' => '09-28', '03-13' => '09-29'],
+            2024 => ['01-01' => '07-07'],
+            2026 => ['03-12' => '08-25', '03-13' => '08-26'],
+        ];
+
         $holidays = [];
 
         foreach ($islamicHolidaysOnHijri as $holidayTitle => $hijriHolidayDate) {
+            if (isset($announcedDates[$year][$hijriHolidayDate])) {
+                $holidays[] = Holiday::national($holidayTitle, "{$year}-{$announcedDates[$year][$hijriHolidayDate]}");
+
+                continue;
+            }
+
             [$hijriHolidayMonth, $hijriHolidayDay] = explode('-', $hijriHolidayDate);
 
             $GregorianDate = $this->islamicToGregorian($currentHijriYear, (int) $hijriHolidayMonth, (int) $hijriHolidayDay);
