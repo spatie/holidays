@@ -85,6 +85,7 @@ use Spatie\Holidays\Countries\Romania;
 use Spatie\Holidays\Countries\SaudiArabia;
 use Spatie\Holidays\Countries\Scotland;
 use Spatie\Holidays\Countries\Serbia;
+use Spatie\Holidays\Countries\Singapore;
 use Spatie\Holidays\Countries\Slovakia;
 use Spatie\Holidays\Countries\Slovenia;
 use Spatie\Holidays\Countries\SouthAfrica;
@@ -195,6 +196,7 @@ final class CountryRegistry
         'sa' => SaudiArabia::class,
         'gb-sct' => Scotland::class,
         'sr' => Serbia::class,
+        'sg' => Singapore::class,
         'sk' => Slovakia::class,
         'si' => Slovenia::class,
         'za' => SouthAfrica::class,
