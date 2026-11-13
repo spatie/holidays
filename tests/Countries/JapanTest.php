@@ -2,15 +2,13 @@
 
 namespace Spatie\Holidays\Tests\Countries;
 
-use Carbon\CarbonImmutable;
+use Spatie\Holidays\Countries\Japan;
 use Spatie\Holidays\Holiday;
 use Spatie\Holidays\Holidays;
 use Spatie\Holidays\HolidayType;
 
 it('can calculate japanese holidays', function () {
-    CarbonImmutable::setTestNow('2024-01-01');
-
-    $holidays = Holidays::for(country: 'jp')->get();
+    $holidays = Holidays::for(country: 'jp', year: 2024)->get();
 
     expect($holidays)
         ->toBeArray()
@@ -19,8 +17,26 @@ it('can calculate japanese holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-// Dates from the list of national holidays and days off published by the Cabinet Office:
-// https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv
+it('allows subclasses to extend variable holidays', function () {
+    $country = new class extends Japan
+    {
+        protected function variableHolidays(int $year): array
+        {
+            return [
+                ...parent::variableHolidays($year),
+                Holiday::national('Custom holiday', "{$year}-06-01"),
+            ];
+        }
+    };
+
+    $holidays = Holidays::for($country, year: 2021);
+
+    expect($holidays->getName('2021-06-01'))->toBe('Custom holiday');
+    expect($holidays->getName('2021-07-22'))->toBe('海の日');
+    expect($holidays->getName('2021-08-08'))->toBe('山の日');
+});
+
+/** @see https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv */
 it('matches the national holidays published by the cabinet office', function (int $year, array $expectedDates) {
     $holidays = Holidays::for(country: 'jp', year: $year)->get();
 
@@ -154,7 +170,6 @@ it('calculates the equinox days', function (int $year, string $vernalEquinoxDay,
 ]);
 
 it('adds a substitute holiday when a holiday falls on a sunday', function () {
-    // Constitution Day 2026 is on Sunday 3 May, and 4 and 5 May are holidays as well.
     $holidays = Holidays::for(country: 'jp', year: 2026)->get();
 
     expect(findDate($holidays, '振替休日')?->format('Y-m-d'))->toBe('2026-05-06');
@@ -162,14 +177,12 @@ it('adds a substitute holiday when a holiday falls on a sunday', function () {
         fn (Holiday $holiday): bool => $holiday->name === '振替休日' && $holiday->type === HolidayType::Observed,
     );
 
-    // The Emperor's Birthday 2025 is on Sunday 23 February.
     $holidays = Holidays::for(country: 'jp', year: 2025)->get();
 
     expect(findDate($holidays, '振替休日')?->format('Y-m-d'))->toBe('2025-02-24');
 });
 
 it('adds a holiday for a day between two holidays', function () {
-    // Respect for the Aged Day and Autumnal Equinox Day 2026 are on 21 and 23 September.
     $holidays = Holidays::for(country: 'jp', year: 2026)->get();
 
     expect(findDate($holidays, '国民の休日')?->format('Y-m-d'))->toBe('2026-09-22');
@@ -187,7 +200,6 @@ it('has the extra holidays of 2019', function () {
     expect(findDate($holidays, '天皇の即位の日')?->format('Y-m-d'))->toBe('2019-05-01');
     expect(findDate($holidays, '即位礼正殿の儀の行われる日')?->format('Y-m-d'))->toBe('2019-10-22');
 
-    // 30 April and 2 May are between two holidays, and 6 May replaces Children's Day on a Sunday.
     $days = array_map(
         fn (Holiday $holiday): string => $holiday->date->format('Y-m-d'),
         array_filter($holidays, fn (Holiday $holiday): bool => $holiday->type === HolidayType::Observed),
