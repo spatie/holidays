@@ -40,6 +40,10 @@ We support the countries listed in [this directory](https://github.com/spatie/ho
 
 Saudi Arabia (`sa`) supports 2020–2037 and returns the statutory private-sector holidays under [Article 24 of the Saudi Labor Law's implementing regulations](https://www.hrsd.gov.sa/en/knowledge-centre/articles/322). Eid dates follow the Umm al-Qura calendar. Eid al-Fitr leave begins the day after 29 Ramadan, which may be before 1 Shawwal. Public-sector and banking holiday periods, and employer-specific compensatory days off, are not included.
 
+Taiwan (`tw`) follows the [DGPA government-office calendar](https://data.gov.tw/dataset/14718) for 2020–2027, including compensatory and adjusted days off as `HolidayType::Observed`. Ordinary weekends and make-up working Saturdays are not listed. Holidays sharing a date are returned separately. This is not a private-sector employment calendar; for example, Labor Day was already a workers' holiday before it became a government-office holiday in 2026.
+
+Outside 2020–2027, Taiwan retains its legacy calculation for compatibility. It returns only New Year's Day, Peace Memorial Day, Children's Day, National Day, the first three days of Lunar New Year, Dragon Boat Festival and Mid-Autumn Festival. It omits Lunar New Year's Eve, Tomb Sweeping Day, compensatory days and the holidays introduced by the [2025 reform](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0020095). Those years are not complete official calendars.
+
 ## Usage
 
 You can get all holidays for a country by using the `get` method. It returns an array of `Holiday` objects.
