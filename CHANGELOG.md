@@ -2,6 +2,22 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.9.0 - 2026-11-13
+
+### Added
+
+- Add Singapore (`sg`) public holidays for 2020 through 2027 using dates published by the Ministry of Manpower.
+- Include observed holidays following Sunday public holidays, retaining the original dates and skipping dates that are already public holidays.
+- Cover all supported years, Sunday collisions, Saturday holidays and unsupported-year boundaries.
+
+Polling Day and one-off declarations are not included. Years outside 2020–2027 throw `InvalidYear`; future years require updated published dates.
+
+Thanks to @dbsparkle in https://github.com/spatie/holidays/pull/354.
+
+This backward-compatible minor release is based on 2.8.2 and includes only the Singapore addition. It excludes the unrelated, unreleased Greece country-code changes on main. Release-tree validation: 744 tests / 3,133 assertions, strict Composer validation, PHPStan and Pint. Tag CI passed before publication.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.8.2...2.9.0
+
 ## 2.8.2 - 2026-11-04
 
 ### Fixed
