@@ -9,28 +9,18 @@ use IntlDateFormatter;
 use Spatie\Holidays\Holiday;
 
 /**
- * For 2020 through 2027 the holidays are the days off of the government office calendar
- * (政府行政機關辦公日曆表) published by the Directorate-General of Personnel Administration:
- * the commemorative days and festivals, plus the days off that are added around them
- * (補假, 調整放假 and 放假). The working days on a Saturday that make up for some of them
- * (補行上班) are not holidays and are not listed.
+ * DGPA government-office holidays for 2020-2027, including adjusted days off but not
+ * ordinary weekends or make-up working days. This is not a private-sector calendar.
+ * Other years retain the incomplete legacy calculation for backwards compatibility.
  *
- * @see https://www.dgpa.gov.tw/informationlist?uid=30 The calendar for each year
- * @see https://data.gov.tw/dataset/14718 The same calendar as open data, one row per day
- *
- * The government decides the extra days off year by year, so other years only get the
- * fixed commemorative days and the lunar festivals.
+ * @see https://data.gov.tw/dataset/14718
+ * @see https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0020095
  */
 class Taiwan extends Country
 {
     protected string $timezone = 'Asia/Taipei';
 
-    /** Days off that are added to a year by the government, not commemorative days or festivals. */
-    protected const array ADDED_DAYS_OFF = ['補假', '調整放假', '放假'];
-
-    /**
-     * @var array<int, array<int, array{string, string}>>
-     */
+    /** @var array<int, array<int, array{string, string}>> */
     protected const array OFFICIAL_CALENDAR = [
         2020 => [
             ['01-01', '元旦'],
@@ -210,7 +200,19 @@ class Taiwan extends Country
     protected function allHolidays(int $year): array
     {
         if (isset(self::OFFICIAL_CALENDAR[$year])) {
-            return $this->officialHolidays($year);
+            $observedNames = ['補假', '調整放假', '放假'];
+
+            // 小年夜 became statutory in May 2025, after that year's Lunar New Year.
+            if ($year < 2026) {
+                $observedNames[] = '小年夜';
+            }
+
+            return array_map(
+                static fn (array $holiday): Holiday => in_array($holiday[1], $observedNames, true)
+                    ? Holiday::observed($holiday[1], "{$year}-{$holiday[0]}")
+                    : Holiday::national($holiday[1], "{$year}-{$holiday[0]}"),
+                self::OFFICIAL_CALENDAR[$year],
+            );
         }
 
         return array_merge([
@@ -219,17 +221,6 @@ class Taiwan extends Country
             Holiday::national('兒童節', "{$year}-04-04"),
             Holiday::national('雙十國慶', "{$year}-10-10"),
         ], $this->variableHolidays($year));
-    }
-
-    /** @return array<Holiday> */
-    protected function officialHolidays(int $year): array
-    {
-        return array_map(
-            fn (array $holiday): Holiday => in_array($holiday[1], self::ADDED_DAYS_OFF, true)
-                ? Holiday::observed($holiday[1], "{$year}-{$holiday[0]}")
-                : Holiday::national($holiday[1], "{$year}-{$holiday[0]}"),
-            self::OFFICIAL_CALENDAR[$year],
-        );
     }
 
     /** @return array<Holiday> */
