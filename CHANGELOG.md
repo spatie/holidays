@@ -2,6 +2,22 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.9.1 - 2026-11-13
+
+### Fixed
+
+- Correct Japan's equinoxes, the Emperor's Birthday transition, Mountain Day's introduction, the 2019 accession holidays, and the Olympic-year dates in 2020 and 2021.
+- Include substitute holidays and days between national holidays as observed holidays.
+- Preserve Japan's existing `variableHolidays()` extension hook for subclasses.
+
+The calendar matches all 372 holiday dates published by the Cabinet Office for 2007–2027. Earlier years are not reproduced exactly. Future equinox dates are estimates until officially announced.
+
+Thanks to @dbsparkle in https://github.com/spatie/holidays/pull/356.
+
+This patch release is based on 2.9.0 and includes only the Japan corrections. Unrelated unreleased changes on main are excluded. Release-tree validation: 778 tests / 3,190 assertions, Composer validation, PHPStan, Pint, and tag CI.
+
+**Full Changelog**: https://github.com/spatie/holidays/compare/2.9.0...2.9.1
+
 ## 2.9.0 - 2026-11-13
 
 ### Added
