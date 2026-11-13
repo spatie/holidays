@@ -2,6 +2,21 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.9.2 - 2026-11-13
+
+### Taiwan holiday corrections
+
+- Use the official DGPA government-office calendar for 2020–2027, including compensatory and adjusted days off. Make-up working Saturdays and ordinary weekends are not holidays.
+- Correct Lunar New Year 2027, add missing festival days and the 2025–2026 holiday changes, and retain separate holidays when dates overlap.
+- Classify the day before Lunar New Year’s Eve as an adjusted day off in 2023–2025 and a national holiday from 2026. Add English translations.
+- Document that years outside 2020–2027 retain the incomplete legacy calculation for compatibility. This is a government-office calendar, not a private-sector employment calendar.
+
+Thanks to @dbsparkle for #355.
+
+This patch builds on 2.9.1 and retains its Japan corrections. Unrelated unreleased changes on main are not included.
+
+**Full changelog:** https://github.com/spatie/holidays/compare/2.9.1...2.9.2
+
 ## 2.9.1 - 2026-11-13
 
 ### Fixed
