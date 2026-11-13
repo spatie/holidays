@@ -6,21 +6,12 @@ use Spatie\Holidays\Calendars\ResolvesCalendarDates;
 use Spatie\Holidays\Holiday;
 
 /**
- * Public holidays of Singapore, as listed in the Schedule of the Holidays Act 1998.
+ * Scheduled public holidays for 2020-2027, excluding Polling Day and one-off declarations.
+ * Announced dates use MOM's tables rather than calendar estimates. In particular,
+ * ICU places Chinese New Year a day late in 2027.
  *
  * @see https://sso.agc.gov.sg/Act/HA1998
  * @see https://www.mom.gov.sg/employment-practices/public-holidays
- *
- * Section 4(2) of the Act declares the day after a Sunday public holiday to be a public
- * holiday too, unless that day is already one. The Sunday itself stays a public holiday.
- *
- * Holidays that are announced rather than calculated (Chinese New Year, Hari Raya Puasa,
- * Hari Raya Haji, Vesak Day and Deepavali) come from the lists published by the Ministry
- * of Manpower, so only the years in supportedYearRange() are available. Chinese New Year
- * is listed too because the calendar data in ICU puts it a day late in 2027.
- *
- * One-off holidays declared under section 5 of the Act or for an election (Polling Day)
- * are not included.
  */
 class Singapore extends Country
 {
@@ -134,17 +125,13 @@ class Singapore extends Country
     }
 
     /**
-     * Section 4(2): a public holiday that falls on a Sunday is followed by an extra public
-     * holiday on the next day that is not a public holiday already (this is why Chinese
-     * New Year 2023, a Sunday and a Monday, is followed by Tuesday 24 January).
+     * Section 4(2) adds the next non-holiday after a Sunday holiday, retaining the Sunday.
      *
      * @param  array<Holiday>  $holidays
      * @return array<Holiday>
      */
     protected function observedHolidays(array $holidays): array
     {
-        usort($holidays, static fn (Holiday $a, Holiday $b): int => $a->date <=> $b->date);
-
         $occupiedDates = array_map(
             static fn (Holiday $holiday): string => $holiday->date->toDateString(),
             $holidays,

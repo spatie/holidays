@@ -20,8 +20,6 @@ it('can calculate singapore holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
-// Dates as published by the Ministry of Manpower: https://www.mom.gov.sg/employment-practices/public-holidays
-// Public holidays declared for an election (Polling Day) are not part of the list.
 it('matches the public holidays published by the ministry of manpower', function (int $year, array $expectedDates) {
     $holidays = Holidays::for(country: 'sg', year: $year)->get();
 
@@ -65,7 +63,6 @@ it('matches the public holidays published by the ministry of manpower', function
 ]);
 
 it('declares the next day a public holiday when a public holiday falls on a sunday', function () {
-    // Vesak Day 2026 is on Sunday 31 May.
     $holidays = Holidays::for(country: 'sg', year: 2026)->get();
 
     expect(findDate($holidays, 'Vesak Day')?->format('Y-m-d'))->toBe('2026-05-31');
@@ -84,7 +81,6 @@ it('declares the next day a public holiday when a public holiday falls on a sund
 });
 
 it('skips a day that is already a public holiday when moving a sunday holiday', function () {
-    // Chinese New Year 2023 is on Sunday 22 and Monday 23 January, so the extra day is Tuesday.
     $holidays = Holidays::for(country: 'sg', year: 2023)->get();
 
     expect(findDate($holidays, 'Chinese New Year')?->format('Y-m-d'))->toBe('2023-01-22');
@@ -93,7 +89,6 @@ it('skips a day that is already a public holiday when moving a sunday holiday', 
 });
 
 it('does not move a public holiday that falls on a saturday', function () {
-    // National Day 2025 is on Saturday 9 August.
     $holidays = Holidays::for(country: 'sg', year: 2025)->get();
 
     expect(findDate($holidays, 'National Day')?->format('Y-m-d'))->toBe('2025-08-09');
