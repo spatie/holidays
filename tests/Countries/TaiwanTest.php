@@ -20,14 +20,11 @@ it('can calculate taiwan holidays', function () {
 
 });
 
-// Days off of the government office calendar published by the Directorate-General of Personnel Administration:
-// https://www.dgpa.gov.tw/informationlist?uid=30 (open data: https://data.gov.tw/dataset/14718)
 it('matches the days off of the government office calendar', function (int $year, array $expectedDates) {
     $holidays = Holidays::for(country: 'tw', year: $year)->get();
 
     $dates = array_map(fn (Holiday $holiday): string => $holiday->date->format('Y-m-d'), $holidays);
 
-    // Children's Day and Tomb Sweeping Day share a date in some years.
     expect(array_values(array_unique($dates)))->toBe($expectedDates);
 })->with([
     [2020, [
@@ -78,14 +75,12 @@ it('matches the days off of the government office calendar', function (int $year
 ]);
 
 it('lists the lunar new year holidays', function () {
-    // Lunar New Year 2027 is on 6 February, a day before the date that ICU calculates.
     $holidays = Holidays::for(country: 'tw', year: 2027)->get();
 
     expect(findDate($holidays, '農曆除夕')?->format('Y-m-d'))->toBe('2027-02-05');
     expect(findDate($holidays, '農曆春節-正月初一')?->format('Y-m-d'))->toBe('2027-02-06');
     expect(findDate($holidays, '農曆春節-正月初三')?->format('Y-m-d'))->toBe('2027-02-08');
 
-    // The day before Lunar New Year's Eve and the days added after the festival.
     $holidays = Holidays::for(country: 'tw', year: 2024)->get();
 
     expect(findDate($holidays, '小年夜')?->format('Y-m-d'))->toBe('2024-02-08');
@@ -103,7 +98,6 @@ it('lists children\'s day and tomb sweeping day separately', function () {
     expect(findDate($holidays, '兒童節')?->format('Y-m-d'))->toBe('2024-04-04');
     expect(findDate($holidays, '民族掃墓節')?->format('Y-m-d'))->toBe('2024-04-04');
 
-    // Tomb Sweeping Day is called Qingming Festival from 2026.
     $holidays = Holidays::for(country: 'tw', year: 2026)->get();
 
     expect(findDate($holidays, '清明節')?->format('Y-m-d'))->toBe('2026-04-05');
@@ -132,14 +126,30 @@ it('returns the days that the government adds to a year as observed holidays', f
     ));
 
     expect(array_map(fn (Holiday $holiday): string => $holiday->date->format('Y-m-d'), $observed))->toBe([
-        '2023-01-02', '2023-01-25', '2023-01-26', '2023-01-27', '2023-02-27', '2023-04-03', '2023-06-23', '2023-10-09',
+        '2023-01-02', '2023-01-20', '2023-01-25', '2023-01-26', '2023-01-27', '2023-02-27', '2023-04-03', '2023-06-23', '2023-10-09',
     ]);
     expect(array_values(array_unique(array_map(fn (Holiday $holiday): string => $holiday->name, $observed))))
-        ->toBe(['補假', '調整放假']);
+        ->toBe(['補假', '小年夜', '調整放假']);
 });
 
-it('only calculates the fixed days and lunar festivals for years without a published calendar', function () {
-    $holidays = Holidays::for(country: 'tw', year: 2030)->get();
+it('treats the day before lunar new year eve as an adjusted day until the 2025 reform', function (int $year, string $date, HolidayType $type) {
+    $holidays = Holidays::for(country: 'tw', year: $year)->get($type);
+
+    expect(findDate($holidays, '小年夜')?->toDateString())->toBe($date);
+})->with([
+    [2023, '2023-01-20', HolidayType::Observed],
+    [2024, '2024-02-08', HolidayType::Observed],
+    [2025, '2025-01-27', HolidayType::Observed],
+    [2026, '2026-02-15', HolidayType::National],
+    [2027, '2027-02-04', HolidayType::National],
+]);
+
+it('excludes make-up working days and ordinary weekends', function (string $date) {
+    expect(Holidays::for('tw')->isHoliday($date))->toBeFalse();
+})->with(['2020-02-15', '2023-01-07', '2024-02-17', '2025-02-08', '2026-02-14']);
+
+it('preserves the legacy calculation outside the official calendar range', function (int $year) {
+    $holidays = Holidays::for(country: 'tw', year: $year)->get();
 
     expect(array_map(fn (Holiday $holiday): string => $holiday->name, $holidays))->toBe([
         '元旦',
@@ -152,12 +162,12 @@ it('only calculates the fixed days and lunar festivals for years without a publi
         '中秋節',
         '雙十國慶',
     ]);
-});
+})->with([2019, 2028, 2030]);
 
 it('has an english translation for every taiwan holiday', function () {
     $translations = json_decode((string) file_get_contents(__DIR__.'/../../lang/tw/en/holidays.json'), true);
 
-    foreach ([...range(2015, 2035)] as $year) {
+    foreach (range(2015, 2035) as $year) {
         foreach (Holidays::for(country: 'tw', year: $year)->get() as $holiday) {
             expect($translations)->toHaveKey($holiday->name);
         }
