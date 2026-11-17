@@ -20,6 +20,7 @@ use Spatie\Holidays\Countries\Brazil;
 use Spatie\Holidays\Countries\Bulgaria;
 use Spatie\Holidays\Countries\Canada;
 use Spatie\Holidays\Countries\Chile;
+use Spatie\Holidays\Countries\China;
 use Spatie\Holidays\Countries\Colombia;
 use Spatie\Holidays\Countries\Country;
 use Spatie\Holidays\Countries\Croatia;
@@ -131,6 +132,7 @@ final class CountryRegistry
         'bg' => Bulgaria::class,
         'ca' => Canada::class,
         'cl' => Chile::class,
+        'cn' => China::class,
         'co' => Colombia::class,
         'hr' => Croatia::class,
         'cz' => Czechia::class,
