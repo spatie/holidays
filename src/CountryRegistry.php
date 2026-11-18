@@ -96,6 +96,7 @@ use Spatie\Holidays\Countries\Switzerland;
 use Spatie\Holidays\Countries\Syria;
 use Spatie\Holidays\Countries\Taiwan;
 use Spatie\Holidays\Countries\Tanzania;
+use Spatie\Holidays\Countries\Thailand;
 use Spatie\Holidays\Countries\Tunisia;
 use Spatie\Holidays\Countries\Turkey;
 use Spatie\Holidays\Countries\Turkmenistan;
@@ -207,6 +208,7 @@ final class CountryRegistry
         'sy' => Syria::class,
         'tw' => Taiwan::class,
         'tz' => Tanzania::class,
+        'th' => Thailand::class,
         'tn' => Tunisia::class,
         'tr' => Turkey::class,
         'tm' => Turkmenistan::class,

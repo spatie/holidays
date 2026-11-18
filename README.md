@@ -44,6 +44,8 @@ Taiwan (`tw`) follows the [DGPA government-office calendar](https://data.gov.tw/
 
 Outside 2020–2027, Taiwan retains its legacy calculation for compatibility. It returns only New Year's Day, Peace Memorial Day, Children's Day, National Day, the first three days of Lunar New Year, Dragon Boat Festival and Mid-Autumn Festival. It omits Lunar New Year's Eve, Tomb Sweeping Day, compensatory days and the holidays introduced by the [2025 reform](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0020095). Those years are not complete official calendars.
 
+Thailand (`th`) supports 2022–2027 and returns the [holidays of financial institutions announced by the Bank of Thailand](https://www.bot.or.th/en/financial-institutions-holiday.html), including the special holidays that the Cabinet adds to a year. A holiday on a weekend keeps its date, and its substitution day is added as `HolidayType::Observed`. A weekend holiday that got no substitution day is not listed, because no announcement names it. Holidays for one area only, the Eid and Chinese New Year holidays of the southern provinces, and government-office holidays that banks do not observe are not included. Names are in Thai, following the official text of the announcements; pass the `en` locale for English.
+
 ## Usage
 
 You can get all holidays for a country by using the `get` method. It returns an array of `Holiday` objects.
