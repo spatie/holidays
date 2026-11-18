@@ -2,6 +2,19 @@
 
 All notable changes to `holidays` will be documented in this file.
 
+## 2.9.3 - 2026-11-18
+
+### Fixed
+
+- Correct Korea Christmas (크리스마스) from December 15 to December 25, as specified in Article 2(10) of the [official Korean holiday regulations](https://www.law.go.kr/LSW//lsLinkCommonInfo.do?lsJoLnkSeq=1033028575).
+- Add public-API regression coverage for 2023, 2024 and 2026, including rejection of the incorrect December 15 date.
+
+Thanks to @wonjangcloud9 in https://github.com/spatie/holidays/pull/359.
+
+This non-breaking patch builds on 2.9.2 and includes only the Korea Christmas correction and its tests. Unrelated unreleased changes on main are excluded. Release-tree validation: 807 tests / 3,507 assertions, strict Composer validation, PHPStan, Pint, and all tag CI checks passed.
+
+**Full changelog:** https://github.com/spatie/holidays/compare/2.9.2...2.9.3
+
 ## 2.9.2 - 2026-11-13
 
 ### Taiwan holiday corrections
