@@ -17,6 +17,14 @@ it('can calculate korean holidays', function () {
     expect(formatDates($holidays))->toMatchSnapshot();
 });
 
+it('celebrates Christmas on December 25 instead of December 15', function (int $year) {
+    $holidays = Holidays::for(country: 'kr', year: $year);
+
+    expect(findDate($holidays->get(), '크리스마스')?->format('Y-m-d'))->toBe("{$year}-12-25")
+        ->and($holidays->getName("{$year}-12-25"))->toBe('크리스마스')
+        ->and($holidays->isHoliday("{$year}-12-15"))->toBeFalse();
+})->with([2023, 2024, 2026]);
+
 it('can calculate the Lunar New Year holiday', function ($year, $expectedHoliday) {
     CarbonImmutable::setTestNow("{$year}-01-01");
 
