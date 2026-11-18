@@ -24,7 +24,7 @@ class Korea extends Country
             Holiday::national('광복절', "{$year}-08-15"),
             Holiday::national('개천절', "{$year}-10-03"),
             Holiday::national('한글날', "{$year}-10-09"),
-            Holiday::national('크리스마스', "{$year}-12-15"),
+            Holiday::national('크리스마스', "{$year}-12-25"),
         ], $this->variableHolidays($year));
     }
 
