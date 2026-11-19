@@ -39,6 +39,11 @@ it('can calculate the Lunar New Year holiday', function ($year, $expectedHoliday
     expect($lunarNewYearHoliday)->toContain(...$expectedHoliday);
 })->with([
     [
+        2028, [
+            '2028-01-26', '2028-01-27', '2028-01-28',
+        ],
+    ],
+    [
         2024, [
             '2024-02-09', '2024-02-10', '2024-02-11',
         ],
@@ -78,7 +83,8 @@ it('can calculate the holiday of Lunar Buddha\'s Birthday', function ($year, $ex
     expect($dates)->toContain(...$expectedHoliday);
 })->with([
     [2024, ['2024-05-15']],
-    [2023, ['2023-05-26']],
+    [2023, ['2023-05-27']],
+    [2012, ['2012-05-28']],
     [2022, ['2022-05-08']],
 ]);
 
@@ -95,6 +101,11 @@ it('can calculate the Lunar Chuseok holiday', function ($year, $expectedHoliday)
 
     expect($lunarNewYearHoliday)->toContain(...$expectedHoliday);
 })->with([
+    [
+        2040, [
+            '2040-09-20', '2040-09-21', '2040-09-22',
+        ],
+    ],
     [
         2024, [
             '2024-09-16', '2024-09-17', '2024-09-18',

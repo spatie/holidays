@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use IntlDateFormatter;
 use Spatie\Holidays\Calendars\ChineseCalendar;
 use Spatie\Holidays\Holiday;
 
@@ -26,6 +27,23 @@ class Korea extends Country
             Holiday::national('한글날', "{$year}-10-09"),
             Holiday::national('크리스마스', "{$year}-12-25"),
         ], $this->variableHolidays($year));
+    }
+
+    /**
+     * Lunar dates come from ICU's Korean calendar (dangi), which is reckoned at Seoul's meridian
+     * and sometimes puts a new moon a day after the Chinese calendar does (Buddha's Birthday 2023,
+     * the Lunar New Year 2028).
+     */
+    protected function getFormatter(): IntlDateFormatter
+    {
+        return $this->formatter ??= new IntlDateFormatter(
+            'ko-KR@calendar=dangi',
+            IntlDateFormatter::SHORT,
+            IntlDateFormatter::NONE,
+            $this->chineseCalendarTimezone,
+            IntlDateFormatter::TRADITIONAL,
+            'r-M-d',
+        );
     }
 
     /** @return array<Holiday> */
