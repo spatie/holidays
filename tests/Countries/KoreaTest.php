@@ -3,7 +3,9 @@
 namespace Spatie\Holidays\Tests\Countries;
 
 use Carbon\CarbonImmutable;
+use Spatie\Holidays\Holiday;
 use Spatie\Holidays\Holidays;
+use Spatie\Holidays\HolidayType;
 
 it('can calculate korean holidays', function () {
     CarbonImmutable::setTestNow('2024-01-01');
@@ -120,4 +122,52 @@ it('can calculate the Lunar Chuseok holiday', function ($year, $expectedHoliday)
             '2020-09-30', '2020-10-01', '2020-10-02',
         ],
     ],
+]);
+
+it('makes Labour Day and Constitution Day public holidays from 2026', function () {
+    expect(Holidays::for(country: 'kr', year: 2026)->getName('2026-05-01'))->toBe('노동절')
+        ->and(Holidays::for(country: 'kr', year: 2026)->getName('2026-07-17'))->toBe('제헌절')
+        ->and(Holidays::for(country: 'kr', year: 2025)->isHoliday('2025-05-01'))->toBeFalse()
+        ->and(Holidays::for(country: 'kr', year: 2025)->isHoliday('2025-07-17'))->toBeFalse();
+});
+
+it('adds a substitute holiday after a holiday that falls on a day off', function (string $date) {
+    $holidays = Holidays::for(country: 'kr', year: (int) substr($date, 0, 4))->get();
+
+    $substitute = array_values(array_filter(
+        $holidays,
+        fn (Holiday $holiday): bool => $holiday->date->toDateString() === $date,
+    ));
+
+    expect($substitute)->toHaveCount(1)
+        ->and($substitute[0]->name)->toBe('대체공휴일')
+        ->and($substitute[0]->type)->toBe(HolidayType::Observed);
+})->with([
+    'Chuseok on a Sunday (2014)' => '2014-09-10',
+    'Chuseok on National Foundation Day (2017)' => '2017-10-06',
+    "Children's Day on a Sunday (2019)" => '2019-05-06',
+    'Liberation Day on a Sunday (2021)' => '2021-08-16',
+    'Hangul Day on a Saturday (2021)' => '2021-10-11',
+    'Lunar New Year on a Sunday (2023)' => '2023-01-24',
+    'Lunar New Year on a Sunday (2024)' => '2024-02-12',
+    "Children's Day on a Sunday (2024)" => '2024-05-06',
+    'Independence Movement Day on a Saturday (2025)' => '2025-03-03',
+    "Children's Day on Buddha's Birthday (2025)" => '2025-05-06',
+    'Chuseok on a Sunday (2025)' => '2025-10-08',
+    'Independence Movement Day on a Sunday (2026)' => '2026-03-02',
+    "Buddha's Birthday on a Sunday (2026)" => '2026-05-25',
+    'Liberation Day on a Saturday (2026)' => '2026-08-17',
+    'Labour Day on a Saturday (2027)' => '2027-05-03',
+    'Constitution Day on a Saturday (2027)' => '2027-07-19',
+    'Christmas on a Saturday (2027)' => '2027-12-27',
+]);
+
+it('adds no substitute holiday for a holiday the rule did not cover yet', function (string $date) {
+    expect(Holidays::for(country: 'kr', year: (int) substr($date, 0, 4))->isHoliday($date))->toBeFalse();
+})->with([
+    'Lunar New Year on a Sunday before 2014 (2013)' => '2013-02-12',
+    'Independence Movement Day on a Sunday before 2022 (2020)' => '2020-03-02',
+    'Christmas on a Sunday before 2023 (2022)' => '2022-12-26',
+    'Memorial Day on a Sunday (2021)' => '2021-06-07',
+    'Chuseok on a Saturday only (2026)' => '2026-09-28',
 ]);

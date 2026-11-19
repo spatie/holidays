@@ -2,6 +2,7 @@
 
 namespace Spatie\Holidays\Countries;
 
+use Carbon\CarbonImmutable;
 use Spatie\Holidays\Calendars\ChineseCalendar;
 use Spatie\Holidays\Holiday;
 
@@ -16,7 +17,7 @@ class Korea extends Country
 
     protected function allHolidays(int $year): array
     {
-        return array_merge([
+        $holidays = array_merge([
             Holiday::national('신정', "{$year}-01-01"),
             Holiday::national('3ㆍ1절', "{$year}-03-01"),
             Holiday::national('어린이날', "{$year}-05-05"),
@@ -26,6 +27,78 @@ class Korea extends Country
             Holiday::national('한글날', "{$year}-10-09"),
             Holiday::national('크리스마스', "{$year}-12-25"),
         ], $this->variableHolidays($year));
+
+        // Public Holidays Act as amended on 2026-02-10: Labour Day and Constitution Day are public holidays from 2026.
+        if ($year >= 2026) {
+            $holidays[] = Holiday::national('노동절', "{$year}-05-01");
+            $holidays[] = Holiday::national('제헌절', "{$year}-07-17");
+        }
+
+        return array_merge($holidays, $this->substituteHolidays($year, $holidays));
+    }
+
+    /**
+     * Substitute holidays (대체공휴일, Public Holidays Act article 3): the first day after the holiday
+     * that is neither a Saturday, a Sunday nor a holiday. The Lunar New Year and Chuseok days get one
+     * when they fall on a Sunday or on another holiday; the holidays below get one when they fall on a
+     * Saturday, a Sunday or another holiday, from the year the rule first covered them.
+     *
+     * @param  array<Holiday>  $holidays
+     * @return array<Holiday>
+     */
+    protected function substituteHolidays(int $year, array $holidays): array
+    {
+        if ($year < 2014) {
+            return [];
+        }
+
+        $substitutedSince = [
+            '어린이날' => 2014,
+            '광복절' => 2021,
+            '개천절' => 2021,
+            '한글날' => 2021,
+            '3ㆍ1절' => 2022,
+            '부처님 오신날' => 2023,
+            '크리스마스' => 2023,
+            '노동절' => 2026,
+            '제헌절' => 2026,
+        ];
+        $lunarHolidays = ['설날 연휴 1', '설날', '설날 연휴 2', '추석 연휴 1', '추석', '추석 연휴 2'];
+
+        $holidaysPerDate = [];
+        $substituteOn = [];
+
+        foreach ($holidays as $holiday) {
+            $date = $holiday->date->toDateString();
+            $holidaysPerDate[$date] = ($holidaysPerDate[$date] ?? 0) + 1;
+
+            if (in_array($holiday->name, $lunarHolidays, true)) {
+                $substituteOn[$date] ??= $holiday->date->isSunday();
+            } elseif ($year >= ($substitutedSince[$holiday->name] ?? PHP_INT_MAX)) {
+                $substituteOn[$date] ??= $holiday->date->isWeekend();
+            }
+        }
+
+        ksort($substituteOn);
+
+        $substitutes = [];
+
+        foreach ($substituteOn as $date => $fallsOnDayOff) {
+            if (! $fallsOnDayOff && $holidaysPerDate[$date] < 2) {
+                continue;
+            }
+
+            $substitute = CarbonImmutable::parse($date)->addDay();
+
+            while ($substitute->isWeekend() || isset($holidaysPerDate[$substitute->toDateString()])) {
+                $substitute = $substitute->addDay();
+            }
+
+            $holidaysPerDate[$substitute->toDateString()] = 1;
+            $substitutes[] = Holiday::observed('대체공휴일', $substitute);
+        }
+
+        return $substitutes;
     }
 
     /** @return array<Holiday> */
