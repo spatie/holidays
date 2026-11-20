@@ -113,12 +113,14 @@ abstract class Country
 
     protected function orthodoxEaster(int $year): CarbonImmutable
     {
-        // Paschal full moon date
-        // Not covered edge case:
-        // when the full moon is on a 3 April, Easter is the next Sunday
-        $easter = $this->createDate('Y-m-d', "{$year}-04-03");
+        // easter_days() counts from 21 March in the Julian calendar.
+        // The Julian calendar is 13 days behind only in 1900-2099
+        // (12 days in 1800-1899, 14 days in 2100-2199, ...).
+        $julianToGregorianDays = intdiv($year, 100) - intdiv($year, 400) - 2;
 
-        return $easter->addDays(easter_days($year, CAL_EASTER_ALWAYS_JULIAN));
+        $easter = $this->createDate('Y-m-d', "{$year}-03-21");
+
+        return $easter->addDays(easter_days($year, CAL_EASTER_ALWAYS_JULIAN) + $julianToGregorianDays);
     }
 
     public static function find(string $countryCode, ?string $region = null): ?Country
